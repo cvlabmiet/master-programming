@@ -1,0 +1,18 @@
+---
+lang: ru_RU
+revealjs-url: "https://rawgit.com/hakimel/reveal.js/master"
+theme: serif
+slideNumber: true
+history: false
+center: true
+transition: convex
+mathjax: true
+width: \'100%\'
+height: \'100%\'
+header-includes: |
+    <style type="text/css">
+        .reveal h1 { font-size: 2em; }
+        .reveal h2 { font-size: 2em; }
+        .reveal h3 { font-size: 1em; }
+    </style>
+---
