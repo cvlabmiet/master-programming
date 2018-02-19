@@ -15,6 +15,43 @@ date: 2018-02-18
 
 ---
 
+# Операционная система Linux {#linux}
+
+<div class='column' style='float:left'>
+```
+/
+├── bin
+├── include
+├── lib
+├── lib64
+├── etc
+├── usr
+│   ├── include
+│   ├── lib
+│   └── lib64
+├── tmp
+├── var
+├── run
+├── proc
+├── dev
+├── sys
+├── home
+└── opt
+```
+</div>
+
+<div class='column'>
+* Истинная среда для программирования
+* Пакетный менеджер (apt, yum, portage, aur, ...)
+* Системные демоны --- `systemd`
+* Большой выбор библиотек
+* Поддержка многих языков программирования
+* Переменные окружения (`PATH`, `USER`, ...)
+* Статические и динамические библиотеки
+</div>
+
+---
+
 # Новая эра: NixOS {#nixos-overview}
 
 * Сайт сообщества [nixos.org](https://nixos.org)
@@ -37,11 +74,12 @@ date: 2018-02-18
 
 ## Установка NixOS {#nixos-setup}
 
-* Образ для установки на странице https://nixos.org/nixos/download.html
+* Образ для установки на странице [https://nixos.org/nixos/download.html](https://nixos.org/nixos/download.html)
 * Следует выбирать Minimal installation 64-bit
 * Конфигурационные файлы:
+
     ```
-    $ git clone
+    $ git clone git@github.com:cvlabmiet/nixos-config.git
     ```
 
 ## Конфигурация виртуальной машины {#nixos-configuration}
@@ -51,9 +89,9 @@ date: 2018-02-18
 * 1ГиБ ОЗУ
 * Тип сетевой карты: Usermode networking
 * 10ГиБ внешнего диска
-* Shared filesystem для доступа внутри виртаулки:
+* Shared filesystem для доступа внутри виртуалки:
     * mode: passthroug
-    * source path: /home/<user>
+    * source path: /home/$USER
     * target path: shared (readonly)
 
 ## Разбиение диска {#nixos-gptdisk}
@@ -95,9 +133,9 @@ Hex code or GUID (L to show codes, Enter = 8300):
 Changed type of partition to 'Linux filesystem'
 
 Command (? for help): n
-Partition number (3-128, default 3):
-First sector (34-20971486, default = 14886912) or {+-}size{KMGTP}: +2G
-Last sector (19081216-20971486, default = 20971486) or {+-}size{KMGTP}:
+Partition number (2-128, default 2):
+First sector (34-20971486, default = 206848) or {+-}size{KMGTP}:
+Last sector (206848-20971486, default = 20971486) or {+-}size{KMGTP}: +7G
 Current type is 'Linux filesystem'
 Hex code or GUID (L to show codes, Enter = 8300):
 Changed type of partition to 'Linux filesystem'
@@ -116,12 +154,12 @@ First sector (34-20971486, default = 18778112) or {+-}size{KMGTP}:
 Last sector (18778112-20971486, default = 20971486) or {+-}size{KMGTP}:
 Current type is 'Linux filesystem'
 Hex code or GUID (L to show codes, Enter = 8300): 8200
-Changed type of partition to 'Linux filesystem'
+Changed type of partition to 'Linux swap'
 
 Command (? for help): n
 Partition number (5-128, default 5):
 First sector (34-2047, default = 34) or {+-}size{KMGTP}:
-Last sector (34-2047, default = 2047) or {+-}size{KMGTP}: 
+Last sector (34-2047, default = 2047) or {+-}size{KMGTP}:
 Current type is 'Linux filesystem'
 Hex code or GUID (L to show codes, Enter = 8300): L
 0700 Microsoft basic data  0c01 Microsoft reserved    2700 Windows RE          
@@ -234,10 +272,9 @@ default-settings.nix  libvirt-configuration.nix
 
 ```sh
 [root@nixos:~]# mount /dev/disk/by-label/root /mnt/
-[root@nixos:~]# mkdir /mnt/{boot,home,shared} /shared
+[root@nixos:~]# mkdir /mnt/{boot,home,shared}
 [root@nixos:~]# mount /dev/disk/by-label/boot /mnt/boot
 [root@nixos:~]# mount /dev/disk/by-label/home /mnt/home
-[root@nixos:~]# mount -t 9p shared /shared
 [root@nixos:~]# nixos-generate-config --root /mnt/
 writing /mnt/etc/nixos/hardware-configuration.nix...
 writing /mnt/etc/nixos/configuration.nix...
@@ -314,6 +351,7 @@ $ virsh edit nixos
 * Secure SHell --- удалённая безопасная оболочка
 * Ничем не отличается от shell
 * Позволяет создавать туннели:
+
     ```
     work -> router -> home
     ```
@@ -324,6 +362,7 @@ $ virsh edit nixos
 ```
 $ tree ~/.ssh/
 /home/igor/.ssh/
+├── authorized_keys
 ├── config
 ├── id_rsa
 ├── id_rsa.pub
@@ -357,7 +396,8 @@ $ ssh nixos 'mkdir ~/.ssh/'
 $ scp /home/igor/.ssh/id_rsa.pub nixos:~/.ssh/authorized_keys
 $ ssh nixos
 [guest@nixos:~]$ pkg-config --cflags --libs fuse3
--I/nix/store/r6fjssaw0ppzfd106wmjc2rlkkxyfvig-fuse-3.2.0/include/fuse3 -L/nix/store/r6fjssaw0ppzfd106wmjc2rlkkxyfvig-fuse-3.2.0/lib -lfuse3 -lpthread
+-I/nix/store/r6fjssaw0ppzfd106wmjc2rlkkxyfvig-fuse-3.2.0/include/fuse3 \
+-L/nix/store/r6fjssaw0ppzfd106wmjc2rlkkxyfvig-fuse-3.2.0/lib -lfuse3 -lpthread
 
 [guest@nixos:~]$ wget https://raw.githubusercontent.com/libfuse/libfuse/master/example/cuse.c
 [guest@nixos:~]$ wget https://raw.githubusercontent.com/libfuse/libfuse/master/example/cuse_client.c
@@ -379,3 +419,10 @@ transferred 6 bytes (6 -> 6)
 
 [guest@nixos:~]$ sudo systemctl poweroff
 ```
+
+---
+
+# Задание {#task}
+
+1. Настроить виртуальное окружение
+2. Ответить на вопрос о `hardware-configuration.nix`
