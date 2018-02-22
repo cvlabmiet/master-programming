@@ -74,7 +74,7 @@ date: 2018-02-18
 
 ## Установка NixOS {#nixos-setup}
 
-* Образ для установки на странице [https://nixos.org/nixos/download.html](https://nixos.org/nixos/download.html)
+* Образ для установки на странице <https://nixos.org/nixos/download.html>
 * Следует выбирать Minimal installation 64-bit
 * Конфигурационные файлы:
 
