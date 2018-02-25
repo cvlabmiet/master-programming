@@ -1,6 +1,5 @@
 ---
 lang: ru_RU
-revealjs-url: "https://rawgit.com/hakimel/reveal.js/master"
 theme: serif
 slideNumber: true
 history: false

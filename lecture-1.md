@@ -217,7 +217,7 @@ clean:
 # Документация {#documentation}
 
 * Зачем нужна документация, если её никто не читает?
-* Пример документации --- [http://libfuse.github.io/doxygen](http://libfuse.github.io/doxygen)
+* Пример документации --- <http://libfuse.github.io/doxygen>
 * Doxygen
 * Написание презентаций, статей и книг
 * $\LaTeX$, groff, docx, reStructuredText, HTML, AsciiDoc, DocBook, markdown --- в чём писать документацию?
@@ -242,7 +242,7 @@ clean:
 
 Бесплатные книжки про программирование в целом:
 
-[github://EbookFoundation/free-programming-books](https://github.com/EbookFoundation/free-programming-books)
+<https://github.com/EbookFoundation/free-programming-books>
 
 ---
 
