@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="ru_RU">
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Игорь Шаронов">
+  <meta name="dcterms.date" content="2018-01-15">
+  <title>Master programming</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="https://rawgit.com/hakimel/reveal.js/master/css/reveal.css">
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="https://rawgit.com/hakimel/reveal.js/master/css/theme/serif.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'https://rawgit.com/hakimel/reveal.js/master/css/print/pdf.css' : 'https://rawgit.com/hakimel/reveal.js/master/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="https://rawgit.com/hakimel/reveal.js/master/lib/js/html5shiv.js"></script>
+  <![endif]-->
+  <style type="text/css">
+      .reveal h1 { font-size: 2em; }
+      .reveal h2 { font-size: 2em; }
+      .reveal h3 { font-size: 1em; }
+      .reveal pre code { max-height: 600px; }
+  </style>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide">
+  <h1 class="title">Master programming</h1>
+  <p class="subtitle">Лекция №1</p>
+  <p class="author">Игорь Шаронов</p>
+  <p class="date">2018-01-15</p>
+</section>
+
+<section id="review" class="slide level1">
+<h1>Из чего состоит курс</h1>
+<ul>
+<li>Операционная система</li>
+<li>Редактор</li>
+<li>Система сборки</li>
+<li>Отладка</li>
+<li>Тестирование</li>
+<li>Система контроля версий</li>
+<li>Программирование на C++</li>
+<li>Документация</li>
+<li>Разработка в команде</li>
+<li><em>Домашняя лабораторная работа</em></li>
+</ul>
+</section>
+<section class="slide level1">
+
+<section id="os" class="level2">
+<h2>Операционная система</h2>
+<ul>
+<li>Планировщик задач</li>
+<li>Распределение памяти</li>
+<li>Изоляция (страничная адресация)</li>
+<li>Ресурсы</li>
+</ul>
+</section>
+<section id="os-objects" class="level2">
+<h2>Объекты ядра ОС</h2>
+<ul>
+<li>Процессы, потоки</li>
+<li>Файлы, каналы (pipes)</li>
+<li>Семафоры, мьютексы</li>
+<li>Проекции в память (mmap)</li>
+</ul>
+</section>
+</section>
+<section class="slide level1">
+
+<section id="linux" class="level2">
+<h2>Linux</h2>
+<ul>
+<li>Основан на Unix</li>
+<li>Только ядро и компилятор</li>
+<li>Linux <span class="math inline">≠</span> Unix</li>
+<li>Virtual File System (VFS) — представление всех объектов в виде файлов</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" data-line-number="1">$ <span class="fu">ls</span> /</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="ex">bin</span>  boot  dev  etc  home include lib  lib64 proc  root  run  sys  tmp  usr  var</a></code></pre></div>
+</section>
+<section id="life-in-console" class="level2">
+<h2>Жизнь в консоли</h2>
+<ul>
+<li>GNU Coreutils
+<ul>
+<li>текстовые утилиты: sort, tr, tail, cat, wc, uniq, …</li>
+<li>файловые утилиты: ls, cp, dd, chmod, ln, mv, rm, …</li>
+<li>скриптовые утилиты: basename, echo, pwd, tee, …</li>
+</ul></li>
+<li>GNU Binutils
+<ul>
+<li>as, ld, ar, objcopy, strip, gprof, …</li>
+<li>nm, objdump, readelf, strings, addr2line, c++filt, …</li>
+</ul></li>
+<li>GNU Debugger</li>
+<li>Базовые утилиты: grep, sed (1974 г.), awk (1977 г.), bash, perl, python</li>
+</ul>
+</section>
+<section id="linux-usage" class="level2">
+<h2>Linux в использовании</h2>
+<ul>
+<li>xorg-server, протокол X11</li>
+<li>window-manager: оконный, тайловый</li>
+<li>демоны (daemons)</li>
+<li>драйверы:
+<ul>
+<li>обычные файлы, которые умеют обрабатывать вызов <code>ioctl</code></li>
+<li>находятся в папке <code>/dev/</code></li>
+<li>и в <code>/sys/class/</code></li>
+<li>работают в режиме ядра</li>
+</ul></li>
+<li>драйверы в режиме пользователя: fuse, cuse, uio</li>
+</ul>
+</section>
+</section>
+<section class="slide level1">
+
+<section id="editor" class="level2">
+<h2>Редактор</h2>
+<ul>
+<li>ed (1971 г.)</li>
+<li>sed, vi, vim, neovim</li>
+<li>emacs</li>
+<li>sublime</li>
+<li>notepad++</li>
+<li>gedit</li>
+<li>IDE <span class="math inline">≠</span> Editor</li>
+</ul>
+</section>
+<section id="editing" class="level2">
+<h2>Процесс редактирования</h2>
+<ol type="1">
+<li>Перемещение по тексту, поиск, скроллинг (view-mode)</li>
+<li>Разделение области просмотра/редактирования</li>
+<li>Подсветка синтаксиса</li>
+<li>Редактирование, замена, удаление, вставка</li>
+<li>Поиск-замена</li>
+<li>Поддержка пользовательских плагинов</li>
+<li><em>Использование уже готового функционала сторонних программ</em></li>
+</ol>
+</section>
+<section id="vim" class="level2">
+<h2>Пример: Vim</h2>
+<ul>
+<li>3 режима: normal, insert (replace), visual</li>
+<li>Программируемая панель</li>
+<li>Буферы, табы, окна</li>
+<li>Большое многообразие плагинов (VimL)</li>
+<li>Подсветка синтаксиса, цветовая схема — тоже плагин</li>
+<li>Орфография</li>
+<li>Использование ctag для перехода по функциям (любого языка, даже <span class="math inline">$\LaTeX$</span>)
+<ul>
+<li>Отображение дерева функций</li>
+</ul></li>
+</ul>
+</section>
+<section id="vim-continue" class="level2">
+<h2>Пример: Vim (продолжение)</h2>
+<ul>
+<li>Автодополнение (несколько видов)</li>
+<li>Запуск интерактивной оболочки вместо буфера</li>
+<li>Встраиваемое GUI</li>
+<li>Возможность использования без GUI</li>
+<li><strong>Холивары: neovim</strong></li>
+</ul>
+</section>
+</section>
+<section class="slide level1">
+
+<section id="build-system" class="level2">
+<h2>Системы сборки</h2>
+<ul>
+<li>make (1977 г., Bell Labs)</li>
+<li>ninja</li>
+<li>scons</li>
+<li>meson</li>
+<li>cmake</li>
+<li><del>свой велосипед</del> НЕТ!</li>
+</ul>
+</section>
+<section id="makefile" class="level2">
+<h2>Makefile</h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode makefile"><code class="sourceCode makefile"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="dt">SRC </span><span class="ch">:=</span><span class="st"> </span><span class="ch">$(</span><span class="kw">wildcard</span><span class="st"> src/*.cpp</span><span class="ch">)</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="dt">HDR </span><span class="ch">:=</span><span class="st"> </span><span class="ch">$(</span><span class="kw">wildcard</span><span class="st"> include/*.h</span><span class="ch">)</span></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="dt">OBJ </span><span class="ch">:=</span><span class="st"> </span><span class="ch">$(</span><span class="kw">patsubst</span><span class="st"> src/%.cpp</span><span class="kw">,</span><span class="st">build/%.o</span><span class="kw">,</span><span class="ch">$(</span><span class="dt">SRC</span><span class="ch">))</span></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="dv">%.o:</span><span class="dt"> %.cpp</span></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6">»»»»@g++ -c <span class="ch">$&lt;</span> -o <span class="ch">$@</span></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="dv">lib.a:</span><span class="dt"> </span><span class="ch">$(</span><span class="dt">OBJ</span><span class="ch">)</span></a>
+<a class="sourceLine" id="cb2-9" data-line-number="9">»»»»@ar -c <span class="ch">$@</span> <span class="ch">$^</span></a>
+<a class="sourceLine" id="cb2-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="dv">app:</span><span class="dt"> main.cpp lib.a</span></a>
+<a class="sourceLine" id="cb2-12" data-line-number="12">»»»»g++ <span class="ch">$^</span> -o <span class="ch">$@</span></a>
+<a class="sourceLine" id="cb2-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb2-14" data-line-number="14"><span class="dv">all:</span><span class="dt"> app</span></a>
+<a class="sourceLine" id="cb2-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb2-16" data-line-number="16"><span class="dv">clean:</span></a>
+<a class="sourceLine" id="cb2-17" data-line-number="17">»»»»@rm -f <span class="ch">$(</span><span class="dt">OBJ</span><span class="ch">)</span> app *.a</a></code></pre></div>
+</section>
+<section id="cmake" class="level2">
+<h2>CMake</h2>
+<ul>
+<li>Шаг конфигурации (аналогичен старому подходу <code>./configure</code>)</li>
+<li>Сборка привычными инструментами (<code>make</code>, <code>ninja</code>, <code>MSBuild</code>, …)</li>
+<li>Запуск тестов через <code>ctest</code></li>
+<li>Пакетирование через <code>cpack</code> (tar.gz, deb, rpm, zip, …)</li>
+<li>Тьюринг-полный скриптовый язык</li>
+<li>Абстрагирование от операционной системы</li>
+</ul>
+</section>
+</section>
+<section id="debugging" class="slide level1">
+<h1>Отладка программ</h1>
+<ul>
+<li>gdb</li>
+<li>nm, readelf, objdump</li>
+<li>valgrind</li>
+<li>gprof</li>
+<li>логирование</li>
+</ul>
+</section>
+<section id="testing" class="slide level1">
+<h1>Тестирование</h1>
+<ul>
+<li>TDD, BDD — способы написания программы</li>
+<li>Юнит-тестирование → интеграционное тестирование → продакшен-тестирование</li>
+<li>Статистика, бенчмарки</li>
+<li>Fixture, test suite, mock, stub, …</li>
+<li>Тестовые данные: генерация на месте, хранение в репозитории или брать удалённо с сервера?</li>
+<li>Границы между разными формами тестирования</li>
+</ul>
+</section>
+<section class="slide level1">
+
+<section id="vcs" class="level2">
+<h2>Системы контроля версий</h2>
+<ul>
+<li>Version Control System (VCS)</li>
+<li>cvs</li>
+<li>subversion (svn)</li>
+<li>git</li>
+<li>mercurial (hg)</li>
+<li><del>лучше я в архивах, по старинке</del> НЕТ!</li>
+<li>необходимо учитывать версионность продукта</li>
+</ul>
+</section>
+<section id="vcs-basic" class="level2">
+<h2>Основные понятия VCS</h2>
+<div class="column" style="float:left">
+<ul>
+<li>изменения</li>
+<li>коммит: изменения + сообщение + автор</li>
+<li>ветка разработки</li>
+<li>слияние (merge)</li>
+<li>конфликты слияния</li>
+<li>pull, checkout, fetch, push</li>
+</ul>
+</div>
+<div class="column">
+<img data-src="http://nvie.com/img/centr-decentr@2x.png" />
+</div>
+</section>
+</section>
+<section id="cxx-programming" class="slide level1">
+<h1>Программирование на C++</h1>
+<ul>
+<li>Новый стандарт лучше старого?</li>
+<li><del>Лучше на C писать: понятнее и проще</del></li>
+<li>Соблюдение стиля кода</li>
+<li><del>Иксепшены — это зло!</del> Но надо быть аккуратнее</li>
+<li>Концепции стабильного кода vs. понятный код</li>
+<li>Разработка по спирали</li>
+</ul>
+</section>
+<section id="documentation" class="slide level1">
+<h1>Документация</h1>
+<ul>
+<li>Зачем нужна документация, если её никто не читает?</li>
+<li>Пример документации — <a href="http://libfuse.github.io/doxygen" class="uri">http://libfuse.github.io/doxygen</a></li>
+<li>Doxygen</li>
+<li>Написание презентаций, статей и книг</li>
+<li><span class="math inline">$\LaTeX$</span>, groff, docx, reStructuredText, HTML, AsciiDoc, DocBook, markdown — в чём писать документацию?</li>
+<li>Генерация linux-документации <code>man</code></li>
+</ul>
+</section>
+<section id="team-development" class="slide level1">
+<h1>Разработка в команде</h1>
+<ul>
+<li>Что такое команда и зачем она нужна?</li>
+<li>Распределение ролей в команде?</li>
+<li>Зачем нужен тот чувак, который ничего не делает?</li>
+<li>Стендапы, планнинги, грумминги, ретроспективы — зачем они нужны?</li>
+<li>Deadline, sprint, milestone, release, post-mortem — а это зачем?</li>
+<li>CTO, CEO, <del>IPO</del>, PM, PO — это что за клоуны?</li>
+<li><span style="color:red">Agile</span> — выход из всех проблем</li>
+<li>Психология разработки</li>
+</ul>
+</section>
+<section id="free-links" class="slide level1">
+<h1>Бесплатные ссылки</h1>
+<p>Бесплатные книжки про программирование в целом:</p>
+<p><a href="https://github.com/EbookFoundation/free-programming-books" class="uri">https://github.com/EbookFoundation/free-programming-books</a></p>
+</section>
+<section class="slide level1">
+
+<section id="lab-work" class="level2">
+<h2>Лабораторная работа</h2>
+<ol type="1">
+<li>Цель работы: написать драйвер устройства
+<ul>
+<li>процессор общего назначения, понимающий некоторый ассемлер</li>
+<li>процессор компенсации движения в видео</li>
+</ul></li>
+<li>Завести аккаунт на <a href="https://github.com">github</a></li>
+<li>Настроить виртуальную машину с linux (libvirt)</li>
+<li>Почитать документацию <code>libfuse</code></li>
+</ol>
+</section>
+<section id="common-processor" class="level2">
+<h2></h2>
+<section id="драйвер-процессора-общего-назначения" class="level3">
+<h3>Драйвер процессора общего назначения</h3>
+<p>Примерная структура драйвера</p>
+<pre><code>/dev/
+└── mycpu/
+    ├── unit0
+    │   ├── pram
+    │   └── lram
+    ├── unit1
+    │   ├── pram
+    │   └── lram
+    ...
+    ├── unitn
+    │   ├── pram
+    │   └── lram
+    └── ctrl</code></pre>
+</section>
+</section>
+<section id="video-processor" class="level2">
+<h2></h2>
+<section id="драйвер-процессора-компесации-движения" class="level3">
+<h3>Драйвер процессора компесации движения</h3>
+<p>Примерная структура драйвера</p>
+<pre><code>/dev/
+└── mycpu/
+    ├── unit0
+    │   ├── vrom
+    │   └── vram
+    ├── unit1
+    │   ├── vrom
+    │   └── vram
+    ...
+    ├── unitn
+    │   ├── vrom
+    │   └── vram
+    └── ctrl</code></pre>
+</section>
+</section>
+<section id="requirements" class="level2">
+<h2>Требования</h2>
+<ol type="1">
+<li>Использовать <code>fuse</code> версии 3.2+</li>
+<li>Система сборки — <code>cmake</code></li>
+<li>Тестирование через <code>ctest</code></li>
+<li>Генерация документации <code>doxygen</code>-ом по цели <code>make install</code></li>
+<li><span style="color:gray">Проверка стиля кода<span></li>
+<li>Упаковка установочного пакета: deb, tar.gz</li>
+<li>Скрипты для проверки (интеграционное тестирование)</li>
+</ol>
+</section>
+</section>
+    </div>
+  </div>
+
+  <script src="https://rawgit.com/hakimel/reveal.js/master/lib/js/head.min.js"></script>
+  <script src="https://rawgit.com/hakimel/reveal.js/master/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display the page number of the current slide
+        slideNumber: true,
+        // Push each slide change to the browser history
+        history: true,
+        // Vertical centering of slides
+        center: true,
+        // Transition style
+        transition: 'convex', // none/fade/slide/convex/concave/zoom
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: '90%',
+        height: '95%',
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'https://rawgit.com/hakimel/reveal.js/master/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'https://rawgit.com/hakimel/reveal.js/master/plugin/zoom-js/zoom.js', async: true },
+          { src: 'https://rawgit.com/hakimel/reveal.js/master/plugin/math/math.js', async: true },
+          { src: 'https://rawgit.com/hakimel/reveal.js/master/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>

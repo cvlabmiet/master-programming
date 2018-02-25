@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="ru_RU">
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Игорь Шаронов">
+  <meta name="dcterms.date" content="2018-02-18">
+  <title>Master programming</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="https://rawgit.com/hakimel/reveal.js/master/css/reveal.css">
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="https://rawgit.com/hakimel/reveal.js/master/css/theme/serif.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'https://rawgit.com/hakimel/reveal.js/master/css/print/pdf.css' : 'https://rawgit.com/hakimel/reveal.js/master/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="https://rawgit.com/hakimel/reveal.js/master/lib/js/html5shiv.js"></script>
+  <![endif]-->
+  <style type="text/css">
+      .reveal h1 { font-size: 2em; }
+      .reveal h2 { font-size: 2em; }
+      .reveal h3 { font-size: 1em; }
+      .reveal pre code { max-height: 600px; }
+  </style>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide">
+  <h1 class="title">Master programming</h1>
+  <p class="subtitle">Лекция №2</p>
+  <p class="author">Игорь Шаронов</p>
+  <p class="date">2018-02-18</p>
+</section>
+
+<section id="overview" class="slide level1">
+<h1>Темы лекции</h1>
+<ul>
+<li>Операционная система Linux</li>
+<li>Новая эра: NixOS</li>
+<li>Среда эмуляции <code>libvirt</code></li>
+<li>Установка NixOS</li>
+<li>Протокол общения SSH</li>
+</ul>
+</section>
+<section id="linux" class="slide level1">
+<h1>Операционная система Linux</h1>
+<div class="column" style="float:left">
+<pre><code>/
+├── bin
+├── include
+├── lib
+├── lib64
+├── etc
+├── usr
+│   ├── include
+│   ├── lib
+│   └── lib64
+├── tmp
+├── var
+├── run
+├── proc
+├── dev
+├── sys
+├── home
+└── opt</code></pre>
+</div>
+<div class="column">
+<ul>
+<li>Истинная среда для программирования</li>
+<li>Пакетный менеджер (apt, yum, portage, aur, …)</li>
+<li>Системные демоны — <code>systemd</code></li>
+<li>Большой выбор библиотек</li>
+<li>Поддержка многих языков программирования</li>
+<li>Переменные окружения (<code>PATH</code>, <code>USER</code>, …)</li>
+<li>Статические и динамические библиотеки</li>
+</ul>
+</div>
+</section>
+<section id="nixos-overview" class="slide level1">
+<h1>Новая эра: NixOS</h1>
+<ul>
+<li>Сайт сообщества <a href="https://nixos.org">nixos.org</a></li>
+<li>Пакетный менеджер — конфигурационный скрипт <code>/etc/nixos/configuration.nix</code></li>
+<li>Используется функциональный язык <code>nix-expression</code></li>
+<li>Поддерживает как сборку из исходников, так и установку бинарных пакетов</li>
+<li>Любые бинарные пакеты поддерживаются: deb, rpm, tar.gz, …</li>
+<li><strong>Изолированные окружения</strong></li>
+</ul>
+</section>
+<section id="libvirt" class="slide level1">
+<h1>libvirt</h1>
+<ul>
+<li>Библиотека для эмуляции</li>
+<li>Поддерживаются виртуальные машины: VirtualBox, VMware, qemu, …</li>
+<li>Пользовательские интерфейсы: virsh, virt-manager</li>
+<li>По настройке не отличается от других VM</li>
+</ul>
+</section>
+<section class="slide level1">
+
+<section id="nixos-setup" class="level2">
+<h2>Установка NixOS</h2>
+<ul>
+<li>Образ для установки на странице <a href="https://nixos.org/nixos/download.html" class="uri">https://nixos.org/nixos/download.html</a></li>
+<li>Следует выбирать Minimal installation 64-bit</li>
+<li><p>Конфигурационные файлы:</p>
+<pre><code>$ git clone git@github.com:cvlabmiet/nixos-config.git</code></pre></li>
+</ul>
+</section>
+<section id="nixos-configuration" class="level2">
+<h2>Конфигурация виртуальной машины</h2>
+<ul>
+<li>Name: nixos</li>
+<li>2 ядра с топологией реального процессора</li>
+<li>1ГиБ ОЗУ</li>
+<li>Тип сетевой карты: Usermode networking</li>
+<li>10ГиБ внешнего диска</li>
+<li>Shared filesystem для доступа внутри виртуалки:
+<ul>
+<li>mode: passthroug</li>
+<li>source path: /home/$USER</li>
+<li>target path: shared (readonly)</li>
+</ul></li>
+</ul>
+</section>
+<section id="nixos-gptdisk" class="level2">
+<h2>Разбиение диска</h2>
+<p>Таблица GPT</p>
+<pre><code>[root@nixos:~]# gdisk /dev/sda
+GPT fdisk (gdisk) version 1.0.1
+
+Partition table scan:
+  MBR: not present
+  BSD: not present
+  APM: not present
+  GPT: not present
+
+Creating new GPT entries.
+
+Command (? for help): p
+Disk /dev/sda: 20971520 sectors, 10.0 GiB
+Logical sector size: 512 bytes
+Disk identifier (GUID): F7108B11-6D52-425D-B7AD-FA3715663728
+Partition table holds up to 128 entries
+First usable sector is 34, last usable sector is 20971486
+Partitions will be aligned on 2048-sector boundaries
+Total free space is 20971453 sectors (10.0 GiB)
+
+Number  Start (sector)    End (sector)  Size       Code  Name
+
+Command (? for help): o
+This option deletes all partitions and creates a new protective MBR.
+Proceed? (Y/N): Y
+
+Command (? for help): n
+Partition number (1-128, default 1):
+First sector (34-20971486, default = 2048) or {+-}size{KMGTP}:
+Last sector (2048-20971486, default = 20971486) or {+-}size{KMGTP}: +100M
+Current type is &#39;Linux filesystem&#39;
+Hex code or GUID (L to show codes, Enter = 8300):
+Changed type of partition to &#39;Linux filesystem&#39;
+
+Command (? for help): n
+Partition number (2-128, default 2):
+First sector (34-20971486, default = 206848) or {+-}size{KMGTP}:
+Last sector (206848-20971486, default = 20971486) or {+-}size{KMGTP}: +7G
+Current type is &#39;Linux filesystem&#39;
+Hex code or GUID (L to show codes, Enter = 8300):
+Changed type of partition to &#39;Linux filesystem&#39;
+
+Command (? for help): n
+Partition number (3-128, default 3):
+First sector (34-20971486, default = 14886912) or {+-}size{KMGTP}:
+Last sector (14886912-20971486, default = 20971486) or {+-}size{KMGTP}: +1900M
+Current type is &#39;Linux filesystem&#39;
+Hex code or GUID (L to show codes, Enter = 8300):
+Changed type of partition to &#39;Linux filesystem&#39;
+
+Command (? for help): n
+Partition number (4-128, default 4):
+First sector (34-20971486, default = 18778112) or {+-}size{KMGTP}:
+Last sector (18778112-20971486, default = 20971486) or {+-}size{KMGTP}:
+Current type is &#39;Linux filesystem&#39;
+Hex code or GUID (L to show codes, Enter = 8300): 8200
+Changed type of partition to &#39;Linux swap&#39;
+
+Command (? for help): n
+Partition number (5-128, default 5):
+First sector (34-2047, default = 34) or {+-}size{KMGTP}:
+Last sector (34-2047, default = 2047) or {+-}size{KMGTP}:
+Current type is &#39;Linux filesystem&#39;
+Hex code or GUID (L to show codes, Enter = 8300): L
+0700 Microsoft basic data  0c01 Microsoft reserved    2700 Windows RE          
+3000 ONIE boot             3001 ONIE config           3900 Plan 9              
+4100 PowerPC PReP boot     4200 Windows LDM data      4201 Windows LDM metadata
+4202 Windows Storage Spac  7501 IBM GPFS              7f00 ChromeOS kernel     
+7f01 ChromeOS root         7f02 ChromeOS reserved     8200 Linux swap          
+8300 Linux filesystem      8301 Linux reserved        8302 Linux /home         
+8303 Linux x86 root (/)    8304 Linux x86-64 root (/  8305 Linux ARM64 root (/)
+8306 Linux /srv            8307 Linux ARM32 root (/)  8400 Intel Rapid Start   
+8e00 Linux LVM             a500 FreeBSD disklabel     a501 FreeBSD boot        
+a502 FreeBSD swap          a503 FreeBSD UFS           a504 FreeBSD ZFS         
+a505 FreeBSD Vinum/RAID    a580 Midnight BSD data     a581 Midnight BSD boot   
+a582 Midnight BSD swap     a583 Midnight BSD UFS      a584 Midnight BSD ZFS    
+a585 Midnight BSD Vinum    a600 OpenBSD disklabel     a800 Apple UFS           
+a901 NetBSD swap           a902 NetBSD FFS            a903 NetBSD LFS          
+a904 NetBSD concatenated   a905 NetBSD encrypted      a906 NetBSD RAID         
+ab00 Recovery HD           af00 Apple HFS/HFS+        af01 Apple RAID          
+af02 Apple RAID offline    af03 Apple label           af04 AppleTV recovery    
+af05 Apple Core Storage    bc00 Acronis Secure Zone   be00 Solaris boot        
+bf00 Solaris root          bf01 Solaris /usr &amp; Mac Z  bf02 Solaris swap        
+bf03 Solaris backup        bf04 Solaris /var          bf05 Solaris /home       
+bf06 Solaris alternate se  bf07 Solaris Reserved 1    bf08 Solaris Reserved 2  
+Press the &lt;Enter&gt; key to see more codes: 
+bf09 Solaris Reserved 3    bf0a Solaris Reserved 4    bf0b Solaris Reserved 5  
+c001 HP-UX data            c002 HP-UX service         ea00 Freedesktop $BOOT   
+eb00 Haiku BFS             ed00 Sony system partitio  ed01 Lenovo system partit
+ef00 EFI System            ef01 MBR partition scheme  ef02 BIOS boot partition 
+f800 Ceph OSD              f801 Ceph dm-crypt OSD     f802 Ceph journal        
+f803 Ceph dm-crypt journa  f804 Ceph disk in creatio  f805 Ceph dm-crypt disk i
+fb00 VMWare VMFS           fb01 VMWare reserved       fc00 VMWare kcore crash p
+fd00 Linux RAID            
+Hex code or GUID (L to show codes, Enter = 8300): ef02
+Changed type of partition to &#39;BIOS boot partition&#39;
+
+Command (? for help): p
+Disk /dev/sda: 20971520 sectors, 10.0 GiB
+Logical sector size: 512 bytes
+Disk identifier (GUID): A658572D-4D21-4860-A6E3-3D7245B049AF
+Partition table holds up to 128 entries
+First usable sector is 34, last usable sector is 20971486
+Partitions will be aligned on 2-sector boundaries
+Total free space is 0 sectors (0 bytes)
+
+Number  Start (sector)    End (sector)  Size       Code  Name
+   1            2048          206847   100.0 MiB   8300  Linux filesystem
+   2          206848        14886911   7.0 GiB     8300  Linux filesystem
+   3        14886912        18778111   1.9 GiB     8300  Linux filesystem
+   4        18778112        20971486   1.0 GiB     8200  Linux swap
+   5              34            2047   1007.0 KiB  EF02  BIOS boot partition
+
+Command (? for help): w
+
+Final checks complete. About to write GPT data. THIS WILL OVERWRITE EXISTING
+PARTITIONS!!
+
+Do you want to proceed? (Y/N): Y
+OK; writing new GUID partition table (GPT) to /dev/sda.
+The operation has completed successfully.
+
+[root@nixos:~]#</code></pre>
+</section>
+<section id="nixos-filesystem" class="level2">
+<h2>Настройка файловой системы</h2>
+<pre><code>[root@nixos:~]# gdisk -l /dev/sda
+GPT fdisk (gdisk) version 1.0.1
+
+Partition table scan:
+  MBR: protective
+  BSD: not present
+  APM: not present
+  GPT: present
+
+Found valid GPT with protective MBR; using GPT.
+Disk /dev/sda: 20971520 sectors, 10.0 GiB
+Logical sector size: 512 bytes
+Disk identifier (GUID): A658572D-4D21-4860-A6E3-3D7245B049AF
+Partition table holds up to 128 entries
+First usable sector is 34, last usable sector is 20971486
+Partitions will be aligned on 2-sector boundaries
+Total free space is 0 sectors (0 bytes)
+
+Number  Start (sector)    End (sector)  Size       Code  Name
+   1            2048          206847   100.0 MiB   8300  Linux filesystem
+   2          206848        14886911   7.0 GiB     8300  Linux filesystem
+   3        14886912        18778111   1.9 GiB     8300  Linux filesystem
+   4        18778112        20971486   1.0 GiB     8200  Linux swap
+   5              34            2047   1007.0 KiB  EF02  BIOS boot partition
+
+[root@nixos:~]# mkfs.ext4 -L boot /dev/sda1
+[root@nixos:~]# mkfs.ext4 -L root /dev/sda2
+[root@nixos:~]# mkfs.ext4 -L home /dev/sda3
+[root@nixos:~]# mkswap -L swap /dev/sda4
+[root@nixos:~]# swapon /dev/sda4
+[root@nixos:~]# free -h
+              total        used        free      shared  buff/cache   available
+Mem:           997M         64M        638M         18M        295M        779M
+Swap:          1.0G          0B        1.0G
+
+[root@nixos:~]# mkdir /shared
+[root@nixos:~]# mount -t 9p shared /shared
+[root@nixos:~]# ls /shared/nixos-config
+core-packages.nix     gcc-packages.nix
+default-settings.nix  libvirt-configuration.nix</code></pre>
+</section>
+<section id="nixos-install" class="level2">
+<h2>Установка</h2>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb5-1" data-line-number="1">[<span class="ex">root@nixos</span>:~]# mount /dev/disk/by-label/root /mnt/</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">[<span class="ex">root@nixos</span>:~]# mkdir /mnt/<span class="dt">{boot,home,shared}</span></a>
+<a class="sourceLine" id="cb5-3" data-line-number="3">[<span class="ex">root@nixos</span>:~]# mount /dev/disk/by-label/boot /mnt/boot</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">[<span class="ex">root@nixos</span>:~]# mount /dev/disk/by-label/home /mnt/home</a>
+<a class="sourceLine" id="cb5-5" data-line-number="5">[<span class="ex">root@nixos</span>:~]# nixos-generate-config --root /mnt/</a>
+<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="ex">writing</span> /mnt/etc/nixos/hardware-configuration.nix...</a>
+<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="ex">writing</span> /mnt/etc/nixos/configuration.nix...</a>
+<a class="sourceLine" id="cb5-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb5-9" data-line-number="9"><span class="op">&lt;</span><span class="ex">???</span><span class="op">&gt;</span></a>
+<a class="sourceLine" id="cb5-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb5-11" data-line-number="11">[<span class="ex">root@nixos</span>:~]# cat /mnt/etc/nixos/configuration.nix</a>
+<a class="sourceLine" id="cb5-12" data-line-number="12"><span class="kw">{</span> <span class="ex">config</span>, pkgs, ... <span class="kw">}</span>:</a>
+<a class="sourceLine" id="cb5-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb5-14" data-line-number="14"><span class="kw">{</span></a>
+<a class="sourceLine" id="cb5-15" data-line-number="15">  <span class="ex">imports</span> =</a>
+<a class="sourceLine" id="cb5-16" data-line-number="16">    [ <span class="co"># Include the results of the hardware scan.</span></a>
+<a class="sourceLine" id="cb5-17" data-line-number="17">      <span class="ex">./hardware-configuration.nix</span></a>
+<a class="sourceLine" id="cb5-18" data-line-number="18">      <span class="ex">/shared/nixos-config/libvirt-configuration.nix</span></a>
+<a class="sourceLine" id="cb5-19" data-line-number="19">    ];</a>
+<a class="sourceLine" id="cb5-20" data-line-number="20"><span class="kw">}</span></a>
+<a class="sourceLine" id="cb5-21" data-line-number="21"></a>
+<a class="sourceLine" id="cb5-22" data-line-number="22">[<span class="ex">root@nixos</span>:~]# mkdir /mnt/temp-nix</a>
+<a class="sourceLine" id="cb5-23" data-line-number="23">[<span class="ex">root@nixos</span>:~]# cp -r /nix/.rw-store/* /mnt/temp-nix/</a>
+<a class="sourceLine" id="cb5-24" data-line-number="24">[<span class="ex">root@nixos</span>:~]# mount --rbind /mnt/temp-nix /nix/.rw-store</a>
+<a class="sourceLine" id="cb5-25" data-line-number="25">[<span class="ex">root@nixos</span>:~]# df -h</a>
+<a class="sourceLine" id="cb5-26" data-line-number="26"><span class="ex">Filesystem</span>      Size  Used Avail Use% Mounted on</a>
+<a class="sourceLine" id="cb5-27" data-line-number="27"><span class="ex">devtmpfs</span>         50M     0   50M   0% /dev</a>
+<a class="sourceLine" id="cb5-28" data-line-number="28"><span class="ex">tmpfs</span>           499M     0  499M   0% /dev/shm</a>
+<a class="sourceLine" id="cb5-29" data-line-number="29"><span class="ex">tmpfs</span>           250M  3.8M  246M   2% /run</a>
+<a class="sourceLine" id="cb5-30" data-line-number="30"><span class="ex">tmpfs</span>           499M  280K  499M   1% /run/wrappers</a>
+<a class="sourceLine" id="cb5-31" data-line-number="31"><span class="ex">tmpfs</span>           499M   17M  483M   4% /</a>
+<a class="sourceLine" id="cb5-32" data-line-number="32"><span class="ex">/dev/root</span>       335M  335M     0 100% /iso</a>
+<a class="sourceLine" id="cb5-33" data-line-number="33"><span class="ex">/dev/loop0</span>      309M  309M     0 100% /nix/.ro-store</a>
+<a class="sourceLine" id="cb5-34" data-line-number="34"><span class="ex">tmpfs</span>           2.0G  499M  1.6G  25% /nix/.rw-store</a>
+<a class="sourceLine" id="cb5-35" data-line-number="35"><span class="ex">unionfs</span>         2.4G  808M  1.6G  35% /nix/store</a>
+<a class="sourceLine" id="cb5-36" data-line-number="36"><span class="ex">tmpfs</span>           499M     0  499M   0% /sys/fs/cgroup</a>
+<a class="sourceLine" id="cb5-37" data-line-number="37"><span class="ex">tmpfs</span>           100M     0  100M   0% /run/user/0</a>
+<a class="sourceLine" id="cb5-38" data-line-number="38"><span class="ex">/dev/sda2</span>       6.9G   32M  6.5G   1% /mnt</a>
+<a class="sourceLine" id="cb5-39" data-line-number="39"><span class="ex">/dev/sda1</span>        93M  1.6M   85M   2% /mnt/boot</a>
+<a class="sourceLine" id="cb5-40" data-line-number="40"><span class="ex">/dev/sda3</span>       1.8G  5.6M  1.7G   1% /mnt/home</a>
+<a class="sourceLine" id="cb5-41" data-line-number="41"><span class="ex">shared</span>          397G  278G   99G  74% /mnt/shared</a>
+<a class="sourceLine" id="cb5-42" data-line-number="42"></a>
+<a class="sourceLine" id="cb5-43" data-line-number="43">[<span class="ex">root@nixos</span>:~]# nixos-install</a>
+<a class="sourceLine" id="cb5-44" data-line-number="44">[<span class="ex">root@nixos</span>:~]# rm -r /mnt/temp-nix</a>
+<a class="sourceLine" id="cb5-45" data-line-number="45">[<span class="ex">root@nixos</span>:~]# poweroff</a></code></pre></div>
+</section>
+<section id="nixos-install-cont" class="level2">
+<h2>Установка (продолжение)</h2>
+<pre><code>$ virsh edit nixos</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode diff"><code class="sourceCode diff"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">--- /tmp/nixos.xml  2018-02-18 12:22:24.753601712 +0300</span></a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="dt">+++ /dev/fd/63  2018-02-18 12:23:38.123210214 +0300</span></a>
+<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="dt">@@ -1,4 +1,4 @@</span></a>
+<a class="sourceLine" id="cb7-4" data-line-number="4"><span class="st">-&lt;domain type=&#39;kvm&#39;&gt;</span></a>
+<a class="sourceLine" id="cb7-5" data-line-number="5"><span class="va">+&lt;domain type=&#39;kvm&#39; xmlns:qemu=&#39;http://libvirt.org/schemas/domain/qemu/1.0&#39;&gt;</span></a>
+<a class="sourceLine" id="cb7-6" data-line-number="6">   &lt;name&gt;nixos&lt;/name&gt;</a>
+<a class="sourceLine" id="cb7-7" data-line-number="7">   &lt;uuid&gt;bd0ab376-6fee-428b-a30c-f1091afbcba6&lt;/uuid&gt;</a>
+<a class="sourceLine" id="cb7-8" data-line-number="8">   &lt;memory unit=&#39;KiB&#39;&gt;1048576&lt;/memory&gt;</a>
+<a class="sourceLine" id="cb7-9" data-line-number="9"><span class="dt">@@ -108,4 +108,9 @@</span></a>
+<a class="sourceLine" id="cb7-10" data-line-number="10">       &lt;address type=&#39;pci&#39; domain=&#39;0x0000&#39; bus=&#39;0x00&#39; slot=&#39;0x08&#39; function=&#39;0x0&#39;/&gt;</a>
+<a class="sourceLine" id="cb7-11" data-line-number="11">     &lt;/memballoon&gt;</a>
+<a class="sourceLine" id="cb7-12" data-line-number="12">   &lt;/devices&gt;</a>
+<a class="sourceLine" id="cb7-13" data-line-number="13"><span class="va">+  &lt;qemu:commandline&gt;</span></a>
+<a class="sourceLine" id="cb7-14" data-line-number="14"><span class="va">+    &lt;qemu:arg value=&#39;-redir&#39;/&gt;</span></a>
+<a class="sourceLine" id="cb7-15" data-line-number="15"><span class="va">+    &lt;qemu:arg value=&#39;tcp:2222::22&#39;/&gt;</span></a>
+<a class="sourceLine" id="cb7-16" data-line-number="16"><span class="va">+  &lt;/qemu:commandline&gt;</span></a>
+<a class="sourceLine" id="cb7-17" data-line-number="17"> &lt;/domain&gt;</a>
+<a class="sourceLine" id="cb7-18" data-line-number="18"><span class="va">+</span></a></code></pre></div>
+</section>
+<section id="ssh" class="level2">
+<h2>SSH</h2>
+<div class="column" style="float:left">
+<ul>
+<li>Secure SHell — удалённая безопасная оболочка</li>
+<li>Ничем не отличается от shell</li>
+<li><p>Позволяет создавать туннели:</p>
+<pre><code>work -&gt; router -&gt; home</code></pre></li>
+<li>Генерация личного ключа <code>ssh-keygen</code></li>
+</ul>
+</div>
+<div class="column">
+<pre><code>$ tree ~/.ssh/
+/home/igor/.ssh/
+├── authorized_keys
+├── config
+├── id_rsa
+├── id_rsa.pub
+└── known_hosts
+
+0 directories, 4 files</code></pre>
+</div>
+</section>
+<section id="ssh-alias" class="level2">
+<h2>Установка алиасов в SSH</h2>
+<pre><code>$ ssh -p 2222 guest@localhost
+&lt;Ctrl-D&gt;
+$ cat ~/.ssh/config
+Host nixos
+    User guest
+    Hostname localhost
+    Port 2222
+&lt;Ctrl-D&gt;
+$ ssh nixos</code></pre>
+</section>
+</section>
+<section class="slide level1">
+
+<section id="nixos-check" class="level2">
+<h2>Проверка работоспособности окружения</h2>
+<pre><code>$ virsh start nixos
+$ ssh nixos &#39;mkdir ~/.ssh/&#39;
+$ scp /home/igor/.ssh/id_rsa.pub nixos:~/.ssh/authorized_keys
+$ ssh nixos
+[guest@nixos:~]$ pkg-config --cflags --libs fuse3
+-I/nix/store/r6fjssaw0ppzfd106wmjc2rlkkxyfvig-fuse-3.2.0/include/fuse3 \
+-L/nix/store/r6fjssaw0ppzfd106wmjc2rlkkxyfvig-fuse-3.2.0/lib -lfuse3 -lpthread
+
+[guest@nixos:~]$ wget https://raw.githubusercontent.com/libfuse/libfuse/master/example/cuse.c
+[guest@nixos:~]$ wget https://raw.githubusercontent.com/libfuse/libfuse/master/example/cuse_client.c
+[guest@nixos:~]$ wget https://raw.githubusercontent.com/libfuse/libfuse/master/example/ioctl.h
+[guest@nixos:~]$ gcc -o cuse cuse.c `pkg-config --cflags --libs fuse3`
+[guest@nixos:~]$ gcc -o client cuse_client.c `pkg-config --cflags --libs fuse3`
+[guest@nixos:~]$ ls
+client  cuse  cuse.c  cuse_client.c  ioctl.h
+[guest@nixos:~]$ sudo ./cuse --name=123
+[guest@nixos:~]$ ll /dev/123
+crw------- 1 root root 248, 0 Feb 18 22:47 /dev/123
+[guest@nixos:~]$ echo hello  | sudo ./client /dev/123 w 6
+Writing 6 bytes
+transferred 6 bytes (0 -&gt; 6)
+
+[guest@nixos:~]$ sudo ./client /dev/123 r 10
+hello
+transferred 6 bytes (6 -&gt; 6)
+
+[guest@nixos:~]$ sudo systemctl poweroff</code></pre>
+</section>
+</section>
+<section id="task" class="slide level1">
+<h1>Задание</h1>
+<ol type="1">
+<li>Настроить виртуальное окружение</li>
+<li>Ответить на вопрос о <code>hardware-configuration.nix</code></li>
+</ol>
+</section>
+    </div>
+  </div>
+
+  <script src="https://rawgit.com/hakimel/reveal.js/master/lib/js/head.min.js"></script>
+  <script src="https://rawgit.com/hakimel/reveal.js/master/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display the page number of the current slide
+        slideNumber: true,
+        // Push each slide change to the browser history
+        history: true,
+        // Vertical centering of slides
+        center: true,
+        // Transition style
+        transition: 'convex', // none/fade/slide/convex/concave/zoom
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: '90%',
+        height: '95%',
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'https://rawgit.com/hakimel/reveal.js/master/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'https://rawgit.com/hakimel/reveal.js/master/plugin/zoom-js/zoom.js', async: true },
+          { src: 'https://rawgit.com/hakimel/reveal.js/master/plugin/math/math.js', async: true },
+          { src: 'https://rawgit.com/hakimel/reveal.js/master/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>

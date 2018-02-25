@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="ru_RU">
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Игорь Шаронов">
+  <meta name="dcterms.date" content="2018-02-21">
+  <title>Master programming</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="https://rawgit.com/hakimel/reveal.js/master/css/reveal.css">
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <link rel="stylesheet" href="https://rawgit.com/hakimel/reveal.js/master/css/theme/serif.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'https://rawgit.com/hakimel/reveal.js/master/css/print/pdf.css' : 'https://rawgit.com/hakimel/reveal.js/master/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="https://rawgit.com/hakimel/reveal.js/master/lib/js/html5shiv.js"></script>
+  <![endif]-->
+  <style type="text/css">
+      .reveal h1 { font-size: 2em; }
+      .reveal h2 { font-size: 2em; }
+      .reveal h3 { font-size: 1em; }
+      .reveal pre code { max-height: 600px; }
+  </style>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide">
+  <h1 class="title">Master programming</h1>
+  <p class="subtitle">Лекция №3</p>
+  <p class="author">Игорь Шаронов</p>
+  <p class="date">2018-02-21</p>
+</section>
+
+<section id="overview" class="slide level1">
+<h1>Система контроля версий git</h1>
+<ul>
+<li><a href="https://git-scm.com" class="uri">https://git-scm.com</a> — основной сайт с документацией по git</li>
+<li><a href="https://try.github.io" class="uri">https://try.github.io</a> — онлайн путеводитель по git-у</li>
+<li><a href="https://githowto.com/ru" class="uri">https://githowto.com/ru</a> — ещё один путеводитель</li>
+</ul>
+</section>
+<section id="pre-history" class="slide level1">
+<h1>Предыстория</h1>
+<ul>
+<li><p>diff — утилита для выяснения различий</p>
+<pre><code>$ diff -u lecture-1.html lecture-2.html | head -n 20
+--- lecture-1.html 2018-02-25 14:49:23.665411221 +0300
++++ lecture-2.html 2018-02-25 14:49:23.842322309 +0300
+@@ -4,7 +4,7 @@
+   &lt;meta name=&quot;generator&quot; content=&quot;pandoc&quot;&gt;
+   &lt;meta name=&quot;author&quot; content=&quot;Игорь Шаронов&quot;&gt;
+-  &lt;meta name=&quot;dcterms.date&quot; content=&quot;2018-01-15&quot;&gt;
++  &lt;meta name=&quot;dcterms.date&quot; content=&quot;2018-02-18&quot;&gt;
+   &lt;title&gt;Master programming&lt;/title&gt;
+   &lt;meta name=&quot;apple-mobile-web-app-capable&quot; content=&quot;yes&quot;&gt;</code></pre></li>
+<li>patch — обратное действие diff (патч)</li>
+<li><p>конфликты:</p>
+<pre><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; LOCAL:sample.txt
+lines from the original file
+======= REMOTE:sample.txt
+new lines from the patch
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code></pre></li>
+</ul>
+</section>
+<section class="slide level1">
+
+<section id="git-internals" class="level2">
+<h2>Внутренности git-а</h2>
+<ul>
+<li>Директория <code>.git</code>
+<ul>
+<li><code>.git/objects/</code> — пулл объектов</li>
+<li><code>.git/refs/</code> — указатели</li>
+<li><code>.git/HEAD</code> — указатель текущей ветки</li>
+</ul></li>
+<li><code>git</code> — файловая система ассоциативного типа</li>
+<li>Виды объектов: blob, tree, commit, tag</li>
+<li>Виды ссылок: branch, tag, remotes</li>
+<li>Коммит: <code>tree</code>-объект, автор, коммитер, сообщение, parent</li>
+</ul>
+</section>
+<section id="hash" class="level2">
+<h2>Хеш-суммы</h2>
+<ul>
+<li>crc32</li>
+<li>md5</li>
+<li>sha-1</li>
+<li>sha-2: sha-224, sha-256, cha-384, sha-512</li>
+<li><p>Быстрая идентификация сообщения/файла/пароля</p>
+<pre><code>$ echo -n &#39;Master programming&#39; | md5sum -
+01e171232a1aa47e9fd2ae0530782b1f  -
+$ echo -n &#39;master programming&#39; | md5sum -
+e774d0115e01e1b735a7a1a9a3a85f09  -</code></pre></li>
+<li><p>Коллизии хешей</p></li>
+</ul>
+</section>
+</section>
+<section id="git-day-by-day-usage" class="slide level1">
+<h1>Повседневное использование</h1>
+<ul>
+<li><code>git status</code>: unstaged, staged, committed</li>
+<li><code>git add &lt;file&gt;</code> — добавление <code>file</code> в <code>staged</code></li>
+<li><code>git checkout &lt;name&gt;</code> — переход на ветку <code>name</code></li>
+<li><code>git checkout -b &lt;name&gt;</code> — создание новой ветки <code>name</code></li>
+<li><code>git checkout -- &lt;file&gt;</code> — отменить все изменения файла <code>file</code></li>
+<li><code>git reset [&lt;commit&gt;|&lt;branch&gt;]</code> — перевести изменения из <code>committed</code> в состояние <code>unstaged</code></li>
+<li><code>git reset --hard</code> — отменить все изменения (потеря данных)</li>
+<li><code>git push [&lt;remote&gt;]</code> — загрузка изменений на сервер <code>remote</code></li>
+<li><code>git push --force</code> — принудительная загрузка изменений (потеря данных)</li>
+<li><code>git diff [&lt;commit&gt;]</code> — просмотр изменений</li>
+</ul>
+</section>
+<section class="slide level1">
+
+<section id="git-example1" class="level2">
+<h2>Пример №1: добавление нескольких remote</h2>
+<pre><code>$ git clone git@github.com:cvlabmiet/master-programming
+$ cd master-programming
+master-programming $ git remote add miet git@git.miet.ru:cvlab/master-programming
+master-programming $ git push miet master:master</code></pre>
+<pre><code>(lecture-3 *+) $ git st
+On branch lecture-3
+Changes to be committed:
+  (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)
+
+    modified:   CMakeLists.txt
+    modified:   lecture-3.md
+
+Changes not staged for commit:
+  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)
+  (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)
+
+    modified:   lecture-3.md</code></pre>
+</section>
+<section id="git-example2" class="level2">
+<h2>Пример №2: создание локального репозитория</h2>
+<pre><code>$ mkdir /tmp/server
+$ git init --bare /tmp/server/repo
+$ cd /tmp/123/repo/
+repo (BARE:master) $ ls
+branches  config  description  HEAD  hooks  info  objects  refs
+$ git init /tmp/repo
+$ cd /tmp/repo
+repo (master#) $ echo &#39;Empty repo&#39; &gt; README.md
+repo (master#) $ git add README.md
+repo (master#) $ git ci -am &quot;Initial commit&quot;
+repo (master) $ git remote add origin /tmp/server/repo
+repo (master) $ git push origin master:master</code></pre>
+</section>
+<section id="git-example3" class="level2">
+<h2>Пример №3: сравнение с origin/master</h2>
+<pre><code>$ git fetch origin
+$ git diff master origin/master
+$ git show origin/master:lecture-3.md | less
+$ git co origin/master -b new-feature</code></pre>
+</section>
+</section>
+<section id="git-conflicts" class="slide level1">
+<h1>Разрешение конфликтов</h1>
+<ul>
+<li><code>LOCAL</code> — локальные изменения текущей ветки</li>
+<li><code>REMOTE</code> — изменения на сервере</li>
+<li><code>BASE</code> — общий предок <code>LOCAL</code> и <code>REMOTE</code></li>
+<li><code>MERGED</code> — автоматическое разрешение конфликта</li>
+<li>merge — это тоже коммит</li>
+<li>Утилиты для разрешения конфликтов: vimdiff, kdiff3, meld, tortoisemerge</li>
+</ul>
+<div class="column" style="float:center">
+<pre><code>┌───────┬──────┬────────┐   ┌────────┬────────┐
+│ LOCAL │ BASE │ REMOTE │   │        │        │
+├───────┴──────┴────────┤   │ MERGED │ REMOTE │
+│        MERGED         │   │        │        │
+└───────────────────────┘   └────────┴────────┘</code></pre>
+</div>
+</section>
+<section id="git-merge" class="slide level1">
+<h1>Стратегии слияния веток</h1>
+<div class="column">
+<pre><code>      A---B---C topic
+     /
+D---E---F---G master</code></pre>
+</div>
+<ul>
+<li><p>merge no-fast-forward (<code>git merge --no-ff</code>)</p>
+<pre><code>      A---B---C topic
+     /         \
+D---E---F---G---H master</code></pre></li>
+<li><p>merge fast-forward (<code>git merge --ff</code>)</p>
+<pre><code>D---E-A-F-B-G-C master</code></pre></li>
+<li><p>merge squash (<code>git merge --squash</code>)</p>
+<pre><code>D---E---F---G---T master</code></pre></li>
+<li><p>rebase (<code>git rebase master</code>)</p>
+<pre><code>              A---B---C topic
+             /
+D---E---F---G master</code></pre></li>
+</ul>
+</section>
+    </div>
+  </div>
+
+  <script src="https://rawgit.com/hakimel/reveal.js/master/lib/js/head.min.js"></script>
+  <script src="https://rawgit.com/hakimel/reveal.js/master/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display the page number of the current slide
+        slideNumber: true,
+        // Push each slide change to the browser history
+        history: true,
+        // Vertical centering of slides
+        center: true,
+        // Transition style
+        transition: 'convex', // none/fade/slide/convex/concave/zoom
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: '90%',
+        height: '95%',
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'https://rawgit.com/hakimel/reveal.js/master/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'https://rawgit.com/hakimel/reveal.js/master/plugin/zoom-js/zoom.js', async: true },
+          { src: 'https://rawgit.com/hakimel/reveal.js/master/plugin/math/math.js', async: true },
+          { src: 'https://rawgit.com/hakimel/reveal.js/master/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>
