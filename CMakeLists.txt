@@ -29,6 +29,17 @@ foreach(SRC ${SOURCES})
     list(APPEND OUTPUTS ${OUTPUT_FILE})
 endforeach()
 
+set(OUTPUT_FILE ${CMAKE_CURRENT_BINARY_DIR}/index.html)
+set(README_FILE ${CMAKE_CURRENT_BINARY_DIR}/README.md)
+file(READ README.md README_CONTENT)
+string(REGEX REPLACE "(lecture-[0-9]+)\.md" "\\1.html" README_CONTENT ${README_CONTENT})
+file(GENERATE OUTPUT ${README_FILE} CONTENT ${README_CONTENT})
+add_custom_command(OUTPUT ${OUTPUT_FILE}
+    COMMAND ${PANDOC} -V pagetitle=${PROJECT_NAME} -f markdown+raw_tex -s -t html5 ${README_FILE} -o ${OUTPUT_FILE}
+    DEPENDS ${README_FILE}
+)
+list(APPEND OUTPUTS ${OUTPUT_FILE})
+
 add_custom_target(document ALL DEPENDS ${OUTPUTS})
 
 if(USE_LOCAL_REVEALJS)
