@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="ru_RU">
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Игорь Шаронов">
+  <meta name="dcterms.date" content="2018-02-21">
+  <title>Master programming</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="https://rawgit.com/hakimel/reveal.js/master/css/reveal.css">
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="https://rawgit.com/hakimel/reveal.js/master/css/theme/serif.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'https://rawgit.com/hakimel/reveal.js/master/css/print/pdf.css' : 'https://rawgit.com/hakimel/reveal.js/master/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="https://rawgit.com/hakimel/reveal.js/master/lib/js/html5shiv.js"></script>
+  <![endif]-->
+  <style type="text/css">
+      .reveal h1 { font-size: 2em; }
+      .reveal h2 { font-size: 2em; }
+      .reveal h3 { font-size: 1em; }
+      .reveal pre code { max-height: 600px; }
+  </style>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide">
+  <h1 class="title">Master programming</h1>
+  <p class="subtitle">Лекция №4</p>
+  <p class="author">Игорь Шаронов</p>
+  <p class="date">2018-02-21</p>
+</section>
+
+<section id="overview" class="slide level1">
+<h1>Введение в CMake</h1>
+<ul>
+<li><a href="https://www.gitbook.com/book/tuannguyen68/learning-cmake-a-beginner-s-guide" class="uri">https://www.gitbook.com/book/tuannguyen68/learning-cmake-a-beginner-s-guide</a></li>
+<li><a href="https://cmake.org/cmake/help/latest/index.html" class="uri">https://cmake.org/cmake/help/latest/index.html</a> — документация</li>
+<li><a href="http://ttroy50.github.io/cmake-examples" class="uri">http://ttroy50.github.io/cmake-examples</a> — примеры по CMake</li>
+</ul>
+</section>
+<section class="slide level1">
+
+<section id="cmake-structure" class="level2">
+<h2>Структура проекта для CMake</h2>
+<ul>
+<li><code>CMakeLists.txt</code> — файлы CMake</li>
+<li>Каждая директория может содержать <code>CMakeLists.txt</code></li>
+<li>Связывание с помощью <code>add_subdirectory</code></li>
+<li><code>add_library</code>, <code>add_executable</code> — добавление основных целей (targets)</li>
+<li><code>target_*</code> — изменение свойств целей</li>
+<li><code>add_test</code> — добавление теста</li>
+<li><code>export(package)</code> — регистрирование проекта</li>
+<li><code>include(CPack)</code> — генерирование установочного пакета</li>
+</ul>
+</section>
+<section id="cmake-default" class="level2">
+<h2>Цели по умолчанию</h2>
+<ul>
+<li>all или просто <code>make</code> без целей</li>
+<li>rebuild_cache — перестройка кеша</li>
+<li>clean — очистить дерево сборки от артефактов</li>
+<li>test — запуск тестов
+<ul>
+<li>аналогично запуску <code>ctest</code></li>
+</ul></li>
+<li>install — установка собранных артефактов (используется в цели package)</li>
+<li>package — создание пакета
+<ul>
+<li>аналогично запуску <code>cpack</code></li>
+</ul></li>
+<li><code>&lt;name&gt;</code> — собирает отдельную цель <code>name</code>, созданную в <code>CMakeLists.txt</code></li>
+<li>help — выводит доступные цели</li>
+</ul>
+</section>
+</section>
+<section class="slide level1">
+
+<section id="cmake-syntax" class="level2">
+<h2>Синтаксис CMake</h2>
+<ul>
+<li>Идентификаторы переменных такие же, как в C++</li>
+<li>Имена функций и макросов регистронезависимы</li>
+<li>Основные структуры языка:
+<ul>
+<li>условные операторы и циклы</li>
+<li>функции и макросы</li>
+<li>модули (<code>include</code>)</li>
+</ul></li>
+<li>Точка входа — файл <code>CMakeLists.txt</code></li>
+<li>Режимы запуска
+<ul>
+<li><code>cmake &lt;dir&gt;</code> — запускает <code>&lt;dir&gt;/CMakeLists.txt</code></li>
+<li><code>cmake -P &lt;script&gt;</code> — режим скрипта</li>
+<li><code>cmake -E &lt;cmd&gt;</code> — командный режим</li>
+<li>другие режимы</li>
+</ul></li>
+</ul>
+</section>
+<section id="cmake-variables" class="level2">
+<h2>Переменные</h2>
+<ul>
+<li><code>VAL</code> — имя переменной</li>
+<li><code>${VAL}</code> — разыменование переменной, её значение</li>
+<li><code>set(VAL &quot;123 value&quot;)</code> — установка значения переменной</li>
+<li><code>set(VAL 1 2 3) === set(VAL &quot;1;2;3&quot;)</code> — списки</li>
+<li><p>Значение переменных можно передавать в строке ввода:</p>
+<pre><code>$ cmake -DMYVAL=&quot;value&quot; -DMYVAL2=123 -DMYVAL3=ON</code></pre></li>
+<li><code>option(MYVAL &quot;Опциональная переменная&quot; ON)</code> — может быть <code>ON</code>, <code>OFF</code></li>
+<li><code>$ENV{HOME}</code> — доступ к переменным окружения</li>
+<li>Важные переменные: <code>CMAKE_PREFIX_PATH</code>, <code>CMAKE_PROGRAM_PATH</code>, <code>CMAKE_TOOLCHAIN_FILE</code></li>
+<li><p>Стандартные переменные: <code>CMAKE_SOURCE_DIR</code>, <code>CMAKE_CURRENT_SOURCE_DIR</code>, <code>CMAKE_BINARY_DIR</code>, <code>CMAKE_CURRENT_BINARY_DIR</code>, <code>CMAKE_CURRENT_LIST_DIR</code></p></li>
+</ul>
+</section>
+</section>
+<section class="slide level1">
+
+<section id="cmake-mwe1" class="level2">
+<h2>MWE</h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cmake"><code class="sourceCode cmake"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">cmake_minimum_required</span>(<span class="ot">VERSION</span> 3.9)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw">project</span>(example <span class="ot">VERSION</span> 0.1.0 <span class="ot">LANGUAGES</span> CXX DESCRIPTION <span class="st">&quot;la-la-la&quot;</span>)</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="kw">set</span>(<span class="va">CMAKE_CXX_STANDARD</span> 17)</a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="kw">include</span>(CTest)</a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="kw">file</span>(<span class="ot">GLOB</span> <span class="ot">SOURCES</span> src/*.cpp)</a>
+<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="kw">add_library</span>(unit <span class="ot">STATIC</span> <span class="va">${SOURCES}</span>) <span class="co"># libunit.a</span></a>
+<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="kw">target_include_directories</span>(unit <span class="ot">PUBLIC</span> include)</a>
+<a class="sourceLine" id="cb2-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb2-12" data-line-number="12"><span class="kw">add_executable</span>(example app/main.cpp)</a>
+<a class="sourceLine" id="cb2-13" data-line-number="13"><span class="kw">target_link_libraries</span>(example <span class="ot">PUBLIC</span> unit m dl)</a>
+<a class="sourceLine" id="cb2-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb2-15" data-line-number="15"><span class="kw">add_test</span>(<span class="ot">NAME</span> simple_test <span class="ot">COMMAND</span> example --filter sim --dir /tmp)</a>
+<a class="sourceLine" id="cb2-16" data-line-number="16"><span class="kw">set_tests_properties</span>(simple_test <span class="ot">PROPERTIES</span> <span class="ot">PASS_REGULAR_EXPRESSION</span> <span class="st">&quot;hello world&quot;</span>)</a></code></pre></div>
+</section>
+<section id="cmake-packet" class="level2">
+<h2>Пример создания пакета</h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode cmake"><code class="sourceCode cmake"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">include</span>(GNUInstallDirs)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="kw">install</span>(<span class="ot">DIRECTORY</span> include/ <span class="ot">DESTINATION</span> <span class="va">${CMAKE_INSTALL_INCLUDEDIR}</span>)</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="kw">install</span>(<span class="ot">TARGETS</span> example unit</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">    <span class="ot">RUNTIME</span> <span class="ot">DESTINATION</span> <span class="va">${CMAKE_INSTALL_BINDIR}</span></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6">    <span class="ot">LIBRARY</span> <span class="ot">DESTINATION</span> <span class="va">${CMAKE_INSTALL_LIBDIR}</span></a>
+<a class="sourceLine" id="cb3-7" data-line-number="7">    <span class="ot">ARCHIVE</span> <span class="ot">DESTINATION</span> <span class="va">${CMAKE_INSTALL_LIBDIR}</span></a>
+<a class="sourceLine" id="cb3-8" data-line-number="8">)</a>
+<a class="sourceLine" id="cb3-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="kw">list</span>(<span class="ot">APPEND</span> CPACK_GENERATOR TGZ)</a>
+<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="kw">set</span>(<span class="va">CPACK_PACKAGE_VERSION_MAJOR</span> <span class="va">${PROJECT_VERSION_MAJOR}</span>)</a>
+<a class="sourceLine" id="cb3-12" data-line-number="12"><span class="kw">set</span>(<span class="va">CPACK_PACKAGE_VERSION_MINOR</span> <span class="va">${PROJECT_VERSION_MINOR}</span>)</a>
+<a class="sourceLine" id="cb3-13" data-line-number="13"><span class="kw">set</span>(<span class="va">CPACK_PACKAGE_VERSION_PATCH</span> <span class="va">${PROJECT_VERSION_PATCH}</span>)</a>
+<a class="sourceLine" id="cb3-14" data-line-number="14"><span class="kw">set</span>(CPACK_SYSTEM_NAME <span class="va">${CMAKE_SYSTEM_NAME}</span>-<span class="va">${CMAKE_SYSTEM_PROCESSOR}</span>)</a>
+<a class="sourceLine" id="cb3-15" data-line-number="15"><span class="kw">set</span>(CPACK_PACKAGE_CONTACT <span class="st">&quot;MIET&quot;</span>)</a>
+<a class="sourceLine" id="cb3-16" data-line-number="16"><span class="kw">set</span>(CPACK_DEBIAN_PACKAGE_DEPENDS <span class="st">&quot;libfuse3 (&gt;= 3.2.0)&quot;</span>)</a>
+<a class="sourceLine" id="cb3-17" data-line-number="17"><span class="kw">include</span>(CPack)</a></code></pre></div>
+</section>
+</section>
+<section class="slide level1">
+
+<section id="cmake-export" class="level2">
+<h2>Экспорты</h2>
+<ul>
+<li>Связывание проектов можно осуществить с помощью экспорта целей</li>
+<li><code>find_package</code> позволяет осуществить подключение сторонних целей</li>
+<li>В CMake есть локальный реестр пакетов (<code>~/.cmake/packages</code>)</li>
+<li>С помощью <code>find_package</code> и <code>CMAKE_MODULE_PATH</code> можно экпортировать существующие библиотеки</li>
+</ul>
+</section>
+<section id="cmake-install-tree" class="level2">
+<h2>Install-дерево и export</h2>
+<div class="sourceCode" id="cb4"><pre class="sourceCode cmake"><code class="sourceCode cmake"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">target_include_directories</span>(unit <span class="ot">PUBLIC</span> <span class="ot">$&lt;</span><span class="kw">INSTALL_INTERFACE</span><span class="ot">:include&gt;</span> <span class="ot">$&lt;</span><span class="kw">BUILD_INTERFACE</span><span class="ot">:</span><span class="va">${CMAKE_SOURCE_DIR}</span><span class="ot">/include&gt;</span>)</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="kw">install</span>(<span class="ot">TARGETS</span> example unit <span class="ot">EXPORT</span> <span class="va">${PROJECT_NAME}</span>-config</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4">    <span class="ot">RUNTIME</span> <span class="ot">DESTINATION</span> <span class="va">${CMAKE_INSTALL_BINDIR}</span></a>
+<a class="sourceLine" id="cb4-5" data-line-number="5">    <span class="ot">LIBRARY</span> <span class="ot">DESTINATION</span> <span class="va">${CMAKE_INSTALL_LIBDIR}</span></a>
+<a class="sourceLine" id="cb4-6" data-line-number="6">    <span class="ot">ARCHIVE</span> <span class="ot">DESTINATION</span> <span class="va">${CMAKE_INSTALL_LIBDIR}</span></a>
+<a class="sourceLine" id="cb4-7" data-line-number="7">)</a>
+<a class="sourceLine" id="cb4-8" data-line-number="8"><span class="kw">install</span>(<span class="ot">EXPORT</span> <span class="va">${PROJECT_NAME}</span>-config <span class="ot">NAMESPACE</span> my:: <span class="ot">DESTINATION</span> <span class="va">${CMAKE_INSTALL_DATADIR}</span>/cmake/<span class="va">${PROJECT_NAME}</span>)</a>
+<a class="sourceLine" id="cb4-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb4-10" data-line-number="10"><span class="kw">export</span>(<span class="ot">TARGETS</span> example unit <span class="ot">NAMESPACE</span> my:: <span class="ot">FILE</span> <span class="va">${PROJECT_NAME}</span>-config.cmake)</a>
+<a class="sourceLine" id="cb4-11" data-line-number="11"><span class="kw">export</span>(<span class="ot">PACKAGE</span> <span class="va">${PROJECT_NAME}</span>)</a></code></pre></div>
+<ul>
+<li>Локальное дерево сборки:
+<ul>
+<li><code>export(TARGETS ...)</code> — создание экспорт-файла в дереве сборки</li>
+<li><code>export(PACKAGE ...)</code> — создание ссылки в локальном реестре на каталог сборки</li>
+</ul></li>
+<li>Install-дерево:
+<ul>
+<li><code>install(TARGETS ... EXPORT ...)</code> — прописывание таргетов в экспорте</li>
+<li><code>install(EXPORT ...)</code> — установка экспорт-файла</li>
+</ul></li>
+</ul>
+</section>
+<section id="cmake-external-project-usage" class="level2">
+<h2>Использование в стороннем проекте</h2>
+<div class="sourceCode" id="cb5"><pre class="sourceCode cmake"><code class="sourceCode cmake"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">find_package</span>(example <span class="ot">REQUIRED</span>)</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="kw">add_executable</span>(myprog <span class="va">${SRCS}</span>)</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="kw">target_link_libraries</span>(myprog my::unit)</a></code></pre></div>
+<ul>
+<li>Если проект <code>example</code> установлен по нестандартному пути <code>/path/to/example</code>, его можно указать в переменной окружения <code>CMAKE_PREFIX_PATH</code>:</li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb6-1" data-line-number="1">$ <span class="bu">export</span> <span class="va">CMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH</span>:/path/to/example</a></code></pre></div>
+</section>
+<section id="cmake-external-export" class="level2">
+<h2>Экспорты для сторонних библиотек</h2>
+<div class="sourceCode" id="cb7"><pre class="sourceCode cmake"><code class="sourceCode cmake"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="co"># Файл cmake/FindFuse.cmake</span></a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="kw">find_path</span>(FUSE_INC fuse3/fuse.h)</a>
+<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="kw">find_library</span>(FUSE_LIBS fuse3)</a>
+<a class="sourceLine" id="cb7-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb7-5" data-line-number="5"><span class="kw">add_library</span>(Fuse::fuse3 <span class="ot">INTERFACE</span> <span class="ot">IMPORTED</span>)</a>
+<a class="sourceLine" id="cb7-6" data-line-number="6"><span class="kw">set_target_properties</span>(Fuse::fuse3 <span class="ot">PROPERTIES</span></a>
+<a class="sourceLine" id="cb7-7" data-line-number="7">    <span class="ot">INTERFACE_LINK_LIBRARIES</span> <span class="va">${FUSE_LIBS}</span></a>
+<a class="sourceLine" id="cb7-8" data-line-number="8">    <span class="ot">INTERFACE_INCLUDE_DIRECTORIES</span> <span class="va">${FUSE_INC}</span></a>
+<a class="sourceLine" id="cb7-9" data-line-number="9">)</a></code></pre></div>
+<div style="text-align:left">
+Использование
+</div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode cmake"><code class="sourceCode cmake"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">list</span>(APPNED <span class="va">CMAKE_MODULE_PATH</span> <span class="va">${CMAKE_SOURCE_DIR}</span>/cmake)</a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="co">#list(APPEND CMAKE_MODULE_PATH $ENV{CMAKE_MODULE_PATH})</span></a>
+<a class="sourceLine" id="cb8-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="kw">find_package</span>(Fuse <span class="ot">REQUIRED</span>)</a>
+<a class="sourceLine" id="cb8-5" data-line-number="5"><span class="kw">target_link_libraries</span>(myprog <span class="ot">PUBLIC</span> Fuse::fuse3)</a></code></pre></div>
+</section>
+</section>
+<section id="cmake-subdirectory" class="slide level1">
+<h1>Подкаталоги</h1>
+<ul>
+<li><code>add_subdirectory</code> — добавление каталога, в котором есть <code>CMakeLists.txt</code></li>
+<li>Таргеты из других каталогов всегда read-only</li>
+<li><code>install</code> можно сделать только в той же директории, где находится таргет</li>
+</ul>
+<div class="sourceCode" id="cb9"><pre class="sourceCode cmake"><code class="sourceCode cmake"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">cmake_minimum_required</span>(<span class="ot">VERSION</span> 3.9)</a>
+<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="kw">project</span>(example CXX)</a>
+<a class="sourceLine" id="cb9-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="kw">file</span>(<span class="ot">GLOB</span> SRCS src/*cpp)</a>
+<a class="sourceLine" id="cb9-5" data-line-number="5"><span class="kw">add_library</span>(unit <span class="va">${SRCS}</span>)</a>
+<a class="sourceLine" id="cb9-6" data-line-number="6"><span class="kw">add_subdirectory</span>(tests)</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode cmake"><code class="sourceCode cmake"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="co"># tests/CMakeLists.txt</span></a>
+<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="kw">add_executable</span>(testengine main.cpp)</a>
+<a class="sourceLine" id="cb10-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb10-4" data-line-number="4"><span class="kw">add_test</span>(first testengine -i one)</a>
+<a class="sourceLine" id="cb10-5" data-line-number="5"><span class="kw">add_test</span>(second testengine -i two)</a>
+<a class="sourceLine" id="cb10-6" data-line-number="6"><span class="kw">add_test</span>(third testengine -i three)</a></code></pre></div>
+</section>
+<section id="cmake-ctest" class="slide level1">
+<h1>Тесты</h1>
+<ul>
+<li>Добавление теста <code>add_test(NAME name COMMAND cmd args)</code></li>
+<li>Добавление параметров тестирования <code>set_tests_properties</code>
+<ul>
+<li>возможности test suite (<code>FIXTURES_SETUP/REQUIRED/CLEANUP</code>)</li>
+<li>установка переменных окружения (<code>ENVIRONMENT</code>)</li>
+</ul></li>
+<li>Успешность теста — возвращаемое значение команды</li>
+<li>Аналог команды <code>expect</code> из linux</li>
+</ul>
+</section>
+    </div>
+  </div>
+
+  <script src="https://rawgit.com/hakimel/reveal.js/master/lib/js/head.min.js"></script>
+  <script src="https://rawgit.com/hakimel/reveal.js/master/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display the page number of the current slide
+        slideNumber: true,
+        // Push each slide change to the browser history
+        history: true,
+        // Vertical centering of slides
+        center: true,
+        // Transition style
+        transition: 'convex', // none/fade/slide/convex/concave/zoom
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: '90%',
+        height: '95%',
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'https://rawgit.com/hakimel/reveal.js/master/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'https://rawgit.com/hakimel/reveal.js/master/plugin/zoom-js/zoom.js', async: true },
+          { src: 'https://rawgit.com/hakimel/reveal.js/master/plugin/math/math.js', async: true },
+          { src: 'https://rawgit.com/hakimel/reveal.js/master/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>
