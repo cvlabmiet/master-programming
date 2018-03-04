@@ -12,6 +12,8 @@ if(NOT PANDOC)
     message(SEND_ERROR "pandoc has not been found")
 endif()
 
+set(FORMAT "markdown+raw_tex+bracketed_spans")
+
 file(GLOB SOURCES *.md)
 list(FILTER SOURCES EXCLUDE REGEX README.md)
 set(METADATA ${CMAKE_SOURCE_DIR}/metadata.yml)
@@ -23,7 +25,7 @@ foreach(SRC ${SOURCES})
     get_filename_component(SRC_WE ${SRC} NAME_WE)
     set(OUTPUT_FILE ${CMAKE_CURRENT_BINARY_DIR}/${SRC_WE}.html)
     add_custom_command(OUTPUT ${OUTPUT_FILE}
-        COMMAND ${PANDOC} -f markdown+raw_tex ${REVELJS_URL} -s -t revealjs --section-divs ${METADATA} ${SRC} -o ${OUTPUT_FILE}
+        COMMAND ${PANDOC} -f ${FORMAT} ${REVELJS_URL} -s -t revealjs --section-divs ${METADATA} ${SRC} -o ${OUTPUT_FILE}
         DEPENDS ${SRC} ${METADATA}
     )
     list(APPEND OUTPUTS ${OUTPUT_FILE})
@@ -35,7 +37,7 @@ file(READ README.md README_CONTENT)
 string(REGEX REPLACE "(lecture-[0-9]+)\.md" "\\1.html" README_CONTENT ${README_CONTENT})
 file(GENERATE OUTPUT ${README_FILE} CONTENT ${README_CONTENT})
 add_custom_command(OUTPUT ${OUTPUT_FILE}
-    COMMAND ${PANDOC} -V pagetitle=${PROJECT_NAME} -f markdown+raw_tex -s -t html5 ${README_FILE} -o ${OUTPUT_FILE}
+    COMMAND ${PANDOC} -V pagetitle=${PROJECT_NAME} -f ${FORMAT} -s -t html5 ${README_FILE} -o ${OUTPUT_FILE}
     DEPENDS ${README_FILE}
 )
 list(APPEND OUTPUTS ${OUTPUT_FILE})

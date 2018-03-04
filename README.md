@@ -22,3 +22,4 @@
 1. [Обзор курса](lecture-1.md)
 1. [Подготовка рабочего места: установка NixOS](lecture-2.md)
 1. [Работа с git](lecture-3.md)
+1. [CMake](lecture-4.md)
