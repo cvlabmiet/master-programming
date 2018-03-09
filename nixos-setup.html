@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>master-programming</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <link rel="stylesheet" href="GitHub.css">
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="установка-nixos-на-виртуальную-машину">Установка NixOS на виртуальную машину</h1>
+<p>Расширенная инструкция по установке NixOS на виртуальную машину. Поддерживаются виратуальные машины:</p>
+<ul>
+<li>qemu (через фронденд libvirt);</li>
+<li>VirtualBox;</li>
+<li>VMware (player);</li>
+<li>Parallels.</li>
+</ul>
+<h2 id="создание-виртуальной-машины">Создание виртуальной машины</h2>
+<p>Образ для установки загружается с сайта <a href="https://nixos.org/nixos/download.html" class="uri">https://nixos.org/nixos/download.html</a>. Следует выбирать Minimal installation 64-bit. Конфигурационные файлы образа системы находятся в общем доступе на github-е. Репозиторий с конфигурационными файлами необходимо загрузить к себе локально:</p>
+<pre><code>$ git clone https://github.com/cvlabmiet/nixos-config.git</code></pre>
+<p>Терминология:</p>
+<ul>
+<li>host — система, на которой запущена виртуальная машина;</li>
+<li>guest — система внутри виртуальной машины.</li>
+</ul>
+<p>Конфигурация виртуальной машины:</p>
+<ul>
+<li>имя: <code>nixos</code>;</li>
+<li>2 ядра с топологией реального процессора;</li>
+<li>1ГиБ ОЗУ;</li>
+<li>тип сетевой карты: Usermode networking;</li>
+<li>10ГиБ внешнего диска;</li>
+<li>совместная файловая система для доступа внутри виртуальной машины:
+<ul>
+<li>путь внутри хоста: <code>/home/$USER</code></li>
+<li>название: <code>shared</code></li>
+<li>режим: только для чтения</li>
+</ul></li>
+<li>если используется фронтенд <code>libvirt</code>, необходимо запускать менеджер с правами пользователя:
+<ul>
+<li><code>virsh -c qemu:///session</code></li>
+<li><code>virt-manager -c qemu:///session</code></li>
+</ul></li>
+</ul>
+<h2 id="разметка-диска">Разметка диска</h2>
+<p>Внутри виртуальной машины делаем разметку GPT</p>
+<pre><code>[root@nixos:~]# gdisk /dev/sda
+GPT fdisk (gdisk) version 1.0.1
+
+Partition table scan:
+  MBR: not present
+  BSD: not present
+  APM: not present
+  GPT: not present
+
+Creating new GPT entries.
+
+Command (? for help): p
+Disk /dev/sda: 20971520 sectors, 10.0 GiB
+Logical sector size: 512 bytes
+Disk identifier (GUID): F7108B11-6D52-425D-B7AD-FA3715663728
+Partition table holds up to 128 entries
+First usable sector is 34, last usable sector is 20971486
+Partitions will be aligned on 2048-sector boundaries
+Total free space is 20971453 sectors (10.0 GiB)
+
+Number  Start (sector)    End (sector)  Size       Code  Name
+
+Command (? for help): o
+This option deletes all partitions and creates a new protective MBR.
+Proceed? (Y/N): Y
+
+Command (? for help): n
+Partition number (1-128, default 1):
+First sector (34-20971486, default = 2048) or {+-}size{KMGTP}:
+Last sector (2048-20971486, default = 20971486) or {+-}size{KMGTP}: +100M
+Current type is &#39;Linux filesystem&#39;
+Hex code or GUID (L to show codes, Enter = 8300):
+Changed type of partition to &#39;Linux filesystem&#39;
+
+Command (? for help): n
+Partition number (2-128, default 2):
+First sector (34-20971486, default = 206848) or {+-}size{KMGTP}:
+Last sector (206848-20971486, default = 20971486) or {+-}size{KMGTP}: +7G
+Current type is &#39;Linux filesystem&#39;
+Hex code or GUID (L to show codes, Enter = 8300):
+Changed type of partition to &#39;Linux filesystem&#39;
+
+Command (? for help): n
+Partition number (3-128, default 3):
+First sector (34-20971486, default = 14886912) or {+-}size{KMGTP}:
+Last sector (14886912-20971486, default = 20971486) or {+-}size{KMGTP}: +1900M
+Current type is &#39;Linux filesystem&#39;
+Hex code or GUID (L to show codes, Enter = 8300):
+Changed type of partition to &#39;Linux filesystem&#39;
+
+Command (? for help): n
+Partition number (4-128, default 4):
+First sector (34-20971486, default = 18778112) or {+-}size{KMGTP}:
+Last sector (18778112-20971486, default = 20971486) or {+-}size{KMGTP}:
+Current type is &#39;Linux filesystem&#39;
+Hex code or GUID (L to show codes, Enter = 8300): 8200
+Changed type of partition to &#39;Linux swap&#39;
+
+Command (? for help): n
+Partition number (5-128, default 5):
+First sector (34-2047, default = 34) or {+-}size{KMGTP}:
+Last sector (34-2047, default = 2047) or {+-}size{KMGTP}:
+Current type is &#39;Linux filesystem&#39;
+Hex code or GUID (L to show codes, Enter = 8300): L
+0700 Microsoft basic data  0c01 Microsoft reserved    2700 Windows RE          
+3000 ONIE boot             3001 ONIE config           3900 Plan 9              
+4100 PowerPC PReP boot     4200 Windows LDM data      4201 Windows LDM metadata
+4202 Windows Storage Spac  7501 IBM GPFS              7f00 ChromeOS kernel     
+7f01 ChromeOS root         7f02 ChromeOS reserved     8200 Linux swap          
+8300 Linux filesystem      8301 Linux reserved        8302 Linux /home         
+8303 Linux x86 root (/)    8304 Linux x86-64 root (/  8305 Linux ARM64 root (/)
+8306 Linux /srv            8307 Linux ARM32 root (/)  8400 Intel Rapid Start   
+8e00 Linux LVM             a500 FreeBSD disklabel     a501 FreeBSD boot        
+a502 FreeBSD swap          a503 FreeBSD UFS           a504 FreeBSD ZFS         
+a505 FreeBSD Vinum/RAID    a580 Midnight BSD data     a581 Midnight BSD boot   
+a582 Midnight BSD swap     a583 Midnight BSD UFS      a584 Midnight BSD ZFS    
+a585 Midnight BSD Vinum    a600 OpenBSD disklabel     a800 Apple UFS           
+a901 NetBSD swap           a902 NetBSD FFS            a903 NetBSD LFS          
+a904 NetBSD concatenated   a905 NetBSD encrypted      a906 NetBSD RAID         
+ab00 Recovery HD           af00 Apple HFS/HFS+        af01 Apple RAID          
+af02 Apple RAID offline    af03 Apple label           af04 AppleTV recovery    
+af05 Apple Core Storage    bc00 Acronis Secure Zone   be00 Solaris boot        
+bf00 Solaris root          bf01 Solaris /usr &amp; Mac Z  bf02 Solaris swap        
+bf03 Solaris backup        bf04 Solaris /var          bf05 Solaris /home       
+bf06 Solaris alternate se  bf07 Solaris Reserved 1    bf08 Solaris Reserved 2  
+Press the &lt;Enter&gt; key to see more codes: 
+bf09 Solaris Reserved 3    bf0a Solaris Reserved 4    bf0b Solaris Reserved 5  
+c001 HP-UX data            c002 HP-UX service         ea00 Freedesktop $BOOT   
+eb00 Haiku BFS             ed00 Sony system partitio  ed01 Lenovo system partit
+ef00 EFI System            ef01 MBR partition scheme  ef02 BIOS boot partition 
+f800 Ceph OSD              f801 Ceph dm-crypt OSD     f802 Ceph journal        
+f803 Ceph dm-crypt journa  f804 Ceph disk in creatio  f805 Ceph dm-crypt disk i
+fb00 VMWare VMFS           fb01 VMWare reserved       fc00 VMWare kcore crash p
+fd00 Linux RAID            
+Hex code or GUID (L to show codes, Enter = 8300): ef02
+Changed type of partition to &#39;BIOS boot partition&#39;
+
+Command (? for help): p
+Disk /dev/sda: 20971520 sectors, 10.0 GiB
+Logical sector size: 512 bytes
+Disk identifier (GUID): A658572D-4D21-4860-A6E3-3D7245B049AF
+Partition table holds up to 128 entries
+First usable sector is 34, last usable sector is 20971486
+Partitions will be aligned on 2-sector boundaries
+Total free space is 0 sectors (0 bytes)
+
+Number  Start (sector)    End (sector)  Size       Code  Name
+   1            2048          206847   100.0 MiB   8300  Linux filesystem
+   2          206848        14886911   7.0 GiB     8300  Linux filesystem
+   3        14886912        18778111   1.9 GiB     8300  Linux filesystem
+   4        18778112        20971486   1.0 GiB     8200  Linux swap
+   5              34            2047   1007.0 KiB  EF02  BIOS boot partition
+
+Command (? for help): w
+
+Final checks complete. About to write GPT data. THIS WILL OVERWRITE EXISTING
+PARTITIONS!!
+
+Do you want to proceed? (Y/N): Y
+OK; writing new GUID partition table (GPT) to /dev/sda.
+The operation has completed successfully.
+
+[root@nixos:~]#</code></pre>
+<p>Далее происходит форматирование разделов. Сначала убедимся, что диск правильно размечен:</p>
+<pre><code>[root@nixos:~]# partx /dev/sda
+NR    START      END  SECTORS  SIZE NAME                UUID
+ 1     2048   206847   204800  100M Linux filesystem    e0951ce2-086a-48e2-bb7a-0f01771cf111
+ 2   206848 14886911 14680064    7G Linux filesystem    f0940803-cb22-487d-8168-a791fd352354
+ 3 14886912 18778111  3891200  1.9G Linux filesystem    4f281519-78cd-4824-862b-b2f5988a1b4c
+ 4 18778112 20971486  2193375    1G Linux swap          595abb64-0f90-453b-b278-e312586ad9a0
+ 5       34     2047     2014 1007K BIOS boot partition 74582d19-55f5-475b-84c7-c176e35a0ed3</code></pre>
+<p>После этого отформатируем разделы с присвоением им меток:</p>
+<pre><code>[root@nixos:~]# mkfs.ext4 -L boot /dev/sda1
+[root@nixos:~]# mkfs.ext4 -L root /dev/sda2
+[root@nixos:~]# mkfs.ext4 -L home /dev/sda3
+[root@nixos:~]# mkswap -L swap /dev/sda4</code></pre>
+<h2 id="установка">Установка</h2>
+<p>Установка будет состоять из 2-х этапов:</p>
+<ol type="1">
+<li>на первом этапе происходит монтирование разделов и генерация минимального конфигурационного файла для установки;</li>
+<li>второй этап нужен для настройки установленной системы: монтирования файловой системы хоста и пересборка системы.</li>
+</ol>
+<h3 id="первый-этап-установки">Первый этап установки</h3>
+<p>Для начала необходимо смонтировать созданные разделы в нужном порядке. Все смонтированные разделы будут автоматически перенесены в файл конфигурации новой системы. Включаем swap-раздел и проверяем его работу, чтобы он мог появится в конфигурации:</p>
+<pre><code>[root@nixos:~]# swapon /dev/sda4
+[root@nixos:~]# free -h
+              total        used        free      shared  buff/cache   available
+Mem:           997M         64M        638M         18M        295M        779M
+Swap:          1.0G          0B        1.0G</code></pre>
+<p>Если в поле <code>Swap</code> появились цифры, значит swap включен.</p>
+<p>Все оставшиеся разделы монтируем в <code>/mnt</code> по их меткам:</p>
+<pre><code>[root@nixos:~]# mount /dev/disk/by-label/root /mnt/
+[root@nixos:~]# mkdir /mnt/{boot,home,shared}
+[root@nixos:~]# mount /dev/disk/by-label/boot /mnt/boot
+[root@nixos:~]# mount /dev/disk/by-label/home /mnt/home</code></pre>
+<p>Теперь топология файловой системы готова. Приступаем к генерации минимальной конфигурации системы:</p>
+<pre><code># nixos-generate-config --root /mnt
+# less /mnt/etc/nixos/hardware-configuration.nix
+# vim /mnt/etc/nixos/configuration.nix</code></pre>
+<p>В созданной конфигурации необходимо добавить следующее:</p>
+<ol type="1">
+<li>открываем файл <code>/mnt/etc/nixos/configuration.nix</code> текстовым редактором внутри гостя (доступны <code>nano</code> или <code>vim</code>);</li>
+<li><p>заготавливаем строчку для второго этапа установки:</p>
+<pre><code>imports =
+    [ # Include the results of the hardware scan.
+        ./hardware-configuration.nix
+        #/shared/nixos-config/vm-guest.nix
+    ];</code></pre></li>
+<li><p>раскомментируем строку устройства загрузки для установки grub-а:</p>
+<pre><code>boot.loader.grub.device = &quot;/dev/sda&quot;;</code></pre></li>
+</ol>
+<p>В <code>/mnt/etc/nixos/hardware-configuration.nix</code> необходимо проверить, что система правильно распознала виртуальную машину.</p>
+<ul>
+<li><p>для qemu в файле должны присутствовать строки:</p>
+<pre><code>imports = [
+    &lt;nixpkgs/nixos/modules/profiles/qemu-guest.nix&gt;
+];</code></pre></li>
+<li>для VritualBox должно быть написано <code>virtualisation.virtualbox.guest.enable = true;</code></li>
+<li>для VMware должно быть написано <code>services.vmwareGuest.enable = true;</code></li>
+<li><p>для Parallels — <code>hardware.parallels.enable = true;</code></p></li>
+</ul>
+<p>Также в этом файле можно проверить, что все размеченные разделы на месте.</p>
+<p>Проверим наличие интернета:</p>
+<pre><code># curl http://google.com
+&lt;HTML&gt;&lt;HEAD&gt;&lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html;charset=utf-8&quot;&gt;
+&lt;TITLE&gt;302 Moved&lt;/TITLE&gt;&lt;/HEAD&gt;&lt;BODY&gt;
+&lt;H1&gt;302 Moved&lt;/H1&gt;
+The document has moved
+&lt;A HREF=&quot;http://www.google.ru/?gfe_rd=cr&amp;amp;dcr=0&amp;amp;ei=3i2hWsbEJdSDuAHZnqnACA&quot;&gt;here&lt;/A&gt;.
+&lt;/BODY&gt;&lt;/HTML&gt;</code></pre>
+<p>После всех проделанных шагов, можно устанавливать систему и перезагружаться:</p>
+<pre><code># nixos-install
+# reboot</code></pre>
+<p>Система предложит ввести пароль <code>root</code>-пользователя. Можно ввести что-то простое, например, <code>root</code>.</p>
+<h3 id="второй-этап-установки">Второй этап установки</h3>
+<p>После перезагрузки вводим логин и пароль пользователя <code>root</code>. Монтируем общую директорию, в зависимости от виртуальной машины:</p>
+<ul>
+<li><code>mount -t 9p shared /shared</code> — для qemu;</li>
+<li><code>mount -t vboxsf shared /shared</code> — для VirtualBox;</li>
+<li><code>mount -t vmhgfs .host:/shared /shared</code> — для VMware;</li>
+<li><code>mount -t prl_fs none /shared</code> — для Parallels.</li>
+</ul>
+<p>После монтирования можно раскомментировать заготовленную строку в <code>/etc/nixos/configuration.nix</code></p>
+<pre><code>imports =
+    [ # Include the results of the hardware scan.
+        ./hardware-configuration.nix
+        /shared/nixos-config/vm-guest.nix
+    ];</code></pre>
+<p>Теперь всё готово, чтобы “пересобрать” систему с новой конфигурацией:</p>
+<pre><code>$ sudo nixos-rebuild switch</code></pre>
+<p>После обновления системы необходимо выполнить перезагрузку. Подсказка по управлению выключением линукса через systemd:</p>
+<ul>
+<li>выключение: <code>systemctl poweroff</code>;</li>
+<li>перезагрузка: <code>systemctl reboot</code>;</li>
+<li>сон: <code>systemctl suspend</code>;</li>
+<li>гибернация: <code>systemctl hibernate</code>;</li>
+<li>ускоренная перезагрузка (без выхода в BIOS): <code>sudo systemctl kexec</code>.</li>
+</ul>
+<p>После перезагрузки система готова к использованию.</p>
+</body>
+</html>
