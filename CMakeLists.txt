@@ -55,4 +55,6 @@ foreach(SRC ${INDEX_FILE} nixos-setup.md)
     list(APPEND OUTPUTS ${OUTPUT_FILE})
 endforeach()
 
+configure_file(GitHub.css GitHub.css COPYONLY)
+
 add_custom_target(document ALL DEPENDS ${OUTPUTS})

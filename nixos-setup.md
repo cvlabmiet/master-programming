@@ -1,5 +1,5 @@
 ---
-css: "https://rawgit.com/tajmone/pandoc-goodies/master/templates/html5/github/src/GitHub.min.css"
+css: GitHub.css
 ---
 
 # Установка NixOS на виртуальную машину
