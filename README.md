@@ -27,3 +27,4 @@ css: GitHub.css
 1. [Подготовка рабочего места: установка NixOS](lecture-2.md)
 1. [Работа с git](lecture-3.md)
 1. [CMake](lecture-4.md)
+1. [Отладка](lecture-5.md)
