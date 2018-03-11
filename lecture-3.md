@@ -1,6 +1,6 @@
 ---
 title: Master programming
-subtitle: Лекция №3
+subtitle: Лекция №3 (Работа с git)
 author: Игорь Шаронов
 date: 2018-02-21
 ---

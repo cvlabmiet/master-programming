@@ -1,6 +1,6 @@
 ---
 title: Master programming
-subtitle: Лекция №1
+subtitle: Лекция №1 (Обзор курса)
 author: Игорь Шаронов
 date: 2018-01-15
 ---

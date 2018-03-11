@@ -1,6 +1,6 @@
 ---
 title: Master programming
-subtitle: Лекция №5
+subtitle: Лекция №5 (Отладка)
 author: Игорь Шаронов
 date: 2018-03-10
 ---

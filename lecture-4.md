@@ -1,6 +1,6 @@
 ---
 title: Master programming
-subtitle: Лекция №4
+subtitle: Лекция №4 (CMake)
 author: Игорь Шаронов
 date: 2018-02-21
 ---

@@ -1,6 +1,6 @@
 ---
 title: Master programming
-subtitle: Лекция №2
+subtitle: Лекция №2 (Подготовка рабочего места)
 author: Игорь Шаронов
 date: 2018-02-18
 ---

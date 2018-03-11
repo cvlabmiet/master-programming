@@ -1,7 +1,3 @@
----
-css: GitHub.css
----
-
 # Master programming
 
 Лекции по программированию для студентов НИУ МИЭТ.
@@ -28,3 +24,4 @@ css: GitHub.css
 1. [Работа с git](lecture-3.md)
 1. [CMake](lecture-4.md)
 1. [Отладка](lecture-5.md)
+1. [Тестирование](lecture-6.md)
