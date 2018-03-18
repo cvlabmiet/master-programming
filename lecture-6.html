@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="ru_RU">
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Игорь Шаронов">
+  <meta name="dcterms.date" content="2018-03-11">
+  <title>Master programming</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="https://rawgit.com/hakimel/reveal.js/master/css/reveal.css">
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="https://rawgit.com/hakimel/reveal.js/master/css/theme/serif.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'https://rawgit.com/hakimel/reveal.js/master/css/print/pdf.css' : 'https://rawgit.com/hakimel/reveal.js/master/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="https://rawgit.com/hakimel/reveal.js/master/lib/js/html5shiv.js"></script>
+  <![endif]-->
+  <style type="text/css">
+      .reveal h1 { font-size: 2em; }
+      .reveal h2 { font-size: 2em; }
+      .reveal h3 { font-size: 1em; }
+      .reveal pre code { max-height: 600px; }
+  </style>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide">
+  <h1 class="title">Master programming</h1>
+  <p class="subtitle">Лекция №6 (Тестирование)</p>
+  <p class="author">Игорь Шаронов</p>
+  <p class="date">2018-03-11</p>
+</section>
+
+<section id="testing-types" class="slide level1">
+<h1>Типы тестирования</h1>
+<ul>
+<li>Тестирование – это та же программа со своим кодом</li>
+<li>Unit-тесты</li>
+<li>Тестирование белого, серого, чёрного ящика</li>
+<li>Нагрузочное тестирование</li>
+<li>Стресс тестирование</li>
+<li>Интеграционное тестирование</li>
+<li>TDD, BDD</li>
+</ul>
+</section>
+<section id="terminology" class="slide level1">
+<h1>Терминология</h1>
+<ul>
+<li>Feature – предлагаемая функциональность</li>
+<li>Bug – неправильная реализация функциональности</li>
+<li>Спецификация – набор функциональностей, которым обладает система</li>
+<li>Unit test – модульный тест</li>
+<li>Framework – движок (библиотека) для реализации конкретной функциональности
+<ul>
+<li>тестовый движок (gtest, catch2)</li>
+<li>движок пользовательского интерфейса (Qt, Gtk)</li>
+<li>Boost – это не движок, это набор библиотек</li>
+<li>НО! boost::async – это движок для сетевого взаимодействия</li>
+</ul></li>
+<li>Suite, Fixture, Case – способы иерархического представления тестов</li>
+</ul>
+</section>
+<section class="slide level1">
+
+<section id="unit-testing" class="level2">
+<h2>Unit testing</h2>
+<ul>
+<li>Модульное тестирование</li>
+<li>Разновидность серого/чёрного ящика</li>
+<li>Уже готовый пример использования кода</li>
+<li>Возможнность регрессионного тестирования</li>
+<li>CUnit, Boost test, GTest, Catch, …</li>
+</ul>
+</section>
+<section id="unit-test-example" class="level2">
+<h2>Пример юнит-теста</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cxx"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="pp">#include </span><span class="im">&lt;gtest/gtest.h&gt;</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">class</span> DwtTest: <span class="kw">public</span> ::testing::Test</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">{</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="kw">protected</span>:</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">    DwtTest() : img(kWidth * kHeight) {</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">        <span class="bu">std::</span>fill(img.begin(), img.end(), <span class="dv">0</span>);</a>
+<a class="sourceLine" id="cb1-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb1-9" data-line-number="9">        <span class="kw">auto</span> it = img.begin() + kHeight/<span class="dv">2</span> * kWidth;</a>
+<a class="sourceLine" id="cb1-10" data-line-number="10">        <span class="cf">for</span> (<span class="kw">auto</span> i = <span class="dv">0</span>; i &lt; kHeight/<span class="dv">5</span>; ++i)</a>
+<a class="sourceLine" id="cb1-11" data-line-number="11">            <span class="bu">std::</span>fill_n(it + i * kWidth + kWidth/<span class="dv">4</span>, kWidth/<span class="dv">2</span>, <span class="dv">255</span>);</a>
+<a class="sourceLine" id="cb1-12" data-line-number="12">    }</a>
+<a class="sourceLine" id="cb1-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb1-14" data-line-number="14">    <span class="dt">void</span> SetUp() {}</a>
+<a class="sourceLine" id="cb1-15" data-line-number="15">    <span class="dt">void</span> TearDown() {}</a>
+<a class="sourceLine" id="cb1-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb1-17" data-line-number="17"><span class="kw">protected</span>:</a>
+<a class="sourceLine" id="cb1-18" data-line-number="18">    <span class="bu">std::</span>vector&lt;<span class="dt">float</span>&gt; img;</a>
+<a class="sourceLine" id="cb1-19" data-line-number="19">};</a>
+<a class="sourceLine" id="cb1-20" data-line-number="20"></a>
+<a class="sourceLine" id="cb1-21" data-line-number="21">TEST_F(DwtTest, DwtIDwt)</a>
+<a class="sourceLine" id="cb1-22" data-line-number="22">{</a>
+<a class="sourceLine" id="cb1-23" data-line-number="23">    <span class="bu">std::</span>vector&lt;<span class="dt">float</span>&gt; subbands(img);</a>
+<a class="sourceLine" id="cb1-24" data-line-number="24">    ASSERT_EQ(wt2d_cdf97_fwd(subbands.data(), kHeight, kWidth, <span class="dv">3</span>), <span class="dv">0</span>);</a>
+<a class="sourceLine" id="cb1-25" data-line-number="25"></a>
+<a class="sourceLine" id="cb1-26" data-line-number="26">    <span class="bu">std::</span>vector&lt;<span class="dt">float</span>&gt; restored(subbands);</a>
+<a class="sourceLine" id="cb1-27" data-line-number="27">    ASSERT_EQ(wt2d_cdf97_inv(restored.data(), kHeight, kWidth, <span class="dv">3</span>), <span class="dv">0</span>);</a>
+<a class="sourceLine" id="cb1-28" data-line-number="28">    ASSERT_EQ(restored.size(), img.size());</a>
+<a class="sourceLine" id="cb1-29" data-line-number="29">    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; img.size(); ++i)</a>
+<a class="sourceLine" id="cb1-30" data-line-number="30">        EXPECT_NEAR(restored[i], img[i], <span class="dv">1</span>) &lt;&lt; <span class="st">&quot;Index &quot;</span> &lt;&lt; i;</a>
+<a class="sourceLine" id="cb1-31" data-line-number="31">}</a></code></pre></div>
+</section>
+<section id="unit-test-structure" class="level2">
+<h2>Состав модульного теста</h2>
+<ul>
+<li>ASSERT, EXPECT – примитивы сравнения (ядро теста)</li>
+<li>WARN, ERROR – уровни остановки теста</li>
+<li>Иерархии тестов: TestSuite (Fixture), TestCase – зависит от тестового движка</li>
+<li>TearUp/Down, FixtureSetup/Cleanup – ин(де)ициализация уровня теста</li>
+<li>Механизм добавления теста</li>
+<li>Система оповещения пользователя об ошибках</li>
+<li>Разные уровни тестов необходимы для организации генерации тестируемых данных</li>
+</ul>
+</section>
+<section id="unit-test-hierarchy" class="level2">
+<h2>Схема иерархии модульных тестов</h2>
+<pre><code>TestSuite(S0)
+    constructor
+    TestCase(S0::C0)
+        constructor
+            actions
+            asserts, expects
+        destructor
+    TestCase(S0::C1)
+        constructor
+            actions
+            asserts, expects
+        destructor
+    destructor
+TestSuite(S1)
+    constructor
+    TestCase(S1::C0)
+    TestCase(S1::C1)
+    TestCase(S1::C2)
+    destructor
+...</code></pre>
+</section>
+</section>
+<section class="slide level1">
+
+<section id="catch" class="level2">
+<h2>Движок тестирования Catch</h2>
+<ul>
+<li><a href="https://github.com/catchorg/Catch2" class="uri">https://github.com/catchorg/Catch2</a></li>
+<li>Автоматическое добавление тестов</li>
+<li>Изменённая иерархия тестов:
+<ul>
+<li>нулевой уровень – глобальное пространство имён</li>
+<li>первый уровень – <code>TEST_CASE</code></li>
+<li>второй уровень – <code>SECTION</code></li>
+</ul></li>
+<li>Поддержка BDD-стиля тестирования</li>
+<li>Привычные методы сравнения</li>
+</ul>
+</section>
+<section id="catch-examples" class="level2">
+<h2>Примеры</h2>
+<p><a href="https://github.com/catchorg/Catch2/tree/master/examples" class="uri">https://github.com/catchorg/Catch2/tree/master/examples</a></p>
+</section>
+</section>
+<section class="slide level1">
+
+<section id="tdd" class="level2">
+<h2>Test Driven Development</h2>
+<ul>
+<li>Разработка через тестирование</li>
+<li>Каждая функционально сначала обретает тест, а потом непосредственный код</li>
+<li>Согласование интерфейса происходит раньше согласования реализации функциональности</li>
+<li>Является идеалогией, а не типом тестирования</li>
+</ul>
+</section>
+<section id="test-integration" class="level2">
+<h2>Интеграционное тестирование</h2>
+<ul>
+<li>Тестирование целиком</li>
+<li>Тестирование взаимодействия библиотек, систем или компонентов одной системы</li>
+<li>Подходят сторонние инструменты (expect)
+<ul>
+<li><a href="https://habrahabr.ru/company/ruvds/blog/328436" class="uri">https://habrahabr.ru/company/ruvds/blog/328436</a></li>
+<li><a href="https://www.ibm.com/developerworks/ru/library/l-expect_1" class="uri">https://www.ibm.com/developerworks/ru/library/l-expect_1</a></li>
+</ul></li>
+<li>Неустойчиво к ошибкам компонент системы: ошибки могут интерферировать</li>
+</ul>
+</section>
+<section id="mock-testing" class="level2">
+<h2>Mock &amp; stubs</h2>
+<ul>
+<li>Имитаторы и заглушки</li>
+<li>Ограничения:
+<ul>
+<li>компоненты должны находится в разных библиотеках</li>
+<li>невозможно имитировать внутренние объкты классов или функций</li>
+<li>имитируемые объкты должны иметь абстрактный интерфейс или быть шаблонным параметром</li>
+<li>решение возможно на уровне системы (<code>LD_PRELOAD</code>)</li>
+</ul></li>
+<li>Заглушки – константы, частный случай имитаторов</li>
+<li>Имитаторы – способны имитировать действия</li>
+<li>Плохо автоматизируется</li>
+<li>Подходит для нереализованных или недоделанных компонентов системы</li>
+</ul>
+</section>
+<section id="stress-test" class="level2">
+<h2>Тесты на устойчивость</h2>
+<ul>
+<li>Стресс-тесты</li>
+<li>Абсолютно произвольные данные</li>
+<li>Показывает насколько система устройчива, а не степень её отладки</li>
+<li>В большинстве случаев ошибки являются архитектурными</li>
+</ul>
+</section>
+<section id="benchmarks" class="level2">
+<h2>Нагрузочное тестирование</h2>
+<ul>
+<li>Бенчмарки (benchmark)</li>
+<li>Тестирование скорости всей системы или отдельных компонент</li>
+<li>Тестирование устройчивости системы под нагрузкой</li>
+<li>Определение параметров системы: максимальное количество пользователей, время ожидания и т.д.</li>
+<li>Самая простая утилита – <code>time</code></li>
+<li>Метод понижения нагрузки:
+<ul>
+<li>для определения максимальной нагрузки</li>
+<li>понижать нагрузку в 2 раза и фиксировать параметры системы</li>
+<li>построить кривую параметров от объёма нагрузки</li>
+<li>эстраполировать результаты</li>
+</ul></li>
+</ul>
+</section>
+</section>
+    </div>
+  </div>
+
+  <script src="https://rawgit.com/hakimel/reveal.js/master/lib/js/head.min.js"></script>
+  <script src="https://rawgit.com/hakimel/reveal.js/master/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display the page number of the current slide
+        slideNumber: true,
+        // Push each slide change to the browser history
+        history: true,
+        // Vertical centering of slides
+        center: true,
+        // Transition style
+        transition: 'convex', // none/fade/slide/convex/concave/zoom
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: '90%',
+        height: '95%',
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'https://rawgit.com/hakimel/reveal.js/master/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'https://rawgit.com/hakimel/reveal.js/master/plugin/zoom-js/zoom.js', async: true },
+          { src: 'https://rawgit.com/hakimel/reveal.js/master/plugin/math/math.js', async: true },
+          { src: 'https://rawgit.com/hakimel/reveal.js/master/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>
