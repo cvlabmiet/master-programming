@@ -170,28 +170,63 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="nixos-setup" class="level2">
 <h2>Установка NixOS</h2>
 <p>Установка подробно дана в <a href="nixos-setup.html">nixos-setup</a></p>
+<p>Сборка программ происходит в изолированном окружении <code>load-env-gcc</code></p>
+<pre><code>[guest@nixos:~/mycpu]$ load-env-gcc
+[nix-shell:~/mycpu]$ cmake /shared/mycpu/
+-- The C compiler identification is GNU 6.4.0
+-- The CXX compiler identification is GNU 6.4.0
+-- Check for working C compiler: /nix/store/3mpsvihv6n9af6qi3vhbkmxay93fmi84-gcc-wrapper-6.4.0/bin/gcc
+-- Check for working C compiler: /nix/store/3mpsvihv6n9af6qi3vhbkmxay93fmi84-gcc-wrapper-6.4.0/bin/gcc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Check for working CXX compiler: /nix/store/3mpsvihv6n9af6qi3vhbkmxay93fmi84-gcc-wrapper-6.4.0/bin/g++
+-- Check for working CXX compiler: /nix/store/3mpsvihv6n9af6qi3vhbkmxay93fmi84-gcc-wrapper-6.4.0/bin/g++ -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/guest/mycpu
+[nix-shell:~/mycpu]$ exit
+[guest@nixos:~/mycpu]$ make -j # можно собирать не в изолированном окружении
+[ 25%] Building C object CMakeFiles/server.dir/cuse.c.o
+[ 50%] Building C object CMakeFiles/client.dir/cuse_client.c.o
+[ 75%] Linking C executable client
+[100%] Linking C executable server
+[100%] Built target client
+[100%] Built target server
+[guest@nixos:~/mycpu]$ ./client
+Usage: cuse_client FIOC_FILE COMMAND
+
+COMMANDS
+  s [SIZE]     : get size if SIZE is omitted, set size otherwise
+  r SIZE [OFF] : read SIZE bytes @ OFF (dfl 0) and output to stdout
+  w SIZE [OFF] : write SIZE bytes @ OFF (dfl 0) from stdin</code></pre>
 </section>
 <section id="nixos-install-cont" class="level2">
 <h2>Настройка доступа по SSH</h2>
 <p>Необходимо сделать перенаправление порта 22 гостевой системы на любой доступный порт хоста (2222, 5022 и т.д.)</p>
 <pre><code>$ virsh edit nixos</code></pre>
-<div class="sourceCode" id="cb3"><pre class="sourceCode diff"><code class="sourceCode diff"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">--- /tmp/nixos.xml  2018-02-18 12:22:24.753601712 +0300</span></a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="dt">+++ /dev/fd/63  2018-02-18 12:23:38.123210214 +0300</span></a>
-<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="dt">@@ -1,4 +1,4 @@</span></a>
-<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="st">-&lt;domain type=&#39;kvm&#39;&gt;</span></a>
-<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="va">+&lt;domain type=&#39;kvm&#39; xmlns:qemu=&#39;http://libvirt.org/schemas/domain/qemu/1.0&#39;&gt;</span></a>
-<a class="sourceLine" id="cb3-6" data-line-number="6">   &lt;name&gt;nixos&lt;/name&gt;</a>
-<a class="sourceLine" id="cb3-7" data-line-number="7">   &lt;uuid&gt;bd0ab376-6fee-428b-a30c-f1091afbcba6&lt;/uuid&gt;</a>
-<a class="sourceLine" id="cb3-8" data-line-number="8">   &lt;memory unit=&#39;KiB&#39;&gt;1048576&lt;/memory&gt;</a>
-<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="dt">@@ -108,4 +108,9 @@</span></a>
-<a class="sourceLine" id="cb3-10" data-line-number="10">       &lt;address type=&#39;pci&#39; domain=&#39;0x0000&#39; bus=&#39;0x00&#39; slot=&#39;0x08&#39; function=&#39;0x0&#39;/&gt;</a>
-<a class="sourceLine" id="cb3-11" data-line-number="11">     &lt;/memballoon&gt;</a>
-<a class="sourceLine" id="cb3-12" data-line-number="12">   &lt;/devices&gt;</a>
-<a class="sourceLine" id="cb3-13" data-line-number="13"><span class="va">+  &lt;qemu:commandline&gt;</span></a>
-<a class="sourceLine" id="cb3-14" data-line-number="14"><span class="va">+    &lt;qemu:arg value=&#39;-redir&#39;/&gt;</span></a>
-<a class="sourceLine" id="cb3-15" data-line-number="15"><span class="va">+    &lt;qemu:arg value=&#39;tcp:2222::22&#39;/&gt;</span></a>
-<a class="sourceLine" id="cb3-16" data-line-number="16"><span class="va">+  &lt;/qemu:commandline&gt;</span></a>
-<a class="sourceLine" id="cb3-17" data-line-number="17"> &lt;/domain&gt;</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode diff"><code class="sourceCode diff"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">--- /tmp/nixos.xml  2018-02-18 12:22:24.753601712 +0300</span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="dt">+++ /dev/fd/63  2018-02-18 12:23:38.123210214 +0300</span></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="dt">@@ -1,4 +1,4 @@</span></a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="st">-&lt;domain type=&#39;kvm&#39;&gt;</span></a>
+<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="va">+&lt;domain type=&#39;kvm&#39; xmlns:qemu=&#39;http://libvirt.org/schemas/domain/qemu/1.0&#39;&gt;</span></a>
+<a class="sourceLine" id="cb4-6" data-line-number="6">   &lt;name&gt;nixos&lt;/name&gt;</a>
+<a class="sourceLine" id="cb4-7" data-line-number="7">   &lt;uuid&gt;bd0ab376-6fee-428b-a30c-f1091afbcba6&lt;/uuid&gt;</a>
+<a class="sourceLine" id="cb4-8" data-line-number="8">   &lt;memory unit=&#39;KiB&#39;&gt;1048576&lt;/memory&gt;</a>
+<a class="sourceLine" id="cb4-9" data-line-number="9"><span class="dt">@@ -108,4 +108,9 @@</span></a>
+<a class="sourceLine" id="cb4-10" data-line-number="10">       &lt;address type=&#39;pci&#39; domain=&#39;0x0000&#39; bus=&#39;0x00&#39; slot=&#39;0x08&#39; function=&#39;0x0&#39;/&gt;</a>
+<a class="sourceLine" id="cb4-11" data-line-number="11">     &lt;/memballoon&gt;</a>
+<a class="sourceLine" id="cb4-12" data-line-number="12">   &lt;/devices&gt;</a>
+<a class="sourceLine" id="cb4-13" data-line-number="13"><span class="va">+  &lt;qemu:commandline&gt;</span></a>
+<a class="sourceLine" id="cb4-14" data-line-number="14"><span class="va">+    &lt;qemu:arg value=&#39;-redir&#39;/&gt;</span></a>
+<a class="sourceLine" id="cb4-15" data-line-number="15"><span class="va">+    &lt;qemu:arg value=&#39;tcp:2222::22&#39;/&gt;</span></a>
+<a class="sourceLine" id="cb4-16" data-line-number="16"><span class="va">+  &lt;/qemu:commandline&gt;</span></a>
+<a class="sourceLine" id="cb4-17" data-line-number="17"> &lt;/domain&gt;</a></code></pre></div>
 </section>
 <section id="ssh" class="level2">
 <h2>SSH</h2>
@@ -238,17 +273,19 @@ $ scp /home/igor/.ssh/id_rsa.pub nixos:~/.ssh/authorized_keys</code></pre>
 <section id="nixos-check" class="level2">
 <h2>Проверка работоспособности окружения</h2>
 <p>Внутри виртуальной машины:</p>
-<pre><code>[guest@nixos:~]$ pkg-config --cflags --libs fuse3
+<pre><code>[guest@nixos:~]$ load-env-gcc
+[nix-shell:~]$ pkg-config --cflags --libs fuse3
 -I/nix/store/r6fjssaw0ppzfd106wmjc2rlkkxyfvig-fuse-3.2.0/include/fuse3 \
 -L/nix/store/r6fjssaw0ppzfd106wmjc2rlkkxyfvig-fuse-3.2.0/lib -lfuse3 -lpthread
 
-[guest@nixos:~]$ wget https://raw.githubusercontent.com/libfuse/libfuse/master/example/cuse.c
-[guest@nixos:~]$ wget https://raw.githubusercontent.com/libfuse/libfuse/master/example/cuse_client.c
-[guest@nixos:~]$ wget https://raw.githubusercontent.com/libfuse/libfuse/master/example/ioctl.h
-[guest@nixos:~]$ gcc -o cuse cuse.c `pkg-config --cflags --libs fuse3`
-[guest@nixos:~]$ gcc -o client cuse_client.c `pkg-config --cflags --libs fuse3`
-[guest@nixos:~]$ ls
+[nix-shell:~]$ wget https://raw.githubusercontent.com/libfuse/libfuse/master/example/cuse.c
+[nix-shell:~]$ wget https://raw.githubusercontent.com/libfuse/libfuse/master/example/cuse_client.c
+[nix-shell:~]$ wget https://raw.githubusercontent.com/libfuse/libfuse/master/example/ioctl.h
+[nix-shell:~]$ gcc -o cuse cuse.c `pkg-config --cflags --libs fuse3`
+[nix-shell:~]$ gcc -o client cuse_client.c `pkg-config --cflags --libs fuse3`
+[nix-shell:~]$ ls
 client  cuse  cuse.c  cuse_client.c  ioctl.h
+[nix-shell:~]$ exit # или &lt;Ctrl-D&gt;
 [guest@nixos:~]$ sudo ./cuse --name=123
 [guest@nixos:~]$ ll /dev/123
 crw------- 1 root root 248, 0 Feb 18 22:47 /dev/123
