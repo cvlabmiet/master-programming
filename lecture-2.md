@@ -66,6 +66,44 @@ date: 2018-02-18
 
 Установка подробно дана в [nixos-setup](nixos-setup.html)
 
+Сборка программ происходит в изолированном окружении `load-env-gcc`
+```
+[guest@nixos:~/mycpu]$ load-env-gcc
+[nix-shell:~/mycpu]$ cmake /shared/mycpu/
+-- The C compiler identification is GNU 6.4.0
+-- The CXX compiler identification is GNU 6.4.0
+-- Check for working C compiler: /nix/store/3mpsvihv6n9af6qi3vhbkmxay93fmi84-gcc-wrapper-6.4.0/bin/gcc
+-- Check for working C compiler: /nix/store/3mpsvihv6n9af6qi3vhbkmxay93fmi84-gcc-wrapper-6.4.0/bin/gcc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Check for working CXX compiler: /nix/store/3mpsvihv6n9af6qi3vhbkmxay93fmi84-gcc-wrapper-6.4.0/bin/g++
+-- Check for working CXX compiler: /nix/store/3mpsvihv6n9af6qi3vhbkmxay93fmi84-gcc-wrapper-6.4.0/bin/g++ -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/guest/mycpu
+[nix-shell:~/mycpu]$ exit
+[guest@nixos:~/mycpu]$ make -j # можно собирать не в изолированном окружении
+[ 25%] Building C object CMakeFiles/server.dir/cuse.c.o
+[ 50%] Building C object CMakeFiles/client.dir/cuse_client.c.o
+[ 75%] Linking C executable client
+[100%] Linking C executable server
+[100%] Built target client
+[100%] Built target server
+[guest@nixos:~/mycpu]$ ./client
+Usage: cuse_client FIOC_FILE COMMAND
+
+COMMANDS
+  s [SIZE]     : get size if SIZE is omitted, set size otherwise
+  r SIZE [OFF] : read SIZE bytes @ OFF (dfl 0) and output to stdout
+  w SIZE [OFF] : write SIZE bytes @ OFF (dfl 0) from stdin
+```
+
 ## Настройка доступа по SSH {#nixos-install-cont}
 
 Необходимо сделать перенаправление порта 22 гостевой системы на любой доступный порт хоста (2222, 5022 и т.д.)
@@ -148,17 +186,19 @@ $ scp /home/igor/.ssh/id_rsa.pub nixos:~/.ssh/authorized_keys
 
 Внутри виртуальной машины:
 ```
-[guest@nixos:~]$ pkg-config --cflags --libs fuse3
+[guest@nixos:~]$ load-env-gcc
+[nix-shell:~]$ pkg-config --cflags --libs fuse3
 -I/nix/store/r6fjssaw0ppzfd106wmjc2rlkkxyfvig-fuse-3.2.0/include/fuse3 \
 -L/nix/store/r6fjssaw0ppzfd106wmjc2rlkkxyfvig-fuse-3.2.0/lib -lfuse3 -lpthread
 
-[guest@nixos:~]$ wget https://raw.githubusercontent.com/libfuse/libfuse/master/example/cuse.c
-[guest@nixos:~]$ wget https://raw.githubusercontent.com/libfuse/libfuse/master/example/cuse_client.c
-[guest@nixos:~]$ wget https://raw.githubusercontent.com/libfuse/libfuse/master/example/ioctl.h
-[guest@nixos:~]$ gcc -o cuse cuse.c `pkg-config --cflags --libs fuse3`
-[guest@nixos:~]$ gcc -o client cuse_client.c `pkg-config --cflags --libs fuse3`
-[guest@nixos:~]$ ls
+[nix-shell:~]$ wget https://raw.githubusercontent.com/libfuse/libfuse/master/example/cuse.c
+[nix-shell:~]$ wget https://raw.githubusercontent.com/libfuse/libfuse/master/example/cuse_client.c
+[nix-shell:~]$ wget https://raw.githubusercontent.com/libfuse/libfuse/master/example/ioctl.h
+[nix-shell:~]$ gcc -o cuse cuse.c `pkg-config --cflags --libs fuse3`
+[nix-shell:~]$ gcc -o client cuse_client.c `pkg-config --cflags --libs fuse3`
+[nix-shell:~]$ ls
 client  cuse  cuse.c  cuse_client.c  ioctl.h
+[nix-shell:~]$ exit # или <Ctrl-D>
 [guest@nixos:~]$ sudo ./cuse --name=123
 [guest@nixos:~]$ ll /dev/123
 crw------- 1 root root 248, 0 Feb 18 22:47 /dev/123
