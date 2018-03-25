@@ -29,3 +29,4 @@ css: GitHub.css
 1. [CMake](lecture-4.md)
 1. [Отладка](lecture-5.md)
 1. [Тестирование](lecture-6.md)
+1. [Методики программирования на C++](lecture-7.md)

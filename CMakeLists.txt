@@ -12,6 +12,11 @@ if(NOT PANDOC)
     message(SEND_ERROR "pandoc has not been found")
 endif()
 
+find_program(PLANTUML plantuml)
+if(NOT PLANTUML)
+    message(SEND_ERROR "plantuml has not been found")
+endif()
+
 set(FORMAT "markdown+raw_tex+bracketed_spans")
 
 file(GLOB SOURCES lecture-*.md)
@@ -28,6 +33,18 @@ else()
         CONFIGURE_COMMAND "" BUILD_COMMAND "" INSTALL_COMMAND ""
     )
 endif()
+
+file(GLOB IMAGES_SRCS *.puml)
+foreach(SRC ${IMAGES_SRCS})
+    get_filename_component(SRC_FILE ${SRC} ABSOLUTE)
+    get_filename_component(SRC_WE ${SRC} NAME_WE)
+    set(OUTPUT_FILE ${CMAKE_CURRENT_BINARY_DIR}/${SRC_WE}.svg)
+    add_custom_command(OUTPUT ${OUTPUT_FILE}
+        COMMAND ${PLANTUML} -o ${CMAKE_CURRENT_BINARY_DIR} ${SRC_FILE} -tsvg
+        DEPENDS ${SRC}
+    )
+    list(APPEND OUTPUTS ${OUTPUT_FILE})
+endforeach()
 
 foreach(SRC ${SOURCES})
     get_filename_component(SRC_WE ${SRC} NAME_WE)
