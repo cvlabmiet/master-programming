@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ru_RU">
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Игорь Шаронов">
+  <meta name="dcterms.date" content="2018-03-24">
+  <title>Master programming</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="https://rawgit.com/hakimel/reveal.js/master/css/reveal.css">
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <link rel="stylesheet" href="https://rawgit.com/hakimel/reveal.js/master/css/theme/serif.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'https://rawgit.com/hakimel/reveal.js/master/css/print/pdf.css' : 'https://rawgit.com/hakimel/reveal.js/master/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="https://rawgit.com/hakimel/reveal.js/master/lib/js/html5shiv.js"></script>
+  <![endif]-->
+  <style type="text/css">
+      .reveal h1 { font-size: 2em; }
+      .reveal h2 { font-size: 2em; }
+      .reveal h3 { font-size: 1em; }
+      .reveal pre code { max-height: 600px; }
+  </style>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide">
+  <h1 class="title">Master programming</h1>
+  <p class="subtitle">Лекция №7 (Методики программирования на C++)</p>
+  <p class="author">Игорь Шаронов</p>
+  <p class="date">2018-03-24</p>
+</section>
+
+<section id="review" class="slide level1">
+<h1>Обзор языка</h1>
+<ul>
+<li>Фундаментальные типы данных</li>
+<li>Примитивные объекты – контейнеры</li>
+<li>Стандартная библиотека шаблонов STL</li>
+<li>Расширенная библиотека – Boost</li>
+<li>Развитие языка – новые стандарты</li>
+<li>Актуальная информация – <a href="http://cppreference.com" class="uri">http://cppreference.com</a></li>
+</ul>
+</section>
+<section class="slide level1">
+
+<section id="stl" class="level2">
+<h2>Стандартная библиотека шаблонов</h2>
+<p><img data-src="./stl.svg" /></p>
+</section>
+<section id="containers" class="level2">
+<h2>Контейнеры</h2>
+<ul>
+<li>Последовательные (vector, array, list)</li>
+<li>Ассоциативные (map, set)</li>
+<li>Хеш-контейнеры (unordered_set, unordered_map)</li>
+<li>Адапторы (stack, priority_queue, queue)</li>
+<li>Span (view) – C++20</li>
+</ul>
+</section>
+<section id="iterators" class="level2">
+<h2>Итераторы</h2>
+<ul>
+<li>Созданы для абстракции контейнера от алгоритма</li>
+<li>6 видов по типам контейнеров:
+<ul>
+<li>Contigues – непрерывный (указатели)</li>
+<li>RandomAccess – с произвольным доступом (vector)</li>
+<li>Bidirectional – есть инкремент и декремент (list)</li>
+<li>ForwardIterator – есть инкремент (forward_list)</li>
+<li>Input – чтение, можно пройтись итератором только один раз (istream)</li>
+<li>Output – запись, можно пройтись итератором только один раз (ostream)</li>
+</ul></li>
+<li>Могут быть полностью абстрагированы от контейнера</li>
+<li>Потоки вводы/вывода обладают своими инераторами</li>
+<li>Адапторы (reverse, back_inserter)</li>
+<li>Операции – advance, distance, next, prev</li>
+</ul>
+</section>
+<section id="algorithms" class="level2">
+<h2>Алгоритмы</h2>
+<ul>
+<li>Почти все алгоритмы работают с итераторами</li>
+<li>Не модифицирующие последовательные операции (count, find)</li>
+<li>Модификаторы (fill, copy, transform)</li>
+<li>Сортировки (sort, nth_element, partition)
+<ul>
+<li>Поиск (binary_search, lower_bound)</li>
+<li>Операции с множествами (merge, includes, set_union)</li>
+</ul></li>
+<li>Минимумы/максимумы (min, minmax, min_element, clamp)</li>
+<li>Аккумуляторы (iota, accumulate, transform_reduce)</li>
+<li>Политики запуска алгоритмов (seq, par, par_unseq)</li>
+</ul>
+</section>
+<section id="math-extension" class="level2">
+<h2>Математические расширения</h2>
+<ul>
+<li>Общие математические функции – cmath, cstdlib</li>
+<li>Специальные математические функции (cyl_bessel_i, expint, riemann_zeta)</li>
+<li>Complex, valarray</li>
+<li>Аккумуляторы, gcd, lcm</li>
+<li>Псевдослучаные последовательности
+<ul>
+<li>Псевдогенераторы (mersenne_twister_engine, linear_congruential_engine)</li>
+<li>Адапторы генераторов (shuffle_order_engine, discard_block_engine)</li>
+<li>Недетерменированный генератор (random_device)</li>
+<li>Функции распределения (uniform_int_distribution, normal_distribution)</li>
+</ul></li>
+<li>Рациональные числа уровня компиляции (нужно для <code>std::crhono</code>)</li>
+<li>Управление FPE для работы с плавающей точкой</li>
+</ul>
+</section>
+<section id="streams" class="level2">
+<h2>Потоковый ввод/вывод</h2>
+<p><img data-src="http://upload.cppreference.com/mwiki/images/0/06/std-io-complete-inheritance.svg" /></p>
+<ul>
+<li>Итераторы (strembuf_iterator, stream_iterator) – InputIterator, OutputIterator</li>
+<li>Потоковые объекты – stringstream</li>
+<li>I/O манипуляторы</li>
+<li><code>boost::format</code> – самое лучшее от <code>printf</code></li>
+<li><code>boost::iostreams</code> – расширение <code>std::iostream</code></li>
+</ul>
+</section>
+<section id="smart-pointers" class="level2">
+<h2>Умные указатели</h2>
+<ul>
+<li>Обёртка на <code>new</code>, <code>delete</code></li>
+<li>Слабые указатели (weak_ptr)</li>
+<li>Совместно используемые указатели (shared_ptr)</li>
+<li>Уникальные указатели (unique_ptr)</li>
+<li>Потокобезовасность – перегрузка оператора <code>-&gt;</code></li>
+<li>Утилиты:
+<ul>
+<li>enable_shared_from_this</li>
+<li>Умные указатели поддерживают пользовательные деструкторы</li>
+<li>Аллокаторы</li>
+</ul></li>
+<li>Разиличие <code>delete</code> и <code>delete[]</code> → умные указатели и массивы</li>
+</ul>
+</section>
+<section id="chrono" class="level2">
+<h2>Управление временем</h2>
+<ul>
+<li>Бибилиотека <code>std::chrono</code></li>
+<li>3 класса для работы со временем:
+<ul>
+<li><code>clocks</code> – замер времени
+<ul>
+<li><code>system_clock</code> – системное время</li>
+<li><code>steady_clock</code> – монотонное время, никогда не возвращается назад</li>
+<li><code>high_resolution_clock</code> – самое точное время</li>
+<li><code>utc_clock</code>, <code>file_clock</code>, …</li>
+</ul></li>
+<li><code>time_point</code> – временная метка</li>
+<li><code>duration</code> – разница между временными метками</li>
+</ul></li>
+<li>Кастование между различными величинами <code>duration</code></li>
+<li>Календарь и временная зона – C++20</li>
+<li>Строковые константы – <code>42s</code>, <code>1min</code>, <code>2us</code> (C++14)</li>
+</ul>
+</section>
+<section id="regex" class="level2">
+<h2>Регулярные выражения</h2>
+<p><a href="https://ru.wikipedia.org/wiki/Регулярные_выражения" class="uri">https://ru.wikipedia.org/wiki/Регулярные_выражения</a></p>
+<ul>
+<li>Библиотека <code>std::regex</code></li>
+<li>Основные функции:
+<ul>
+<li>Построение регулярки – конструктор</li>
+<li><code>regex_match</code> – соответствие предложения регулярному выражению</li>
+<li><code>std::smatch</code>, <code>std::cmatch</code> – объекты совпадения</li>
+<li><code>regex_search</code> – поиск регулярного выражения</li>
+<li><code>regex_replace</code> – поиск и замена</li>
+</ul></li>
+<li>Строковые литералы (<code>R&quot;match\t\n&quot;</code> &lt;=&gt; <code>&quot;match\\t\\n&quot;</code>)</li>
+<li>Опции и типы ругялярок – icase, multiline, ECMAScript, grep, …</li>
+</ul>
+</section>
+<section id="atomic" class="level2">
+<h2>Атомарные операции</h2>
+<ul>
+<li>Сделать тип <code>T</code> атомарным – <code>std::atomic&lt;T&gt;</code></li>
+<li>Поддержка атомарных операций (fetch_add, exchange)</li>
+<li>Барьеры памяти</li>
+<li>Специальный тип <code>atomic_flag</code> – <code>test_and_set</code></li>
+</ul>
+</section>
+<section id="threads" class="level2">
+<h2>Потоки</h2>
+<ul>
+<li>POSIX интерфейс</li>
+<li>Мьютексы:
+<ul>
+<li>mutex, timed_mutex, recursive_mutex, shared_mutex</li>
+<li>Локеры – lock_guard, scoped_lock, unique_lock, shared_lock</li>
+</ul></li>
+<li>Условные переменные
+<ul>
+<li>Необходимо иметь синхронизирующий мьютекс</li>
+</ul></li>
+<li>Асинхронные операции:
+<ul>
+<li><code>promise</code> – в него устанавлиют результат асинхронно</li>
+<li><code>future</code> – объект, который выполнится в неизвестное время</li>
+<li><code>async</code> – обёртка над <code>future</code></li>
+</ul></li>
+<li>Объект потока <code>std::thread</code>
+<ul>
+<li><code>yield</code>, <code>sleep_for</code></li>
+<li><code>join</code>, <code>detach</code></li>
+</ul></li>
+</ul>
+</section>
+<section id="filesystem" class="level2">
+<h2>Работа с файловой системой</h2>
+<ul>
+<li>Отдельное подпространство имён <code>std::filesystem</code></li>
+<li>Класс <code>path</code> – абстракция пути в файловой системе</li>
+<li>Методы <code>path</code> позволяют модифицировать путь</li>
+<li>Создание директорий, символических ссылок</li>
+<li>Рекурсивный обход директории – <code>recursive_directory_iterator</code></li>
+<li>Получение информации о файле – <code>file_status</code></li>
+<li>Получение доступного места на файловой системе – <code>space_info</code></li>
+<li>Функции для работы с файлами:
+<ul>
+<li>exists, file_size, absolute, space</li>
+<li>copy_file, remove</li>
+<li>rename, resize_file</li>
+<li>current_path</li>
+<li>temp_director_path</li>
+</ul></li>
+</ul>
+</section>
+</section>
+    </div>
+  </div>
+
+  <script src="https://rawgit.com/hakimel/reveal.js/master/lib/js/head.min.js"></script>
+  <script src="https://rawgit.com/hakimel/reveal.js/master/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display the page number of the current slide
+        slideNumber: true,
+        // Push each slide change to the browser history
+        history: true,
+        // Vertical centering of slides
+        center: true,
+        // Transition style
+        transition: 'convex', // none/fade/slide/convex/concave/zoom
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: '90%',
+        height: '95%',
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'https://rawgit.com/hakimel/reveal.js/master/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'https://rawgit.com/hakimel/reveal.js/master/plugin/zoom-js/zoom.js', async: true },
+          { src: 'https://rawgit.com/hakimel/reveal.js/master/plugin/math/math.js', async: true },
+          { src: 'https://rawgit.com/hakimel/reveal.js/master/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>
