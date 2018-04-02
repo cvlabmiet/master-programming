@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ru_RU">
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Игорь Шаронов">
+  <meta name="dcterms.date" content="2018-03-28">
+  <title>Master programming</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="https://rawgit.com/hakimel/reveal.js/master/css/reveal.css">
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="https://rawgit.com/hakimel/reveal.js/master/css/theme/serif.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'https://rawgit.com/hakimel/reveal.js/master/css/print/pdf.css' : 'https://rawgit.com/hakimel/reveal.js/master/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="https://rawgit.com/hakimel/reveal.js/master/lib/js/html5shiv.js"></script>
+  <![endif]-->
+  <style type="text/css">
+      .reveal h1 { font-size: 2em; }
+      .reveal h2 { font-size: 2em; }
+      .reveal h3 { font-size: 1em; }
+      .reveal pre code { max-height: 600px; }
+  </style>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide">
+  <h1 class="title">Master programming</h1>
+  <p class="subtitle">Лекция №8 (Методики программирования на C++)</p>
+  <p class="author">Игорь Шаронов</p>
+  <p class="date">2018-03-28</p>
+</section>
+
+<section id="inheritance" class="slide level1">
+<h1>Различия наследований</h1>
+<ul>
+<li>Наследование – компилятор по типу класса определяет таблицу функций</li>
+<li>Наследование в полиморфизме:
+<ul>
+<li>Справедливо только для указателей или ссылок на базовый класс</li>
+<li>Работает в рантайме</li>
+<li>Компилятор не может по типу указателя базового класса определить тип объекта</li>
+<li>Каждый объект содержит указатель на таблицу функций (методов)
+<ul>
+<li>таблицы функций используются одни и те же для одинаковых типов</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="override" class="slide level1">
+<h1>Перегрузка</h1>
+<ul>
+<li>Перегрузка функций возможна только в сигнатуре
+<ul>
+<li>Возвращаемое значение не входим в сигнатуру (в C++)</li>
+</ul></li>
+<li>Специализация класса – это тоже вид перегрузки</li>
+<li>Частичная специализация класса
+<ul>
+<li>Частичной специализации функции не бывает (не отличимо от обычной перегрузки)</li>
+</ul></li>
+<li>Можно делать только специализации
+<ul>
+<li>Более общий шаблонный класс останется пустым</li>
+<li>Сигнализация об ошибке будет только в том случае, если не подойдёт ни одна специализация</li>
+</ul></li>
+</ul>
+</section>
+<section id="sfinae" class="slide level1">
+<h1>SFINAE</h1>
+<ul>
+<li><a href="http://en.cppreference.com/w/cpp/language/sfinae">Substitution Failure Is Not A Error</a></li>
+<li>Если вывод специализации приводит к ошибке, то
+<ul>
+<li>данная специализация отбрасывается</li>
+<li>переходим к следующей специализации</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cxx"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">template</span> &lt;<span class="kw">class</span> T&gt; <span class="dt">int</span> f(<span class="kw">typename</span> T::B*);</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">template</span> &lt;<span class="kw">class</span> T&gt; <span class="dt">int</span> f(T);</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="dt">int</span> i = f&lt;<span class="dt">int</span>&gt;(<span class="dv">0</span>); <span class="co">// uses second overload</span></a></code></pre></div>
+</section>
+<section id="interface-design" class="slide level1">
+<h1>Проектирование интерфейсов</h1>
+<p><a href="https://ru.wikipedia.org/wiki/SOLID_(объектно-ориентированное_программирование)" class="uri">https://ru.wikipedia.org/wiki/SOLID_(объектно-ориентированное_программирование)</a></p>
+<ul>
+<li>SOLID:
+<ul>
+<li>Принцип единственной ответственности (The Single Responsibility Principle)</li>
+<li>Принцип открытости/закрытости (The Open Closed Principle)</li>
+<li>Принцип подстановки Барбары Лисков (The Liskov Substitution Principle)</li>
+<li>Принцип разделения интерфейса (The Interface Segregation Principle)</li>
+<li>Принцип инверсии зависимостей (The Dependency Inversion Principle)</li>
+</ul></li>
+<li>Критерии SOLID:
+<ul>
+<li>Закрепощённость</li>
+<li>Неустойчивость</li>
+<li>Неподвижность</li>
+<li>Вязкость</li>
+<li>Неоправданная сложность</li>
+<li>Неопределённость</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1">
+
+<section id="templates" class="level2">
+<h2>Шаблоны</h2>
+<ul>
+<li>Уровень компиляции</li>
+<li><code>template&lt;class T&gt; int func();</code>, где <code>T</code> – шаблонный параметр</li>
+<li><code>func&lt;int&gt;();</code>, где <code>int</code> – аргумент шаблона</li>
+<li>Параметр шаблона может быть не-типовым (int, char, auto)
+<ul>
+<li>Исключение: это не указатель и не тип <code>double|float</code></li>
+</ul></li>
+<li><code>template&lt;class... Ts&gt; class myclass;</code> – пакет шаблонных параметров</li>
+<li><code>template&lt;class T&gt; constexpr T pi = T(3.1415926535897932385L);</code> – шаблонная переменная</li>
+<li><code>template&lt;class... Ts, size_t N = sizeof...(Ts)&gt; class my;</code></li>
+</ul>
+</section>
+<section id="template-parameter-pack" class="level2">
+<h2>Операции над шаблонными пакетами</h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cxx"><code class="sourceCode cpp"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">template</span> &lt;<span class="kw">typename</span>... bases&gt;</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw">struct</span> X : bases... {</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">    <span class="kw">using</span> bases::g...;</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">};</a>
+<a class="sourceLine" id="cb2-5" data-line-number="5">X&lt;B, D&gt; x;</a></code></pre></div>
+<p>Свёртки</p>
+<ul>
+<li><code>( pack op ... )</code> – свёртка слева
+<ul>
+<li><code>( pack op ... op init )</code> – свёртка слева с начальным значением</li>
+</ul></li>
+<li><code>( ... op pack )</code> – свёртка справа
+<ul>
+<li><code>( init op ... op pack )</code> – свёртка справа с начальным значением</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode cxx"><code class="sourceCode cpp"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">template</span>&lt;<span class="kw">typename</span> T, <span class="kw">typename</span>... Args&gt;</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="dt">void</span> push_back_vec(<span class="bu">std::</span>vector&lt;T&gt;&amp; v, Args&amp;&amp;... args)</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">{</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">    (v.push_back(args), ...);</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">}</a></code></pre></div>
+</section>
+</section>
+<section id="concepts" class="slide level1">
+<h1>Концепты и ограничители</h1>
+<div class="sourceCode" id="cb4"><pre class="sourceCode cxx"><code class="sourceCode cpp"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">template</span>&lt;<span class="kw">typename</span> T&gt;</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">concept EqualityComparable = requires(T a, T b)</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">{</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4">    { a == b } -&gt; <span class="dt">bool</span>;</a>
+<a class="sourceLine" id="cb4-5" data-line-number="5">}; <span class="co">// концепт</span></a>
+<a class="sourceLine" id="cb4-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb4-7" data-line-number="7"><span class="kw">template</span>&lt;EqualityComparable T&gt; <span class="dt">void</span> f(T&amp;&amp;); <span class="co">// ограничитель</span></a>
+<a class="sourceLine" id="cb4-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb4-9" data-line-number="9">EqualityComparable{T} <span class="dt">void</span> f(T&amp;&amp;); <span class="co">// укороченная форма</span></a></code></pre></div>
+</section>
+    </div>
+  </div>
+
+  <script src="https://rawgit.com/hakimel/reveal.js/master/lib/js/head.min.js"></script>
+  <script src="https://rawgit.com/hakimel/reveal.js/master/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display the page number of the current slide
+        slideNumber: true,
+        // Push each slide change to the browser history
+        history: true,
+        // Vertical centering of slides
+        center: true,
+        // Transition style
+        transition: 'convex', // none/fade/slide/convex/concave/zoom
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: '90%',
+        height: '95%',
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'https://rawgit.com/hakimel/reveal.js/master/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'https://rawgit.com/hakimel/reveal.js/master/plugin/zoom-js/zoom.js', async: true },
+          { src: 'https://rawgit.com/hakimel/reveal.js/master/plugin/math/math.js', async: true },
+          { src: 'https://rawgit.com/hakimel/reveal.js/master/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>
