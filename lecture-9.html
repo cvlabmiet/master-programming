@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ru_RU">
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Игорь Шаронов">
+  <meta name="dcterms.date" content="2018-04-08">
+  <title>Master programming</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="https://rawgit.com/hakimel/reveal.js/master/css/reveal.css">
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <link rel="stylesheet" href="https://rawgit.com/hakimel/reveal.js/master/css/theme/serif.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'https://rawgit.com/hakimel/reveal.js/master/css/print/pdf.css' : 'https://rawgit.com/hakimel/reveal.js/master/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="https://rawgit.com/hakimel/reveal.js/master/lib/js/html5shiv.js"></script>
+  <![endif]-->
+  <style type="text/css">
+      .reveal h1 { font-size: 2em; }
+      .reveal h2 { font-size: 2em; }
+      .reveal h3 { font-size: 1em; }
+      .reveal pre code { max-height: 600px; }
+  </style>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide">
+  <h1 class="title">Master programming</h1>
+  <p class="subtitle">Лекция №9 (Разработака в команде)</p>
+  <p class="author">Игорь Шаронов</p>
+  <p class="date">2018-04-08</p>
+</section>
+
+<section id="pros-cons-team" class="slide level1">
+<h1>Преимущества и недостатки разработки в команде</h1>
+<ul>
+<li>Все люди разные</li>
+<li>Конфликты неизбежны</li>
+<li>Человеческий фактор</li>
+<li>Постоянные обсуждения</li>
+<li>Параллелизация задач</li>
+</ul>
+</section>
+<section id="positions" class="slide level1">
+<h1>Должности</h1>
+<div class="column" style="float:left">
+<ul>
+<li>Программисты:
+<ul>
+<li>Intern</li>
+<li>Junior</li>
+<li>Regular</li>
+<li>Senior</li>
+<li>Lead</li>
+<li>Expert</li>
+<li>Principal</li>
+</ul></li>
+</ul>
+</div>
+<div class="column">
+<ul>
+<li>Управляющее звено:
+<ul>
+<li>Project manager</li>
+<li>Product owner</li>
+<li>Team Lead</li>
+<li>Agile coach</li>
+<li>Scrum master</li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="team-stucture" class="slide level1">
+<h1>Состав команды</h1>
+<ul>
+<li>Программисты</li>
+<li>Тестировщики (могут быть заменены программистами)</li>
+<li>Интерны – не более 1-2 на команду</li>
+<li>Старший или ведущий программист</li>
+<li>Руководитель команды</li>
+<li>Управляющий проектом</li>
+<li><em>DevOps</em></li>
+<li><em>Релиз менеджер</em></li>
+<li><em>Владелец продукта</em></li>
+</ul>
+</section>
+<section id="why-meetings" class="slide level1">
+<h1>Зачем команда собирается?</h1>
+<ul>
+<li>Стендапы – текущее состояние дел</li>
+<li>Планирование и грумминг – оценка и приоритизация задач</li>
+<li>Митинги (обсуждения)</li>
+<li>Спринты и майлстоуны – мерила для оценок</li>
+<li>Ретроспективы
+<ul>
+<li>анализ проделанной работы</li>
+<li>замечания на будущее</li>
+</ul></li>
+<li>Проблема оценки задач – Gummy Bears</li>
+</ul>
+</section>
+<section id="conflicts" class="slide level1">
+<h1>Стадии развития конфликтов</h1>
+<ol type="1">
+<li>Всё прекрасно</li>
+<li>Небольшие разногласия (умалчивание конфликта)</li>
+<li>Тяжёлый конфликт</li>
+<li>Последствия</li>
+</ol>
+</section>
+    </div>
+  </div>
+
+  <script src="https://rawgit.com/hakimel/reveal.js/master/lib/js/head.min.js"></script>
+  <script src="https://rawgit.com/hakimel/reveal.js/master/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display the page number of the current slide
+        slideNumber: true,
+        // Push each slide change to the browser history
+        history: true,
+        // Vertical centering of slides
+        center: true,
+        // Transition style
+        transition: 'convex', // none/fade/slide/convex/concave/zoom
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: '90%',
+        height: '95%',
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'https://rawgit.com/hakimel/reveal.js/master/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'https://rawgit.com/hakimel/reveal.js/master/plugin/zoom-js/zoom.js', async: true },
+          { src: 'https://rawgit.com/hakimel/reveal.js/master/plugin/math/math.js', async: true },
+          { src: 'https://rawgit.com/hakimel/reveal.js/master/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>
