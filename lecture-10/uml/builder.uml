@@ -1,0 +1,31 @@
+@startuml
+interface Builder {
+    +buildPartA()
+    +buildPartB()
+    +buildPartC()
+}
+
+class Builder1 {
+    +buildPartA() override
+    {method} ...
+    +getProduct(): Product1
+}
+
+class Builder2 {
+    +buildPartA() override
+    {method} ...
+    +getProduct(): Product2
+}
+
+class Director {
+    +makeVariant1()
+    +makeVariant2()
+}
+
+Builder1 -u-|> Builder
+Builder2 -u-|> Builder
+
+Director -l-o Builder
+
+hide empty fields
+@enduml

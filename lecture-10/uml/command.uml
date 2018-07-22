@@ -1,0 +1,35 @@
+@startuml
+interface Command {
+    +execute()
+}
+
+class Paste {
+    -cache: data&
+    +execute()
+}
+
+class Copy {
+    -data
+    +execute()
+}
+
+class Client {
+    -actions: Command[]
+    +send()
+}
+
+class Server {
+    +receive()
+    +apply()
+}
+
+Paste -d-o Client
+Copy -d-o Client
+
+Client -l-> Server: Command
+
+Copy -u-|> Command
+Paste -u-|> Command
+
+hide empty fields
+@enduml

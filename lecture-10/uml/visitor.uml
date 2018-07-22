@@ -1,0 +1,46 @@
+@startuml
+interface Visitor {
+    +visit(Object1)
+    +visit(Object2)
+}
+
+class Visitor1 {
+    +visit(Object1)
+    +visit(Object2)
+}
+
+class Visitor2 {
+    +visit(Object1)
+    +visit(Object2)
+}
+
+class Visitor3 {
+    +visit(Object1)
+    +visit(Object2)
+}
+
+Visitor1 -u-|> Visitor
+Visitor2 -u-|> Visitor
+Visitor3 -u-|> Visitor
+
+class Object1 {
+    ...
+    +accept(self&)
+}
+
+class Object2 {
+    ...
+    +accept(self&)
+}
+
+Object1 --o Visitor
+Object2 --o Visitor
+
+note on link
+    visitor = new Visitor1
+    foreach obj in Objects
+        obj.visit(visitor)
+end note
+
+hide empty fields
+@enduml

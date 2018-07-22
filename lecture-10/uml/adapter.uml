@@ -1,0 +1,21 @@
+@startuml
+interface ClientInterface {
+    +method1()
+    +method2()
+}
+
+class Adapter {
+    +method1()
+    +method2()
+}
+
+class Object {
+    +function()
+    +another()
+}
+
+Adapter --o Object
+Adapter -|> ClientInterface
+
+hide empty fields
+@enduml

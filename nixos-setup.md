@@ -1,5 +1,6 @@
 ---
 css: GitHub.css
+title: NixOS overview
 ---
 
 # Установка NixOS на виртуальную машину

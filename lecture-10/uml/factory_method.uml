@@ -1,0 +1,22 @@
+@startuml
+class SomeObject {
+    ...
+    +createObj(): IObj
+}
+
+interface IObj
+
+class Obj1 {
+    ...
+}
+
+class Obj2 {
+    ...
+}
+
+Obj1 -u-|> IObj
+Obj2 -u-|> IObj
+IObj .l.> SomeObject
+
+hide empty members
+@enduml

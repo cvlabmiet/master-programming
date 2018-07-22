@@ -1,0 +1,42 @@
+@startuml
+skinparam linetype ortho
+
+interface Component {
+    +method()
+}
+
+class Decorator {
+    -wrapee: Component&
+    +method()
+    +decorate()
+}
+
+class ComponentA {
+    {field} ...
+    +method()
+}
+
+class DecoratorA {
+    {field} ...
+    +decorate()
+}
+
+class DecoratorB {
+    {field} ...
+    +decorate()
+}
+
+Decorator -u-|> Component
+ComponentA -l-|> Component
+ComponentA --o Decorator
+
+DecoratorA -u-|> Decorator
+DecoratorB -u-|> Decorator
+
+note left of Decorator::method()
+    wrapee.method()
+    decorate()
+end note
+
+hide empty fields
+@enduml

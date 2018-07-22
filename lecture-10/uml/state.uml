@@ -1,0 +1,43 @@
+@startuml
+class Context {
+    #changeState(State)
+    +method1()
+    +method2()
+}
+
+interface State {
+    +method1()
+    +method2()
+}
+
+class State1 {
+    +method1()
+    +method2()
+}
+
+class State2 {
+    +method1()
+    +method2()
+}
+
+class State3 {
+    +method1()
+    +method2()
+}
+
+Context -r-* State
+State1 -d-o Context
+State2 -d-o Context
+State3 -d-o Context
+
+State1 -u-|> State
+State2 -u-|> State
+State3 -u-|> State
+
+note right of State2::method1()
+    doSomething()
+    context.changeState(new State3)
+end note
+
+hide empty fields
+@enduml

@@ -1,0 +1,26 @@
+@startuml
+class Algorithm {
+    +templateMethod()
+    +step1()
+    +step2()
+    +step3()
+}
+
+class Step1 {
+    +step1()
+    +step2()
+}
+
+class Step2 {
+    +step1()
+    +step3()
+}
+
+Algorithm1 --|> Algorithm
+Algorithm1 --|> Step1
+
+Algorithm2 --|> Algorithm
+Algorithm2 --|> Step2
+
+hide empty fields
+@enduml

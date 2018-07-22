@@ -1,0 +1,35 @@
+@startuml
+interface SomeInterface {
+    +method1()
+    +method2()
+}
+
+class Object {
+    ...
+    +method1()
+    +method2()
+}
+
+class Composition {
+    -objects: SomeInterface[]
+    +method1()
+    +method2()
+}
+
+class vector <type> {
+    +operator[](): type&
+    +begin(): vector::iterator
+    +end(): vector::interface
+}
+
+Object -u-|> SomeInterface
+Composition -u-|> SomeInterface
+Composition -u-|> vector
+
+note left of Composition::method1()
+    for object in objects:
+        object.method1()
+end note
+
+hide empty fields
+@enduml

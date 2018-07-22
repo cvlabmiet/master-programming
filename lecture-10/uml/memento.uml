@@ -1,0 +1,33 @@
+@startuml
+class Object1 {
+    -some
+    -fields
+    +save(): Memento
+    +restore(Memento&)
+}
+
+class Object2 {
+    -another
+    +save(): Memento
+    +restore(Memento&)
+}
+
+interface Memento
+
+class Memento1 {
+    -some
+    -fields
+}
+
+class Memento2 {
+    -another
+}
+
+Object1 --o Memento
+Object2 --o Memento
+
+Memento1 -u-|> Memento
+Memento2 -u-|> Memento
+
+hide empty methods
+@enduml

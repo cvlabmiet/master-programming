@@ -1,0 +1,30 @@
+@startuml
+interface Iterator <Type> {
+    +operator++(): self&
+    +operator*(): Type&
+}
+
+class Iterable <Type> {
+    -collection: Type[]
+    +begin()
+    +end()
+}
+
+class InputIterator <Type> {
+    +operator++(): self&
+    +operator*(): Type&
+}
+
+class OutputIterator <Type> {
+    +operator++(): null
+    +operator*(): self&
+    +operator=(): self&
+}
+
+InputIterator -u-|> Iterator
+OutputIterator -u-|> Iterator
+Iterable --* InputIterator
+Iterable --* OutputIterator
+
+hide empty fields
+@enduml

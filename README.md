@@ -1,5 +1,6 @@
 ---
 css: GitHub.css
+title: Master programming
 ---
 
 # Master programming

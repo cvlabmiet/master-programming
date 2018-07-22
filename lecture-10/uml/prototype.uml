@@ -1,0 +1,20 @@
+@startuml
+interface Prototype {
+    +clone(): Prototype
+}
+
+class Object1 {
+    {field} ...
+    +clone(): Prototype
+}
+
+class Object2 {
+    {field} ...
+    +clone(): Prototype
+}
+
+Object1 -u-|> Prototype
+Object2 -u-|> Prototype
+
+hide empty fields
+@enduml

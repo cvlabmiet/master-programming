@@ -1,0 +1,24 @@
+@startuml
+interface IObject {
+    +some()
+    +method()
+}
+
+class Proxy {
+    -cache: IObject
+    +some()
+    +method()
+}
+
+class Service {
+    {field}...
+    +some()
+    +method()
+}
+
+Proxy -u-|> IObject
+Proxy -r-* Service
+Service -u-|> IObject
+
+hide empty fields
+@enduml

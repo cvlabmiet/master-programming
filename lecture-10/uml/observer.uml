@@ -1,0 +1,28 @@
+@startuml
+class Publisher {
+    -observers: Observer[]
+    +add(Observer)
+    +remove(Observer)
+    +notify()
+}
+
+interface Observer {
+    +update(publisher)
+}
+
+class Observer1 {
+    ...
+    +update(publisher)
+}
+
+class Observer2 {
+    ...
+    +update(publisher)
+}
+
+Publisher -l-o "*" Observer
+Observer1 -u-|> Observer
+Observer2 -u-|> Observer
+
+hide empty fields
+@enduml

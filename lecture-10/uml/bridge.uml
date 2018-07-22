@@ -1,0 +1,36 @@
+@startuml
+rectangle Bridge {
+    class ComplexAdapter {
+        +method1()
+        +method2()
+        +method3()
+    }
+
+    interface Target {
+        +function()
+        +another()
+    }
+}
+
+class Implementation1 {
+    +function()
+    +another()
+}
+
+class Implementation2 {
+    +function()
+    +another()
+}
+
+class Refinement {
+    +method4()
+    +method5()
+}
+
+ComplexAdapter -l-* Target
+Refinement -u-|> ComplexAdapter
+Implementation1 -u-|> Target
+Implementation2 -u-|> Target
+
+hide empty fields
+@enduml

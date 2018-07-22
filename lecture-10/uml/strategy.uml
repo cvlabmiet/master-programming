@@ -1,0 +1,26 @@
+@startuml
+interface Strategy {
+    +do()
+}
+
+class Strategy1 {
+    ...
+    +do()
+}
+
+class Strategy2 {
+    ...
+    +do()
+}
+
+class Context {
+    +setStrategy(Strategy)
+    +make()
+}
+
+Strategy1 -u-|> Strategy
+Strategy2 -u-|> Strategy
+Context -r-o Strategy
+
+hide empty fields
+@enduml

@@ -18,7 +18,23 @@ date: 2018-03-24
 
 ## Стандартная библиотека шаблонов {#stl}
 
-![](./stl.svg)
+```plantuml
+skinparam defaultFontSize 20
+
+(Containers) <-- (STL)
+(Iterators) <-- (STL)
+(Algorithms) <-- (STL)
+(Numerics) <-- (STL)
+(Input/output) <-- (STL)
+(Smart pointers) <-- (STL)
+
+(STL) --> (Chrono)
+(STL) --> (Regex)
+(STL) --> (Atomic)
+(STL) --> (Thread)
+(STL) --> (Filesystem)
+(STL) --> (...)
+```
 
 ## Контейнеры {#containers}
 

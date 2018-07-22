@@ -1,0 +1,27 @@
+@startuml
+class Facade {
+    {field}...
+    +method1()
+    +method2()
+}
+
+class SubSystem1 {
+    +func()
+    +another()
+}
+
+class SubSystem2 {
+    +do()
+    +make()
+}
+
+class SubSystem3 {
+    +some()
+}
+
+SubSystem1 -d-* Facade
+SubSystem2 -d-* Facade
+SubSystem3 -d-* Facade
+
+hide empty fields
+@enduml

@@ -1,0 +1,37 @@
+@startuml
+interface Mediator {
+    +notify(sender)
+}
+
+class Main {
+    -onEventA()
+    -onEventB()
+    -onEventC()
+    +notify(sender)
+}
+
+class ComponentA {
+    +operationA()
+}
+
+class ComponentB {
+    +operationB()
+}
+
+class ComponentC {
+    +operationC()
+}
+
+ComponentA -u-o Mediator
+Main --* ComponentA
+
+ComponentB -u-o Mediator
+Main --* ComponentB
+
+ComponentC -u-o Mediator
+Main --* ComponentC
+
+Main -l-|> Mediator
+
+hide empty fields
+@enduml

@@ -1,0 +1,30 @@
+@startuml
+class Client {
+    +some()
+    +method()
+}
+
+class VeryComplexObject {
+    -obj1: Flyweight
+    -obj2: Obj2
+    -obj3: Obj3
+    {field}...
+}
+
+class Flyweight {
+    -cache: Obj1
+    +operation()
+}
+
+class AbstractFactory {
+    -objects: map<some types, Flyweight>
+    +getObject(some types): Flyweight&
+}
+
+Client --* "100500+" VeryComplexObject
+VeryComplexObject --o AbstractFactory
+AbstractFactory -r-* Flyweight
+VeryComplexObject ..* "~100" Flyweight
+
+hide empty fields
+@enduml

@@ -1,0 +1,36 @@
+@startuml
+class Request
+
+class IProcessor {
+    #successor: IProcessor
+    +process(): bool
+}
+
+class Processor1 {
+    +process()
+}
+
+class Processor2 {
+    +process()
+}
+
+class Processor3 {
+    +process()
+}
+
+class EndProcessor {
+    +process()
+}
+
+Request -u-o Processor1
+Processor1 -r-o Processor2
+Processor2 -r-o Processor3
+Processor3 -r-o EndProcessor
+
+Processor1 -u-|> IProcessor
+Processor2 -u-|> IProcessor
+Processor3 -u-|> IProcessor
+EndProcessor -u-|> IProcessor
+
+hide empty fields
+@enduml

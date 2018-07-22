@@ -1,0 +1,22 @@
+@startuml
+interface AbstractFactory {
+    +createA(): A
+    +createB(): B
+    +createC(): C
+}
+
+class Factory1 {
+    +createA() override: A
+    {method}...
+}
+
+class Factory2 {
+    +createA() override: A
+    {method}...
+}
+
+Factory1 -u-|> AbstractFactory
+Factory2 -u-|> AbstractFactory
+
+hide empty fields
+@enduml
