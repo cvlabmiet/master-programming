@@ -21,7 +21,7 @@ add_library(metadata metadata.yml)
 
 foreach(lecture ${lectures})
     add_html(${lecture} ${${lecture}_SRCS})
-    target_link_libraries(${lecture} PUBLIC metadata "-V revealjs-url=${REVEALJS}" "-t revealjs" "-F multifilter")
+    target_link_libraries(${lecture} PUBLIC metadata "-V revealjs-url=${REVEALJS}" "-t revealjs" "-F multifilter" "--slide-level=2")
     if(${lecture}_IMGS)
         convert_image_for(TARGET ${lecture} FORMAT svg FILES ${${lecture}_IMGS} OPTIONS PLANTUML -SdefaultFontSize=20)
     endif()
