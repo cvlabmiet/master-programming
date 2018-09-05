@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="ru_RU">
+<html lang="ru-RU">
 <head>
   <meta charset="utf-8">
   <meta name="generator" content="pandoc">
   <meta name="author" content="Игорь Шаронов">
-  <meta name="dcterms.date" content="2018-01-15">
+  <meta name="dcterms.date" content="2018-09-05">
   <title>Master programming</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -19,7 +19,7 @@
   <style type="text/css">
 a.sourceLine { display: inline-block; line-height: 1.25; }
 a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; position: absolute; }
+a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 div.sourceCode { margin: 1em 0; }
@@ -32,13 +32,11 @@ code.sourceCode { white-space: pre-wrap; }
 a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
 pre.numberSource a.sourceLine
-  { position: relative; }
-pre.numberSource a.sourceLine:empty
-  { position: absolute; }
+  { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
   { content: attr(data-line-number);
-    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all;
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -98,6 +96,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       .reveal h2 { font-size: 2em; }
       .reveal h3 { font-size: 1em; }
       .reveal pre code { max-height: 600px; }
+      div.column33 {display: inline-block; vertical-align: top; width: 32%;}
+      div.column66 {display: inline-block; vertical-align: top; width: 66%;}
+      div.column50 {display: inline-block; vertical-align: top; width: 49%;}
+      .strike {text-decoration: line-through;}
   </style>
 </head>
 <body>
@@ -106,38 +108,48 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="title-slide">
   <h1 class="title">Master programming</h1>
-  <p class="subtitle">Лекция №1 (Обзор курса)</p>
+  <p class="subtitle">Лекция №1 (Вводная)</p>
   <p class="author">Игорь Шаронов</p>
-  <p class="date">2018-01-15</p>
+  <p class="date">2018-09-05</p>
 </section>
 
-<section id="review" class="slide level1">
-<h1>Из чего состоит курс</h1>
+<section><section id="введение" class="title-slide slide level1"><h1>Введение</h1></section><section id="из-чего-состоит-курс" class="slide level2">
+<h2>Из чего состоит курс</h2>
 <ul>
-<li>Операционная система</li>
-<li>Редактор</li>
-<li>Система сборки</li>
-<li>Отладка</li>
-<li>Тестирование</li>
+<li>Вводные понятия</li>
 <li>Система контроля версий</li>
-<li>Программирование на C++</li>
-<li>Документация</li>
+<li>Система сборки и отладки</li>
+<li>Тестирование</li>
+<li>Обзор STL</li>
+<li>Обзор Boost</li>
+<li>Паттерны проектирования (GoF)</li>
+<li>Современный C++</li>
 <li>Разработка в команде</li>
 <li><em>Домашняя лабораторная работа</em></li>
 </ul>
-</section>
-<section class="slide level1">
-
-<section id="os" class="level2">
-<h2>Операционная система</h2>
+</section><section id="план-лекции" class="slide level2">
+<h2>План лекции</h2>
+<div>
+<ol>
+<li class="fragment"><a href="#/операционная-система">Операционная система</a></li>
+<li class="fragment"><a href="#/редакторы">Редакторы</a></li>
+<li class="fragment"><a href="#/системы-сборки">Системы сборки</a></li>
+<li class="fragment"><a href="#/отладка-и-тестирование">Отладка и тестирование</a></li>
+<li class="fragment"><a href="#/системы-контроля-версий">Системы контроля версий</a></li>
+<li class="fragment"><a href="#/программирование">Программирование</a></li>
+<li class="fragment"><a href="#/заключение">Заключение</a></li>
+</ol>
+</div>
+</section></section>
+<section><section id="операционная-система" class="title-slide slide level1"><h1>Операционная система</h1></section><section id="основные-компоненты-ос" class="slide level2">
+<h2>Основные компоненты ОС</h2>
 <ul>
 <li>Планировщик задач</li>
 <li>Распределение памяти</li>
 <li>Изоляция (страничная адресация)</li>
 <li>Ресурсы</li>
 </ul>
-</section>
-<section id="os-objects" class="level2">
+</section><section id="объекты-ядра-ос" class="slide level2">
 <h2>Объекты ядра ОС</h2>
 <ul>
 <li>Процессы, потоки</li>
@@ -145,11 +157,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Семафоры, мьютексы</li>
 <li>Проекции в память (mmap)</li>
 </ul>
-</section>
-</section>
-<section class="slide level1">
-
-<section id="linux" class="level2">
+</section><section id="linux" class="slide level2">
 <h2>Linux</h2>
 <ul>
 <li>Основан на Unix</li>
@@ -159,8 +167,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" data-line-number="1">$ <span class="fu">ls</span> /</a>
 <a class="sourceLine" id="cb1-2" data-line-number="2"><span class="ex">bin</span>  boot  dev  etc  home include lib  lib64 proc  root  run  sys  tmp  usr  var</a></code></pre></div>
-</section>
-<section id="life-in-console" class="level2">
+</section><section id="жизнь-в-консоли" class="slide level2">
 <h2>Жизнь в консоли</h2>
 <ul>
 <li>GNU Coreutils
@@ -177,8 +184,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>GNU Debugger</li>
 <li>Базовые утилиты: grep, sed (1974 г.), awk (1977 г.), bash, perl, python</li>
 </ul>
-</section>
-<section id="linux-usage" class="level2">
+</section><section id="linux-в-использовании" class="slide level2">
 <h2>Linux в использовании</h2>
 <ul>
 <li>xorg-server, протокол X11</li>
@@ -193,12 +199,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li>драйверы в режиме пользователя: fuse, cuse, uio</li>
 </ul>
-</section>
-</section>
-<section class="slide level1">
-
-<section id="editor" class="level2">
-<h2>Редактор</h2>
+</section></section>
+<section><section id="редакторы" class="title-slide slide level1"><h1>Редакторы</h1></section><section id="популярные-редакторы" class="slide level2">
+<h2>Популярные редакторы</h2>
 <ul>
 <li>ed (1971 г.)</li>
 <li>sed, vi, vim, neovim</li>
@@ -208,10 +211,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>gedit</li>
 <li>IDE <span class="math inline">≠</span> Editor</li>
 </ul>
-</section>
-<section id="editing" class="level2">
+</section><section id="процесс-редактирования" class="slide level2">
 <h2>Процесс редактирования</h2>
-<ol type="1">
+<ol>
 <li>Перемещение по тексту, поиск, скроллинг (view-mode)</li>
 <li>Разделение области просмотра/редактирования</li>
 <li>Подсветка синтаксиса</li>
@@ -220,8 +222,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Поддержка пользовательских плагинов</li>
 <li><em>Использование уже готового функционала сторонних программ</em></li>
 </ol>
-</section>
-<section id="vim" class="level2">
+</section><section id="пример-vim" class="slide level2">
 <h2>Пример: Vim</h2>
 <ul>
 <li>3 режима: normal, insert (replace), visual</li>
@@ -230,13 +231,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Большое многообразие плагинов (VimL)</li>
 <li>Подсветка синтаксиса, цветовая схема — тоже плагин</li>
 <li>Орфография</li>
-<li>Использование ctag для перехода по функциям (любого языка, даже <span class="math inline">$\LaTeX$</span>)
+<li>Использование ctag для перехода по функциям (любого языка, даже LaTeX)
 <ul>
 <li>Отображение дерева функций</li>
 </ul></li>
 </ul>
-</section>
-<section id="vim-continue" class="level2">
+</section><section id="пример-vim-продолжение" class="slide level2">
 <h2>Пример: Vim (продолжение)</h2>
 <ul>
 <li>Автодополнение (несколько видов)</li>
@@ -245,22 +245,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Возможность использования без GUI</li>
 <li><strong>Холивары: neovim</strong></li>
 </ul>
-</section>
-</section>
-<section class="slide level1">
-
-<section id="build-system" class="level2">
-<h2>Системы сборки</h2>
+</section></section>
+<section><section id="системы-сборки" class="title-slide slide level1"><h1>Системы сборки</h1></section><section id="известные-системы-сборки" class="slide level2">
+<h2>Известные системы сборки</h2>
 <ul>
 <li>make (1977 г., Bell Labs)</li>
 <li>ninja</li>
 <li>scons</li>
 <li>meson</li>
 <li>cmake</li>
-<li><del>свой велосипед</del> НЕТ!</li>
+<li><span class="strike">свой велосипед</span> НЕТ!</li>
 </ul>
-</section>
-<section id="makefile" class="level2">
+</section><section id="makefile" class="slide level2">
 <h2>Makefile</h2>
 <div class="sourceCode" id="cb2"><pre class="sourceCode makefile"><code class="sourceCode makefile"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="dt">SRC </span><span class="ch">:=</span><span class="st"> </span><span class="ch">$(</span><span class="kw">wildcard</span><span class="st"> src/*.cpp</span><span class="ch">)</span></a>
 <a class="sourceLine" id="cb2-2" data-line-number="2"><span class="dt">HDR </span><span class="ch">:=</span><span class="st"> </span><span class="ch">$(</span><span class="kw">wildcard</span><span class="st"> include/*.h</span><span class="ch">)</span></a>
@@ -279,8 +275,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb2-15" data-line-number="15"></a>
 <a class="sourceLine" id="cb2-16" data-line-number="16"><span class="dv">clean:</span></a>
 <a class="sourceLine" id="cb2-17" data-line-number="17">»»»»@rm -f <span class="ch">$(</span><span class="dt">OBJ</span><span class="ch">)</span> app *.a</a></code></pre></div>
-</section>
-<section id="cmake" class="level2">
+</section><section id="cmake" class="slide level2">
 <h2>CMake</h2>
 <ul>
 <li>Шаг конфигурации (аналогичен старому подходу <code>./configure</code>)</li>
@@ -290,20 +285,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Тьюринг-полный скриптовый язык</li>
 <li>Абстрагирование от операционной системы</li>
 </ul>
-</section>
-</section>
-<section id="debugging" class="slide level1">
-<h1>Отладка программ</h1>
+</section></section>
+<section><section id="отладка-и-тестирование" class="title-slide slide level1"><h1>Отладка и тестирование</h1></section><section id="отладка-программ" class="slide level2">
+<h2>Отладка программ</h2>
 <ul>
 <li>gdb</li>
 <li>nm, readelf, objdump</li>
 <li>valgrind</li>
-<li>gprof</li>
+<li>gprof, gcov</li>
 <li>логирование</li>
 </ul>
-</section>
-<section id="testing" class="slide level1">
-<h1>Тестирование</h1>
+</section><section id="тестирование" class="slide level2">
+<h2>Тестирование</h2>
 <ul>
 <li>TDD, BDD — способы написания программы</li>
 <li>Юнит-тестирование → интеграционное тестирование → продакшен-тестирование</li>
@@ -312,25 +305,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Тестовые данные: генерация на месте, хранение в репозитории или брать удалённо с сервера?</li>
 <li>Границы между разными формами тестирования</li>
 </ul>
-</section>
-<section class="slide level1">
-
-<section id="vcs" class="level2">
-<h2>Системы контроля версий</h2>
+</section></section>
+<section><section id="системы-контроля-версий" class="title-slide slide level1"><h1>Системы контроля версий</h1></section><section id="разновидности" class="slide level2">
+<h2>Разновидности</h2>
 <ul>
 <li>Version Control System (VCS)</li>
 <li>cvs</li>
 <li>subversion (svn)</li>
 <li>git</li>
 <li>mercurial (hg)</li>
-<li><del>лучше я в архивах, по старинке</del> НЕТ!</li>
+<li><span class="strike">лучше я в архивах, по старинке</span> НЕТ!</li>
 <li>необходимо учитывать версионность продукта</li>
 </ul>
-</section>
-<section id="vcs-basic" class="level2">
+</section><section id="основные-понятия-vcs" class="slide level2">
 <h2>Основные понятия VCS</h2>
-<div class="column" style="float:left">
+<div class="column50">
 <ul>
+<li>концепция diff-patch</li>
 <li>изменения</li>
 <li>коммит: изменения + сообщение + автор</li>
 <li>ветка разработки</li>
@@ -339,119 +330,58 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>pull, checkout, fetch, push</li>
 </ul>
 </div>
-<div class="column">
-<img data-src="http://nvie.com/img/centr-decentr@2x.png" />
+<div class="column50">
+<p><img data-src="http://nvie.com/img/centr-decentr@2x.png" alt="image" /></p>
 </div>
-</section>
-</section>
-<section id="cxx-programming" class="slide level1">
-<h1>Программирование на C++</h1>
+</section></section>
+<section><section id="программирование" class="title-slide slide level1"><h1>Программирование</h1></section><section id="программирование-на-c" class="slide level2">
+<h2>Программирование на C++</h2>
 <ul>
 <li>Новый стандарт лучше старого?</li>
-<li><del>Лучше на C писать: понятнее и проще</del></li>
+<li><span class="strike">Лучше на C писать: понятнее и проще</span></li>
 <li>Соблюдение стиля кода</li>
-<li><del>Иксепшены — это зло!</del> Но надо быть аккуратнее</li>
-<li>Концепции стабильного кода vs. понятный код</li>
+<li><span class="strike">Иксепшены --- это зло!</span> Но надо быть аккуратнее</li>
+<li>Концепции стабильного кода vs. понятный код</li>
 <li>Разработка по спирали</li>
 </ul>
-</section>
-<section id="documentation" class="slide level1">
-<h1>Документация</h1>
+</section><section id="документация" class="slide level2">
+<h2>Документация</h2>
 <ul>
 <li>Зачем нужна документация, если её никто не читает?</li>
 <li>Пример документации — <a href="http://libfuse.github.io/doxygen" class="uri">http://libfuse.github.io/doxygen</a></li>
 <li>Doxygen</li>
 <li>Написание презентаций, статей и книг</li>
-<li><span class="math inline">$\LaTeX$</span>, groff, docx, reStructuredText, HTML, AsciiDoc, DocBook, markdown — в чём писать документацию?</li>
+<li><span class="math inline"><em>L</em><sup><em>A</em></sup><em>T</em><sub><em>E</em></sub><em>X</em></span>, groff, docx, reStructuredText, HTML, AsciiDoc, DocBook, markdown — в чём писать документацию?</li>
 <li>Генерация linux-документации <code>man</code></li>
+<li>Свой велосипед?</li>
 </ul>
-</section>
-<section id="team-development" class="slide level1">
-<h1>Разработка в команде</h1>
+</section><section id="разработка-в-команде" class="slide level2">
+<h2>Разработка в команде</h2>
 <ul>
 <li>Что такое команда и зачем она нужна?</li>
 <li>Распределение ролей в команде?</li>
 <li>Зачем нужен тот чувак, который ничего не делает?</li>
 <li>Стендапы, планнинги, грумминги, ретроспективы — зачем они нужны?</li>
 <li>Deadline, sprint, milestone, release, post-mortem — а это зачем?</li>
-<li>CTO, CEO, <del>IPO</del>, PM, PO — это что за клоуны?</li>
-<li><span style="color:red">Agile</span> — выход из всех проблем</li>
+<li>CTO, CEO, <span class="strike">IPO</span>, PM, PO — кто это такие?</li>
+<li><em>Agile</em> — выход из всех проблем</li>
 <li>Психология разработки</li>
 </ul>
-</section>
-<section id="free-links" class="slide level1">
-<h1>Бесплатные ссылки</h1>
+</section></section>
+<section><section id="заключение" class="title-slide slide level1"><h1>Заключение</h1></section><section id="бесплатные-ссылки" class="slide level2">
+<h2>Бесплатные ссылки</h2>
 <p>Бесплатные книжки про программирование в целом:</p>
 <p><a href="https://github.com/EbookFoundation/free-programming-books" class="uri">https://github.com/EbookFoundation/free-programming-books</a></p>
-</section>
-<section class="slide level1">
-
-<section id="lab-work" class="level2">
+</section><section id="лабораторная-работа" class="slide level2">
 <h2>Лабораторная работа</h2>
-<ol type="1">
-<li>Цель работы: написать драйвер устройства
-<ul>
-<li>процессор общего назначения, понимающий некоторый ассемлер</li>
-<li>процессор компенсации движения в видео</li>
-</ul></li>
-<li>Завести аккаунт на <a href="https://github.com">github</a></li>
-<li>Настроить виртуальную машину с linux (libvirt)</li>
-<li>Почитать документацию <code>libfuse</code></li>
+<ol>
+<li>Заводим аккаунт на <a href="https://github.com">github</a></li>
+<li>Форкаем <a href="https://github.com/cvlabmiet/cxx-tasks" class="uri">https://github.com/cvlabmiet/cxx-tasks</a></li>
+<li>Читаем README.rst</li>
+<li>Можно делать задания поочерёдно (только некоторые проекты)</li>
+<li>Создаём ветки, чтобы потом сделать merge-request в <strong>свой</strong> master и повесить его на <code>igsha</code></li>
 </ol>
-</section>
-<section id="common-processor" class="level2">
-<h2></h2>
-<section id="драйвер-процессора-общего-назначения" class="level3">
-<h3>Драйвер процессора общего назначения</h3>
-<p>Примерная структура драйвера</p>
-<pre><code>/dev/
-└── mycpu/
-    ├── unit0
-    │   ├── pram
-    │   └── lram
-    ├── unit1
-    │   ├── pram
-    │   └── lram
-    ...
-    ├── unitn
-    │   ├── pram
-    │   └── lram
-    └── ctrl</code></pre>
-</section>
-</section>
-<section id="video-processor" class="level2">
-<h2></h2>
-<section id="драйвер-процессора-компесации-движения" class="level3">
-<h3>Драйвер процессора компесации движения</h3>
-<p>Примерная структура драйвера</p>
-<pre><code>/dev/
-└── mycpu/
-    ├── unit0
-    │   ├── vrom
-    │   └── vram
-    ├── unit1
-    │   ├── vrom
-    │   └── vram
-    ...
-    ├── unitn
-    │   ├── vrom
-    │   └── vram
-    └── ctrl</code></pre>
-</section>
-</section>
-<section id="requirements" class="level2">
-<h2>Требования</h2>
-<ol type="1">
-<li>Использовать <code>fuse</code> версии 3.2+</li>
-<li>Система сборки — <code>cmake</code></li>
-<li>Тестирование через <code>ctest</code></li>
-<li>Генерация документации <code>doxygen</code>-ом по цели <code>make install</code></li>
-<li><span style="color:gray">Проверка стиля кода<span></li>
-<li>Упаковка установочного пакета: deb, tar.gz</li>
-<li>Скрипты для проверки (интеграционное тестирование)</li>
-</ol>
-</section>
-</section>
+</section></section>
     </div>
   </div>
 
