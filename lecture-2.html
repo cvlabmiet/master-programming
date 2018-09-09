@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="ru_RU">
+<html lang="ru-RU">
 <head>
   <meta charset="utf-8">
   <meta name="generator" content="pandoc">
   <meta name="author" content="Игорь Шаронов">
-  <meta name="dcterms.date" content="2018-02-18">
+  <meta name="dcterms.date" content="2018-09-09">
   <title>Master programming</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -19,7 +19,7 @@
   <style type="text/css">
 a.sourceLine { display: inline-block; line-height: 1.25; }
 a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; position: absolute; }
+a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 div.sourceCode { margin: 1em 0; }
@@ -32,13 +32,11 @@ code.sourceCode { white-space: pre-wrap; }
 a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
 pre.numberSource a.sourceLine
-  { position: relative; }
-pre.numberSource a.sourceLine:empty
-  { position: absolute; }
+  { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
   { content: attr(data-line-number);
-    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all;
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -98,6 +96,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       .reveal h2 { font-size: 2em; }
       .reveal h3 { font-size: 1em; }
       .reveal pre code { max-height: 600px; }
+      div.column33 {display: inline-block; vertical-align: top; width: 32%;}
+      div.column66 {display: inline-block; vertical-align: top; width: 66%;}
+      div.column50 {display: inline-block; vertical-align: top; width: 49%;}
+      .strike {text-decoration: line-through;}
   </style>
 </head>
 <body>
@@ -106,207 +108,161 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="title-slide">
   <h1 class="title">Master programming</h1>
-  <p class="subtitle">Лекция №2 (Подготовка рабочего места)</p>
+  <p class="subtitle">Лекция №3 (Работа с git)</p>
   <p class="author">Игорь Шаронов</p>
-  <p class="date">2018-02-18</p>
+  <p class="date">2018-09-09</p>
 </section>
 
-<section id="overview" class="slide level1">
-<h1>Темы лекции</h1>
+<section><section id="система-контроля-версий-git" class="title-slide slide level1"><h1>Система контроля версий git</h1></section><section id="основные-ссылки" class="slide level2">
+<h2>Основные ссылки</h2>
 <ul>
-<li>Операционная система Linux</li>
-<li>Новая эра: NixOS</li>
-<li>Установка NixOS</li>
-<li>Протокол общения SSH</li>
+<li><a href="https://git-scm.com" class="uri">https://git-scm.com</a> — основной сайт с документацией по git</li>
+<li><a href="https://try.github.io" class="uri">https://try.github.io</a> — онлайн путеводитель по git-у</li>
+<li><a href="https://githowto.com/ru" class="uri">https://githowto.com/ru</a> — ещё один путеводитель</li>
 </ul>
-</section>
-<section id="linux" class="slide level1">
-<h1>Операционная система Linux</h1>
-<div class="column" style="float:left">
-<pre><code>/
-├── bin
-├── include
-├── lib
-├── lib64
-├── etc
-├── usr
-│   ├── include
-│   ├── lib
-│   └── lib64
-├── tmp
-├── var
-├── run
-├── proc
-├── dev
-├── sys
-├── home
-└── opt</code></pre>
-</div>
-<div class="column">
+</section><section id="предыстория" class="slide level2">
+<h2>Предыстория</h2>
 <ul>
-<li>Истинная среда для программирования</li>
-<li>Пакетный менеджер (apt, yum, portage, aur, …)</li>
-<li>Системные демоны — <code>systemd</code></li>
-<li>Большой выбор библиотек</li>
-<li>Поддержка многих языков программирования</li>
-<li>Переменные окружения (<code>PATH</code>, <code>USER</code>, …)</li>
-<li>Статические и динамические библиотеки</li>
+<li><p>diff — утилита для выяснения различий</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode diff"><code class="sourceCode diff"><a class="sourceLine" id="cb1-1" data-line-number="1">$ diff -u lecture-1.html lecture-2.html | head -n 20</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">--- lecture-1.html 2018-02-25 14:49:23.665411221 +0300</span></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="dt">+++ lecture-2.html 2018-02-25 14:49:23.842322309 +0300</span></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="dt">@@ -4,7 +4,7 @@</span></a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">   &lt;meta name=&quot;generator&quot; content=&quot;pandoc&quot;&gt;</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">   &lt;meta name=&quot;author&quot; content=&quot;Игорь Шаронов&quot;&gt;</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7"><span class="st">-  &lt;meta name=&quot;dcterms.date&quot; content=&quot;2018-01-15&quot;&gt;</span></a>
+<a class="sourceLine" id="cb1-8" data-line-number="8"><span class="va">+  &lt;meta name=&quot;dcterms.date&quot; content=&quot;2018-02-18&quot;&gt;</span></a>
+<a class="sourceLine" id="cb1-9" data-line-number="9">   &lt;title&gt;Master programming&lt;/title&gt;</a>
+<a class="sourceLine" id="cb1-10" data-line-number="10">   &lt;meta name=&quot;apple-mobile-web-app-capable&quot; content=&quot;yes&quot;&gt;</a></code></pre></div></li>
+<li>patch — обратное действие diff (патч)</li>
+<li><p>конфликты:</p>
+<pre><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; LOCAL:sample.txt
+lines from the original file
+======= REMOTE:sample.txt
+new lines from the patch
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code></pre></li>
 </ul>
-</div>
-</section>
-<section id="nixos-overview" class="slide level1">
-<h1>Новая эра: NixOS</h1>
+</section></section>
+<section><section id="как-устроен-git" class="title-slide slide level1"><h1>Как устроен git</h1></section><section id="внутренности-git-а" class="slide level2">
+<h2>Внутренности git-а</h2>
 <ul>
-<li>Сайт сообщества <a href="https://nixos.org">nixos.org</a></li>
-<li>Пакетный менеджер — конфигурационный скрипт <code>/etc/nixos/configuration.nix</code></li>
-<li>Используется функциональный язык <code>nix-expression</code></li>
-<li>Поддерживает как сборку из исходников, так и установку бинарных пакетов</li>
-<li>Любые бинарные пакеты поддерживаются: deb, rpm, tar.gz, …</li>
-<li><strong>Изолированные окружения</strong></li>
-</ul>
-</section>
-<section class="slide level1">
-
-<section id="nixos-setup" class="level2">
-<h2>Установка NixOS</h2>
-<p>Установка подробно дана в <a href="nixos-setup.html">nixos-setup</a></p>
-<p>Сборка программ происходит в изолированном окружении <code>load-env-gcc</code></p>
-<pre><code>[guest@nixos:~/mycpu]$ load-env-gcc
-[nix-shell:~/mycpu]$ cmake /shared/mycpu/
--- The C compiler identification is GNU 6.4.0
--- The CXX compiler identification is GNU 6.4.0
--- Check for working C compiler: /nix/store/3mpsvihv6n9af6qi3vhbkmxay93fmi84-gcc-wrapper-6.4.0/bin/gcc
--- Check for working C compiler: /nix/store/3mpsvihv6n9af6qi3vhbkmxay93fmi84-gcc-wrapper-6.4.0/bin/gcc -- works
--- Detecting C compiler ABI info
--- Detecting C compiler ABI info - done
--- Detecting C compile features
--- Detecting C compile features - done
--- Check for working CXX compiler: /nix/store/3mpsvihv6n9af6qi3vhbkmxay93fmi84-gcc-wrapper-6.4.0/bin/g++
--- Check for working CXX compiler: /nix/store/3mpsvihv6n9af6qi3vhbkmxay93fmi84-gcc-wrapper-6.4.0/bin/g++ -- works
--- Detecting CXX compiler ABI info
--- Detecting CXX compiler ABI info - done
--- Detecting CXX compile features
--- Detecting CXX compile features - done
--- Configuring done
--- Generating done
--- Build files have been written to: /home/guest/mycpu
-[nix-shell:~/mycpu]$ exit
-[guest@nixos:~/mycpu]$ make -j # можно собирать не в изолированном окружении
-[ 25%] Building C object CMakeFiles/server.dir/cuse.c.o
-[ 50%] Building C object CMakeFiles/client.dir/cuse_client.c.o
-[ 75%] Linking C executable client
-[100%] Linking C executable server
-[100%] Built target client
-[100%] Built target server
-[guest@nixos:~/mycpu]$ ./client
-Usage: cuse_client FIOC_FILE COMMAND
-
-COMMANDS
-  s [SIZE]     : get size if SIZE is omitted, set size otherwise
-  r SIZE [OFF] : read SIZE bytes @ OFF (dfl 0) and output to stdout
-  w SIZE [OFF] : write SIZE bytes @ OFF (dfl 0) from stdin</code></pre>
-</section>
-<section id="nixos-install-cont" class="level2">
-<h2>Настройка доступа по SSH</h2>
-<p>Необходимо сделать перенаправление порта 22 гостевой системы на любой доступный порт хоста (2222, 5022 и т.д.)</p>
-<pre><code>$ virsh edit nixos</code></pre>
-<div class="sourceCode" id="cb4"><pre class="sourceCode diff"><code class="sourceCode diff"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">--- /tmp/nixos.xml  2018-02-18 12:22:24.753601712 +0300</span></a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="dt">+++ /dev/fd/63  2018-02-18 12:23:38.123210214 +0300</span></a>
-<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="dt">@@ -1,4 +1,4 @@</span></a>
-<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="st">-&lt;domain type=&#39;kvm&#39;&gt;</span></a>
-<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="va">+&lt;domain type=&#39;kvm&#39; xmlns:qemu=&#39;http://libvirt.org/schemas/domain/qemu/1.0&#39;&gt;</span></a>
-<a class="sourceLine" id="cb4-6" data-line-number="6">   &lt;name&gt;nixos&lt;/name&gt;</a>
-<a class="sourceLine" id="cb4-7" data-line-number="7">   &lt;uuid&gt;bd0ab376-6fee-428b-a30c-f1091afbcba6&lt;/uuid&gt;</a>
-<a class="sourceLine" id="cb4-8" data-line-number="8">   &lt;memory unit=&#39;KiB&#39;&gt;1048576&lt;/memory&gt;</a>
-<a class="sourceLine" id="cb4-9" data-line-number="9"><span class="dt">@@ -108,4 +108,9 @@</span></a>
-<a class="sourceLine" id="cb4-10" data-line-number="10">       &lt;address type=&#39;pci&#39; domain=&#39;0x0000&#39; bus=&#39;0x00&#39; slot=&#39;0x08&#39; function=&#39;0x0&#39;/&gt;</a>
-<a class="sourceLine" id="cb4-11" data-line-number="11">     &lt;/memballoon&gt;</a>
-<a class="sourceLine" id="cb4-12" data-line-number="12">   &lt;/devices&gt;</a>
-<a class="sourceLine" id="cb4-13" data-line-number="13"><span class="va">+  &lt;qemu:commandline&gt;</span></a>
-<a class="sourceLine" id="cb4-14" data-line-number="14"><span class="va">+    &lt;qemu:arg value=&#39;-redir&#39;/&gt;</span></a>
-<a class="sourceLine" id="cb4-15" data-line-number="15"><span class="va">+    &lt;qemu:arg value=&#39;tcp:2222::22&#39;/&gt;</span></a>
-<a class="sourceLine" id="cb4-16" data-line-number="16"><span class="va">+  &lt;/qemu:commandline&gt;</span></a>
-<a class="sourceLine" id="cb4-17" data-line-number="17"> &lt;/domain&gt;</a></code></pre></div>
-</section>
-<section id="ssh" class="level2">
-<h2>SSH</h2>
-<div class="column" style="float:left">
+<li>Директория .git/
 <ul>
-<li>Secure SHell — удалённая безопасная оболочка</li>
-<li>Ничем не отличается от shell</li>
-<li><p>Позволяет создавать туннели:</p>
-<pre><code>work -&gt; router -&gt; home</code></pre></li>
-<li>Генерация личного ключа <code>ssh-keygen</code></li>
+<li>.git/objects/ — пулл объектов</li>
+<li>.git/refs/ — указатели</li>
+<li>.git/HEAD — указатель текущей ветки</li>
+</ul></li>
+<li>git — файловая система ассоциативного типа</li>
+<li>Виды объектов: blob, tree, commit, tag</li>
+<li>Виды ссылок: branch, tag, remotes</li>
+<li>Коммит: tree-объект, автор, коммитер, сообщение, parent</li>
+</ul>
+</section><section id="хеш-суммы" class="slide level2">
+<h2>Хеш-суммы</h2>
+<ul>
+<li>crc32</li>
+<li>md5</li>
+<li>sha-1</li>
+<li>sha-2: sha-224, sha-256, sha-384, sha-512</li>
+<li><p>Быстрая идентификация сообщения/файла/пароля</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb3-1" data-line-number="1">$ <span class="bu">echo</span> -n <span class="st">&#39;Master programming&#39;</span> <span class="kw">|</span> <span class="ex">md5sum</span> -</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="ex">01e171232a1aa47e9fd2ae0530782b1f</span>  -</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">$ <span class="bu">echo</span> -n <span class="st">&#39;master programming&#39;</span> <span class="kw">|</span> <span class="ex">md5sum</span> -</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="ex">e774d0115e01e1b735a7a1a9a3a85f09</span>  -</a></code></pre></div></li>
+<li>Коллизии хешей</li>
+</ul>
+</section></section>
+<section><section id="повседневное-использование" class="title-slide slide level1"><h1>Повседневное использование</h1></section><section id="основные-команды" class="slide level2">
+<h2>Основные команды</h2>
+<ul>
+<li><code>git status</code>: unstaged, staged, committed</li>
+<li><code>git add &lt;file&gt;</code> — добавление <code>file</code> в <code>staged</code></li>
+<li><code>git checkout &lt;name&gt;</code> — переход на ветку <code>name</code></li>
+<li><code>git checkout -b &lt;name&gt;</code> — создание новой ветки <code>name</code></li>
+<li><code>git checkout -- &lt;file&gt;</code> — отменить все изменения файла <code>file</code></li>
+<li><code>git reset [&lt;commit&gt;|&lt;branch&gt;]</code> — перевести изменения из <code>committed</code> в состояние <code>unstaged</code></li>
+<li><code>git reset --hard</code> — отменить все изменения (потеря данных)</li>
+<li><code>git push [&lt;remote&gt;]</code> — загрузка изменений на сервер <code>remote</code></li>
+<li><code>git push --force</code> — принудительная загрузка изменений (потеря данных)</li>
+<li><code>git diff [&lt;commit&gt;]</code> — просмотр изменений</li>
+</ul>
+</section><section id="пример-1-добавление-нескольких-remote" class="slide level2">
+<h2>Пример №1: добавление нескольких remote</h2>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb4-1" data-line-number="1">$ <span class="fu">git</span> clone git@github.com:cvlabmiet/master-programming</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">$ <span class="bu">cd</span> master-programming</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="ex">master-programming</span> $ git remote add miet git@git.miet.ru:cvlab/master-programming</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="ex">master-programming</span> $ git push miet master:master</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">(</span><span class="ex">lecture-3</span> *+<span class="kw">)</span> $ <span class="fu">git</span> st</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="ex">On</span> branch lecture-3</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="ex">Changes</span> to be committed:</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="kw">(</span><span class="ex">use</span> <span class="st">&quot;git reset HEAD &lt;file&gt;...&quot;</span> to unstage<span class="kw">)</span></a>
+<a class="sourceLine" id="cb5-5" data-line-number="5">    <span class="ex">modified</span>:   CMakeLists.txt</a>
+<a class="sourceLine" id="cb5-6" data-line-number="6">    <span class="ex">modified</span>:   lecture-3.md</a>
+<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="ex">Changes</span> not staged for commit:</a>
+<a class="sourceLine" id="cb5-8" data-line-number="8">    <span class="kw">(</span><span class="ex">use</span> <span class="st">&quot;git add &lt;file&gt;...&quot;</span> to update what will be committed<span class="kw">)</span></a>
+<a class="sourceLine" id="cb5-9" data-line-number="9">    <span class="kw">(</span><span class="ex">use</span> <span class="st">&quot;git checkout -- &lt;file&gt;...&quot;</span> to discard changes in working directory<span class="kw">)</span></a>
+<a class="sourceLine" id="cb5-10" data-line-number="10">    <span class="ex">modified</span>:   lecture-3.md</a></code></pre></div>
+</section><section id="пример-2-создание-локального-репозитория" class="slide level2">
+<h2>Пример №2: создание локального репозитория</h2>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb6-1" data-line-number="1">$ <span class="fu">mkdir</span> /tmp/server</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2">$ <span class="fu">git</span> init --bare /tmp/server/repo</a>
+<a class="sourceLine" id="cb6-3" data-line-number="3">$ <span class="bu">cd</span> /tmp/123/repo/</a>
+<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="ex">repo</span> (BARE:master) $ <span class="fu">ls</span></a>
+<a class="sourceLine" id="cb6-5" data-line-number="5"><span class="ex">branches</span>  config  description  HEAD  hooks  info  objects  refs</a>
+<a class="sourceLine" id="cb6-6" data-line-number="6">$ <span class="fu">git</span> init /tmp/repo</a>
+<a class="sourceLine" id="cb6-7" data-line-number="7">$ <span class="bu">cd</span> /tmp/repo</a>
+<a class="sourceLine" id="cb6-8" data-line-number="8"><span class="ex">repo</span> (master#) $ <span class="bu">echo</span> <span class="st">&#39;Empty repo&#39;</span> <span class="op">&gt;</span> README.md</a>
+<a class="sourceLine" id="cb6-9" data-line-number="9"><span class="ex">repo</span> (master#) $ <span class="fu">git</span> add README.md</a>
+<a class="sourceLine" id="cb6-10" data-line-number="10"><span class="ex">repo</span> (master#) $ <span class="fu">git</span> ci -am <span class="st">&quot;Initial commit&quot;</span></a>
+<a class="sourceLine" id="cb6-11" data-line-number="11"><span class="ex">repo</span> (master) $ <span class="fu">git</span> remote add origin /tmp/server/repo</a>
+<a class="sourceLine" id="cb6-12" data-line-number="12"><span class="ex">repo</span> (master) $ <span class="fu">git</span> push origin master:master</a></code></pre></div>
+</section><section id="пример-3-сравнение-с-originmaster" class="slide level2">
+<h2>Пример №3: сравнение с origin/master</h2>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb7-1" data-line-number="1">$ <span class="fu">git</span> fetch origin</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2">$ <span class="fu">git</span> diff master origin/master</a>
+<a class="sourceLine" id="cb7-3" data-line-number="3">$ <span class="fu">git</span> show origin/master:lecture-3.md <span class="kw">|</span> <span class="fu">less</span></a>
+<a class="sourceLine" id="cb7-4" data-line-number="4">$ <span class="fu">git</span> co origin/master -b new-feature</a></code></pre></div>
+</section></section>
+<section><section id="объединение-веток" class="title-slide slide level1"><h1>Объединение веток</h1></section><section id="разрешение-конфликтов" class="slide level2">
+<h2>Разрешение конфликтов</h2>
+<ul>
+<li>LOCAL — локальные изменения текущей ветки</li>
+<li>REMOTE — изменения на сервере</li>
+<li>BASE — общий предок LOCAL и REMOTE</li>
+<li>MERGED — автоматическое разрешение конфликта</li>
+<li>merge — это тоже коммит</li>
+<li>Утилиты для разрешения конфликтов: vimdiff, kdiff3, meld, tortoisemerge</li>
+</ul>
+<pre class="sourceCode "><code>┌───────┬──────┬────────┐   ┌────────┬────────┐
+│ LOCAL │ BASE │ REMOTE │   │        │        │
+├───────┴──────┴────────┤   │ MERGED │ REMOTE │
+│        MERGED         │   │        │        │
+└───────────────────────┘   └────────┴────────┘</code></pre>
+</section><section id="стратегии-объединения-веток" class="slide level2">
+<h2>Стратегии объединения веток</h2>
+<div class="column50">
+<p>Хотим объединить ветки topic и master:</p>
+<pre><code>|       A---B---C topic
+|      /
+| D---E---F---G master</code></pre>
+</div>
+<div class="column50">
+<ul>
+<li><p>merge no-fast-forward (<code>git merge --no-ff</code>):</p>
+<pre><code>|       A---B---C topic
+|      /         \
+| D---E---F---G---H master</code></pre></li>
+<li><p>merge fast-forward (<code>git merge --ff</code>):</p>
+<pre><code>| D---E-A-F-B-G-C master</code></pre></li>
+<li><p>merge squash (<code>git merge --squash</code>):</p>
+<pre><code>| D---E---F---G---T master</code></pre></li>
+<li><p>rebase (<code>git rebase master</code>):</p>
+<pre><code>|               A---B---C topic
+|              /
+| D---E---F---G master</code></pre></li>
 </ul>
 </div>
-<div class="column">
-<pre><code>$ tree ~/.ssh/
-/home/igor/.ssh/
-├── authorized_keys
-├── config
-├── id_rsa
-├── id_rsa.pub
-└── known_hosts
-
-0 directories, 4 files</code></pre>
-</div>
-</section>
-<section id="ssh-setup" class="level2">
-<h2>Настройка SSH</h2>
-<p>Настройка алиасов</p>
-<pre><code>$ ssh -p 2222 guest@localhost
-&lt;Ctrl-D&gt;
-$ cat ~/.ssh/config
-Host nixos
-    User guest
-    Hostname localhost
-    Port 2222
-&lt;Ctrl-D&gt;
-$ ssh nixos</code></pre>
-<p>Добавление ключа в виртуальную машину</p>
-<pre><code>$ ssh nixos &#39;mkdir ~/.ssh/&#39;
-$ scp /home/igor/.ssh/id_rsa.pub nixos:~/.ssh/authorized_keys</code></pre>
-</section>
-</section>
-<section class="slide level1">
-
-<section id="nixos-check" class="level2">
-<h2>Проверка работоспособности окружения</h2>
-<p>Внутри виртуальной машины:</p>
-<pre><code>[guest@nixos:~]$ load-env-gcc
-[nix-shell:~]$ pkg-config --cflags --libs fuse3
--I/nix/store/r6fjssaw0ppzfd106wmjc2rlkkxyfvig-fuse-3.2.0/include/fuse3 \
--L/nix/store/r6fjssaw0ppzfd106wmjc2rlkkxyfvig-fuse-3.2.0/lib -lfuse3 -lpthread
-
-[nix-shell:~]$ wget https://raw.githubusercontent.com/libfuse/libfuse/master/example/cuse.c
-[nix-shell:~]$ wget https://raw.githubusercontent.com/libfuse/libfuse/master/example/cuse_client.c
-[nix-shell:~]$ wget https://raw.githubusercontent.com/libfuse/libfuse/master/example/ioctl.h
-[nix-shell:~]$ gcc -o cuse cuse.c `pkg-config --cflags --libs fuse3`
-[nix-shell:~]$ gcc -o client cuse_client.c `pkg-config --cflags --libs fuse3`
-[nix-shell:~]$ ls
-client  cuse  cuse.c  cuse_client.c  ioctl.h
-[nix-shell:~]$ exit # или &lt;Ctrl-D&gt;
-[guest@nixos:~]$ sudo ./cuse --name=123
-[guest@nixos:~]$ ll /dev/123
-crw------- 1 root root 248, 0 Feb 18 22:47 /dev/123
-[guest@nixos:~]$ echo hello  | sudo ./client /dev/123 w 6
-Writing 6 bytes
-transferred 6 bytes (0 -&gt; 6)
-
-[guest@nixos:~]$ sudo ./client /dev/123 r 10
-hello
-transferred 6 bytes (6 -&gt; 6)
-
-[guest@nixos:~]$ sudo systemctl poweroff</code></pre>
-</section>
-</section>
-<section id="task" class="slide level1">
-<h1>Задание</h1>
-<ol type="1">
-<li>Настроить виртуальное окружение</li>
-<li>Ответить на вопрос о <code>hardware-configuration.nix</code></li>
-</ol>
-</section>
+</section></section>
     </div>
   </div>
 
