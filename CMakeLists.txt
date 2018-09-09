@@ -7,7 +7,7 @@ find_package(docproc REQUIRED COMPONENTS plantuml)
 
 set(REVEALJS "https://rawgit.com/hakimel/reveal.js/master")
 
-foreach(num RANGE 1 10)
+foreach(num 1 2 4 5 6 7 8 9 10)
     set(lecture lecture-${num})
     list(APPEND lectures ${lecture})
     file(GLOB ${lecture}_IMGS ${lecture}/uml/*.uml)
