@@ -3,14 +3,14 @@ project(master-programming VERSION 0.1.0 LANGUAGES NONE
     DESCRIPTION "A source code for the course Master computer programming"
 )
 
-find_package(docproc REQUIRED COMPONENTS plantuml)
+find_package(docproc REQUIRED COMPONENTS plantuml dot)
 
 set(REVEALJS "https://rawgit.com/hakimel/reveal.js/master")
 
-foreach(num 1 2 4 5 6 7 8 9 10)
+foreach(num 1 2 3)
     set(lecture lecture-${num})
     list(APPEND lectures ${lecture})
-    file(GLOB ${lecture}_IMGS ${lecture}/uml/*.uml)
+    file(GLOB ${lecture}_IMGS ${lecture}/uml/*.uml ${lecture}/*.dot)
     file(GLOB ${lecture}_SRCS ${lecture}/*.md)
     file(GLOB RST ${lecture}/*.rst)
     set_property(SOURCE ${RST} PROPERTY COMPILE_OPTIONS -f rst+smart -s)

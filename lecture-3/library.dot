@@ -1,0 +1,82 @@
+digraph g
+{
+    rankdir = LR;
+
+    subgraph cluster0
+    {
+        label = "Уровень исполнения";
+        style = "dotted, filled";
+        fillcolor = "gray92";
+        node[shape = box];
+        edge[label = "ld-linux, link", color = "mediumaquamarine"];
+
+        app0; app1;
+        liba[label = "liba.so"];
+
+        {app0, app1} -> liba;
+    }
+
+    subgraph cluster1
+    {
+        label = "Уровень компиляции";
+        style = dotted;
+        edge[label = "archive", color = "darkgreen"];
+
+        libc[label = "libc.a"]; libd[label = "libd.a"];
+        obj0[label = "obj0.o"];
+        obj1[label = "obj1.o"];
+        obj2[label = "obj2.o"];
+        obj3[label = "obj3.o"];
+        obj4[label = "obj4.o"];
+        obj5[label = "main0.o"];
+        obj6[label = "main1.o"];
+
+        libc -> {obj0, obj1, obj2};
+        libd -> {obj3, obj4};
+    }
+
+    subgraph cluster2
+    {
+        label = "Уровень кода";
+        style = dotted;
+        node[style = rounded, shape = rect];
+        edge[label = "compile", color = "red"];
+
+        src0[label = "src0.c"];
+        src1[label = "src1.c"];
+        src2[label = "src2.c"];
+        src3[label = "src3.cpp"];
+        src4[label = "src4.cpp"];
+        main0[label = "main0.c"];
+        main1[label = "main1.cpp"];
+
+        subgraph cluster3
+        {
+            label = "Уровень препроцессинга";
+            style = dotted;
+            node[shape = diamond];
+
+            hdr0[label = "hdr0.h"];
+            hdr1[label = "hdr1.hpp"];
+        }
+
+        obj0 -> src0;
+        obj1 -> src1;
+        obj2 -> src2;
+        obj3 -> src3;
+        obj4 -> src4;
+        obj5 -> main0;
+        obj6 -> main1;
+
+        {src0, main0} -> hdr0 [label = "preprocess", color = "salmon"];
+        main1 -> hdr1 [label = "preprocess", color = "salmon"];
+    }
+
+    subgraph {
+        edge[label = "link", color = "blue"];
+
+        app0 -> {libc, obj5};
+        app1 -> obj6;
+        liba -> libd;
+    }
+}
