@@ -5,27 +5,9 @@ project(master-programming VERSION 0.1.0 LANGUAGES NONE
 
 find_package(docproc REQUIRED COMPONENTS plantuml dot)
 
-set(REVEALJS "https://rawgit.com/hakimel/reveal.js/master")
-
-foreach(num 1 2 3)
-    set(lecture lecture-${num})
-    list(APPEND lectures ${lecture})
-    file(GLOB ${lecture}_IMGS ${lecture}/uml/*.uml ${lecture}/*.dot)
-    file(GLOB ${lecture}_SRCS ${lecture}/*.md)
-    file(GLOB RST ${lecture}/*.rst)
-    set_property(SOURCE ${RST} PROPERTY COMPILE_OPTIONS -f rst+smart -s)
-    list(APPEND ${lecture}_SRCS ${RST})
-endforeach()
-
 add_library(metadata metadata.yml)
 
-foreach(lecture ${lectures})
-    add_html(${lecture} ${${lecture}_SRCS})
-    target_link_libraries(${lecture} PUBLIC metadata "-V revealjs-url=${REVEALJS}" "-t revealjs" "-F multifilter" "--slide-level=2")
-    if(${lecture}_IMGS)
-        convert_image_for(TARGET ${lecture} FORMAT svg FILES ${${lecture}_IMGS} OPTIONS PLANTUML -SdefaultFontSize=20)
-    endif()
-endforeach()
+add_subdirectory(lecture-3)
 
 set(INDEX_FILE ${CMAKE_CURRENT_BINARY_DIR}/index.md)
 file(READ README.md README_CONTENT)

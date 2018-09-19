@@ -1,25 +1,6 @@
 ---
 lang: ru-RU
-theme: serif
-slideNumber: true
-history: false
-center: true
-transition: convex
 mathjax: true
-width: \'90%\'
-height: \'95%\'
-header-includes: |
-    <style type="text/css">
-        .reveal h1 { font-size: 2em; }
-        .reveal h2 { font-size: 2em; }
-        .reveal h3 { font-size: 1em; }
-        .reveal pre code { max-height: 600px; }
-        div.column33 {display: inline-block; vertical-align: top; width: 32%;}
-        div.column66 {display: inline-block; vertical-align: top; width: 66%;}
-        div.column50 {display: inline-block; vertical-align: top; width: 49%;}
-        .strike {text-decoration: line-through;}
-    </style>
-#multifilter: [pandoc-pipe]
 pandoc-pipe:
     plantuml: [plantuml, -tsvg, -pipe, -SdefaultFontSize=20]
     dot: [dot, -Tsvg]
