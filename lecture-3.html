@@ -1,264 +1,334 @@
-<!DOCTYPE html>
-<html lang="ru_RU">
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru-RU" xml:lang="ru-RU">
 <head>
-  <meta charset="utf-8">
-  <meta name="generator" content="pandoc">
-  <meta name="author" content="Игорь Шаронов">
-  <meta name="dcterms.date" content="2018-02-21">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Игорь Шаронов" />
+  <meta name="date" content="2018-09-15" />
   <title>Master programming</title>
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="https://rawgit.com/hakimel/reveal.js/master/css/reveal.css">
   <style type="text/css">
       code{white-space: pre-wrap;}
       span.smallcaps{font-variant: small-caps;}
       span.underline{text-decoration: underline;}
       div.column{display: inline-block; vertical-align: top; width: 50%;}
   </style>
-  <link rel="stylesheet" href="https://rawgit.com/hakimel/reveal.js/master/css/theme/serif.css" id="theme">
-  <!-- Printing and PDF exports -->
-  <script>
-    var link = document.createElement( 'link' );
-    link.rel = 'stylesheet';
-    link.type = 'text/css';
-    link.href = window.location.search.match( /print-pdf/gi ) ? 'https://rawgit.com/hakimel/reveal.js/master/css/print/pdf.css' : 'https://rawgit.com/hakimel/reveal.js/master/css/print/paper.css';
-    document.getElementsByTagName( 'head' )[0].appendChild( link );
-  </script>
-  <!--[if lt IE 9]>
-  <script src="https://rawgit.com/hakimel/reveal.js/master/lib/js/html5shiv.js"></script>
-  <![endif]-->
   <style type="text/css">
-      .reveal h1 { font-size: 2em; }
-      .reveal h2 { font-size: 2em; }
-      .reveal h3 { font-size: 1em; }
-      .reveal pre code { max-height: 600px; }
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
   </style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print" href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" data-external="1" />
+  <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js" charset="utf-8" type="text/javascript" data-external="1"></script>
+  <meta name="duration" content="90" />
 </head>
 <body>
-  <div class="reveal">
-    <div class="slides">
-
-<section id="title-slide">
+<div class="slide titlepage">
   <h1 class="title">Master programming</h1>
-  <p class="subtitle">Лекция №3 (Работа с git)</p>
-  <p class="author">Игорь Шаронов</p>
-  <p class="date">2018-02-21</p>
-</section>
-
-<section id="overview" class="slide level1">
-<h1>Система контроля версий git</h1>
+  <p class="subtitle">Лекция №3 (CMake)</p>
+  <p class="author">
+Игорь Шаронов
+  </p>
+  <p class="date">2018-09-15</p>
+</div>
+<div id="основные-понятия" class="title-slide slide section level1"><h1>Основные понятия</h1></div><div id="артефакты-сборки" class="slide section level2">
+<h1>Артефакты сборки</h1>
 <ul>
-<li><a href="https://git-scm.com" class="uri">https://git-scm.com</a> — основной сайт с документацией по git</li>
-<li><a href="https://try.github.io" class="uri">https://try.github.io</a> — онлайн путеводитель по git-у</li>
-<li><a href="https://githowto.com/ru" class="uri">https://githowto.com/ru</a> — ещё один путеводитель</li>
+<li><code>XXX.o</code> — объектный файл, <strong>единица компиляции</strong></li>
+<li><code>libXXX.a</code> — архив объектных файлов, <strong>статическая библиотека</strong></li>
+<li><code>libXXX.so</code> — <strong>динамическая библиотека</strong>, имеет тот же уровень, что и исполнимый файл</li>
+<li><code>libXXX.so.2</code> — динамическая библиотека с версией. Версию обрабатывает загрузчик</li>
+<li>ELF — формат представления исполняемых файлов и динамических библиотек</li>
 </ul>
-</section>
-<section id="pre-history" class="slide level1">
-<h1>Предыстория</h1>
+</div><div id="зависимости-реального-времени" class="slide section level2">
+<h1>Зависимости реального времени</h1>
+<pre class="sourceCode "><code>[nix-shell] % ldd /nix/store/9f89z51na7w931aja8lqlmhqny9h16cj-gnugrep-3.1/bin/grep
+    linux-vdso.so.1 (0x00007ffc5cde0000)
+    libpcre.so.1 =&gt; /nix/store/pcre-8.42/lib/libpcre.so.1 (0x00007f48f3e86000)
+    libc.so.6 =&gt; /nix/store/glibc-2.27/lib/libc.so.6 (0x00007f48f3ad2000)
+    libpthread.so.0 =&gt; /nix/store/glibc-2.27/lib/libpthread.so.0 (0x00007f48f38b3000)
+    /nix/store/glibc-2.27/lib/ld-linux-x86-64.so.2 =&gt; /nix/store/glibc-2.27/lib64/ld-linux-x86-64.so.2 (0x00007f48f40f8000)</code></pre>
 <ul>
-<li><p>diff — утилита для выяснения различий</p>
-<pre><code>$ diff -u lecture-1.html lecture-2.html | head -n 20
---- lecture-1.html 2018-02-25 14:49:23.665411221 +0300
-+++ lecture-2.html 2018-02-25 14:49:23.842322309 +0300
-@@ -4,7 +4,7 @@
-   &lt;meta name=&quot;generator&quot; content=&quot;pandoc&quot;&gt;
-   &lt;meta name=&quot;author&quot; content=&quot;Игорь Шаронов&quot;&gt;
--  &lt;meta name=&quot;dcterms.date&quot; content=&quot;2018-01-15&quot;&gt;
-+  &lt;meta name=&quot;dcterms.date&quot; content=&quot;2018-02-18&quot;&gt;
-   &lt;title&gt;Master programming&lt;/title&gt;
-   &lt;meta name=&quot;apple-mobile-web-app-capable&quot; content=&quot;yes&quot;&gt;</code></pre></li>
-<li>patch — обратное действие diff (патч)</li>
-<li><p>конфликты:</p>
-<pre><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; LOCAL:sample.txt
-lines from the original file
-======= REMOTE:sample.txt
-new lines from the patch
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code></pre></li>
+<li><code>ld-linux</code> — загрузчик динамических библиотек</li>
+<li><code>LD_LIBRARY_PATH</code> — добавочные пути поиска динамических библиотек</li>
+<li><code>rpath</code> — добавочные пути поиска внутри ELF-файла</li>
+<li><code>LD_PRELOAD</code> — способ перегрузки функции динамической библиотеке</li>
 </ul>
-</section>
-<section class="slide level1">
-
-<section id="git-internals" class="level2">
-<h2>Внутренности git-а</h2>
+</div><div id="этапы-сборки-программ-и-библиотек" class="slide section level2">
+<h1>Этапы сборки программ и библиотек</h1>
+<ol>
+<li>Препроцессинг — замена <code>#define</code>, <code>#include</code> и макросов</li>
+<li>Компиляция — получение объектного кода</li>
+<li>Архивирование (необязательно) — получение статической библиотеки</li>
+<li>Линковка — сборка всего в исполняемый файл или динамическую библиотек</li>
+</ol>
+</div><div id="пример-этапов-сборки" class="slide section level2">
+<h1>Пример этапов сборки</h1>
+<p><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIKICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8IS0tIEdlbmVyYXRlZCBieSBncmFwaHZpeiB2ZXJzaW9uIDIuNDAuMSAoMCkKIC0tPgo8IS0tIFRpdGxlOiBnIFBhZ2VzOiAxIC0tPgo8c3ZnIHdpZHRoPSIxMTk0cHQiIGhlaWdodD0iNDIzcHQiCiB2aWV3Qm94PSIwLjAwIDAuMDAgMTE5My43OCA0MjMuMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPgo8ZyBpZD0iZ3JhcGgwIiBjbGFzcz0iZ3JhcGgiIHRyYW5zZm9ybT0ic2NhbGUoMSAxKSByb3RhdGUoMCkgdHJhbnNsYXRlKDQgNDE5KSI+Cjx0aXRsZT5nPC90aXRsZT4KPHBvbHlnb24gZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSJ0cmFuc3BhcmVudCIgcG9pbnRzPSItNCw0IC00LC00MTkgMTE4OS43ODI5LC00MTkgMTE4OS43ODI5LDQgLTQsNCIvPgo8ZyBpZD0iY2x1c3QxIiBjbGFzcz0iY2x1c3RlciI+Cjx0aXRsZT5jbHVzdGVyMDwvdGl0bGU+Cjxwb2x5Z29uIGZpbGw9IiNlYmViZWIiIHN0cm9rZT0iIzAwMDAwMCIgc3Ryb2tlLWRhc2hhcnJheT0iMSw1IiBwb2ludHM9IjgsLTI0OCA4LC0zNzcgMzE1LC0zNzcgMzE1LC0yNDggOCwtMjQ4Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjE2MS41IiB5PSItMzYxLjgiIGZvbnQtZmFtaWx5PSJUaW1lcy1Sb21hbiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+0KPRgNC+0LLQtdC90Ywg0LjRgdC/0L7Qu9C90LXQvdC40Y88L3RleHQ+CjwvZz4KPGcgaWQ9ImNsdXN0MyIgY2xhc3M9ImNsdXN0ZXIiPgo8dGl0bGU+Y2x1c3RlcjE8L3RpdGxlPgo8cG9seWdvbiBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIHN0cm9rZS1kYXNoYXJyYXk9IjEsNSIgcG9pbnRzPSIzNTksLTExNiAzNTksLTQwNyA3MDEuNTg1OSwtNDA3IDcwMS41ODU5LC0xMTYgMzU5LC0xMTYiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iNTMwLjI5MyIgeT0iLTM5MS44IiBmb250LWZhbWlseT0iVGltZXMtUm9tYW4iIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPtCj0YDQvtCy0LXQvdGMINC60L7QvNC/0LjQu9GP0YbQuNC4PC90ZXh0Pgo8L2c+CjxnIGlkPSJjbHVzdDYiIGNsYXNzPSJjbHVzdGVyIj4KPHRpdGxlPmNsdXN0ZXIyPC90aXRsZT4KPHBvbHlnb24gZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBzdHJva2UtZGFzaGFycmF5PSIxLDUiIHBvaW50cz0iNzcwLjU4NTksLTggNzcwLjU4NTksLTQwNyAxMTg1Ljc4MjksLTQwNyAxMTg1Ljc4MjksLTggNzcwLjU4NTksLTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iOTc4LjE4NDQiIHk9Ii0zOTEuOCIgZm9udC1mYW1pbHk9IlRpbWVzLVJvbWFuIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj7Qo9GA0L7QstC10L3RjCDQutC+0LTQsDwvdGV4dD4KPC9nPgo8ZyBpZD0iY2x1c3Q3IiBjbGFzcz0iY2x1c3RlciI+Cjx0aXRsZT5jbHVzdGVyMzwvdGl0bGU+Cjxwb2x5Z29uIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgc3Ryb2tlLWRhc2hhcnJheT0iMSw1IiBwb2ludHM9IjEwMDIuNTg1OSwtMTYgMTAwMi41ODU5LC0xNDUgMTE3Ny43ODI5LC0xNDUgMTE3Ny43ODI5LC0xNiAxMDAyLjU4NTksLTE2Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjEwOTAuMTg0NCIgeT0iLTEyOS44IiBmb250LWZhbWlseT0iVGltZXMtUm9tYW4iIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPtCj0YDQvtCy0LXQvdGMINC/0YDQtdC/0YDQvtGG0LXRgdGB0LjQvdCz0LA8L3RleHQ+CjwvZz4KPCEtLSBhcHAwIC0tPgo8ZyBpZD0ibm9kZTEiIGNsYXNzPSJub2RlIj4KPHRpdGxlPmFwcDA8L3RpdGxlPgo8cG9seWdvbiBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iNzAsLTM0NiAxNiwtMzQ2IDE2LC0zMTAgNzAsLTMxMCA3MCwtMzQ2Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjQzIiB5PSItMzI0LjMiIGZvbnQtZmFtaWx5PSJUaW1lcy1Sb21hbiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+YXBwMDwvdGV4dD4KPC9nPgo8IS0tIGxpYmEgLS0+CjxnIGlkPSJub2RlMyIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+bGliYTwvdGl0bGU+Cjxwb2x5Z29uIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIzMDcsLTMzNSAyNDksLTMzNSAyNDksLTI5OSAzMDcsLTI5OSAzMDcsLTMzNSIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIyNzgiIHk9Ii0zMTMuMyIgZm9udC1mYW1pbHk9IlRpbWVzLVJvbWFuIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5saWJhLnNvPC90ZXh0Pgo8L2c+CjwhLS0gYXBwMCYjNDU7Jmd0O2xpYmEgLS0+CjxnIGlkPSJlZGdlMSIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+YXBwMCYjNDU7Jmd0O2xpYmE8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiM2NmNkYWEiIGQ9Ik03MC40MTc0LC0zMjYuNzE2NkMxMTEuOTUyOCwtMzI0Ljc3MjQgMTkxLjAyMDIsLTMyMS4wNzE0IDIzOC42Nzc3LC0zMTguODQwNiIvPgo8cG9seWdvbiBmaWxsPSIjNjZjZGFhIiBzdHJva2U9IiM2NmNkYWEiIHBvaW50cz0iMjM5LjA5NjYsLTMyMi4zMjQ5IDI0OC45MjE5LC0zMTguMzYxMSAyMzguNzY5MiwtMzE1LjMzMjYgMjM5LjA5NjYsLTMyMi4zMjQ5Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjE0OCIgeT0iLTMyNy44IiBmb250LWZhbWlseT0iVGltZXMtUm9tYW4iIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPmxkJiM0NTtsaW51eCwgbGluazwvdGV4dD4KPC9nPgo8IS0tIGxpYmMgLS0+CjxnIGlkPSJub2RlNCIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+bGliYzwvdGl0bGU+CjxlbGxpcHNlIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgY3g9IjQxMC41NDYxIiBjeT0iLTI1MCIgcng9IjMyLjQ5NDIiIHJ5PSIxOCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI0MTAuNTQ2MSIgeT0iLTI0Ni4zIiBmb250LWZhbWlseT0iVGltZXMtUm9tYW4iIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPmxpYmMuYTwvdGV4dD4KPC9nPgo8IS0tIGFwcDAmIzQ1OyZndDtsaWJjIC0tPgo8ZyBpZD0iZWRnZTE4IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5hcHAwJiM0NTsmZ3Q7bGliYzwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDBmZiIgZD0iTTYxLjgyMTQsLTMwOS45NjhDNzMuNzgzOCwtMjk5LjY0NTEgOTAuMTQ3NiwtMjg3LjQ4OTkgMTA3LC0yODEgMTk1LjEzODUsLTI0Ny4wNTc1IDMwNy43NDUzLC0yNDUuMzU3NSAzNjcuOTg1LC0yNDcuNDUyOCIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMGZmIiBzdHJva2U9IiMwMDAwZmYiIHBvaW50cz0iMzY4LjEyMDMsLTI1MC45NjEgMzc4LjI1MjcsLTI0Ny44NjUxIDM2OC40MDEyLC0yNDMuOTY2NiAzNjguMTIwMywtMjUwLjk2MSIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIyMTkiIHk9Ii0yNTguOCIgZm9udC1mYW1pbHk9IlRpbWVzLVJvbWFuIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5saW5rPC90ZXh0Pgo8L2c+CjwhLS0gb2JqNSAtLT4KPGcgaWQ9Im5vZGUxMSIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+b2JqNTwvdGl0bGU+CjxlbGxpcHNlIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgY3g9IjQxMC41NDYxIiBjeT0iLTE5NiIgcng9IjQzLjU5MjMiIHJ5PSIxOCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI0MTAuNTQ2MSIgeT0iLTE5Mi4zIiBmb250LWZhbWlseT0iVGltZXMtUm9tYW4iIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPm1haW4wLm88L3RleHQ+CjwvZz4KPCEtLSBhcHAwJiM0NTsmZ3Q7b2JqNSAtLT4KPGcgaWQ9ImVkZ2UxOSIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+YXBwMCYjNDU7Jmd0O29iajU8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwZmYiIGQ9Ik02MS41NzQsLTMwOS45NTk5QzY0LjQ0OSwtMzA3LjAxNiA2Ny4zNDM0LC0zMDMuOTYwMiA3MCwtMzAxIDg3LjUyNDEsLTI4MS40NzMgODQuNzAwNiwtMjY4LjgyNTEgMTA3LC0yNTUgMTg0LjM2NjUsLTIwNy4wMzQ0IDI5Mi40MTI2LC0xOTYuNzI1IDM1Ni41NTY0LC0xOTUuMjMxNiIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMGZmIiBzdHJva2U9IiMwMDAwZmYiIHBvaW50cz0iMzU2LjkwODEsLTE5OC43MjYzIDM2Ni44NDgsLTE5NS4wNTkyIDM1Ni43OTA3LC0xOTEuNzI3MyAzNTYuOTA4MSwtMTk4LjcyNjMiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMjE5IiB5PSItMjE3LjgiIGZvbnQtZmFtaWx5PSJUaW1lcy1Sb21hbiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+bGluazwvdGV4dD4KPC9nPgo8IS0tIGFwcDEgLS0+CjxnIGlkPSJub2RlMiIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+YXBwMTwvdGl0bGU+Cjxwb2x5Z29uIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSI3MCwtMjkyIDE2LC0yOTIgMTYsLTI1NiA3MCwtMjU2IDcwLC0yOTIiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iNDMiIHk9Ii0yNzAuMyIgZm9udC1mYW1pbHk9IlRpbWVzLVJvbWFuIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5hcHAxPC90ZXh0Pgo8L2c+CjwhLS0gYXBwMSYjNDU7Jmd0O2xpYmEgLS0+CjxnIGlkPSJlZGdlMiIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+YXBwMSYjNDU7Jmd0O2xpYmE8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiM2NmNkYWEiIGQ9Ik03MC40MTc0LC0yNzkuMDE2OEMxMTIuMDQsLTI4Ni42MzI5IDE5MS4zNTI1LC0zMDEuMTQ1NCAyMzguOTc3NiwtMzA5Ljg1OTciLz4KPHBvbHlnb24gZmlsbD0iIzY2Y2RhYSIgc3Ryb2tlPSIjNjZjZGFhIiBwb2ludHM9IjIzOC40NTUzLC0zMTMuMzIyMiAyNDguOTIxOSwtMzExLjY3OTMgMjM5LjcxNTMsLTMwNi40MzY1IDIzOC40NTUzLC0zMTMuMzIyMiIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIxNDgiIHk9Ii0zMDMuOCIgZm9udC1mYW1pbHk9IlRpbWVzLVJvbWFuIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5sZCYjNDU7bGludXgsIGxpbms8L3RleHQ+CjwvZz4KPCEtLSBvYmo2IC0tPgo8ZyBpZD0ibm9kZTEyIiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5vYmo2PC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iNDEwLjU0NjEiIGN5PSItMTQyIiByeD0iNDMuNTkyMyIgcnk9IjE4Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjQxMC41NDYxIiB5PSItMTM4LjMiIGZvbnQtZmFtaWx5PSJUaW1lcy1Sb21hbiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+bWFpbjEubzwvdGV4dD4KPC9nPgo8IS0tIGFwcDEmIzQ1OyZndDtvYmo2IC0tPgo8ZyBpZD0iZWRnZTIwIiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5hcHAxJiM0NTsmZ3Q7b2JqNjwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDBmZiIgZD0iTTU4LjY1NDIsLTI1NS44MTE3QzcwLjY2NiwtMjQyLjkzNjkgODguMzEzNSwtMjI2LjIwODEgMTA3LC0yMTYgMTg3LjYwMjQsLTE3MS45NjgzIDI5NC4zNzUyLC0xNTMuODEwMiAzNTcuNDM3NCwtMTQ2LjU2MiIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMGZmIiBzdHJva2U9IiMwMDAwZmYiIHBvaW50cz0iMzU3Ljk5MzMsLTE1MC4wMjIgMzY3LjU1MDksLTE0NS40NTAzIDM1Ny4yMjg0LC0xNDMuMDYzOSAzNTcuOTkzMywtMTUwLjAyMiIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIyMTkiIHk9Ii0xNzguOCIgZm9udC1mYW1pbHk9IlRpbWVzLVJvbWFuIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5saW5rPC90ZXh0Pgo8L2c+CjwhLS0gbGliZCAtLT4KPGcgaWQ9Im5vZGU1IiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5saWJkPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iNDEwLjU0NjEiIGN5PSItMzE3IiByeD0iMzMuMjk0OCIgcnk9IjE4Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjQxMC41NDYxIiB5PSItMzEzLjMiIGZvbnQtZmFtaWx5PSJUaW1lcy1Sb21hbiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+bGliZC5hPC90ZXh0Pgo8L2c+CjwhLS0gbGliYSYjNDU7Jmd0O2xpYmQgLS0+CjxnIGlkPSJlZGdlMjEiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPmxpYmEmIzQ1OyZndDtsaWJkPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMGZmIiBkPSJNMzA3LjA4NzgsLTMxN0MzMjQuNjU3OSwtMzE3IDM0Ny4zODM2LC0zMTcgMzY3LjA1ODcsLTMxNyIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMGZmIiBzdHJva2U9IiMwMDAwZmYiIHBvaW50cz0iMzY3LjMyMzcsLTMyMC41MDAxIDM3Ny4zMjM2LC0zMTcgMzY3LjMyMzYsLTMxMy41MDAxIDM2Ny4zMjM3LC0zMjAuNTAwMSIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIzMzciIHk9Ii0zMjAuOCIgZm9udC1mYW1pbHk9IlRpbWVzLVJvbWFuIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5saW5rPC90ZXh0Pgo8L2c+CjwhLS0gb2JqMCAtLT4KPGcgaWQ9Im5vZGU2IiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5vYmowPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iNjU3LjgzOTEiIGN5PSItMTk2IiByeD0iMzUuOTk1NCIgcnk9IjE4Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjY1Ny44MzkxIiB5PSItMTkyLjMiIGZvbnQtZmFtaWx5PSJUaW1lcy1Sb21hbiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+b2JqMC5vPC90ZXh0Pgo8L2c+CjwhLS0gbGliYyYjNDU7Jmd0O29iajAgLS0+CjxnIGlkPSJlZGdlMyIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+bGliYyYjNDU7Jmd0O29iajA8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDY0MDAiIGQ9Ik00NDAuMzQxOCwtMjQyLjc4NThDNDU1LjUxNDIsLTIzOS4xNTk1IDQ3NC4yNjQxLC0yMzQuNzUwMyA0OTEuMDkyMywtMjMxIDUzMi45NTYyLC0yMjEuNjcwMyA1ODAuODkxMiwtMjExLjY4MDggNjE0LjU4OTMsLTIwNC43NzIxIi8+Cjxwb2x5Z29uIGZpbGw9IiMwMDY0MDAiIHN0cm9rZT0iIzAwNjQwMCIgcG9pbnRzPSI2MTUuNDcyLC0yMDguMTY0MSA2MjQuNTY3NywtMjAyLjczMTEgNjE0LjA2OTIsLTIwMS4zMDYxIDYxNS40NzIsLTIwOC4xNjQxIi8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjUxNC4wOTIzIiB5PSItMjM0LjgiIGZvbnQtZmFtaWx5PSJUaW1lcy1Sb21hbiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+YXJjaGl2ZTwvdGV4dD4KPC9nPgo8IS0tIG9iajEgLS0+CjxnIGlkPSJub2RlNyIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+b2JqMTwvdGl0bGU+CjxlbGxpcHNlIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgY3g9IjY1Ny44MzkxIiBjeT0iLTE0MiIgcng9IjM1Ljk5NTQiIHJ5PSIxOCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI2NTcuODM5MSIgeT0iLTEzOC4zIiBmb250LWZhbWlseT0iVGltZXMtUm9tYW4iIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPm9iajEubzwvdGV4dD4KPC9nPgo8IS0tIGxpYmMmIzQ1OyZndDtvYmoxIC0tPgo8ZyBpZD0iZWRnZTQiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPmxpYmMmIzQ1OyZndDtvYmoxPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDA2NDAwIiBkPSJNNDMyLjE4MzIsLTIzNi40NjZDNDUxLjg2MTYsLTIyNC4yNzU4IDQ3OS41Mzg1LC0yMDcuNDU5MiA0OTEuMDkyMywtMjAyIDUzMi44NjcsLTE4Mi4yNjExIDU4My4wMTE4LC0xNjUuMDMzMiA2MTcuMzMwNywtMTU0LjE2MjkiLz4KPHBvbHlnb24gZmlsbD0iIzAwNjQwMCIgc3Ryb2tlPSIjMDA2NDAwIiBwb2ludHM9IjYxOC41MTAzLC0xNTcuNDYxMiA2MjcuMDA3OSwtMTUxLjEzMzQgNjE2LjQxODksLTE1MC43ODA5IDYxOC41MTAzLC0xNTcuNDYxMiIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI1MTQuMDkyMyIgeT0iLTIwNS44IiBmb250LWZhbWlseT0iVGltZXMtUm9tYW4iIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPmFyY2hpdmU8L3RleHQ+CjwvZz4KPCEtLSBvYmoyIC0tPgo8ZyBpZD0ibm9kZTgiIGNsYXNzPSJub2RlIj4KPHRpdGxlPm9iajI8L3RpdGxlPgo8ZWxsaXBzZSBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGN4PSI2NTcuODM5MSIgY3k9Ii0yNTAiIHJ4PSIzNS45OTU0IiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iNjU3LjgzOTEiIHk9Ii0yNDYuMyIgZm9udC1mYW1pbHk9IlRpbWVzLVJvbWFuIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5vYmoyLm88L3RleHQ+CjwvZz4KPCEtLSBsaWJjJiM0NTsmZ3Q7b2JqMiAtLT4KPGcgaWQ9ImVkZ2U1IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5saWJjJiM0NTsmZ3Q7b2JqMjwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwNjQwMCIgZD0iTTQ0My4xMjk3LC0yNTBDNDg2LjM1MjUsLTI1MCA1NjIuODg5MiwtMjUwIDYxMS45NDU5LC0yNTAiLz4KPHBvbHlnb24gZmlsbD0iIzAwNjQwMCIgc3Ryb2tlPSIjMDA2NDAwIiBwb2ludHM9IjYxMS45NzUxLC0yNTMuNTAwMSA2MjEuOTc1MSwtMjUwIDYxMS45NzUsLTI0Ni41MDAxIDYxMS45NzUxLC0yNTMuNTAwMSIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI1MTQuMDkyMyIgeT0iLTI1My44IiBmb250LWZhbWlseT0iVGltZXMtUm9tYW4iIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPmFyY2hpdmU8L3RleHQ+CjwvZz4KPCEtLSBvYmozIC0tPgo8ZyBpZD0ibm9kZTkiIGNsYXNzPSJub2RlIj4KPHRpdGxlPm9iajM8L3RpdGxlPgo8ZWxsaXBzZSBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGN4PSI2NTcuODM5MSIgY3k9Ii0zMDQiIHJ4PSIzNS45OTU0IiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iNjU3LjgzOTEiIHk9Ii0zMDAuMyIgZm9udC1mYW1pbHk9IlRpbWVzLVJvbWFuIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5vYmozLm88L3RleHQ+CjwvZz4KPCEtLSBsaWJkJiM0NTsmZ3Q7b2JqMyAtLT4KPGcgaWQ9ImVkZ2U2IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5saWJkJiM0NTsmZ3Q7b2JqMzwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwNjQwMCIgZD0iTTQ0My42NDA2LC0zMTUuMjYwM0M0ODcuMDE0MywtMzEyLjk4MDEgNTYzLjI5NTksLTMwOC45NzAxIDYxMi4xNTE3LC0zMDYuNDAxOCIvPgo8cG9seWdvbiBmaWxsPSIjMDA2NDAwIiBzdHJva2U9IiMwMDY0MDAiIHBvaW50cz0iNjEyLjMzNjYsLTMwOS44OTcgNjIyLjEzOSwtMzA1Ljg3NjcgNjExLjk2OSwtMzAyLjkwNjYgNjEyLjMzNjYsLTMwOS44OTciLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iNTE0LjA5MjMiIHk9Ii0zMTUuOCIgZm9udC1mYW1pbHk9IlRpbWVzLVJvbWFuIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5hcmNoaXZlPC90ZXh0Pgo8L2c+CjwhLS0gb2JqNCAtLT4KPGcgaWQ9Im5vZGUxMCIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+b2JqNDwvdGl0bGU+CjxlbGxpcHNlIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgY3g9IjY1Ny44MzkxIiBjeT0iLTM1OCIgcng9IjM1Ljk5NTQiIHJ5PSIxOCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI2NTcuODM5MSIgeT0iLTM1NC4zIiBmb250LWZhbWlseT0iVGltZXMtUm9tYW4iIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPm9iajQubzwvdGV4dD4KPC9nPgo8IS0tIGxpYmQmIzQ1OyZndDtvYmo0IC0tPgo8ZyBpZD0iZWRnZTciIGNsYXNzPSJlZGdlIj4KPHRpdGxlPmxpYmQmIzQ1OyZndDtvYmo0PC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDA2NDAwIiBkPSJNNDQyLjI4MzgsLTMyMi42MDM2QzQ1Ny4xMDYyLC0zMjUuMTk4MyA0NzQuOTk1MSwtMzI4LjI5NzkgNDkxLjA5MjMsLTMzMSA1MzIuNjM1MywtMzM3Ljk3MzUgNTgwLjA1NTgsLTM0NS42MjE4IDYxMy42NzkxLC0zNTAuOTkyMSIvPgo8cG9seWdvbiBmaWxsPSIjMDA2NDAwIiBzdHJva2U9IiMwMDY0MDAiIHBvaW50cz0iNjEzLjIyMjgsLTM1NC40NjM1IDYyMy42NDkzLC0zNTIuNTgyNCA2MTQuMzI1NCwtMzQ3LjU1MDkgNjEzLjIyMjgsLTM1NC40NjM1Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjUxNC4wOTIzIiB5PSItMzQxLjgiIGZvbnQtZmFtaWx5PSJUaW1lcy1Sb21hbiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+YXJjaGl2ZTwvdGV4dD4KPC9nPgo8IS0tIHNyYzAgLS0+CjxnIGlkPSJub2RlMTMiIGNsYXNzPSJub2RlIj4KPHRpdGxlPnNyYzA8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik04MzQuMDg1OSwtMjE0QzgzNC4wODU5LC0yMTQgODA0LjA4NTksLTIxNCA4MDQuMDg1OSwtMjE0IDc5OC4wODU5LC0yMTQgNzkyLjA4NTksLTIwOCA3OTIuMDg1OSwtMjAyIDc5Mi4wODU5LC0yMDIgNzkyLjA4NTksLTE5MCA3OTIuMDg1OSwtMTkwIDc5Mi4wODU5LC0xODQgNzk4LjA4NTksLTE3OCA4MDQuMDg1OSwtMTc4IDgwNC4wODU5LC0xNzggODM0LjA4NTksLTE3OCA4MzQuMDg1OSwtMTc4IDg0MC4wODU5LC0xNzggODQ2LjA4NTksLTE4NCA4NDYuMDg1OSwtMTkwIDg0Ni4wODU5LC0xOTAgODQ2LjA4NTksLTIwMiA4NDYuMDg1OSwtMjAyIDg0Ni4wODU5LC0yMDggODQwLjA4NTksLTIxNCA4MzQuMDg1OSwtMjE0Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjgxOS4wODU5IiB5PSItMTkyLjMiIGZvbnQtZmFtaWx5PSJUaW1lcy1Sb21hbiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+c3JjMC5jPC90ZXh0Pgo8L2c+CjwhLS0gb2JqMCYjNDU7Jmd0O3NyYzAgLS0+CjxnIGlkPSJlZGdlOCIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+b2JqMCYjNDU7Jmd0O3NyYzA8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZjAwMDAiIGQ9Ik02OTMuNjI1LC0xOTZDNzE5LjgzNiwtMTk2IDc1NS4zMTc3LC0xOTYgNzgxLjg2MDEsLTE5NiIvPgo8cG9seWdvbiBmaWxsPSIjZmYwMDAwIiBzdHJva2U9IiNmZjAwMDAiIHBvaW50cz0iNzgxLjkxNSwtMTk5LjUwMDEgNzkxLjkxNDksLTE5NiA3ODEuOTE0OSwtMTkyLjUwMDEgNzgxLjkxNSwtMTk5LjUwMDEiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iNzM2LjA4NTkiIHk9Ii0xOTkuOCIgZm9udC1mYW1pbHk9IlRpbWVzLVJvbWFuIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5jb21waWxlPC90ZXh0Pgo8L2c+CjwhLS0gc3JjMSAtLT4KPGcgaWQ9Im5vZGUxNCIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+c3JjMTwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTgzNC4wODU5LC0xNjBDODM0LjA4NTksLTE2MCA4MDQuMDg1OSwtMTYwIDgwNC4wODU5LC0xNjAgNzk4LjA4NTksLTE2MCA3OTIuMDg1OSwtMTU0IDc5Mi4wODU5LC0xNDggNzkyLjA4NTksLTE0OCA3OTIuMDg1OSwtMTM2IDc5Mi4wODU5LC0xMzYgNzkyLjA4NTksLTEzMCA3OTguMDg1OSwtMTI0IDgwNC4wODU5LC0xMjQgODA0LjA4NTksLTEyNCA4MzQuMDg1OSwtMTI0IDgzNC4wODU5LC0xMjQgODQwLjA4NTksLTEyNCA4NDYuMDg1OSwtMTMwIDg0Ni4wODU5LC0xMzYgODQ2LjA4NTksLTEzNiA4NDYuMDg1OSwtMTQ4IDg0Ni4wODU5LC0xNDggODQ2LjA4NTksLTE1NCA4NDAuMDg1OSwtMTYwIDgzNC4wODU5LC0xNjAiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iODE5LjA4NTkiIHk9Ii0xMzguMyIgZm9udC1mYW1pbHk9IlRpbWVzLVJvbWFuIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5zcmMxLmM8L3RleHQ+CjwvZz4KPCEtLSBvYmoxJiM0NTsmZ3Q7c3JjMSAtLT4KPGcgaWQ9ImVkZ2U5IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5vYmoxJiM0NTsmZ3Q7c3JjMTwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmMDAwMCIgZD0iTTY5My42MjUsLTE0MkM3MTkuODM2LC0xNDIgNzU1LjMxNzcsLTE0MiA3ODEuODYwMSwtMTQyIi8+Cjxwb2x5Z29uIGZpbGw9IiNmZjAwMDAiIHN0cm9rZT0iI2ZmMDAwMCIgcG9pbnRzPSI3ODEuOTE1LC0xNDUuNTAwMSA3OTEuOTE0OSwtMTQyIDc4MS45MTQ5LC0xMzguNTAwMSA3ODEuOTE1LC0xNDUuNTAwMSIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI3MzYuMDg1OSIgeT0iLTE0NS44IiBmb250LWZhbWlseT0iVGltZXMtUm9tYW4iIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPmNvbXBpbGU8L3RleHQ+CjwvZz4KPCEtLSBzcmMyIC0tPgo8ZyBpZD0ibm9kZTE1IiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5zcmMyPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNODM0LjA4NTksLTI2OEM4MzQuMDg1OSwtMjY4IDgwNC4wODU5LC0yNjggODA0LjA4NTksLTI2OCA3OTguMDg1OSwtMjY4IDc5Mi4wODU5LC0yNjIgNzkyLjA4NTksLTI1NiA3OTIuMDg1OSwtMjU2IDc5Mi4wODU5LC0yNDQgNzkyLjA4NTksLTI0NCA3OTIuMDg1OSwtMjM4IDc5OC4wODU5LC0yMzIgODA0LjA4NTksLTIzMiA4MDQuMDg1OSwtMjMyIDgzNC4wODU5LC0yMzIgODM0LjA4NTksLTIzMiA4NDAuMDg1OSwtMjMyIDg0Ni4wODU5LC0yMzggODQ2LjA4NTksLTI0NCA4NDYuMDg1OSwtMjQ0IDg0Ni4wODU5LC0yNTYgODQ2LjA4NTksLTI1NiA4NDYuMDg1OSwtMjYyIDg0MC4wODU5LC0yNjggODM0LjA4NTksLTI2OCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI4MTkuMDg1OSIgeT0iLTI0Ni4zIiBmb250LWZhbWlseT0iVGltZXMtUm9tYW4iIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPnNyYzIuYzwvdGV4dD4KPC9nPgo8IS0tIG9iajImIzQ1OyZndDtzcmMyIC0tPgo8ZyBpZD0iZWRnZTEwIiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5vYmoyJiM0NTsmZ3Q7c3JjMjwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmMDAwMCIgZD0iTTY5My42MjUsLTI1MEM3MTkuODM2LC0yNTAgNzU1LjMxNzcsLTI1MCA3ODEuODYwMSwtMjUwIi8+Cjxwb2x5Z29uIGZpbGw9IiNmZjAwMDAiIHN0cm9rZT0iI2ZmMDAwMCIgcG9pbnRzPSI3ODEuOTE1LC0yNTMuNTAwMSA3OTEuOTE0OSwtMjUwIDc4MS45MTQ5LC0yNDYuNTAwMSA3ODEuOTE1LC0yNTMuNTAwMSIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI3MzYuMDg1OSIgeT0iLTI1My44IiBmb250LWZhbWlseT0iVGltZXMtUm9tYW4iIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPmNvbXBpbGU8L3RleHQ+CjwvZz4KPCEtLSBzcmMzIC0tPgo8ZyBpZD0ibm9kZTE2IiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5zcmMzPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNODQxLjU4NTksLTMyMkM4NDEuNTg1OSwtMzIyIDc5Ni41ODU5LC0zMjIgNzk2LjU4NTksLTMyMiA3OTAuNTg1OSwtMzIyIDc4NC41ODU5LC0zMTYgNzg0LjU4NTksLTMxMCA3ODQuNTg1OSwtMzEwIDc4NC41ODU5LC0yOTggNzg0LjU4NTksLTI5OCA3ODQuNTg1OSwtMjkyIDc5MC41ODU5LC0yODYgNzk2LjU4NTksLTI4NiA3OTYuNTg1OSwtMjg2IDg0MS41ODU5LC0yODYgODQxLjU4NTksLTI4NiA4NDcuNTg1OSwtMjg2IDg1My41ODU5LC0yOTIgODUzLjU4NTksLTI5OCA4NTMuNTg1OSwtMjk4IDg1My41ODU5LC0zMTAgODUzLjU4NTksLTMxMCA4NTMuNTg1OSwtMzE2IDg0Ny41ODU5LC0zMjIgODQxLjU4NTksLTMyMiIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI4MTkuMDg1OSIgeT0iLTMwMC4zIiBmb250LWZhbWlseT0iVGltZXMtUm9tYW4iIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPnNyYzMuY3BwPC90ZXh0Pgo8L2c+CjwhLS0gb2JqMyYjNDU7Jmd0O3NyYzMgLS0+CjxnIGlkPSJlZGdlMTEiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPm9iajMmIzQ1OyZndDtzcmMzPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmYwMDAwIiBkPSJNNjkzLjYyNSwtMzA0QzcxNy40MzY3LC0zMDQgNzQ4Ljg5OTYsLTMwNCA3NzQuMzYwNSwtMzA0Ii8+Cjxwb2x5Z29uIGZpbGw9IiNmZjAwMDAiIHN0cm9rZT0iI2ZmMDAwMCIgcG9pbnRzPSI3NzQuNTA2OCwtMzA3LjUwMDEgNzg0LjUwNjgsLTMwNCA3NzQuNTA2OCwtMzAwLjUwMDEgNzc0LjUwNjgsLTMwNy41MDAxIi8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjczNi4wODU5IiB5PSItMzA3LjgiIGZvbnQtZmFtaWx5PSJUaW1lcy1Sb21hbiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+Y29tcGlsZTwvdGV4dD4KPC9nPgo8IS0tIHNyYzQgLS0+CjxnIGlkPSJub2RlMTciIGNsYXNzPSJub2RlIj4KPHRpdGxlPnNyYzQ8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik04NDEuNTg1OSwtMzc2Qzg0MS41ODU5LC0zNzYgNzk2LjU4NTksLTM3NiA3OTYuNTg1OSwtMzc2IDc5MC41ODU5LC0zNzYgNzg0LjU4NTksLTM3MCA3ODQuNTg1OSwtMzY0IDc4NC41ODU5LC0zNjQgNzg0LjU4NTksLTM1MiA3ODQuNTg1OSwtMzUyIDc4NC41ODU5LC0zNDYgNzkwLjU4NTksLTM0MCA3OTYuNTg1OSwtMzQwIDc5Ni41ODU5LC0zNDAgODQxLjU4NTksLTM0MCA4NDEuNTg1OSwtMzQwIDg0Ny41ODU5LC0zNDAgODUzLjU4NTksLTM0NiA4NTMuNTg1OSwtMzUyIDg1My41ODU5LC0zNTIgODUzLjU4NTksLTM2NCA4NTMuNTg1OSwtMzY0IDg1My41ODU5LC0zNzAgODQ3LjU4NTksLTM3NiA4NDEuNTg1OSwtMzc2Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjgxOS4wODU5IiB5PSItMzU0LjMiIGZvbnQtZmFtaWx5PSJUaW1lcy1Sb21hbiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+c3JjNC5jcHA8L3RleHQ+CjwvZz4KPCEtLSBvYmo0JiM0NTsmZ3Q7c3JjNCAtLT4KPGcgaWQ9ImVkZ2UxMiIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+b2JqNCYjNDU7Jmd0O3NyYzQ8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZjAwMDAiIGQ9Ik02OTMuNjI1LC0zNThDNzE3LjQzNjcsLTM1OCA3NDguODk5NiwtMzU4IDc3NC4zNjA1LC0zNTgiLz4KPHBvbHlnb24gZmlsbD0iI2ZmMDAwMCIgc3Ryb2tlPSIjZmYwMDAwIiBwb2ludHM9Ijc3NC41MDY4LC0zNjEuNTAwMSA3ODQuNTA2OCwtMzU4IDc3NC41MDY4LC0zNTQuNTAwMSA3NzQuNTA2OCwtMzYxLjUwMDEiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iNzM2LjA4NTkiIHk9Ii0zNjEuOCIgZm9udC1mYW1pbHk9IlRpbWVzLVJvbWFuIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5jb21waWxlPC90ZXh0Pgo8L2c+CjwhLS0gbWFpbjAgLS0+CjxnIGlkPSJub2RlMTgiIGNsYXNzPSJub2RlIj4KPHRpdGxlPm1haW4wPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNODQwLjA4NTksLTEwNkM4NDAuMDg1OSwtMTA2IDc5OC4wODU5LC0xMDYgNzk4LjA4NTksLTEwNiA3OTIuMDg1OSwtMTA2IDc4Ni4wODU5LC0xMDAgNzg2LjA4NTksLTk0IDc4Ni4wODU5LC05NCA3ODYuMDg1OSwtODIgNzg2LjA4NTksLTgyIDc4Ni4wODU5LC03NiA3OTIuMDg1OSwtNzAgNzk4LjA4NTksLTcwIDc5OC4wODU5LC03MCA4NDAuMDg1OSwtNzAgODQwLjA4NTksLTcwIDg0Ni4wODU5LC03MCA4NTIuMDg1OSwtNzYgODUyLjA4NTksLTgyIDg1Mi4wODU5LC04MiA4NTIuMDg1OSwtOTQgODUyLjA4NTksLTk0IDg1Mi4wODU5LC0xMDAgODQ2LjA4NTksLTEwNiA4NDAuMDg1OSwtMTA2Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjgxOS4wODU5IiB5PSItODQuMyIgZm9udC1mYW1pbHk9IlRpbWVzLVJvbWFuIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5tYWluMC5jPC90ZXh0Pgo8L2c+CjwhLS0gb2JqNSYjNDU7Jmd0O21haW4wIC0tPgo8ZyBpZD0iZWRnZTEzIiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5vYmo1JiM0NTsmZ3Q7bWFpbjA8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZjAwMDAiIGQ9Ik00NDEuNzM0LC0xODMuMzcxNkM0NzAuOTM0MywtMTcxLjYyNjUgNTE1LjgzMTIsLTE1My43Njg3IDU1NS4wOTIzLC0xMzkgNTg0LjY5NzUsLTEyNy44NjM1IDU5MS4zNjksLTEyMi41MjE0IDYyMi4wOTIzLC0xMTUgNjc0LjIyMDEsLTEwMi4yMzg1IDczNS42ODYzLC05NS4wMTkyIDc3NS45MjM3LC05MS4zMTcxIi8+Cjxwb2x5Z29uIGZpbGw9IiNmZjAwMDAiIHN0cm9rZT0iI2ZmMDAwMCIgcG9pbnRzPSI3NzYuMjc3NSwtOTQuNzk5NiA3ODUuOTI4OCwtOTAuNDI5IDc3NS42NTg0LC04Ny44MjcgNzc2LjI3NzUsLTk0Ljc5OTYiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iNTc5LjU5MjMiIHk9Ii0xNDIuOCIgZm9udC1mYW1pbHk9IlRpbWVzLVJvbWFuIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5jb21waWxlPC90ZXh0Pgo8L2c+CjwhLS0gbWFpbjEgLS0+CjxnIGlkPSJub2RlMTkiIGNsYXNzPSJub2RlIj4KPHRpdGxlPm1haW4xPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNODQ3LjU4NTksLTUyQzg0Ny41ODU5LC01MiA3OTAuNTg1OSwtNTIgNzkwLjU4NTksLTUyIDc4NC41ODU5LC01MiA3NzguNTg1OSwtNDYgNzc4LjU4NTksLTQwIDc3OC41ODU5LC00MCA3NzguNTg1OSwtMjggNzc4LjU4NTksLTI4IDc3OC41ODU5LC0yMiA3ODQuNTg1OSwtMTYgNzkwLjU4NTksLTE2IDc5MC41ODU5LC0xNiA4NDcuNTg1OSwtMTYgODQ3LjU4NTksLTE2IDg1My41ODU5LC0xNiA4NTkuNTg1OSwtMjIgODU5LjU4NTksLTI4IDg1OS41ODU5LC0yOCA4NTkuNTg1OSwtNDAgODU5LjU4NTksLTQwIDg1OS41ODU5LC00NiA4NTMuNTg1OSwtNTIgODQ3LjU4NTksLTUyIi8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjgxOS4wODU5IiB5PSItMzAuMyIgZm9udC1mYW1pbHk9IlRpbWVzLVJvbWFuIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5tYWluMS5jcHA8L3RleHQ+CjwvZz4KPCEtLSBvYmo2JiM0NTsmZ3Q7bWFpbjEgLS0+CjxnIGlkPSJlZGdlMTQiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPm9iajYmIzQ1OyZndDttYWluMTwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmMDAwMCIgZD0iTTQ0NS43ODY3LC0xMzEuMzU2NEM0NzQuOTkwMiwtMTIyLjYzMzUgNTE3LjYyODUsLTExMC4xMjIgNTU1LjA5MjMsLTEwMCA2MjkuMDAxOSwtODAuMDMxIDcxNS4xMjY4LC01OC44OTYgNzY4LjM4NDIsLTQ2LjA3MzMiLz4KPHBvbHlnb24gZmlsbD0iI2ZmMDAwMCIgc3Ryb2tlPSIjZmYwMDAwIiBwb2ludHM9Ijc2OS4zNTQ0LC00OS40Mzk5IDc3OC4yNTk4LC00My43MDAyIDc2Ny43MTg4LC00Mi42MzM2IDc2OS4zNTQ0LC00OS40Mzk5Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjU3OS41OTIzIiB5PSItMTAzLjgiIGZvbnQtZmFtaWx5PSJUaW1lcy1Sb21hbiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+Y29tcGlsZTwvdGV4dD4KPC9nPgo8IS0tIGhkcjAgLS0+CjxnIGlkPSJub2RlMjAiIGNsYXNzPSJub2RlIj4KPHRpdGxlPmhkcjA8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik0xMDc4LjMxOTEsLTExMC4xNDlDMTA3OC4zMTkxLC0xMTAuMTQ5IDEwNDcuOTI2OCwtOTkuODUxIDEwNDcuOTI2OCwtOTkuODUxIDEwNDIuMjQ0MSwtOTcuOTI1NSAxMDQyLjI0NDEsLTk0LjA3NDUgMTA0Ny45MjY4LC05Mi4xNDkgMTA0Ny45MjY4LC05Mi4xNDkgMTA3OC4zMTkxLC04MS44NTEgMTA3OC4zMTkxLC04MS44NTEgMTA4NC4wMDE4LC03OS45MjU1IDEwOTUuMzY3MSwtNzkuOTI1NSAxMTAxLjA0OTcsLTgxLjg1MSAxMTAxLjA0OTcsLTgxLjg1MSAxMTMxLjQ0MiwtOTIuMTQ5IDExMzEuNDQyLC05Mi4xNDkgMTEzNy4xMjQ3LC05NC4wNzQ1IDExMzcuMTI0NywtOTcuOTI1NSAxMTMxLjQ0MiwtOTkuODUxIDExMzEuNDQyLC05OS44NTEgMTEwMS4wNDk3LC0xMTAuMTQ5IDExMDEuMDQ5NywtMTEwLjE0OSAxMDk1LjM2NzEsLTExMi4wNzQ1IDEwODQuMDAxOCwtMTEyLjA3NDUgMTA3OC4zMTkxLC0xMTAuMTQ5Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjEwODkuNjg0NCIgeT0iLTkyLjMiIGZvbnQtZmFtaWx5PSJUaW1lcy1Sb21hbiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+aGRyMC5oPC90ZXh0Pgo8L2c+CjwhLS0gc3JjMCYjNDU7Jmd0O2hkcjAgLS0+CjxnIGlkPSJlZGdlMTUiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPnNyYzAmIzQ1OyZndDtoZHIwPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmE4MDcyIiBkPSJNODQ2LjI3MDksLTE4NS45NTM4Qzg5NS42MDM2LC0xNjcuNzIyOCA5OTkuODEyNCwtMTI5LjIxMjMgMTA1NC40OTU5LC0xMDkuMDA0Ii8+Cjxwb2x5Z29uIGZpbGw9IiNmYTgwNzIiIHN0cm9rZT0iI2ZhODA3MiIgcG9pbnRzPSIxMDU1LjkzOSwtMTEyLjIwMjEgMTA2NC4xMDU4LC0xMDUuNDUyNiAxMDUzLjUxMjUsLTEwNS42MzYxIDEwNTUuOTM5LC0xMTIuMjAyMSIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI5MzEuMDg1OSIgeT0iLTE3MC44IiBmb250LWZhbWlseT0iVGltZXMtUm9tYW4iIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPnByZXByb2Nlc3M8L3RleHQ+CjwvZz4KPCEtLSBtYWluMCYjNDU7Jmd0O2hkcjAgLS0+CjxnIGlkPSJlZGdlMTYiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPm1haW4wJiM0NTsmZ3Q7aGRyMDwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZhODA3MiIgZD0iTTg1Mi4yNjY2LC04OC45ODFDODk2LjU0OTQsLTkwLjI5MDEgOTc1LjcyNDYsLTkyLjYzMDkgMTAzMC4zOTMxLC05NC4yNDcxIi8+Cjxwb2x5Z29uIGZpbGw9IiNmYTgwNzIiIHN0cm9rZT0iI2ZhODA3MiIgcG9pbnRzPSIxMDMwLjU0MjgsLTk3Ljc1MyAxMDQwLjY0MTksLTk0LjU1MDEgMTAzMC43NDk3LC05MC43NTYgMTAzMC41NDI4LC05Ny43NTMiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iOTMxLjA4NTkiIHk9Ii05NS44IiBmb250LWZhbWlseT0iVGltZXMtUm9tYW4iIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPnByZXByb2Nlc3M8L3RleHQ+CjwvZz4KPCEtLSBoZHIxIC0tPgo8ZyBpZD0ibm9kZTIxIiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5oZHIxPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNMTA3OC4wOTMxLC01Ni44OTVDMTA3OC4wOTMxLC01Ni44OTUgMTAzNC4wNzg2LC00NS4xMDUgMTAzNC4wNzg2LC00NS4xMDUgMTAyOC4yODMsLTQzLjU1MjUgMTAyOC4yODMsLTQwLjQ0NzUgMTAzNC4wNzg2LC0zOC44OTUgMTAzNC4wNzg2LC0zOC44OTUgMTA3OC4wOTMxLC0yNy4xMDUgMTA3OC4wOTMxLC0yNy4xMDUgMTA4My44ODg3LC0yNS41NTI1IDEwOTUuNDgwMSwtMjUuNTUyNSAxMTAxLjI3NTgsLTI3LjEwNSAxMTAxLjI3NTgsLTI3LjEwNSAxMTQ1LjI5MDIsLTM4Ljg5NSAxMTQ1LjI5MDIsLTM4Ljg5NSAxMTUxLjA4NTgsLTQwLjQ0NzUgMTE1MS4wODU4LC00My41NTI1IDExNDUuMjkwMiwtNDUuMTA1IDExNDUuMjkwMiwtNDUuMTA1IDExMDEuMjc1OCwtNTYuODk1IDExMDEuMjc1OCwtNTYuODk1IDEwOTUuNDgwMSwtNTguNDQ3NSAxMDgzLjg4ODcsLTU4LjQ0NzUgMTA3OC4wOTMxLC01Ni44OTUiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMTA4OS42ODQ0IiB5PSItMzguMyIgZm9udC1mYW1pbHk9IlRpbWVzLVJvbWFuIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5oZHIxLmhwcDwvdGV4dD4KPC9nPgo8IS0tIG1haW4xJiM0NTsmZ3Q7aGRyMSAtLT4KPGcgaWQ9ImVkZ2UxNyIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+bWFpbjEmIzQ1OyZndDtoZHIxPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmE4MDcyIiBkPSJNODU5LjU5NzMsLTM1LjE5NzdDOTAxLjU5ODMsLTM2LjQzOTQgOTY4LjA5MDMsLTM4LjQwNTIgMTAxOC44MTc0LC0zOS45MDQ5Ii8+Cjxwb2x5Z29uIGZpbGw9IiNmYTgwNzIiIHN0cm9rZT0iI2ZhODA3MiIgcG9pbnRzPSIxMDE4Ljk2NSwtNDMuNDEwNyAxMDI5LjA2NDEsLTQwLjIwNzggMTAxOS4xNzE5LC0zNi40MTM3IDEwMTguOTY1LC00My40MTA3Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjkzMS4wODU5IiB5PSItNDEuOCIgZm9udC1mYW1pbHk9IlRpbWVzLVJvbWFuIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjMDAwMDAwIj5wcmVwcm9jZXNzPC90ZXh0Pgo8L2c+CjwvZz4KPC9zdmc+Cg==" alt="image" /></p>
+</div>
+<div id="введение-в-cmake" class="title-slide slide section level1"><h1>Введение в CMake</h1></div><div id="ссылки" class="slide section level2">
+<h1>Ссылки</h1>
 <ul>
-<li>Директория <code>.git</code>
+<li><a href="https://cmake.org/cmake-tutorial" class="uri">https://cmake.org/cmake-tutorial</a> — тьюториал</li>
+<li><a href="https://cmake.org/cmake/help/latest/index.html" class="uri">https://cmake.org/cmake/help/latest/index.html</a> — документация</li>
+<li><a href="http://ttroy50.github.io/cmake-examples" class="uri">http://ttroy50.github.io/cmake-examples</a> — примеры по CMake</li>
+</ul>
+</div><div id="структура-проекта-для-cmake" class="slide section level2">
+<h1>Структура проекта для CMake</h1>
 <ul>
-<li><code>.git/objects/</code> — пулл объектов</li>
-<li><code>.git/refs/</code> — указатели</li>
-<li><code>.git/HEAD</code> — указатель текущей ветки</li>
+<li>Нечто большее, чем система сборки — конфигуратор систем сборки</li>
+<li><code>CMakeLists.txt</code> — конфигурационные файлы CMake</li>
+<li>Каждая директория может содержать <code>CMakeLists.txt</code></li>
+<li>Связывание с помощью <code>add_subdirectory</code></li>
+<li><code>add_library</code>, <code>add_executable</code> — добавление основных целей (targets)</li>
+<li><code>target_*</code> — изменение свойств целей</li>
+<li><code>add_test</code> — добавление теста</li>
+<li><code>export(package)</code> — регистрирование проекта</li>
+<li><code>include(CPack)</code> — генерирование установочного пакета</li>
+</ul>
+</div><div id="цели-по-умолчанию" class="slide section level2">
+<h1>Цели по умолчанию</h1>
+<ul>
+<li>all или просто <code>make</code> без целей</li>
+<li>rebuild_cache — перестройка кеша (переконфигурирование)</li>
+<li>clean — очистить дерево сборки от артефактов</li>
+<li>test — запуск тестов
+<ul>
+<li>аналогично запуску <code>ctest</code></li>
 </ul></li>
-<li><code>git</code> — файловая система ассоциативного типа</li>
-<li>Виды объектов: blob, tree, commit, tag</li>
-<li>Виды ссылок: branch, tag, remotes</li>
-<li>Коммит: <code>tree</code>-объект, автор, коммитер, сообщение, parent</li>
-</ul>
-</section>
-<section id="hash" class="level2">
-<h2>Хеш-суммы</h2>
+<li>install — установка собранных артефактов (используется в цели package)</li>
+<li>package — создание пакета
 <ul>
-<li>crc32</li>
-<li>md5</li>
-<li>sha-1</li>
-<li>sha-2: sha-224, sha-256, cha-384, sha-512</li>
-<li><p>Быстрая идентификация сообщения/файла/пароля</p>
-<pre><code>$ echo -n &#39;Master programming&#39; | md5sum -
-01e171232a1aa47e9fd2ae0530782b1f  -
-$ echo -n &#39;master programming&#39; | md5sum -
-e774d0115e01e1b735a7a1a9a3a85f09  -</code></pre></li>
-<li><p>Коллизии хешей</p></li>
+<li>аналогично запуску <code>cpack</code></li>
+</ul></li>
+<li><code>&lt;name&gt;</code> — собирает отдельную цель <code>name</code>, созданную в <code>CMakeLists.txt</code></li>
+<li>help — выводит доступные цели</li>
 </ul>
-</section>
-</section>
-<section id="git-day-by-day-usage" class="slide level1">
-<h1>Повседневное использование</h1>
-<ul>
-<li><code>git status</code>: unstaged, staged, committed</li>
-<li><code>git add &lt;file&gt;</code> — добавление <code>file</code> в <code>staged</code></li>
-<li><code>git checkout &lt;name&gt;</code> — переход на ветку <code>name</code></li>
-<li><code>git checkout -b &lt;name&gt;</code> — создание новой ветки <code>name</code></li>
-<li><code>git checkout -- &lt;file&gt;</code> — отменить все изменения файла <code>file</code></li>
-<li><code>git reset [&lt;commit&gt;|&lt;branch&gt;]</code> — перевести изменения из <code>committed</code> в состояние <code>unstaged</code></li>
-<li><code>git reset --hard</code> — отменить все изменения (потеря данных)</li>
-<li><code>git push [&lt;remote&gt;]</code> — загрузка изменений на сервер <code>remote</code></li>
-<li><code>git push --force</code> — принудительная загрузка изменений (потеря данных)</li>
-<li><code>git diff [&lt;commit&gt;]</code> — просмотр изменений</li>
-</ul>
-</section>
-<section class="slide level1">
-
-<section id="git-example1" class="level2">
-<h2>Пример №1: добавление нескольких remote</h2>
-<pre><code>$ git clone git@github.com:cvlabmiet/master-programming
-$ cd master-programming
-master-programming $ git remote add miet git@git.miet.ru:cvlab/master-programming
-master-programming $ git push miet master:master</code></pre>
-<pre><code>(lecture-3 *+) $ git st
-On branch lecture-3
-Changes to be committed:
-  (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)
-
-    modified:   CMakeLists.txt
-    modified:   lecture-3.md
-
-Changes not staged for commit:
-  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)
-  (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)
-
-    modified:   lecture-3.md</code></pre>
-</section>
-<section id="git-example2" class="level2">
-<h2>Пример №2: создание локального репозитория</h2>
-<pre><code>$ mkdir /tmp/server
-$ git init --bare /tmp/server/repo
-$ cd /tmp/123/repo/
-repo (BARE:master) $ ls
-branches  config  description  HEAD  hooks  info  objects  refs
-$ git init /tmp/repo
-$ cd /tmp/repo
-repo (master#) $ echo &#39;Empty repo&#39; &gt; README.md
-repo (master#) $ git add README.md
-repo (master#) $ git ci -am &quot;Initial commit&quot;
-repo (master) $ git remote add origin /tmp/server/repo
-repo (master) $ git push origin master:master</code></pre>
-</section>
-<section id="git-example3" class="level2">
-<h2>Пример №3: сравнение с origin/master</h2>
-<pre><code>$ git fetch origin
-$ git diff master origin/master
-$ git show origin/master:lecture-3.md | less
-$ git co origin/master -b new-feature</code></pre>
-</section>
-</section>
-<section id="git-conflicts" class="slide level1">
-<h1>Разрешение конфликтов</h1>
-<ul>
-<li><code>LOCAL</code> — локальные изменения текущей ветки</li>
-<li><code>REMOTE</code> — изменения на сервере</li>
-<li><code>BASE</code> — общий предок <code>LOCAL</code> и <code>REMOTE</code></li>
-<li><code>MERGED</code> — автоматическое разрешение конфликта</li>
-<li>merge — это тоже коммит</li>
-<li>Утилиты для разрешения конфликтов: vimdiff, kdiff3, meld, tortoisemerge</li>
-</ul>
-<div class="column" style="float:center">
-<pre><code>┌───────┬──────┬────────┐   ┌────────┬────────┐
-│ LOCAL │ BASE │ REMOTE │   │        │        │
-├───────┴──────┴────────┤   │ MERGED │ REMOTE │
-│        MERGED         │   │        │        │
-└───────────────────────┘   └────────┴────────┘</code></pre>
 </div>
-</section>
-<section id="git-merge" class="slide level1">
-<h1>Стратегии слияния веток</h1>
-<div class="column">
-<pre><code>      A---B---C topic
-     /
-D---E---F---G master</code></pre>
-</div>
+<div id="синтаксис-языка-cmake" class="title-slide slide section level1"><h1>Синтаксис языка CMake</h1></div><div id="синтаксис-cmake" class="slide section level2">
+<h1>Синтаксис CMake</h1>
 <ul>
-<li><p>merge no-fast-forward (<code>git merge --no-ff</code>)</p>
-<pre><code>      A---B---C topic
-     /         \
-D---E---F---G---H master</code></pre></li>
-<li><p>merge fast-forward (<code>git merge --ff</code>)</p>
-<pre><code>D---E-A-F-B-G-C master</code></pre></li>
-<li><p>merge squash (<code>git merge --squash</code>)</p>
-<pre><code>D---E---F---G---T master</code></pre></li>
-<li><p>rebase (<code>git rebase master</code>)</p>
-<pre><code>              A---B---C topic
-             /
-D---E---F---G master</code></pre></li>
+<li>Идентификаторы переменных такие же, как в C++</li>
+<li>Имена функций и макросов регистронезависимы</li>
+<li>Основные структуры языка:
+<ul>
+<li>условные операторы и циклы (<code>if</code>, <code>foreach</code>)</li>
+<li>функции и макросы (<code>function</code>, <code>macro</code>)</li>
+<li>модули (<code>include</code>)</li>
+</ul></li>
+<li>Точка входа — файл <code>CMakeLists.txt</code></li>
+<li>Режимы запуска
+<ul>
+<li><code>cmake &lt;dir&gt;</code> — запускает <code>&lt;dir&gt;/CMakeLists.txt</code></li>
+<li><code>cmake -P &lt;script&gt;</code> — режим скрипта</li>
+<li><code>cmake -E &lt;cmd&gt;</code> — командный режим</li>
+<li>другие режимы</li>
+</ul></li>
 </ul>
-</section>
-    </div>
-  </div>
-
-  <script src="https://rawgit.com/hakimel/reveal.js/master/lib/js/head.min.js"></script>
-  <script src="https://rawgit.com/hakimel/reveal.js/master/js/reveal.js"></script>
-
-  <script>
-
-      // Full list of configuration options available at:
-      // https://github.com/hakimel/reveal.js#configuration
-      Reveal.initialize({
-        // Display the page number of the current slide
-        slideNumber: true,
-        // Push each slide change to the browser history
-        history: true,
-        // Vertical centering of slides
-        center: true,
-        // Transition style
-        transition: 'convex', // none/fade/slide/convex/concave/zoom
-        // The "normal" size of the presentation, aspect ratio will be preserved
-        // when the presentation is scaled to fit different resolutions. Can be
-        // specified using percentage units.
-        width: '90%',
-        height: '95%',
-        math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
-          config: 'TeX-AMS_HTML-full',
-          tex2jax: {
-            inlineMath: [['\\(','\\)']],
-            displayMath: [['\\[','\\]']],
-            balanceBraces: true,
-            processEscapes: false,
-            processRefs: true,
-            processEnvironments: true,
-            preview: 'TeX',
-            skipTags: ['script','noscript','style','textarea','pre','code'],
-            ignoreClass: 'tex2jax_ignore',
-            processClass: 'tex2jax_process'
-          },
-        },
-
-        // Optional reveal.js plugins
-        dependencies: [
-          { src: 'https://rawgit.com/hakimel/reveal.js/master/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-          { src: 'https://rawgit.com/hakimel/reveal.js/master/plugin/zoom-js/zoom.js', async: true },
-          { src: 'https://rawgit.com/hakimel/reveal.js/master/plugin/math/math.js', async: true },
-          { src: 'https://rawgit.com/hakimel/reveal.js/master/plugin/notes/notes.js', async: true }
-        ]
-      });
-    </script>
-    </body>
+</div><div id="переменные" class="slide section level2">
+<h1>Переменные</h1>
+<ul>
+<li><code>VAL</code> — имя переменной</li>
+<li><code>${VAL}</code> — разыменование переменной, её значение</li>
+<li><code>set(VAL &quot;123 value&quot;)</code> — установка значения переменной</li>
+<li><code>set(VAL 1 2 3) === set(VAL &quot;1;2;3&quot;)</code> — списки</li>
+<li><p>Значение переменных можно передавать в строке ввода:</p>
+<pre><code>$ cmake -DMYVAL=&quot;value&quot; -DMYVAL2=123 -DMYVAL3=ON</code></pre></li>
+<li><code>option(MYVAL &quot;Опциональная переменная&quot; ON)</code> — может быть <code>ON</code>, <code>OFF</code></li>
+<li><code>$ENV{HOME}</code> — доступ к переменным окружения</li>
+<li>Важные переменные: <code>CMAKE_PREFIX_PATH</code>, <code>CMAKE_PROGRAM_PATH</code>, <code>CMAKE_TOOLCHAIN_FILE</code></li>
+<li>Стандартные переменные: <code>CMAKE_SOURCE_DIR</code>, <code>CMAKE_CURRENT_SOURCE_DIR</code>, <code>CMAKE_BINARY_DIR</code>, <code>CMAKE_CURRENT_BINARY_DIR</code>, <code>CMAKE_CURRENT_LIST_DIR</code></li>
+</ul>
+</div>
+<div id="примеры" class="title-slide slide section level1"><h1>Примеры</h1></div><div id="mwe-minimal-workable-example" class="slide section level2">
+<h1>MWE (Minimal Workable Example)</h1>
+<div class="sourceCode" id="cb3"><pre class="sourceCode cmake"><code class="sourceCode cmake"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">cmake_minimum_required</span>(<span class="ot">VERSION</span> 3.9)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw">project</span>(example <span class="ot">VERSION</span> 0.1.0 <span class="ot">LANGUAGES</span> <span class="ot">CXX</span> <span class="ot">DESCRIPTION</span> <span class="st">&quot;la-la-la&quot;</span>)</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="kw">set</span>(<span class="dv">CMAKE_CXX_STANDARD</span> 17)</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="kw">include</span>(CTest)</a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="kw">file</span>(<span class="ot">GLOB</span> SOURCES src/*.cpp)</a>
+<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="kw">add_library</span>(unit <span class="ot">STATIC</span> <span class="dv">${</span>SOURCES<span class="dv">}</span>) <span class="co"># libunit.a</span></a>
+<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="kw">target_include_directories</span>(unit <span class="ot">PUBLIC</span> include)</a>
+<a class="sourceLine" id="cb3-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb3-12" data-line-number="12"><span class="kw">add_executable</span>(example app/main.cpp)</a>
+<a class="sourceLine" id="cb3-13" data-line-number="13"><span class="kw">target_link_libraries</span>(example <span class="ot">PUBLIC</span> unit m dl)</a>
+<a class="sourceLine" id="cb3-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb3-15" data-line-number="15"><span class="kw">add_test</span>(<span class="ot">NAME</span> simple_test <span class="ot">COMMAND</span> example --filter sim --dir /tmp)</a>
+<a class="sourceLine" id="cb3-16" data-line-number="16"><span class="kw">set</span>_tests_properties(simple_test PROPERTIES PASS_REGULAR_EXPRESSION <span class="st">&quot;hello world&quot;</span>)</a></code></pre></div>
+</div><div id="пример-создания-пакета" class="slide section level2">
+<h1>Пример создания пакета</h1>
+<div class="sourceCode" id="cb4"><pre class="sourceCode cmake"><code class="sourceCode cmake"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">include</span>(GNUInstallDirs)</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="kw">install</span>(<span class="ot">DIRECTORY</span> include/ <span class="ot">DESTINATION</span> <span class="dv">${CMAKE_INSTALL_INCLUDEDIR}</span>)</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="kw">install</span>(<span class="ot">TARGETS</span> example unit</a>
+<a class="sourceLine" id="cb4-5" data-line-number="5">    <span class="ot">RUNTIME</span> <span class="ot">DESTINATION</span> <span class="dv">${CMAKE_INSTALL_BINDIR}</span></a>
+<a class="sourceLine" id="cb4-6" data-line-number="6">    <span class="ot">LIBRARY</span> <span class="ot">DESTINATION</span> <span class="dv">${CMAKE_INSTALL_LIBDIR}</span></a>
+<a class="sourceLine" id="cb4-7" data-line-number="7">    <span class="ot">ARCHIVE</span> <span class="ot">DESTINATION</span> <span class="dv">${CMAKE_INSTALL_LIBDIR}</span></a>
+<a class="sourceLine" id="cb4-8" data-line-number="8">)</a>
+<a class="sourceLine" id="cb4-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb4-10" data-line-number="10"><span class="kw">list</span>(<span class="ot">APPEND</span> <span class="dv">CPACK_GENERATOR</span> TGZ)</a>
+<a class="sourceLine" id="cb4-11" data-line-number="11"><span class="kw">set</span>(<span class="dv">CPACK_PACKAGE_VERSION_MAJOR</span> <span class="dv">${PROJECT_VERSION_MAJOR}</span>)</a>
+<a class="sourceLine" id="cb4-12" data-line-number="12"><span class="kw">set</span>(<span class="dv">CPACK_PACKAGE_VERSION_MINOR</span> <span class="dv">${PROJECT_VERSION_MINOR}</span>)</a>
+<a class="sourceLine" id="cb4-13" data-line-number="13"><span class="kw">set</span>(<span class="dv">CPACK_PACKAGE_VERSION_PATCH</span> <span class="dv">${PROJECT_VERSION_PATCH}</span>)</a>
+<a class="sourceLine" id="cb4-14" data-line-number="14"><span class="kw">set</span>(<span class="dv">CPACK_SYSTEM_NAME</span> <span class="dv">${CMAKE_SYSTEM_NAME}</span>-<span class="dv">${CMAKE_SYSTEM_PROCESSOR}</span>)</a>
+<a class="sourceLine" id="cb4-15" data-line-number="15"><span class="kw">set</span>(CPACK_PACKAGE_CONTACT <span class="st">&quot;MIET&quot;</span>)</a>
+<a class="sourceLine" id="cb4-16" data-line-number="16"><span class="kw">set</span>(<span class="dv">CPACK_DEBIAN_PACKAGE_DEPENDS</span> <span class="st">&quot;libfuse3 (&gt;= 3.2.0)&quot;</span>)</a>
+<a class="sourceLine" id="cb4-17" data-line-number="17"><span class="kw">include</span>(CPack)</a></code></pre></div>
+</div>
+<div id="связывание-проектов" class="title-slide slide section level1"><h1>Связывание проектов</h1></div><div id="экспорты" class="slide section level2">
+<h1>Экспорты</h1>
+<ul>
+<li>Связывание проектов можно осуществить с помощью экспорта целей</li>
+<li><code>find_package</code> позволяет осуществить подключение сторонних целей</li>
+<li>В CMake есть локальный реестр пакетов (<code>~/.cmake/packages</code>)</li>
+<li>С помощью <code>find_package</code> и <code>CMAKE_MODULE_PATH</code> можно экспортировать существующие библиотеки</li>
+</ul>
+</div><div id="install-дерево-и-export" class="slide section level2">
+<h1>Install-дерево и export</h1>
+<div class="sourceCode" id="cb5"><pre class="sourceCode cmake"><code class="sourceCode cmake"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">target_include_directories</span>(unit <span class="ot">PUBLIC</span> <span class="ot">$&lt;</span><span class="kw">INSTALL_INTERFACE</span><span class="ot">:include&gt;</span> <span class="ot">$&lt;</span><span class="kw">BUILD_INTERFACE</span><span class="ot">:</span><span class="dv">${CMAKE_SOURCE_DIR}</span><span class="ot">/include&gt;</span>)</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="kw">install</span>(<span class="ot">TARGETS</span> example unit <span class="ot">EXPORT</span> <span class="dv">${PROJECT_NAME}</span>-config</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">    <span class="ot">RUNTIME</span> <span class="ot">DESTINATION</span> <span class="dv">${CMAKE_INSTALL_BINDIR}</span></a>
+<a class="sourceLine" id="cb5-5" data-line-number="5">    <span class="ot">LIBRARY</span> <span class="ot">DESTINATION</span> <span class="dv">${CMAKE_INSTALL_LIBDIR}</span></a>
+<a class="sourceLine" id="cb5-6" data-line-number="6">    <span class="ot">ARCHIVE</span> <span class="ot">DESTINATION</span> <span class="dv">${CMAKE_INSTALL_LIBDIR}</span></a>
+<a class="sourceLine" id="cb5-7" data-line-number="7">)</a>
+<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="kw">install</span>(<span class="ot">EXPORT</span> <span class="dv">${PROJECT_NAME}</span>-config <span class="ot">NAMESPACE</span> my:: <span class="ot">DESTINATION</span> <span class="dv">${CMAKE_INSTALL_DATADIR}</span>/cmake/<span class="dv">${PROJECT_NAME}</span>)</a>
+<a class="sourceLine" id="cb5-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="kw">export</span>(<span class="ot">TARGETS</span> example unit <span class="ot">NAMESPACE</span> my:: <span class="ot">FILE</span> <span class="dv">${PROJECT_NAME}</span>-config.cmake)</a>
+<a class="sourceLine" id="cb5-11" data-line-number="11"><span class="kw">export</span>(PACKAGE <span class="dv">${PROJECT_NAME}</span>)</a></code></pre></div>
+<ul>
+<li>Локальное дерево сборки:
+<ul>
+<li><code>export(TARGETS ...)</code> — создание экспорт-файла в дереве сборки</li>
+<li><code>export(PACKAGE ...)</code> — создание ссылки в локальном реестре на каталог сборки</li>
+</ul></li>
+<li>Install-дерево:
+<ul>
+<li><code>install(TARGETS ... EXPORT ...)</code> — прописывание целей в экспорте</li>
+<li><code>install(EXPORT ...)</code> — установка экспорт-файла</li>
+</ul></li>
+</ul>
+</div><div id="использование-в-стороннем-проекте" class="slide section level2">
+<h1>Использование в стороннем проекте</h1>
+<div class="sourceCode" id="cb6"><pre class="sourceCode cmake"><code class="sourceCode cmake"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">find_package</span>(example <span class="ot">REQUIRED</span>)</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="kw">add_executable</span>(myprog <span class="dv">${</span>SRCS<span class="dv">}</span>)</a>
+<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="kw">target_link_libraries</span>(myprog my::unit)</a></code></pre></div>
+<ul>
+<li><p>Если проект <code>example</code> установлен по нестандартному пути <code>/path/to/example</code>, его можно указать в переменной окружения <code>CMAKE_PREFIX_PATH</code>:</p>
+<pre><code>$ export CMAKE_PREFIX_PATH+=:/path/to/example</code></pre></li>
+</ul>
+</div><div id="экспорты-для-сторонних-библиотек" class="slide section level2">
+<h1>Экспорты для сторонних библиотек</h1>
+<div class="sourceCode" id="cb8"><pre class="sourceCode cmake"><code class="sourceCode cmake"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="co"># Файл cmake/FindFuse.cmake</span></a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="kw">find_path</span>(FUSE_INC fuse3/fuse.h)</a>
+<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="kw">find_library</span>(FUSE_LIBS fuse3)</a>
+<a class="sourceLine" id="cb8-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb8-5" data-line-number="5"><span class="kw">add_library</span>(Fuse::fuse3 <span class="ot">INTERFACE</span> <span class="ot">IMPORTED</span>)</a>
+<a class="sourceLine" id="cb8-6" data-line-number="6"><span class="kw">set</span>_target_properties(Fuse::fuse3 PROPERTIES</a>
+<a class="sourceLine" id="cb8-7" data-line-number="7">    <span class="dv">INTERFACE_LINK_LIBRARIES</span> <span class="dv">${</span>FUSE_LIBS<span class="dv">}</span></a>
+<a class="sourceLine" id="cb8-8" data-line-number="8">    INTERFACE_INCLUDE_DIRECTORIES <span class="dv">${</span>FUSE_INC<span class="dv">}</span></a>
+<a class="sourceLine" id="cb8-9" data-line-number="9">)</a></code></pre></div>
+<p>Использование</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode cmake"><code class="sourceCode cmake"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">list</span>(APPNED <span class="dv">CMAKE_MODULE_PATH</span> <span class="dv">${CMAKE_SOURCE_DIR}</span>/cmake)</a>
+<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="co">#list(APPEND CMAKE_MODULE_PATH $ENV{CMAKE_MODULE_PATH})</span></a>
+<a class="sourceLine" id="cb9-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="kw">find_package</span>(Fuse <span class="ot">REQUIRED</span>)</a>
+<a class="sourceLine" id="cb9-5" data-line-number="5"><span class="kw">target_link_libraries</span>(myprog <span class="ot">PUBLIC</span> Fuse::fuse3)</a></code></pre></div>
+</div>
+<div id="дополнительная-функциональность" class="title-slide slide section level1"><h1>Дополнительная функциональность</h1></div><div id="подкаталоги" class="slide section level2">
+<h1>Подкаталоги</h1>
+<ul>
+<li><code>add_subdirectory</code> — добавление каталога, в котором есть <code>CMakeLists.txt</code></li>
+<li>Таргеты из других каталогов всегда read-only</li>
+<li><code>install</code> можно сделать только в той же директории, где находится таргет</li>
+</ul>
+<div class="sourceCode" id="cb10"><pre class="sourceCode cmake"><code class="sourceCode cmake"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">cmake_minimum_required</span>(<span class="ot">VERSION</span> 3.9)</a>
+<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="kw">project</span>(example <span class="ot">CXX</span>)</a>
+<a class="sourceLine" id="cb10-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb10-4" data-line-number="4"><span class="kw">file</span>(<span class="ot">GLOB</span> SRCS src/*cpp)</a>
+<a class="sourceLine" id="cb10-5" data-line-number="5"><span class="kw">add_library</span>(unit <span class="dv">${</span>SRCS<span class="dv">}</span>)</a>
+<a class="sourceLine" id="cb10-6" data-line-number="6"><span class="kw">add_subdirectory</span>(tests)</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode cmake"><code class="sourceCode cmake"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="co"># tests/CMakeLists.txt</span></a>
+<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="kw">add_executable</span>(testengine main.cpp)</a>
+<a class="sourceLine" id="cb11-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb11-4" data-line-number="4"><span class="kw">add_test</span>(first testengine -i one)</a>
+<a class="sourceLine" id="cb11-5" data-line-number="5"><span class="kw">add_test</span>(second testengine -i two)</a>
+<a class="sourceLine" id="cb11-6" data-line-number="6"><span class="kw">add_test</span>(third testengine -i three)</a></code></pre></div>
+</div><div id="тесты" class="slide section level2">
+<h1>Тесты</h1>
+<ul>
+<li>Добавление теста: <code>add_test(NAME name COMMAND cmd args)</code></li>
+<li>Добавление параметров тестирования <code>set_tests_properties</code>
+<ul>
+<li>возможности test suite (<code>FIXTURES_SETUP/REQUIRED/CLEANUP</code>)</li>
+<li>установка переменных окружения (<code>ENVIRONMENT</code>)</li>
+</ul></li>
+<li>Успешность теста — возвращаемое значение команды</li>
+<li>Аналог команды <code>expect</code> из linux</li>
+</ul>
+</div>
+</body>
 </html>
