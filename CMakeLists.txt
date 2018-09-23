@@ -17,10 +17,9 @@ add_subdirectory(lecture-4)
 
 set(INDEX_FILE ${CMAKE_CURRENT_BINARY_DIR}/index.rst)
 file(READ README.rst README_CONTENT)
-string(REGEX REPLACE "(lecture-[0-9]+)\\.(md|rst)" "\\1.html" README_CONTENT ${README_CONTENT})
+string(REGEX REPLACE "(lecture-[0-9]+)/index\\.rst" "\\1.html" README_CONTENT ${README_CONTENT})
 file(GENERATE OUTPUT ${INDEX_FILE} CONTENT ${README_CONTENT})
 
 add_html(index ${INDEX_FILE})
+target_link_libraries(index "-M title:'Master Programming'")
 add_html(nixos-setup nixos-setup.md)
-
-configure_file(GitHub.css GitHub.css COPYONLY)

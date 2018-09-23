@@ -1,5 +1,4 @@
 ---
-css: GitHub.css
 title: NixOS overview
 ---
 
