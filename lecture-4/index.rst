@@ -1,0 +1,232 @@
+==================
+Master programming
+==================
+
+-------------------
+Лекция №4 (Отладка)
+-------------------
+
+:Author: Игорь Шаронов
+:Date: 2018-03-10
+
+Из чего состоит программа?
+==========================
+
+Этапы сборки программы
+----------------------
+
+Полную сборку (``g++ -o exe main.cpp``) можно разбить на этапы:
+
+#. препроцессинг (``g++ -E``) → исходный файл для компиляции
+#. компиляция (``g++ -c``) → объектный файл
+#. создание библиотечного архива (``ar -r``) → статическая библиотека
+#. линковка (``ld`` или ``g++``) → исполняемый файл или динамическая библиотека
+
+Изучение объектного файла
+-------------------------
+
+Существуют несколько форматов объектных файлов:
+
+* COFF --- для Windows (ранее использовался в UNIX)
+* Mach-O --- Mac OS X, iOS
+* ELF --- для исполнимых файлов и динамических библиотек (Linux-системы)
+
+Основные секции:
+
+* .text --- секция кода
+* .data --- секция данных
+* .rodata --- секция констант
+* .bss --- секция неинициализированных данных
+
+Список символов
+---------------
+
+* Утилита для вывода списка символов в объектном файле -- ``nm`` (name mangling)
+* Метод подходит для объектных файлов, статических и динамических библиотек и исполнимых файлов::
+
+    $ nm fuse/elsimdrv | less
+
+    000000000066f000 d _GLOBAL_OFFSET_TABLE_
+    0000000000407f6a t _GLOBAL__sub_I_main
+    00000000004388b0 t _GLOBAL__sub_I__ZN7simfuse9simfuse_t13ioctl_commandIL13eldrv_ioctl_e3222850823EEEiPvS3_PKc
+    00000000004326a1 t _GLOBAL__sub_I__ZN7simfuse9simfuse_tC2ERKNSt7__cxx1112basic_stringIcSt11char_traitsIc...
+                     w __gmon_start__
+    0000000000450538 r __GNU_EH_FRAME_HDR
+                     U __gxx_personality_v0@@CXXABI_1.3
+    00000000004068f0 T _init
+    000000000066ea10 t __init_array_end
+    000000000066e9f0 t __init_array_start
+    000000000044e640 R _IO_stdin_used
+
+* Выводит смещение, тип символа и название функции (до манглинга)
+* Типы символов: undefined, weak, text, data, ... (``man nm``)
+
+Изучение секций
+---------------
+
+* Утилита ``readelf``
+* Выводит адреса секций, используемых библиотек, rpath, содержимого секций
+* Вывод всей доступной информации: ``$ readelf -W -a fuse/elsimdrv | less``
+* Вывод содержимого секции: ``$ readelf -p .text fuse/elsimdrv | less``
+* Добавлять свои секции можно через скрипты линковки
+* Есть способ добавлять символы в секции внутри исходного кода (зависит от компилятора)::
+
+    // если в глобальной пространстве имён
+    static int a; // .bss
+    const int B = 44; // .rodata
+    int bb[] = {0, 5, 8, 9}; // .data
+    // через атрибуты
+    extern void foobar() __attribute__((section("bar")));
+
+Динамическая и статическая линковки
+-----------------------------------
+
+* Статическая линковка --- линковка со объектыми файлами и статическими библиотеками
+* Динамическая линковка --- линковка с динамическими библиотеками
+  * только разрешение имён
+  * код не встраивается в объектный файл
+  * библиотеку можно подменить при вызове
+  * будет использован первый загруженный символ (``LD_PRELOAD``)
+  * so-версионность
+* Позиционно независимый код (``-fPIC``) для динамических объектов
+* Загрузку секций можно изменять с помощью ld-скриптов
+
+Как работает программа?
+=======================
+
+Запуск программы
+----------------
+
+* В действительности выполняется команда ``/lib/ld-linux-x86-64.so ./program``
+* Работа загрузчика динамических библиотек:
+  * найти все используемые динамические библиотеки
+  * для поиска используются:
+    * rpath объектного файла
+    * LD_LIBRARY_PATH
+    * LD_PRELOAD для перегрузки функций
+    * ``/etc/ld.so.cache``
+  * загрузка найденных библиотек и их зависимостей
+  * загрузка и запуск программы
+* ``ldd`` --- узнать список загружаемых библиотек
+* Если в программе нет динамической зависимости, загрузчик не используется
+
+Трассировка программы
+---------------------
+
+* ``ltrace`` позволяет выводить в реальном времени вызовы динамических библиотек
+* ``strace`` --- вывод системных вызовов
+* Системный вызов --- выполняется ядром (``man syscalls``)::
+
+    $ strace ls
+    execve("/nix/store/cb3slv3szhp46xkrczqw7mscy5mnk64l-coreutils-8.29/bin/ls", ["ls"], 0x7ffe1f4b0c50 /* 143 vars */) = 0
+    brk(NULL)                               = 0x2276000
+    mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7f3e0ff22000
+    access("/etc/ld-nix.so.preload", R_OK)  = -1 ENOENT (No such file or directory)
+    openat(AT_FDCWD, "/run/opengl-driver/lib/tls/haswell/x86_64/librt.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+    stat("/run/opengl-driver/lib/tls/haswell/x86_64", 0x7fffcefcb4e0) = -1 ENOENT (No such file or directory)
+    openat(AT_FDCWD, "/run/opengl-driver/lib/tls/haswell/librt.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+    stat("/run/opengl-driver/lib/tls/haswell", 0x7fffcefcb4e0) = -1 ENOENT (No such file or directory)
+    ...
+
+* ``strace -c`` --- простейший профайлер системных вызовов
+
+Как отладить программу?
+=======================
+
+Система отладки GDB
+-------------------
+
+* GDB --- GNU Debugger
+* Подобен интерпретатору
+* Есть скриптовый режим
+* Можно писать собственные плагины
+* Поддерживает режим TUI
+* Отладка крешдампов
+* Почему у меня не видно символов? Нужны отладочные символы:
+  * ``g++ -g -O0``
+  * ``cmake -DCMAKE_BUILD_TYPE=Debug <source_dir>`` --- дебаг-режим
+  * ``cmake -DCMAKE_BUILD_TYPE=Release <source_dir>`` --- релиз-режим (обычно соответствует ``-O3``)
+* ``gdb-server`` --- удалённая отладка
+
+Команды GDB
+-----------
+
+* ``gdb ./progname`` --- загрузка программы в отладчик
+* ``break`` или ``break <linenumber>`` --- точка останова
+* ``run [args]`` --- запуск программы с аргументами ``args``
+* ``continue`` --- продолжение выполнения программы
+* ``step`` (``stepi``), ``next`` (``nexti``) --- пошаговое выполнение
+* ``backtrace`` --- получение бэктрейса
+* ``frame <num>`` --- перейти на ``<num>`` уровень стека из бэктрейса
+* ``up``, ``down`` --- пемерещения по уровням стека
+* ``thread <num>`` --- перемещение по потокам
+* ``quit`` или комбинация Ctrl-D --- завершение отладки
+* можно писать только первые буквы команд
+
+Дополнительные системы отладки
+==============================
+
+Ещё способы отладки
+-------------------
+
+* Ключи компиляции: ``-Wall``, ``-pedantic``, ``-Wextra``, ``-fsanitize``
+* Запуск программы через memchecker
+* Valgrind::
+
+    ==8736== Invalid write of size 8
+    ==8736==    at 0x4C31133: memcpy@GLIBC_2.2.5 (in /lib/vgpreload_memcheck-amd64-linux.so)
+    ==8736==    by 0x4813B4: dma_copy_data (dma.c:48)
+    ==8736==    by 0x4815EE: dma_copy2d (dma.c:110)
+    ==8736==    by 0x47CFC0: copy_block_unsafe (copy_block.c:49)
+    ==8736==    by 0x47D549: copy_real_part (copy_block.c:259)
+    ==8736==    by 0x47DA75: copy_block_by_replicate_border (copy_block.c:362)
+    ==8736==    by 0x47E2C2: copy_block (copy_block.c:554)
+    ==8736==    by 0x480BB8: copy_output (parallel_context.c:60)
+    ==8736==    by 0x4810BE: wait_last (parallel_context.c:175)
+    ==8736==    by 0x47F681: iterate_through_static_tiles (tile_segmentation.c:436)
+    ==8736==    by 0x47FE71: tile_segmentation (tile_segmentation.c:567)
+    ==8736==    by 0x47233A: kernel_CombinePlane_3 (kernel_ChannelCombine.c:110)
+    ==8736==  Address 0x6bb1bc0 is 0 bytes after a block of size 307,200 alloc'd
+    ==8736==    at 0x4C2F126: memalign (in /lib/vgpreload_memcheck-amd64-linux.so)
+    ==8736==    by 0x454109: vxAllocatePlane (vx_image.c:203)
+    ==8736==    by 0x454974: vxInitializeImage (vx_image.c:341)
+    ==8736==    by 0x454A46: vxCreateImage (vx_image.c:358)
+    ==8736==    by 0x415DF4: main (sampleMinMaxLoc.c:65)
+
+Остановка в дебаггере при утечке памяти
+---------------------------------------
+
+.. class:: column50
+
+    .. code::
+
+        $ valgrind --vgdb=yes --vgdb-error=0 prog
+        ==20836== Memcheck, a memory error detector
+        ==20836== Copyright (C) 2002-2011, and GNU GPL'd, by Julian Seward et al.
+        ==20836== Using Valgrind-3.7.0 and LibVEX; rerun with -h for copyright info
+        ==20836== Command: /tmp/e
+        ==20836==
+        ==20836== (action at startup) vgdb me ...
+        ==20836==
+        ==20836== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+        ==20836==   /path/to/gdb /tmp/e
+        ==20836== and then give GDB the following command
+        ==20836==   target remote | vgdb --pid=20836
+        ==20836== --pid is optional if only one valgrind process is running
+        ==20836==
+
+.. class:: column50
+
+    .. code::
+
+        $ gdb ./prog
+        (gdb) target remote | vgdb
+        Remote debugging using | vgdb
+        relaying data between gdb and process 2418
+        Reading symbols from /lib/ld-linux.so.2...done.
+        Reading symbols from /usr/lib/debug/lib/ld-2.11.2.so.debug...done.
+        Loaded symbols for /lib/ld-linux.so.2
+        [Switching to Thread 2418]
+        0x001f2850 in _start () from /lib/ld-linux.so.2
+        (gdb) ...
+        (gdb) monitor exit

@@ -7,10 +7,16 @@ find_package(docproc REQUIRED COMPONENTS plantuml dot)
 
 add_library(metadata metadata.yml)
 
-add_subdirectory(lecture-3)
+set(SLIDY_TEMPLATE ${CMAKE_SOURCE_DIR}/templates/slidy.thtml)
+set(REVEALJS_TEMPLATE ${CMAKE_SOURCE_DIR}/templates/revealjs.thtml)
 
-set(INDEX_FILE ${CMAKE_CURRENT_BINARY_DIR}/index.md)
-file(READ README.md README_CONTENT)
+add_subdirectory(lecture-1)
+add_subdirectory(lecture-2)
+add_subdirectory(lecture-3)
+add_subdirectory(lecture-4)
+
+set(INDEX_FILE ${CMAKE_CURRENT_BINARY_DIR}/index.rst)
+file(READ README.rst README_CONTENT)
 string(REGEX REPLACE "(lecture-[0-9]+)\\.(md|rst)" "\\1.html" README_CONTENT ${README_CONTENT})
 file(GENERATE OUTPUT ${INDEX_FILE} CONTENT ${README_CONTENT})
 
