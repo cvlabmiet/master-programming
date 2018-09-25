@@ -11,6 +11,6 @@
 #. `CMake <lecture-3/index.rst>`_
 #. `Отладка <lecture-4/index.rst>`_
 #. `Тестирование <lecture-5/index.rst>`_
-#. `Методики программирования на C++ (часть 1)<lecture-6/index.rst>`_
-#. `Методики программирования на C++ (часть 2)<lecture-7/index.rst>`_
+#. `Методики программирования на C++ (часть 1) <lecture-6/index.rst>`_
+#. `Методики программирования на C++ (часть 2) <lecture-7/index.rst>`_
 #. `Разработка в команде <lecture-8/index.rst>`_
