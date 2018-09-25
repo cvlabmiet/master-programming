@@ -5,11 +5,11 @@
   <meta name="generator" content="pandoc">
   <meta name="author" content="Игорь Шаронов">
   <meta name="dcterms.date" content="2018-09-09">
-  <title>Master programming</title>
+  <title>Master Programming</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="https://rawgit.com/hakimel/reveal.js/master/css/reveal.css">
+  <link rel="stylesheet" href="https://rawgit.com/hakimel/reveal.js/master/css/reveal.css" data-external="1">
   <style type="text/css">
       code{white-space: pre-wrap;}
       span.smallcaps{font-variant: small-caps;}
@@ -79,7 +79,7 @@ code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="https://rawgit.com/hakimel/reveal.js/master/css/theme/serif.css" id="theme">
+  <link rel="stylesheet" href="https://rawgit.com/hakimel/reveal.js/master/css/theme/serif.css" id="theme" data-external="1">
   <!-- Printing and PDF exports -->
   <script>
     var link = document.createElement( 'link' );
@@ -108,7 +108,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="title-slide">
   <h1 class="title">Master programming</h1>
-  <p class="subtitle">Лекция №3 (Работа с git)</p>
+  <p class="subtitle">Лекция №2 (Работа с git)</p>
   <p class="author">Игорь Шаронов</p>
   <p class="date">2018-09-09</p>
 </section>
@@ -165,9 +165,9 @@ new lines from the patch
 <li>sha-1</li>
 <li>sha-2: sha-224, sha-256, sha-384, sha-512</li>
 <li><p>Быстрая идентификация сообщения/файла/пароля</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb3-1" data-line-number="1">$ <span class="bu">echo</span> -n <span class="st">&#39;Master programming&#39;</span> <span class="kw">|</span> <span class="ex">md5sum</span> -</a>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb3-1" data-line-number="1">$ <span class="bu">echo</span> -n <span class="st">'Master programming'</span> <span class="kw">|</span> <span class="ex">md5sum</span> -</a>
 <a class="sourceLine" id="cb3-2" data-line-number="2"><span class="ex">01e171232a1aa47e9fd2ae0530782b1f</span>  -</a>
-<a class="sourceLine" id="cb3-3" data-line-number="3">$ <span class="bu">echo</span> -n <span class="st">&#39;master programming&#39;</span> <span class="kw">|</span> <span class="ex">md5sum</span> -</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">$ <span class="bu">echo</span> -n <span class="st">'master programming'</span> <span class="kw">|</span> <span class="ex">md5sum</span> -</a>
 <a class="sourceLine" id="cb3-4" data-line-number="4"><span class="ex">e774d0115e01e1b735a7a1a9a3a85f09</span>  -</a></code></pre></div></li>
 <li>Коллизии хешей</li>
 </ul>
@@ -211,7 +211,7 @@ new lines from the patch
 <a class="sourceLine" id="cb6-5" data-line-number="5"><span class="ex">branches</span>  config  description  HEAD  hooks  info  objects  refs</a>
 <a class="sourceLine" id="cb6-6" data-line-number="6">$ <span class="fu">git</span> init /tmp/repo</a>
 <a class="sourceLine" id="cb6-7" data-line-number="7">$ <span class="bu">cd</span> /tmp/repo</a>
-<a class="sourceLine" id="cb6-8" data-line-number="8"><span class="ex">repo</span> (master#) $ <span class="bu">echo</span> <span class="st">&#39;Empty repo&#39;</span> <span class="op">&gt;</span> README.md</a>
+<a class="sourceLine" id="cb6-8" data-line-number="8"><span class="ex">repo</span> (master#) $ <span class="bu">echo</span> <span class="st">'Empty repo'</span> <span class="op">&gt;</span> README.md</a>
 <a class="sourceLine" id="cb6-9" data-line-number="9"><span class="ex">repo</span> (master#) $ <span class="fu">git</span> add README.md</a>
 <a class="sourceLine" id="cb6-10" data-line-number="10"><span class="ex">repo</span> (master#) $ <span class="fu">git</span> ci -am <span class="st">&quot;Initial commit&quot;</span></a>
 <a class="sourceLine" id="cb6-11" data-line-number="11"><span class="ex">repo</span> (master) $ <span class="fu">git</span> remote add origin /tmp/server/repo</a>
@@ -266,8 +266,8 @@ new lines from the patch
     </div>
   </div>
 
-  <script src="https://rawgit.com/hakimel/reveal.js/master/lib/js/head.min.js"></script>
-  <script src="https://rawgit.com/hakimel/reveal.js/master/js/reveal.js"></script>
+  <script src="https://rawgit.com/hakimel/reveal.js/master/lib/js/head.min.js" data-external="1"></script>
+  <script src="https://rawgit.com/hakimel/reveal.js/master/js/reveal.js" data-external="1"></script>
 
   <script>
 
@@ -277,18 +277,18 @@ new lines from the patch
         // Display the page number of the current slide
         slideNumber: true,
         // Push each slide change to the browser history
-        history: true,
+        history: false,
         // Vertical centering of slides
-        center: true,
+        center: false,
         // Transition style
-        transition: 'convex', // none/fade/slide/convex/concave/zoom
+        transition: 'cube', // none/fade/slide/convex/concave/zoom
         // The "normal" size of the presentation, aspect ratio will be preserved
         // when the presentation is scaled to fit different resolutions. Can be
         // specified using percentage units.
-        width: '90%',
+        width: '95%',
         height: '95%',
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          mathjax: '',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
