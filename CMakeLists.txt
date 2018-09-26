@@ -4,6 +4,7 @@ project(master-programming VERSION 0.1.0 LANGUAGES NONE
 )
 
 find_package(docproc REQUIRED COMPONENTS plantuml dot)
+find_program(PANDOC_PIPE pandoc-pipe)
 
 add_library(metadata metadata.yml)
 
@@ -16,6 +17,7 @@ add_subdirectory(lecture-3)
 add_subdirectory(lecture-4)
 add_subdirectory(lecture-5)
 add_subdirectory(lecture-6)
+add_subdirectory(lecture-7)
 
 set(INDEX_FILE ${CMAKE_CURRENT_BINARY_DIR}/index.rst)
 file(READ README.rst README_CONTENT)
