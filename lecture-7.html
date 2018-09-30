@@ -1,302 +1,559 @@
-<!DOCTYPE html>
-<html lang="ru_RU">
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru-RU" xml:lang="ru-RU">
 <head>
-  <meta charset="utf-8">
-  <meta name="generator" content="pandoc">
-  <meta name="author" content="Игорь Шаронов">
-  <meta name="dcterms.date" content="2018-03-24">
-  <title>Master programming</title>
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="https://rawgit.com/hakimel/reveal.js/master/css/reveal.css">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Игорь Шаронов" />
+  <meta name="date" content="2018-10-03" />
+  <title>Master Programming</title>
   <style type="text/css">
       code{white-space: pre-wrap;}
       span.smallcaps{font-variant: small-caps;}
       span.underline{text-decoration: underline;}
       div.column{display: inline-block; vertical-align: top; width: 50%;}
   </style>
-  <link rel="stylesheet" href="https://rawgit.com/hakimel/reveal.js/master/css/theme/serif.css" id="theme">
-  <!-- Printing and PDF exports -->
-  <script>
-    var link = document.createElement( 'link' );
-    link.rel = 'stylesheet';
-    link.type = 'text/css';
-    link.href = window.location.search.match( /print-pdf/gi ) ? 'https://rawgit.com/hakimel/reveal.js/master/css/print/pdf.css' : 'https://rawgit.com/hakimel/reveal.js/master/css/print/paper.css';
-    document.getElementsByTagName( 'head' )[0].appendChild( link );
-  </script>
-  <!--[if lt IE 9]>
-  <script src="https://rawgit.com/hakimel/reveal.js/master/lib/js/html5shiv.js"></script>
-  <![endif]-->
+  <style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print" href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" data-external="1" />
   <style type="text/css">
       .reveal h1 { font-size: 2em; }
       .reveal h2 { font-size: 2em; }
       .reveal h3 { font-size: 1em; }
       .reveal pre code { max-height: 600px; }
+      div.column33 {display: inline-block; vertical-align: top; width: 32%;}
+      div.column66 {display: inline-block; vertical-align: top; width: 66%;}
+      div.column50 {display: inline-block; vertical-align: top; width: 49%;}
+      .strike {text-decoration: line-through;}
   </style>
+  <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js" charset="utf-8" type="text/javascript" data-external="1"></script>
 </head>
 <body>
-  <div class="reveal">
-    <div class="slides">
-
-<section id="title-slide">
+<div class="slide titlepage">
   <h1 class="title">Master programming</h1>
-  <p class="subtitle">Лекция №7 (Методики программирования на C++)</p>
-  <p class="author">Игорь Шаронов</p>
-  <p class="date">2018-03-24</p>
-</section>
+  <p class="subtitle">Лекция №7 (Современный C++)</p>
+  <p class="author">
+Игорь Шаронов
+  </p>
+  <p class="date">2018-10-03</p>
+</div>
+<div id="обзор-стандартов" class="title-slide slide section level1"><h1>Обзор стандартов</h1></div><div id="возможности-языка-на-примере-стандарта-c98" class="slide section level2">
+<h1>Возможности языка на примере стандарта C++98</h1>
+<ul>
+<li><a href="https://isocpp.org" class="uri">https://isocpp.org</a>, <a href="https://cppreference.com" class="uri">https://cppreference.com</a></li>
+<li>STL (1994 г.)— не является частью языка, но входит в стандарт</li>
+<li>Конструкторы и деструкторы</li>
+<li>Наследование и полиморфизм</li>
+<li>Шаблонные классы</li>
+<li>Шаблонные функции</li>
+<li>Специализации шаблонов и перегрузка функций</li>
+<li>Константность объектов, методов, выражений (<code class="sourceCode cpp"><span class="kw">constexpr</span></code>)</li>
+<li>Пространства имён</li>
+<li>Исключения</li>
+<li>Строже типизирован, чем язык C</li>
+</ul>
+</div><div id="инкапсуляция-наследование-полиморфизм" class="slide section level2">
+<h1>Инкапсуляция, наследование, полиморфизм</h1>
+<ul>
+<li>Инкапсуляция позволяет прятать сущности:
+<ul>
+<li>Агрегированные объекты</li>
+<li>Наследование — способ реализации интерфейсов</li>
+</ul></li>
+<li>Наследование — компилятор по типу класса определяет таблицу функций</li>
+<li>Наследование в полиморфизме:
+<ul>
+<li>Справедливо только для указателей или ссылок на базовый класс</li>
+<li>Работает в рантайме</li>
+<li>Компилятор не может по типу указателя базового класса определить тип объекта</li>
+<li>Каждый объект содержит указатель на таблицу функций (методов)
+<ul>
+<li>Таблицы функций используются одни и те же для одинаковых типов</li>
+</ul></li>
+</ul></li>
+</ul>
+</div><div id="перегрузка" class="slide section level2">
+<h1>Перегрузка</h1>
+<ul>
+<li>Перегрузка функций возможна только в сигнатуре
+<ul>
+<li>Возвращаемое значение не входим в сигнатуру (в C++)</li>
+</ul></li>
+<li>Специализация класса — это тоже вид перегрузки</li>
+<li>Частичная специализация класса
+<ul>
+<li>Частичной специализации функций не бывает (не отличимо от обычной перегрузки)</li>
+</ul></li>
+<li>Можно делать только специализации
+<ul>
+<li>Более общий шаблонный класс останется пустым</li>
+<li>Сигнализация об ошибке будет только в том случае, если не подойдёт ни одна специализация</li>
+</ul></li>
+</ul>
+</div><div id="sfinae" class="slide section level2">
+<h1>SFINAE</h1>
+<ul>
+<li><a href="http://en.cppreference.com/w/cpp/language/sfinae">Substitution Failure Is Not A Error</a></li>
+<li>Если вывод специализации приводит к ошибке, то
+<ul>
+<li>данная специализация отбрасывается</li>
+<li>переходим к следующей специализации</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">template</span> &lt;<span class="kw">class</span> T&gt; <span class="dt">int</span> f(<span class="kw">typename</span> T::B*);</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">template</span> &lt;<span class="kw">class</span> T&gt; <span class="dt">int</span> f(T);</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="dt">int</span> i = f&lt;<span class="dt">int</span>&gt;(<span class="dv">0</span>); <span class="co">// uses second overload</span></a></code></pre></div>
+</div><div id="шаблоны" class="slide section level2">
+<h1>Шаблоны</h1>
+<ul>
+<li>Уровень компиляции</li>
+<li><code class="sourceCode cpp"><span class="kw">template</span>&lt;<span class="kw">class</span> T&gt; <span class="dt">int</span> func()</code>, где <code>T</code> — шаблонный параметр</li>
+<li><code class="sourceCode cpp">func&lt;<span class="dt">int</span>&gt;()</code>, где <code class="sourceCode cpp"><span class="dt">int</span></code> — аргумент шаблона</li>
+<li>Параметр шаблона может быть не-типовым (int, char, short, …)
+<ul>
+<li><code class="sourceCode cpp"><span class="kw">template</span>&lt;<span class="dt">size_t</span> N&gt; <span class="dt">int</span> get()</code></li>
+<li>Исключения: это не указатель и не тип <code class="sourceCode cpp"><span class="dt">double</span></code> или <code class="sourceCode cpp"><span class="dt">float</span></code></li>
+</ul></li>
+<li>Специализация функции — <code class="sourceCode cpp"><span class="kw">template</span>&lt;&gt; <span class="dt">int</span> func&lt;<span class="dt">float</span>&gt;()</code></li>
+</ul>
+</div>
+<div id="обзор-стандарта-c03" class="title-slide slide section level1"><h1>Обзор стандарта C++03</h1></div><div id="нововведения" class="slide section level2">
+<h1>Нововведения</h1>
+<ul>
+<li>Развивается библиотека Boost</li>
+<li>Technical Report</li>
+<li>Больше особо нечем гордиться</li>
+</ul>
+</div>
+<div id="обзор-стандарта-c11" class="title-slide slide section level1"><h1>Обзор стандарта C++11</h1></div><div id="новые-возможности-языка" class="slide section level2">
+<h1>Новые возможности языка</h1>
+<ul>
+<li>Ключевое слово <code class="sourceCode cpp"><span class="kw">auto</span></code>
+<ul>
+<li><code class="sourceCode cpp"><span class="dt">int</span> k;</code> == <code class="sourceCode cpp"><span class="kw">decltype</span>(k) v;</code></li>
+</ul></li>
+<li>Возвращаемое значение может быть написано после имени функции <code class="sourceCode cpp"><span class="kw">auto</span> func(<span class="dt">char</span> x) -&gt; <span class="dt">int</span>;</code></li>
+<li>Появление неименнованных функций (лямбда-выражения)
+<ul>
+<li><code class="sourceCode cpp"><span class="kw">auto</span> f = [](<span class="dt">int</span> x) -&gt; <span class="dt">double</span> { <span class="cf">return</span> <span class="bu">std::</span>pow(x, <span class="fl">1.35</span>); };</code></li>
+<li><code class="sourceCode cpp">[a, &amp;b, =, &amp;]</code> — замыкание области видимости: по значению, по ссылке, замыкания всей области видимости</li>
+</ul></li>
+<li><code class="sourceCode cpp"><span class="kw">constexpr</span></code> — функция выполнения на уровне компиляции <code class="sourceCode cpp"><span class="dt">int</span> n[func(<span class="dv">79</span>)]</code></li>
+<li>Универсальная инициализация через <code>{}</code>
+<ul>
+<li><code class="sourceCode cpp">myclass s(<span class="dv">7</span>, <span class="dv">9</span>, <span class="dv">8</span>)</code> и <code class="sourceCode cpp">myclass s{<span class="dv">7</span>, <span class="dv">9</span>, <span class="dv">8</span>}</code> — одно и то же</li>
+<li>теперь структуры без конструктора и с конструктором могут быть проинициализированы одинаково</li>
+</ul></li>
+<li>xvalue, rvalue, prvalue — move-нотации</li>
+<li>Цикл по коллекции <code class="sourceCode cpp"><span class="cf">for</span> (<span class="at">const</span> <span class="kw">auto</span>&amp; x : array) { ... }</code></li>
+</ul>
+</div><div id="новые-возможности-языка-продолжение" class="slide section level2">
+<h1>Новые возможности языка (продолжение)</h1>
+<ul>
+<li><code class="sourceCode cpp"><span class="kw">override</span></code>, <code class="sourceCode cpp"><span class="kw">final</span></code> — помогает отлавливать неправильные переопределения в полиморфизме</li>
+<li><code class="sourceCode cpp"><span class="kw">noexcept</span></code> — постепенный отказ от перечисления исключений в сигнатуре</li>
+<li><code class="sourceCode cpp"><span class="kw">nullptr</span></code> вместо <code class="sourceCode cpp">NULL</code> и введение <code class="sourceCode cpp"><span class="dt">nullptr_t</span></code></li>
+<li><code class="sourceCode cpp"><span class="kw">enum</span> <span class="kw">class</span></code> (всё ещё нет автоматического преобразования в строку)</li>
+<li><code class="sourceCode cpp"><span class="kw">static_assert</span></code> — ассерт на уровне компиляции</li>
+<li><code class="sourceCode cpp"><span class="kw">alignas</span>(T)</code> — выравнивание данных как у <code>T</code></li>
+<li><strong>Вариативные шаблоны</strong></li>
+</ul>
+</div><div id="расширение-stl" class="slide section level2">
+<h1>Расширение STL</h1>
+<ul>
+<li><code>std::tuple</code>, <code>std::array</code>, <code>std::unordered_map/set</code>, <code>std::chrono</code></li>
+<li><code>std::thread</code>, <code>std::mutex</code>, <code>std::conditional_variable</code>, <code>std::atomic</code> и <code>thread_local</code></li>
+<li>Методы <code>emplace</code></li>
+<li><code>std::shared_ptr</code>, <code>std::weak_ptr</code>, <code>std::unique_ptr</code></li>
+<li><code>std::function</code></li>
+<li><code>std::future</code>, <code>std::promise</code></li>
+<li><code>std::hash</code></li>
+<li><code>std::type_index</code></li>
+<li>…</li>
+</ul>
+</div>
+<div id="обзор-стандарта-c14" class="title-slide slide section level1"><h1>Обзор стандарта C++14</h1></div><div id="новые-возможности-языка-1" class="slide section level2">
+<h1>Новые возможности языка</h1>
+<ul>
+<li>Автоматический вывод возвращаемого значения <code class="sourceCode cpp"><span class="kw">auto</span> func();</code></li>
+<li><code class="sourceCode cpp"><span class="kw">decltype</span>(<span class="kw">auto</span>)</code> — там, где <code class="sourceCode cpp"><span class="kw">auto</span></code> отбрасывает слишком много</li>
+<li>Шаблонные переменные <code class="sourceCode cpp"><span class="kw">template</span>&lt;<span class="kw">class</span> T&gt; T xxx = T(<span class="fl">2.78962161L</span>);</code></li>
+<li><p>Агрегатная инициализация</p>
+<blockquote>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">struct</span> abc</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">    <span class="dt">int</span> x = <span class="dv">47</span>;</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">    <span class="dt">bool</span> f = <span class="kw">true</span>;</a>
+<a class="sourceLine" id="cb2-5" data-line-number="5">    <span class="bu">std::</span>string s = <span class="st">&quot;abc&quot;</span>;</a>
+<a class="sourceLine" id="cb2-6" data-line-number="6">};</a></code></pre></div>
+</blockquote></li>
+<li>Литералы двоичных чисел и разделители разрядов <code class="sourceCode cpp"><span class="bn">0b10110</span></code>, <code class="sourceCode cpp"><span class="dv">100'500</span></code></li>
+<li>Обобщённые лямбда-выражения <code class="sourceCode cpp">[](<span class="kw">auto</span> x) { <span class="cf">return</span> x*x + <span class="dv">1</span>; }</code></li>
+<li>Атрибут <code class="sourceCode cpp">[[<span class="at">deprecated</span>]</code></li>
+</ul>
+</div><div id="нововведения-в-stl" class="slide section level2">
+<h1>Нововведения в STL</h1>
+<ul>
+<li>Пользовательские литералы <code class="sourceCode cpp"><span class="kw">auto</span> dur = <span class="er">60s</span>;</code></li>
+<li><code class="sourceCode cpp"><span class="bu">std::</span>cbegin/<span class="bu">std::</span>cend</code></li>
+<li><code class="sourceCode cpp"><span class="bu">std::</span>make_index_sequence</code> для <code class="sourceCode cpp"><span class="bu">std::</span>integral_constant</code> полезен при разворачивании кортежа в аргументы</li>
+</ul>
+</div>
+<div id="обзор-стандарта-c17" class="title-slide slide section level1"><h1>Обзор стандарта C++17</h1></div><div id="новые-возможности-языка-2" class="slide section level2">
+<h1>Новые возможности языка</h1>
+<ul>
+<li>Упакованные выражения <code class="sourceCode cpp"><span class="kw">template</span>&lt;<span class="kw">class</span>... Ts&gt; <span class="dt">bool</span> foo(Ts... args) { <span class="cf">return</span> (args &amp;&amp; ...); }</code></li>
+<li>Инициализация переменной в <code class="sourceCode cpp"><span class="cf">if</span></code> и <code class="sourceCode cpp"><span class="cf">switch</span></code>: <code class="sourceCode cpp"><span class="cf">if</span> (<span class="kw">auto</span> a = getA(); a.isValid()) ...</code></li>
+<li>Автоматический вывод аргументов шаблона класса <code class="sourceCode cpp"><span class="bu">std::</span>vector v{{<span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>}}</code></li>
+<li>Structured binding declarations <code class="sourceCode cpp"><span class="at">const</span> <span class="kw">auto</span>&amp; [x, y] = mystruct_object;</code></li>
+<li><code class="sourceCode cpp">[[<span class="at">fallthrough</span>]]</code>, <code class="sourceCode cpp">[[<span class="at">nodiscard</span>]]</code>, <code class="sourceCode cpp">[[<span class="at">maybe_unused</span>]]</code></li>
+<li>Вложенные пространства имён <code class="sourceCode cpp"><span class="kw">namespace</span> A::B {}</code> == <code class="sourceCode cpp"><span class="kw">namespace</span> A { <span class="kw">namespace</span> B {} }</code></li>
+<li><code class="sourceCode cpp"><span class="cf">if</span> <span class="kw">constexpr</span></code> взамен <code class="sourceCode cpp"><span class="bu">std::</span>enable_if</code> и SFINAE</li>
+</ul>
+</div><div id="нововведения-в-stl-1" class="slide section level2">
+<h1>Нововведения в STL</h1>
+<ul>
+<li><code class="sourceCode cpp"><span class="bu">std::</span>optional</code>, <code class="sourceCode cpp"><span class="bu">std::</span>variant</code>, <code class="sourceCode cpp"><span class="bu">std::</span>any</code></li>
+<li>Поддержка параллельных алгоритмов</li>
+<li>Символьные литералы для UTF-8 <code class="sourceCode cpp">u<span class="dv">8</span></code>, <code class="sourceCode cpp">u</code>, <code class="sourceCode cpp">U</code></li>
+<li><code class="sourceCode cpp"><span class="bu">std::</span>filesystem</code></li>
+<li><code class="sourceCode cpp"><span class="bu">std::</span>string_view</code></li>
+<li><code>hardware_constructive_interference_size</code> и <code>hardware_destructive_interference_size</code> — влияние аппаратного кеша</li>
+<li><code class="sourceCode cpp"><span class="bu">std::</span>byte</code></li>
+</ul>
+</div>
+<div id="обзор-современных-особенностей-языка-c" class="title-slide slide section level1"><h1>Обзор современных особенностей языка C++</h1></div><div id="о-using-директиве" class="slide section level2">
+<h1>О using директиве</h1>
+<ul>
+<li>Алиас типа: <code class="sourceCode cpp"><span class="kw">using</span> type_int = <span class="dt">int</span>;</code></li>
+<li>Шаблонные алиас типа: <code class="sourceCode cpp"><span class="kw">template</span>&lt;<span class="kw">class</span> T&gt; <span class="kw">using</span> my_vector = <span class="bu">std::</span>vector&lt;T&gt;;</code></li>
+<li>Расширение области видимости:
+<ul>
+<li>пространства имён <code class="sourceCode cpp"><span class="kw">using</span> <span class="kw">namespace</span> std;</code></li>
+<li>методов базового класса <code class="sourceCode cpp"><span class="kw">using</span> Base::method1;</code>
+<ul>
+<li>попадают все сигнатуры <code>method1</code></li>
+</ul></li>
+<li>конструкторов <code class="sourceCode cpp"><span class="kw">using</span> Base::Base</code>
+<ul>
+<li>если класс шаблонный, необходимо указать имя самого класса <code class="sourceCode cpp"><span class="kw">using</span> Derived::Base::Base;</code></li>
+<li>наследуются все конструкторы из <code>Base</code>, кроме автогенерируемых конструкторов <code>Base</code></li>
+</ul></li>
+</ul></li>
+<li>Проблема пересечения имён</li>
+</ul>
+</div><div id="о-rvalue" class="slide section level2">
+<h1>О rvalue</h1>
+<ul>
+<li><p>Copy elision</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb3-1" data-line-number="1">T f() { <span class="cf">return</span> T(); }</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">T x = f(); <span class="co">// конструктор копирования не будет вызван</span></a></code></pre></div></li>
+<li><p>Типы ссылок</p>
+<div class="column66">
+<ul>
+<li>lvalue — обычная ссылка <code>&amp;</code> или то, что <strong>имеет имя</strong></li>
+<li>rvalue — <code>&amp;&amp;</code>, используется чтобы “переместить” содержимое объекта</li>
+<li>prvalue — результат выражения или то, что <strong>не имеет имени</strong> (42, например)</li>
+<li>xvalue — временный объект, который имеет имя, но являет rvalue</li>
+<li>glvalue — обобщение xvalue и lvalue</li>
+</ul>
+</div>
+<div class="column33">
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (0)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="267pt" height="188pt" viewBox="0.00 0.00 266.74 188.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 184)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-184 262.7434,-184 262.7434,4 -4,4"></polygon>
+<!-- expression -->
+<g id="node1" class="node">
+<title>expression</title>
+<ellipse fill="none" stroke="#000000" cx="124.4469" cy="-162" rx="55.4913" ry="18"></ellipse>
+<text text-anchor="middle" x="124.4469" y="-158.3" font-family="Times-Roman" font-size="14.00" fill="#000000">expression</text>
+</g>
+<!-- glvalue -->
+<g id="node2" class="node">
+<title>glvalue</title>
+<ellipse fill="none" stroke="#000000" cx="78.4469" cy="-90" rx="39.7935" ry="18"></ellipse>
+<text text-anchor="middle" x="78.4469" y="-86.3" font-family="Times-Roman" font-size="14.00" fill="#000000">glvalue</text>
+</g>
+<!-- expression&#45;&gt;glvalue -->
+<g id="edge1" class="edge">
+<title>expression-&gt;glvalue</title>
+<path fill="none" stroke="#000000" d="M113.0762,-144.2022C107.6325,-135.6817 101.0093,-125.315 95.0187,-115.9385"></path>
+<polygon fill="#000000" stroke="#000000" points="97.8616,-113.8872 89.5282,-107.3446 91.9627,-117.6559 97.8616,-113.8872"></polygon>
+</g>
+<!-- rvalue -->
+<g id="node3" class="node">
+<title>rvalue</title>
+<ellipse fill="#7fffd4" stroke="#000000" cx="171.4469" cy="-90" rx="35.9954" ry="18"></ellipse>
+<text text-anchor="middle" x="171.4469" y="-86.3" font-family="Times-Roman" font-size="14.00" fill="#000000">rvalue</text>
+</g>
+<!-- expression&#45;&gt;rvalue -->
+<g id="edge2" class="edge">
+<title>expression-&gt;rvalue</title>
+<path fill="none" stroke="#000000" d="M136.0649,-144.2022C141.627,-135.6817 148.3941,-125.315 154.5149,-115.9385"></path>
+<polygon fill="#000000" stroke="#000000" points="157.5893,-117.6316 160.1248,-107.3446 151.7277,-113.8052 157.5893,-117.6316"></polygon>
+</g>
+<!-- lvalue -->
+<g id="node4" class="node">
+<title>lvalue</title>
+<ellipse fill="#7fffd4" stroke="#000000" cx="34.4469" cy="-18" rx="34.394" ry="18"></ellipse>
+<text text-anchor="middle" x="34.4469" y="-14.3" font-family="Times-Roman" font-size="14.00" fill="#000000">lvalue</text>
+</g>
+<!-- glvalue&#45;&gt;lvalue -->
+<g id="edge3" class="edge">
+<title>glvalue-&gt;lvalue</title>
+<path fill="none" stroke="#000000" d="M67.7958,-72.5708C62.5533,-63.9922 56.1269,-53.4762 50.3194,-43.9732"></path>
+<polygon fill="#000000" stroke="#000000" points="53.2011,-41.9764 45,-35.2687 47.2281,-45.6266 53.2011,-41.9764"></polygon>
+</g>
+<!-- xvalue -->
+<g id="node5" class="node">
+<title>xvalue</title>
+<ellipse fill="none" stroke="#000000" cx="123.4469" cy="-18" rx="37.0935" ry="18"></ellipse>
+<text text-anchor="middle" x="123.4469" y="-14.3" font-family="Times-Roman" font-size="14.00" fill="#000000">xvalue</text>
+</g>
+<!-- glvalue&#45;&gt;xvalue -->
+<g id="edge4" class="edge">
+<title>glvalue-&gt;xvalue</title>
+<path fill="none" stroke="#000000" d="M89.3402,-72.5708C94.7018,-63.9922 101.2743,-53.4762 107.2137,-43.9732"></path>
+<polygon fill="#000000" stroke="#000000" points="110.322,-45.6037 112.654,-35.2687 104.386,-41.8937 110.322,-45.6037"></polygon>
+</g>
+<!-- rvalue&#45;&gt;xvalue -->
+<g id="edge5" class="edge">
+<title>rvalue-&gt;xvalue</title>
+<path fill="none" stroke="#000000" d="M159.8275,-72.5708C154.0495,-63.9038 146.9531,-53.2592 140.5667,-43.6796"></path>
+<polygon fill="#000000" stroke="#000000" points="143.4186,-41.6477 134.9594,-35.2687 137.5943,-45.5307 143.4186,-41.6477"></polygon>
+</g>
+<!-- prvalue -->
+<g id="node6" class="node">
+<title>prvalue</title>
+<ellipse fill="none" stroke="#000000" cx="218.4469" cy="-18" rx="40.0939" ry="18"></ellipse>
+<text text-anchor="middle" x="218.4469" y="-14.3" font-family="Times-Roman" font-size="14.00" fill="#000000">prvalue</text>
+</g>
+<!-- rvalue&#45;&gt;prvalue -->
+<g id="edge6" class="edge">
+<title>rvalue-&gt;prvalue</title>
+<path fill="none" stroke="#000000" d="M182.8243,-72.5708C188.3831,-64.0553 195.188,-53.6308 201.3553,-44.183"></path>
+<polygon fill="#000000" stroke="#000000" points="204.476,-45.8052 207.0114,-35.5182 198.6143,-41.9789 204.476,-45.8052"></polygon>
+</g>
+</g>
+</svg>
 
-<section id="review" class="slide level1">
-<h1>Обзор языка</h1>
-<ul>
-<li>Фундаментальные типы данных</li>
-<li>Примитивные объекты – контейнеры</li>
-<li>Стандартная библиотека шаблонов STL</li>
-<li>Расширенная библиотека – Boost</li>
-<li>Развитие языка – новые стандарты</li>
-<li>Актуальная информация – <a href="http://cppreference.com" class="uri">http://cppreference.com</a></li>
+</div></li>
+<li><p>Perfect forwarding и <a href="https://habr.com/post/242639">универсальная ссылка</a></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">template</span>&lt;<span class="kw">class</span>... Args&gt; <span class="dt">void</span> func(Args&amp;&amp;... args) {</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">    some_func(<span class="bu">std::</span>forward&lt;Args&gt;(args)...);</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">}</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="bu">std::</span>vector v = {<span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">56</span>, <span class="dv">98</span>, <span class="dv">5</span>, <span class="dv">0</span>, <span class="dv">-1</span>, <span class="dv">8</span>};</a>
+<a class="sourceLine" id="cb4-6" data-line-number="6">func(v); <span class="co">// [Args = {std::vector&lt;int&gt;&amp;}], &amp; &amp;&amp; == &amp;</span></a>
+<a class="sourceLine" id="cb4-7" data-line-number="7">func(<span class="bu">std::</span>move(v)); <span class="co">// [Args = {std::vector&lt;int&gt;&amp;&amp;}], &amp;&amp; &amp;&amp; == &amp;&amp;</span></a>
+<a class="sourceLine" id="cb4-8" data-line-number="8">func(<span class="bu">std::</span>vector{<span class="fl">7.0</span>, <span class="fl">8.3</span>, <span class="fl">-96.87</span>, <span class="fl">7.1</span>}); <span class="co">// [Args = {std::vector&lt;double&gt;&amp;&amp;}], () == &amp;&amp;</span></a></code></pre></div></li>
 </ul>
-</section>
-<section class="slide level1">
-
-<section id="stl" class="level2">
-<h2>Стандартная библиотека шаблонов</h2>
-<p><img data-src="./stl.svg" /></p>
-</section>
-<section id="containers" class="level2">
-<h2>Контейнеры</h2>
+</div><div id="о-конструкторах" class="slide section level2">
+<h1>О конструкторах</h1>
+<div class="sourceCode" id="cb5"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">class</span> A {</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw">public</span>:</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3">    A(); <span class="co">// default constructor</span></a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">    A(<span class="at">const</span> A&amp;); <span class="co">// copy constructor</span></a>
+<a class="sourceLine" id="cb5-5" data-line-number="5">    A(A&amp;&amp;); <span class="co">// move constructor</span></a>
+<a class="sourceLine" id="cb5-6" data-line-number="6">    A&amp; <span class="kw">operator</span>=(<span class="at">const</span> A&amp;); <span class="co">// copy assignment</span></a>
+<a class="sourceLine" id="cb5-7" data-line-number="7">    A&amp; <span class="kw">operator</span>=(A&amp;&amp;); <span class="co">// move assignment</span></a>
+<a class="sourceLine" id="cb5-8" data-line-number="8">    ~A(); <span class="co">// destructor</span></a>
+<a class="sourceLine" id="cb5-9" data-line-number="9">}</a></code></pre></div>
 <ul>
-<li>Последовательные (vector, array, list)</li>
-<li>Ассоциативные (map, set)</li>
-<li>Хеш-контейнеры (unordered_set, unordered_map)</li>
-<li>Адапторы (stack, priority_queue, queue)</li>
-<li>Span (view) – C++20</li>
+<li>Порождающие операторы: конструкторы, присваивания, деструктор</li>
+<li>Деструктор почти всегда генерируется сам, его перегрузка ни на что не влияет</li>
+<li>Перегрузка move-конструктора или move-присваивания затрагивает все операции</li>
+<li>Перегрузка конструктора копирования или присваивания не затрагивает move-операции</li>
+<li><code class="sourceCode cpp"><span class="kw">delete</span></code> — явное удаление порождающего оператора</li>
+<li><code class="sourceCode cpp"><span class="cf">default</span></code> — попросить компилятор сгенерировать порождающий оператор</li>
+<li>Явное правило вывода конструктора: <code class="sourceCode cpp"><span class="kw">template</span>&lt;<span class="kw">class</span> T&gt; myclass(T&amp;&amp;, <span class="dt">int</span>) -&gt; myclass&lt;T&gt;;</code></li>
 </ul>
-</section>
-<section id="iterators" class="level2">
-<h2>Итераторы</h2>
+</div><div id="о-шаблонах" class="slide section level2">
+<h1>О шаблонах</h1>
 <ul>
-<li>Созданы для абстракции контейнера от алгоритма</li>
-<li>6 видов по типам контейнеров:
-<ul>
-<li>Contigues – непрерывный (указатели)</li>
-<li>RandomAccess – с произвольным доступом (vector)</li>
-<li>Bidirectional – есть инкремент и декремент (list)</li>
-<li>ForwardIterator – есть инкремент (forward_list)</li>
-<li>Input – чтение, можно пройтись итератором только один раз (istream)</li>
-<li>Output – запись, можно пройтись итератором только один раз (ostream)</li>
-</ul></li>
-<li>Могут быть полностью абстрагированы от контейнера</li>
-<li>Потоки вводы/вывода обладают своими инераторами</li>
-<li>Адапторы (reverse, back_inserter)</li>
-<li>Операции – advance, distance, next, prev</li>
+<li><code class="sourceCode cpp"><span class="kw">template</span>&lt;<span class="kw">class</span>... Ts&gt; <span class="kw">class</span> myclass;</code> — пакет шаблонных параметров</li>
+<li><code class="sourceCode cpp"><span class="kw">template</span>&lt;<span class="kw">class</span> T&gt; <span class="kw">constexpr</span> T pi = T(<span class="fl">3.1415926535897932385L</span>);</code> — шаблонная переменная</li>
+<li><code class="sourceCode cpp"><span class="dt">size_t</span> N = <span class="kw">sizeof</span>...(Ts);</code></li>
+<li><p>Хранение аргументов в кортеже</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">template</span>&lt;<span class="kw">class</span>... Ts&gt;</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw">struct</span> abc {</a>
+<a class="sourceLine" id="cb6-3" data-line-number="3">    abc(Ts... ts): x(ts...) {}</a>
+<a class="sourceLine" id="cb6-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb6-5" data-line-number="5">    <span class="bu">std::</span>tuple&lt;Ts...&gt; x;</a>
+<a class="sourceLine" id="cb6-6" data-line-number="6">}</a></code></pre></div></li>
 </ul>
-</section>
-<section id="algorithms" class="level2">
-<h2>Алгоритмы</h2>
+</div><div id="распаковка-кортежа-в-аргументы" class="slide section level2">
+<h1>Распаковка кортежа в аргументы</h1>
 <ul>
-<li>Почти все алгоритмы работают с итераторами</li>
-<li>Не модифицирующие последовательные операции (count, find)</li>
-<li>Модификаторы (fill, copy, transform)</li>
-<li>Сортировки (sort, nth_element, partition)
-<ul>
-<li>Поиск (binary_search, lower_bound)</li>
-<li>Операции с множествами (merge, includes, set_union)</li>
-</ul></li>
-<li>Минимумы/максимумы (min, minmax, min_element, clamp)</li>
-<li>Аккумуляторы (iota, accumulate, transform_reduce)</li>
-<li>Политики запуска алгоритмов (seq, par, par_unseq)</li>
+<li><p>Использование <code class="sourceCode cpp"><span class="bu">std::</span>integer_sequence</code></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">template</span>&lt;<span class="kw">class</span>... Ts&gt;</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="dt">void</span> func1(<span class="at">const</span> <span class="bu">std::</span>tuple&lt;Ts...&gt;&amp; t)</a>
+<a class="sourceLine" id="cb7-3" data-line-number="3">{</a>
+<a class="sourceLine" id="cb7-4" data-line-number="4">    func_impl(t, <span class="bu">std::</span>make_sequence_for&lt;Ts...&gt;{});</a>
+<a class="sourceLine" id="cb7-5" data-line-number="5">}</a>
+<a class="sourceLine" id="cb7-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb7-7" data-line-number="7"><span class="kw">template</span>&lt;<span class="kw">class</span> Tuple&gt;</a>
+<a class="sourceLine" id="cb7-8" data-line-number="8"><span class="dt">void</span> func2(<span class="at">const</span> Tuple&amp; t)</a>
+<a class="sourceLine" id="cb7-9" data-line-number="9">{</a>
+<a class="sourceLine" id="cb7-10" data-line-number="10">    func_impl(t, <span class="bu">std::</span>make_index_sequence&lt;<span class="bu">std::</span>tuple_size_v&lt;Tuple&gt;&gt;{});</a>
+<a class="sourceLine" id="cb7-11" data-line-number="11">}</a>
+<a class="sourceLine" id="cb7-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb7-13" data-line-number="13"><span class="kw">template</span>&lt;<span class="kw">class</span> Tuple, <span class="dt">size_t</span>... Is&gt;</a>
+<a class="sourceLine" id="cb7-14" data-line-number="14"><span class="dt">void</span> func_impl(<span class="at">const</span> Tuple&amp; t, <span class="bu">std::</span>index_sequence&lt;Is...&gt;)</a>
+<a class="sourceLine" id="cb7-15" data-line-number="15">{</a>
+<a class="sourceLine" id="cb7-16" data-line-number="16">    (<span class="bu">std::</span>cout &lt;&lt; ... &lt;&lt; <span class="bu">std::</span>get&lt;Is&gt;(t));</a>
+<a class="sourceLine" id="cb7-17" data-line-number="17">}</a>
+<a class="sourceLine" id="cb7-18" data-line-number="18"></a>
+<a class="sourceLine" id="cb7-19" data-line-number="19"><span class="kw">template</span>&lt;<span class="kw">class</span>... Ts&gt;</a>
+<a class="sourceLine" id="cb7-20" data-line-number="20"><span class="bu">std::</span>ostream&amp; <span class="kw">operator</span>&lt;&lt;(<span class="bu">std::</span>ostream&amp; os, <span class="at">const</span> <span class="bu">std::</span>tuple&lt;Ts...&gt;&amp; t)</a>
+<a class="sourceLine" id="cb7-21" data-line-number="21">{</a>
+<a class="sourceLine" id="cb7-22" data-line-number="22">    <span class="cf">return</span> <span class="bu">std::</span>apply([&amp;os](<span class="at">const</span> <span class="kw">auto</span>&amp;... xs) -&gt; <span class="kw">decltype</span>(<span class="kw">auto</span>) { <span class="cf">return</span> (os &lt;&lt; ... &lt;&lt; xs); }, t);</a>
+<a class="sourceLine" id="cb7-23" data-line-number="23">}</a></code></pre></div></li>
 </ul>
-</section>
-<section id="math-extension" class="level2">
-<h2>Математические расширения</h2>
+</div><div id="операции-над-шаблонными-пакетами" class="slide section level2">
+<h1>Операции над шаблонными пакетами</h1>
+<div class="sourceCode" id="cb8"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">template</span> &lt;<span class="kw">typename</span>... bases&gt;</a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="kw">struct</span> X : bases... {</a>
+<a class="sourceLine" id="cb8-3" data-line-number="3">    <span class="kw">using</span> X::bases::g...;</a>
+<a class="sourceLine" id="cb8-4" data-line-number="4">};</a>
+<a class="sourceLine" id="cb8-5" data-line-number="5">X&lt;B, D&gt; x;</a></code></pre></div>
+<p>Свёртки (наличие скобок важно)</p>
 <ul>
-<li>Общие математические функции – cmath, cstdlib</li>
-<li>Специальные математические функции (cyl_bessel_i, expint, riemann_zeta)</li>
-<li>Complex, valarray</li>
-<li>Аккумуляторы, gcd, lcm</li>
-<li>Псевдослучаные последовательности
-<ul>
-<li>Псевдогенераторы (mersenne_twister_engine, linear_congruential_engine)</li>
-<li>Адапторы генераторов (shuffle_order_engine, discard_block_engine)</li>
-<li>Недетерменированный генератор (random_device)</li>
-<li>Функции распределения (uniform_int_distribution, normal_distribution)</li>
-</ul></li>
-<li>Рациональные числа уровня компиляции (нужно для <code>std::crhono</code>)</li>
-<li>Управление FPE для работы с плавающей точкой</li>
+<li><code class="sourceCode cpp">( pack op ... )</code> — свёртка слева</li>
+<li><code class="sourceCode cpp">( pack op ... op init )</code> — свёртка слева с начальным значением</li>
+<li><code class="sourceCode cpp">( ... op pack )</code> — свёртка справа</li>
+<li><code class="sourceCode cpp">( init op ... op pack )</code> — свёртка справа с начальным значением</li>
 </ul>
-</section>
-<section id="streams" class="level2">
-<h2>Потоковый ввод/вывод</h2>
-<p><img data-src="http://upload.cppreference.com/mwiki/images/0/06/std-io-complete-inheritance.svg" /></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">template</span>&lt;<span class="kw">typename</span> T, <span class="kw">typename</span>... Args&gt;</a>
+<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="dt">void</span> push_back_vec(<span class="bu">std::</span>vector&lt;T&gt;&amp; v, Args&amp;&amp;... args)</a>
+<a class="sourceLine" id="cb9-3" data-line-number="3">{</a>
+<a class="sourceLine" id="cb9-4" data-line-number="4">    (v.push_back(<span class="bu">std::</span>forward&lt;Args&gt;(args)), ...);</a>
+<a class="sourceLine" id="cb9-5" data-line-number="5">}</a></code></pre></div>
+</div><div id="о-лямбда-выражениях" class="slide section level2">
+<h1>О лямбда-выражениях</h1>
+<p><code class="sourceCode cpp"><span class="kw">auto</span> f = [a = <span class="dv">77</span>, &amp;b](<span class="kw">auto</span> x) <span class="at">mutable</span> -&gt; <span class="dt">int</span> { b = x - <span class="dv">78</span>; <span class="cf">return</span> a++; }</code></p>
 <ul>
-<li>Итераторы (strembuf_iterator, stream_iterator) – InputIterator, OutputIterator</li>
-<li>Потоковые объекты – stringstream</li>
-<li>I/O манипуляторы</li>
-<li><code>boost::format</code> – самое лучшее от <code>printf</code></li>
-<li><code>boost::iostreams</code> – расширение <code>std::iostream</code></li>
+<li><p>Лямбда-выражения == функторы</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">struct</span> functor</a>
+<a class="sourceLine" id="cb10-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb10-3" data-line-number="3">    functor(<span class="dt">int</span>&amp; b): <span class="va">a_</span>(<span class="dv">77</span>), <span class="va">b_</span>(b) {}</a>
+<a class="sourceLine" id="cb10-4" data-line-number="4">    <span class="dt">int</span> <span class="kw">operator</span>()(<span class="dt">int</span> x) <span class="at">const</span></a>
+<a class="sourceLine" id="cb10-5" data-line-number="5">    {</a>
+<a class="sourceLine" id="cb10-6" data-line-number="6">        <span class="va">b_</span> = x - <span class="dv">78</span>;</a>
+<a class="sourceLine" id="cb10-7" data-line-number="7">        <span class="cf">return</span> <span class="va">a_</span>++;</a>
+<a class="sourceLine" id="cb10-8" data-line-number="8">    }</a>
+<a class="sourceLine" id="cb10-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb10-10" data-line-number="10"><span class="kw">private</span>:</a>
+<a class="sourceLine" id="cb10-11" data-line-number="11">    <span class="at">mutable</span> <span class="dt">int</span> <span class="va">a_</span>;</a>
+<a class="sourceLine" id="cb10-12" data-line-number="12">    <span class="dt">int</span>&amp; <span class="at">const</span> <span class="va">b_</span>;</a>
+<a class="sourceLine" id="cb10-13" data-line-number="13">} f;</a></code></pre></div></li>
+<li>Невозможно узнать тип лямбда-выражений, т.е. <code class="sourceCode cpp"><span class="kw">decltype</span>(lambda) s = ...</code> не работает</li>
+<li>Чтобы лямбды были полностью объектами, надо заворачивать их в объект <code class="sourceCode cpp"><span class="bu">std::</span>function</code></li>
+<li>Результат лямбды можно не писать, он будет выведен сам (кроме ссылок)</li>
 </ul>
-</section>
-<section id="smart-pointers" class="level2">
-<h2>Умные указатели</h2>
+</div>
+<div id="следующие-стандарты" class="title-slide slide section level1"><h1>Следующие стандарты</h1></div><div id="концепты-и-ограничители" class="slide section level2">
+<h1>Концепты и ограничители</h1>
+<div class="sourceCode" id="cb11"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="co">// концепт</span></a>
+<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="kw">template</span>&lt;<span class="kw">typename</span> T&gt;</a>
+<a class="sourceLine" id="cb11-3" data-line-number="3">concept EqualityComparable = requires(T a, T b)</a>
+<a class="sourceLine" id="cb11-4" data-line-number="4">{</a>
+<a class="sourceLine" id="cb11-5" data-line-number="5">    { a == b } -&gt; <span class="dt">bool</span>;</a>
+<a class="sourceLine" id="cb11-6" data-line-number="6">};</a>
+<a class="sourceLine" id="cb11-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb11-8" data-line-number="8"><span class="co">// ограничитель: T должен обладать оператором ==</span></a>
+<a class="sourceLine" id="cb11-9" data-line-number="9"><span class="kw">template</span>&lt;EqualityComparable T&gt; <span class="dt">void</span> f(T&amp;&amp;);</a>
+<a class="sourceLine" id="cb11-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb11-11" data-line-number="11"><span class="co">// или</span></a>
+<a class="sourceLine" id="cb11-12" data-line-number="12"><span class="kw">template</span>&lt;<span class="kw">class</span> T&gt; requires EqualityComparable&lt;T&gt; <span class="dt">void</span> f(T&amp;&amp;);</a></code></pre></div>
 <ul>
-<li>Обёртка на <code>new</code>, <code>delete</code></li>
-<li>Слабые указатели (weak_ptr)</li>
-<li>Совместно используемые указатели (shared_ptr)</li>
-<li>Уникальные указатели (unique_ptr)</li>
-<li>Потокобезовасность – перегрузка оператора <code>-&gt;</code></li>
-<li>Утилиты:
-<ul>
-<li>enable_shared_from_this</li>
-<li>Умные указатели поддерживают пользовательные деструкторы</li>
-<li>Аллокаторы</li>
-</ul></li>
-<li>Разиличие <code>delete</code> и <code>delete[]</code> → умные указатели и массивы</li>
+<li>Компактнее вывод об ошибке (с концептами — 2 строки, без них — 50+)</li>
+<li>По сигнатуре можно понять, какой тип данных ожидает функция</li>
+<li>Ещё один способ ужесточения типизации</li>
 </ul>
-</section>
-<section id="chrono" class="level2">
-<h2>Управление временем</h2>
+</div><div id="новое-в-stl" class="slide section level2">
+<h1>Новое в STL</h1>
 <ul>
-<li>Бибилиотека <code>std::chrono</code></li>
-<li>3 класса для работы со временем:
+<li><code class="sourceCode cpp"><span class="bu">std::</span>bit_cast</code> — замена <code class="sourceCode cpp"><span class="kw">reinterpret_cast</span></code></li>
+<li>Стандартные концепты (Integral, Assignable, Constructible, …)</li>
+<li>Шаблонный тип может быть классом <code class="sourceCode cpp"><span class="kw">template</span>&lt;X x&gt; <span class="dt">void</span> func()</code> (есть ограничения, например, <code class="sourceCode cpp"><span class="kw">operator</span>&lt;=&gt;</code>)</li>
+<li><code class="sourceCode cpp"><span class="kw">operator</span>&lt;=&gt;</code> — один оператор покрывает все отношения порядка и равенства (spaceship)</li>
+<li>Все новые особенности языка можно проверить с помощью препроцессорных констант
 <ul>
-<li><code>clocks</code> – замер времени
-<ul>
-<li><code>system_clock</code> – системное время</li>
-<li><code>steady_clock</code> – монотонное время, никогда не возвращается назад</li>
-<li><code>high_resolution_clock</code> – самое точное время</li>
-<li><code>utc_clock</code>, <code>file_clock</code>, …</li>
+<li>например, <code class="sourceCode cpp">__cpp_lib_byte</code> говорит о наличии <code class="sourceCode cpp"><span class="bu">std::</span>byte</code></li>
 </ul></li>
-<li><code>time_point</code> – временная метка</li>
-<li><code>duration</code> – разница между временными метками</li>
-</ul></li>
-<li>Кастование между различными величинами <code>duration</code></li>
-<li>Календарь и временная зона – C++20</li>
-<li>Строковые константы – <code>42s</code>, <code>1min</code>, <code>2us</code> (C++14)</li>
+<li><code class="sourceCode cpp"><span class="bu">std::</span>span</code> — декоратор над непрерывной областью памяти</li>
+<li>Ranges — поддержка концепции диапазонов из <code>boost::range</code></li>
+<li><code class="sourceCode cpp"><span class="bu">std::</span>is_detected</code> — детектирование наличия метода/оператора класса</li>
 </ul>
-</section>
-<section id="regex" class="level2">
-<h2>Регулярные выражения</h2>
-<p><a href="https://ru.wikipedia.org/wiki/Регулярные_выражения" class="uri">https://ru.wikipedia.org/wiki/Регулярные_выражения</a></p>
-<ul>
-<li>Библиотека <code>std::regex</code></li>
-<li>Основные функции:
-<ul>
-<li>Построение регулярки – конструктор</li>
-<li><code>regex_match</code> – соответствие предложения регулярному выражению</li>
-<li><code>std::smatch</code>, <code>std::cmatch</code> – объекты совпадения</li>
-<li><code>regex_search</code> – поиск регулярного выражения</li>
-<li><code>regex_replace</code> – поиск и замена</li>
-</ul></li>
-<li>Строковые литералы (<code>R&quot;match\t\n&quot;</code> &lt;=&gt; <code>&quot;match\\t\\n&quot;</code>)</li>
-<li>Опции и типы ругялярок – icase, multiline, ECMAScript, grep, …</li>
-</ul>
-</section>
-<section id="atomic" class="level2">
-<h2>Атомарные операции</h2>
-<ul>
-<li>Сделать тип <code>T</code> атомарным – <code>std::atomic&lt;T&gt;</code></li>
-<li>Поддержка атомарных операций (fetch_add, exchange)</li>
-<li>Барьеры памяти</li>
-<li>Специальный тип <code>atomic_flag</code> – <code>test_and_set</code></li>
-</ul>
-</section>
-<section id="threads" class="level2">
-<h2>Потоки</h2>
-<ul>
-<li>POSIX интерфейс</li>
-<li>Мьютексы:
-<ul>
-<li>mutex, timed_mutex, recursive_mutex, shared_mutex</li>
-<li>Локеры – lock_guard, scoped_lock, unique_lock, shared_lock</li>
-</ul></li>
-<li>Условные переменные
-<ul>
-<li>Необходимо иметь синхронизирующий мьютекс</li>
-</ul></li>
-<li>Асинхронные операции:
-<ul>
-<li><code>promise</code> – в него устанавлиют результат асинхронно</li>
-<li><code>future</code> – объект, который выполнится в неизвестное время</li>
-<li><code>async</code> – обёртка над <code>future</code></li>
-</ul></li>
-<li>Объект потока <code>std::thread</code>
-<ul>
-<li><code>yield</code>, <code>sleep_for</code></li>
-<li><code>join</code>, <code>detach</code></li>
-</ul></li>
-</ul>
-</section>
-<section id="filesystem" class="level2">
-<h2>Работа с файловой системой</h2>
-<ul>
-<li>Отдельное подпространство имён <code>std::filesystem</code></li>
-<li>Класс <code>path</code> – абстракция пути в файловой системе</li>
-<li>Методы <code>path</code> позволяют модифицировать путь</li>
-<li>Создание директорий, символических ссылок</li>
-<li>Рекурсивный обход директории – <code>recursive_directory_iterator</code></li>
-<li>Получение информации о файле – <code>file_status</code></li>
-<li>Получение доступного места на файловой системе – <code>space_info</code></li>
-<li>Функции для работы с файлами:
-<ul>
-<li>exists, file_size, absolute, space</li>
-<li>copy_file, remove</li>
-<li>rename, resize_file</li>
-<li>current_path</li>
-<li>temp_director_path</li>
-</ul></li>
-</ul>
-</section>
-</section>
-    </div>
-  </div>
-
-  <script src="https://rawgit.com/hakimel/reveal.js/master/lib/js/head.min.js"></script>
-  <script src="https://rawgit.com/hakimel/reveal.js/master/js/reveal.js"></script>
-
-  <script>
-
-      // Full list of configuration options available at:
-      // https://github.com/hakimel/reveal.js#configuration
-      Reveal.initialize({
-        // Display the page number of the current slide
-        slideNumber: true,
-        // Push each slide change to the browser history
-        history: true,
-        // Vertical centering of slides
-        center: true,
-        // Transition style
-        transition: 'convex', // none/fade/slide/convex/concave/zoom
-        // The "normal" size of the presentation, aspect ratio will be preserved
-        // when the presentation is scaled to fit different resolutions. Can be
-        // specified using percentage units.
-        width: '90%',
-        height: '95%',
-        math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
-          config: 'TeX-AMS_HTML-full',
-          tex2jax: {
-            inlineMath: [['\\(','\\)']],
-            displayMath: [['\\[','\\]']],
-            balanceBraces: true,
-            processEscapes: false,
-            processRefs: true,
-            processEnvironments: true,
-            preview: 'TeX',
-            skipTags: ['script','noscript','style','textarea','pre','code'],
-            ignoreClass: 'tex2jax_ignore',
-            processClass: 'tex2jax_process'
-          },
-        },
-
-        // Optional reveal.js plugins
-        dependencies: [
-          { src: 'https://rawgit.com/hakimel/reveal.js/master/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-          { src: 'https://rawgit.com/hakimel/reveal.js/master/plugin/zoom-js/zoom.js', async: true },
-          { src: 'https://rawgit.com/hakimel/reveal.js/master/plugin/math/math.js', async: true },
-          { src: 'https://rawgit.com/hakimel/reveal.js/master/plugin/notes/notes.js', async: true }
-        ]
-      });
-    </script>
-    </body>
+</div>
+</body>
 </html>

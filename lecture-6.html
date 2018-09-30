@@ -1,15 +1,13 @@
-<!DOCTYPE html>
-<html lang="ru_RU">
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru-RU" xml:lang="ru-RU">
 <head>
-  <meta charset="utf-8">
-  <meta name="generator" content="pandoc">
-  <meta name="author" content="Игорь Шаронов">
-  <meta name="dcterms.date" content="2018-03-11">
-  <title>Master programming</title>
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="https://rawgit.com/hakimel/reveal.js/master/css/reveal.css">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Игорь Шаронов" />
+  <meta name="date" content="2018-10-03" />
+  <title>Master Programming</title>
   <style type="text/css">
       code{white-space: pre-wrap;}
       span.smallcaps{font-variant: small-caps;}
@@ -19,7 +17,7 @@
   <style type="text/css">
 a.sourceLine { display: inline-block; line-height: 1.25; }
 a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; position: absolute; }
+a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 div.sourceCode { margin: 1em 0; }
@@ -32,13 +30,11 @@ code.sourceCode { white-space: pre-wrap; }
 a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
 pre.numberSource a.sourceLine
-  { position: relative; }
-pre.numberSource a.sourceLine:empty
-  { position: absolute; }
+  { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
   { content: attr(data-line-number);
-    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all;
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -81,286 +77,304 @@ code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="https://rawgit.com/hakimel/reveal.js/master/css/theme/serif.css" id="theme">
-  <!-- Printing and PDF exports -->
-  <script>
-    var link = document.createElement( 'link' );
-    link.rel = 'stylesheet';
-    link.type = 'text/css';
-    link.href = window.location.search.match( /print-pdf/gi ) ? 'https://rawgit.com/hakimel/reveal.js/master/css/print/pdf.css' : 'https://rawgit.com/hakimel/reveal.js/master/css/print/paper.css';
-    document.getElementsByTagName( 'head' )[0].appendChild( link );
-  </script>
-  <!--[if lt IE 9]>
-  <script src="https://rawgit.com/hakimel/reveal.js/master/lib/js/html5shiv.js"></script>
-  <![endif]-->
+  <link rel="stylesheet" type="text/css" media="screen, projection, print" href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" data-external="1" />
   <style type="text/css">
       .reveal h1 { font-size: 2em; }
       .reveal h2 { font-size: 2em; }
       .reveal h3 { font-size: 1em; }
       .reveal pre code { max-height: 600px; }
+      div.column33 {display: inline-block; vertical-align: top; width: 32%;}
+      div.column66 {display: inline-block; vertical-align: top; width: 66%;}
+      div.column50 {display: inline-block; vertical-align: top; width: 49%;}
+      .strike {text-decoration: line-through;}
   </style>
+  <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js" charset="utf-8" type="text/javascript" data-external="1"></script>
 </head>
 <body>
-  <div class="reveal">
-    <div class="slides">
-
-<section id="title-slide">
+<div class="slide titlepage">
   <h1 class="title">Master programming</h1>
-  <p class="subtitle">Лекция №6 (Тестирование)</p>
-  <p class="author">Игорь Шаронов</p>
-  <p class="date">2018-03-11</p>
-</section>
-
-<section id="testing-types" class="slide level1">
-<h1>Типы тестирования</h1>
+  <p class="subtitle">Лекция №6 (Обзор STL)</p>
+  <p class="author">
+Игорь Шаронов
+  </p>
+  <p class="date">2018-10-03</p>
+</div>
+<div id="обзор-языка" class="title-slide slide section level1"><h1>Обзор языка</h1></div><div id="основные-понятия" class="slide section level2">
+<h1>Основные понятия</h1>
 <ul>
-<li>Тестирование – это та же программа со своим кодом</li>
-<li>Unit-тесты</li>
-<li>Тестирование белого, серого, чёрного ящика</li>
-<li>Нагрузочное тестирование</li>
-<li>Стресс тестирование</li>
-<li>Интеграционное тестирование</li>
-<li>TDD, BDD</li>
+<li>Фундаментальные типы данных</li>
+<li>Примитивные объекты — контейнеры</li>
+<li>Стандартная библиотека шаблонов STL</li>
+<li>Расширенная библиотека — Boost</li>
+<li>Развитие языка — новые стандарты</li>
+<li>Актуальная информация — <a href="https://cppreference.com" class="uri">https://cppreference.com</a></li>
 </ul>
-</section>
-<section id="terminology" class="slide level1">
-<h1>Терминология</h1>
+</div><div id="стандартная-библиотека-шаблонов" class="slide section level2">
+<h1>Стандартная библиотека шаблонов</h1>
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="260px" preserveAspectRatio="none" style="width:1151px;height:260px;" version="1.1" viewBox="0 0 1151 260" width="1151px" zoomAndPan="magnify"><defs><filter height="300%" id="f13rjlv5y31nln" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"></feGaussianBlur><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"></feColorMatrix><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"></feOffset><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"></feBlend></filter></defs><g><ellipse cx="85.3675" cy="29.9623" fill="#FEFECE" filter="url(#f13rjlv5y31nln)" rx="79.3675" ry="19.4623" style="stroke: #A80036; stroke-width: 1.5;"></ellipse><text fill="#000000" font-family="sans-serif" font-size="20" lengthAdjust="spacingAndGlyphs" textLength="108" x="31.3675" y="38.103">Containers</text><ellipse cx="534.4558" cy="131.4623" fill="#FEFECE" filter="url(#f13rjlv5y31nln)" rx="28.4558" ry="19.4623" style="stroke: #A80036; stroke-width: 1.5;"></ellipse><text fill="#000000" font-family="sans-serif" font-size="20" lengthAdjust="spacingAndGlyphs" textLength="36" x="516.4558" y="139.603">STL</text><ellipse cx="262.397" cy="29.9623" fill="#FEFECE" filter="url(#f13rjlv5y31nln)" rx="62.397" ry="19.4623" style="stroke: #A80036; stroke-width: 1.5;"></ellipse><text fill="#000000" font-family="sans-serif" font-size="20" lengthAdjust="spacingAndGlyphs" textLength="84" x="220.397" y="38.103">Iterators</text><ellipse cx="441.2817" cy="29.9623" fill="#FEFECE" filter="url(#f13rjlv5y31nln)" rx="80.7817" ry="19.4623" style="stroke: #A80036; stroke-width: 1.5;"></ellipse><text fill="#000000" font-family="sans-serif" font-size="20" lengthAdjust="spacingAndGlyphs" textLength="110" x="386.2817" y="38.103">Algorithms</text><ellipse cx="627.6751" cy="29.9623" fill="#FEFECE" filter="url(#f13rjlv5y31nln)" rx="70.1751" ry="19.4623" style="stroke: #A80036; stroke-width: 1.5;"></ellipse><text fill="#000000" font-family="sans-serif" font-size="20" lengthAdjust="spacingAndGlyphs" textLength="95" x="580.1751" y="38.103">Numerics</text><ellipse cx="821.6386" cy="30.2277" fill="#FEFECE" filter="url(#f13rjlv5y31nln)" rx="89.1386" ry="20.2277" style="stroke: #A80036; stroke-width: 1.5;"></ellipse><text fill="#000000" font-family="sans-serif" font-size="20" lengthAdjust="spacingAndGlyphs" textLength="127" x="758.1386" y="38.3683">Input/output</text><ellipse cx="1042.5402" cy="29.908" fill="#FEFECE" filter="url(#f13rjlv5y31nln)" rx="97.5402" ry="21.908" style="stroke: #A80036; stroke-width: 1.5;"></ellipse><text fill="#000000" font-family="sans-serif" font-size="20" lengthAdjust="spacingAndGlyphs" textLength="149" x="968.0402" y="38.0487">Smart pointers</text><ellipse cx="193.4117" cy="230.4623" fill="#FEFECE" filter="url(#f13rjlv5y31nln)" rx="53.9117" ry="19.4623" style="stroke: #A80036; stroke-width: 1.5;"></ellipse><text fill="#000000" font-family="sans-serif" font-size="20" lengthAdjust="spacingAndGlyphs" textLength="72" x="157.4117" y="238.603">Chrono</text><ellipse cx="329.3406" cy="230.4623" fill="#FEFECE" filter="url(#f13rjlv5y31nln)" rx="46.8406" ry="19.4623" style="stroke: #A80036; stroke-width: 1.5;"></ellipse><text fill="#000000" font-family="sans-serif" font-size="20" lengthAdjust="spacingAndGlyphs" textLength="62" x="298.3406" y="238.603">Regex</text><ellipse cx="464.7046" cy="230.4623" fill="#FEFECE" filter="url(#f13rjlv5y31nln)" rx="53.2046" ry="19.4623" style="stroke: #A80036; stroke-width: 1.5;"></ellipse><text fill="#000000" font-family="sans-serif" font-size="20" lengthAdjust="spacingAndGlyphs" textLength="71" x="429.2046" y="238.603">Atomic</text><ellipse cx="605.4975" cy="230.4623" fill="#FEFECE" filter="url(#f13rjlv5y31nln)" rx="52.4975" ry="19.4623" style="stroke: #A80036; stroke-width: 1.5;"></ellipse><text fill="#000000" font-family="sans-serif" font-size="20" lengthAdjust="spacingAndGlyphs" textLength="70" x="570.4975" y="238.603">Thread</text><ellipse cx="771.6604" cy="230.4623" fill="#FEFECE" filter="url(#f13rjlv5y31nln)" rx="78.6604" ry="19.4623" style="stroke: #A80036; stroke-width: 1.5;"></ellipse><text fill="#000000" font-family="sans-serif" font-size="20" lengthAdjust="spacingAndGlyphs" textLength="107" x="718.1604" y="238.603">Filesystem</text><ellipse cx="905.6092" cy="230.6874" fill="#FEFECE" filter="url(#f13rjlv5y31nln)" rx="20.1092" ry="16.6874" style="stroke: #A80036; stroke-width: 1.5;"></ellipse><text fill="#000000" font-family="sans-serif" font-size="20" lengthAdjust="spacingAndGlyphs" textLength="18" x="896.6092" y="238.828">...</text><!--link Containers to STL--><path d="M149.0648,44.4254 C160.2077,46.9517 171.6922,49.5539 182.5,52 C303.4876,79.3829 447.8909,111.9652 507.1132,125.3235 " fill="none" id="Containers-STL" style="stroke: #A80036; stroke-width: 1.0;"></path><polygon fill="#A80036" points="143.9729,43.2709,151.8655,49.1621,148.8491,44.3766,153.6346,41.3602,143.9729,43.2709" style="stroke: #A80036; stroke-width: 1.0;"></polygon><!--link Iterators to STL--><path d="M307.4017,46.7556 C365.0891,68.2823 463.2575,104.915 509.2807,122.0891 " fill="none" id="Iterators-STL" style="stroke: #A80036; stroke-width: 1.0;"></path><polygon fill="#A80036" points="302.6345,44.9767,309.668,51.8708,307.319,46.7248,312.465,44.3757,302.6345,44.9767" style="stroke: #A80036; stroke-width: 1.0;"></polygon><!--link Algorithms to STL--><path d="M462.7819,53.2271 C480.0129,72.0329 503.8671,98.0674 519.2422,114.8477 " fill="none" id="Algorithms-STL" style="stroke: #A80036; stroke-width: 1.0;"></path><polygon fill="#A80036" points="458.9926,49.0914,462.1234,58.4294,462.3704,52.7779,468.0219,53.0249,458.9926,49.0914" style="stroke: #A80036; stroke-width: 1.0;"></polygon><!--link Numerics to STL--><path d="M606.2181,53.2271 C588.9871,72.0329 565.1329,98.0674 549.7578,114.8477 " fill="none" id="Numerics-STL" style="stroke: #A80036; stroke-width: 1.0;"></path><polygon fill="#A80036" points="610.0074,49.0914,600.9781,53.0249,606.6296,52.7779,606.8766,58.4294,610.0074,49.0914" style="stroke: #A80036; stroke-width: 1.0;"></polygon><!--link Input/output to STL--><path d="M768.7019,48.6725 C706.7736,70.574 606.6511,105.9831 559.9743,122.4908 " fill="none" id="Input/output-STL" style="stroke: #A80036; stroke-width: 1.0;"></path><polygon fill="#A80036" points="773.4627,46.9888,763.644,46.2187,768.7489,48.656,766.3116,53.7609,773.4627,46.9888" style="stroke: #A80036; stroke-width: 1.0;"></polygon><!--link Smart pointers to STL--><path d="M964.3494,45.6147 C848.6417,68.7335 637.3254,110.9552 562.0407,125.9973 " fill="none" id="Smart pointers-STL" style="stroke: #A80036; stroke-width: 1.0;"></path><polygon fill="#A80036" points="969.4457,44.5965,959.8364,42.4375,964.5426,45.5762,961.4039,50.2824,969.4457,44.5965" style="stroke: #A80036; stroke-width: 1.0;"></polygon><!--link STL to Chrono--><path d="M508.0261,139.186 C450.5673,155.8675 313.7552,195.5872 240.9607,216.7211 " fill="none" id="STL-Chrono" style="stroke: #A80036; stroke-width: 1.0;"></path><polygon fill="#A80036" points="235.8321,218.21,245.5905,219.5419,240.6338,216.8159,243.3599,211.8592,235.8321,218.21" style="stroke: #A80036; stroke-width: 1.0;"></polygon><!--link STL to Regex--><path d="M510.9839,142.8566 C475.2367,160.1198 406.9686,193.0883 365.1134,213.3014 " fill="none" id="STL-Regex" style="stroke: #A80036; stroke-width: 1.0;"></path><polygon fill="#A80036" points="360.3952,215.5799,370.2391,215.2679,364.8976,213.4055,366.76,208.064,360.3952,215.5799" style="stroke: #A80036; stroke-width: 1.0;"></polygon><!--link STL to Atomic--><path d="M521.9854,149.1992 C510.5295,165.4011 493.5002,189.4855 480.9482,207.2375 " fill="none" id="STL-Atomic" style="stroke: #A80036; stroke-width: 1.0;"></path><polygon fill="#A80036" points="477.8596,211.6057,486.3217,206.5665,480.7463,207.5232,479.7896,201.9478,477.8596,211.6057" style="stroke: #A80036; stroke-width: 1.0;"></polygon><!--link STL to Thread--><path d="M547.1934,149.1992 C558.8129,165.4011 576.0855,189.4855 588.8168,207.2375 " fill="none" id="STL-Thread" style="stroke: #A80036; stroke-width: 1.0;"></path><polygon fill="#A80036" points="591.9495,211.6057,589.9551,201.9609,589.0356,207.5425,583.454,206.6231,591.9495,211.6057" style="stroke: #A80036; stroke-width: 1.0;"></polygon><!--link STL to Filesystem--><path d="M558.9705,141.7219 C598.3832,158.1854 676.5268,190.8277 726.2862,211.6132 " fill="none" id="STL-Filesystem" style="stroke: #A80036; stroke-width: 1.0;"></path><polygon fill="#A80036" points="731.0107,213.5868,724.2479,206.4268,726.3971,211.6595,721.1643,213.8087,731.0107,213.5868" style="stroke: #A80036; stroke-width: 1.0;"></polygon><!--link STL to ...--><path d="M562.3515,135.822 C620.3841,145.3284 757.9574,170.4872 867.5,211 C873.0377,213.048 878.8068,215.7086 884.1276,218.4024 " fill="none" id="STL-..." style="stroke: #A80036; stroke-width: 1.0;"></path><polygon fill="#A80036" points="888.8686,220.8691,882.7307,213.1667,884.433,218.5614,879.0384,220.2637,888.8686,220.8691" style="stroke: #A80036; stroke-width: 1.0;"></polygon><!--
+@startuml
+skinparam defaultFontSize 20
+
+(Containers) <- - (STL)
+(Iterators) <- - (STL)
+(Algorithms) <- - (STL)
+(Numerics) <- - (STL)
+(Input/output) <- - (STL)
+(Smart pointers) <- - (STL)
+
+(STL) - -> (Chrono)
+(STL) - -> (Regex)
+(STL) - -> (Atomic)
+(STL) - -> (Thread)
+(STL) - -> (Filesystem)
+(STL) - -> (...)
+
+@enduml
+
+PlantUML version 1.2018.10(Sat Aug 25 20:02:59 MSK 2018)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Java Version: 1.8.0_181-13
+Operating System: Linux
+OS Version: 4.14.72
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>
+</div>
+<div id="структура-stl" class="title-slide slide section level1"><h1>Структура STL</h1></div><div id="контейнеры" class="slide section level2">
+<h1>Контейнеры</h1>
 <ul>
-<li>Feature – предлагаемая функциональность</li>
-<li>Bug – неправильная реализация функциональности</li>
-<li>Спецификация – набор функциональностей, которым обладает система</li>
-<li>Unit test – модульный тест</li>
-<li>Framework – движок (библиотека) для реализации конкретной функциональности
+<li>Последовательные (vector, array, list, string)</li>
+<li>Непоследовательные (list, forward_list, dequeue)</li>
+<li>Ассоциативные (map, set)</li>
+<li>Хеш-контейнеры (unordered_set, unordered_map)</li>
+<li>Адаптеры (stack, priority_queue, queue)</li>
+<li>Span (view) — C++20</li>
+<li>std::initializer_list — список инициализации <code>{1, 2, 3}</code></li>
+</ul>
+</div><div id="общие-методы-контейнеров" class="slide section level2">
+<h1>Общие методы контейнеров</h1>
 <ul>
-<li>тестовый движок (gtest, catch2)</li>
-<li>движок пользовательского интерфейса (Qt, Gtk)</li>
-<li>Boost – это не движок, это набор библиотек</li>
-<li>НО! boost::async – это движок для сетевого взаимодействия</li>
+<li>begin/end — возвращают итераторы</li>
+<li>cbegin/cend — константные итераторы (подходят только для чтения)</li>
+<li>rbegin/rend — reverse_iterator (обход совершается с конца)</li>
+<li>erase — удаляет элементы (освобождает место) по итератору</li>
+<li>автоматические расширение контейнера при вставке</li>
+<li><code>operator[]</code> — индексация</li>
+<li>std::find — для поиска элементов</li>
+<li>size — размер контейнера</li>
+<li>data — получить “сырой” указатель на данные (подходит не для всех)</li>
+<li>front/back == <code>*begin()/*rbegin()</code></li>
+<li>push/pop/emplace/insert — вставка элементов</li>
+<li>resize — изменение размера</li>
+</ul>
+</div><div id="итераторы" class="slide section level2">
+<h1>Итераторы</h1>
+<ul>
+<li>Созданы для абстракции контейнера от алгоритма</li>
+<li>6 видов (тегов) по типам контейнеров:
+<ul>
+<li>Contigues — непрерывный (указатели)</li>
+<li>RandomAccess — с произвольным доступом (vector)</li>
+<li>Bidirectional — есть инкремент и декремент (list)</li>
+<li>ForwardIterator — есть инкремент (forward_list)</li>
+<li>Input — чтение, можно пройтись итератором только один раз (istream)</li>
+<li>Output — запись, можно пройтись итератором только один раз (ostream)</li>
 </ul></li>
-<li>Suite, Fixture, Case – способы иерархического представления тестов</li>
+<li>Могут быть полностью абстрагированы от контейнера</li>
+<li>Потоки ввода/вывода обладают своими итераторами</li>
+<li>Адаптеры (reverse, back_inserter)</li>
 </ul>
-</section>
-<section class="slide level1">
-
-<section id="unit-testing" class="level2">
-<h2>Unit testing</h2>
+</div><div id="основные-методы-итераторов" class="slide section level2">
+<h1>Основные методы итераторов</h1>
 <ul>
-<li>Модульное тестирование</li>
-<li>Разновидность серого/чёрного ящика</li>
-<li>Уже готовый пример использования кода</li>
-<li>Возможнность регрессионного тестирования</li>
-<li>CUnit, Boost test, GTest, Catch, …</li>
-</ul>
-</section>
-<section id="unit-test-example" class="level2">
-<h2>Пример юнит-теста</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cxx"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="pp">#include </span><span class="im">&lt;gtest/gtest.h&gt;</span></a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">class</span> DwtTest: <span class="kw">public</span> ::testing::Test</a>
-<a class="sourceLine" id="cb1-4" data-line-number="4">{</a>
-<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="kw">protected</span>:</a>
-<a class="sourceLine" id="cb1-6" data-line-number="6">    DwtTest() : img(kWidth * kHeight) {</a>
-<a class="sourceLine" id="cb1-7" data-line-number="7">        <span class="bu">std::</span>fill(img.begin(), img.end(), <span class="dv">0</span>);</a>
-<a class="sourceLine" id="cb1-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb1-9" data-line-number="9">        <span class="kw">auto</span> it = img.begin() + kHeight/<span class="dv">2</span> * kWidth;</a>
-<a class="sourceLine" id="cb1-10" data-line-number="10">        <span class="cf">for</span> (<span class="kw">auto</span> i = <span class="dv">0</span>; i &lt; kHeight/<span class="dv">5</span>; ++i)</a>
-<a class="sourceLine" id="cb1-11" data-line-number="11">            <span class="bu">std::</span>fill_n(it + i * kWidth + kWidth/<span class="dv">4</span>, kWidth/<span class="dv">2</span>, <span class="dv">255</span>);</a>
-<a class="sourceLine" id="cb1-12" data-line-number="12">    }</a>
-<a class="sourceLine" id="cb1-13" data-line-number="13"></a>
-<a class="sourceLine" id="cb1-14" data-line-number="14">    <span class="dt">void</span> SetUp() {}</a>
-<a class="sourceLine" id="cb1-15" data-line-number="15">    <span class="dt">void</span> TearDown() {}</a>
-<a class="sourceLine" id="cb1-16" data-line-number="16"></a>
-<a class="sourceLine" id="cb1-17" data-line-number="17"><span class="kw">protected</span>:</a>
-<a class="sourceLine" id="cb1-18" data-line-number="18">    <span class="bu">std::</span>vector&lt;<span class="dt">float</span>&gt; img;</a>
-<a class="sourceLine" id="cb1-19" data-line-number="19">};</a>
-<a class="sourceLine" id="cb1-20" data-line-number="20"></a>
-<a class="sourceLine" id="cb1-21" data-line-number="21">TEST_F(DwtTest, DwtIDwt)</a>
-<a class="sourceLine" id="cb1-22" data-line-number="22">{</a>
-<a class="sourceLine" id="cb1-23" data-line-number="23">    <span class="bu">std::</span>vector&lt;<span class="dt">float</span>&gt; subbands(img);</a>
-<a class="sourceLine" id="cb1-24" data-line-number="24">    ASSERT_EQ(wt2d_cdf97_fwd(subbands.data(), kHeight, kWidth, <span class="dv">3</span>), <span class="dv">0</span>);</a>
-<a class="sourceLine" id="cb1-25" data-line-number="25"></a>
-<a class="sourceLine" id="cb1-26" data-line-number="26">    <span class="bu">std::</span>vector&lt;<span class="dt">float</span>&gt; restored(subbands);</a>
-<a class="sourceLine" id="cb1-27" data-line-number="27">    ASSERT_EQ(wt2d_cdf97_inv(restored.data(), kHeight, kWidth, <span class="dv">3</span>), <span class="dv">0</span>);</a>
-<a class="sourceLine" id="cb1-28" data-line-number="28">    ASSERT_EQ(restored.size(), img.size());</a>
-<a class="sourceLine" id="cb1-29" data-line-number="29">    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; img.size(); ++i)</a>
-<a class="sourceLine" id="cb1-30" data-line-number="30">        EXPECT_NEAR(restored[i], img[i], <span class="dv">1</span>) &lt;&lt; <span class="st">&quot;Index &quot;</span> &lt;&lt; i;</a>
-<a class="sourceLine" id="cb1-31" data-line-number="31">}</a></code></pre></div>
-</section>
-<section id="unit-test-structure" class="level2">
-<h2>Состав модульного теста</h2>
+<li>std::iterator_traits — класс для получения информации об итераторе (category_tag, value_type, reference, pointer, difference_type)
 <ul>
-<li>ASSERT, EXPECT – примитивы сравнения (ядро теста)</li>
-<li>WARN, ERROR – уровни остановки теста</li>
-<li>Иерархии тестов: TestSuite (Fixture), TestCase – зависит от тестового движка</li>
-<li>TearUp/Down, FixtureSetup/Cleanup – ин(де)ициализация уровня теста</li>
-<li>Механизм добавления теста</li>
-<li>Система оповещения пользователя об ошибках</li>
-<li>Разные уровни тестов необходимы для организации генерации тестируемых данных</li>
-</ul>
-</section>
-<section id="unit-test-hierarchy" class="level2">
-<h2>Схема иерархии модульных тестов</h2>
-<pre><code>TestSuite(S0)
-    constructor
-    TestCase(S0::C0)
-        constructor
-            actions
-            asserts, expects
-        destructor
-    TestCase(S0::C1)
-        constructor
-            actions
-            asserts, expects
-        destructor
-    destructor
-TestSuite(S1)
-    constructor
-    TestCase(S1::C0)
-    TestCase(S1::C1)
-    TestCase(S1::C2)
-    destructor
-...</code></pre>
-</section>
-</section>
-<section class="slide level1">
-
-<section id="catch" class="level2">
-<h2>Движок тестирования Catch</h2>
-<ul>
-<li><a href="https://github.com/catchorg/Catch2" class="uri">https://github.com/catchorg/Catch2</a></li>
-<li>Автоматическое добавление тестов</li>
-<li>Изменённая иерархия тестов:
-<ul>
-<li>нулевой уровень – глобальное пространство имён</li>
-<li>первый уровень – <code>TEST_CASE</code></li>
-<li>второй уровень – <code>SECTION</code></li>
+<li><code>typename std::iterator_traits&lt;Iterator&gt;::value_type</code> — тип значения при разыменовании</li>
 </ul></li>
-<li>Поддержка BDD-стиля тестирования</li>
-<li>Привычные методы сравнения</li>
+<li>Вся арифметика построена на перегрузке операторов</li>
+<li><code>operator++()</code> и <code>operator++(int)</code> — префиксная и постфиксаня формы инкремента (декремента)</li>
+<li><code>operator*</code> — разыменование итератора (получение значения)</li>
+<li><code>operator+(difference_type)</code> — инкремент (декремент) на произвольное число</li>
+<li><code>operator[]</code> — индексация в RandomAccess итераторах</li>
+<li><code>operator==</code> и <code>operator!=</code> — для сравнения итераторов и остановки цикла</li>
+<li><code>operator=</code> — для поддержки Output итератора</li>
+<li><code>operator-</code> — для получения расстояния между итераторами</li>
+<li>Операции — advance, distance, next, prev</li>
 </ul>
-</section>
-<section id="catch-examples" class="level2">
-<h2>Примеры</h2>
-<p><a href="https://github.com/catchorg/Catch2/tree/master/examples" class="uri">https://github.com/catchorg/Catch2/tree/master/examples</a></p>
-</section>
-</section>
-<section class="slide level1">
-
-<section id="tdd" class="level2">
-<h2>Test Driven Development</h2>
+</div><div id="алгоритмы" class="slide section level2">
+<h1>Алгоритмы</h1>
 <ul>
-<li>Разработка через тестирование</li>
-<li>Каждая функционально сначала обретает тест, а потом непосредственный код</li>
-<li>Согласование интерфейса происходит раньше согласования реализации функциональности</li>
-<li>Является идеалогией, а не типом тестирования</li>
-</ul>
-</section>
-<section id="test-integration" class="level2">
-<h2>Интеграционное тестирование</h2>
+<li>Почти все алгоритмы работают с итераторами</li>
+<li>Не модифицирующие последовательные операции (count, find)</li>
+<li>Модификаторы (fill, copy, transform)</li>
+<li>Сортировки (sort, nth_element, partition)
 <ul>
-<li>Тестирование целиком</li>
-<li>Тестирование взаимодействия библиотек, систем или компонентов одной системы</li>
-<li>Подходят сторонние инструменты (expect)
-<ul>
-<li><a href="https://habrahabr.ru/company/ruvds/blog/328436" class="uri">https://habrahabr.ru/company/ruvds/blog/328436</a></li>
-<li><a href="https://www.ibm.com/developerworks/ru/library/l-expect_1" class="uri">https://www.ibm.com/developerworks/ru/library/l-expect_1</a></li>
+<li>Поиск (binary_search, lower_bound)</li>
+<li>Операции с множествами (merge, includes, set_union)</li>
 </ul></li>
-<li>Неустойчиво к ошибкам компонент системы: ошибки могут интерферировать</li>
+<li>Минимумы/максимумы (min, minmax, min_element, clamp)</li>
+<li>Аккумуляторы (iota, accumulate, transform_reduce, partial_sum, inner_product)</li>
+<li>Политики запуска алгоритмов (seq, par, par_unseq)</li>
 </ul>
-</section>
-<section id="mock-testing" class="level2">
-<h2>Mock &amp; stubs</h2>
+</div><div id="математические-расширения" class="slide section level2">
+<h1>Математические расширения</h1>
 <ul>
-<li>Имитаторы и заглушки</li>
-<li>Ограничения:
+<li>Общие математические функции — cmath, cstdlib</li>
+<li>Специальные математические функции (cyl_bessel_i, expint, riemann_zeta)</li>
+<li>Complex, valarray</li>
+<li>Аккумуляторы, gcd, lcm</li>
+<li>Псевдослучаные последовательности
 <ul>
-<li>компоненты должны находится в разных библиотеках</li>
-<li>невозможно имитировать внутренние объкты классов или функций</li>
-<li>имитируемые объкты должны иметь абстрактный интерфейс или быть шаблонным параметром</li>
-<li>решение возможно на уровне системы (<code>LD_PRELOAD</code>)</li>
+<li>Псевдогенераторы (mersenne_twister_engine, linear_congruential_engine)</li>
+<li>Адаптеры генераторов (shuffle_order_engine, discard_block_engine)</li>
+<li>Недетерменированный генератор (random_device)</li>
+<li>Функции распределения (uniform_int_distribution, normal_distribution)</li>
 </ul></li>
-<li>Заглушки – константы, частный случай имитаторов</li>
-<li>Имитаторы – способны имитировать действия</li>
-<li>Плохо автоматизируется</li>
-<li>Подходит для нереализованных или недоделанных компонентов системы</li>
+<li>Рациональные числа уровня компиляции (нужно для <code>std::chrono</code>)</li>
+<li>Управление FPE для работы с плавающей точкой</li>
 </ul>
-</section>
-<section id="stress-test" class="level2">
-<h2>Тесты на устойчивость</h2>
+</div><div id="потоковый-вводвывод" class="slide section level2">
+<h1>Потоковый ввод/вывод</h1>
+<p><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjwhLS0gR2VuZXJhdGVkIGJ5IGdyYXBodml6IHZlcnNpb24gMi4yNi4zICgyMDEwMDEyNi4xNjAwKQogLS0+CjwhLS0gVGl0bGU6IGluaGVyaXRhbmNlIFBhZ2VzOiAxIC0tPgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHdpZHRoPSI1NDlweCIgaGVpZ2h0PSIzNzdweCIgdmlld0JveD0iMC4wMCAwLjAwIDYwOC4wMCA0MTcuOTEiPgo8ZyBpZD0iZ3JhcGgxIiBjbGFzcz0iZ3JhcGgiIHRyYW5zZm9ybT0icm90YXRlKDApIHRyYW5zbGF0ZSg0IDQxMy45MTQpIj4KPHRpdGxlPmluaGVyaXRhbmNlPC90aXRsZT4KPCEtLSBiYXNlIC0tPgo8ZyBpZD0ibm9kZTEiIGNsYXNzPSJub2RlIj48dGl0bGU+YmFzZTwvdGl0bGU+CjxhPgo8cG9seWdvbiBmaWxsPSJ3aGl0ZSIgc3Ryb2tlPSJibGFjayIgcG9pbnRzPSIzNTksLTQwOS45MTQgMjQ1LC00MDkuOTE0IDI0NSwtMzczLjkxNCAzNTksLTM3My45MTQgMzU5LC00MDkuOTE0Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjMwMiIgeT0iLTM4OC4zMTQiIGZvbnQtZmFtaWx5PSJEZWphVnUgU2FucywgdmVyZGFuYSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNC4wMCI+aW9zX2Jhc2U8L3RleHQ+CjwvYT4KPC9nPgo8IS0tIGlvcyAtLT4KPGcgaWQ9Im5vZGUyIiBjbGFzcz0ibm9kZSI+PHRpdGxlPmlvczwvdGl0bGU+CjxhPgo8cG9seWdvbiBmaWxsPSJ3aGl0ZSIgc3Ryb2tlPSJibGFjayIgcG9pbnRzPSIzNjcsLTM0NC45MTQgMjM3LC0zNDQuOTE0IDIzNywtMzAyLjkxNCAzNjcsLTMwMi45MTQgMzY3LC0zNDQuOTE0Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJzdGFydCIgeD0iMjcxLjUiIHk9Ii0zMzAuNjQ3IiBmb250LWZhbWlseT0iRGVqYVZ1IFNhbnMsIHZlcmRhbmEsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiPmJhc2ljX2lvczwvdGV4dD4KPHRleHQgdGV4dC1hbmNob3I9InN0YXJ0IiB4PSIyNDUuNSIgeT0iLTMxMy44NDciIGZvbnQtZmFtaWx5PSJEZWphVnUgU2FucywgdmVyZGFuYSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzgwODA4MCI+Jmx0O0NoYXJULCBUcmFpdHMmZ3Q7PC90ZXh0Pgo8L2E+CjwvZz4KPCEtLSBpb3MmIzQ1OyZndDtiYXNlIC0tPgo8ZyBpZD0iZWRnZTIiIGNsYXNzPSJlZGdlIj48dGl0bGU+aW9zLSZndDtiYXNlPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSJibGFjayIgZD0iTTMwMiwtMzQ1LjA1NkMzMDIsLTM0OS4zNjkgMzAyLC0zNTQuMDA2IDMwMiwtMzU4LjYyNSIvPgo8cG9seWdvbiBmaWxsPSJub25lIiBzdHJva2U9ImJsYWNrIiBwb2ludHM9IjI5Ni43NSwtMzU4Ljc2NiAzMDIsLTM3My43NjYgMzA3LjI1LC0zNTguNzY2IDI5Ni43NSwtMzU4Ljc2NiIvPgo8L2c+CjwhLS0gaXN0IC0tPgo8ZyBpZD0ibm9kZTMiIGNsYXNzPSJub2RlIj48dGl0bGU+aXN0PC90aXRsZT4KPGE+Cjxwb2x5Z29uIGZpbGw9IndoaXRlIiBzdHJva2U9ImJsYWNrIiBwb2ludHM9IjQ2NCwtMjczLjkxNCAzMzQsLTI3My45MTQgMzM0LC0yMzEuOTE0IDQ2NCwtMjMxLjkxNCA0NjQsLTI3My45MTQiLz4KPHRleHQgdGV4dC1hbmNob3I9InN0YXJ0IiB4PSIzNTIuNSIgeT0iLTI1OS42NDciIGZvbnQtZmFtaWx5PSJEZWphVnUgU2FucywgdmVyZGFuYSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNC4wMCI+YmFzaWNfaXN0cmVhbTwvdGV4dD4KPHRleHQgdGV4dC1hbmNob3I9InN0YXJ0IiB4PSIzNDIuNSIgeT0iLTI0Mi44NDciIGZvbnQtZmFtaWx5PSJEZWphVnUgU2FucywgdmVyZGFuYSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzgwODA4MCI+Jmx0O0NoYXJULCBUcmFpdHMmZ3Q7PC90ZXh0Pgo8L2E+CjwvZz4KPCEtLSBpc3QmIzQ1OyZndDtpb3MgLS0+CjxnIGlkPSJlZGdlNCIgY2xhc3M9ImVkZ2UiPjx0aXRsZT5pc3QtJmd0O2lvczwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iYmxhY2siIGQ9Ik0zNzAuMTU5LC0yNzQuMDI0QzM2MS42MzYsLTI4MC4yNjIgMzUyLjEzNywtMjg3LjIxNSAzNDMuMDAzLC0yOTMuOTAxIi8+Cjxwb2x5Z29uIGZpbGw9Im5vbmUiIHN0cm9rZT0iYmxhY2siIHBvaW50cz0iMzM5LjksLTI4OS42NjYgMzMwLjg5NywtMzAyLjc2MiAzNDYuMTAyLC0yOTguMTM5IDMzOS45LC0yODkuNjY2Ii8+CjwvZz4KPCEtLSBpZnN0IC0tPgo8ZyBpZD0ibm9kZTQiIGNsYXNzPSJub2RlIj48dGl0bGU+aWZzdDwvdGl0bGU+CjxhPgo8cG9seWdvbiBmaWxsPSJ3aGl0ZSIgc3Ryb2tlPSJibGFjayIgcG9pbnRzPSI1OTAsLTYwLjkxMzUgNDYwLC02MC45MTM1IDQ2MCwtMTguOTEzNSA1OTAsLTE4LjkxMzUgNTkwLC02MC45MTM1Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJzdGFydCIgeD0iNDc2IiB5PSItNDYuNjQ2OCIgZm9udC1mYW1pbHk9IkRlamFWdSBTYW5zLCB2ZXJkYW5hLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0LjAwIj5iYXNpY19pZnN0cmVhbTwvdGV4dD4KPHRleHQgdGV4dC1hbmNob3I9InN0YXJ0IiB4PSI0NjguNSIgeT0iLTI5Ljg0NjgiIGZvbnQtZmFtaWx5PSJEZWphVnUgU2FucywgdmVyZGFuYSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzgwODA4MCI+Jmx0O0NoYXJULCBUcmFpdHMmZ3Q7PC90ZXh0Pgo8L2E+CjwvZz4KPCEtLSBpZnN0JiM0NTsmZ3Q7aXN0IC0tPgo8ZyBpZD0iZWRnZTEwIiBjbGFzcz0iZWRnZSI+PHRpdGxlPmlmc3QtJmd0O2lzdDwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iYmxhY2siIGQ9Ik00NzUuMDg2LC02MS4wNjU3QzQ2Mi4zOTEsLTY4LjUzNzggNDQ5Ljg1NCwtNzguMDk3MyA0NDEsLTg5LjkxMzUgNDEzLjE2NiwtMTI3LjA2MiA0MDMuNzAzLC0xODAuODY1IDQwMC41MjksLTIxNi4zNTMiLz4KPHBvbHlnb24gZmlsbD0ibm9uZSIgc3Ryb2tlPSJibGFjayIgcG9pbnRzPSIzOTUuMjY2LC0yMTYuMzY1IDM5OS40NDcsLTIzMS42OTcgNDA1Ljc0LC0yMTcuMTA0IDM5NS4yNjYsLTIxNi4zNjUiLz4KPC9nPgo8IS0tIGlzc3QgLS0+CjxnIGlkPSJub2RlNSIgY2xhc3M9Im5vZGUiPjx0aXRsZT5pc3N0PC90aXRsZT4KPGE+Cjxwb2x5Z29uIGZpbGw9IndoaXRlIiBzdHJva2U9ImJsYWNrIiBwb2ludHM9IjYwMCwtMTMxLjkxNCA0NTAsLTEzMS45MTQgNDUwLC04OS45MTM1IDYwMCwtODkuOTEzNSA2MDAsLTEzMS45MTQiLz4KPHRleHQgdGV4dC1hbmNob3I9InN0YXJ0IiB4PSI0NTguNSIgeT0iLTExNy42NDciIGZvbnQtZmFtaWx5PSJEZWphVnUgU2FucywgdmVyZGFuYSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNC4wMCI+YmFzaWNfaXN0cmluZ3N0cmVhbTwvdGV4dD4KPHRleHQgdGV4dC1hbmNob3I9InN0YXJ0IiB4PSI0NjguNSIgeT0iLTEwMC44NDciIGZvbnQtZmFtaWx5PSJEZWphVnUgU2FucywgdmVyZGFuYSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzgwODA4MCI+Jmx0O0NoYXJULCBUcmFpdHMmZ3Q7PC90ZXh0Pgo8L2E+CjwvZz4KPCEtLSBpZnN0JiM0NTsmZ3Q7aXNzdCAtLT4KPCEtLSBpc3N0JiM0NTsmZ3Q7aXN0IC0tPgo8ZyBpZD0iZWRnZTEyIiBjbGFzcz0iZWRnZSI+PHRpdGxlPmlzc3QtJmd0O2lzdDwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iYmxhY2siIGQ9Ik01MDYuMTM3LC0xMzIuMTcyQzQ4NS40NDUsLTE1NS40OTEgNDUxLjk4OCwtMTkzLjE5NyA0MjcuOTY2LC0yMjAuMjciLz4KPHBvbHlnb24gZmlsbD0ibm9uZSIgc3Ryb2tlPSJibGFjayIgcG9pbnRzPSI0MjQuMDIxLC0yMTYuODA1IDQxNy45OTIsLTIzMS41MDkgNDMxLjg3NSwtMjIzLjc3NCA0MjQuMDIxLC0yMTYuODA1Ii8+CjwvZz4KPCEtLSBvc3QgLS0+CjxnIGlkPSJub2RlNiIgY2xhc3M9Im5vZGUiPjx0aXRsZT5vc3Q8L3RpdGxlPgo8YT4KPHBvbHlnb24gZmlsbD0id2hpdGUiIHN0cm9rZT0iYmxhY2siIHBvaW50cz0iMjcwLC0yNzMuOTE0IDE0MCwtMjczLjkxNCAxNDAsLTIzMS45MTQgMjcwLC0yMzEuOTE0IDI3MCwtMjczLjkxNCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ic3RhcnQiIHg9IjE1NiIgeT0iLTI1OS42NDciIGZvbnQtZmFtaWx5PSJEZWphVnUgU2FucywgdmVyZGFuYSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNC4wMCI+YmFzaWNfb3N0cmVhbTwvdGV4dD4KPHRleHQgdGV4dC1hbmNob3I9InN0YXJ0IiB4PSIxNDguNSIgeT0iLTI0Mi44NDciIGZvbnQtZmFtaWx5PSJEZWphVnUgU2FucywgdmVyZGFuYSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzgwODA4MCI+Jmx0O0NoYXJULCBUcmFpdHMmZ3Q7PC90ZXh0Pgo8L2E+CjwvZz4KPCEtLSBvc3QmIzQ1OyZndDtpb3MgLS0+CjxnIGlkPSJlZGdlNiIgY2xhc3M9ImVkZ2UiPjx0aXRsZT5vc3QtJmd0O2lvczwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iYmxhY2siIGQ9Ik0yMzMuODQxLC0yNzQuMDI0QzI0Mi4zNjQsLTI4MC4yNjIgMjUxLjg2MywtMjg3LjIxNSAyNjAuOTk3LC0yOTMuOTAxIi8+Cjxwb2x5Z29uIGZpbGw9Im5vbmUiIHN0cm9rZT0iYmxhY2siIHBvaW50cz0iMjU3Ljg5OCwtMjk4LjEzOSAyNzMuMTAzLC0zMDIuNzYyIDI2NC4xLC0yODkuNjY2IDI1Ny44OTgsLTI5OC4xMzkiLz4KPC9nPgo8IS0tIG9mc3QgLS0+CjxnIGlkPSJub2RlNyIgY2xhc3M9Im5vZGUiPjx0aXRsZT5vZnN0PC90aXRsZT4KPGE+Cjxwb2x5Z29uIGZpbGw9IndoaXRlIiBzdHJva2U9ImJsYWNrIiBwb2ludHM9IjE0MiwtNjAuOTEzNSAxMiwtNjAuOTEzNSAxMiwtMTguOTEzNSAxNDIsLTE4LjkxMzUgMTQyLC02MC45MTM1Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJzdGFydCIgeD0iMjYiIHk9Ii00Ni42NDY4IiBmb250LWZhbWlseT0iRGVqYVZ1IFNhbnMsIHZlcmRhbmEsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiPmJhc2ljX29mc3RyZWFtPC90ZXh0Pgo8dGV4dCB0ZXh0LWFuY2hvcj0ic3RhcnQiIHg9IjIwLjUiIHk9Ii0yOS44NDY4IiBmb250LWZhbWlseT0iRGVqYVZ1IFNhbnMsIHZlcmRhbmEsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiM4MDgwODAiPiZsdDtDaGFyVCwgVHJhaXRzJmd0OzwvdGV4dD4KPC9hPgo8L2c+CjwhLS0gb2ZzdCYjNDU7Jmd0O2lmc3QgLS0+CjwhLS0gb2ZzdCYjNDU7Jmd0O29zdCAtLT4KPGcgaWQ9ImVkZ2UxNiIgY2xhc3M9ImVkZ2UiPjx0aXRsZT5vZnN0LSZndDtvc3Q8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9ImJsYWNrIiBkPSJNMTI4LjU0MiwtNjEuMTEyNUMxNDEuMzg1LC02OC41NDUzIDE1NC4wMzMsLTc4LjA3MzEgMTYzLC04OS45MTM1IDE5MS4wMjUsLTEyNi45MTggMjAwLjQ0MiwtMTgwLjc1NiAyMDMuNTUzLC0yMTYuMjkxIi8+Cjxwb2x5Z29uIGZpbGw9Im5vbmUiIHN0cm9rZT0iYmxhY2siIHBvaW50cz0iMTk4LjM0MywtMjE3LjA1MSAyMDQuNjA2LC0yMzEuNjU3IDIwOC44MTgsLTIxNi4zMzQgMTk4LjM0MywtMjE3LjA1MSIvPgo8L2c+CjwhLS0gb3NzdCAtLT4KPGcgaWQ9Im5vZGU4IiBjbGFzcz0ibm9kZSI+PHRpdGxlPm9zc3Q8L3RpdGxlPgo8YT4KPHBvbHlnb24gZmlsbD0id2hpdGUiIHN0cm9rZT0iYmxhY2siIHBvaW50cz0iMTU0LC0xMzEuOTE0IDguNTI2NTFlLTE0LC0xMzEuOTE0IDAsLTg5LjkxMzUgMTU0LC04OS45MTM1IDE1NCwtMTMxLjkxNCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ic3RhcnQiIHg9IjguNSIgeT0iLTExNy42NDciIGZvbnQtZmFtaWx5PSJEZWphVnUgU2FucywgdmVyZGFuYSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNC4wMCI+YmFzaWNfb3N0cmluZ3N0cmVhbTwvdGV4dD4KPHRleHQgdGV4dC1hbmNob3I9InN0YXJ0IiB4PSIyMC41IiB5PSItMTAwLjg0NyIgZm9udC1mYW1pbHk9IkRlamFWdSBTYW5zLCB2ZXJkYW5hLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjODA4MDgwIj4mbHQ7Q2hhclQsIFRyYWl0cyZndDs8L3RleHQ+CjwvYT4KPC9nPgo8IS0tIG9mc3QmIzQ1OyZndDtvc3N0IC0tPgo8IS0tIGZzdCAtLT4KPGcgaWQ9Im5vZGUxMCIgY2xhc3M9Im5vZGUiPjx0aXRsZT5mc3Q8L3RpdGxlPgo8YT4KPHBvbHlnb24gZmlsbD0id2hpdGUiIHN0cm9rZT0iYmxhY2siIHBvaW50cz0iMzQ4LC02MC45MTM1IDIxOCwtNjAuOTEzNSAyMTgsLTE4LjkxMzUgMzQ4LC0xOC45MTM1IDM0OCwtNjAuOTEzNSIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ic3RhcnQiIHg9IjIzNiIgeT0iLTQ2LjY0NjgiIGZvbnQtZmFtaWx5PSJEZWphVnUgU2FucywgdmVyZGFuYSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNC4wMCI+YmFzaWNfZnN0cmVhbTwvdGV4dD4KPHRleHQgdGV4dC1hbmNob3I9InN0YXJ0IiB4PSIyMjYuNSIgeT0iLTI5Ljg0NjgiIGZvbnQtZmFtaWx5PSJEZWphVnUgU2FucywgdmVyZGFuYSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzgwODA4MCI+Jmx0O0NoYXJULCBUcmFpdHMmZ3Q7PC90ZXh0Pgo8L2E+CjwvZz4KPCEtLSBvZnN0JiM0NTsmZ3Q7ZnN0IC0tPgo8IS0tIG9zc3QmIzQ1OyZndDtpc3N0IC0tPgo8IS0tIG9zc3QmIzQ1OyZndDtvc3QgLS0+CjxnIGlkPSJlZGdlMTgiIGNsYXNzPSJlZGdlIj48dGl0bGU+b3NzdC0mZ3Q7b3N0PC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSJibGFjayIgZD0iTTk2LjE2MjksLTEzMi4xNzJDMTE3LjE4MywtMTU1LjQ5MSAxNTEuMTcxLC0xOTMuMTk3IDE3NS41NzUsLTIyMC4yNyIvPgo8cG9seWdvbiBmaWxsPSJub25lIiBzdHJva2U9ImJsYWNrIiBwb2ludHM9IjE3MS43NjMsLTIyMy44ODMgMTg1LjcwNiwtMjMxLjUwOSAxNzkuNTYzLC0yMTYuODUzIDE3MS43NjMsLTIyMy44ODMiLz4KPC9nPgo8IS0tIHNzdCAtLT4KPGcgaWQ9Im5vZGUxMSIgY2xhc3M9Im5vZGUiPjx0aXRsZT5zc3Q8L3RpdGxlPgo8YT4KPHBvbHlnb24gZmlsbD0id2hpdGUiIHN0cm9rZT0iYmxhY2siIHBvaW50cz0iMzU2LC0xMzEuOTE0IDIxMCwtMTMxLjkxNCAyMTAsLTg5LjkxMzUgMzU2LC04OS45MTM1IDM1NiwtMTMxLjkxNCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ic3RhcnQiIHg9IjIxOC41IiB5PSItMTE3LjY0NyIgZm9udC1mYW1pbHk9IkRlamFWdSBTYW5zLCB2ZXJkYW5hLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0LjAwIj5iYXNpY19zdHJpbmdzdHJlYW08L3RleHQ+Cjx0ZXh0IHRleHQtYW5jaG9yPSJzdGFydCIgeD0iMjI2LjUiIHk9Ii0xMDAuODQ3IiBmb250LWZhbWlseT0iRGVqYVZ1IFNhbnMsIHZlcmRhbmEsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiM4MDgwODAiPiZsdDtDaGFyVCwgVHJhaXRzJmd0OzwvdGV4dD4KPC9hPgo8L2c+CjwhLS0gb3NzdCYjNDU7Jmd0O3NzdCAtLT4KPCEtLSBpb3N0IC0tPgo8ZyBpZD0ibm9kZTkiIGNsYXNzPSJub2RlIj48dGl0bGU+aW9zdDwvdGl0bGU+CjxhPgo8cG9seWdvbiBmaWxsPSJ3aGl0ZSIgc3Ryb2tlPSJibGFjayIgcG9pbnRzPSIzNzEsLTIwMi45MTQgMjQxLC0yMDIuOTE0IDI0MSwtMTYwLjkxNCAzNzEsLTE2MC45MTQgMzcxLC0yMDIuOTE0Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJzdGFydCIgeD0iMjU1LjUiIHk9Ii0xODguNjQ3IiBmb250LWZhbWlseT0iRGVqYVZ1IFNhbnMsIHZlcmRhbmEsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiPmJhc2ljX2lvc3RyZWFtPC90ZXh0Pgo8dGV4dCB0ZXh0LWFuY2hvcj0ic3RhcnQiIHg9IjI0OS41IiB5PSItMTcxLjg0NyIgZm9udC1mYW1pbHk9IkRlamFWdSBTYW5zLCB2ZXJkYW5hLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0LjAwIiBmaWxsPSIjODA4MDgwIj4mbHQ7Q2hhclQsIFRyYWl0cyZndDs8L3RleHQ+CjwvYT4KPC9nPgo8IS0tIGlvc3QmIzQ1OyZndDtpc3QgLS0+CjxnIGlkPSJlZGdlOCIgY2xhc3M9ImVkZ2UiPjx0aXRsZT5pb3N0LSZndDtpc3Q8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9ImJsYWNrIiBkPSJNMzMzLjY1MSwtMjAzLjAyNEMzNDEuNjM3LC0yMDkuMTIxIDM1MC41MTcsLTIxNS44OTkgMzU5LjA5MSwtMjIyLjQ0NSIvPgo8cG9seWdvbiBmaWxsPSJub25lIiBzdHJva2U9ImJsYWNrIiBwb2ludHM9IjM1Ni4xODYsLTIyNi44MzMgMzcxLjI5NSwtMjMxLjc2MiAzNjIuNTU4LC0yMTguNDg3IDM1Ni4xODYsLTIyNi44MzMiLz4KPC9nPgo8IS0tIGlvc3QmIzQ1OyZndDtvc3QgLS0+CjxnIGlkPSJlZGdlMTQiIGNsYXNzPSJlZGdlIj48dGl0bGU+aW9zdC0mZ3Q7b3N0PC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSJibGFjayIgZD0iTTI3NS45NywtMjAzLjAyNEMyNjYuOTk0LC0yMDkuMzMzIDI1Ni45OCwtMjE2LjM3MyAyNDcuMzY5LC0yMjMuMTI5Ii8+Cjxwb2x5Z29uIGZpbGw9Im5vbmUiIHN0cm9rZT0iYmxhY2siIHBvaW50cz0iMjQ0LjM0MSwtMjE4Ljg0MSAyMzUuMDg5LC0yMzEuNzYyIDI1MC4zNzksLTIyNy40MzEgMjQ0LjM0MSwtMjE4Ljg0MSIvPgo8L2c+CjwhLS0gZnN0JiM0NTsmZ3Q7aWZzdCAtLT4KPCEtLSBmc3QmIzQ1OyZndDtpb3N0IC0tPgo8ZyBpZD0iZWRnZTIwIiBjbGFzcz0iZWRnZSI+PHRpdGxlPmZzdC0mZ3Q7aW9zdDwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iYmxhY2siIGQ9Ik0zMzUuNDQ4LC02MS4wMjEzQzM0Ny4yMjMsLTY4LjM0NzkgMzU4LjIyNCwtNzcuODQ2MiAzNjUsLTg5LjkxMzUgMzc0LjEzOSwtMTA2LjE5IDM3Mi44NDgsLTExNC45NzcgMzY1LC0xMzEuOTE0IDM2MS44ODMsLTEzOC42NCAzNTcuMzY2LC0xNDQuNzkyIDM1Mi4xOTcsLTE1MC4zMDMiLz4KPHBvbHlnb24gZmlsbD0ibm9uZSIgc3Ryb2tlPSJibGFjayIgcG9pbnRzPSIzNDguMzkxLC0xNDYuNjcxIDM0MC45MTQsLTE2MC42OTUgMzU1LjUwNCwtMTU0LjM5NSAzNDguMzkxLC0xNDYuNjcxIi8+CjwvZz4KPCEtLSBmc3QmIzQ1OyZndDtzc3QgLS0+CjwhLS0gc3N0JiM0NTsmZ3Q7aXNzdCAtLT4KPCEtLSBzc3QmIzQ1OyZndDtpb3N0IC0tPgo8ZyBpZD0iZWRnZTIyIiBjbGFzcz0iZWRnZSI+PHRpdGxlPnNzdC0mZ3Q7aW9zdDwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iYmxhY2siIGQ9Ik0yODkuOTAxLC0xMzIuMjE2QzI5MS4zMTEsLTEzNi41NjkgMjkyLjgzMSwtMTQxLjI2MiAyOTQuMzU1LC0xNDUuOTY2Ii8+Cjxwb2x5Z29uIGZpbGw9Im5vbmUiIHN0cm9rZT0iYmxhY2siIHBvaW50cz0iMjg5LjQ4NywtMTQ3Ljk3NCAyOTkuMTA0LC0xNjAuNjI2IDI5OS40NzYsLTE0NC43MzggMjg5LjQ4NywtMTQ3Ljk3NCIvPgo8L2c+CjwvZz4KPC9zdmc+Cg==" alt="image" /></p>
 <ul>
-<li>Стресс-тесты</li>
-<li>Абсолютно произвольные данные</li>
-<li>Показывает насколько система устройчива, а не степень её отладки</li>
-<li>В большинстве случаев ошибки являются архитектурными</li>
+<li>Итераторы (strembuf_iterator, stream_iterator) — InputIterator, OutputIterator</li>
+<li>Потоковые объекты — stringstream</li>
+<li>I/O манипуляторы</li>
+<li><code>boost::format</code> — самое лучшее от <code>printf</code></li>
+<li><code>boost::iostreams</code> — расширенный <code>std::iostream</code></li>
 </ul>
-</section>
-<section id="benchmarks" class="level2">
-<h2>Нагрузочное тестирование</h2>
+</div><div id="работа-с-потоками-вводавывода" class="slide section level2">
+<h1>Работа с потоками ввода/вывода</h1>
 <ul>
-<li>Бенчмарки (benchmark)</li>
-<li>Тестирование скорости всей системы или отдельных компонент</li>
-<li>Тестирование устройчивости системы под нагрузкой</li>
-<li>Определение параметров системы: максимальное количество пользователей, время ожидания и т.д.</li>
-<li>Самая простая утилита – <code>time</code></li>
-<li>Метод понижения нагрузки:
+<li>Копирование файла: <code class="sourceCode cpp"><span class="bu">std::</span>ostream(<span class="st">&quot;blabla.txt&quot;</span>) &lt;&lt; <span class="bu">std::</span>ifstream(<span class="st">&quot;lala.txt&quot;</span>).rdbuf();</code></li>
+<li><p>Простейший манипулятор</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="bu">std::</span>ostream&amp; endline(<span class="bu">std::</span>ostream&amp; s)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">    <span class="cf">return</span> s &lt;&lt; <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span> &lt;&lt; <span class="bu">std::</span>flush;</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">}</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="bu">std::</span>cout &lt;&lt; <span class="st">&quot;Message&quot;</span> &lt;&lt; endline;</a></code></pre></div></li>
+<li>Как работает <code class="sourceCode cpp"><span class="bu">std::</span>hex</code>? Манипуляции с <code>iword</code> и <code>pword</code> потока</li>
+<li>Перегрузка возможна только объекта <code>streambuf</code>, так как только он имеет виртуальные методы</li>
+<li><p>Вывод вектора и написание своего оператора вывода</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">template</span>&lt;<span class="kw">class</span> A, <span class="kw">class</span> B&gt;</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="bu">std::</span>ostream&amp; <span class="kw">operator</span>&lt;&lt;(<span class="bu">std::</span>ostream&amp; stream, <span class="at">const</span> <span class="bu">std::</span>vector&lt;A, B&gt;&amp; v)</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">{</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">    <span class="bu">std::</span>copy(v.begin(), v.end() - <span class="dv">1</span>, <span class="bu">std::</span>ostream_iterator&lt;<span class="kw">decltype</span>(v[<span class="dv">0</span>])&gt;(stream, <span class="st">&quot;, &quot;</span>));</a>
+<a class="sourceLine" id="cb2-5" data-line-number="5">    <span class="cf">return</span> v.empty() ? stream : stream &lt;&lt; v.back();</a>
+<a class="sourceLine" id="cb2-6" data-line-number="6">}</a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="bu">std::</span>vector a{{<span class="fl">7.8</span>, <span class="fl">8.0</span>, <span class="fl">59.9</span>, <span class="fl">-9.1</span>, <span class="fl">1.598</span>, <span class="fl">90.35</span>}};</a>
+<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="bu">std::</span>cout &lt;&lt; a &lt;&lt; <span class="bu">std::</span>endl;</a></code></pre></div></li>
+</ul>
+</div><div id="умные-указатели" class="slide section level2">
+<h1>Умные указатели</h1>
 <ul>
-<li>для определения максимальной нагрузки</li>
-<li>понижать нагрузку в 2 раза и фиксировать параметры системы</li>
-<li>построить кривую параметров от объёма нагрузки</li>
-<li>эстраполировать результаты</li>
+<li>Обёртка на <code>new</code>, <code>delete</code></li>
+<li>Слабые указатели (weak_ptr)</li>
+<li>Совместно используемые указатели (shared_ptr)</li>
+<li>Уникальные указатели (unique_ptr)</li>
+<li>Потокобезопасность — перегрузка оператора <code>-&gt;</code></li>
+<li>Утилиты:
+<ul>
+<li>enable_shared_from_this</li>
+<li>Умные указатели поддерживают пользовательские деструкторы</li>
+<li>Аллокаторы</li>
+</ul></li>
+<li>Различие <code>delete</code> и <code>delete[]</code> → умные указатели и массивы</li>
+</ul>
+</div><div id="управление-временем" class="slide section level2">
+<h1>Управление временем</h1>
+<ul>
+<li>Библиотека <code>std::chrono</code></li>
+<li>3 класса для работы со временем:
+<ul>
+<li><code>clocks</code> — замер времени
+<ul>
+<li><code>system_clock</code> — системное время</li>
+<li><code>steady_clock</code> — монотонное время, никогда не возвращается назад</li>
+<li><code>high_resolution_clock</code> — самое точное время</li>
+<li><code>utc_clock</code>, <code>file_clock</code>, …</li>
+</ul></li>
+<li><code>time_point</code> — временная метка</li>
+<li><code>duration</code> — разница между временными метками</li>
+</ul></li>
+<li>Кастование между различными величинами <code>duration</code></li>
+<li>Календарь и временная зона — C++20</li>
+<li>Строковые константы — <code>42s</code>, <code>1min</code>, <code>2us</code> (C++14)</li>
+</ul>
+</div><div id="регулярные-выражения" class="slide section level2">
+<h1>Регулярные выражения</h1>
+<p><a href="https://ru.wikipedia.org/wiki/Регулярные_выражения" class="uri">https://ru.wikipedia.org/wiki/Регулярные_выражения</a></p>
+<ul>
+<li>Библиотека <code>std::regex</code></li>
+<li>Основные функции:
+<ul>
+<li>Построение регулярки — конструктор</li>
+<li><code>regex_match</code> — соответствие предложения регулярному выражению</li>
+<li><code>std::smatch</code>, <code>std::cmatch</code> — объекты совпадения</li>
+<li><code>regex_search</code> — поиск регулярного выражения</li>
+<li><code>regex_replace</code> — поиск и замена</li>
+</ul></li>
+<li>Строковые литералы (<code>R&quot;match\t\n&quot;</code> &lt;=&gt; <code>&quot;match\\t\\n&quot;</code>)</li>
+<li>Опции и типы регулярок — icase, multiline, ECMAScript, grep, …</li>
+</ul>
+</div><div id="атомарные-операции" class="slide section level2">
+<h1>Атомарные операции</h1>
+<ul>
+<li>Сделать тип <code>T</code> атомарным — <code>std::atomic&lt;T&gt;</code></li>
+<li>Поддержка атомарных операций (fetch_add, exchange)</li>
+<li>Барьеры памяти</li>
+<li>Специальный тип <code>atomic_flag</code> — <code>test_and_set</code></li>
+<li>Для неатомарных объектов существует гарантия порядка операций <code>std::memory_order</code></li>
+</ul>
+</div><div id="потоки" class="slide section level2">
+<h1>Потоки</h1>
+<ul>
+<li>POSIX интерфейс</li>
+<li>Мьютексы:
+<ul>
+<li>mutex, timed_mutex, recursive_mutex, shared_mutex</li>
+<li>Локеры — lock_guard, scoped_lock, unique_lock, shared_lock</li>
+</ul></li>
+<li>Условные переменные
+<ul>
+<li>Необходимо иметь синхронизирующий мьютекс</li>
+</ul></li>
+<li>Асинхронные операции:
+<ul>
+<li><code>promise</code> — в него устанавливают результат асинхронно</li>
+<li><code>future</code> — объект, который выполнится в неизвестное время</li>
+<li><code>async</code> — обёртка над <code>future</code></li>
+</ul></li>
+<li>Объект потока <code>std::thread</code>
+<ul>
+<li><code>yield</code>, <code>sleep_for</code></li>
+<li><code>join</code>, <code>detach</code></li>
 </ul></li>
 </ul>
-</section>
-</section>
-    </div>
-  </div>
-
-  <script src="https://rawgit.com/hakimel/reveal.js/master/lib/js/head.min.js"></script>
-  <script src="https://rawgit.com/hakimel/reveal.js/master/js/reveal.js"></script>
-
-  <script>
-
-      // Full list of configuration options available at:
-      // https://github.com/hakimel/reveal.js#configuration
-      Reveal.initialize({
-        // Display the page number of the current slide
-        slideNumber: true,
-        // Push each slide change to the browser history
-        history: true,
-        // Vertical centering of slides
-        center: true,
-        // Transition style
-        transition: 'convex', // none/fade/slide/convex/concave/zoom
-        // The "normal" size of the presentation, aspect ratio will be preserved
-        // when the presentation is scaled to fit different resolutions. Can be
-        // specified using percentage units.
-        width: '90%',
-        height: '95%',
-        math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
-          config: 'TeX-AMS_HTML-full',
-          tex2jax: {
-            inlineMath: [['\\(','\\)']],
-            displayMath: [['\\[','\\]']],
-            balanceBraces: true,
-            processEscapes: false,
-            processRefs: true,
-            processEnvironments: true,
-            preview: 'TeX',
-            skipTags: ['script','noscript','style','textarea','pre','code'],
-            ignoreClass: 'tex2jax_ignore',
-            processClass: 'tex2jax_process'
-          },
-        },
-
-        // Optional reveal.js plugins
-        dependencies: [
-          { src: 'https://rawgit.com/hakimel/reveal.js/master/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-          { src: 'https://rawgit.com/hakimel/reveal.js/master/plugin/zoom-js/zoom.js', async: true },
-          { src: 'https://rawgit.com/hakimel/reveal.js/master/plugin/math/math.js', async: true },
-          { src: 'https://rawgit.com/hakimel/reveal.js/master/plugin/notes/notes.js', async: true }
-        ]
-      });
-    </script>
-    </body>
+</div><div id="работа-с-файловой-системой" class="slide section level2">
+<h1>Работа с файловой системой</h1>
+<ul>
+<li>Отдельное подпространство имён <code>std::filesystem</code></li>
+<li>Класс <code>path</code> — абстракция пути в файловой системе</li>
+<li>Методы <code>path</code> позволяют модифицировать путь</li>
+<li>Создание директорий, символических ссылок</li>
+<li>Рекурсивный обход директории — <code>recursive_directory_iterator</code></li>
+<li>Получение информации о файле — <code>file_status</code></li>
+<li>Получение доступного места на файловой системе — <code>space_info</code></li>
+<li>Функции для работы с файлами:
+<ul>
+<li>exists, file_size, absolute, space</li>
+<li>copy_file, remove</li>
+<li>rename, resize_file</li>
+<li>current_path</li>
+<li>temp_director_path</li>
+</ul></li>
+</ul>
+</div>
+</body>
 </html>
