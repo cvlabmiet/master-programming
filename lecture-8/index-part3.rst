@@ -11,7 +11,7 @@ Adapter (адаптер)
 
 .. class:: column50
 
-    .. image:: adapter.svg
+    .. image:: adapter.uml.svg
 
 .. class:: column50
 
@@ -25,7 +25,7 @@ Bridge (мост)
 
 .. class:: column50
 
-    .. image:: bridge.svg
+    .. image:: bridge.uml.svg
 
 .. class:: column50
 
@@ -42,7 +42,7 @@ Composite (компоновщик)
 
 .. class:: column50
 
-    .. image:: composite.svg
+    .. image:: composite.uml.svg
 
 .. class:: column50
 
@@ -58,7 +58,7 @@ Decorator (декоратор)
 
 .. class:: column50
 
-    .. image:: decorator.svg
+    .. image:: decorator.uml.svg
 
 .. class:: column50
 
@@ -72,7 +72,7 @@ Facade (фасад)
 
 .. class:: column33
 
-    .. image:: facade.svg
+    .. image:: facade.uml.svg
 
 .. class:: column66
 
@@ -90,7 +90,7 @@ Flyweight (легковес)
 
 .. class:: column50
 
-    .. image:: flyweight.svg
+    .. image:: flyweight.uml.svg
 
 .. class:: column50
 
@@ -106,7 +106,7 @@ Proxy (заместитель)
 
 .. class:: column50
 
-    .. image:: proxy.svg
+    .. image:: proxy.uml.svg
 
 .. class:: column50
 

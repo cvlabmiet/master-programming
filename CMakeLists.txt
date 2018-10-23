@@ -8,8 +8,8 @@ find_program(PANDOC_PIPE pandoc-pipe)
 
 add_library(metadata metadata.yml)
 
-set(SLIDY_OUTPUT "-t slidy" --self-contained --template=${CMAKE_SOURCE_DIR}/templates/slidy.thtml)
-set(REVEALJS_OUTPUT "-t revealjs" --self-contained --template=${CMAKE_SOURCE_DIR}/templates/revealjs.thtml)
+set(SLIDY_OUTPUT "-t slidy" --template=${CMAKE_SOURCE_DIR}/templates/slidy.thtml)
+set(REVEALJS_OUTPUT "-t revealjs" --template=${CMAKE_SOURCE_DIR}/templates/revealjs.thtml)
 
 add_subdirectory(lecture-1)
 add_subdirectory(lecture-2)

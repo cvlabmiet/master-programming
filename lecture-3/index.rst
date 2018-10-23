@@ -50,7 +50,7 @@ Master programming
 Пример этапов сборки
 --------------------
 
-.. image:: library.svg
+.. image:: library.dot.svg
 
 Введение в CMake
 ================

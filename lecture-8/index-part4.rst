@@ -11,7 +11,7 @@ Chain of responsibility (цепочка обязанностей)
 
 .. class:: column50
 
-    .. image:: chain_of_responsibility.svg
+    .. image:: chain_of_responsibility.uml.svg
 
 .. class:: column50
 
@@ -28,7 +28,7 @@ Command (команда)
 
 .. class:: column50
 
-    .. image:: command.svg
+    .. image:: command.uml.svg
 
 .. class:: column50
 
@@ -42,7 +42,7 @@ Iterator (итератор)
 
 .. class:: column50
 
-    .. image:: iterator.svg
+    .. image:: iterator.uml.svg
 
 .. class:: column50
 
@@ -58,7 +58,7 @@ Mediator (посредник)
 
 .. class:: column50
 
-    .. image:: mediator.svg
+    .. image:: mediator.uml.svg
 
 .. class:: column50
 
@@ -74,7 +74,7 @@ Memento (снимок)
 
 .. class:: column50
 
-    .. image:: memento.svg
+    .. image:: memento.uml.svg
 
 .. class:: column50
 
@@ -88,7 +88,7 @@ Observer (наблюдатель)
 
 .. class:: column50
 
-    .. image:: observer.svg
+    .. image:: observer.uml.svg
 
 .. class:: column50
 
@@ -103,7 +103,7 @@ State (состояние)
 
 .. class:: column50
 
-    .. image:: state.svg
+    .. image:: state.uml.svg
 
 .. class:: column50
 
@@ -119,7 +119,7 @@ Strategy (стратегия)
 
 .. class:: column50
 
-    .. image:: strategy.svg
+    .. image:: strategy.uml.svg
 
 .. class:: column50
 
@@ -134,7 +134,7 @@ Template method (шаблонный метод)
 
 .. class:: column33
 
-    .. image:: template_method.svg
+    .. image:: template_method.uml.svg
 
 .. class:: column66
 
@@ -152,7 +152,7 @@ Visitor (посетитель)
 
 .. class:: column50
 
-    .. image:: visitor.svg
+    .. image:: visitor.uml.svg
 
 .. class:: column50
 

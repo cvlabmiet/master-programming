@@ -13,7 +13,7 @@ Abstract factory (абстрактная фабрика)
 
 .. class:: column50
 
-    .. image:: abstract_factory.svg
+    .. image:: abstract_factory.uml.svg
 
 .. class:: column50
 
@@ -29,7 +29,7 @@ Factory method (фабричный метод)
 
 .. class:: column50
 
-    .. image:: factory_method.svg
+    .. image:: factory_method.uml.svg
 
 .. class:: column50
 
@@ -46,7 +46,7 @@ Builder (строитель)
 
 .. class:: column50
 
-    .. image:: builder.svg
+    .. image:: builder.uml.svg
 
 .. class:: column50
 
@@ -62,7 +62,7 @@ Prototype (прототип)
 
 .. class:: column50
 
-    .. image:: prototype.svg
+    .. image:: prototype.uml.svg
 
 .. class:: column50
 
@@ -78,7 +78,7 @@ Singleton (одиночка)
 
 .. class:: column50
 
-    .. image:: singleton.svg
+    .. image:: singleton.uml.svg
 
 .. class:: column50
 

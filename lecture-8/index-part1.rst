@@ -68,4 +68,4 @@ Master programming
 Обозначения UML
 ---------------
 
-.. image:: notation.svg
+.. image:: notation.uml.svg
