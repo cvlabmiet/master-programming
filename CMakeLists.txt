@@ -8,8 +8,8 @@ find_program(PANDOC_PIPE pandoc-pipe)
 
 add_library(metadata metadata.yml)
 
-set(SLIDY_TEMPLATE ${CMAKE_SOURCE_DIR}/templates/slidy.thtml)
-set(REVEALJS_TEMPLATE ${CMAKE_SOURCE_DIR}/templates/revealjs.thtml)
+set(SLIDY_OUTPUT "-t slidy" --self-contained --template=${CMAKE_SOURCE_DIR}/templates/slidy.thtml)
+set(REVEALJS_OUTPUT "-t revealjs" --self-contained --template=${CMAKE_SOURCE_DIR}/templates/revealjs.thtml)
 
 add_subdirectory(lecture-1)
 add_subdirectory(lecture-2)
@@ -18,6 +18,8 @@ add_subdirectory(lecture-4)
 add_subdirectory(lecture-5)
 add_subdirectory(lecture-6)
 add_subdirectory(lecture-7)
+add_subdirectory(lecture-8)
+add_subdirectory(lecture-9)
 
 set(INDEX_FILE ${CMAKE_CURRENT_BINARY_DIR}/index.rst)
 file(READ README.rst README_CONTENT)

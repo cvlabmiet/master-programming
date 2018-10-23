@@ -156,7 +156,7 @@ SFINAE
 
 * Литералы двоичных чисел и разделители разрядов :cpp:`0b10110`, :cpp:`100'500`
 * Обобщённые лямбда-выражения :cpp:`[](auto x) { return x*x + 1; }`
-* Атрибут :cpp:`[[deprecated]`
+* Атрибут :cpp:`[[deprecated]]`
 
 Нововведения в STL
 ------------------
@@ -252,7 +252,7 @@ SFINAE
     std::vector v = {7, 8, 56, 98, 5, 0, -1, 8};
     func(v); // [Args = {std::vector<int>&}], & && == &
     func(std::move(v)); // [Args = {std::vector<int>&&}], && && == &&
-    func(std::vector{7.0, 8.3, -96.87, 7.1}); // [Args = {std::vector<double>&&}], () == &&
+    func(std::vector{7.0, 8.3, -96.87, 7.1}); // [Args = {std::vector<double>}], () == &&
 
 О конструкторах
 ---------------
