@@ -13,5 +13,7 @@
 #. `Тестирование <lecture-5/index.rst>`_
 #. `Обзор STL <lecture-6/index.rst>`_
 #. `Современное программирования на C++ <lecture-7/index.rst>`_
+#. `Паттерны проектирования <lecture-8/index.rst>`_
+#. `Обзор boost::spirit <lecture-9/index.rst>`_
 #. ???
-#. `Разработка в команде <lecture-8/index.rst>`_
+#. `Разработка в команде <lecture-nn/index.rst>`_

@@ -1,0 +1,24 @@
+digraph {
+    node[shape=rect];
+    rankdir = LR;
+
+    t[label="\"size 4.2\"", shape=plaintext];
+
+    subgraph cluster_rule {
+        label = "Rule";
+        style = filled;
+        node[style=filled, fillcolor=beige];
+
+        a[label="Literal \"size\" \lParser"];
+        b[label="Float\lParser"];
+    }
+
+    t -> a [lhead=cluster_rule];
+    a -> b;
+
+    subgraph cluster_attr {
+        label = "Attribute";
+        d[label="double d = 4.2", shape=parallelogram];
+        b -> d;
+    }
+}
