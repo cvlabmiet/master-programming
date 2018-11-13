@@ -20,6 +20,9 @@ header-includes: |
         div.column66 {display: inline-block; vertical-align: top; width: 66%;}
         div.column50 {display: inline-block; vertical-align: top; width: 49%;}
         .strike {text-decoration: line-through;}
+        table, th, td {
+            border: 1px solid black;
+        }
     </style>
 pandoc-pipe:
     plantuml: [plantuml, -tsvg, -pipe, -SdefaultFontSize=20]

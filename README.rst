@@ -15,5 +15,6 @@
 #. `Современное программирования на C++ <lecture-7/index.rst>`_
 #. `Паттерны проектирования <lecture-8/index.rst>`_
 #. `Обзор boost::spirit <lecture-9/index.rst>`_
+#. `Обзор библиотек boost <lecture-10/index.rst>`_
 #. ???
 #. `Разработка в команде <lecture-nn/index.rst>`_
