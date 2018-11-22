@@ -2,8 +2,8 @@ with import <nixpkgs> {};
 
 let
   pandocenv = myGhc.ghcWithPackages (p: with p; [
-    pandoc-crossref
-    pandoc-citeproc
+    #pandoc-crossref
+    #pandoc-citeproc
     pandoc-placetable
   ]);
 
