@@ -829,16 +829,820 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb26-9" title="9">}</a>
 <a class="sourceLine" id="cb26-10" title="10"><span class="bu">std::</span>cout &lt;&lt; p &lt;&lt; <span class="bu">std::</span>endl;</a></code></pre></div>
 </div>
-<div id="межпроцессорное-взаимодействие" class="title-slide slide section level1"><h1>Межпроцессорное взаимодействие</h1></div>
-<div id="потоки-вводавывода-и-файлы" class="title-slide slide section level1"><h1>Потоки ввода/вывода и файлы</h1></div>
-<div id="работа-с-временем" class="title-slide slide section level1"><h1>Работа с временем</h1></div>
-<div id="функциональное-программирование" class="title-slide slide section level1"><h1>Функциональное программирование</h1></div>
-<div id="параллельное-программирование" class="title-slide slide section level1"><h1>Параллельное программирование</h1></div>
-<div id="обобщённое-программирование" class="title-slide slide section level1"><h1>Обобщённое программирование</h1></div>
-<div id="языковые-исключения" class="title-slide slide section level1"><h1>Языковые исключения</h1></div>
-<div id="обработка-ошибок" class="title-slide slide section level1"><h1>Обработка ошибок</h1></div>
-<div id="работа-с-числами" class="title-slide slide section level1"><h1>Работа с числами</h1></div>
-<div id="библиотеки-для-работы-с-приложением" class="title-slide slide section level1"><h1>Библиотеки для работы с приложением</h1></div>
+<div id="межпроцессорное-взаимодействие" class="title-slide slide section level1"><h1>Межпроцессорное взаимодействие</h1></div><div id="asio" class="slide section level2">
+<h1>Asio</h1>
+<ul>
+<li><a href="https://www.boost.org/libs/asio">boost/</a></li>
+<li>Синхронные и асинхронные операции с сетевым оборудованием
+<ul>
+<li>Асинхронность работает благодаря сервисному объекту <code>io_service</code></li>
+</ul></li>
+<li>Умеет работать с объектами ввода/вывода
+<ul>
+<li>Таймеры <code>steady_timer</code></li>
+<li>Сетевые объекты <code>ip::tcp::socket</code>, <code>ip::tcp::iostream</code>, <code>ip::udp</code></li>
+<li>Портами последовательного доступа <code>serial_port</code> (USB, UART, …)</li>
+</ul></li>
+<li>Масштабируемость — <code>std::thread thread1{[&amp;ioservice](){ ioservice.run(); }};</code></li>
+<li>Основано на IOCP (Windows) и epoll (Linux), есть доступ к платформозависимым низкоуровневым объектам</li>
+</ul>
+<div class="sourceCode" id="cb27"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb27-1" title="1"><span class="kw">using</span> <span class="kw">namespace</span> <span class="bu">std::</span>literals;</a>
+<a class="sourceLine" id="cb27-2" title="2"></a>
+<a class="sourceLine" id="cb27-3" title="3">io_service ioservice;</a>
+<a class="sourceLine" id="cb27-4" title="4"></a>
+<a class="sourceLine" id="cb27-5" title="5">steady_timer timer1{ioservice, <span class="dv">3</span><span class="bu">s</span>};</a>
+<a class="sourceLine" id="cb27-6" title="6">timer1.async_wait([](<span class="kw">auto</span>) { <span class="bu">std::</span>cout &lt;&lt; <span class="st">&quot;3 sec</span><span class="sc">\n</span><span class="st">&quot;</span>; });</a>
+<a class="sourceLine" id="cb27-7" title="7"></a>
+<a class="sourceLine" id="cb27-8" title="8">steady_timer timer2{ioservice, <span class="dv">4</span><span class="bu">s</span>};</a>
+<a class="sourceLine" id="cb27-9" title="9">timer2.async_wait([](<span class="kw">auto</span>) { <span class="bu">std::</span>cout &lt;&lt; <span class="st">&quot;4 sec</span><span class="sc">\n</span><span class="st">&quot;</span>; });</a>
+<a class="sourceLine" id="cb27-10" title="10"></a>
+<a class="sourceLine" id="cb27-11" title="11">ioservice.run();</a></code></pre></div>
+</div><div id="работа-с-сетью-в-boostasio" class="slide section level2">
+<h1>Работа с сетью в boost::asio</h1>
+<ul>
+<li><p>Уровень IP, асинхронный</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb28-1" title="1">io_service ioservice;</a>
+<a class="sourceLine" id="cb28-2" title="2">ip::tcp::endpoint tcp_endpoint{ip::tcp::v4(), <span class="dv">2018</span>};</a>
+<a class="sourceLine" id="cb28-3" title="3">ip::tcp::acceptor tcp_acceptor{ioservice, tcp_endpoint};</a>
+<a class="sourceLine" id="cb28-4" title="4">ip::tcp::socket tcp_socket{ioservice};</a>
+<a class="sourceLine" id="cb28-5" title="5"><span class="bu">std::</span>string data;</a>
+<a class="sourceLine" id="cb28-6" title="6"></a>
+<a class="sourceLine" id="cb28-7" title="7">tcp_acceptor.listen();</a>
+<a class="sourceLine" id="cb28-8" title="8">tcp_acceptor.async_accept(tcp_socket, [&amp;data, &amp;tcp_socket](<span class="at">const</span> <span class="ex">boost::</span>system<span class="ex">::</span>error_code&amp; ec) {</a>
+<a class="sourceLine" id="cb28-9" title="9">    <span class="cf">if</span> (!ec)</a>
+<a class="sourceLine" id="cb28-10" title="10">    {</a>
+<a class="sourceLine" id="cb28-11" title="11">        data = <span class="st">&quot;tra-la-la&quot;</span>;</a>
+<a class="sourceLine" id="cb28-12" title="12">        async_write(tcp_socket, buffer(data), [](<span class="at">const</span> <span class="ex">boost::</span>system<span class="ex">::</span>error_code&amp; ec, <span class="dt">size_t</span> bytes) {</a>
+<a class="sourceLine" id="cb28-13" title="13">            <span class="cf">if</span> (!ec)</a>
+<a class="sourceLine" id="cb28-14" title="14">                tcp_socket.shutdown(tcp::socket::shutdown_send);</a>
+<a class="sourceLine" id="cb28-15" title="15">        });</a>
+<a class="sourceLine" id="cb28-16" title="16">    }</a>
+<a class="sourceLine" id="cb28-17" title="17">});</a>
+<a class="sourceLine" id="cb28-18" title="18"></a>
+<a class="sourceLine" id="cb28-19" title="19">ioservice.run();</a></code></pre></div></li>
+<li><p>Уровень стрима, синхронный</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb29-1" title="1"><span class="ex">boost::</span>asio<span class="ex">::</span>ip<span class="ex">::</span>tcp<span class="ex">::</span>iostream s(<span class="st">&quot;www.boost.org&quot;</span>, <span class="st">&quot;http&quot;</span>);</a>
+<a class="sourceLine" id="cb29-2" title="2">s.expires_from_now(<span class="bu">std::</span>chrono<span class="bu">::</span>seconds(<span class="dv">60</span>));</a>
+<a class="sourceLine" id="cb29-3" title="3"></a>
+<a class="sourceLine" id="cb29-4" title="4">s &lt;&lt; <span class="st">&quot;GET /LICENSE_1_0.txt HTTP/1.0</span><span class="sc">\r\n</span><span class="st">&quot;</span></a>
+<a class="sourceLine" id="cb29-5" title="5">s &lt;&lt; <span class="st">&quot;Host: www.boost.org</span><span class="sc">\r\n</span><span class="st">&quot;</span>;</a>
+<a class="sourceLine" id="cb29-6" title="6">s &lt;&lt; <span class="st">&quot;Accept: */*</span><span class="sc">\r\n</span><span class="st">&quot;</span>;</a>
+<a class="sourceLine" id="cb29-7" title="7">s &lt;&lt; <span class="st">&quot;Connection: close</span><span class="sc">\r\n\r\n</span><span class="st">&quot;</span> &lt;&lt; <span class="bu">std::</span>flush;</a>
+<a class="sourceLine" id="cb29-8" title="8"></a>
+<a class="sourceLine" id="cb29-9" title="9"><span class="bu">std::</span>string header;</a>
+<a class="sourceLine" id="cb29-10" title="10"><span class="cf">while</span> (<span class="bu">std::</span>getline(s, header) &amp;&amp; header != <span class="st">&quot;</span><span class="sc">\r</span><span class="st">&quot;</span>)</a>
+<a class="sourceLine" id="cb29-11" title="11">    <span class="bu">std::</span>cout &lt;&lt; <span class="st">&quot;HEAD: &quot;</span> &lt;&lt; header &lt;&lt; <span class="bu">std::</span>endl;</a>
+<a class="sourceLine" id="cb29-12" title="12"></a>
+<a class="sourceLine" id="cb29-13" title="13"><span class="bu">std::</span>cout &lt;&lt; <span class="st">&quot;BODY: &quot;</span> &lt;&lt; s.rdbuf();</a></code></pre></div></li>
+<li><p>Использование Coroutine подхода</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb30-1" title="1">io_service ioservice;</a>
+<a class="sourceLine" id="cb30-2" title="2">ip::tcp::endpoint tcp_endpoint{ip::tcp::v4(), <span class="dv">2018</span>};</a>
+<a class="sourceLine" id="cb30-3" title="3">ip::tcp::acceptor tcp_acceptor{ioservice, tcp_endpoint};</a>
+<a class="sourceLine" id="cb30-4" title="4"><span class="bu">std::</span>list&lt;ip::tcp::socket&gt; tcp_sockets;</a>
+<a class="sourceLine" id="cb30-5" title="5"></a>
+<a class="sourceLine" id="cb30-6" title="6"><span class="kw">auto</span> do_write = [](tcp::socket &amp;tcp_socket, yield_context yield)</a>
+<a class="sourceLine" id="cb30-7" title="7">{</a>
+<a class="sourceLine" id="cb30-8" title="8">  <span class="bu">std::</span>string data = <span class="st">&quot;u-la-la&quot;</span>;</a>
+<a class="sourceLine" id="cb30-9" title="9">  async_write(tcp_socket, buffer(data), yield);</a>
+<a class="sourceLine" id="cb30-10" title="10">  tcp_socket.shutdown(tcp::socket::shutdown_send);</a>
+<a class="sourceLine" id="cb30-11" title="11">}</a>
+<a class="sourceLine" id="cb30-12" title="12"></a>
+<a class="sourceLine" id="cb30-13" title="13"><span class="kw">auto</span> do_accept = [&amp;tcp_sockets, &amp;ioservice, &amp;tcp_acceptor, do_write](yield_context yield)</a>
+<a class="sourceLine" id="cb30-14" title="14">{</a>
+<a class="sourceLine" id="cb30-15" title="15">    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; <span class="dv">2</span>; ++i)</a>
+<a class="sourceLine" id="cb30-16" title="16">    {</a>
+<a class="sourceLine" id="cb30-17" title="17">        tcp_sockets.emplace_back(ioservice);</a>
+<a class="sourceLine" id="cb30-18" title="18">        tcp_acceptor.async_accept(tcp_sockets.back(), yield);</a>
+<a class="sourceLine" id="cb30-19" title="19">        spawn(ioservice, [](yield_context yield) { do_write(tcp_sockets.back(), yield); });</a>
+<a class="sourceLine" id="cb30-20" title="20">    }</a>
+<a class="sourceLine" id="cb30-21" title="21">}</a>
+<a class="sourceLine" id="cb30-22" title="22"></a>
+<a class="sourceLine" id="cb30-23" title="23">tcp_acceptor.listen();</a>
+<a class="sourceLine" id="cb30-24" title="24">spawn(ioservice, do_accept);</a>
+<a class="sourceLine" id="cb30-25" title="25">ioservice.run();</a></code></pre></div></li>
+</ul>
+</div><div id="разделяемая-память" class="slide section level2">
+<h1>Разделяемая память</h1>
+<ul>
+<li><a href="http://www.boost.org/libs/interprocess">boost/interprocess/</a></li>
+<li><code>shared_memory_object</code> создаёт/открывает разделяемую память по имени на чтение/запись</li>
+<li>Для работы с адресами разделяемой памяти необходимо использовать <code>mapped_region</code></li>
+<li>Что освободить ресурсы памяти, необходимо явно вызывать <code>shared_memory_object::remove</code>
+<ul>
+<li>RAII поддерживается благодаря <code>remove_shared_memory_on_destroy</code></li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb31"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb31-1" title="1">shared_memory_object shdmem{open_or_create, <span class="st">&quot;Boost&quot;</span>, read_write};</a>
+<a class="sourceLine" id="cb31-2" title="2">shdmem.truncate(<span class="dv">1024</span>);</a>
+<a class="sourceLine" id="cb31-3" title="3">mapped_region region{shdmem, read_write};</a>
+<a class="sourceLine" id="cb31-4" title="4"><span class="dt">int</span> *i1 = <span class="kw">static_cast</span>&lt;<span class="dt">int</span>*&gt;(region.get_address());</a>
+<a class="sourceLine" id="cb31-5" title="5">*i1 = <span class="dv">99</span>;</a>
+<a class="sourceLine" id="cb31-6" title="6">mapped_region region2{shdmem, read_only};</a>
+<a class="sourceLine" id="cb31-7" title="7"><span class="dt">int</span> *i2 = <span class="kw">static_cast</span>&lt;<span class="dt">int</span>*&gt;(region2.get_address());</a>
+<a class="sourceLine" id="cb31-8" title="8"><span class="bu">std::</span>cout &lt;&lt; *i2 &lt;&lt; <span class="bu">std::</span>endl;</a></code></pre></div>
+</div><div id="управляемая-разделяемая-память" class="slide section level2">
+<h1>Управляемая разделяемая память</h1>
+<ul>
+<li>Создание объектов внутри разделяемой памяти</li>
+<li>Именованные объекты</li>
+<li>Поддержка стандартных контейнеров (нестандартным аллокатором)</li>
+<li>Создание массивов объектов</li>
+<li>Исключения в случае нехватки памяти</li>
+<li>Возможность создавать несколько объектов атомарно</li>
+</ul>
+<div class="sourceCode" id="cb32"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb32-1" title="1">shared_memory_object::remove(<span class="st">&quot;Boost&quot;</span>);</a>
+<a class="sourceLine" id="cb32-2" title="2">managed_shared_memory managed_shm{open_or_create, <span class="st">&quot;Boost&quot;</span>, <span class="dv">1024</span>};</a>
+<a class="sourceLine" id="cb32-3" title="3"></a>
+<a class="sourceLine" id="cb32-4" title="4"><span class="dt">int</span> *i = managed_shm.construct&lt;<span class="dt">int</span>&gt;(<span class="st">&quot;Integer&quot;</span>)[<span class="dv">10</span>](<span class="dv">99</span>);</a>
+<a class="sourceLine" id="cb32-5" title="5"><span class="bu">std::</span>cout &lt;&lt; *i &lt;&lt; <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>;</a>
+<a class="sourceLine" id="cb32-6" title="6"></a>
+<a class="sourceLine" id="cb32-7" title="7"><span class="bu">std::</span>pair&lt;<span class="dt">int</span>*, <span class="bu">std::</span>size_t&gt; p = managed_shm.find&lt;<span class="dt">int</span>&gt;(<span class="st">&quot;Integer&quot;</span>);</a>
+<a class="sourceLine" id="cb32-8" title="8"><span class="cf">if</span> (p.first)</a>
+<a class="sourceLine" id="cb32-9" title="9">    <span class="bu">std::</span>cout &lt;&lt; *p.first &lt;&lt; <span class="st">&quot;:&quot;</span> &lt;&lt; p.second &lt;&lt; <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>;</a>
+<a class="sourceLine" id="cb32-10" title="10"></a>
+<a class="sourceLine" id="cb32-11" title="11"><span class="kw">using</span> char_allocator = <span class="ex">boost::</span>allocator&lt;<span class="dt">char</span>, managed_shared_memory::segment_manager&gt;;</a>
+<a class="sourceLine" id="cb32-12" title="12"><span class="kw">using</span> string = <span class="ex">boost::</span>basic_string&lt;<span class="dt">char</span>, <span class="bu">std::</span>char_traits&lt;<span class="dt">char</span>&gt;, char_allocator&gt; string;</a>
+<a class="sourceLine" id="cb32-13" title="13">string* s = managed_shm.find_or_construct&lt;string&gt;(<span class="st">&quot;String&quot;</span>)(<span class="st">&quot;Hello!&quot;</span>, managed_shm.get_segment_manager());</a>
+<a class="sourceLine" id="cb32-14" title="14">s-&gt;insert(<span class="dv">5</span>, <span class="st">&quot;, world&quot;</span>);</a>
+<a class="sourceLine" id="cb32-15" title="15"><span class="bu">std::</span>cout &lt;&lt; *s &lt;&lt; <span class="bu">std::</span>endl;</a>
+<a class="sourceLine" id="cb32-16" title="16"></a>
+<a class="sourceLine" id="cb32-17" title="17">managed_shm.destroy&lt;<span class="dt">int</span>&gt;(<span class="st">&quot;Integer&quot;</span>);</a></code></pre></div>
+</div><div id="разделяемые-объекты-синхронизации" class="slide section level2">
+<h1>Разделяемые объекты синхронизации</h1>
+<ul>
+<li><code>boost/interprocess/sync/</code></li>
+<li>Именованные мьютексы (не требуют разделяемой памяти) <code>named_mutex</code></li>
+<li>Анонимные мьютексы (создаются внутри разделяемой памяти) <code>interprocess_mutex</code></li>
+<li>Поддерживаются рекурсивные версии мьютексов <code>named_recursive_mutex</code> и <code>interprocess_recursive_mutex</code></li>
+<li>Именованные условные переменные <code>named_condition</code></li>
+<li>Анонимные условные переменные <code>interprocess_condition</code></li>
+</ul>
+<div class="sourceCode" id="cb33"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb33-1" title="1">managed_shared_memory managed_shm{open_or_create, <span class="st">&quot;shm&quot;</span>, <span class="dv">1024</span>};</a>
+<a class="sourceLine" id="cb33-2" title="2"><span class="dt">int</span> *i = managed_shm.find_or_construct&lt;<span class="dt">int</span>&gt;(<span class="st">&quot;Integer&quot;</span>)(<span class="dv">0</span>);</a>
+<a class="sourceLine" id="cb33-3" title="3">interprocess_mutex *mtx = managed_shm.find_or_construct&lt;interprocess_mutex&gt;(<span class="st">&quot;mtx&quot;</span>)();</a>
+<a class="sourceLine" id="cb33-4" title="4">named_condition named_cnd{open_or_create, <span class="st">&quot;cnd&quot;</span>};</a>
+<a class="sourceLine" id="cb33-5" title="5"><span class="bu">std::</span>lock_guard lock{*mtx};</a>
+<a class="sourceLine" id="cb33-6" title="6"><span class="cf">while</span> (*i &lt; <span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb33-7" title="7">{</a>
+<a class="sourceLine" id="cb33-8" title="8">    <span class="cf">if</span> (*i % <span class="dv">2</span> == <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb33-9" title="9">    {</a>
+<a class="sourceLine" id="cb33-10" title="10">        ++(*i);</a>
+<a class="sourceLine" id="cb33-11" title="11">        cnd-&gt;notify_all();</a>
+<a class="sourceLine" id="cb33-12" title="12">        cnd-&gt;wait(lock);</a>
+<a class="sourceLine" id="cb33-13" title="13">    }</a>
+<a class="sourceLine" id="cb33-14" title="14">    <span class="cf">else</span></a>
+<a class="sourceLine" id="cb33-15" title="15">    {</a>
+<a class="sourceLine" id="cb33-16" title="16">      <span class="bu">std::</span>cout &lt;&lt; *i &lt;&lt; <span class="bu">std::</span>endl;</a>
+<a class="sourceLine" id="cb33-17" title="17">      ++(*i);</a>
+<a class="sourceLine" id="cb33-18" title="18">      cnd-&gt;notify_all();</a>
+<a class="sourceLine" id="cb33-19" title="19">      cnd-&gt;wait(lock);</a>
+<a class="sourceLine" id="cb33-20" title="20">    }</a>
+<a class="sourceLine" id="cb33-21" title="21">}</a>
+<a class="sourceLine" id="cb33-22" title="22">cnd-&gt;notify_all();</a>
+<a class="sourceLine" id="cb33-23" title="23">shared_memory_object::remove(<span class="st">&quot;shm&quot;</span>);</a></code></pre></div>
+</div>
+<div id="потоки-вводавывода-и-файлы" class="title-slide slide section level1"><h1>Потоки ввода/вывода и файлы</h1></div><div id="потоки-вводавывода" class="slide section level2">
+<h1>Потоки ввода/вывода</h1>
+<ul>
+<li><a href="https://www.boost.org/libs/iostreams">boost/iostreams/</a></li>
+<li><strong>Устройство</strong> представляет из себя класс, у которого есть методы <code>read</code> и <code>write</code>
+<ul>
+<li>sink и source для определения типа устройства</li>
+<li><code>array_sink</code>, <code>array_source</code> предоставляют в качестве устройств массивы</li>
+<li>Существуют адапторы, наподобие <code>back_insert_device</code></li>
+<li><code>file_sink</code> и <code>file_source</code> для работы с файлами</li>
+<li><code>mapped_file_source</code> и <code>mapped_file_sink</code> для работы с файлами в памяти</li>
+<li><code>file_descriptor_source</code> и <code>file_descriptor_sink</code> для работы с нативными дескрипторами</li>
+</ul></li>
+<li>Создание потока ввода/вывода осуществляется через класс <code>stream</code></li>
+</ul>
+<div class="sourceCode" id="cb34"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb34-1" title="1"><span class="kw">using</span> <span class="kw">namespace</span> <span class="ex">boost::</span>iostreams;</a>
+<a class="sourceLine" id="cb34-2" title="2"></a>
+<a class="sourceLine" id="cb34-3" title="3"><span class="bu">std::</span>vector&lt;<span class="dt">char</span>&gt; v;</a>
+<a class="sourceLine" id="cb34-4" title="4">back_insert_device&lt;<span class="bu">std::</span>vector&lt;<span class="dt">char</span>&gt;&gt; sink{v};</a>
+<a class="sourceLine" id="cb34-5" title="5">stream os{sink};</a>
+<a class="sourceLine" id="cb34-6" title="6">os &lt;&lt; <span class="st">&quot;Boost&quot;</span> &lt;&lt; <span class="bu">std::</span>endl;</a>
+<a class="sourceLine" id="cb34-7" title="7"></a>
+<a class="sourceLine" id="cb34-8" title="8">file_source f{<span class="st">&quot;text.txt&quot;</span>};</a>
+<a class="sourceLine" id="cb34-9" title="9"><span class="cf">if</span> (f.is_open())</a>
+<a class="sourceLine" id="cb34-10" title="10">{</a>
+<a class="sourceLine" id="cb34-11" title="11">    stream is{f};</a>
+<a class="sourceLine" id="cb34-12" title="12">    <span class="bu">std::</span>cout &lt;&lt; is.rdbuf() &lt;&lt; <span class="bu">std::</span>endl;</a>
+<a class="sourceLine" id="cb34-13" title="13">}</a></code></pre></div>
+</div><div id="фильтры-потока-вводавывода" class="slide section level2">
+<h1>Фильтры потока ввода/вывода</h1>
+<ul>
+<li>Фильтры позволяют манипулировать данные в потоке</li>
+<li><code>filtering_istream</code> и <code>filtering_ostream</code></li>
+<li>Имеют интерфейсы потока и списка</li>
+<li>Некоторые фильтры кешируемые, поэтому данные будут обработаны после освобождения устройства</li>
+<li>Последним фильтром всегда должно быть устройство</li>
+<li>Порядок вставки фильтров важен</li>
+</ul>
+<div class="sourceCode" id="cb35"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb35-1" title="1"><span class="bu">std::</span>vector&lt;<span class="dt">char</span>&gt; v;</a>
+<a class="sourceLine" id="cb35-2" title="2">back_insert_device&lt;<span class="bu">std::</span>vector&lt;<span class="dt">char</span>&gt;&gt; snk{v};</a>
+<a class="sourceLine" id="cb35-3" title="3">filtering_ostream os;</a>
+<a class="sourceLine" id="cb35-4" title="4">os.push(zlib_compressor{});</a>
+<a class="sourceLine" id="cb35-5" title="5">os.push(snk);</a>
+<a class="sourceLine" id="cb35-6" title="6">os &lt;&lt; <span class="st">&quot;Boost&quot;</span> &lt;&lt; <span class="bu">std::</span>flush;</a>
+<a class="sourceLine" id="cb35-7" title="7">os.pop();</a>
+<a class="sourceLine" id="cb35-8" title="8"></a>
+<a class="sourceLine" id="cb35-9" title="9">array_source src{v.data(), v.size()};</a>
+<a class="sourceLine" id="cb35-10" title="10">filtering_istream is;</a>
+<a class="sourceLine" id="cb35-11" title="11">is.push(zlib_decompressor{});</a>
+<a class="sourceLine" id="cb35-12" title="12">is.push(counter{});</a>
+<a class="sourceLine" id="cb35-13" title="13">is.push(src);</a>
+<a class="sourceLine" id="cb35-14" title="14"><span class="bu">std::</span>string s;</a>
+<a class="sourceLine" id="cb35-15" title="15">is &gt;&gt; s;</a>
+<a class="sourceLine" id="cb35-16" title="16"></a>
+<a class="sourceLine" id="cb35-17" title="17">counter *c = os.component&lt;counter&gt;(<span class="dv">0</span>);</a>
+<a class="sourceLine" id="cb35-18" title="18"><span class="bu">std::</span>cout &lt;&lt; s &lt;&lt; <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span></a>
+<a class="sourceLine" id="cb35-19" title="19">          &lt;&lt; <span class="st">&quot;Stats: characters = &quot;</span> &lt;&lt; c-&gt;characters() &lt;&lt; <span class="st">&quot; lines = &quot;</span> &lt;&lt; c-&gt;lines() &lt;&lt; <span class="bu">std::</span>endl;</a></code></pre></div>
+</div><div id="работа-с-файловой-системой" class="slide section level2">
+<h1>Работа с файловой системой</h1>
+<ul>
+<li><a href="https://www.boost.org/libs/filesystem">boost/filesystem/</a></li>
+<li>Принято в C++17</li>
+<li><code>boost::filesystem::path</code> позволяет описывать пути, является основным для работы типом</li>
+<li>Различные функции для работы с файлами и директориями</li>
+<li>Итераторы для обхода директорий</li>
+<li>Потоки ввода/вывода умеют работать с <code>filesystem::path</code></li>
+</ul>
+</div>
+<div id="работа-со-временем" class="title-slide slide section level1"><h1>Работа со временем</h1></div><div id="календарь" class="slide section level2">
+<h1>Календарь</h1>
+<ul>
+<li><a href="https://www.boost.org/libs/date_time">boost/date_time/</a></li>
+<li><code>boost::gregorian::date</code> для работы с календарём</li>
+<li>Класс <code>boost::gregorian::day_clock</code> для получения текущей даты
+<ul>
+<li>Статические методы <code>universal_day()</code> и <code>local_day()</code></li>
+</ul></li>
+<li>Функция <code>date_from_iso_string()</code> служит для преобразования ISO-форматированной строки в объект <code>date</code></li>
+<li>Класс <code>date_duration</code> нужен для произведения вычислений с датой</li>
+<li>Класс <code>date_period</code> нужен для поддержания диапазона времени
+<ul>
+<li>Метод <code>contains</code> позволяет узнавать принадлежность даты какому-то периоду</li>
+</ul></li>
+<li><code>day_iterator</code>, <code>week_iterator</code>, … — итератор, позволяет итерироваться по датам</li>
+</ul>
+<div class="sourceCode" id="cb36"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb36-1" title="1"><span class="kw">using</span> <span class="kw">namespace</span> <span class="ex">boost::</span>gregorian;</a>
+<a class="sourceLine" id="cb36-2" title="2"></a>
+<a class="sourceLine" id="cb36-3" title="3">date d{<span class="dv">2018</span>, <span class="dv">11</span>, <span class="dv">19</span>};</a>
+<a class="sourceLine" id="cb36-4" title="4">months ms{<span class="dv">1</span>};</a>
+<a class="sourceLine" id="cb36-5" title="5">date d2 = d + ms;</a>
+<a class="sourceLine" id="cb36-6" title="6">date d3 = d2 - ms;</a>
+<a class="sourceLine" id="cb36-7" title="7"><span class="bu">std::</span>cout &lt;&lt; d2 &lt;&lt; <span class="st">&quot; vs. &quot;</span> &lt;&lt; d3 &lt;&lt; <span class="bu">std::</span>endl;</a></code></pre></div>
+</div><div id="добавление-времени-к-календарю" class="slide section level2">
+<h1>Добавление времени к календарю</h1>
+<ul>
+<li>Пространство имён <code>posix_time</code> даёт возможность манипулировать временем</li>
+<li>Для создания, необходима календарная дата</li>
+<li>Поддерживаются те же принципы: <code>time_duration</code>, <code>time_period</code></li>
+<li>Для поддержания локального времени (таймзона) следует использовать пространство имён <code>local_time</code></li>
+</ul>
+<div class="sourceCode" id="cb37"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb37-1" title="1"><span class="kw">using</span> <span class="kw">namespace</span> <span class="ex">boost::</span>posix_time;</a>
+<a class="sourceLine" id="cb37-2" title="2"><span class="kw">using</span> <span class="kw">namespace</span> <span class="ex">boost::</span>gregorian;</a>
+<a class="sourceLine" id="cb37-3" title="3"></a>
+<a class="sourceLine" id="cb37-4" title="4">ptime pt{date{<span class="dv">2014</span>, <span class="dv">5</span>, <span class="dv">12</span>}, time_duration{<span class="dv">12</span>, <span class="dv">0</span>, <span class="dv">0</span>}};</a>
+<a class="sourceLine" id="cb37-5" title="5">time_iterator it{pt, time_duration{<span class="dv">6</span>, <span class="dv">30</span>, <span class="dv">0</span>}};</a>
+<a class="sourceLine" id="cb37-6" title="6"><span class="bu">std::</span>cout &lt;&lt; *++it &lt;&lt; <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span> &lt;&lt; *++it &lt;&lt; <span class="bu">std::</span>endl;</a></code></pre></div>
+</div><div id="chrono" class="slide section level2">
+<h1>Chrono</h1>
+<ul>
+<li><a href="http://www.boost.org/libs/chrono">boost/chrono.hpp</a></li>
+<li>Вошло в C++11</li>
+<li>Различные клоки
+<ul>
+<li><code>steady_clock</code> возвращает монотонное время</li>
+<li><code>system_clock</code> возвращает текущее время, чувствительно к переводу часов</li>
+<li><code>high_resolution_clock</code> предоставляет самый точный хронометраж в системе</li>
+<li><code>process_real_cpu_clock</code> возвращает время с момента старта программы</li>
+<li><code>process_user_cpu_clock</code> возвращает затраченное время в пользовательском пространстве</li>
+<li><code>process_system_cpu_clock</code> возвращает затраченное время в режиме ядра</li>
+<li><code>process_cpu_clock</code> возвращает кортеж из затраченных времён</li>
+<li><code>thread_clock</code> работает как <code>steady_clock</code>, но для потока</li>
+</ul></li>
+<li>Можно выводить время в поток с помощью <code>chrono_io.hpp</code></li>
+<li>Арифметика времени и кастование</li>
+</ul>
+<div class="sourceCode" id="cb38"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb38-1" title="1"><span class="kw">using</span> <span class="kw">namespace</span> <span class="ex">boost::</span>chrono;</a>
+<a class="sourceLine" id="cb38-2" title="2"></a>
+<a class="sourceLine" id="cb38-3" title="3">process_real_cpu_clock::time_point p = process_real_cpu_clock::now();</a>
+<a class="sourceLine" id="cb38-4" title="4"><span class="bu">std::</span>cout &lt;&lt; p &lt;&lt; <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span> &lt;&lt; time_point_cast&lt;minutes&gt;(p) &lt;&lt; <span class="bu">std::</span>endl;</a></code></pre></div>
+</div><div id="таймер" class="slide section level2">
+<h1>Таймер</h1>
+<ul>
+<li><a href="https://www.boost.org/libs/timer">boost/timer/timer.hpp</a></li>
+<li><code>cpu_timer</code> для автоматической замеры времени
+<ul>
+<li><code>start()</code> позволяет перезапускать таймер, конструктор делает это автоматически</li>
+<li><code>stop()</code>, <code>resume()</code> для временной остановки таймера</li>
+<li><code>fromat()</code> выводит всю информацию по пройденному времени</li>
+<li><code>elapsed()</code> возвращает структуру с временными метриками
+<ul>
+<li><code>wall</code>, <code>user</code>, <code>system</code> — полное время, время в пространстве пользователя и ядра</li>
+</ul></li>
+</ul></li>
+<li><code>auto_cpu_timer</code> в деструкторе делает <code>std::cout &lt;&lt; timer.format()</code></li>
+</ul>
+<div class="sourceCode" id="cb39"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb39-1" title="1"><span class="ex">boost::</span>timer<span class="ex">::</span>auto_cpu_timer timer;</a>
+<a class="sourceLine" id="cb39-2" title="2"></a>
+<a class="sourceLine" id="cb39-3" title="3"><span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; <span class="dv">1000000</span>; ++i)</a>
+<a class="sourceLine" id="cb39-4" title="4">    <span class="bu">std::</span>pow(<span class="fl">1.234</span>, i);</a></code></pre></div>
+</div>
+<div id="функциональное-программирование" class="title-slide slide section level1"><h1>Функциональное программирование</h1></div><div id="phoenix" class="slide section level2">
+<h1>Phoenix</h1>
+<ul>
+<li><a href="https://www.boost.org/libs/phoenix">boost/phoenix/</a></li>
+<li>Позволяет писать лямбда-выражения без использования синтаксиса лямбда-функций</li>
+<li>Основано на отложенных объектах</li>
+<li>Всё работает благодаря перегрузке всех операторов заместителя (placeholder)</li>
+<li>Используется функциональные объекты
+<ul>
+<li><code>val</code> для заместителя значения переменной, <code>ref</code> — для ссылки (область захвата лямбда-выражения)</li>
+<li><code>arg1</code> для заместителя аргумента лямбда-выражения (всегда возвращает свой первый аргумент)</li>
+</ul></li>
+<li><code>boost::phoenix::function</code> нужен для декорации своего функтора</li>
+<li>Макрос <code>BOOST_PHOENIX_ADAPT_FUNCTION</code> используется для формирования отложенной лямбды из C-функции</li>
+<li><code>boost::phoenix::bind</code> — альтернатива предыдущему</li>
+<li>Дополнительный синтаксис
+<ul>
+<li><code>if_</code> для записи условных выражений</li>
+<li><code>[ st1, st2, st3 ]</code> равносильно определению блока кода <code>{ st1; st2; st3; }</code></li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb40"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb40-1" title="1"><span class="kw">using</span> <span class="kw">namespace</span> <span class="ex">boost::</span>phoenix<span class="ex">::</span>placeholders;</a>
+<a class="sourceLine" id="cb40-2" title="2"></a>
+<a class="sourceLine" id="cb40-3" title="3"><span class="bu">std::</span>vector v{{<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>}};</a>
+<a class="sourceLine" id="cb40-4" title="4"><span class="bu">std::</span>for_each(v.begin(), v.end(), <span class="bu">std::</span>cout &lt;&lt; arg1 &lt;&lt; <span class="st">&quot;,&quot;</span>);</a></code></pre></div>
+</div><div id="функциональные-объекты" class="slide section level2">
+<h1>Функциональные объекты</h1>
+<ul>
+<li><a href="https://www.boost.org/libs/function">boost/function.hpp</a></li>
+<li>Функциональный объект для функции, метода класса, функтора, лямбда-выражения</li>
+<li>Эквивалентно <code>std::function</code></li>
+<li><a href="https://www.boost.org/libs/bind">boost/bind.hpp</a></li>
+<li>Предоставляет механизм уменьшения аргументов функции</li>
+<li>Эквивалентно <code>std::bind</code></li>
+<li>Используется там, где лямбды будут выглядеть громоздко</li>
+<li><a href="http://www.boost.org/doc/html/ref.html">boost/ref.hpp</a></li>
+<li>Служит для передачи параметров по ссылке в <code>std::bind</code></li>
+<li>У <code>boost::ref</code> есть версия с константной ссылкой <code>boost::cref</code></li>
+<li>Эквивалентно <code>std::ref</code> и <code>std::cref</code></li>
+</ul>
+</div><div id="lambda" class="slide section level2">
+<h1>Lambda</h1>
+<ul>
+<li><a href="https://www.boost.org/libs/lambda">boost/lambda/</a></li>
+<li>Библиотека устарела в связи с появлением <code>boost::phoenix</code> и лямбда-выражений в C++11</li>
+</ul>
+<div class="sourceCode" id="cb41"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb41-1" title="1"><span class="bu">std::</span>vector v{{<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>}};</a>
+<a class="sourceLine" id="cb41-2" title="2"><span class="bu">std::</span>for_each(v.begin(), v.end(),</a>
+<a class="sourceLine" id="cb41-3" title="3">    <span class="ex">boost::</span>lambda<span class="ex">::</span>if_then(<span class="ex">boost::</span>lambda<span class="ex">::</span>_1 &gt; <span class="dv">1</span>, <span class="bu">std::</span>cout &lt;&lt; <span class="ex">boost::</span>lambda<span class="ex">::</span>_1 &lt;&lt; <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</a>
+<a class="sourceLine" id="cb41-4" title="4">);</a></code></pre></div>
+</div>
+<div id="параллельное-программирование" class="title-slide slide section level1"><h1>Параллельное программирование</h1></div><div id="потоки" class="slide section level2">
+<h1>Потоки</h1>
+<ul>
+<li><a href="https://www.boost.org/libs/thread">boost/thread/</a></li>
+<li>Практически ничем не отличается от <code>std::thread</code>, кроме
+<ul>
+<li>Наличие удобного механизма завершения потока <code>boost::scoped_thread</code></li>
+<li>Метод <code>interrupt()</code>, который позволяет остановить выполнение потока
+<ul>
+<li>Работает только в определённых точках прерывания</li>
+<li>Прерывание потока не способно остановить бесконечных циклов</li>
+</ul></li>
+<li>Тип <code>boost::this_thread::disable_interruption</code> предотвращает создание точек прерывания</li>
+<li>Передача <code>boost::thread::attributes</code> в конструкторе потока позволяет настраивать запуск потока</li>
+</ul></li>
+<li><code>boost::thread_group</code> служит для одновременном запуске нескольких потоков</li>
+<li>Мьютексы, локи и условные переменные эквивалентны STL-версии</li>
+<li><p><code>boost::thread_specific_ptr</code> для компиляторов, не поддерживающих <code>thread_local</code> из C++11</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb42-1" title="1"><span class="bu">std::</span>mutex mutex;</a>
+<a class="sourceLine" id="cb42-2" title="2"></a>
+<a class="sourceLine" id="cb42-3" title="3"><span class="kw">auto</span> worker = [&amp;mutex]() {</a>
+<a class="sourceLine" id="cb42-4" title="4">    <span class="at">static</span> <span class="ex">boost::</span>thread_specific_ptr&lt;<span class="dt">bool</span>&gt; tls;</a>
+<a class="sourceLine" id="cb42-5" title="5">    <span class="cf">if</span> (!tls.get())</a>
+<a class="sourceLine" id="cb42-6" title="6">    {</a>
+<a class="sourceLine" id="cb42-7" title="7">        tls.reset(<span class="kw">new</span> <span class="dt">bool</span>{<span class="kw">true</span>});</a>
+<a class="sourceLine" id="cb42-8" title="8">        <span class="bu">std::</span>lock_guard lock{mutex};</a>
+<a class="sourceLine" id="cb42-9" title="9">        <span class="bu">std::</span>cout &lt;&lt; <span class="st">&quot;done&quot;</span> &lt;&lt; <span class="ch">&#39;</span><span class="sc">\n</span><span class="ch">&#39;</span>;</a>
+<a class="sourceLine" id="cb42-10" title="10">    }</a>
+<a class="sourceLine" id="cb42-11" title="11">};</a>
+<a class="sourceLine" id="cb42-12" title="12"></a>
+<a class="sourceLine" id="cb42-13" title="13"><span class="bu">std::</span>thread t[] = {<span class="bu">std::</span>thread{worker}, <span class="bu">std::</span>thread{worker}, <span class="bu">std::</span>thread{worker}};</a>
+<a class="sourceLine" id="cb42-14" title="14"><span class="cf">for</span> (<span class="kw">auto</span>&amp; x : t)</a>
+<a class="sourceLine" id="cb42-15" title="15">    x.join();</a></code></pre></div></li>
+<li><code>future</code>, <code>promise</code>, <code>async</code>, <code>packaged_task</code> были взяты в STL</li>
+</ul>
+</div><div id="atomic" class="slide section level2">
+<h1>Atomic</h1>
+<ul>
+<li><a href="https://www.boost.org/libs/atomic">boost/atomic.hpp</a></li>
+<li>Вошло в С++11</li>
+<li>Гарантирует атомарность записи/чтения типа</li>
+<li>Если процессор не может поддержать атомарность, используется лок</li>
+<li>Различные порядки обращения к памяти
+<ul>
+<li><code>memory_order_seq_cst</code> строгая последовательность (используется по умолчанию)</li>
+<li><code>memory_order_relaxed</code> разрешает любые переупорядочивания команд</li>
+<li><code>memory_order_release</code> разрешает выполнение команд в коде строго до этой команды в конвейере</li>
+<li><code>memory_order_acquire</code> разрешает выполнение команд в коде строго после этой команды в конвейере</li>
+<li>В STL существуют дополнительные порядки обращения</li>
+</ul></li>
+</ul>
+</div><div id="lockfree" class="slide section level2">
+<h1>Lockfree</h1>
+<ul>
+<li><a href="https://www.boost.org/libs/lockfree">boost/lockfree/</a></li>
+<li>Предоставляет неблокирующие очереди без необходимости синхронизации</li>
+<li><code>spsc_queue</code> — single producer, single consumer
+<ul>
+<li>Максимальное количество элементов передаётся либо в конструкторе, либо через шаблонный параметр <code>capacity&lt;num&gt;</code></li>
+</ul></li>
+<li><code>queue</code> — multiple producer, multiple consumer</li>
+<li><code>stack</code></li>
+<li>Политики очередей
+<ul>
+<li><code>capacity</code> задаёт размер очереди</li>
+<li><code>fixed_sized</code> устанавливает политику фиксированной по размеру очереди</li>
+<li><code>allocator</code> позволяет использовать свой аллокатор</li>
+</ul></li>
+<li>Есть стандартные методы <code>push</code> и <code>pop</code></li>
+<li>Дополнительные методы <code>consume_one</code> и <code>consume_all</code></li>
+</ul>
+<div class="sourceCode" id="cb43"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb43-1" title="1"><span class="ex">boost::</span>lockfree<span class="ex">::</span>queue&lt;<span class="dt">int</span>&gt; q;</a>
+<a class="sourceLine" id="cb43-2" title="2"><span class="bu">std::</span>atomic&lt;<span class="dt">int</span>&gt; sum = <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb43-3" title="3"></a>
+<a class="sourceLine" id="cb43-4" title="4"><span class="kw">auto</span> produce = [&amp;q]() {</a>
+<a class="sourceLine" id="cb43-5" title="5">    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">1</span>; i &lt;= <span class="dv">100</span>; ++i)</a>
+<a class="sourceLine" id="cb43-6" title="6">        q.push(i);</a>
+<a class="sourceLine" id="cb43-7" title="7">};</a>
+<a class="sourceLine" id="cb43-8" title="8"></a>
+<a class="sourceLine" id="cb43-9" title="9"><span class="kw">auto</span> consume = [&amp;q](<span class="kw">auto</span>&amp; x) {</a>
+<a class="sourceLine" id="cb43-10" title="10">    <span class="cf">while</span> (q.consume_one([](<span class="dt">int</span> i){ x += i; }));</a>
+<a class="sourceLine" id="cb43-11" title="11">};</a>
+<a class="sourceLine" id="cb43-12" title="12"></a>
+<a class="sourceLine" id="cb43-13" title="13"><span class="bu">std::</span>thread t1{produce};</a>
+<a class="sourceLine" id="cb43-14" title="14"><span class="bu">std::</span>thread t2{consume};</a>
+<a class="sourceLine" id="cb43-15" title="15"><span class="bu">std::</span>thread t3{consume};</a>
+<a class="sourceLine" id="cb43-16" title="16">t1.join();</a>
+<a class="sourceLine" id="cb43-17" title="17">t2.join();</a>
+<a class="sourceLine" id="cb43-18" title="18">t3.join();</a>
+<a class="sourceLine" id="cb43-19" title="19">q.consume_all([&amp;sum](<span class="dt">int</span> i){ sum += i; });</a>
+<a class="sourceLine" id="cb43-20" title="20"></a>
+<a class="sourceLine" id="cb43-21" title="21"><span class="bu">std::</span>cout &lt;&lt; sum &lt;&lt; <span class="bu">std::</span>endl;</a></code></pre></div>
+</div><div id="mpi" class="slide section level2">
+<h1>MPI</h1>
+<ul>
+<li><a href="https://www.boost.org/libs/mpi">boost/mpi.hpp</a></li>
+<li>Напоминает работу с сокетами</li>
+<li><code>boost::mpi::environment</code> нужен для запуска MPI, есть только конструктор</li>
+<li>Коммуникатор <code>boost::mpi::communicator</code>
+<ul>
+<li>Методы <code>recv</code>, <code>send</code> позволяют обмениваться сообщениями
+<ul>
+<li>Идентификатор процесса</li>
+<li>Тэг сообщения</li>
+<li>Данные</li>
+</ul></li>
+<li>Методы <code>irecv</code>, <code>isend</code> аналогичны предыдущим, но неблокирующие
+<ul>
+<li>Возвращают объект <code>boost::mpi::request</code></li>
+<li>Есть возможность отменить запрос, если оппонент использует блокирующую операцию</li>
+<li>Функции <code>wait_all</code>, <code>wait_any</code> и <code>wait_some</code> для блокирования</li>
+</ul></li>
+<li>Метод <code>rank()</code> для определения своего идентификатора</li>
+</ul></li>
+<li><code>boost::mpi::any_source</code> для принятия сообщения от любого процесса</li>
+<li>В сообщениях можно использовать тип, который поддерживает boost-сериализацию</li>
+<li><code>gather</code> позволяет собрать данные со всех процессоров в одном месте</li>
+<li><code>scatter</code> раздаёт данные процессам из вектора</li>
+<li><code>broadcast</code> раздаёт одинаковые данные всем процессам</li>
+<li><code>reduce</code> аналогично <code>gather</code>, но аккумулирует данные через функцию, а не вектор</li>
+<li><code>reduce_all</code> аналогично <code>reduce</code>, но результат будет доступен всем процессам</li>
+<li>С помощью функций <code>split</code> и <code>group</code> можно формировать своё подмножество процессов</li>
+</ul>
+<div class="sourceCode" id="cb44"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb44-1" title="1"><span class="ex">boost::</span>mpi<span class="ex">::</span>environment env{argc, argv};</a>
+<a class="sourceLine" id="cb44-2" title="2"><span class="ex">boost::</span>mpi<span class="ex">::</span>communicator world;</a>
+<a class="sourceLine" id="cb44-3" title="3"></a>
+<a class="sourceLine" id="cb44-4" title="4"><span class="bu">std::</span>string s;</a>
+<a class="sourceLine" id="cb44-5" title="5"><span class="cf">if</span> (world.rank() == <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb44-6" title="6">    s = <span class="st">&quot;Hello, world!&quot;</span>;</a>
+<a class="sourceLine" id="cb44-7" title="7"><span class="cf">else</span> <span class="cf">if</span> (world.rank() == <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb44-8" title="8">    s = <span class="st">&quot;Hello, moon!&quot;</span>;</a>
+<a class="sourceLine" id="cb44-9" title="9"><span class="cf">else</span> <span class="cf">if</span> (world.rank() == <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb44-10" title="10">    s = <span class="st">&quot;Hello, sun!&quot;</span>;</a>
+<a class="sourceLine" id="cb44-11" title="11"></a>
+<a class="sourceLine" id="cb44-12" title="12"><span class="bu">std::</span>string result;</a>
+<a class="sourceLine" id="cb44-13" title="13"><span class="ex">boost::</span>mpi<span class="ex">::</span>reduce(world, s, result, <span class="bu">std::</span>min&lt;<span class="bu">std::</span>string&gt;, <span class="dv">0</span>);</a>
+<a class="sourceLine" id="cb44-14" title="14"><span class="cf">if</span> (world.rank() == <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb44-15" title="15">    <span class="bu">std::</span>cout &lt;&lt; result &lt;&lt; <span class="bu">std::</span>endl;</a></code></pre></div>
+</div>
+<div id="обобщённое-программирование" class="title-slide slide section level1"><h1>Обобщённое программирование</h1></div><div id="type-traits" class="slide section level2">
+<h1>Type traits</h1>
+<ul>
+<li><a href="https://www.boost.org/libs/type_traits">boost/type_traits.hpp</a></li>
+<li>Появилось в C++11</li>
+<li><code>is_integral</code>, <code>is_arithmetic</code>, <code>is_same</code>, …</li>
+<li>Метатипы <code>true_type</code>, <code>false_type</code></li>
+<li><code>has_plus</code>, <code>has_pre_increment</code>, <code>add_rvalue_reference</code>, …</li>
+<li><a href="https://www.boost.org/libs/utility/enable_if.html">boost/utility/enable_if.hpp</a></li>
+<li>Уже есть в C++11</li>
+<li>Устарел в C++17, так как появился <code>constexpr</code></li>
+</ul>
+</div><div id="fusion" class="slide section level2">
+<h1>Fusion</h1>
+<ul>
+<li><a href="https://www.boost.org/libs/fusion">boost/</a></li>
+<li>Предоставляет гетерогенные контейнеры (типы элементов разные)</li>
+<li>Похож на boost::mpl, но предоставляет работу со значениями</li>
+<li>Алгоритмы для работы с гетерогенными контейнерами</li>
+<li><code>boost::fusion::vector</code> аналогичен <code>boost::fusion::tuple</code>, который аналогичен простому <code>tuple</code></li>
+<li>В <code>fusion::map</code> ключами являются типы, значения могут принимать любой тип</li>
+<li><p>При изменении контейнера всегда создаётся новый, например</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb45-1" title="1"><span class="kw">using</span> <span class="kw">namespace</span> <span class="ex">boost::</span>fusion;</a>
+<a class="sourceLine" id="cb45-2" title="2"></a>
+<a class="sourceLine" id="cb45-3" title="3">vector&lt;<span class="dt">int</span>, <span class="bu">std::</span>string, <span class="dt">bool</span>, <span class="dt">double</span>&gt; v{<span class="dv">10</span>, <span class="st">&quot;Boost&quot;</span>, <span class="kw">true</span>, <span class="fl">3.14</span>};</a>
+<a class="sourceLine" id="cb45-4" title="4"><span class="kw">auto</span> v2 = push_back(v, <span class="ch">&#39;X&#39;</span>);</a>
+<a class="sourceLine" id="cb45-5" title="5"><span class="bu">std::</span>cout &lt;&lt; at&lt;<span class="ex">boost::</span>mpl<span class="ex">::</span>int_&lt;<span class="dv">4</span>&gt;&gt;(v2) &lt;&lt; <span class="bu">std::</span>endl;</a></code></pre></div></li>
+<li>Чтобы использовать алгоритмы из fusion для своих структур, следует воспользоваться <code>BOOST_FUSION_ADAPT_STRUCT</code></li>
+</ul>
+<div class="sourceCode" id="cb46"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb46-1" title="1"><span class="kw">auto</span> m = make_map&lt;<span class="dt">uint8_t</span>, <span class="dt">uint16_t</span>, <span class="dt">uint32_t</span>&gt;(<span class="st">&quot;Boost&quot;</span>, <span class="dv">10</span>, <span class="fl">3.14</span>);</a>
+<a class="sourceLine" id="cb46-2" title="2"><span class="cf">if</span> (has_key&lt;<span class="dt">uint16_t</span>&gt;(m))</a>
+<a class="sourceLine" id="cb46-3" title="3">    <span class="bu">std::</span>cout &lt;&lt; at_key&lt;<span class="dt">uint16_t</span>&gt;(m) &lt;&lt; <span class="bu">std::</span>endl;</a></code></pre></div>
+</div>
+<div id="языковые-расширения" class="title-slide slide section level1"><h1>Языковые расширения</h1></div><div id="coroutine" class="slide section level2">
+<h1>Coroutine</h1>
+<ul>
+<li><a href="https://www.boost.org/libs/coroutine2">boost/coroutine2/</a></li>
+<li>Переключение исполнения функции по точкам синхронизации</li>
+<li>В некоторых языках это ключевые слова <code>yield</code> и <code>await</code></li>
+<li>Построение coroutine с помощью типов <code>pull_type</code> и <code>push_type</code></li>
+<li>Для обеспечения передачи аргументов используется <code>tuple</code></li>
+</ul>
+<div class="sourceCode" id="cb47"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb47-1" title="1"><span class="kw">using</span> <span class="ex">boost::</span>coroutines2<span class="ex">::</span>coroutine;</a>
+<a class="sourceLine" id="cb47-2" title="2"></a>
+<a class="sourceLine" id="cb47-3" title="3"><span class="kw">auto</span> cooperative = [](coroutine&lt;<span class="bu">std::</span>tuple&lt;<span class="dt">int</span>, <span class="bu">std::</span>string&gt;&gt;::<span class="dt">pull_type</span> &amp;source) {</a>
+<a class="sourceLine" id="cb47-4" title="4">    <span class="kw">auto</span> args = source.get();</a>
+<a class="sourceLine" id="cb47-5" title="5">    <span class="bu">std::</span>cout &lt;&lt; <span class="st">&quot;first = &quot;</span> &lt;&lt; <span class="bu">std::</span>get&lt;<span class="dv">0</span>&gt;(args) &lt;&lt; <span class="st">&quot; &quot;</span> &lt;&lt; <span class="bu">std::</span>get&lt;<span class="dv">1</span>&gt;(args) &lt;&lt; <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>;</a>
+<a class="sourceLine" id="cb47-6" title="6">    source();</a>
+<a class="sourceLine" id="cb47-7" title="7">    args = source.get();</a>
+<a class="sourceLine" id="cb47-8" title="8">    <span class="bu">std::</span>cout &lt;&lt; <span class="st">&quot;second = &quot;</span> &lt;&lt; <span class="bu">std::</span>get&lt;<span class="dv">0</span>&gt;(args) &lt;&lt; <span class="st">&quot; &quot;</span> &lt;&lt; <span class="bu">std::</span>get&lt;<span class="dv">1</span>&gt;(args) &lt;&lt; <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>;</a>
+<a class="sourceLine" id="cb47-9" title="9">};</a>
+<a class="sourceLine" id="cb47-10" title="10"></a>
+<a class="sourceLine" id="cb47-11" title="11">coroutine&lt;<span class="bu">std::</span>tuple&lt;<span class="dt">int</span>, <span class="bu">std::</span>string&gt;&gt;::<span class="dt">push_type</span> sink{cooperative};</a>
+<a class="sourceLine" id="cb47-12" title="12"><span class="bu">std::</span>cout &lt;&lt; <span class="st">&quot;start: &quot;</span></a>
+<a class="sourceLine" id="cb47-13" title="13">sink(<span class="bu">std::</span>make_tuple(<span class="dv">0</span>, <span class="st">&quot;aaa&quot;</span>));</a>
+<a class="sourceLine" id="cb47-14" title="14"><span class="bu">std::</span>cout &lt;&lt; <span class="st">&quot;next: &quot;</span>;</a>
+<a class="sourceLine" id="cb47-15" title="15">sink(<span class="bu">std::</span>make_tuple(<span class="dv">1</span>, <span class="st">&quot;bbb&quot;</span>));</a>
+<a class="sourceLine" id="cb47-16" title="16"><span class="bu">std::</span>cout &lt;&lt; <span class="st">&quot;end</span><span class="sc">\n</span><span class="st">&quot;</span>;</a></code></pre></div>
+<p>Будет выведено:</p>
+<pre><code>start: first = 0 aaa
+next: second = 1 bbb
+end</code></pre>
+</div><div id="parameter" class="slide section level2">
+<h1>Parameter</h1>
+<ul>
+<li><a href="https://www.boost.org/libs/parameter">boost/parameter.hpp</a></li>
+<li>Предоставляет ассоциативные параметры функций, как в языке python</li>
+<li>Заменяет так называемую Named Parameter Idiom</li>
+<li>Макросы <code>BOOST_PARAMETER_FUNCTION</code> и <code>BOOST_PARAMETER_NAME</code> делают всю работу</li>
+<li>Дополнительные макросы для работы с методами класса и шаблонами</li>
+</ul>
+<div class="sourceCode" id="cb49"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb49-1" title="1"><span class="ex">BOOST_</span>PARAMETER_NAME(a)</a>
+<a class="sourceLine" id="cb49-2" title="2"><span class="ex">BOOST_</span>PARAMETER_NAME(b)</a>
+<a class="sourceLine" id="cb49-3" title="3"><span class="ex">BOOST_</span>PARAMETER_NAME(c)</a>
+<a class="sourceLine" id="cb49-4" title="4"><span class="ex">BOOST_</span>PARAMETER_NAME(d)</a>
+<a class="sourceLine" id="cb49-5" title="5"><span class="ex">BOOST_</span>PARAMETER_NAME(e)</a>
+<a class="sourceLine" id="cb49-6" title="6"></a>
+<a class="sourceLine" id="cb49-7" title="7"><span class="ex">BOOST_</span>PARAMETER_FUNCTION(</a>
+<a class="sourceLine" id="cb49-8" title="8">    (<span class="dt">void</span>),</a>
+<a class="sourceLine" id="cb49-9" title="9">    complicated,</a>
+<a class="sourceLine" id="cb49-10" title="10">    tag,</a>
+<a class="sourceLine" id="cb49-11" title="11">    (required</a>
+<a class="sourceLine" id="cb49-12" title="12">        (a, (<span class="dt">int</span>))</a>
+<a class="sourceLine" id="cb49-13" title="13">        (b, (<span class="dt">char</span>)))</a>
+<a class="sourceLine" id="cb49-14" title="14">    (optional</a>
+<a class="sourceLine" id="cb49-15" title="15">        (c, (<span class="dt">double</span>), <span class="fl">3.14</span>)</a>
+<a class="sourceLine" id="cb49-16" title="16">        (d, (<span class="bu">std::</span>string), <span class="st">&quot;Boost&quot;</span>)</a>
+<a class="sourceLine" id="cb49-17" title="17">        (e, *, <span class="kw">true</span>))</a>
+<a class="sourceLine" id="cb49-18" title="18">)</a>
+<a class="sourceLine" id="cb49-19" title="19">{</a>
+<a class="sourceLine" id="cb49-20" title="20">    <span class="bu">std::</span>cout.setf(<span class="bu">std::</span>ios<span class="bu">::</span>boolalpha);</a>
+<a class="sourceLine" id="cb49-21" title="21">    <span class="bu">std::</span>cout &lt;&lt; a &lt;&lt; <span class="ch">&#39;</span><span class="sc">\n</span><span class="ch">&#39;</span>;</a>
+<a class="sourceLine" id="cb49-22" title="22">    <span class="bu">std::</span>cout &lt;&lt; b &lt;&lt; <span class="ch">&#39;</span><span class="sc">\n</span><span class="ch">&#39;</span>;</a>
+<a class="sourceLine" id="cb49-23" title="23">    <span class="bu">std::</span>cout &lt;&lt; c &lt;&lt; <span class="ch">&#39;</span><span class="sc">\n</span><span class="ch">&#39;</span>;</a>
+<a class="sourceLine" id="cb49-24" title="24">    <span class="bu">std::</span>cout &lt;&lt; d &lt;&lt; <span class="ch">&#39;</span><span class="sc">\n</span><span class="ch">&#39;</span>;</a>
+<a class="sourceLine" id="cb49-25" title="25">    <span class="bu">std::</span>cout &lt;&lt; e &lt;&lt; <span class="ch">&#39;</span><span class="sc">\n</span><span class="ch">&#39;</span>;</a>
+<a class="sourceLine" id="cb49-26" title="26">}</a>
+<a class="sourceLine" id="cb49-27" title="27"></a>
+<a class="sourceLine" id="cb49-28" title="28"><span class="dt">int</span> main()</a>
+<a class="sourceLine" id="cb49-29" title="29">{</a>
+<a class="sourceLine" id="cb49-30" title="30">    complicated(_b = <span class="ch">&#39;B&#39;</span>, _a = <span class="dv">1</span>, _d = <span class="st">&quot;lala&quot;</span>);</a>
+<a class="sourceLine" id="cb49-31" title="31">}</a></code></pre></div>
+</div><div id="conversion" class="slide section level2">
+<h1>Conversion</h1>
+<ul>
+<li><a href="https://www.boost.org/libs/conversion/cast.htm">boost/cast.hpp</a></li>
+<li>Расширение возможностей <code>dynamic_cast</code></li>
+<li><code>boost::polymorphic_downcast</code> для кастования к наследнику из базового класса</li>
+<li><code>boost::polymorphic_cast</code> для кастования между базовыми классами</li>
+<li>Всегда генерирует исключение при ошибке</li>
+</ul>
+<div class="sourceCode" id="cb50"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb50-1" title="1"><span class="kw">struct</span> base1 { <span class="kw">virtual</span> ~base1() = <span class="cf">default</span>; };</a>
+<a class="sourceLine" id="cb50-2" title="2"><span class="kw">struct</span> base2 { <span class="kw">virtual</span> ~base2() = <span class="cf">default</span>; };</a>
+<a class="sourceLine" id="cb50-3" title="3"><span class="kw">struct</span> derived : <span class="kw">public</span> base1, <span class="kw">public</span> base2 {};</a>
+<a class="sourceLine" id="cb50-4" title="4"></a>
+<a class="sourceLine" id="cb50-5" title="5"><span class="dt">void</span> downcast(base1 *b1)</a>
+<a class="sourceLine" id="cb50-6" title="6">{</a>
+<a class="sourceLine" id="cb50-7" title="7">    derived *d = <span class="ex">boost::</span>polymorphic_downcast&lt;derived*&gt;(b1);</a>
+<a class="sourceLine" id="cb50-8" title="8">}</a>
+<a class="sourceLine" id="cb50-9" title="9"></a>
+<a class="sourceLine" id="cb50-10" title="10"><span class="dt">void</span> crosscast(base1 *b1)</a>
+<a class="sourceLine" id="cb50-11" title="11">{</a>
+<a class="sourceLine" id="cb50-12" title="12">    base2 *b2 = <span class="ex">boost::</span>polymorphic_cast&lt;base2*&gt;(b1);</a>
+<a class="sourceLine" id="cb50-13" title="13">}</a>
+<a class="sourceLine" id="cb50-14" title="14"></a>
+<a class="sourceLine" id="cb50-15" title="15"><span class="dt">int</span> main()</a>
+<a class="sourceLine" id="cb50-16" title="16">{</a>
+<a class="sourceLine" id="cb50-17" title="17">    derived *d = <span class="kw">new</span> derived;</a>
+<a class="sourceLine" id="cb50-18" title="18">    downcast(d);</a>
+<a class="sourceLine" id="cb50-19" title="19"></a>
+<a class="sourceLine" id="cb50-20" title="20">    base1 *b1 = <span class="kw">new</span> derived;</a>
+<a class="sourceLine" id="cb50-21" title="21">    crosscast(b1);</a>
+<a class="sourceLine" id="cb50-22" title="22">}</a></code></pre></div>
+</div>
+<div id="обработка-ошибок" class="title-slide slide section level1"><h1>Обработка ошибок</h1></div><div id="system" class="slide section level2">
+<h1>System</h1>
+<ul>
+<li><a href="https://www.boost.org/libs/system">boost/system/</a></li>
+<li>Содержит специальные классы с ошибками: <code>error_code</code>, <code>errc::make_error_code</code>, …</li>
+<li>Переехал полностью в C++11</li>
+<li>Поддерживает posix-совместимые ошибки
+<ul>
+<li>Есть информация о номере ошибки</li>
+<li>Человеческое имя ошибки</li>
+<li>К какой категории относится</li>
+</ul></li>
+<li>Путём наследования от <code>boost::system::error_category</code></li>
+<li><code>error_code</code> для платформо специфичных ошибок, <code>error_condition</code> для всех платформ</li>
+<li><code>boost::system::system_error</code> используется для генерации исключения на базе <code>error_code</code></li>
+</ul>
+<div class="sourceCode" id="cb51"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb51-1" title="1"><span class="cf">try</span></a>
+<a class="sourceLine" id="cb51-2" title="2">{</a>
+<a class="sourceLine" id="cb51-3" title="3">    <span class="cf">throw</span> system_error{errc::make_error_code(errc::not_supported)};</a>
+<a class="sourceLine" id="cb51-4" title="4">}</a>
+<a class="sourceLine" id="cb51-5" title="5"><span class="cf">catch</span> (system_error&amp; e)</a>
+<a class="sourceLine" id="cb51-6" title="6">{</a>
+<a class="sourceLine" id="cb51-7" title="7">    error_code ec = e.code();</a>
+<a class="sourceLine" id="cb51-8" title="8">    <span class="bu">std::</span>cerr &lt;&lt; ec.value() &lt;&lt; <span class="ch">&#39;</span><span class="sc">\n</span><span class="ch">&#39;</span>;</a>
+<a class="sourceLine" id="cb51-9" title="9">    <span class="bu">std::</span>cerr &lt;&lt; ec.category().name() &lt;&lt; <span class="bu">std::</span>endl;</a>
+<a class="sourceLine" id="cb51-10" title="10">}</a></code></pre></div>
+</div><div id="исключения" class="slide section level2">
+<h1>Исключения</h1>
+<ul>
+<li><a href="https://www.boost.org/libs/exception">boost/exception/</a></li>
+<li>Дополняет функциональность <code>std::exception</code></li>
+<li>Макрос <code>BOOST_THROW_EXCEPTION</code> позволяет сохранять информацию о файле и строчке исключения</li>
+<li>В исключение можно дописать дополнительную информацию с помощью <code>boost::error_info</code>
+<ul>
+<li>В STL этот механизм называется <code>std::nested_exception</code></li>
+</ul></li>
+<li><code>boost::diagnostic_information</code> для получения всей информации об исключении</li>
+<li><code>boost::get_error_info</code> вывод информации об исключении напрямую</li>
+</ul>
+<div class="sourceCode" id="cb52"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb52-1" title="1">error_info = <span class="ex">boost::</span>error_info&lt;<span class="kw">struct</span> tag_errmsg, <span class="bu">std::</span>string&gt; errmsg_info;</a>
+<a class="sourceLine" id="cb52-2" title="2"></a>
+<a class="sourceLine" id="cb52-3" title="3"><span class="cf">try</span></a>
+<a class="sourceLine" id="cb52-4" title="4">{</a>
+<a class="sourceLine" id="cb52-5" title="5">    <span class="cf">try</span></a>
+<a class="sourceLine" id="cb52-6" title="6">    {</a>
+<a class="sourceLine" id="cb52-7" title="7">        <span class="ex">BOOST_</span>THROW_EXCEPTION(<span class="bu">std::</span>runtime_error{<span class="st">&quot;123&quot;</span>});</a>
+<a class="sourceLine" id="cb52-8" title="8">    }</a>
+<a class="sourceLine" id="cb52-9" title="9">    <span class="cf">catch</span> (<span class="ex">boost::</span>exception &amp;e)</a>
+<a class="sourceLine" id="cb52-10" title="10">    {</a>
+<a class="sourceLine" id="cb52-11" title="11">        e &lt;&lt; errmsg_info{<span class="st">&quot;writing lots of zeros failed&quot;</span>};</a>
+<a class="sourceLine" id="cb52-12" title="12">        <span class="cf">throw</span>;</a>
+<a class="sourceLine" id="cb52-13" title="13">    }</a>
+<a class="sourceLine" id="cb52-14" title="14">}</a>
+<a class="sourceLine" id="cb52-15" title="15"><span class="cf">catch</span> (<span class="ex">boost::</span>exception &amp;e)</a>
+<a class="sourceLine" id="cb52-16" title="16">{</a>
+<a class="sourceLine" id="cb52-17" title="17">    <span class="bu">std::</span>cerr &lt;&lt; *<span class="ex">boost::</span>get_error_info&lt;errmsg_info&gt;(e);</a>
+<a class="sourceLine" id="cb52-18" title="18">    <span class="bu">std::</span>cerr &lt;&lt; <span class="ex">boost::</span>diagnostic_information(e);</a>
+<a class="sourceLine" id="cb52-19" title="19">}</a></code></pre></div>
+</div>
+<div id="работа-с-числами" class="title-slide slide section level1"><h1>Работа с числами</h1></div><div id="аккумуляторы" class="slide section level2">
+<h1>Аккумуляторы</h1>
+<ul>
+<li><a href="https://www.boost.org/libs/accumulators">boost/accumulators/</a></li>
+<li>Доступ к различным аккумуляторам, в том числе статистическим</li>
+<li><code>accumulator_set</code> для создания аккумулятора по тэгу</li>
+<li>Различные статистики</li>
+<li>Умеет работать с <code>std::complex</code>, <code>std::valarray</code>, <code>std::vector</code> и примитивными типами</li>
+<li>Экстракторы <code>count</code>, <code>mean</code>, <code>variance</code>, <code>moment&lt;N&gt;</code> нужны для получения итогового значения</li>
+</ul>
+<div class="sourceCode" id="cb53"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb53-1" title="1"><span class="kw">using</span> <span class="kw">namespace</span> <span class="ex">boost::</span>accumulators;</a>
+<a class="sourceLine" id="cb53-2" title="2"></a>
+<a class="sourceLine" id="cb53-3" title="3">accumulator_set&lt;<span class="dt">double</span>, features&lt;tag::mean, tag::variance&gt;, <span class="dt">int</span>&gt; acc;</a>
+<a class="sourceLine" id="cb53-4" title="4">acc(<span class="dv">8</span>, weight = <span class="dv">1</span>);</a>
+<a class="sourceLine" id="cb53-5" title="5">acc(<span class="dv">9</span>, weight = <span class="dv">1</span>);</a>
+<a class="sourceLine" id="cb53-6" title="6">acc(<span class="dv">10</span>, weight = <span class="dv">4</span>);</a>
+<a class="sourceLine" id="cb53-7" title="7">acc(<span class="dv">11</span>, weight = <span class="dv">1</span>);</a>
+<a class="sourceLine" id="cb53-8" title="8">acc(<span class="dv">12</span>, weight = <span class="dv">1</span>);</a>
+<a class="sourceLine" id="cb53-9" title="9"><span class="bu">std::</span>cout &lt;&lt; mean(acc) &lt;&lt; <span class="st">&quot;:&quot;</span> &lt;&lt; variance(acc) &lt;&lt; <span class="bu">std::</span>endl;</a></code></pre></div>
+</div><div id="преобразование-чисел" class="slide section level2">
+<h1>Преобразование чисел</h1>
+<ul>
+<li><a href="https://www.boost.org/libs/numeric/conversion">boost/numeric/conversion/</a></li>
+<li><code>boost::numeric_cast</code> позволяет производить преобразование числа в разные типы</li>
+<li>Генерируется исключение, если число не помещается в заданный тип</li>
+<li>Существуют исключения <code>positive_overflow</code>, <code>negative_overflow</code>, …</li>
+<li>Класс <code>boost::numeric::converter</code> позволяет создавать конвертеры более детально</li>
+<li>Класс <code>bounds</code> служит для определения границ числа, соответствует <code>std::numeric_limits</code></li>
+<li>Можно написать свои политики перехвата переполнения, округления</li>
+</ul>
+<div class="sourceCode" id="cb54"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb54-1" title="1"><span class="cf">try</span></a>
+<a class="sourceLine" id="cb54-2" title="2">{</a>
+<a class="sourceLine" id="cb54-3" title="3">    <span class="dt">int</span> i = <span class="bn">0x10000</span>;</a>
+<a class="sourceLine" id="cb54-4" title="4">    <span class="dt">short</span> s = <span class="ex">boost::</span>numeric_cast&lt;<span class="dt">short</span>&gt;(i);</a>
+<a class="sourceLine" id="cb54-5" title="5">    <span class="bu">std::</span>cout &lt;&lt; s &lt;&lt; <span class="bu">std::</span>endl;</a>
+<a class="sourceLine" id="cb54-6" title="6">}</a>
+<a class="sourceLine" id="cb54-7" title="7"><span class="cf">catch</span> (<span class="ex">boost::</span>numeric<span class="ex">::</span>bad_numeric_cast &amp;e)</a>
+<a class="sourceLine" id="cb54-8" title="8">{</a>
+<a class="sourceLine" id="cb54-9" title="9">    <span class="bu">std::</span>cerr &lt;&lt; e.what() &lt;&lt; <span class="bu">std::</span>endl;</a>
+<a class="sourceLine" id="cb54-10" title="10">}</a></code></pre></div>
+</div><div id="что-уже-вошло-в-stl" class="slide section level2">
+<h1>Что уже вошло в STL</h1>
+<ul>
+<li><a href="https://www.boost.org/libs/integer">boost/cstdint.hpp</a> == <code>cstdint</code></li>
+<li><a href="https://www.boost.org/libs/algorithm/minmax">boost/minmax.hpp</a> == <code>std::minmax</code>, <code>std::minmax_element</code></li>
+<li><a href="https://www.boost.org/libs/random">boost/random.hpp</a> == <code>random</code></li>
+</ul>
+</div>
+<div id="библиотеки-для-работы-с-приложением" class="title-slide slide section level1"><h1>Библиотеки для работы с приложением</h1></div><div id="логирование" class="slide section level2">
+<h1>Логирование</h1>
+<ul>
+<li><a href="https://www.boost.org/libs/log">boost/log/</a></li>
+<li>Бэкенд — поток ввода/вывода, в который будут выводится сообщения</li>
+<li>Фротнэнд — объекты, через которые проходят сообщения в бэкенд, например, <code>boost::log::sinks::asynchronous_sink</code>
+<ul>
+<li>По сути это фильтры</li>
+</ul></li>
+<li>Ядро — синглтон <code>boost::log::core::get()</code>, в котором регистрируются фронтэнды
+<ul>
+<li>Если фильтры зарегистрированы в самом ядре, это глобальные фильтры</li>
+<li>Если фильтры зарегистрированы во фронтэнде, это локальные фильтры фронтэнда</li>
+</ul></li>
+<li>Логер — через него записываются сообщения пользователем
+<ul>
+<li>Макрос <code>BOOST_LOG</code> позволяет использовать интерфейс <code>std::ostream</code></li>
+<li>Макрос <code>BOOST_LOG_SEV</code> позволяет дополнительно передавать уровень логирования</li>
+</ul></li>
+<li>Собственный фильтр — функция, аргумент которой <code>attribute_value_set</code>, возвращает тип <code>bool</code></li>
+<li>Собственный форматер — функция с сигнатурой <code>void(const record_view&amp; view, formatting_ostream&amp; os)</code>
+<ul>
+<li>Из <code>view</code> можно получить <code>attribute_value_set</code> через функцию <code>attribute_values()</code></li>
+<li>Вывод необходимо направлять в <code>os</code></li>
+</ul></li>
+<li><code>BOOST_LOG_ATTRIBUTE_KEYWORD</code> позволяет создавать атрибуты
+<ul>
+<li>Задавать их можно сразу во фронтэнде с помощью <code>boost::log::expressions</code> (отсылка к Xpressive)</li>
+<li>Форматер также может быть написан в виде лямбда-выражения</li>
+</ul></li>
+<li>Макрос <code>BOOST_LOG_SCOPED_LOGGER_ATTR</code> позволяет задавать локальный атрибут</li>
+<li>Исключения обрабатываются в ядре, путём установки посетителя через метод <code>set_exception_handler</code></li>
+</ul>
+<div class="sourceCode" id="cb55"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb55-1" title="1"><span class="kw">using</span> <span class="kw">namespace</span> <span class="ex">boost::</span>log;</a>
+<a class="sourceLine" id="cb55-2" title="2"></a>
+<a class="sourceLine" id="cb55-3" title="3"><span class="ex">BOOST_</span>LOG_ATTRIBUTE_KEYWORD(severity, <span class="st">&quot;Severity&quot;</span>, <span class="dt">int</span>)</a>
+<a class="sourceLine" id="cb55-4" title="4"><span class="ex">BOOST_</span>LOG_INLINE_GLOBAL_LOGGER_DEFAULT(lg, sources::severity_logger&lt;<span class="dt">int</span>&gt;)</a>
+<a class="sourceLine" id="cb55-5" title="5"></a>
+<a class="sourceLine" id="cb55-6" title="6"><span class="dt">int</span> main()</a>
+<a class="sourceLine" id="cb55-7" title="7">{</a>
+<a class="sourceLine" id="cb55-8" title="8">    <span class="kw">auto</span> sink = <span class="bu">std::</span>make_shared&lt;sinks::asynchronous_sink&lt;sinks::text_ostream_backend&gt;&gt;();</a>
+<a class="sourceLine" id="cb55-9" title="9">    <span class="bu">std::</span>shared_ptr stream{&amp;<span class="bu">std::</span>clog, <span class="ex">boost::</span>empty_deleter{}};</a>
+<a class="sourceLine" id="cb55-10" title="10"></a>
+<a class="sourceLine" id="cb55-11" title="11">    sink-&gt;locked_backend()-&gt;add_stream(stream);</a>
+<a class="sourceLine" id="cb55-12" title="12">    sink-&gt;set_filter(severity &gt; <span class="dv">0</span>);</a>
+<a class="sourceLine" id="cb55-13" title="13">    sink-&gt;set_formatter(expressions::stream &lt;&lt; severity &lt;&lt; <span class="st">&quot;: &quot;</span> &lt;&lt; expressions::smessage);</a>
+<a class="sourceLine" id="cb55-14" title="14"></a>
+<a class="sourceLine" id="cb55-15" title="15">    core::get()-&gt;add_sink(sink);</a>
+<a class="sourceLine" id="cb55-16" title="16"></a>
+<a class="sourceLine" id="cb55-17" title="17">    <span class="ex">BOOST_</span>LOG_SEV(lg::get(), <span class="dv">0</span>) &lt;&lt; <span class="st">&quot;note&quot;</span>;</a>
+<a class="sourceLine" id="cb55-18" title="18">    <span class="ex">BOOST_</span>LOG_SEV(lg::get(), <span class="dv">1</span>) &lt;&lt; <span class="st">&quot;warning&quot;</span>;</a>
+<a class="sourceLine" id="cb55-19" title="19">    <span class="ex">BOOST_</span>LOG_SEV(lg::get(), <span class="dv">2</span>) &lt;&lt; <span class="st">&quot;error&quot;</span>;</a>
+<a class="sourceLine" id="cb55-20" title="20">    sink-&gt;flush();</a>
+<a class="sourceLine" id="cb55-21" title="21">}</a></code></pre></div>
+</div><div id="аргументы-командной-строки" class="slide section level2">
+<h1>Аргументы командной строки</h1>
+<ul>
+<li><a href="https://www.boost.org/libs/program_options">boost/program_options.hpp</a></li>
+<li></li>
+</ul>
+</div>
 <div id="дизайн-паттерны" class="title-slide slide section level1"><h1>Дизайн паттерны</h1></div>
 <div id="другие-библиотеки" class="title-slide slide section level1"><h1>Другие библиотеки</h1></div>
 </body>
