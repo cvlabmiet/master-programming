@@ -1640,10 +1640,382 @@ end</code></pre>
 <h1>Аргументы командной строки</h1>
 <ul>
 <li><a href="https://www.boost.org/libs/program_options">boost/program_options.hpp</a></li>
-<li></li>
+<li>Опции командной строки
+<ul>
+<li>Позиционные (<code>git remote prune origin</code>)</li>
+<li>Непозиционные
+<ul>
+<li>С аргументом, который отделяется пробелом или <code>=</code></li>
+<li>С аргументами (зависит от самой команды)</li>
+<li>Без аргументов</li>
+<li>Длинные команды с двойным дефисом <code>--</code>, команда пишется полностью, в BSD используется один дефис</li>
+<li>Короткие с одинарным дефисом, от команды остаётся одна буква (обычно первая), пробел перед аргументом можно не писать</li>
+<li>Команды со слешем</li>
+</ul></li>
+</ul></li>
+<li>Представляет опции командной строки в виде ассоциативного массива</li>
+<li>Поддерживаются значения по умолчанию для аргументов
+<ul>
+<li><code>--has-default positional options here</code> =&gt; <code>--has-default -- positional options here</code></li>
+</ul></li>
+<li>Возможность считывать флаги из файла</li>
+<li>Некоторая громоздкость при создании <code>variables_map</code>, стоит взглянуть на <a href="https://github.com/jarro2783/cxxopts">cxxopts</a></li>
+<li>В случае провала генерируется исключение <code>boost::program_options::error</code></li>
+<li>С помощью <code>parse_environment()</code> и <code>environment_iterator</code> можно загружать опции через переменные окружения</li>
 </ul>
+<div class="sourceCode" id="cb56"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb56-1" title="1"><span class="kw">using</span> <span class="kw">namespace</span> <span class="ex">boost::</span>program_options;</a>
+<a class="sourceLine" id="cb56-2" title="2"></a>
+<a class="sourceLine" id="cb56-3" title="3">options_description generalOptions{<span class="st">&quot;General&quot;</span>};</a>
+<a class="sourceLine" id="cb56-4" title="4">generalOptions.add_options()</a>
+<a class="sourceLine" id="cb56-5" title="5">    (<span class="st">&quot;help,h&quot;</span>, <span class="st">&quot;Help screen&quot;</span>)</a>
+<a class="sourceLine" id="cb56-6" title="6">    (<span class="st">&quot;config&quot;</span>, value&lt;<span class="bu">std::</span>string&gt;()-&gt;default_value(<span class="st">&quot;/etc/config.cfg&quot;</span>), <span class="st">&quot;Config file&quot;</span>)</a>
+<a class="sourceLine" id="cb56-7" title="7">    (<span class="st">&quot;age&quot;</span>, value&lt;<span class="dt">int</span>&gt;(), <span class="st">&quot;Age&quot;</span>);</a>
+<a class="sourceLine" id="cb56-8" title="8"></a>
+<a class="sourceLine" id="cb56-9" title="9">variables_map vm;</a>
+<a class="sourceLine" id="cb56-10" title="10">store(parse_command_line(argc, argv, generalOptions), vm);</a>
+<a class="sourceLine" id="cb56-11" title="11"><span class="cf">if</span> (vm.count(<span class="st">&quot;config&quot;</span>))</a>
+<a class="sourceLine" id="cb56-12" title="12">{</a>
+<a class="sourceLine" id="cb56-13" title="13">    <span class="bu">std::</span>ifstream ifs{vm[<span class="st">&quot;config&quot;</span>].as&lt;<span class="bu">std::</span>string&gt;()};</a>
+<a class="sourceLine" id="cb56-14" title="14">    <span class="cf">if</span> (ifs)</a>
+<a class="sourceLine" id="cb56-15" title="15">        store(parse_config_file(ifs, fileOptions), vm);</a>
+<a class="sourceLine" id="cb56-16" title="16">}</a>
+<a class="sourceLine" id="cb56-17" title="17">notify(vm);</a>
+<a class="sourceLine" id="cb56-18" title="18"></a>
+<a class="sourceLine" id="cb56-19" title="19"><span class="cf">if</span> (vm.count(<span class="st">&quot;help&quot;</span>))</a>
+<a class="sourceLine" id="cb56-20" title="20">    <span class="bu">std::</span>cout &lt;&lt; generalOptions &lt;&lt; <span class="bu">std::</span>endl;</a>
+<a class="sourceLine" id="cb56-21" title="21"><span class="cf">else</span> <span class="cf">if</span> (vm.count(<span class="st">&quot;age&quot;</span>))</a>
+<a class="sourceLine" id="cb56-22" title="22">    <span class="bu">std::</span>cout &lt;&lt; <span class="st">&quot;Your age is: &quot;</span> &lt;&lt; vm[<span class="st">&quot;age&quot;</span>].as&lt;<span class="dt">int</span>&gt;() &lt;&lt; <span class="bu">std::</span>endl;</a></code></pre></div>
+<p>Примерный вывод:</p>
+<pre><code>[09:31] igor@nixos-pc tmp [nix-shell] % ./out -h
+General:
+    -h [ --help ]                   Help screen
+    --config arg (=/etc/config.cfg) Config file
+    --age arg                       Age
+
+[09:33] igor@nixos-pc tmp [nix-shell] % ./out --age 21
+Your age is: 21
+[09:39] igor@nixos-pc tmp [nix-shell] % cat ./abc.cfg
+age = 22
+[09:39] igor@nixos-pc tmp [nix-shell] % ./out --config ./abc.cfg
+Your age is: 22</code></pre>
+</div><div id="сериализация" class="slide section level2">
+<h1>Сериализация</h1>
+<ul>
+<li><a href="https://www.boost.org/libs/serialization">boost/</a></li>
+<li>Процесс представления объектов в бинарном виде, который можно сохранить в поток либо восстановить в объект</li>
+<li>В большинстве случаев формат сериализации избыточен</li>
+<li><code>boost::archive::text_oarchive</code> и <code>boost::archive::text_iarchive</code> — простейшие сериализаторы, обёртки над стримами</li>
+<li>Чтобы сериализовать свой класс, необходимо
+<ul>
+<li>Зафрендить класс <code>boost::serialization::access</code></li>
+<li>Реализовать метод <code>void serialize(Archive&amp; ar, const unsigned int version)</code>
+<ul>
+<li>Шаблонный параметр <code>Archive</code> — это сериализатор</li>
+<li>Считывать/записывать значения в <code>ar</code> нужно с помощью оператора <code>&amp;</code></li>
+<li>Версия привязана к сериализации объекта</li>
+</ul></li>
+<li>Сериализовать следует требуемые переменные класса</li>
+<li>Сериализация происходит рекурсивно</li>
+<li>Можно реализовать отдельную функцию <code>void serialize(Archive&amp; ar, MyAwesomeObject&amp; a, const unsigned int version)</code></li>
+</ul></li>
+<li>Объявление версии объекта делается через макрос <code>BOOST_CLASS_VERSION(MyAwesomeObject, 42)</code></li>
+<li>Умеет работать с умными указателями и создавать объекты в куче</li>
+<li>Сериализация базового класса в наследнике делается через приведение к <code>boost::serialization::base_object&lt;BaseClass&gt;(*this);</code>
+<ul>
+<li>Чтобы сериализовать потомок через указатель базового класса, необходимо задекларировать его через <code>BOOST_CLASS_EXPORT</code></li>
+</ul></li>
+<li>Оптимизаторы для сокращения битового потока сериализованного объекта
+<ul>
+<li>Массивы могут быть оптимизированы с помощью вызова <code>boost::serialization::make_array(a.data(), a.size())</code></li>
+<li><code>make_binary_object</code> используется для сырых данных, например, бинарные данные изображения</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb58"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb58-1" title="1"><span class="kw">using</span> <span class="kw">namespace</span> <span class="ex">boost::</span>archive;</a>
+<a class="sourceLine" id="cb58-2" title="2"></a>
+<a class="sourceLine" id="cb58-3" title="3"><span class="kw">class</span> animal</a>
+<a class="sourceLine" id="cb58-4" title="4">{</a>
+<a class="sourceLine" id="cb58-5" title="5"><span class="kw">public</span>:</a>
+<a class="sourceLine" id="cb58-6" title="6">    animal(<span class="dt">int</span> legs = <span class="dv">0</span>) : <span class="va">legs_</span>{legs} {}</a>
+<a class="sourceLine" id="cb58-7" title="7">    <span class="dt">int</span> legs() <span class="at">const</span> { <span class="cf">return</span> <span class="va">legs_</span>; }</a>
+<a class="sourceLine" id="cb58-8" title="8"></a>
+<a class="sourceLine" id="cb58-9" title="9"><span class="kw">private</span>:</a>
+<a class="sourceLine" id="cb58-10" title="10">    <span class="kw">friend</span> <span class="kw">class</span> <span class="ex">boost::</span>serialization<span class="ex">::</span>access;</a>
+<a class="sourceLine" id="cb58-11" title="11"></a>
+<a class="sourceLine" id="cb58-12" title="12">    <span class="kw">template</span> &lt;<span class="kw">typename</span> Archive&gt;</a>
+<a class="sourceLine" id="cb58-13" title="13">    <span class="dt">void</span> serialize(Archive &amp;ar, <span class="at">const</span> <span class="dt">unsigned</span> <span class="dt">int</span> version) { ar &amp; <span class="va">legs_</span>; }</a>
+<a class="sourceLine" id="cb58-14" title="14"></a>
+<a class="sourceLine" id="cb58-15" title="15">    <span class="dt">int</span> <span class="va">legs_</span>;</a>
+<a class="sourceLine" id="cb58-16" title="16">};</a>
+<a class="sourceLine" id="cb58-17" title="17"></a>
+<a class="sourceLine" id="cb58-18" title="18"><span class="kw">class</span> bird : <span class="kw">public</span> animal</a>
+<a class="sourceLine" id="cb58-19" title="19">{</a>
+<a class="sourceLine" id="cb58-20" title="20"><span class="kw">public</span>:</a>
+<a class="sourceLine" id="cb58-21" title="21">    bird(<span class="dt">bool</span> can_fly = <span class="kw">true</span>) : animal{<span class="dv">2</span>}, <span class="va">can_fly_</span>{can_fly} {}</a>
+<a class="sourceLine" id="cb58-22" title="22">    <span class="dt">bool</span> can_fly() <span class="at">const</span> { <span class="cf">return</span> <span class="va">can_fly_</span>; }</a>
+<a class="sourceLine" id="cb58-23" title="23"></a>
+<a class="sourceLine" id="cb58-24" title="24"><span class="kw">private</span>:</a>
+<a class="sourceLine" id="cb58-25" title="25">    <span class="kw">friend</span> <span class="kw">class</span> <span class="ex">boost::</span>serialization<span class="ex">::</span>access;</a>
+<a class="sourceLine" id="cb58-26" title="26"></a>
+<a class="sourceLine" id="cb58-27" title="27">    <span class="kw">template</span> &lt;<span class="kw">typename</span> Archive&gt;</a>
+<a class="sourceLine" id="cb58-28" title="28">    <span class="dt">void</span> serialize(Archive &amp;ar, <span class="at">const</span> <span class="dt">unsigned</span> <span class="dt">int</span> version)</a>
+<a class="sourceLine" id="cb58-29" title="29">    {</a>
+<a class="sourceLine" id="cb58-30" title="30">        ar &amp; <span class="ex">boost::</span>serialization<span class="ex">::</span>base_object&lt;animal&gt;(*<span class="kw">this</span>);</a>
+<a class="sourceLine" id="cb58-31" title="31">        ar &amp; <span class="va">can_fly_</span>;</a>
+<a class="sourceLine" id="cb58-32" title="32">    }</a>
+<a class="sourceLine" id="cb58-33" title="33"></a>
+<a class="sourceLine" id="cb58-34" title="34">    <span class="dt">bool</span> <span class="va">can_fly_</span>;</a>
+<a class="sourceLine" id="cb58-35" title="35">};</a>
+<a class="sourceLine" id="cb58-36" title="36"></a>
+<a class="sourceLine" id="cb58-37" title="37"><span class="bu">std::</span>stringstream ss;</a>
+<a class="sourceLine" id="cb58-38" title="38"></a>
+<a class="sourceLine" id="cb58-39" title="39"><span class="kw">auto</span> serialize = [](<span class="kw">auto</span>&amp; os, <span class="at">const</span> bird&amp; obj) {</a>
+<a class="sourceLine" id="cb58-40" title="40">    text_oarchive oa{os};</a>
+<a class="sourceLine" id="cb58-41" title="41">    oa &lt;&lt; obj;</a>
+<a class="sourceLine" id="cb58-42" title="42">};</a>
+<a class="sourceLine" id="cb58-43" title="43"></a>
+<a class="sourceLine" id="cb58-44" title="44"><span class="kw">auto</span> deserialize = [](<span class="kw">auto</span>&amp; is) {</a>
+<a class="sourceLine" id="cb58-45" title="45">    text_iarchive ia{is};</a>
+<a class="sourceLine" id="cb58-46" title="46">    bird obj;</a>
+<a class="sourceLine" id="cb58-47" title="47">    ia &gt;&gt; obj;</a>
+<a class="sourceLine" id="cb58-48" title="48">    <span class="cf">return</span> obj;</a>
+<a class="sourceLine" id="cb58-49" title="49">};</a>
+<a class="sourceLine" id="cb58-50" title="50"></a>
+<a class="sourceLine" id="cb58-51" title="51">bird penguin{<span class="kw">false</span>};</a>
+<a class="sourceLine" id="cb58-52" title="52">serialize(ss, penguin);</a>
+<a class="sourceLine" id="cb58-53" title="53"></a>
+<a class="sourceLine" id="cb58-54" title="54">bird b = deserialize(ss);</a>
+<a class="sourceLine" id="cb58-55" title="55"><span class="bu">std::</span>cout &lt;&lt; b.legs() &lt;&lt; <span class="st">&quot; &quot;</span> &lt;&lt; <span class="bu">std::</span>boolalpha &lt;&lt; b.can_fly() &lt;&lt; <span class="bu">std::</span>endl;</a></code></pre></div>
+</div><div id="uuid" class="slide section level2">
+<h1>UUID</h1>
+<ul>
+<li><a href="https://www.boost.org/libs/uuid">boost/uuid/</a></li>
+<li>Universal Unique Identifier в большинстве случаем случайная последовательность чисел стандартизованного формата</li>
+<li>POD тип размера 128 битов</li>
+<li>Не может быть создан напрямую, только через генератор
+<ul>
+<li><code>nil_generator</code> производит нулевой UUID <code>00000000-0000-0000-0000-000000000000</code></li>
+<li><code>random_generator</code> полностью случайный UUID</li>
+<li><code>string_generator</code> для генерации UUID из строки по стандарту</li>
+<li><code>name_gen</code> для получения UUID строки</li>
+</ul></li>
+<li>Доступные методы
+<ul>
+<li><code>size</code> размер, всегда равен 16 байтам</li>
+<li><code>is_nil</code> является ли UUID нулевым</li>
+<li><code>variant</code> и <code>version</code> позволяют понять, какой стандарт использовался при генерации UUID</li>
+</ul></li>
+<li>Метод <code>to_string</code> или <code>boost::lexical_cast&lt;std::string&gt;</code> позволяет получить UUID в виде строки</li>
+</ul>
+<div class="sourceCode" id="cb59"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb59-1" title="1"><span class="ex">boost::</span>uuids<span class="ex">::</span>string_generator string_gen;</a>
+<a class="sourceLine" id="cb59-2" title="2"><span class="ex">boost::</span>uuids<span class="ex">::</span>uuid id = string_gen(<span class="st">&quot;CF77C981-F61B-7817-10FF-D916FCC3EAA4&quot;</span>);</a>
+<a class="sourceLine" id="cb59-3" title="3"><span class="bu">std::</span>cout &lt;&lt; id.variant() &lt;&lt; <span class="st">&quot;:&quot;</span> &lt;&lt; id.version() &lt;&lt; <span class="st">&quot; = &quot;</span> &lt;&lt; id &lt;&lt; <span class="bu">std::</span>endl;</a></code></pre></div>
 </div>
-<div id="дизайн-паттерны" class="title-slide slide section level1"><h1>Дизайн паттерны</h1></div>
-<div id="другие-библиотеки" class="title-slide slide section level1"><h1>Другие библиотеки</h1></div>
+<div id="дизайн-паттерны" class="title-slide slide section level1"><h1>Дизайн паттерны</h1></div><div id="легковес" class="slide section level2">
+<h1>Легковес</h1>
+<ul>
+<li><a href="https://www.boost.org/libs/flyweight">boost/flyweight.hpp</a></li>
+<li>Применяется там, где нужно сохранять повторяющиеся значения в полях объекта</li>
+<li>Использует контейнеры с уникальным ключом для хранения объектов</li>
+<li>Разделение по типам, либо можно задать свой тэг</li>
+<li>Дополнительные шаблонные параметры в типе легковеса
+<ul>
+<li><code>set_factory</code> использовать <code>std::set</code> для хранения объектов, а не хешированный массив</li>
+<li><code>no_locking</code> не использовать примитивы синхронизации а-ля мьютексы</li>
+<li><code>no_tracking</code> не отслеживать время жизни объект
+<ul>
+<li>По умолчанию объект умирает, когда все ссылки на него прекращаются</li>
+</ul></li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb60"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb60-1" title="1"><span class="kw">struct</span> person</a>
+<a class="sourceLine" id="cb60-2" title="2">{</a>
+<a class="sourceLine" id="cb60-3" title="3">    <span class="kw">struct</span> country {};</a>
+<a class="sourceLine" id="cb60-4" title="4"></a>
+<a class="sourceLine" id="cb60-5" title="5">    <span class="dt">int</span> id;</a>
+<a class="sourceLine" id="cb60-6" title="6">    flyweight&lt;<span class="bu">std::</span>string&gt; city;</a>
+<a class="sourceLine" id="cb60-7" title="7">    flyweight&lt;<span class="bu">std::</span>string, tag&lt;country&gt;&gt; country;</a>
+<a class="sourceLine" id="cb60-8" title="8">    person(<span class="dt">int</span> _id, <span class="bu">std::</span>string _city, <span class="bu">std::</span>string _country)</a>
+<a class="sourceLine" id="cb60-9" title="9">        : id{_id}, city{<span class="bu">std::</span>move(_city)}, country{<span class="bu">std::</span>move(_country)} {}</a>
+<a class="sourceLine" id="cb60-10" title="10">};</a>
+<a class="sourceLine" id="cb60-11" title="11"></a>
+<a class="sourceLine" id="cb60-12" title="12"><span class="bu">std::</span>vector&lt;person&gt; persons;</a>
+<a class="sourceLine" id="cb60-13" title="13"><span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; <span class="dv">100000</span>; ++i)</a>
+<a class="sourceLine" id="cb60-14" title="14">    persons.push_back({i, <span class="st">&quot;Berlin&quot;</span>, <span class="st">&quot;Germany&quot;</span>});</a></code></pre></div>
+</div><div id="signals2" class="slide section level2">
+<h1>Signals2</h1>
+<ul>
+<li><a href="https://www.boost.org/libs/signals2">boost/signals2.hpp</a></li>
+<li>Концепция сигналов и слотов или событийный паттерн</li>
+<li>Сигналы чем-то напоминают <code>std::function</code></li>
+<li><code>connect</code> позволяет подсоединять свои функции к определённому сигналу (слоты)
+<ul>
+<li><code>disconnect</code> обратное действие</li>
+<li><code>num_slots</code> позволяет узнать, сколько обработчиков подписано на этот сигнал</li>
+<li>Сигнатура обработчика записывается в сигнатуре сигнала</li>
+</ul></li>
+<li>Можно получить возвращаемое значение последнего обработчика через <code>operator*</code>
+<ul>
+<li>Есть возможность задать компоновщика возвращаемых значений, он принимает InputIterator</li>
+</ul></li>
+<li><code>boost::signals2::shared_connection_block</code> используется для временного прекращения работы слота</li>
+</ul>
+<div class="sourceCode" id="cb61"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb61-1" title="1"><span class="ex">boost::</span>signals2<span class="ex">::</span>signal&lt;<span class="dt">void</span>()&gt; s;</a>
+<a class="sourceLine" id="cb61-2" title="2"></a>
+<a class="sourceLine" id="cb61-3" title="3"><span class="kw">auto</span> hello = [] {</a>
+<a class="sourceLine" id="cb61-4" title="4">    <span class="bu">std::</span>cout &lt;&lt; <span class="st">&quot;Hello, world!&quot;</span> &lt;&lt; <span class="bu">std::</span>endl;</a>
+<a class="sourceLine" id="cb61-5" title="5">};</a>
+<a class="sourceLine" id="cb61-6" title="6"></a>
+<a class="sourceLine" id="cb61-7" title="7"><span class="kw">auto</span> <span class="fu">disconnect</span> = [&amp;s, hello] {</a>
+<a class="sourceLine" id="cb61-8" title="8">    s.<span class="fu">disconnect</span>(hello);</a>
+<a class="sourceLine" id="cb61-9" title="9">};</a>
+<a class="sourceLine" id="cb61-10" title="10"></a>
+<a class="sourceLine" id="cb61-11" title="11">s.<span class="fu">connect</span>(hello);</a>
+<a class="sourceLine" id="cb61-12" title="12">s.<span class="fu">connect</span>(<span class="fu">disconnect</span>);</a>
+<a class="sourceLine" id="cb61-13" title="13">s();</a>
+<a class="sourceLine" id="cb61-14" title="14">s();</a></code></pre></div>
+</div><div id="машина-состояний" class="slide section level2">
+<h1>Машина состояний</h1>
+<ul>
+<li><a href="https://www.boost.org/libs/msm">boost/msm/</a></li>
+<li>Машина состояний строится из состояний, событий, атрибутов событий (действий), гардов</li>
+<li>FSM (Finite State Machine) задаётся с помощью таблицы переходов
+<ul>
+<li>Каждая строка таблицы содержит начальное состояние, событие, конечное состояние, атрибут, гард</li>
+<li><code>row</code> определяет полную строку таблицы</li>
+<li><code>a_row</code> определяет строку таблицы с атрибутом, но без гарда</li>
+<li><code>g_row</code> позволяет опускать определение атрибута</li>
+<li><code>_row</code> позволяет опускать определение атрибута и гарда</li>
+</ul></li>
+<li>Есть вспомогательные макросы для описания всех частей FSM</li>
+<li>MSM предлагает бекэнды, фронтэнд должен написать пользователь</li>
+<li>У MSM есть методы
+<ul>
+<li><code>current_state</code> для получения текущего состояния</li>
+<li><code>process_event</code> для переключения состояния</li>
+</ul></li>
+<li>Класс <code>msm::front::state&lt;&gt;</code> служит для полного определения состояний</li>
+<li>Класс <code>msm::front::state_machine</code> позволяет определять машину состояний</li>
+</ul>
+<div class="sourceCode" id="cb62"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb62-1" title="1"><span class="kw">struct</span> play {};</a>
+<a class="sourceLine" id="cb62-2" title="2"><span class="kw">struct</span> open_close {};</a>
+<a class="sourceLine" id="cb62-3" title="3"><span class="kw">struct</span> stop {};</a>
+<a class="sourceLine" id="cb62-4" title="4"><span class="co">// ...</span></a>
+<a class="sourceLine" id="cb62-5" title="5"></a>
+<a class="sourceLine" id="cb62-6" title="6"><span class="kw">class</span> player : <span class="kw">public</span> state_machine&lt;player&gt;</a>
+<a class="sourceLine" id="cb62-7" title="7">{</a>
+<a class="sourceLine" id="cb62-8" title="8">    <span class="kw">enum</span> states { Empty, Open, Stopped, Playing, Paused , initial_state = Empty };</a>
+<a class="sourceLine" id="cb62-9" title="9"></a>
+<a class="sourceLine" id="cb62-10" title="10">    <span class="dt">void</span> start_playback(play <span class="at">const</span>&amp;) { <span class="bu">std::</span>cout &lt;&lt; <span class="st">&quot;player::start_playback</span><span class="sc">\n</span><span class="st">&quot;</span>; }</a>
+<a class="sourceLine" id="cb62-11" title="11">    <span class="dt">void</span> open_drawer(open_close <span class="at">const</span>&amp;) { <span class="bu">std::</span>cout &lt;&lt; <span class="st">&quot;player::open_drawer</span><span class="sc">\n</span><span class="st">&quot;</span>; }</a>
+<a class="sourceLine" id="cb62-12" title="12">    <span class="co">// ...</span></a>
+<a class="sourceLine" id="cb62-13" title="13"></a>
+<a class="sourceLine" id="cb62-14" title="14">    <span class="kw">struct</span> transition_table : mpl::vector&lt;</a>
+<a class="sourceLine" id="cb62-15" title="15">    <span class="co">//    Start     Event        Target      Action                      Guard</span></a>
+<a class="sourceLine" id="cb62-16" title="16">    <span class="co">//   +---------+------------+-----------+---------------------------+----------------------------+</span></a>
+<a class="sourceLine" id="cb62-17" title="17">    a_row&lt; Stopped , play       ,  Playing  , &amp;<span class="va">player_</span>::start_playback                               &gt;,</a>
+<a class="sourceLine" id="cb62-18" title="18">    a_row&lt; Stopped , open_close ,  Open     , &amp;<span class="va">player_</span>::open_drawer                                  &gt;,</a>
+<a class="sourceLine" id="cb62-19" title="19">     _row&lt; Stopped , stop       ,  Stopped                                                           &gt;,</a>
+<a class="sourceLine" id="cb62-20" title="20">    <span class="co">//   +---------+------------+-----------+---------------------------+----------------------------+</span></a>
+<a class="sourceLine" id="cb62-21" title="21">    a_row&lt; Open    , open_close ,  Empty    , &amp;<span class="va">player_</span>::close_drawer                                 &gt;,</a>
+<a class="sourceLine" id="cb62-22" title="22">    <span class="co">//   +---------+------------+-----------+---------------------------+----------------------------+</span></a>
+<a class="sourceLine" id="cb62-23" title="23">    a_row&lt; Empty   , open_close ,  Open     , &amp;<span class="va">player_</span>::open_drawer                                  &gt;,</a>
+<a class="sourceLine" id="cb62-24" title="24">      row&lt; Empty   , cd_detected,  Stopped  , &amp;<span class="va">player_</span>::store_cd_info   , &amp;<span class="va">player_</span>::good_disk_format &gt;,</a>
+<a class="sourceLine" id="cb62-25" title="25">      row&lt; Empty   , cd_detected,  Playing  , &amp;<span class="va">player_</span>::store_cd_info   , &amp;<span class="va">player_</span>::auto_start       &gt;,</a>
+<a class="sourceLine" id="cb62-26" title="26">    <span class="co">//   +---------+------------+-----------+---------------------------+----------------------------+</span></a>
+<a class="sourceLine" id="cb62-27" title="27">    a_row&lt; Playing , stop       ,  Stopped  , &amp;<span class="va">player_</span>::stop_playback                                &gt;,</a>
+<a class="sourceLine" id="cb62-28" title="28">    a_row&lt; Playing , pause      ,  Paused   , &amp;<span class="va">player_</span>::pause_playback                               &gt;,</a>
+<a class="sourceLine" id="cb62-29" title="29">    a_row&lt; Playing , open_close ,  Open     , &amp;<span class="va">player_</span>::stop_and_open                                &gt;,</a>
+<a class="sourceLine" id="cb62-30" title="30">    <span class="co">//   +---------+------------+-----------+---------------------------+----------------------------+</span></a>
+<a class="sourceLine" id="cb62-31" title="31">    a_row&lt; Paused  , end_pause  ,  Playing  , &amp;<span class="va">player_</span>::resume_playback                              &gt;,</a>
+<a class="sourceLine" id="cb62-32" title="32">    a_row&lt; Paused  , stop       ,  Stopped  , &amp;<span class="va">player_</span>::stop_playback                                &gt;,</a>
+<a class="sourceLine" id="cb62-33" title="33">    a_row&lt; Paused  , open_close ,  Open     , &amp;<span class="va">player_</span>::stop_and_open                                &gt;</a>
+<a class="sourceLine" id="cb62-34" title="34">    <span class="co">//   +---------+------------+-----------+---------------------------+----------------------------+</span></a>
+<a class="sourceLine" id="cb62-35" title="35">    &gt; {};</a>
+<a class="sourceLine" id="cb62-36" title="36"></a>
+<a class="sourceLine" id="cb62-37" title="37">    <span class="co">/*template&lt;class Event, class Fsm&gt;</span></a>
+<a class="sourceLine" id="cb62-38" title="38"><span class="co">    void no_transition(const Event&amp; e, Fsm&amp; fsm, int state)</span></a>
+<a class="sourceLine" id="cb62-39" title="39"><span class="co">    {</span></a>
+<a class="sourceLine" id="cb62-40" title="40"><span class="co">        std::cout &lt;&lt; &quot;no transition from state &quot; &lt;&lt; state &lt;&lt; &quot; on event &quot; &lt;&lt; typeid(e).name() &lt;&lt; std::endl;</span></a>
+<a class="sourceLine" id="cb62-41" title="41"><span class="co">    }*/</span></a>
+<a class="sourceLine" id="cb62-42" title="42">};</a>
+<a class="sourceLine" id="cb62-43" title="43"></a>
+<a class="sourceLine" id="cb62-44" title="44">player my_player;</a>
+<a class="sourceLine" id="cb62-45" title="45">my_player.process_event(open_close{});</a>
+<a class="sourceLine" id="cb62-46" title="46">my_player.process_event(open_close{});</a>
+<a class="sourceLine" id="cb62-47" title="47">my_player.process_event(play{});</a>
+<a class="sourceLine" id="cb62-48" title="48"><span class="bu">std::</span>cout &lt;&lt; my_player.current_state() &lt;&lt; <span class="bu">std::</span>endl;</a></code></pre></div>
+</div>
+<div id="другие-библиотеки" class="title-slide slide section level1"><h1>Другие библиотеки</h1></div><div id="utility" class="slide section level2">
+<h1>Utility</h1>
+<ul>
+<li><a href="https://www.boost.org/libs/utility">boost/</a></li>
+<li><code>boost::checked_delete()</code> и <code>boost::checked_array_delete()</code> делают аналогичную работу за <code>delete</code> и <code>delete[]</code>
+<ul>
+<li>Функции убеждаются, что тип полный (complete)</li>
+</ul></li>
+<li>Макрос <code>BOOST_CURRENT_FUNCTION</code> выдаёт имя текущей функции
+<ul>
+<li>В C++11 есть аналог <code>__func__</code></li>
+</ul></li>
+<li><code>boost::prior()</code> и <code>boost::next()</code> аналогичные <code>std::prev</code> и <code>std::next</code></li>
+<li>Наследуясь от <code>boost::noncopyable</code> автоматически убирает все порождающие операторы копирования</li>
+<li><code>boost::addressof()</code> позволяет получить адрес объекта, даже если <code>operator&amp;</code> перегружен
+<ul>
+<li>Аналогично <code>std::addressof</code></li>
+</ul></li>
+<li><code>BOOST_BINARY(1001 0001)</code> позволяет создавать константы в двоичном формате
+<ul>
+<li>В C++17 появился префикс <code>0b</code></li>
+</ul></li>
+<li><code>boost::string_ref</code> аналогично <code>std::string_view</code></li>
+</ul>
+</div><div id="assign" class="slide section level2">
+<h1>Assign</h1>
+<ul>
+<li><a href="https://www.boost.org/libs/assign">boost/assign.hpp</a></li>
+<li>Инициализация контейнера с помощью <code>list_of</code>, <code>map_list_of</code> и т.д.
+<ul>
+<li>Есть более современный метод через <code>std::initializer_list</code></li>
+</ul></li>
+<li>Более простой способ добавляеть элементы в контейнер
+<ul>
+<li>Поддержка методами <code>push_back</code>, <code>push_front</code>, <code>insert</code> и <code>push</code></li>
+</ul></li>
+<li>Добавление элементов через оператор <code>,</code></li>
+</ul>
+<div class="sourceCode" id="cb63"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb63-1" title="1"><span class="bu">std::</span>vector&lt;<span class="bu">std::</span>pair&lt;<span class="bu">std::</span>string, <span class="dt">int</span>&gt;&gt; v = <span class="ex">boost::</span>assign<span class="ex">::</span>list_of&lt;<span class="bu">std::</span>pair&lt;<span class="bu">std::</span>string, <span class="dt">int</span>&gt;&gt;(<span class="st">&quot;a&quot;</span>, <span class="dv">1</span>)(<span class="st">&quot;b&quot;</span>, <span class="dv">2</span>)(<span class="st">&quot;c&quot;</span>, <span class="dv">3</span>);</a>
+<a class="sourceLine" id="cb63-2" title="2"></a>
+<a class="sourceLine" id="cb63-3" title="3"><span class="bu">std::</span>vector&lt;<span class="dt">int</span>&gt; v2;</a>
+<a class="sourceLine" id="cb63-4" title="4"><span class="ex">boost::</span>assign<span class="ex">::</span>push_back(v2)(<span class="dv">1</span>)(<span class="dv">2</span>)(<span class="dv">3</span>);</a>
+<a class="sourceLine" id="cb63-5" title="5"></a>
+<a class="sourceLine" id="cb63-6" title="6"><span class="kw">using</span> <span class="kw">namespace</span> <span class="ex">boost::</span>assign;</a>
+<a class="sourceLine" id="cb63-7" title="7"></a>
+<a class="sourceLine" id="cb63-8" title="8">vector&lt;<span class="dt">int</span>&gt; values;</a>
+<a class="sourceLine" id="cb63-9" title="9">values += <span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>;</a></code></pre></div>
+</div><div id="операторы" class="slide section level2">
+<h1>Операторы</h1>
+<ul>
+<li><a href="https://www.boost.org/libs/utility/operators.htm">boost/operators.hpp</a></li>
+<li>Вспомогательные для наследования классы с предопределёнными операторами</li>
+<li>При наследовании от <code>boost::less_than_comparable</code> достаточно определить лишь <code>operator&lt;</code></li>
+<li>Множество других классов для наследования с различными комбинациями</li>
+<li>Возможно определять итераторы</li>
+</ul>
+<div class="sourceCode" id="cb64"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb64-1" title="1"><span class="kw">class</span> MyInt : <span class="ex">boost::</span>operators&lt;MyInt&gt;</a>
+<a class="sourceLine" id="cb64-2" title="2">{</a>
+<a class="sourceLine" id="cb64-3" title="3">    <span class="dt">bool</span> <span class="kw">operator</span>&lt;(<span class="at">const</span> MyInt&amp; x) <span class="at">const</span>;</a>
+<a class="sourceLine" id="cb64-4" title="4">    <span class="dt">bool</span> <span class="kw">operator</span>==(<span class="at">const</span> MyInt&amp; x) <span class="at">const</span>;</a>
+<a class="sourceLine" id="cb64-5" title="5">    MyInt&amp; <span class="kw">operator</span>+=(<span class="at">const</span> MyInt&amp; x);</a>
+<a class="sourceLine" id="cb64-6" title="6">    MyInt&amp; <span class="kw">operator</span>-=(<span class="at">const</span> MyInt&amp; x);</a>
+<a class="sourceLine" id="cb64-7" title="7">    MyInt&amp; <span class="kw">operator</span>*=(<span class="at">const</span> MyInt&amp; x);</a>
+<a class="sourceLine" id="cb64-8" title="8">    MyInt&amp; <span class="kw">operator</span>/=(<span class="at">const</span> MyInt&amp; x);</a>
+<a class="sourceLine" id="cb64-9" title="9">    MyInt&amp; <span class="kw">operator</span>%=(<span class="at">const</span> MyInt&amp; x);</a>
+<a class="sourceLine" id="cb64-10" title="10">    MyInt&amp; <span class="kw">operator</span>|=(<span class="at">const</span> MyInt&amp; x);</a>
+<a class="sourceLine" id="cb64-11" title="11">    MyInt&amp; <span class="kw">operator</span>&amp;=(<span class="at">const</span> MyInt&amp; x);</a>
+<a class="sourceLine" id="cb64-12" title="12">    MyInt&amp; <span class="kw">operator</span>^=(<span class="at">const</span> MyInt&amp; x);</a>
+<a class="sourceLine" id="cb64-13" title="13">    MyInt&amp; <span class="kw">operator</span>++();</a>
+<a class="sourceLine" id="cb64-14" title="14">    MyInt&amp; <span class="kw">operator</span>--();</a>
+<a class="sourceLine" id="cb64-15" title="15">};</a></code></pre></div>
+</div>
 </body>
 </html>
