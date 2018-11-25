@@ -16,5 +16,4 @@
 #. `Паттерны проектирования <lecture-8/index.rst>`_
 #. `Обзор boost::spirit <lecture-9/index.rst>`_
 #. `Обзор библиотек boost <lecture-10/index.rst>`_
-#. ???
-#. `Разработка в команде <lecture-nn/index.rst>`_
+#. `Разработка в команде <lecture-11/index.rst>`_
