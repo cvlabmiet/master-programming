@@ -22,6 +22,7 @@ add_subdirectory(lecture-8)
 add_subdirectory(lecture-9)
 add_subdirectory(lecture-10)
 add_subdirectory(lecture-11)
+add_subdirectory(lecture-12)
 
 set(INDEX_FILE ${CMAKE_CURRENT_BINARY_DIR}/index.rst)
 file(READ README.rst README_CONTENT)

@@ -1,0 +1,2 @@
+set(CTEST_CUSTOM_COVERAGE_EXCLUDE ".*/include/boost/.*")
+set(CTEST_TEST_TIMEOUT 13)

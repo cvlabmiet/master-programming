@@ -17,3 +17,4 @@
 #. `Обзор boost::spirit <lecture-9/index.rst>`_
 #. `Обзор библиотек boost <lecture-10/index.rst>`_
 #. `Разработка в команде <lecture-11/index.rst>`_
+#. `Пример проекта на C++ <lecture-12/index.rst>`_
