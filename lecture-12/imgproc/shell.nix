@@ -15,6 +15,6 @@ let
 in mkShell rec {
   name = "imgproc";
   buildInputs = [ boost168 libpng libjpeg cxxopts catch2 ];
-  nativeBuildInputs = [ cmake gnumake gcc8 gdb valgrind strace cpplint include-what-you-use dpkg ];
+  nativeBuildInputs = [ cmake gnumake gcc9 clang gdb valgrind strace cpplint include-what-you-use dpkg ];
   hardeningDisable = [ "all" ];
 }

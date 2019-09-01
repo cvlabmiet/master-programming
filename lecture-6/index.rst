@@ -28,26 +28,7 @@ Master programming
 Стандартная библиотека шаблонов
 -------------------------------
 
-.. class:: plantuml
-    :execute:
-
-    ::
-
-        skinparam defaultFontSize 20
-
-        (Containers) <-- (STL)
-        (Iterators) <-- (STL)
-        (Algorithms) <-- (STL)
-        (Numerics) <-- (STL)
-        (Input/output) <-- (STL)
-        (Smart pointers) <-- (STL)
-
-        (STL) --> (Chrono)
-        (STL) --> (Regex)
-        (STL) --> (Atomic)
-        (STL) --> (Thread)
-        (STL) --> (Filesystem)
-        (STL) --> (...)
+.. image:: stl.uml.svg
 
 Структура STL
 =============

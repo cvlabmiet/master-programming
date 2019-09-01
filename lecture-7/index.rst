@@ -229,17 +229,7 @@ SFINAE
 
   .. class:: column33
 
-        .. class:: dot
-            :execute:
-
-            digraph G {
-                expression -> {glvalue, rvalue};
-                glvalue -> {lvalue, xvalue};
-                rvalue -> {xvalue, prvalue};
-
-                lvalue[style=filled, fillcolor=Aquamarine];
-                rvalue[style=filled, fillcolor=Aquamarine];
-            }
+        .. image:: ref.dot.svg
 
 * Perfect forwarding и `универсальная ссылка <https://habr.com/post/242639>`_
 

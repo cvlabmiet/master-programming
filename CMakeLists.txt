@@ -4,7 +4,6 @@ project(master-programming VERSION 0.1.0 LANGUAGES NONE
 )
 
 find_package(docproc REQUIRED COMPONENTS plantuml dot)
-find_program(PANDOC_PIPE pandoc-pipe)
 
 add_library(metadata metadata.yml)
 
@@ -23,10 +22,11 @@ add_subdirectory(lecture-9)
 add_subdirectory(lecture-10)
 add_subdirectory(lecture-11)
 add_subdirectory(lecture-12)
+add_subdirectory(tasks)
 
 set(INDEX_FILE ${CMAKE_CURRENT_BINARY_DIR}/index.rst)
 file(READ README.rst README_CONTENT)
-string(REGEX REPLACE "(lecture-[0-9]+)/index\\.rst" "\\1.html" README_CONTENT ${README_CONTENT})
+string(REGEX REPLACE "(lecture-[0-9]+|tasks)/index\\.rst" "\\1.html" README_CONTENT ${README_CONTENT})
 file(GENERATE OUTPUT ${INDEX_FILE} CONTENT ${README_CONTENT})
 
 add_html(index ${INDEX_FILE})

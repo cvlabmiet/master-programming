@@ -1,0 +1,8 @@
+digraph G {
+    expression -> {glvalue, rvalue};
+    glvalue -> {lvalue, xvalue};
+    rvalue -> {xvalue, prvalue};
+
+    lvalue[style=filled, fillcolor=Aquamarine];
+    rvalue[style=filled, fillcolor=Aquamarine];
+}

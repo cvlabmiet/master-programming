@@ -2,7 +2,7 @@
 =========
 
 Лекции по программированию для студентов НИУ МИЭТ.
-Лабораторные работы по курсу находятся в проекте `cxx-tasks <https://github.com/cvlabmiet/cxx-tasks>`_.
+Описание лабораторных работ по курсу можно найти в `master-programming-task <tasks/index.rst>`_.
 
 Список лекций (в формате слайдов лекции доступны со `страницы <https://cvlabmiet.github.io/master-programming>`_ проекта):
 
