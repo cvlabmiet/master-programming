@@ -1,5 +1,6 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ru-RU" xml:lang="ru-RU">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -14,7 +15,8 @@
       span.underline{text-decoration: underline;}
       div.column{display: inline-block; vertical-align: top; width: 50%;}
   </style>
-  <link rel="stylesheet" type="text/css" media="screen, projection, print" href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" data-external="1" />
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" data-external="1"/>
   <style type="text/css">
       .reveal h1 { font-size: 2em; }
       .reveal h2 { font-size: 2em; }
@@ -24,8 +26,12 @@
       div.column66 {display: inline-block; vertical-align: top; width: 66%;}
       div.column50 {display: inline-block; vertical-align: top; width: 49%;}
       .strike {text-decoration: line-through;}
+      table, th, td {
+          border: 1px solid black;
+      }
   </style>
-  <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js" charset="utf-8" type="text/javascript" data-external="1"></script>
+  <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
+    charset="utf-8" type="text/javascript" data-external="1"></script>
 </head>
 <body>
 <div class="slide titlepage">
@@ -63,7 +69,7 @@
 </div><div id="список-символов" class="slide section level2">
 <h1>Список символов</h1>
 <ul>
-<li>Утилита для вывода списка символов в объектном файле – <code>nm</code> (name mangling)</li>
+<li><p>Утилита для вывода списка символов в объектном файле – <code>nm</code> (name mangling)</p></li>
 <li><p>Метод подходит для объектных файлов, статических и динамических библиотек и исполнимых файлов:</p>
 <pre><code>$ nm fuse/elsimdrv | less
 
@@ -78,17 +84,17 @@
 000000000066ea10 t __init_array_end
 000000000066e9f0 t __init_array_start
 000000000044e640 R _IO_stdin_used</code></pre></li>
-<li>Выводит смещение, тип символа и название функции (до манглинга)</li>
-<li>Типы символов: undefined, weak, text, data, … (<code>man nm</code>)</li>
+<li><p>Выводит смещение, тип символа и название функции (до манглинга)</p></li>
+<li><p>Типы символов: undefined, weak, text, data, … (<code>man nm</code>)</p></li>
 </ul>
 </div><div id="изучение-секций" class="slide section level2">
 <h1>Изучение секций</h1>
 <ul>
-<li>Утилита <code>readelf</code></li>
-<li>Выводит адреса секций, используемых библиотек, rpath, содержимого секций</li>
-<li>Вывод всей доступной информации: <code>$ readelf -W -a fuse/elsimdrv | less</code></li>
-<li>Вывод содержимого секции: <code>$ readelf -p .text fuse/elsimdrv | less</code></li>
-<li>Добавлять свои секции можно через скрипты линковки</li>
+<li><p>Утилита <code>readelf</code></p></li>
+<li><p>Выводит адреса секций, используемых библиотек, rpath, содержимого секций</p></li>
+<li><p>Вывод всей доступной информации: <code>$ readelf -W -a fuse/elsimdrv | less</code></p></li>
+<li><p>Вывод содержимого секции: <code>$ readelf -p .text fuse/elsimdrv | less</code></p></li>
+<li><p>Добавлять свои секции можно через скрипты линковки</p></li>
 <li><p>Есть способ добавлять символы в секции внутри исходного кода (зависит от компилятора):</p>
 <pre><code>// если в глобальной пространстве имён
 static int a; // .bss
@@ -136,8 +142,8 @@ extern void foobar() __attribute__((section(&quot;bar&quot;)));</code></pre></li
 </div><div id="трассировка-программы" class="slide section level2">
 <h1>Трассировка программы</h1>
 <ul>
-<li><code>ltrace</code> позволяет выводить в реальном времени вызовы динамических библиотек</li>
-<li><code>strace</code> — вывод системных вызовов</li>
+<li><p><code>ltrace</code> позволяет выводить в реальном времени вызовы динамических библиотек</p></li>
+<li><p><code>strace</code> — вывод системных вызовов</p></li>
 <li><p>Системный вызов — выполняется ядром (<code>man syscalls</code>):</p>
 <pre><code>$ strace ls
 execve(&quot;/nix/store/cb3slv3szhp46xkrczqw7mscy5mnk64l-coreutils-8.29/bin/ls&quot;, [&quot;ls&quot;], 0x7ffe1f4b0c50 /* 143 vars */) = 0
@@ -149,7 +155,7 @@ stat(&quot;/run/opengl-driver/lib/tls/haswell/x86_64&quot;, 0x7fffcefcb4e0) = -1
 openat(AT_FDCWD, &quot;/run/opengl-driver/lib/tls/haswell/librt.so.1&quot;, O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
 stat(&quot;/run/opengl-driver/lib/tls/haswell&quot;, 0x7fffcefcb4e0) = -1 ENOENT (No such file or directory)
 ...</code></pre></li>
-<li><code>strace -c</code> — простейший профайлер системных вызовов</li>
+<li><p><code>strace -c</code> — простейший профайлер системных вызовов</p></li>
 </ul>
 </div>
 <div id="как-отладить-программу" class="title-slide slide section level1"><h1>Как отладить программу?</h1></div><div id="система-отладки-gdb" class="slide section level2">
@@ -188,8 +194,8 @@ stat(&quot;/run/opengl-driver/lib/tls/haswell&quot;, 0x7fffcefcb4e0) = -1 ENOENT
 <div id="дополнительные-системы-отладки" class="title-slide slide section level1"><h1>Дополнительные системы отладки</h1></div><div id="ещё-способы-отладки" class="slide section level2">
 <h1>Ещё способы отладки</h1>
 <ul>
-<li>Ключи компиляции: <code>-Wall</code>, <code>-pedantic</code>, <code>-Wextra</code>, <code>-fsanitize</code></li>
-<li>Запуск программы через memchecker</li>
+<li><p>Ключи компиляции: <code>-Wall</code>, <code>-pedantic</code>, <code>-Wextra</code>, <code>-fsanitize</code></p></li>
+<li><p>Запуск программы через memchecker</p></li>
 <li><p>Valgrind:</p>
 <pre><code>==8736== Invalid write of size 8
 ==8736==    at 0x4C31133: memcpy@GLIBC_2.2.5 (in /lib/vgpreload_memcheck-amd64-linux.so)
@@ -204,7 +210,7 @@ stat(&quot;/run/opengl-driver/lib/tls/haswell&quot;, 0x7fffcefcb4e0) = -1 ENOENT
 ==8736==    by 0x47F681: iterate_through_static_tiles (tile_segmentation.c:436)
 ==8736==    by 0x47FE71: tile_segmentation (tile_segmentation.c:567)
 ==8736==    by 0x47233A: kernel_CombinePlane_3 (kernel_ChannelCombine.c:110)
-==8736==  Address 0x6bb1bc0 is 0 bytes after a block of size 307,200 alloc'd
+==8736==  Address 0x6bb1bc0 is 0 bytes after a block of size 307,200 alloc&#39;d
 ==8736==    at 0x4C2F126: memalign (in /lib/vgpreload_memcheck-amd64-linux.so)
 ==8736==    by 0x454109: vxAllocatePlane (vx_image.c:203)
 ==8736==    by 0x454974: vxInitializeImage (vx_image.c:341)
@@ -214,9 +220,9 @@ stat(&quot;/run/opengl-driver/lib/tls/haswell&quot;, 0x7fffcefcb4e0) = -1 ENOENT
 </div><div id="остановка-в-дебаггере-при-утечке-памяти" class="slide section level2">
 <h1>Остановка в дебаггере при утечке памяти</h1>
 <div class="column50">
-<pre class="sourceCode "><code>$ valgrind --vgdb=yes --vgdb-error=0 prog
+<pre class=""><code>$ valgrind --vgdb=yes --vgdb-error=0 prog
 ==20836== Memcheck, a memory error detector
-==20836== Copyright (C) 2002-2011, and GNU GPL'd, by Julian Seward et al.
+==20836== Copyright (C) 2002-2011, and GNU GPL&#39;d, by Julian Seward et al.
 ==20836== Using Valgrind-3.7.0 and LibVEX; rerun with -h for copyright info
 ==20836== Command: /tmp/e
 ==20836==
@@ -230,7 +236,7 @@ stat(&quot;/run/opengl-driver/lib/tls/haswell&quot;, 0x7fffcefcb4e0) = -1 ENOENT
 ==20836==</code></pre>
 </div>
 <div class="column50">
-<pre class="sourceCode "><code>$ gdb ./prog
+<pre class=""><code>$ gdb ./prog
 (gdb) target remote | vgdb
 Remote debugging using | vgdb
 relaying data between gdb and process 2418

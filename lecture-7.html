@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
- "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ru-RU" xml:lang="ru-RU">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -16,9 +15,9 @@
       div.column{display: inline-block; vertical-align: top; width: 50%;}
   </style>
   <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 div.sourceCode { margin: 1em 0; }
@@ -28,14 +27,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -44,9 +45,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -78,8 +79,7 @@ code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" type="text/css" media="screen, projection, print"
-    href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" data-external="1"/>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print" href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" data-external="1" />
   <style type="text/css">
       .reveal h1 { font-size: 2em; }
       .reveal h2 { font-size: 2em; }
@@ -89,9 +89,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       div.column66 {display: inline-block; vertical-align: top; width: 66%;}
       div.column50 {display: inline-block; vertical-align: top; width: 49%;}
       .strike {text-decoration: line-through;}
+      table, th, td {
+          border: 1px solid black;
+      }
   </style>
-  <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
-    charset="utf-8" type="text/javascript" data-external="1"></script>
+  <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js" charset="utf-8" type="text/javascript" data-external="1"></script>
 </head>
 <body>
 <div class="slide titlepage">
@@ -165,9 +167,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>переходим к следующей специализации</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">template</span> &lt;<span class="kw">class</span> T&gt; <span class="dt">int</span> f(<span class="kw">typename</span> T::B*);</a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="kw">template</span> &lt;<span class="kw">class</span> T&gt; <span class="dt">int</span> f(T);</a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="dt">int</span> i = f&lt;<span class="dt">int</span>&gt;(<span class="dv">0</span>); <span class="co">// uses second overload</span></a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">template</span> &lt;<span class="kw">class</span> T&gt; <span class="dt">int</span> f(<span class="kw">typename</span> T::B*);</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="kw">template</span> &lt;<span class="kw">class</span> T&gt; <span class="dt">int</span> f(T);</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="dt">int</span> i = f&lt;<span class="dt">int</span>&gt;(<span class="dv">0</span>); <span class="co">// uses second overload</span></span></code></pre></div>
 </div><div id="шаблоны" class="slide section level2">
 <h1>Шаблоны</h1>
 <ul>
@@ -240,21 +242,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="обзор-стандарта-c14" class="title-slide slide section level1"><h1>Обзор стандарта C++14</h1></div><div id="новые-возможности-языка-1" class="slide section level2">
 <h1>Новые возможности языка</h1>
 <ul>
-<li>Автоматический вывод возвращаемого значения <code class="sourceCode cpp"><span class="kw">auto</span> func();</code></li>
-<li><code class="sourceCode cpp"><span class="kw">decltype</span>(<span class="kw">auto</span>)</code> — там, где <code class="sourceCode cpp"><span class="kw">auto</span></code> отбрасывает слишком много</li>
-<li>Шаблонные переменные <code class="sourceCode cpp"><span class="kw">template</span>&lt;<span class="kw">class</span> T&gt; T xxx = T(<span class="fl">2.78962161</span><span class="bu">L</span>);</code></li>
+<li><p>Автоматический вывод возвращаемого значения <code class="sourceCode cpp"><span class="kw">auto</span> func();</code></p></li>
+<li><p><code class="sourceCode cpp"><span class="kw">decltype</span>(<span class="kw">auto</span>)</code> — там, где <code class="sourceCode cpp"><span class="kw">auto</span></code> отбрасывает слишком много</p></li>
+<li><p>Шаблонные переменные <code class="sourceCode cpp"><span class="kw">template</span>&lt;<span class="kw">class</span> T&gt; T xxx = T(<span class="fl">2.78962161</span><span class="bu">L</span>);</code></p></li>
 <li><p>Агрегатная инициализация</p>
 <blockquote>
-<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb2-1" title="1"><span class="kw">struct</span> abc</a>
-<a class="sourceLine" id="cb2-2" title="2">{</a>
-<a class="sourceLine" id="cb2-3" title="3">    <span class="dt">int</span> x = <span class="dv">47</span>;</a>
-<a class="sourceLine" id="cb2-4" title="4">    <span class="dt">bool</span> f = <span class="kw">true</span>;</a>
-<a class="sourceLine" id="cb2-5" title="5">    <span class="bu">std::</span>string s = <span class="st">&quot;abc&quot;</span>;</a>
-<a class="sourceLine" id="cb2-6" title="6">};</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">struct</span> abc</span>
+<span id="cb2-2"><a href="#cb2-2"></a>{</span>
+<span id="cb2-3"><a href="#cb2-3"></a>    <span class="dt">int</span> x = <span class="dv">47</span>;</span>
+<span id="cb2-4"><a href="#cb2-4"></a>    <span class="dt">bool</span> f = <span class="kw">true</span>;</span>
+<span id="cb2-5"><a href="#cb2-5"></a>    <span class="bu">std::</span>string s = <span class="st">&quot;abc&quot;</span>;</span>
+<span id="cb2-6"><a href="#cb2-6"></a>};</span></code></pre></div>
 </blockquote></li>
-<li>Литералы двоичных чисел и разделители разрядов <code class="sourceCode cpp"><span class="bn">0b10110</span></code>, <code class="sourceCode cpp"><span class="dv">100&#39;500</span></code></li>
-<li>Обобщённые лямбда-выражения <code class="sourceCode cpp">[](<span class="kw">auto</span> x) { <span class="cf">return</span> x*x + <span class="dv">1</span>; }</code></li>
-<li>Атрибут <code class="sourceCode cpp">[[<span class="at">deprecated</span>]]</code></li>
+<li><p>Литералы двоичных чисел и разделители разрядов <code class="sourceCode cpp"><span class="bn">0b10110</span></code>, <code class="sourceCode cpp"><span class="dv">100&#39;500</span></code></p></li>
+<li><p>Обобщённые лямбда-выражения <code class="sourceCode cpp">[](<span class="kw">auto</span> x) { <span class="cf">return</span> x*x + <span class="dv">1</span>; }</code></p></li>
+<li><p>Атрибут <code class="sourceCode cpp">[[<span class="at">deprecated</span>]]</code></p></li>
 </ul>
 </div><div id="нововведения-в-stl" class="slide section level2">
 <h1>Нововведения в STL</h1>
@@ -280,7 +282,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><code class="sourceCode cpp"><span class="bu">std::</span>optional</code>, <code class="sourceCode cpp"><span class="bu">std::</span>variant</code>, <code class="sourceCode cpp"><span class="bu">std::</span>any</code></li>
 <li>Поддержка параллельных алгоритмов</li>
-<li>Символьные литералы для UTF-8 <code class="sourceCode cpp">u<span class="dv">8</span></code>, <code class="sourceCode cpp">u</code>, <code class="sourceCode cpp">U</code></li>
+<li>Символьные литералы для UTF-8 <code class="sourceCode cpp">u8</code>, <code class="sourceCode cpp">u</code>, <code class="sourceCode cpp">U</code></li>
 <li><code class="sourceCode cpp"><span class="bu">std::</span>filesystem</code></li>
 <li><code class="sourceCode cpp"><span class="bu">std::</span>string_view</code></li>
 <li><code>hardware_constructive_interference_size</code> и <code>hardware_destructive_interference_size</code> — влияние аппаратного кеша</li>
@@ -311,8 +313,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1>О rvalue</h1>
 <ul>
 <li><p>Copy elision</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb3-1" title="1">T f() { <span class="cf">return</span> T(); }</a>
-<a class="sourceLine" id="cb3-2" title="2">T x = f(); <span class="co">// конструктор копирования не будет вызван</span></a></code></pre></div></li>
+<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1"></a>T f() { <span class="cf">return</span> T(); }</span>
+<span id="cb3-2"><a href="#cb3-2"></a>T x = f(); <span class="co">// конструктор копирования не будет вызван</span></span></code></pre></div></li>
 <li><p>Типы ссылок</p>
 <div class="column66">
 <ul>
@@ -324,114 +326,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </div>
 <div class="column33">
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
- "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<!-- Generated by graphviz version 2.40.1 (0)
- -->
-<!-- Title: G Pages: 1 -->
-<svg width="267pt" height="188pt"
- viewBox="0.00 0.00 266.74 188.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 184)">
-<title>G</title>
-<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-184 262.7434,-184 262.7434,4 -4,4"/>
-<!-- expression -->
-<g id="node1" class="node">
-<title>expression</title>
-<ellipse fill="none" stroke="#000000" cx="124.4469" cy="-162" rx="55.4913" ry="18"/>
-<text text-anchor="middle" x="124.4469" y="-158.3" font-family="Times-Roman" font-size="14.00" fill="#000000">expression</text>
-</g>
-<!-- glvalue -->
-<g id="node2" class="node">
-<title>glvalue</title>
-<ellipse fill="none" stroke="#000000" cx="78.4469" cy="-90" rx="39.7935" ry="18"/>
-<text text-anchor="middle" x="78.4469" y="-86.3" font-family="Times-Roman" font-size="14.00" fill="#000000">glvalue</text>
-</g>
-<!-- expression&#45;&gt;glvalue -->
-<g id="edge1" class="edge">
-<title>expression&#45;&gt;glvalue</title>
-<path fill="none" stroke="#000000" d="M113.0762,-144.2022C107.6325,-135.6817 101.0093,-125.315 95.0187,-115.9385"/>
-<polygon fill="#000000" stroke="#000000" points="97.8616,-113.8872 89.5282,-107.3446 91.9627,-117.6559 97.8616,-113.8872"/>
-</g>
-<!-- rvalue -->
-<g id="node3" class="node">
-<title>rvalue</title>
-<ellipse fill="#7fffd4" stroke="#000000" cx="171.4469" cy="-90" rx="35.9954" ry="18"/>
-<text text-anchor="middle" x="171.4469" y="-86.3" font-family="Times-Roman" font-size="14.00" fill="#000000">rvalue</text>
-</g>
-<!-- expression&#45;&gt;rvalue -->
-<g id="edge2" class="edge">
-<title>expression&#45;&gt;rvalue</title>
-<path fill="none" stroke="#000000" d="M136.0649,-144.2022C141.627,-135.6817 148.3941,-125.315 154.5149,-115.9385"/>
-<polygon fill="#000000" stroke="#000000" points="157.5893,-117.6316 160.1248,-107.3446 151.7277,-113.8052 157.5893,-117.6316"/>
-</g>
-<!-- lvalue -->
-<g id="node4" class="node">
-<title>lvalue</title>
-<ellipse fill="#7fffd4" stroke="#000000" cx="34.4469" cy="-18" rx="34.394" ry="18"/>
-<text text-anchor="middle" x="34.4469" y="-14.3" font-family="Times-Roman" font-size="14.00" fill="#000000">lvalue</text>
-</g>
-<!-- glvalue&#45;&gt;lvalue -->
-<g id="edge3" class="edge">
-<title>glvalue&#45;&gt;lvalue</title>
-<path fill="none" stroke="#000000" d="M67.7958,-72.5708C62.5533,-63.9922 56.1269,-53.4762 50.3194,-43.9732"/>
-<polygon fill="#000000" stroke="#000000" points="53.2011,-41.9764 45,-35.2687 47.2281,-45.6266 53.2011,-41.9764"/>
-</g>
-<!-- xvalue -->
-<g id="node5" class="node">
-<title>xvalue</title>
-<ellipse fill="none" stroke="#000000" cx="123.4469" cy="-18" rx="37.0935" ry="18"/>
-<text text-anchor="middle" x="123.4469" y="-14.3" font-family="Times-Roman" font-size="14.00" fill="#000000">xvalue</text>
-</g>
-<!-- glvalue&#45;&gt;xvalue -->
-<g id="edge4" class="edge">
-<title>glvalue&#45;&gt;xvalue</title>
-<path fill="none" stroke="#000000" d="M89.3402,-72.5708C94.7018,-63.9922 101.2743,-53.4762 107.2137,-43.9732"/>
-<polygon fill="#000000" stroke="#000000" points="110.322,-45.6037 112.654,-35.2687 104.386,-41.8937 110.322,-45.6037"/>
-</g>
-<!-- rvalue&#45;&gt;xvalue -->
-<g id="edge5" class="edge">
-<title>rvalue&#45;&gt;xvalue</title>
-<path fill="none" stroke="#000000" d="M159.8275,-72.5708C154.0495,-63.9038 146.9531,-53.2592 140.5667,-43.6796"/>
-<polygon fill="#000000" stroke="#000000" points="143.4186,-41.6477 134.9594,-35.2687 137.5943,-45.5307 143.4186,-41.6477"/>
-</g>
-<!-- prvalue -->
-<g id="node6" class="node">
-<title>prvalue</title>
-<ellipse fill="none" stroke="#000000" cx="218.4469" cy="-18" rx="40.0939" ry="18"/>
-<text text-anchor="middle" x="218.4469" y="-14.3" font-family="Times-Roman" font-size="14.00" fill="#000000">prvalue</text>
-</g>
-<!-- rvalue&#45;&gt;prvalue -->
-<g id="edge6" class="edge">
-<title>rvalue&#45;&gt;prvalue</title>
-<path fill="none" stroke="#000000" d="M182.8243,-72.5708C188.3831,-64.0553 195.188,-53.6308 201.3553,-44.183"/>
-<polygon fill="#000000" stroke="#000000" points="204.476,-45.8052 207.0114,-35.5182 198.6143,-41.9789 204.476,-45.8052"/>
-</g>
-</g>
-</svg>
-
+<p><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIKICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8IS0tIEdlbmVyYXRlZCBieSBncmFwaHZpeiB2ZXJzaW9uIDIuNDAuMSAoMCkKIC0tPgo8IS0tIFRpdGxlOiBHIFBhZ2VzOiAxIC0tPgo8c3ZnIHdpZHRoPSIyNjdwdCIgaGVpZ2h0PSIxODhwdCIKIHZpZXdCb3g9IjAuMDAgMC4wMCAyNjYuNzQgMTg4LjAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj4KPGcgaWQ9ImdyYXBoMCIgY2xhc3M9ImdyYXBoIiB0cmFuc2Zvcm09InNjYWxlKDEgMSkgcm90YXRlKDApIHRyYW5zbGF0ZSg0IDE4NCkiPgo8dGl0bGU+RzwvdGl0bGU+Cjxwb2x5Z29uIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0idHJhbnNwYXJlbnQiIHBvaW50cz0iLTQsNCAtNCwtMTg0IDI2Mi43NDM0LC0xODQgMjYyLjc0MzQsNCAtNCw0Ii8+CjwhLS0gZXhwcmVzc2lvbiAtLT4KPGcgaWQ9Im5vZGUxIiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5leHByZXNzaW9uPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iMTI0LjQ0NjkiIGN5PSItMTYyIiByeD0iNTUuNDkxMyIgcnk9IjE4Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjEyNC40NDY5IiB5PSItMTU4LjMiIGZvbnQtZmFtaWx5PSJUaW1lcy1Sb21hbiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+ZXhwcmVzc2lvbjwvdGV4dD4KPC9nPgo8IS0tIGdsdmFsdWUgLS0+CjxnIGlkPSJub2RlMiIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+Z2x2YWx1ZTwvdGl0bGU+CjxlbGxpcHNlIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgY3g9Ijc4LjQ0NjkiIGN5PSItOTAiIHJ4PSIzOS43OTM1IiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iNzguNDQ2OSIgeT0iLTg2LjMiIGZvbnQtZmFtaWx5PSJUaW1lcy1Sb21hbiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+Z2x2YWx1ZTwvdGV4dD4KPC9nPgo8IS0tIGV4cHJlc3Npb24mIzQ1OyZndDtnbHZhbHVlIC0tPgo8ZyBpZD0iZWRnZTEiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPmV4cHJlc3Npb24mIzQ1OyZndDtnbHZhbHVlPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNMTEzLjA3NjIsLTE0NC4yMDIyQzEwNy42MzI1LC0xMzUuNjgxNyAxMDEuMDA5MywtMTI1LjMxNSA5NS4wMTg3LC0xMTUuOTM4NSIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iOTcuODYxNiwtMTEzLjg4NzIgODkuNTI4MiwtMTA3LjM0NDYgOTEuOTYyNywtMTE3LjY1NTkgOTcuODYxNiwtMTEzLjg4NzIiLz4KPC9nPgo8IS0tIHJ2YWx1ZSAtLT4KPGcgaWQ9Im5vZGUzIiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5ydmFsdWU8L3RpdGxlPgo8ZWxsaXBzZSBmaWxsPSIjN2ZmZmQ0IiBzdHJva2U9IiMwMDAwMDAiIGN4PSIxNzEuNDQ2OSIgY3k9Ii05MCIgcng9IjM1Ljk5NTQiIHJ5PSIxOCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIxNzEuNDQ2OSIgeT0iLTg2LjMiIGZvbnQtZmFtaWx5PSJUaW1lcy1Sb21hbiIgZm9udC1zaXplPSIxNC4wMCIgZmlsbD0iIzAwMDAwMCI+cnZhbHVlPC90ZXh0Pgo8L2c+CjwhLS0gZXhwcmVzc2lvbiYjNDU7Jmd0O3J2YWx1ZSAtLT4KPGcgaWQ9ImVkZ2UyIiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5leHByZXNzaW9uJiM0NTsmZ3Q7cnZhbHVlPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNMTM2LjA2NDksLTE0NC4yMDIyQzE0MS42MjcsLTEzNS42ODE3IDE0OC4zOTQxLC0xMjUuMzE1IDE1NC41MTQ5LC0xMTUuOTM4NSIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMTU3LjU4OTMsLTExNy42MzE2IDE2MC4xMjQ4LC0xMDcuMzQ0NiAxNTEuNzI3NywtMTEzLjgwNTIgMTU3LjU4OTMsLTExNy42MzE2Ii8+CjwvZz4KPCEtLSBsdmFsdWUgLS0+CjxnIGlkPSJub2RlNCIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+bHZhbHVlPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0iIzdmZmZkNCIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iMzQuNDQ2OSIgY3k9Ii0xOCIgcng9IjM0LjM5NCIgcnk9IjE4Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjM0LjQ0NjkiIHk9Ii0xNC4zIiBmb250LWZhbWlseT0iVGltZXMtUm9tYW4iIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPmx2YWx1ZTwvdGV4dD4KPC9nPgo8IS0tIGdsdmFsdWUmIzQ1OyZndDtsdmFsdWUgLS0+CjxnIGlkPSJlZGdlMyIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+Z2x2YWx1ZSYjNDU7Jmd0O2x2YWx1ZTwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTY3Ljc5NTgsLTcyLjU3MDhDNjIuNTUzMywtNjMuOTkyMiA1Ni4xMjY5LC01My40NzYyIDUwLjMxOTQsLTQzLjk3MzIiLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9IjUzLjIwMTEsLTQxLjk3NjQgNDUsLTM1LjI2ODcgNDcuMjI4MSwtNDUuNjI2NiA1My4yMDExLC00MS45NzY0Ii8+CjwvZz4KPCEtLSB4dmFsdWUgLS0+CjxnIGlkPSJub2RlNSIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+eHZhbHVlPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iMTIzLjQ0NjkiIGN5PSItMTgiIHJ4PSIzNy4wOTM1IiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMTIzLjQ0NjkiIHk9Ii0xNC4zIiBmb250LWZhbWlseT0iVGltZXMtUm9tYW4iIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPnh2YWx1ZTwvdGV4dD4KPC9nPgo8IS0tIGdsdmFsdWUmIzQ1OyZndDt4dmFsdWUgLS0+CjxnIGlkPSJlZGdlNCIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+Z2x2YWx1ZSYjNDU7Jmd0O3h2YWx1ZTwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTg5LjM0MDIsLTcyLjU3MDhDOTQuNzAxOCwtNjMuOTkyMiAxMDEuMjc0MywtNTMuNDc2MiAxMDcuMjEzNywtNDMuOTczMiIvPgo8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHBvaW50cz0iMTEwLjMyMiwtNDUuNjAzNyAxMTIuNjU0LC0zNS4yNjg3IDEwNC4zODYsLTQxLjg5MzcgMTEwLjMyMiwtNDUuNjAzNyIvPgo8L2c+CjwhLS0gcnZhbHVlJiM0NTsmZ3Q7eHZhbHVlIC0tPgo8ZyBpZD0iZWRnZTUiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPnJ2YWx1ZSYjNDU7Jmd0O3h2YWx1ZTwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTE1OS44Mjc1LC03Mi41NzA4QzE1NC4wNDk1LC02My45MDM4IDE0Ni45NTMxLC01My4yNTkyIDE0MC41NjY3LC00My42Nzk2Ii8+Cjxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSIxNDMuNDE4NiwtNDEuNjQ3NyAxMzQuOTU5NCwtMzUuMjY4NyAxMzcuNTk0MywtNDUuNTMwNyAxNDMuNDE4NiwtNDEuNjQ3NyIvPgo8L2c+CjwhLS0gcHJ2YWx1ZSAtLT4KPGcgaWQ9Im5vZGU2IiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5wcnZhbHVlPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBjeD0iMjE4LjQ0NjkiIGN5PSItMTgiIHJ4PSI0MC4wOTM5IiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMjE4LjQ0NjkiIHk9Ii0xNC4zIiBmb250LWZhbWlseT0iVGltZXMtUm9tYW4iIGZvbnQtc2l6ZT0iMTQuMDAiIGZpbGw9IiMwMDAwMDAiPnBydmFsdWU8L3RleHQ+CjwvZz4KPCEtLSBydmFsdWUmIzQ1OyZndDtwcnZhbHVlIC0tPgo8ZyBpZD0iZWRnZTYiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPnJ2YWx1ZSYjNDU7Jmd0O3BydmFsdWU8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik0xODIuODI0MywtNzIuNTcwOEMxODguMzgzMSwtNjQuMDU1MyAxOTUuMTg4LC01My42MzA4IDIwMS4zNTUzLC00NC4xODMiLz4KPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBwb2ludHM9IjIwNC40NzYsLTQ1LjgwNTIgMjA3LjAxMTQsLTM1LjUxODIgMTk4LjYxNDMsLTQxLjk3ODkgMjA0LjQ3NiwtNDUuODA1MiIvPgo8L2c+CjwvZz4KPC9zdmc+Cg==" alt="image" /></p>
 </div></li>
 <li><p>Perfect forwarding и <a href="https://habr.com/post/242639">универсальная ссылка</a></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">template</span>&lt;<span class="kw">class</span>... Args&gt; <span class="dt">void</span> func(Args&amp;&amp;... args) {</a>
-<a class="sourceLine" id="cb4-2" title="2">    some_func(<span class="bu">std::</span>forward&lt;Args&gt;(args)...);</a>
-<a class="sourceLine" id="cb4-3" title="3">}</a>
-<a class="sourceLine" id="cb4-4" title="4"></a>
-<a class="sourceLine" id="cb4-5" title="5"><span class="bu">std::</span>vector v = {<span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">56</span>, <span class="dv">98</span>, <span class="dv">5</span>, <span class="dv">0</span>, -<span class="dv">1</span>, <span class="dv">8</span>};</a>
-<a class="sourceLine" id="cb4-6" title="6">func(v); <span class="co">// [Args = {std::vector&lt;int&gt;&amp;}], &amp; &amp;&amp; == &amp;</span></a>
-<a class="sourceLine" id="cb4-7" title="7">func(<span class="bu">std::</span>move(v)); <span class="co">// [Args = {std::vector&lt;int&gt;&amp;&amp;}], &amp;&amp; &amp;&amp; == &amp;&amp;</span></a>
-<a class="sourceLine" id="cb4-8" title="8">func(<span class="bu">std::</span>vector{<span class="fl">7.0</span>, <span class="fl">8.3</span>, -<span class="fl">96.87</span>, <span class="fl">7.1</span>}); <span class="co">// [Args = {std::vector&lt;double&gt;}], () == &amp;&amp;</span></a></code></pre></div></li>
+<div class="sourceCode" id="cb4"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">template</span>&lt;<span class="kw">class</span>... Args&gt; <span class="dt">void</span> func(Args&amp;&amp;... args) {</span>
+<span id="cb4-2"><a href="#cb4-2"></a>    some_func(<span class="bu">std::</span>forward&lt;Args&gt;(args)...);</span>
+<span id="cb4-3"><a href="#cb4-3"></a>}</span>
+<span id="cb4-4"><a href="#cb4-4"></a></span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="bu">std::</span>vector v = {<span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">56</span>, <span class="dv">98</span>, <span class="dv">5</span>, <span class="dv">0</span>, -<span class="dv">1</span>, <span class="dv">8</span>};</span>
+<span id="cb4-6"><a href="#cb4-6"></a>func(v); <span class="co">// [Args = {std::vector&lt;int&gt;&amp;}], &amp; &amp;&amp; == &amp;</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a>func(<span class="bu">std::</span>move(v)); <span class="co">// [Args = {std::vector&lt;int&gt;&amp;&amp;}], &amp;&amp; &amp;&amp; == &amp;&amp;</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a>func(<span class="bu">std::</span>vector{<span class="fl">7.0</span>, <span class="fl">8.3</span>, -<span class="fl">96.87</span>, <span class="fl">7.1</span>}); <span class="co">// [Args = {std::vector&lt;double&gt;}], () == &amp;&amp;</span></span></code></pre></div></li>
 </ul>
 </div><div id="о-конструкторах" class="slide section level2">
 <h1>О конструкторах</h1>
-<div class="sourceCode" id="cb5"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb5-1" title="1"><span class="kw">class</span> A {</a>
-<a class="sourceLine" id="cb5-2" title="2"><span class="kw">public</span>:</a>
-<a class="sourceLine" id="cb5-3" title="3">    A(); <span class="co">// default constructor</span></a>
-<a class="sourceLine" id="cb5-4" title="4">    A(<span class="at">const</span> A&amp;); <span class="co">// copy constructor</span></a>
-<a class="sourceLine" id="cb5-5" title="5">    A(A&amp;&amp;); <span class="co">// move constructor</span></a>
-<a class="sourceLine" id="cb5-6" title="6">    A&amp; <span class="kw">operator</span>=(<span class="at">const</span> A&amp;); <span class="co">// copy assignment</span></a>
-<a class="sourceLine" id="cb5-7" title="7">    A&amp; <span class="kw">operator</span>=(A&amp;&amp;); <span class="co">// move assignment</span></a>
-<a class="sourceLine" id="cb5-8" title="8">    ~A(); <span class="co">// destructor</span></a>
-<a class="sourceLine" id="cb5-9" title="9">}</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">class</span> A {</span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="kw">public</span>:</span>
+<span id="cb5-3"><a href="#cb5-3"></a>    A(); <span class="co">// default constructor</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a>    A(<span class="at">const</span> A&amp;); <span class="co">// copy constructor</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a>    A(A&amp;&amp;); <span class="co">// move constructor</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a>    A&amp; <span class="kw">operator</span>=(<span class="at">const</span> A&amp;); <span class="co">// copy assignment</span></span>
+<span id="cb5-7"><a href="#cb5-7"></a>    A&amp; <span class="kw">operator</span>=(A&amp;&amp;); <span class="co">// move assignment</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a>    ~A(); <span class="co">// destructor</span></span>
+<span id="cb5-9"><a href="#cb5-9"></a>}</span></code></pre></div>
 <ul>
 <li>Порождающие операторы: конструкторы, присваивания, деструктор</li>
 <li>Деструктор почти всегда генерируется сам, его перегрузка ни на что не влияет</li>
@@ -444,52 +361,52 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div><div id="о-шаблонах" class="slide section level2">
 <h1>О шаблонах</h1>
 <ul>
-<li><code class="sourceCode cpp"><span class="kw">template</span>&lt;<span class="kw">class</span>... Ts&gt; <span class="kw">class</span> myclass;</code> — пакет шаблонных параметров</li>
-<li><code class="sourceCode cpp"><span class="kw">template</span>&lt;<span class="kw">class</span> T&gt; <span class="kw">constexpr</span> T pi = T(<span class="fl">3.1415926535897932385</span><span class="bu">L</span>);</code> — шаблонная переменная</li>
-<li><code class="sourceCode cpp"><span class="dt">size_t</span> N = <span class="kw">sizeof</span>...(Ts);</code></li>
+<li><p><code class="sourceCode cpp"><span class="kw">template</span>&lt;<span class="kw">class</span>... Ts&gt; <span class="kw">class</span> myclass;</code> — пакет шаблонных параметров</p></li>
+<li><p><code class="sourceCode cpp"><span class="kw">template</span>&lt;<span class="kw">class</span> T&gt; <span class="kw">constexpr</span> T pi = T(<span class="fl">3.1415926535897932385</span><span class="bu">L</span>);</code> — шаблонная переменная</p></li>
+<li><p><code class="sourceCode cpp"><span class="dt">size_t</span> N = <span class="kw">sizeof</span>...(Ts);</code></p></li>
 <li><p>Хранение аргументов в кортеже</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb6-1" title="1"><span class="kw">template</span>&lt;<span class="kw">class</span>... Ts&gt;</a>
-<a class="sourceLine" id="cb6-2" title="2"><span class="kw">struct</span> abc {</a>
-<a class="sourceLine" id="cb6-3" title="3">    abc(Ts... ts): x(ts...) {}</a>
-<a class="sourceLine" id="cb6-4" title="4"></a>
-<a class="sourceLine" id="cb6-5" title="5">    <span class="bu">std::</span>tuple&lt;Ts...&gt; x;</a>
-<a class="sourceLine" id="cb6-6" title="6">}</a></code></pre></div></li>
+<div class="sourceCode" id="cb6"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">template</span>&lt;<span class="kw">class</span>... Ts&gt;</span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="kw">struct</span> abc {</span>
+<span id="cb6-3"><a href="#cb6-3"></a>    abc(Ts... ts): x(ts...) {}</span>
+<span id="cb6-4"><a href="#cb6-4"></a></span>
+<span id="cb6-5"><a href="#cb6-5"></a>    <span class="bu">std::</span>tuple&lt;Ts...&gt; x;</span>
+<span id="cb6-6"><a href="#cb6-6"></a>}</span></code></pre></div></li>
 </ul>
 </div><div id="распаковка-кортежа-в-аргументы" class="slide section level2">
 <h1>Распаковка кортежа в аргументы</h1>
 <ul>
 <li><p>Использование <code class="sourceCode cpp"><span class="bu">std::</span>integer_sequence</code></p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb7-1" title="1"><span class="kw">template</span>&lt;<span class="kw">class</span>... Ts&gt;</a>
-<a class="sourceLine" id="cb7-2" title="2"><span class="dt">void</span> func1(<span class="at">const</span> <span class="bu">std::</span>tuple&lt;Ts...&gt;&amp; t)</a>
-<a class="sourceLine" id="cb7-3" title="3">{</a>
-<a class="sourceLine" id="cb7-4" title="4">    func_impl(t, <span class="bu">std::</span>make_sequence_for&lt;Ts...&gt;{});</a>
-<a class="sourceLine" id="cb7-5" title="5">}</a>
-<a class="sourceLine" id="cb7-6" title="6"></a>
-<a class="sourceLine" id="cb7-7" title="7"><span class="kw">template</span>&lt;<span class="kw">class</span> Tuple&gt;</a>
-<a class="sourceLine" id="cb7-8" title="8"><span class="dt">void</span> func2(<span class="at">const</span> Tuple&amp; t)</a>
-<a class="sourceLine" id="cb7-9" title="9">{</a>
-<a class="sourceLine" id="cb7-10" title="10">    func_impl(t, <span class="bu">std::</span>make_index_sequence&lt;<span class="bu">std::</span>tuple_size_v&lt;Tuple&gt;&gt;{});</a>
-<a class="sourceLine" id="cb7-11" title="11">}</a>
-<a class="sourceLine" id="cb7-12" title="12"></a>
-<a class="sourceLine" id="cb7-13" title="13"><span class="kw">template</span>&lt;<span class="kw">class</span> Tuple, <span class="dt">size_t</span>... Is&gt;</a>
-<a class="sourceLine" id="cb7-14" title="14"><span class="dt">void</span> func_impl(<span class="at">const</span> Tuple&amp; t, <span class="bu">std::</span>index_sequence&lt;Is...&gt;)</a>
-<a class="sourceLine" id="cb7-15" title="15">{</a>
-<a class="sourceLine" id="cb7-16" title="16">    (<span class="bu">std::</span>cout &lt;&lt; ... &lt;&lt; <span class="bu">std::</span>get&lt;Is&gt;(t));</a>
-<a class="sourceLine" id="cb7-17" title="17">}</a>
-<a class="sourceLine" id="cb7-18" title="18"></a>
-<a class="sourceLine" id="cb7-19" title="19"><span class="kw">template</span>&lt;<span class="kw">class</span>... Ts&gt;</a>
-<a class="sourceLine" id="cb7-20" title="20"><span class="bu">std::</span>ostream&amp; <span class="kw">operator</span>&lt;&lt;(<span class="bu">std::</span>ostream&amp; os, <span class="at">const</span> <span class="bu">std::</span>tuple&lt;Ts...&gt;&amp; t)</a>
-<a class="sourceLine" id="cb7-21" title="21">{</a>
-<a class="sourceLine" id="cb7-22" title="22">    <span class="cf">return</span> <span class="bu">std::</span>apply([&amp;os](<span class="at">const</span> <span class="kw">auto</span>&amp;... xs) -&gt; <span class="kw">decltype</span>(<span class="kw">auto</span>) { <span class="cf">return</span> (os &lt;&lt; ... &lt;&lt; xs); }, t);</a>
-<a class="sourceLine" id="cb7-23" title="23">}</a></code></pre></div></li>
+<div class="sourceCode" id="cb7"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">template</span>&lt;<span class="kw">class</span>... Ts&gt;</span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="dt">void</span> func1(<span class="at">const</span> <span class="bu">std::</span>tuple&lt;Ts...&gt;&amp; t)</span>
+<span id="cb7-3"><a href="#cb7-3"></a>{</span>
+<span id="cb7-4"><a href="#cb7-4"></a>    func_impl(t, <span class="bu">std::</span>make_sequence_for&lt;Ts...&gt;{});</span>
+<span id="cb7-5"><a href="#cb7-5"></a>}</span>
+<span id="cb7-6"><a href="#cb7-6"></a></span>
+<span id="cb7-7"><a href="#cb7-7"></a><span class="kw">template</span>&lt;<span class="kw">class</span> Tuple&gt;</span>
+<span id="cb7-8"><a href="#cb7-8"></a><span class="dt">void</span> func2(<span class="at">const</span> Tuple&amp; t)</span>
+<span id="cb7-9"><a href="#cb7-9"></a>{</span>
+<span id="cb7-10"><a href="#cb7-10"></a>    func_impl(t, <span class="bu">std::</span>make_index_sequence&lt;<span class="bu">std::</span>tuple_size_v&lt;Tuple&gt;&gt;{});</span>
+<span id="cb7-11"><a href="#cb7-11"></a>}</span>
+<span id="cb7-12"><a href="#cb7-12"></a></span>
+<span id="cb7-13"><a href="#cb7-13"></a><span class="kw">template</span>&lt;<span class="kw">class</span> Tuple, <span class="dt">size_t</span>... Is&gt;</span>
+<span id="cb7-14"><a href="#cb7-14"></a><span class="dt">void</span> func_impl(<span class="at">const</span> Tuple&amp; t, <span class="bu">std::</span>index_sequence&lt;Is...&gt;)</span>
+<span id="cb7-15"><a href="#cb7-15"></a>{</span>
+<span id="cb7-16"><a href="#cb7-16"></a>    (<span class="bu">std::</span>cout &lt;&lt; ... &lt;&lt; <span class="bu">std::</span>get&lt;Is&gt;(t));</span>
+<span id="cb7-17"><a href="#cb7-17"></a>}</span>
+<span id="cb7-18"><a href="#cb7-18"></a></span>
+<span id="cb7-19"><a href="#cb7-19"></a><span class="kw">template</span>&lt;<span class="kw">class</span>... Ts&gt;</span>
+<span id="cb7-20"><a href="#cb7-20"></a><span class="bu">std::</span>ostream&amp; <span class="kw">operator</span>&lt;&lt;(<span class="bu">std::</span>ostream&amp; os, <span class="at">const</span> <span class="bu">std::</span>tuple&lt;Ts...&gt;&amp; t)</span>
+<span id="cb7-21"><a href="#cb7-21"></a>{</span>
+<span id="cb7-22"><a href="#cb7-22"></a>    <span class="cf">return</span> <span class="bu">std::</span>apply([&amp;os](<span class="at">const</span> <span class="kw">auto</span>&amp;... xs) -&gt; <span class="kw">decltype</span>(<span class="kw">auto</span>) { <span class="cf">return</span> (os &lt;&lt; ... &lt;&lt; xs); }, t);</span>
+<span id="cb7-23"><a href="#cb7-23"></a>}</span></code></pre></div></li>
 </ul>
 </div><div id="операции-над-шаблонными-пакетами" class="slide section level2">
 <h1>Операции над шаблонными пакетами</h1>
-<div class="sourceCode" id="cb8"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb8-1" title="1"><span class="kw">template</span> &lt;<span class="kw">typename</span>... bases&gt;</a>
-<a class="sourceLine" id="cb8-2" title="2"><span class="kw">struct</span> X : bases... {</a>
-<a class="sourceLine" id="cb8-3" title="3">    <span class="kw">using</span> X::bases::g...;</a>
-<a class="sourceLine" id="cb8-4" title="4">};</a>
-<a class="sourceLine" id="cb8-5" title="5">X&lt;B, D&gt; x;</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">template</span> &lt;<span class="kw">typename</span>... bases&gt;</span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="kw">struct</span> X : bases... {</span>
+<span id="cb8-3"><a href="#cb8-3"></a>    <span class="kw">using</span> X::bases::g...;</span>
+<span id="cb8-4"><a href="#cb8-4"></a>};</span>
+<span id="cb8-5"><a href="#cb8-5"></a>X&lt;B, D&gt; x;</span></code></pre></div>
 <p>Свёртки (наличие скобок важно)</p>
 <ul>
 <li><code class="sourceCode cpp">( pack op ... )</code> — свёртка слева</li>
@@ -497,48 +414,48 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code class="sourceCode cpp">( ... op pack )</code> — свёртка справа</li>
 <li><code class="sourceCode cpp">( init op ... op pack )</code> — свёртка справа с начальным значением</li>
 </ul>
-<div class="sourceCode" id="cb9"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb9-1" title="1"><span class="kw">template</span>&lt;<span class="kw">typename</span> T, <span class="kw">typename</span>... Args&gt;</a>
-<a class="sourceLine" id="cb9-2" title="2"><span class="dt">void</span> push_back_vec(<span class="bu">std::</span>vector&lt;T&gt;&amp; v, Args&amp;&amp;... args)</a>
-<a class="sourceLine" id="cb9-3" title="3">{</a>
-<a class="sourceLine" id="cb9-4" title="4">    (v.push_back(<span class="bu">std::</span>forward&lt;Args&gt;(args)), ...);</a>
-<a class="sourceLine" id="cb9-5" title="5">}</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw">template</span>&lt;<span class="kw">typename</span> T, <span class="kw">typename</span>... Args&gt;</span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="dt">void</span> push_back_vec(<span class="bu">std::</span>vector&lt;T&gt;&amp; v, Args&amp;&amp;... args)</span>
+<span id="cb9-3"><a href="#cb9-3"></a>{</span>
+<span id="cb9-4"><a href="#cb9-4"></a>    (v.push_back(<span class="bu">std::</span>forward&lt;Args&gt;(args)), ...);</span>
+<span id="cb9-5"><a href="#cb9-5"></a>}</span></code></pre></div>
 </div><div id="о-лямбда-выражениях" class="slide section level2">
 <h1>О лямбда-выражениях</h1>
 <p><code class="sourceCode cpp"><span class="kw">auto</span> f = [a = <span class="dv">77</span>, &amp;b](<span class="kw">auto</span> x) <span class="at">mutable</span> -&gt; <span class="dt">int</span> { b = x - <span class="dv">78</span>; <span class="cf">return</span> a++; }</code></p>
 <ul>
 <li><p>Лямбда-выражения == функторы</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb10-1" title="1"><span class="kw">struct</span> functor</a>
-<a class="sourceLine" id="cb10-2" title="2">{</a>
-<a class="sourceLine" id="cb10-3" title="3">    functor(<span class="dt">int</span>&amp; b): <span class="va">a_</span>(<span class="dv">77</span>), <span class="va">b_</span>(b) {}</a>
-<a class="sourceLine" id="cb10-4" title="4">    <span class="dt">int</span> <span class="kw">operator</span>()(<span class="dt">int</span> x) <span class="at">const</span></a>
-<a class="sourceLine" id="cb10-5" title="5">    {</a>
-<a class="sourceLine" id="cb10-6" title="6">        <span class="va">b_</span> = x - <span class="dv">78</span>;</a>
-<a class="sourceLine" id="cb10-7" title="7">        <span class="cf">return</span> <span class="va">a_</span>++;</a>
-<a class="sourceLine" id="cb10-8" title="8">    }</a>
-<a class="sourceLine" id="cb10-9" title="9"></a>
-<a class="sourceLine" id="cb10-10" title="10"><span class="kw">private</span>:</a>
-<a class="sourceLine" id="cb10-11" title="11">    <span class="at">mutable</span> <span class="dt">int</span> <span class="va">a_</span>;</a>
-<a class="sourceLine" id="cb10-12" title="12">    <span class="dt">int</span>&amp; <span class="at">const</span> <span class="va">b_</span>;</a>
-<a class="sourceLine" id="cb10-13" title="13">} f;</a></code></pre></div></li>
-<li>Невозможно узнать тип лямбда-выражений, т.е. <code class="sourceCode cpp"><span class="kw">decltype</span>(lambda) s = ...</code> не работает</li>
-<li>Чтобы лямбды были полностью объектами, надо заворачивать их в объект <code class="sourceCode cpp"><span class="bu">std::</span>function</code></li>
-<li>Результат лямбды можно не писать, он будет выведен сам (кроме ссылок)</li>
+<div class="sourceCode" id="cb10"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">struct</span> functor</span>
+<span id="cb10-2"><a href="#cb10-2"></a>{</span>
+<span id="cb10-3"><a href="#cb10-3"></a>    functor(<span class="dt">int</span>&amp; b): <span class="va">a_</span>(<span class="dv">77</span>), <span class="va">b_</span>(b) {}</span>
+<span id="cb10-4"><a href="#cb10-4"></a>    <span class="dt">int</span> <span class="kw">operator</span>()(<span class="dt">int</span> x) <span class="at">const</span></span>
+<span id="cb10-5"><a href="#cb10-5"></a>    {</span>
+<span id="cb10-6"><a href="#cb10-6"></a>        <span class="va">b_</span> = x - <span class="dv">78</span>;</span>
+<span id="cb10-7"><a href="#cb10-7"></a>        <span class="cf">return</span> <span class="va">a_</span>++;</span>
+<span id="cb10-8"><a href="#cb10-8"></a>    }</span>
+<span id="cb10-9"><a href="#cb10-9"></a></span>
+<span id="cb10-10"><a href="#cb10-10"></a><span class="kw">private</span>:</span>
+<span id="cb10-11"><a href="#cb10-11"></a>    <span class="at">mutable</span> <span class="dt">int</span> <span class="va">a_</span>;</span>
+<span id="cb10-12"><a href="#cb10-12"></a>    <span class="dt">int</span>&amp; <span class="at">const</span> <span class="va">b_</span>;</span>
+<span id="cb10-13"><a href="#cb10-13"></a>} f;</span></code></pre></div></li>
+<li><p>Невозможно узнать тип лямбда-выражений, т.е. <code class="sourceCode cpp"><span class="kw">decltype</span>(lambda) s = ...</code> не работает</p></li>
+<li><p>Чтобы лямбды были полностью объектами, надо заворачивать их в объект <code class="sourceCode cpp"><span class="bu">std::</span>function</code></p></li>
+<li><p>Результат лямбды можно не писать, он будет выведен сам (кроме ссылок)</p></li>
 </ul>
 </div>
 <div id="следующие-стандарты" class="title-slide slide section level1"><h1>Следующие стандарты</h1></div><div id="концепты-и-ограничители" class="slide section level2">
 <h1>Концепты и ограничители</h1>
-<div class="sourceCode" id="cb11"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb11-1" title="1"><span class="co">// концепт</span></a>
-<a class="sourceLine" id="cb11-2" title="2"><span class="kw">template</span>&lt;<span class="kw">typename</span> T&gt;</a>
-<a class="sourceLine" id="cb11-3" title="3"><span class="kw">concept</span> EqualityComparable = <span class="kw">requires</span>(T a, T b)</a>
-<a class="sourceLine" id="cb11-4" title="4">{</a>
-<a class="sourceLine" id="cb11-5" title="5">    { a == b } -&gt; <span class="dt">bool</span>;</a>
-<a class="sourceLine" id="cb11-6" title="6">};</a>
-<a class="sourceLine" id="cb11-7" title="7"></a>
-<a class="sourceLine" id="cb11-8" title="8"><span class="co">// ограничитель: T должен обладать оператором ==</span></a>
-<a class="sourceLine" id="cb11-9" title="9"><span class="kw">template</span>&lt;EqualityComparable T&gt; <span class="dt">void</span> f(T&amp;&amp;);</a>
-<a class="sourceLine" id="cb11-10" title="10"></a>
-<a class="sourceLine" id="cb11-11" title="11"><span class="co">// или</span></a>
-<a class="sourceLine" id="cb11-12" title="12"><span class="kw">template</span>&lt;<span class="kw">class</span> T&gt; <span class="kw">requires</span> EqualityComparable&lt;T&gt; <span class="dt">void</span> f(T&amp;&amp;);</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb11-1"><a href="#cb11-1"></a><span class="co">// концепт</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="kw">template</span>&lt;<span class="kw">typename</span> T&gt;</span>
+<span id="cb11-3"><a href="#cb11-3"></a><span class="kw">concept</span> EqualityComparable = <span class="kw">requires</span>(T a, T b)</span>
+<span id="cb11-4"><a href="#cb11-4"></a>{</span>
+<span id="cb11-5"><a href="#cb11-5"></a>    { a == b } -&gt; <span class="dt">bool</span>;</span>
+<span id="cb11-6"><a href="#cb11-6"></a>};</span>
+<span id="cb11-7"><a href="#cb11-7"></a></span>
+<span id="cb11-8"><a href="#cb11-8"></a><span class="co">// ограничитель: T должен обладать оператором ==</span></span>
+<span id="cb11-9"><a href="#cb11-9"></a><span class="kw">template</span>&lt;EqualityComparable T&gt; <span class="dt">void</span> f(T&amp;&amp;);</span>
+<span id="cb11-10"><a href="#cb11-10"></a></span>
+<span id="cb11-11"><a href="#cb11-11"></a><span class="co">// или</span></span>
+<span id="cb11-12"><a href="#cb11-12"></a><span class="kw">template</span>&lt;<span class="kw">class</span> T&gt; <span class="kw">requires</span> EqualityComparable&lt;T&gt; <span class="dt">void</span> f(T&amp;&amp;);</span></code></pre></div>
 <ul>
 <li>Компактнее вывод об ошибке (с концептами — 2 строки, без них — 50+)</li>
 <li>По сигнатуре можно понять, какой тип данных ожидает функция</li>

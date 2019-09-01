@@ -17,9 +17,9 @@
       div.column{display: inline-block; vertical-align: top; width: 50%;}
   </style>
   <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 div.sourceCode { margin: 1em 0; }
@@ -29,14 +29,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -45,9 +47,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -100,6 +102,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       div.column66 {display: inline-block; vertical-align: top; width: 66%;}
       div.column50 {display: inline-block; vertical-align: top; width: 49%;}
       .strike {text-decoration: line-through;}
+      table, th, td {
+          border: 1px solid black;
+      }
   </style>
 </head>
 <body>
@@ -116,25 +121,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section><section id="система-контроля-версий-git" class="title-slide slide level1"><h1>Система контроля версий git</h1></section><section id="основные-ссылки" class="slide level2">
 <h2>Основные ссылки</h2>
 <ul>
-<li><a href="https://git-scm.com" class="uri">https://git-scm.com</a> — основной сайт с документацией по git</li>
-<li><a href="https://try.github.io" class="uri">https://try.github.io</a> — онлайн путеводитель по git-у</li>
-<li><a href="https://githowto.com/ru" class="uri">https://githowto.com/ru</a> — ещё один путеводитель</li>
+<li><a href="https://git-scm.com">https://git-scm.com</a> — основной сайт с документацией по git</li>
+<li><a href="https://try.github.io">https://try.github.io</a> — онлайн путеводитель по git-у</li>
+<li><a href="https://githowto.com/ru">https://githowto.com/ru</a> — ещё один путеводитель</li>
 </ul>
 </section><section id="предыстория" class="slide level2">
 <h2>Предыстория</h2>
 <ul>
 <li><p>diff — утилита для выяснения различий</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode diff"><code class="sourceCode diff"><a class="sourceLine" id="cb1-1" data-line-number="1">$ diff -u lecture-1.html lecture-2.html | head -n 20</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">--- lecture-1.html 2018-02-25 14:49:23.665411221 +0300</span></a>
-<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="dt">+++ lecture-2.html 2018-02-25 14:49:23.842322309 +0300</span></a>
-<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="dt">@@ -4,7 +4,7 @@</span></a>
-<a class="sourceLine" id="cb1-5" data-line-number="5">   &lt;meta name=&quot;generator&quot; content=&quot;pandoc&quot;&gt;</a>
-<a class="sourceLine" id="cb1-6" data-line-number="6">   &lt;meta name=&quot;author&quot; content=&quot;Игорь Шаронов&quot;&gt;</a>
-<a class="sourceLine" id="cb1-7" data-line-number="7"><span class="st">-  &lt;meta name=&quot;dcterms.date&quot; content=&quot;2018-01-15&quot;&gt;</span></a>
-<a class="sourceLine" id="cb1-8" data-line-number="8"><span class="va">+  &lt;meta name=&quot;dcterms.date&quot; content=&quot;2018-02-18&quot;&gt;</span></a>
-<a class="sourceLine" id="cb1-9" data-line-number="9">   &lt;title&gt;Master programming&lt;/title&gt;</a>
-<a class="sourceLine" id="cb1-10" data-line-number="10">   &lt;meta name=&quot;apple-mobile-web-app-capable&quot; content=&quot;yes&quot;&gt;</a></code></pre></div></li>
-<li>patch — обратное действие diff (патч)</li>
+<div class="sourceCode" id="cb1"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb1-1"><a href="#cb1-1"></a>$ diff -u lecture-1.html lecture-2.html | head -n 20</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="kw">--- lecture-1.html 2018-02-25 14:49:23.665411221 +0300</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="dt">+++ lecture-2.html 2018-02-25 14:49:23.842322309 +0300</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="dt">@@ -4,7 +4,7 @@</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a>   &lt;meta name=&quot;generator&quot; content=&quot;pandoc&quot;&gt;</span>
+<span id="cb1-6"><a href="#cb1-6"></a>   &lt;meta name=&quot;author&quot; content=&quot;Игорь Шаронов&quot;&gt;</span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="st">-  &lt;meta name=&quot;dcterms.date&quot; content=&quot;2018-01-15&quot;&gt;</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="va">+  &lt;meta name=&quot;dcterms.date&quot; content=&quot;2018-02-18&quot;&gt;</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a>   &lt;title&gt;Master programming&lt;/title&gt;</span>
+<span id="cb1-10"><a href="#cb1-10"></a>   &lt;meta name=&quot;apple-mobile-web-app-capable&quot; content=&quot;yes&quot;&gt;</span></code></pre></div></li>
+<li><p>patch — обратное действие diff (патч)</p></li>
 <li><p>конфликты:</p>
 <pre><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; LOCAL:sample.txt
 lines from the original file
@@ -160,16 +165,16 @@ new lines from the patch
 </section><section id="хеш-суммы" class="slide level2">
 <h2>Хеш-суммы</h2>
 <ul>
-<li>crc32</li>
-<li>md5</li>
-<li>sha-1</li>
-<li>sha-2: sha-224, sha-256, sha-384, sha-512</li>
+<li><p>crc32</p></li>
+<li><p>md5</p></li>
+<li><p>sha-1</p></li>
+<li><p>sha-2: sha-224, sha-256, sha-384, sha-512</p></li>
 <li><p>Быстрая идентификация сообщения/файла/пароля</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb3-1" data-line-number="1">$ <span class="bu">echo</span> -n <span class="st">'Master programming'</span> <span class="kw">|</span> <span class="ex">md5sum</span> -</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="ex">01e171232a1aa47e9fd2ae0530782b1f</span>  -</a>
-<a class="sourceLine" id="cb3-3" data-line-number="3">$ <span class="bu">echo</span> -n <span class="st">'master programming'</span> <span class="kw">|</span> <span class="ex">md5sum</span> -</a>
-<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="ex">e774d0115e01e1b735a7a1a9a3a85f09</span>  -</a></code></pre></div></li>
-<li>Коллизии хешей</li>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1"></a>$ <span class="bu">echo</span> -n <span class="st">&#39;Master programming&#39;</span> <span class="kw">|</span> <span class="ex">md5sum</span> -</span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="ex">01e171232a1aa47e9fd2ae0530782b1f</span>  -</span>
+<span id="cb3-3"><a href="#cb3-3"></a>$ <span class="bu">echo</span> -n <span class="st">&#39;master programming&#39;</span> <span class="kw">|</span> <span class="ex">md5sum</span> -</span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="ex">e774d0115e01e1b735a7a1a9a3a85f09</span>  -</span></code></pre></div></li>
+<li><p>Коллизии хешей</p></li>
 </ul>
 </section></section>
 <section><section id="повседневное-использование" class="title-slide slide level1"><h1>Повседневное использование</h1></section><section id="основные-команды" class="slide level2">
@@ -188,40 +193,40 @@ new lines from the patch
 </ul>
 </section><section id="пример-1-добавление-нескольких-remote" class="slide level2">
 <h2>Пример №1: добавление нескольких remote</h2>
-<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb4-1" data-line-number="1">$ <span class="fu">git</span> clone git@github.com:cvlabmiet/master-programming</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2">$ <span class="bu">cd</span> master-programming</a>
-<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="ex">master-programming</span> $ git remote add miet git@git.miet.ru:cvlab/master-programming</a>
-<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="ex">master-programming</span> $ git push miet master:master</a></code></pre></div>
-<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">(</span><span class="ex">lecture-3</span> *+<span class="kw">)</span> $ <span class="fu">git</span> st</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="ex">On</span> branch lecture-3</a>
-<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="ex">Changes</span> to be committed:</a>
-<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="kw">(</span><span class="ex">use</span> <span class="st">&quot;git reset HEAD &lt;file&gt;...&quot;</span> to unstage<span class="kw">)</span></a>
-<a class="sourceLine" id="cb5-5" data-line-number="5">    <span class="ex">modified</span>:   CMakeLists.txt</a>
-<a class="sourceLine" id="cb5-6" data-line-number="6">    <span class="ex">modified</span>:   lecture-3.md</a>
-<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="ex">Changes</span> not staged for commit:</a>
-<a class="sourceLine" id="cb5-8" data-line-number="8">    <span class="kw">(</span><span class="ex">use</span> <span class="st">&quot;git add &lt;file&gt;...&quot;</span> to update what will be committed<span class="kw">)</span></a>
-<a class="sourceLine" id="cb5-9" data-line-number="9">    <span class="kw">(</span><span class="ex">use</span> <span class="st">&quot;git checkout -- &lt;file&gt;...&quot;</span> to discard changes in working directory<span class="kw">)</span></a>
-<a class="sourceLine" id="cb5-10" data-line-number="10">    <span class="ex">modified</span>:   lecture-3.md</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a>$ <span class="fu">git</span> clone git@github.com:cvlabmiet/master-programming</span>
+<span id="cb4-2"><a href="#cb4-2"></a>$ <span class="bu">cd</span> master-programming</span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="ex">master-programming</span> $ git remote add miet git@git.miet.ru:cvlab/master-programming</span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="ex">master-programming</span> $ git push miet master:master</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">(</span><span class="ex">lecture-3</span> *+<span class="kw">)</span> $ <span class="fu">git</span> st</span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="ex">On</span> branch lecture-3</span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="ex">Changes</span> to be committed:</span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="kw">(</span><span class="ex">use</span> <span class="st">&quot;git reset HEAD &lt;file&gt;...&quot;</span> to unstage<span class="kw">)</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a>    <span class="ex">modified</span>:   CMakeLists.txt</span>
+<span id="cb5-6"><a href="#cb5-6"></a>    <span class="ex">modified</span>:   lecture-3.md</span>
+<span id="cb5-7"><a href="#cb5-7"></a><span class="ex">Changes</span> not staged for commit:</span>
+<span id="cb5-8"><a href="#cb5-8"></a>    <span class="kw">(</span><span class="ex">use</span> <span class="st">&quot;git add &lt;file&gt;...&quot;</span> to update what will be committed<span class="kw">)</span></span>
+<span id="cb5-9"><a href="#cb5-9"></a>    <span class="kw">(</span><span class="ex">use</span> <span class="st">&quot;git checkout -- &lt;file&gt;...&quot;</span> to discard changes in working directory<span class="kw">)</span></span>
+<span id="cb5-10"><a href="#cb5-10"></a>    <span class="ex">modified</span>:   lecture-3.md</span></code></pre></div>
 </section><section id="пример-2-создание-локального-репозитория" class="slide level2">
 <h2>Пример №2: создание локального репозитория</h2>
-<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb6-1" data-line-number="1">$ <span class="fu">mkdir</span> /tmp/server</a>
-<a class="sourceLine" id="cb6-2" data-line-number="2">$ <span class="fu">git</span> init --bare /tmp/server/repo</a>
-<a class="sourceLine" id="cb6-3" data-line-number="3">$ <span class="bu">cd</span> /tmp/123/repo/</a>
-<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="ex">repo</span> (BARE:master) $ <span class="fu">ls</span></a>
-<a class="sourceLine" id="cb6-5" data-line-number="5"><span class="ex">branches</span>  config  description  HEAD  hooks  info  objects  refs</a>
-<a class="sourceLine" id="cb6-6" data-line-number="6">$ <span class="fu">git</span> init /tmp/repo</a>
-<a class="sourceLine" id="cb6-7" data-line-number="7">$ <span class="bu">cd</span> /tmp/repo</a>
-<a class="sourceLine" id="cb6-8" data-line-number="8"><span class="ex">repo</span> (master#) $ <span class="bu">echo</span> <span class="st">'Empty repo'</span> <span class="op">&gt;</span> README.md</a>
-<a class="sourceLine" id="cb6-9" data-line-number="9"><span class="ex">repo</span> (master#) $ <span class="fu">git</span> add README.md</a>
-<a class="sourceLine" id="cb6-10" data-line-number="10"><span class="ex">repo</span> (master#) $ <span class="fu">git</span> ci -am <span class="st">&quot;Initial commit&quot;</span></a>
-<a class="sourceLine" id="cb6-11" data-line-number="11"><span class="ex">repo</span> (master) $ <span class="fu">git</span> remote add origin /tmp/server/repo</a>
-<a class="sourceLine" id="cb6-12" data-line-number="12"><span class="ex">repo</span> (master) $ <span class="fu">git</span> push origin master:master</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1"></a>$ <span class="fu">mkdir</span> /tmp/server</span>
+<span id="cb6-2"><a href="#cb6-2"></a>$ <span class="fu">git</span> init --bare /tmp/server/repo</span>
+<span id="cb6-3"><a href="#cb6-3"></a>$ <span class="bu">cd</span> /tmp/123/repo/</span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="ex">repo</span> (BARE:master) $ <span class="fu">ls</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a><span class="ex">branches</span>  config  description  HEAD  hooks  info  objects  refs</span>
+<span id="cb6-6"><a href="#cb6-6"></a>$ <span class="fu">git</span> init /tmp/repo</span>
+<span id="cb6-7"><a href="#cb6-7"></a>$ <span class="bu">cd</span> /tmp/repo</span>
+<span id="cb6-8"><a href="#cb6-8"></a><span class="ex">repo</span> (master#) $ <span class="bu">echo</span> <span class="st">&#39;Empty repo&#39;</span> <span class="op">&gt;</span> README.md</span>
+<span id="cb6-9"><a href="#cb6-9"></a><span class="ex">repo</span> (master#) $ <span class="fu">git</span> add README.md</span>
+<span id="cb6-10"><a href="#cb6-10"></a><span class="ex">repo</span> (master#) $ <span class="fu">git</span> ci -am <span class="st">&quot;Initial commit&quot;</span></span>
+<span id="cb6-11"><a href="#cb6-11"></a><span class="ex">repo</span> (master) $ <span class="fu">git</span> remote add origin /tmp/server/repo</span>
+<span id="cb6-12"><a href="#cb6-12"></a><span class="ex">repo</span> (master) $ <span class="fu">git</span> push origin master:master</span></code></pre></div>
 </section><section id="пример-3-сравнение-с-originmaster" class="slide level2">
 <h2>Пример №3: сравнение с origin/master</h2>
-<div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb7-1" data-line-number="1">$ <span class="fu">git</span> fetch origin</a>
-<a class="sourceLine" id="cb7-2" data-line-number="2">$ <span class="fu">git</span> diff master origin/master</a>
-<a class="sourceLine" id="cb7-3" data-line-number="3">$ <span class="fu">git</span> show origin/master:lecture-3.md <span class="kw">|</span> <span class="fu">less</span></a>
-<a class="sourceLine" id="cb7-4" data-line-number="4">$ <span class="fu">git</span> co origin/master -b new-feature</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1"></a>$ <span class="fu">git</span> fetch origin</span>
+<span id="cb7-2"><a href="#cb7-2"></a>$ <span class="fu">git</span> diff master origin/master</span>
+<span id="cb7-3"><a href="#cb7-3"></a>$ <span class="fu">git</span> show origin/master:lecture-3.md <span class="kw">|</span> <span class="fu">less</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a>$ <span class="fu">git</span> co origin/master -b new-feature</span></code></pre></div>
 </section></section>
 <section><section id="объединение-веток" class="title-slide slide level1"><h1>Объединение веток</h1></section><section id="разрешение-конфликтов" class="slide level2">
 <h2>Разрешение конфликтов</h2>
@@ -233,7 +238,7 @@ new lines from the patch
 <li>merge — это тоже коммит</li>
 <li>Утилиты для разрешения конфликтов: vimdiff, kdiff3, meld, tortoisemerge</li>
 </ul>
-<pre class="sourceCode "><code>┌───────┬──────┬────────┐   ┌────────┬────────┐
+<pre class=""><code>┌───────┬──────┬────────┐   ┌────────┬────────┐
 │ LOCAL │ BASE │ REMOTE │   │        │        │
 ├───────┴──────┴────────┤   │ MERGED │ REMOTE │
 │        MERGED         │   │        │        │
