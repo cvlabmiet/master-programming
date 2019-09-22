@@ -271,6 +271,7 @@ Install-дерево и export
 
     # tests/CMakeLists.txt
     add_executable(testengine main.cpp)
+    target_link_libraries(testengine unit)
 
     add_test(first testengine -i one)
     add_test(second testengine -i two)
