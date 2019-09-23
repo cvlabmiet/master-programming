@@ -1,0 +1,57 @@
+# vim: ts=2 sw=2
+version: 2.1
+
+workflows:
+  version: 2
+  main:
+    jobs:
+      - build
+      - deploy-pages:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
+
+jobs:
+  build:
+    docker:
+      - image: nixorg/nix:circleci
+    steps:
+      - checkout
+      - restore_cache:
+          key: nix-store-v1-{{ checksum ".circleci/config.yml" }}-{{ checksum "shell.nix" }}
+      - run: |
+          nix-shell -I nixpkgs=channel:nixos-19.09 \
+            -I nixpkgs-overlays=https://api.github.com/repos/igsha/nix-overlays/tarball/master \
+            --run "cmake -B build && cmake --build build -j"
+      - save_cache:
+          key: nix-store-v1-{{ checksum ".circleci/config.yml" }}-{{ checksum "shell.nix" }}
+          paths:
+            - /nix
+      - persist_to_workspace:
+          root: '.'
+          paths:
+            - build
+
+  deploy-pages:
+    docker:
+      - image: nixorg/nix:circleci
+    environment:
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "a5:77:06:bf:46:0d:da:af:30:85:43:af:ca:f5:e2:a1"
+      - checkout:
+          path: public
+      - attach_workspace:
+          at: '.'
+      - run: |
+          git config --global user.name $CIRCLE_USERNAME
+          git config --global user.email "${CIRCLE_USERNAME}@users.noreply.github.com"
+          cd public
+          git checkout gh-pages
+          cp ../build/*.html ../build/*/*.html ./
+          git add --all
+          git commit -m "Built artifacts of $(git rev-parse --short master) [ci skip]"
+          git push origin gh-pages
