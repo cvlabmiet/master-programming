@@ -4,19 +4,21 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>master-programming</title>
-  <style type="text/css">
+  <title>NixOS overview</title>
+  <style>
       code{white-space: pre-wrap;}
       span.smallcaps{font-variant: small-caps;}
       span.underline{text-decoration: underline;}
       div.column{display: inline-block; vertical-align: top; width: 50%;}
   </style>
-  <link rel="stylesheet" href="GitHub.css">
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
 </head>
 <body>
+<header id="title-block-header">
+<h1 class="title">NixOS overview</h1>
+</header>
 <h1 id="установка-nixos-на-виртуальную-машину">Установка NixOS на виртуальную машину</h1>
 <p>Расширенная инструкция по установке NixOS на виртуальную машину. Поддерживаются виратуальные машины:</p>
 <ul>
@@ -215,7 +217,7 @@ Swap:          1.0G          0B        1.0G</code></pre>
 # vim /mnt/etc/nixos/configuration.nix</code></pre>
 <p>В созданной конфигурации необходимо добавить следующее:</p>
 <ol type="1">
-<li>открываем файл <code>/mnt/etc/nixos/configuration.nix</code> текстовым редактором внутри гостя (доступны <code>nano</code> или <code>vim</code>);</li>
+<li><p>открываем файл <code>/mnt/etc/nixos/configuration.nix</code> текстовым редактором внутри гостя (доступны <code>nano</code> или <code>vim</code>);</p></li>
 <li><p>заготавливаем строчку для второго этапа установки:</p>
 <pre><code>imports =
     [ # Include the results of the hardware scan.
@@ -231,8 +233,8 @@ Swap:          1.0G          0B        1.0G</code></pre>
 <pre><code>imports = [
     &lt;nixpkgs/nixos/modules/profiles/qemu-guest.nix&gt;
 ];</code></pre></li>
-<li>для VritualBox должно быть написано <code>virtualisation.virtualbox.guest.enable = true;</code></li>
-<li>для VMware должно быть написано <code>services.vmwareGuest.enable = true;</code></li>
+<li><p>для VritualBox должно быть написано <code>virtualisation.virtualbox.guest.enable = true;</code></p></li>
+<li><p>для VMware должно быть написано <code>services.vmwareGuest.enable = true;</code></p></li>
 <li><p>для Parallels — <code>hardware.parallels.enable = true;</code></p></li>
 </ul>
 <p>Также в этом файле можно проверить, что все размеченные разделы на месте.</p>
