@@ -42,9 +42,11 @@
   </p>
   <p class="date">2018-12-17</p>
 </div>
-<div id="составляющие-проекта" class="title-slide slide section level1"><h1>Составляющие проекта</h1></div><div id="описание" class="slide section level2">
+<div id="составляющие-проекта" class="title-slide slide section level1"><h1>Составляющие проекта</h1></div>
+<div id="описание" class="slide section level2">
 <h1>Описание</h1>
-</div><div id="структура-проекта" class="slide section level2">
+</div>
+<div id="структура-проекта" class="slide section level2">
 <h1>Структура проекта</h1>
 <pre><code>[21:36] igor@nixos-pc imgproc (lecture-12 *) [nix-shell] % tree -I build
 .
@@ -63,7 +65,8 @@
     └── main.cpp
 
 3 directories, 10 files</code></pre>
-</div><div id="пример-запуска" class="slide section level2">
+</div>
+<div id="пример-запуска" class="slide section level2">
 <h1>Пример запуска</h1>
 <pre><code>[21:35] igor@nixos-pc build (lecture-12 *) [nix-shell] ✗ (255) % ./imgproc -h
 An image processing example. Version 0.1.0
@@ -78,7 +81,8 @@ Usage:
 
 [21:35] igor@nixos-pc build (lecture-12 *) [nix-shell] % ./imgproc --version
 Version 0.1.0</code></pre>
-</div><div id="необходимые-для-сборки-программы-и-библиотеки" class="slide section level2">
+</div>
+<div id="необходимые-для-сборки-программы-и-библиотеки" class="slide section level2">
 <h1>Необходимые для сборки программы и библиотеки</h1>
 <pre><code>[20:19] igor@nixos-pc imgproc (lecture-12 *) % cat shell.nix
 with import &lt;nixpkgs&gt; {};
@@ -102,7 +106,8 @@ in mkShell rec {
   hardeningDisable = [ &quot;all&quot; ];
 }</code></pre>
 </div>
-<div id="сборка-и-тестирование-проекта" class="title-slide slide section level1"><h1>Сборка и тестирование проекта</h1></div><div id="дополнительные-опции-сборки" class="slide section level2">
+<div id="сборка-и-тестирование-проекта" class="title-slide slide section level1"><h1>Сборка и тестирование проекта</h1></div>
+<div id="дополнительные-опции-сборки" class="slide section level2">
 <h1>Дополнительные опции сборки</h1>
 <pre><code>[22:19] igor@nixos-pc build (lecture-12 *) [nix-shell] % CXX=clang++ cmake -DCMAKE_CXX_CPPLINT=`which cpplint` -DCMAKE_CXX_INCLUDE_WHAT_YOU_USE=`which include-what-you-use` ..
 -- The CXX compiler identification is Clang 7.0.0
@@ -148,7 +153,8 @@ Warning: cpplint diagnostics:
 /home/igor/master-programming/lecture-12/imgproc/main.cpp:44:  { should almost always be at the end of the previous line  [whitespace/braces] [4]
 /home/igor/master-programming/lecture-12/imgproc/main.cpp:46:  Lines should be &lt;= 80 characters long  [whitespace/line_length] [2]
 /home/igor/master-programming/lecture-12/imgproc/main.cpp:48:  An else should appear on the same line as the preceding }  [whitespace/newline] [4]</code></pre>
-</div><div id="способы-тестирования" class="slide section level2">
+</div>
+<div id="способы-тестирования" class="slide section level2">
 <h1>Способы тестирования</h1>
 <pre><code>[21:44] igor@nixos-pc build (lecture-12 *+) [nix-shell] % ctest -T test
    Site: nixos-pc
@@ -232,7 +238,8 @@ Performing coverage
         Not covered LOC:     18
         Total LOC:           110
         Percentage Coverage: 83.64%</code></pre>
-</div><div id="где-найти-полные-логи-результатов-тестов" class="slide section level2">
+</div>
+<div id="где-найти-полные-логи-результатов-тестов" class="slide section level2">
 <h1>Где найти полные логи результатов тестов</h1>
 <pre><code>[22:15] igor@nixos-pc build (lecture-12 *+) [nix-shell] % ls Testing/
 20181219-1903  CoverageInfo  TAG  Temporary
@@ -262,7 +269,8 @@ imgproc.cpp.gcda##ptr_traits.h.gcov                  main.cpp.gcda##ptr_traits.h
 imgproc.cpp.gcda##range_access.h.gcov                main.cpp.gcda##random.h.gcov
 imgproc.cpp.gcda##stl_algobase.h.gcov                main.cpp.gcda##random.tcc.gcov
 ...</code></pre>
-</div><div id="сборка-установочного-пакета" class="slide section level2">
+</div>
+<div id="сборка-установочного-пакета" class="slide section level2">
 <h1>Сборка установочного пакета</h1>
 <pre><code>[23:11] igor@nixos-pc build (lecture-12 *) [nix-shell] % CXX=clang++ cmake -DCPACK_GENERATOR=DEB ..
 -- The CXX compiler identification is Clang 7.0.0

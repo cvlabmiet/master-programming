@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru-RU" xml:lang="ru-RU">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Игорь Шаронов" />
+  <meta name="date" content="2019-12-07" />
+  <title>Master Programming</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" data-external="1"/>
+  <style type="text/css">
+      .reveal h1 { font-size: 2em; }
+      .reveal h2 { font-size: 2em; }
+      .reveal h3 { font-size: 1em; }
+      .reveal pre code { max-height: 600px; }
+      div.column33 {display: inline-block; vertical-align: top; width: 32%;}
+      div.column66 {display: inline-block; vertical-align: top; width: 66%;}
+      div.column50 {display: inline-block; vertical-align: top; width: 49%;}
+      .strike {text-decoration: line-through;}
+      table, th, td {
+          border: 1px solid black;
+      }
+  </style>
+  <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
+    charset="utf-8" type="text/javascript" data-external="1"></script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">Master programming</h1>
+  <p class="subtitle">Лекция №13 (Некоторые приёмы программирования)</p>
+  <p class="author">
+Игорь Шаронов
+  </p>
+  <p class="date">2019-12-07</p>
+</div>
+<div id="метапрограммирование" class="title-slide slide section level1"><h1>Метапрограммирование</h1></div>
+<div id="crtp-curiously-recurring-template-pattern" class="slide section level2">
+<h1>CRTP (Curiously recurring template pattern)</h1>
+<ul>
+<li>Статический полиморфизм</li>
+<li>Замена виртуальных функций при компиляции</li>
+<li>Подходит только там, где это возможно</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">template</span>&lt;<span class="kw">class</span> Derived&gt;</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="kw">class</span> A</span>
+<span id="cb1-3"><a href="#cb1-3"></a>{</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="kw">public</span>:</span>
+<span id="cb1-5"><a href="#cb1-5"></a>    <span class="dt">void</span> method()</span>
+<span id="cb1-6"><a href="#cb1-6"></a>    {</span>
+<span id="cb1-7"><a href="#cb1-7"></a>        <span class="kw">static_cast</span>&lt;Derived*&gt;(<span class="kw">this</span>)-&gt;some_method();</span>
+<span id="cb1-8"><a href="#cb1-8"></a>    }</span>
+<span id="cb1-9"><a href="#cb1-9"></a>};</span>
+<span id="cb1-10"><a href="#cb1-10"></a></span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="kw">class</span> B: A&lt;B&gt;</span>
+<span id="cb1-12"><a href="#cb1-12"></a>{</span>
+<span id="cb1-13"><a href="#cb1-13"></a><span class="kw">public</span>:</span>
+<span id="cb1-14"><a href="#cb1-14"></a>    <span class="dt">void</span> some_method()</span>
+<span id="cb1-15"><a href="#cb1-15"></a>    {</span>
+<span id="cb1-16"><a href="#cb1-16"></a>        lala;</span>
+<span id="cb1-17"><a href="#cb1-17"></a>    }</span>
+<span id="cb1-18"><a href="#cb1-18"></a>};</span></code></pre></div>
+</div>
+<div id="статическая-функция-для-конструктора" class="slide section level2">
+<h1>Статическая функция для конструктора</h1>
+<ul>
+<li>Необходимость проинициализировать базовый класс сложным образом</li>
+<li>Нет доступа к переменным класса, так как он ещё не проинициализирован</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">class</span> A: <span class="kw">public</span> vector&lt;<span class="dt">int</span>&gt;</span>
+<span id="cb2-2"><a href="#cb2-2"></a>{</span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="kw">public</span>:</span>
+<span id="cb2-4"><a href="#cb2-4"></a>    A(): vector(init())</span>
+<span id="cb2-5"><a href="#cb2-5"></a>    {}</span>
+<span id="cb2-6"><a href="#cb2-6"></a></span>
+<span id="cb2-7"><a href="#cb2-7"></a><span class="kw">private</span>:</span>
+<span id="cb2-8"><a href="#cb2-8"></a>    <span class="at">static</span> vector&lt;<span class="dt">int</span>&gt; init()</span>
+<span id="cb2-9"><a href="#cb2-9"></a>    {</span>
+<span id="cb2-10"><a href="#cb2-10"></a>        <span class="cf">return</span> ...</span>
+<span id="cb2-11"><a href="#cb2-11"></a>    }</span>
+<span id="cb2-12"><a href="#cb2-12"></a>};</span></code></pre></div>
+</div>
+<div id="дополнительный-класс-для-инициализации" class="slide section level2">
+<h1>Дополнительный класс для инициализации</h1>
+<ul>
+<li>Нужно переопределить порядок инициализации базового класса и наследника</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">class</span> A: <span class="kw">public</span> vector&lt;<span class="dt">double</span>&gt;</span>
+<span id="cb3-2"><a href="#cb3-2"></a>{</span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="kw">public</span>:</span>
+<span id="cb3-4"><a href="#cb3-4"></a>    <span class="co">// Так не будет работать.</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a>    A(<span class="dt">double</span> y): <span class="va">y_</span>(y * y - <span class="bu">std::</span>sin(y)), vector({{<span class="va">y_</span>, <span class="va">y_</span> + <span class="dv">1</span>, <span class="va">y_</span> + <span class="dv">2</span>}})</span>
+<span id="cb3-6"><a href="#cb3-6"></a>    {}</span>
+<span id="cb3-7"><a href="#cb3-7"></a></span>
+<span id="cb3-8"><a href="#cb3-8"></a><span class="kw">private</span>:</span>
+<span id="cb3-9"><a href="#cb3-9"></a>    <span class="dt">double</span> <span class="va">y_</span>;</span>
+<span id="cb3-10"><a href="#cb3-10"></a>};</span>
+<span id="cb3-11"><a href="#cb3-11"></a></span>
+<span id="cb3-12"><a href="#cb3-12"></a><span class="kw">class</span> B_helper</span>
+<span id="cb3-13"><a href="#cb3-13"></a>{</span>
+<span id="cb3-14"><a href="#cb3-14"></a><span class="kw">public</span>:</span>
+<span id="cb3-15"><a href="#cb3-15"></a>    B_helper(<span class="dt">double</span> y): <span class="va">y_</span>(y * y - <span class="bu">std::</span>sqrt(y))</span>
+<span id="cb3-16"><a href="#cb3-16"></a>    {}</span>
+<span id="cb3-17"><a href="#cb3-17"></a></span>
+<span id="cb3-18"><a href="#cb3-18"></a><span class="kw">private</span>:</span>
+<span id="cb3-19"><a href="#cb3-19"></a>    <span class="dt">double</span> <span class="va">y_</span>;</span>
+<span id="cb3-20"><a href="#cb3-20"></a>};</span>
+<span id="cb3-21"><a href="#cb3-21"></a></span>
+<span id="cb3-22"><a href="#cb3-22"></a><span class="kw">class</span> B: <span class="kw">public</span> B_helper, <span class="kw">public</span> vector&lt;<span class="dt">double</span>&gt;</span>
+<span id="cb3-23"><a href="#cb3-23"></a>{</span>
+<span id="cb3-24"><a href="#cb3-24"></a><span class="kw">public</span>:</span>
+<span id="cb3-25"><a href="#cb3-25"></a>    B(<span class="dt">double</span> y): B_helper(y), vector({{<span class="va">y_</span>, <span class="va">y_</span> + <span class="dv">1</span>, <span class="va">y_</span> + <span class="dv">2</span>}})</span>
+<span id="cb3-26"><a href="#cb3-26"></a>    {}</span>
+<span id="cb3-27"><a href="#cb3-27"></a>};</span></code></pre></div>
+</div>
+<div id="расширение-функциональности-через-наследование" class="slide section level2">
+<h1>Расширение функциональности через наследование</h1>
+<ul>
+<li>Изменение функциональности приводит к “порче” класса</li>
+<li>Расширение - это просто декоратор или адаптор</li>
+<li>Старый класс можно использовать для ещё одного расширения</li>
+<li>В базовом классе сохраняется малое количество методов</li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">struct</span> A</span>
+<span id="cb4-2"><a href="#cb4-2"></a>{</span>
+<span id="cb4-3"><a href="#cb4-3"></a>    <span class="dt">void</span> some_method();</span>
+<span id="cb4-4"><a href="#cb4-4"></a>    <span class="dt">void</span> another_method();</span>
+<span id="cb4-5"><a href="#cb4-5"></a>}</span>
+<span id="cb4-6"><a href="#cb4-6"></a></span>
+<span id="cb4-7"><a href="#cb4-7"></a><span class="kw">struct</span> B: A</span>
+<span id="cb4-8"><a href="#cb4-8"></a>{</span>
+<span id="cb4-9"><a href="#cb4-9"></a>    <span class="dt">void</span> extra_method();</span>
+<span id="cb4-10"><a href="#cb4-10"></a>}</span></code></pre></div>
+</div>
+<div id="атовыводимость-типов-для-конструктора" class="slide section level2">
+<h1>Атовыводимость типов для конструктора</h1>
+<ul>
+<li>Неоднозначность в подстановке типа в конструкторе
+<ol>
+<li>Правило вывода</li>
+<li>Make-функция</li>
+</ol></li>
+<li>Реализация perfect forwarding</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">template</span>&lt;<span class="kw">class</span> V&gt;</span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="kw">class</span> A</span>
+<span id="cb5-3"><a href="#cb5-3"></a>{</span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="kw">public</span>:</span>
+<span id="cb5-5"><a href="#cb5-5"></a>    <span class="kw">template</span>&lt;<span class="kw">class</span> B&gt;</span>
+<span id="cb5-6"><a href="#cb5-6"></a>    A(B x)</span>
+<span id="cb5-7"><a href="#cb5-7"></a>    { ... }</span>
+<span id="cb5-8"><a href="#cb5-8"></a>};</span>
+<span id="cb5-9"><a href="#cb5-9"></a></span>
+<span id="cb5-10"><a href="#cb5-10"></a><span class="kw">template</span>&lt;<span class="kw">class</span> B, V = deduce B&gt;</span>
+<span id="cb5-11"><a href="#cb5-11"></a>A&lt;V&gt; make(B x)</span>
+<span id="cb5-12"><a href="#cb5-12"></a>{</span>
+<span id="cb5-13"><a href="#cb5-13"></a>    <span class="cf">return</span> A&lt;V&gt;(x);</span>
+<span id="cb5-14"><a href="#cb5-14"></a>}</span></code></pre></div>
+</div>
+<div id="константность-методов" class="slide section level2">
+<h1>Константность методов</h1>
+<ul>
+<li>Почти все методы нужно делать константными</li>
+<li>Можно было бы ввести ключевое слово <span class="title-ref">mutable</span></li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">template</span>&lt;<span class="kw">class</span> T&gt;</span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="kw">class</span> iterator</span>
+<span id="cb6-3"><a href="#cb6-3"></a>{</span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="kw">public</span>:</span>
+<span id="cb6-5"><a href="#cb6-5"></a>    T&amp; <span class="kw">operator</span>*() <span class="at">const</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a>    {</span>
+<span id="cb6-7"><a href="#cb6-7"></a>        <span class="cf">return</span> *<span class="va">ptr_</span>;</span>
+<span id="cb6-8"><a href="#cb6-8"></a>    }</span>
+<span id="cb6-9"><a href="#cb6-9"></a></span>
+<span id="cb6-10"><a href="#cb6-10"></a><span class="kw">private</span>:</span>
+<span id="cb6-11"><a href="#cb6-11"></a>    T* <span class="va">ptr_</span>;</span>
+<span id="cb6-12"><a href="#cb6-12"></a>};</span></code></pre></div>
+</div>
+<div id="замена-виртуальности" class="slide section level2">
+<h1>Замена виртуальности</h1>
+<ul>
+<li>Возможна только в тех случаях, когда точно известны все классы</li>
+<li>Основано на утиной типизации</li>
+<li>Используется <code>std::variant</code></li>
+<li>Минусы: везде надо использовать <code>std::visit</code>, все функции должны быть шаблонизированы, возвращаемый тип должен быть одинаковым</li>
+</ul>
+<div class="sourceCode" id="cb7"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">class</span> Lala</span>
+<span id="cb7-2"><a href="#cb7-2"></a>{</span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="kw">public</span>:</span>
+<span id="cb7-4"><a href="#cb7-4"></a>    <span class="dt">void</span> method();</span>
+<span id="cb7-5"><a href="#cb7-5"></a>};</span>
+<span id="cb7-6"><a href="#cb7-6"></a></span>
+<span id="cb7-7"><a href="#cb7-7"></a><span class="kw">class</span> Lala2: <span class="kw">public</span> Lala</span>
+<span id="cb7-8"><a href="#cb7-8"></a>{</span>
+<span id="cb7-9"><a href="#cb7-9"></a><span class="kw">public</span>:</span>
+<span id="cb7-10"><a href="#cb7-10"></a>    <span class="dt">void</span> method()</span>
+<span id="cb7-11"><a href="#cb7-11"></a>    {</span>
+<span id="cb7-12"><a href="#cb7-12"></a>        <span class="co">// override</span></span>
+<span id="cb7-13"><a href="#cb7-13"></a>    }</span>
+<span id="cb7-14"><a href="#cb7-14"></a>};</span>
+<span id="cb7-15"><a href="#cb7-15"></a></span>
+<span id="cb7-16"><a href="#cb7-16"></a><span class="kw">class</span> Lala3</span>
+<span id="cb7-17"><a href="#cb7-17"></a>{</span>
+<span id="cb7-18"><a href="#cb7-18"></a><span class="kw">public</span>:</span>
+<span id="cb7-19"><a href="#cb7-19"></a>    <span class="dt">void</span> method()</span>
+<span id="cb7-20"><a href="#cb7-20"></a>    {</span>
+<span id="cb7-21"><a href="#cb7-21"></a>        <span class="co">// new implementation</span></span>
+<span id="cb7-22"><a href="#cb7-22"></a>    }</span>
+<span id="cb7-23"><a href="#cb7-23"></a>};</span>
+<span id="cb7-24"><a href="#cb7-24"></a></span>
+<span id="cb7-25"><a href="#cb7-25"></a><span class="bu">std::</span>variant&lt;Lala, Lala2, Lala3&gt; obj = ...;</span>
+<span id="cb7-26"><a href="#cb7-26"></a><span class="bu">std::</span>visit([](<span class="kw">auto</span>&amp; x) { x.method(); }, obj)</span></code></pre></div>
+</div>
+<div id="solid" class="title-slide slide section level1"><h1>SOLID</h1></div>
+<div id="s-принцип-единственной-ответственности" class="slide section level2">
+<h1>(S) Принцип единственной ответственности</h1>
+<ul>
+<li>Класс должен отвечать за одну сущность</li>
+<li>Изменение класса должно быть связано только с изменением этой сущности</li>
+</ul>
+<p>Пример: конвертер форматов</p>
+<ul>
+<li>Изменился один из выходных форматов — изменяется конвертер</li>
+<li>Изменился один из входных форматов — изменяется конвертер</li>
+<li>Изменилось имя для работы с сервером — изменился конвертер (wat??)</li>
+</ul>
+<p>Решение: подход <code>pandoc</code></p>
+<ul>
+<li>На каждый выходной формат свой конвертер</li>
+<li>На каждый входной формат свой читатель</li>
+<li>Введение внутреннего формата</li>
+</ul>
+</div>
+<div id="o-принцип-открытостизакрытости" class="slide section level2">
+<h1>(O) Принцип открытости/закрытости</h1>
+<ul>
+<li>Класс закрыт для изменений</li>
+<li>Получить новую функциональность можно через расширение класса (наследования, перегрузки)</li>
+<li>Принцип интерфейса и реализации</li>
+<li>Модульное тестирование в таком подходе: наследование от класса для предоставления скрытых связей внутри класса</li>
+<li>Полиморфизм в терминах наследования от интерфейса</li>
+<li>Множественное наследование от интерфейсов</li>
+</ul>
+</div>
+<div id="l-принцип-подстановки-барбары-лисков" class="slide section level2">
+<h1>(L) Принцип подстановки Барбары Лисков</h1>
+<ul>
+<li>Старое поведение базового класса должно оставаться неизменным в наследнике</li>
+<li>В программе можно вместо базового класса написать наследника — поведение должно остаться прежним</li>
+</ul>
+<p>Список с дублированными элементами.</p>
+<pre class=""><code>test&lt;ListType&gt;():
+    ListType l;
+    l.add(44)
+    CHECK(l.size() == 1)
+
+DoubleList(List):
+    add(x):
+        List::add(x)
+        List::add(x)
+
+test&lt;DoubleList&gt;() // fail</code></pre>
+<p>Как быть?</p>
+<ul>
+<li>Разобраться какой из интерфейсов должен остаться прежним</li>
+<li>Ввести понятие дублированный элемент, а не список с дублированием</li>
+</ul>
+</div>
+<div id="i-принцип-разделения-интерфейса" class="slide section level2">
+<h1>(I) Принцип разделения интерфейса</h1>
+<ul>
+<li>Много мелких интерфейсов лучше, чем один большой</li>
+<li>Принцип избегания “божественного объекта”</li>
+<li>Сущности не зависят от методов, которые не используют</li>
+</ul>
+<pre class=""><code>driver:
+    allocate(size): void*
+    deallocate(void*)
+    set_program(byte[])
+    read(ptr, count, offset): vector&lt;byte&gt;
+    write(ptr, count, offset)
+    enqueue()
+    wait()</code></pre>
+<p>Пример разделения интерфейса.</p>
+<pre class=""><code>allocator:
+    allocate(size): void*
+    deallocate(void*)
+
+driver_data:
+    ptr
+    count
+    offset
+
+io_handler:
+    enqueue(driver_data)
+    wait()
+
+driver(allocator):
+    set_program(byte[]) -&gt; io_handler</code></pre>
+</div>
+<div id="d-принцип-инверсии-зависимостей" class="slide section level2">
+<h1>(D) Принцип инверсии зависимостей</h1>
+<ul>
+<li>Модули верхних уровней не должны зависеть от модулей нижних уровней</li>
+<li>Абстракции не должны зависеть от деталей</li>
+<li>Разорвать связи можно введением дополнительного уровня</li>
+<li>Проверка — написание модульного теста по типу белого ящика</li>
+</ul>
+<pre class=""><code>tq:
+    - tile:
+        ptr
+        count
+
+    - vector&lt;tile&gt;
+
+    push(ptr, count)
+    begin(): vector&lt;tile&gt;::iterator
+    end(): vector&lt;tile&gt;::iterator
+
+tq2&lt;Tile&gt;:
+    - vector&lt;Tile&gt;
+    push&lt;Ptr&gt;(ptr, count)
+    begin(): vector&lt;Tile&gt;::iterator
+    end(): vector&lt;Tile&gt;::iterator</code></pre>
+</div>
+</body>
+</html>

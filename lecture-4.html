@@ -42,7 +42,8 @@
   </p>
   <p class="date">2018-03-10</p>
 </div>
-<div id="из-чего-состоит-программа" class="title-slide slide section level1"><h1>Из чего состоит программа?</h1></div><div id="этапы-сборки-программы" class="slide section level2">
+<div id="из-чего-состоит-программа" class="title-slide slide section level1"><h1>Из чего состоит программа?</h1></div>
+<div id="этапы-сборки-программы" class="slide section level2">
 <h1>Этапы сборки программы</h1>
 <p>Полную сборку (<code>g++ -o exe main.cpp</code>) можно разбить на этапы:</p>
 <ol>
@@ -51,7 +52,8 @@
 <li>создание библиотечного архива (<code>ar -r</code>) → статическая библиотека</li>
 <li>линковка (<code>ld</code> или <code>g++</code>) → исполняемый файл или динамическая библиотека</li>
 </ol>
-</div><div id="изучение-объектного-файла" class="slide section level2">
+</div>
+<div id="изучение-объектного-файла" class="slide section level2">
 <h1>Изучение объектного файла</h1>
 <p>Существуют несколько форматов объектных файлов:</p>
 <ul>
@@ -66,7 +68,8 @@
 <li>.rodata — секция констант</li>
 <li>.bss — секция неинициализированных данных</li>
 </ul>
-</div><div id="список-символов" class="slide section level2">
+</div>
+<div id="список-символов" class="slide section level2">
 <h1>Список символов</h1>
 <ul>
 <li><p>Утилита для вывода списка символов в объектном файле – <code>nm</code> (name mangling)</p></li>
@@ -87,7 +90,8 @@
 <li><p>Выводит смещение, тип символа и название функции (до манглинга)</p></li>
 <li><p>Типы символов: undefined, weak, text, data, … (<code>man nm</code>)</p></li>
 </ul>
-</div><div id="изучение-секций" class="slide section level2">
+</div>
+<div id="изучение-секций" class="slide section level2">
 <h1>Изучение секций</h1>
 <ul>
 <li><p>Утилита <code>readelf</code></p></li>
@@ -103,7 +107,8 @@ int bb[] = {0, 5, 8, 9}; // .data
 // через атрибуты
 extern void foobar() __attribute__((section(&quot;bar&quot;)));</code></pre></li>
 </ul>
-</div><div id="динамическая-и-статическая-линковки" class="slide section level2">
+</div>
+<div id="динамическая-и-статическая-линковки" class="slide section level2">
 <h1>Динамическая и статическая линковки</h1>
 <ul>
 <li>Статическая линковка — линковка со объектыми файлами и статическими библиотеками</li>
@@ -119,7 +124,8 @@ extern void foobar() __attribute__((section(&quot;bar&quot;)));</code></pre></li
 <li>Загрузку секций можно изменять с помощью ld-скриптов</li>
 </ul>
 </div>
-<div id="как-работает-программа" class="title-slide slide section level1"><h1>Как работает программа?</h1></div><div id="запуск-программы" class="slide section level2">
+<div id="как-работает-программа" class="title-slide slide section level1"><h1>Как работает программа?</h1></div>
+<div id="запуск-программы" class="slide section level2">
 <h1>Запуск программы</h1>
 <ul>
 <li>В действительности выполняется команда <code>/lib/ld-linux-x86-64.so ./program</code></li>
@@ -139,7 +145,8 @@ extern void foobar() __attribute__((section(&quot;bar&quot;)));</code></pre></li
 <li><code>ldd</code> — узнать список загружаемых библиотек</li>
 <li>Если в программе нет динамической зависимости, загрузчик не используется</li>
 </ul>
-</div><div id="трассировка-программы" class="slide section level2">
+</div>
+<div id="трассировка-программы" class="slide section level2">
 <h1>Трассировка программы</h1>
 <ul>
 <li><p><code>ltrace</code> позволяет выводить в реальном времени вызовы динамических библиотек</p></li>
@@ -158,7 +165,8 @@ stat(&quot;/run/opengl-driver/lib/tls/haswell&quot;, 0x7fffcefcb4e0) = -1 ENOENT
 <li><p><code>strace -c</code> — простейший профайлер системных вызовов</p></li>
 </ul>
 </div>
-<div id="как-отладить-программу" class="title-slide slide section level1"><h1>Как отладить программу?</h1></div><div id="система-отладки-gdb" class="slide section level2">
+<div id="как-отладить-программу" class="title-slide slide section level1"><h1>Как отладить программу?</h1></div>
+<div id="система-отладки-gdb" class="slide section level2">
 <h1>Система отладки GDB</h1>
 <ul>
 <li>GDB — GNU Debugger</li>
@@ -175,7 +183,8 @@ stat(&quot;/run/opengl-driver/lib/tls/haswell&quot;, 0x7fffcefcb4e0) = -1 ENOENT
 </ul></li>
 <li><code>gdb-server</code> — удалённая отладка</li>
 </ul>
-</div><div id="команды-gdb" class="slide section level2">
+</div>
+<div id="команды-gdb" class="slide section level2">
 <h1>Команды GDB</h1>
 <ul>
 <li><code>gdb ./progname</code> — загрузка программы в отладчик</li>
@@ -191,7 +200,8 @@ stat(&quot;/run/opengl-driver/lib/tls/haswell&quot;, 0x7fffcefcb4e0) = -1 ENOENT
 <li>можно писать только первые буквы команд</li>
 </ul>
 </div>
-<div id="дополнительные-системы-отладки" class="title-slide slide section level1"><h1>Дополнительные системы отладки</h1></div><div id="ещё-способы-отладки" class="slide section level2">
+<div id="дополнительные-системы-отладки" class="title-slide slide section level1"><h1>Дополнительные системы отладки</h1></div>
+<div id="ещё-способы-отладки" class="slide section level2">
 <h1>Ещё способы отладки</h1>
 <ul>
 <li><p>Ключи компиляции: <code>-Wall</code>, <code>-pedantic</code>, <code>-Wextra</code>, <code>-fsanitize</code></p></li>
@@ -217,7 +227,8 @@ stat(&quot;/run/opengl-driver/lib/tls/haswell&quot;, 0x7fffcefcb4e0) = -1 ENOENT
 ==8736==    by 0x454A46: vxCreateImage (vx_image.c:358)
 ==8736==    by 0x415DF4: main (sampleMinMaxLoc.c:65)</code></pre></li>
 </ul>
-</div><div id="остановка-в-дебаггере-при-утечке-памяти" class="slide section level2">
+</div>
+<div id="остановка-в-дебаггере-при-утечке-памяти" class="slide section level2">
 <h1>Остановка в дебаггере при утечке памяти</h1>
 <div class="column50">
 <pre class=""><code>$ valgrind --vgdb=yes --vgdb-error=0 prog

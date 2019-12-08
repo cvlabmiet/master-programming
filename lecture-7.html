@@ -15,19 +15,18 @@
       div.column{display: inline-block; vertical-align: top; width: 50%;}
   </style>
   <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -47,7 +46,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -104,7 +103,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </p>
   <p class="date">2018-10-03</p>
 </div>
-<div id="обзор-стандартов" class="title-slide slide section level1"><h1>Обзор стандартов</h1></div><div id="возможности-языка-на-примере-стандарта-c98" class="slide section level2">
+<div id="обзор-стандартов" class="title-slide slide section level1"><h1>Обзор стандартов</h1></div>
+<div id="возможности-языка-на-примере-стандарта-c98" class="slide section level2">
 <h1>Возможности языка на примере стандарта C++98</h1>
 <ul>
 <li><a href="https://isocpp.org">https://isocpp.org</a>, <a href="https://cppreference.com">https://cppreference.com</a></li>
@@ -119,7 +119,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Исключения</li>
 <li>Строже типизирован, чем язык C</li>
 </ul>
-</div><div id="инкапсуляция-наследование-полиморфизм" class="slide section level2">
+</div>
+<div id="инкапсуляция-наследование-полиморфизм" class="slide section level2">
 <h1>Инкапсуляция, наследование, полиморфизм</h1>
 <ul>
 <li>Инкапсуляция позволяет прятать сущности:
@@ -139,7 +140,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 </ul>
-</div><div id="перегрузка" class="slide section level2">
+</div>
+<div id="перегрузка" class="slide section level2">
 <h1>Перегрузка</h1>
 <ul>
 <li>Перегрузка функций возможна только в сигнатуре
@@ -157,7 +159,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Сигнализация об ошибке будет только в том случае, если не подойдёт ни одна специализация</li>
 </ul></li>
 </ul>
-</div><div id="sfinae" class="slide section level2">
+</div>
+<div id="sfinae" class="slide section level2">
 <h1>SFINAE</h1>
 <ul>
 <li><a href="http://en.cppreference.com/w/cpp/language/sfinae">Substitution Failure Is Not A Error</a></li>
@@ -170,7 +173,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">template</span> &lt;<span class="kw">class</span> T&gt; <span class="dt">int</span> f(<span class="kw">typename</span> T::B*);</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="kw">template</span> &lt;<span class="kw">class</span> T&gt; <span class="dt">int</span> f(T);</span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="dt">int</span> i = f&lt;<span class="dt">int</span>&gt;(<span class="dv">0</span>); <span class="co">// uses second overload</span></span></code></pre></div>
-</div><div id="шаблоны" class="slide section level2">
+</div>
+<div id="шаблоны" class="slide section level2">
 <h1>Шаблоны</h1>
 <ul>
 <li>Уровень компиляции</li>
@@ -184,7 +188,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Специализация функции — <code class="sourceCode cpp"><span class="kw">template</span>&lt;&gt; <span class="dt">int</span> func&lt;<span class="dt">float</span>&gt;()</code></li>
 </ul>
 </div>
-<div id="обзор-стандарта-c03" class="title-slide slide section level1"><h1>Обзор стандарта C++03</h1></div><div id="нововведения" class="slide section level2">
+<div id="обзор-стандарта-c03" class="title-slide slide section level1"><h1>Обзор стандарта C++03</h1></div>
+<div id="нововведения" class="slide section level2">
 <h1>Нововведения</h1>
 <ul>
 <li>Развивается библиотека Boost</li>
@@ -192,7 +197,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Больше особо нечем гордиться</li>
 </ul>
 </div>
-<div id="обзор-стандарта-c11" class="title-slide slide section level1"><h1>Обзор стандарта C++11</h1></div><div id="новые-возможности-языка" class="slide section level2">
+<div id="обзор-стандарта-c11" class="title-slide slide section level1"><h1>Обзор стандарта C++11</h1></div>
+<div id="новые-возможности-языка" class="slide section level2">
 <h1>Новые возможности языка</h1>
 <ul>
 <li>Ключевое слово <code class="sourceCode cpp"><span class="kw">auto</span></code>
@@ -214,7 +220,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>xvalue, rvalue, prvalue — move-нотации</li>
 <li>Цикл по коллекции <code class="sourceCode cpp"><span class="cf">for</span> (<span class="at">const</span> <span class="kw">auto</span>&amp; x : array) { ... }</code></li>
 </ul>
-</div><div id="новые-возможности-языка-продолжение" class="slide section level2">
+</div>
+<div id="новые-возможности-языка-продолжение" class="slide section level2">
 <h1>Новые возможности языка (продолжение)</h1>
 <ul>
 <li><code class="sourceCode cpp"><span class="kw">override</span></code>, <code class="sourceCode cpp"><span class="kw">final</span></code> — помогает отлавливать неправильные переопределения в полиморфизме</li>
@@ -225,7 +232,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code class="sourceCode cpp"><span class="kw">alignas</span>(T)</code> — выравнивание данных как у <code>T</code></li>
 <li><strong>Вариативные шаблоны</strong></li>
 </ul>
-</div><div id="расширение-stl" class="slide section level2">
+</div>
+<div id="расширение-stl" class="slide section level2">
 <h1>Расширение STL</h1>
 <ul>
 <li><code>std::tuple</code>, <code>std::array</code>, <code>std::unordered_map/set</code>, <code>std::chrono</code></li>
@@ -239,7 +247,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>…</li>
 </ul>
 </div>
-<div id="обзор-стандарта-c14" class="title-slide slide section level1"><h1>Обзор стандарта C++14</h1></div><div id="новые-возможности-языка-1" class="slide section level2">
+<div id="обзор-стандарта-c14" class="title-slide slide section level1"><h1>Обзор стандарта C++14</h1></div>
+<div id="новые-возможности-языка-1" class="slide section level2">
 <h1>Новые возможности языка</h1>
 <ul>
 <li><p>Автоматический вывод возвращаемого значения <code class="sourceCode cpp"><span class="kw">auto</span> func();</code></p></li>
@@ -258,7 +267,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Обобщённые лямбда-выражения <code class="sourceCode cpp">[](<span class="kw">auto</span> x) { <span class="cf">return</span> x*x + <span class="dv">1</span>; }</code></p></li>
 <li><p>Атрибут <code class="sourceCode cpp">[[<span class="at">deprecated</span>]]</code></p></li>
 </ul>
-</div><div id="нововведения-в-stl" class="slide section level2">
+</div>
+<div id="нововведения-в-stl" class="slide section level2">
 <h1>Нововведения в STL</h1>
 <ul>
 <li>Пользовательские литералы <code class="sourceCode cpp"><span class="kw">auto</span> dur = <span class="dv">60</span><span class="bu">s</span>;</code></li>
@@ -266,7 +276,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code class="sourceCode cpp"><span class="bu">std::</span>make_index_sequence</code> для <code class="sourceCode cpp"><span class="bu">std::</span>integral_constant</code> полезен при разворачивании кортежа в аргументы</li>
 </ul>
 </div>
-<div id="обзор-стандарта-c17" class="title-slide slide section level1"><h1>Обзор стандарта C++17</h1></div><div id="новые-возможности-языка-2" class="slide section level2">
+<div id="обзор-стандарта-c17" class="title-slide slide section level1"><h1>Обзор стандарта C++17</h1></div>
+<div id="новые-возможности-языка-2" class="slide section level2">
 <h1>Новые возможности языка</h1>
 <ul>
 <li>Упакованные выражения <code class="sourceCode cpp"><span class="kw">template</span>&lt;<span class="kw">class</span>... Ts&gt; <span class="dt">bool</span> foo(Ts... args) { <span class="cf">return</span> (args &amp;&amp; ...); }</code></li>
@@ -277,7 +288,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Вложенные пространства имён <code class="sourceCode cpp"><span class="kw">namespace</span> A::B {}</code> == <code class="sourceCode cpp"><span class="kw">namespace</span> A { <span class="kw">namespace</span> B {} }</code></li>
 <li><code class="sourceCode cpp"><span class="cf">if</span> <span class="kw">constexpr</span></code> взамен <code class="sourceCode cpp"><span class="bu">std::</span>enable_if</code> и SFINAE</li>
 </ul>
-</div><div id="нововведения-в-stl-1" class="slide section level2">
+</div>
+<div id="нововведения-в-stl-1" class="slide section level2">
 <h1>Нововведения в STL</h1>
 <ul>
 <li><code class="sourceCode cpp"><span class="bu">std::</span>optional</code>, <code class="sourceCode cpp"><span class="bu">std::</span>variant</code>, <code class="sourceCode cpp"><span class="bu">std::</span>any</code></li>
@@ -289,7 +301,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code class="sourceCode cpp"><span class="bu">std::</span>byte</code></li>
 </ul>
 </div>
-<div id="обзор-современных-особенностей-языка-c" class="title-slide slide section level1"><h1>Обзор современных особенностей языка C++</h1></div><div id="о-using-директиве" class="slide section level2">
+<div id="обзор-современных-особенностей-языка-c" class="title-slide slide section level1"><h1>Обзор современных особенностей языка C++</h1></div>
+<div id="о-using-директиве" class="slide section level2">
 <h1>О using директиве</h1>
 <ul>
 <li>Алиас типа: <code class="sourceCode cpp"><span class="kw">using</span> type_int = <span class="dt">int</span>;</code></li>
@@ -309,7 +322,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li>Проблема пересечения имён</li>
 </ul>
-</div><div id="о-rvalue" class="slide section level2">
+</div>
+<div id="о-rvalue" class="slide section level2">
 <h1>О rvalue</h1>
 <ul>
 <li><p>Copy elision</p>
@@ -338,7 +352,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb4-7"><a href="#cb4-7"></a>func(<span class="bu">std::</span>move(v)); <span class="co">// [Args = {std::vector&lt;int&gt;&amp;&amp;}], &amp;&amp; &amp;&amp; == &amp;&amp;</span></span>
 <span id="cb4-8"><a href="#cb4-8"></a>func(<span class="bu">std::</span>vector{<span class="fl">7.0</span>, <span class="fl">8.3</span>, -<span class="fl">96.87</span>, <span class="fl">7.1</span>}); <span class="co">// [Args = {std::vector&lt;double&gt;}], () == &amp;&amp;</span></span></code></pre></div></li>
 </ul>
-</div><div id="о-конструкторах" class="slide section level2">
+</div>
+<div id="о-конструкторах" class="slide section level2">
 <h1>О конструкторах</h1>
 <div class="sourceCode" id="cb5"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">class</span> A {</span>
 <span id="cb5-2"><a href="#cb5-2"></a><span class="kw">public</span>:</span>
@@ -358,7 +373,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code class="sourceCode cpp"><span class="cf">default</span></code> — попросить компилятор сгенерировать порождающий оператор</li>
 <li>Явное правило вывода конструктора: <code class="sourceCode cpp"><span class="kw">template</span>&lt;<span class="kw">class</span> T&gt; myclass(T&amp;&amp;, <span class="dt">int</span>) -&gt; myclass&lt;T&gt;;</code></li>
 </ul>
-</div><div id="о-шаблонах" class="slide section level2">
+</div>
+<div id="о-шаблонах" class="slide section level2">
 <h1>О шаблонах</h1>
 <ul>
 <li><p><code class="sourceCode cpp"><span class="kw">template</span>&lt;<span class="kw">class</span>... Ts&gt; <span class="kw">class</span> myclass;</code> — пакет шаблонных параметров</p></li>
@@ -372,7 +388,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb6-5"><a href="#cb6-5"></a>    <span class="bu">std::</span>tuple&lt;Ts...&gt; x;</span>
 <span id="cb6-6"><a href="#cb6-6"></a>}</span></code></pre></div></li>
 </ul>
-</div><div id="распаковка-кортежа-в-аргументы" class="slide section level2">
+</div>
+<div id="распаковка-кортежа-в-аргументы" class="slide section level2">
 <h1>Распаковка кортежа в аргументы</h1>
 <ul>
 <li><p>Использование <code class="sourceCode cpp"><span class="bu">std::</span>integer_sequence</code></p>
@@ -400,7 +417,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb7-22"><a href="#cb7-22"></a>    <span class="cf">return</span> <span class="bu">std::</span>apply([&amp;os](<span class="at">const</span> <span class="kw">auto</span>&amp;... xs) -&gt; <span class="kw">decltype</span>(<span class="kw">auto</span>) { <span class="cf">return</span> (os &lt;&lt; ... &lt;&lt; xs); }, t);</span>
 <span id="cb7-23"><a href="#cb7-23"></a>}</span></code></pre></div></li>
 </ul>
-</div><div id="операции-над-шаблонными-пакетами" class="slide section level2">
+</div>
+<div id="операции-над-шаблонными-пакетами" class="slide section level2">
 <h1>Операции над шаблонными пакетами</h1>
 <div class="sourceCode" id="cb8"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">template</span> &lt;<span class="kw">typename</span>... bases&gt;</span>
 <span id="cb8-2"><a href="#cb8-2"></a><span class="kw">struct</span> X : bases... {</span>
@@ -419,7 +437,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb9-3"><a href="#cb9-3"></a>{</span>
 <span id="cb9-4"><a href="#cb9-4"></a>    (v.push_back(<span class="bu">std::</span>forward&lt;Args&gt;(args)), ...);</span>
 <span id="cb9-5"><a href="#cb9-5"></a>}</span></code></pre></div>
-</div><div id="о-лямбда-выражениях" class="slide section level2">
+</div>
+<div id="о-лямбда-выражениях" class="slide section level2">
 <h1>О лямбда-выражениях</h1>
 <p><code class="sourceCode cpp"><span class="kw">auto</span> f = [a = <span class="dv">77</span>, &amp;b](<span class="kw">auto</span> x) <span class="at">mutable</span> -&gt; <span class="dt">int</span> { b = x - <span class="dv">78</span>; <span class="cf">return</span> a++; }</code></p>
 <ul>
@@ -442,7 +461,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Результат лямбды можно не писать, он будет выведен сам (кроме ссылок)</p></li>
 </ul>
 </div>
-<div id="следующие-стандарты" class="title-slide slide section level1"><h1>Следующие стандарты</h1></div><div id="концепты-и-ограничители" class="slide section level2">
+<div id="следующие-стандарты" class="title-slide slide section level1"><h1>Следующие стандарты</h1></div>
+<div id="концепты-и-ограничители" class="slide section level2">
 <h1>Концепты и ограничители</h1>
 <div class="sourceCode" id="cb11"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb11-1"><a href="#cb11-1"></a><span class="co">// концепт</span></span>
 <span id="cb11-2"><a href="#cb11-2"></a><span class="kw">template</span>&lt;<span class="kw">typename</span> T&gt;</span>
@@ -461,7 +481,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>По сигнатуре можно понять, какой тип данных ожидает функция</li>
 <li>Ещё один способ ужесточения типизации</li>
 </ul>
-</div><div id="новое-в-stl" class="slide section level2">
+</div>
+<div id="новое-в-stl" class="slide section level2">
 <h1>Новое в STL</h1>
 <ul>
 <li><code class="sourceCode cpp"><span class="bu">std::</span>bit_cast</code> — замена <code class="sourceCode cpp"><span class="kw">reinterpret_cast</span></code></li>

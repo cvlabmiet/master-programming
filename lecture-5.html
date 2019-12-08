@@ -16,19 +16,18 @@
       div.column{display: inline-block; vertical-align: top; width: 50%;}
   </style>
   <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -48,7 +47,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -107,7 +106,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </p>
   <p class="date">2018-09-24</p>
 </div>
-<div id="основные-понятия-тестирования" class="title-slide slide section level1"><h1>Основные понятия тестирования</h1></div><div id="типы-тестирования" class="slide section level2">
+<div id="основные-понятия-тестирования" class="title-slide slide section level1"><h1>Основные понятия тестирования</h1></div>
+<div id="типы-тестирования" class="slide section level2">
 <h1>Типы тестирования</h1>
 <ul>
 <li>Тестирование — это та же программа со своим кодом</li>
@@ -118,7 +118,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Интеграционное тестирование</li>
 <li>TDD, BDD</li>
 </ul>
-</div><div id="терминология" class="slide section level2">
+</div>
+<div id="терминология" class="slide section level2">
 <h1>Терминология</h1>
 <ul>
 <li>Feature — предлагаемая функциональность</li>
@@ -135,7 +136,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Fixture, Suite, Case — способы иерархического представления тестов</li>
 </ul>
 </div>
-<div id="модульное-тестирование" class="title-slide slide section level1"><h1>Модульное тестирование</h1></div><div id="особенности-модульного-тестирования" class="slide section level2">
+<div id="модульное-тестирование" class="title-slide slide section level1"><h1>Модульное тестирование</h1></div>
+<div id="особенности-модульного-тестирования" class="slide section level2">
 <h1>Особенности модульного тестирования</h1>
 <ul>
 <li>Тестирование одного модуля без каких-либо зависимостей от других модулей</li>
@@ -144,7 +146,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Возможнность регрессионного тестирования</li>
 <li>CUnit, Boost test, GTest, Catch, …</li>
 </ul>
-</div><div id="пример-юнит-теста" class="slide section level2">
+</div>
+<div id="пример-юнит-теста" class="slide section level2">
 <h1>Пример юнит-теста</h1>
 <div class="sourceCode" id="cb1"><pre class="sourceCode cxx"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1"></a><span class="pp">#include </span><span class="im">&lt;gtest/gtest.h&gt;</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a></span>
@@ -177,7 +180,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-29"><a href="#cb1-29"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; img.size(); ++i)</span>
 <span id="cb1-30"><a href="#cb1-30"></a>        EXPECT_NEAR(restored[i], img[i], <span class="dv">1</span>) &lt;&lt; <span class="st">&quot;Index &quot;</span> &lt;&lt; i;</span>
 <span id="cb1-31"><a href="#cb1-31"></a>}</span></code></pre></div>
-</div><div id="состав-модульного-теста" class="slide section level2">
+</div>
+<div id="состав-модульного-теста" class="slide section level2">
 <h1>Состав модульного теста</h1>
 <ul>
 <li>ASSERT, EXPECT — примитивы сравнения (ядро теста)</li>
@@ -188,7 +192,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Система оповещения пользователя об ошибках</li>
 <li>Разные уровни тестов необходимы для организации генерации тестируемых данных</li>
 </ul>
-</div><div id="схема-иерархии-модульных-тестов" class="slide section level2">
+</div>
+<div id="схема-иерархии-модульных-тестов" class="slide section level2">
 <h1>Схема иерархии модульных тестов</h1>
 <pre class=""><code>TestSuite(S0)
     constructor
@@ -211,7 +216,8 @@ TestSuite(S1)
     destructor
 ...</code></pre>
 </div>
-<div id="пример-фреймворка-модульного-тестирования" class="title-slide slide section level1"><h1>Пример фреймворка модульного тестирования</h1></div><div id="движок-тестирования-catch" class="slide section level2">
+<div id="пример-фреймворка-модульного-тестирования" class="title-slide slide section level1"><h1>Пример фреймворка модульного тестирования</h1></div>
+<div id="движок-тестирования-catch" class="slide section level2">
 <h1>Движок тестирования Catch</h1>
 <ul>
 <li><a href="https://github.com/catchorg/Catch2">https://github.com/catchorg/Catch2</a></li>
@@ -225,11 +231,13 @@ TestSuite(S1)
 <li>Поддержка BDD-стиля тестирования</li>
 <li>Привычные методы сравнения</li>
 </ul>
-</div><div id="примеры" class="slide section level2">
+</div>
+<div id="примеры" class="slide section level2">
 <h1>Примеры</h1>
 <p><a href="https://github.com/catchorg/Catch2/tree/master/examples">https://github.com/catchorg/Catch2/tree/master/examples</a></p>
 </div>
-<div id="подходы-разработки-через-тестирование" class="title-slide slide section level1"><h1>Подходы разработки через тестирование</h1></div><div id="test-driven-development" class="slide section level2">
+<div id="подходы-разработки-через-тестирование" class="title-slide slide section level1"><h1>Подходы разработки через тестирование</h1></div>
+<div id="test-driven-development" class="slide section level2">
 <h1>Test Driven Development</h1>
 <ul>
 <li>Разработка через тестирование</li>
@@ -238,7 +246,8 @@ TestSuite(S1)
 <li>Является идеалогией, а не типом тестирования</li>
 <li>Тесты всегда свежие, так как сначала пишутся именно они</li>
 </ul>
-</div><div id="интеграционное-тестирование" class="slide section level2">
+</div>
+<div id="интеграционное-тестирование" class="slide section level2">
 <h1>Интеграционное тестирование</h1>
 <ul>
 <li>Тестирование целиком</li>
@@ -251,7 +260,8 @@ TestSuite(S1)
 <li>Неустойчиво к ошибкам компонент системы: ошибки могут интерферировать</li>
 <li>Найденная уязвимость должна приводить к возникновению дополнительных модульных тестов</li>
 </ul>
-</div><div id="mock-stubs" class="slide section level2">
+</div>
+<div id="mock-stubs" class="slide section level2">
 <h1>Mock &amp; stubs</h1>
 <ul>
 <li>Имитаторы и заглушки</li>
@@ -267,7 +277,8 @@ TestSuite(S1)
 <li>Плохо автоматизируется</li>
 <li>Подходит для нереализованных или недоделанных компонентов системы</li>
 </ul>
-</div><div id="тесты-на-устойчивость" class="slide section level2">
+</div>
+<div id="тесты-на-устойчивость" class="slide section level2">
 <h1>Тесты на устойчивость</h1>
 <ul>
 <li>Стресс-тесты</li>
@@ -275,7 +286,8 @@ TestSuite(S1)
 <li>Показывает насколько система устройчива, а не степень её отладки</li>
 <li>В большинстве случаев ошибки являются архитектурными</li>
 </ul>
-</div><div id="нагрузочное-тестирование" class="slide section level2">
+</div>
+<div id="нагрузочное-тестирование" class="slide section level2">
 <h1>Нагрузочное тестирование</h1>
 <ul>
 <li>Бенчмарки (benchmark)</li>
