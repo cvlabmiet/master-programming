@@ -103,7 +103,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </p>
   <p class="date">2018-11-06</p>
 </div>
-<div id="знакомство-с-boostspirit" class="title-slide slide section level1"><h1>Знакомство с boost::spirit</h1></div>
+<div id="знакомство-с-boostspirit" class="title-slide slide section level1">
+<h1>Знакомство с boost::spirit</h1>
+
+</div>
 <div id="из-чего-состоит-грамматика-языка" class="slide section level2">
 <h1>Из чего состоит грамматика языка?</h1>
 <ul>
@@ -232,7 +235,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Использование пользовательских функция для определения успешного парсинга (<code>on_success</code>)</li>
 </ul>
 </div>
-<div id="примеры-парсеров" class="title-slide slide section level1"><h1>Примеры парсеров</h1></div>
+
+<div id="примеры-парсеров" class="title-slide slide section level1">
+<h1>Примеры парсеров</h1>
+
+</div>
 <div id="последовательный-парсинг" class="slide section level2">
 <h1>Последовательный парсинг</h1>
 <div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">namespace</span> x3 = <span class="ex">boost::</span>spirit<span class="ex">::</span>x3;</span>
@@ -256,7 +263,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb4-2"><a href="#cb4-2"></a>          = x3::alpha &gt;&gt; *x3::alnum; <span class="co">// переменные в C-стиле</span></span>
 <span id="cb4-3"><a href="#cb4-3"></a><span class="kw">auto</span> quote = <span class="ch">&#39;&quot;&#39;</span> &gt;&gt; x3::lexeme[*(~x3::<span class="va">char_</span>(<span class="ch">&#39;&quot;&#39;</span>))] &gt;&gt; <span class="ch">&#39;&quot;&#39;</span>; <span class="co">// строковые значения в кавычках</span></span></code></pre></div>
 </div>
-<div id="атрибуты" class="title-slide slide section level1"><h1>Атрибуты</h1></div>
+
+<div id="атрибуты" class="title-slide slide section level1">
+<h1>Атрибуты</h1>
+
+</div>
 <div id="получение-результата-парсинга" class="slide section level2">
 <h1>Получение результата парсинга</h1>
 <ul>
@@ -337,7 +348,11 @@ a: string, b: string → (a | b): variant&lt;string, string&gt; → string
 a: string, b: unused, c: string → (a &gt;&gt; b &gt;&gt; c): tuple&lt;string, string&gt;
 a: pair&lt;string, string&gt;, b: unused → (a % b): vector&lt;pair&lt;string, string&gt;&gt; → map&lt;string, string&gt;</code></pre>
 </div>
-<div id="построение-грамматик" class="title-slide slide section level1"><h1>Построение грамматик</h1></div>
+
+<div id="построение-грамматик" class="title-slide slide section level1">
+<h1>Построение грамматик</h1>
+
+</div>
 <div id="что-нужно-для-полного-построения-правила" class="slide section level2">
 <h1>Что нужно для полного построения правила?</h1>
 <ol>
