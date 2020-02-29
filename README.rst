@@ -1,9 +1,6 @@
 О проекте
 =========
 
-.. image:: https://circleci.com/gh/cvlabmiet/master-programming.svg?style=svg
-    :target: https://circleci.com/gh/cvlabmiet/master-programming
-
 Лекции по программированию для студентов НИУ МИЭТ.
 Описание лабораторных работ по курсу можно найти в `master-programming-task <tasks/index.rst>`_.
 
