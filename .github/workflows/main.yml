@@ -15,17 +15,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    - uses: cachix/install-nix-action@v6
+    - uses: cachix/install-nix-action@v10
+      with:
+        nix_path: nixpkgs=channel:nixos-20.03:nixpkgs-overlays=https://api.github.com/repos/igsha/nix-overlays/tarball/ac34ce1
     - name: Build target
       run: |
         cmake -B build
         cmake --build build -j
         mkdir deploy
         cp build/**/*.html build/*.html deploy/
-      shell: env nix-shell
-        -I nixpkgs=channel:nixos-19.09
-        -I nixpkgs-overlays=https://api.github.com/repos/igsha/nix-overlays/tarball/master
-        --run "bash -e {0}"
+      shell: env nix-shell --run "bash -e {0}"
     - uses: JamesIves/github-pages-deploy-action@releases/v3
       if: github.event_name == 'push' && github.ref == 'refs/heads/master'
       with:

@@ -2,7 +2,7 @@ with import <nixpkgs> {};
 
 mkShell rec {
   name = "master-programming";
-  nativeBuildInputs = [ cmake pandoc pandoc-crossref docproc graphviz plantuml PandocElements ];
+  nativeBuildInputs = [ cmake pandoc docproc graphviz plantuml PandocElements ];
 
   LANG = "C.UTF-8";
 
