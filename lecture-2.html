@@ -1,15 +1,14 @@
-<!DOCTYPE html>
-<html lang="ru-RU">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru-RU" xml:lang="ru-RU">
 <head>
-  <meta charset="utf-8">
-  <meta name="generator" content="pandoc">
-  <meta name="author" content="Игорь Шаронов">
-  <meta name="dcterms.date" content="2018-09-09">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Игорь Шаронов" />
+  <meta name="date" content="2018-09-09" />
   <title>Master Programming</title>
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="https://rawgit.com/hakimel/reveal.js/master/css/reveal.css" data-external="1">
   <style type="text/css">
       code{white-space: pre-wrap;}
       span.smallcaps{font-variant: small-caps;}
@@ -80,18 +79,8 @@ code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="https://rawgit.com/hakimel/reveal.js/master/css/theme/serif.css" id="theme" data-external="1">
-  <!-- Printing and PDF exports -->
-  <script>
-    var link = document.createElement( 'link' );
-    link.rel = 'stylesheet';
-    link.type = 'text/css';
-    link.href = window.location.search.match( /print-pdf/gi ) ? 'https://rawgit.com/hakimel/reveal.js/master/css/print/pdf.css' : 'https://rawgit.com/hakimel/reveal.js/master/css/print/paper.css';
-    document.getElementsByTagName( 'head' )[0].appendChild( link );
-  </script>
-  <!--[if lt IE 9]>
-  <script src="https://rawgit.com/hakimel/reveal.js/master/lib/js/html5shiv.js"></script>
-  <![endif]-->
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" data-external="1"/>
   <style type="text/css">
       .reveal h1 { font-size: 2em; }
       .reveal h2 { font-size: 2em; }
@@ -99,39 +88,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       .reveal pre code { max-height: 600px; }
       div.column33 {display: inline-block; vertical-align: top; width: 32%;}
       div.column66 {display: inline-block; vertical-align: top; width: 66%;}
-      div.column50 {display: inline-block; vertical-align: top; width: 49%;}
+      div.column50 {display: inline-block; vertical-align: top; width: 45%;}
       .strike {text-decoration: line-through;}
       table, th, td {
           border: 1px solid black;
       }
   </style>
+  <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
+    charset="utf-8" type="text/javascript" data-external="1"></script>
 </head>
 <body>
-  <div class="reveal">
-    <div class="slides">
-
-<section id="title-slide">
+<div class="slide titlepage">
   <h1 class="title">Master programming</h1>
   <p class="subtitle">Лекция №2 (Работа с git)</p>
-  <p class="author">Игорь Шаронов</p>
+  <p class="author">
+Игорь Шаронов
+  </p>
   <p class="date">2018-09-09</p>
-</section>
-
-<section>
-<section id="система-контроля-версий-git" class="title-slide slide level1">
+</div>
+<div id="система-контроля-версий-git" class="title-slide slide section level1">
 <h1>Система контроля версий git</h1>
 
-</section>
-<section id="основные-ссылки" class="slide level2">
-<h2>Основные ссылки</h2>
+</div>
+<div id="основные-ссылки" class="slide section level2">
+<h1>Основные ссылки</h1>
 <ul>
 <li><a href="https://git-scm.com">https://git-scm.com</a> — основной сайт с документацией по git</li>
 <li><a href="https://try.github.io">https://try.github.io</a> — онлайн путеводитель по git-у</li>
 <li><a href="https://githowto.com/ru">https://githowto.com/ru</a> — ещё один путеводитель</li>
 </ul>
-</section>
-<section id="предыстория" class="slide level2">
-<h2>Предыстория</h2>
+</div>
+<div id="предыстория" class="slide section level2">
+<h1>Предыстория</h1>
 <ul>
 <li><p>diff — утилита для выяснения различий</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb1-1"><a href="#cb1-1"></a>$ diff -u lecture-1.html lecture-2.html | head -n 20</span>
@@ -152,14 +140,14 @@ lines from the original file
 new lines from the patch
 &gt;&gt;&gt;&gt;&gt;&gt;&gt;</code></pre></li>
 </ul>
-</section></section>
-<section>
-<section id="как-устроен-git" class="title-slide slide level1">
+</div>
+
+<div id="как-устроен-git" class="title-slide slide section level1">
 <h1>Как устроен git</h1>
 
-</section>
-<section id="внутренности-git-а" class="slide level2">
-<h2>Внутренности git-а</h2>
+</div>
+<div id="внутренности-git-а" class="slide section level2">
+<h1>Внутренности git-а</h1>
 <ul>
 <li>Директория .git/
 <ul>
@@ -172,9 +160,9 @@ new lines from the patch
 <li>Виды ссылок: branch, tag, remotes</li>
 <li>Коммит: tree-объект, автор, коммитер, сообщение, parent</li>
 </ul>
-</section>
-<section id="хеш-суммы" class="slide level2">
-<h2>Хеш-суммы</h2>
+</div>
+<div id="хеш-суммы" class="slide section level2">
+<h1>Хеш-суммы</h1>
 <ul>
 <li><p>crc32</p></li>
 <li><p>md5</p></li>
@@ -187,14 +175,14 @@ new lines from the patch
 <span id="cb3-4"><a href="#cb3-4"></a><span class="ex">e774d0115e01e1b735a7a1a9a3a85f09</span>  -</span></code></pre></div></li>
 <li><p>Коллизии хешей</p></li>
 </ul>
-</section></section>
-<section>
-<section id="повседневное-использование" class="title-slide slide level1">
+</div>
+
+<div id="повседневное-использование" class="title-slide slide section level1">
 <h1>Повседневное использование</h1>
 
-</section>
-<section id="основные-команды" class="slide level2">
-<h2>Основные команды</h2>
+</div>
+<div id="основные-команды" class="slide section level2">
+<h1>Основные команды</h1>
 <ul>
 <li><code>git status</code>: unstaged, staged, committed</li>
 <li><code>git add &lt;file&gt;</code> — добавление <code>file</code> в <code>staged</code></li>
@@ -207,9 +195,9 @@ new lines from the patch
 <li><code>git push --force</code> — принудительная загрузка изменений (потеря данных)</li>
 <li><code>git diff [&lt;commit&gt;]</code> — просмотр изменений</li>
 </ul>
-</section>
-<section id="пример-1-добавление-нескольких-remote" class="slide level2">
-<h2>Пример №1: добавление нескольких remote</h2>
+</div>
+<div id="пример-1-добавление-нескольких-remote" class="slide section level2">
+<h1>Пример №1: добавление нескольких remote</h1>
 <div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a>$ <span class="fu">git</span> clone git@github.com:cvlabmiet/master-programming</span>
 <span id="cb4-2"><a href="#cb4-2"></a>$ <span class="bu">cd</span> master-programming</span>
 <span id="cb4-3"><a href="#cb4-3"></a><span class="ex">master-programming</span> $ git remote add miet git@git.miet.ru:cvlab/master-programming</span>
@@ -224,9 +212,9 @@ new lines from the patch
 <span id="cb5-8"><a href="#cb5-8"></a>    <span class="kw">(</span><span class="ex">use</span> <span class="st">&quot;git add &lt;file&gt;...&quot;</span> to update what will be committed<span class="kw">)</span></span>
 <span id="cb5-9"><a href="#cb5-9"></a>    <span class="kw">(</span><span class="ex">use</span> <span class="st">&quot;git checkout -- &lt;file&gt;...&quot;</span> to discard changes in working directory<span class="kw">)</span></span>
 <span id="cb5-10"><a href="#cb5-10"></a>    <span class="ex">modified</span>:   lecture-3.md</span></code></pre></div>
-</section>
-<section id="пример-2-создание-локального-репозитория" class="slide level2">
-<h2>Пример №2: создание локального репозитория</h2>
+</div>
+<div id="пример-2-создание-локального-репозитория" class="slide section level2">
+<h1>Пример №2: создание локального репозитория</h1>
 <div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1"></a>$ <span class="fu">mkdir</span> /tmp/server</span>
 <span id="cb6-2"><a href="#cb6-2"></a>$ <span class="fu">git</span> init --bare /tmp/server/repo</span>
 <span id="cb6-3"><a href="#cb6-3"></a>$ <span class="bu">cd</span> /tmp/123/repo/</span>
@@ -239,21 +227,21 @@ new lines from the patch
 <span id="cb6-10"><a href="#cb6-10"></a><span class="ex">repo</span> (master#) $ <span class="fu">git</span> ci -am <span class="st">&quot;Initial commit&quot;</span></span>
 <span id="cb6-11"><a href="#cb6-11"></a><span class="ex">repo</span> (master) $ <span class="fu">git</span> remote add origin /tmp/server/repo</span>
 <span id="cb6-12"><a href="#cb6-12"></a><span class="ex">repo</span> (master) $ <span class="fu">git</span> push origin master:master</span></code></pre></div>
-</section>
-<section id="пример-3-сравнение-с-originmaster" class="slide level2">
-<h2>Пример №3: сравнение с origin/master</h2>
+</div>
+<div id="пример-3-сравнение-с-originmaster" class="slide section level2">
+<h1>Пример №3: сравнение с origin/master</h1>
 <div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1"></a>$ <span class="fu">git</span> fetch origin</span>
 <span id="cb7-2"><a href="#cb7-2"></a>$ <span class="fu">git</span> diff master origin/master</span>
 <span id="cb7-3"><a href="#cb7-3"></a>$ <span class="fu">git</span> show origin/master:lecture-3.md <span class="kw">|</span> <span class="fu">less</span></span>
 <span id="cb7-4"><a href="#cb7-4"></a>$ <span class="fu">git</span> co origin/master -b new-feature</span></code></pre></div>
-</section></section>
-<section>
-<section id="объединение-веток" class="title-slide slide level1">
+</div>
+
+<div id="объединение-веток" class="title-slide slide section level1">
 <h1>Объединение веток</h1>
 
-</section>
-<section id="разрешение-конфликтов" class="slide level2">
-<h2>Разрешение конфликтов</h2>
+</div>
+<div id="разрешение-конфликтов" class="slide section level2">
+<h1>Разрешение конфликтов</h1>
 <ul>
 <li>LOCAL — локальные изменения текущей ветки</li>
 <li>REMOTE — изменения на сервере</li>
@@ -267,9 +255,9 @@ new lines from the patch
 ├───────┴──────┴────────┤   │ MERGED │ REMOTE │
 │        MERGED         │   │        │        │
 └───────────────────────┘   └────────┴────────┘</code></pre>
-</section>
-<section id="стратегии-объединения-веток" class="slide level2">
-<h2>Стратегии объединения веток</h2>
+</div>
+<div id="стратегии-объединения-веток" class="slide section level2">
+<h1>Стратегии объединения веток</h1>
 <div class="column50">
 <p>Хотим объединить ветки topic и master:</p>
 <pre><code>|       A---B---C topic
@@ -292,56 +280,6 @@ new lines from the patch
 | D---E---F---G master</code></pre></li>
 </ul>
 </div>
-</section></section>
-    </div>
-  </div>
-
-  <script src="https://rawgit.com/hakimel/reveal.js/master/lib/js/head.min.js" data-external="1"></script>
-  <script src="https://rawgit.com/hakimel/reveal.js/master/js/reveal.js" data-external="1"></script>
-
-  <script>
-
-      // Full list of configuration options available at:
-      // https://github.com/hakimel/reveal.js#configuration
-      Reveal.initialize({
-        // Display the page number of the current slide
-        slideNumber: true,
-        // Push each slide change to the browser history
-        history: false,
-        // Vertical centering of slides
-        center: false,
-        // Transition style
-        transition: 'cube', // none/fade/slide/convex/concave/zoom
-        // The "normal" size of the presentation, aspect ratio will be preserved
-        // when the presentation is scaled to fit different resolutions. Can be
-        // specified using percentage units.
-        width: '95%',
-        height: '95%',
-        math: {
-          mathjax: '',
-          config: 'TeX-AMS_HTML-full',
-          tex2jax: {
-            inlineMath: [['\\(','\\)']],
-            displayMath: [['\\[','\\]']],
-            balanceBraces: true,
-            processEscapes: false,
-            processRefs: true,
-            processEnvironments: true,
-            preview: 'TeX',
-            skipTags: ['script','noscript','style','textarea','pre','code'],
-            ignoreClass: 'tex2jax_ignore',
-            processClass: 'tex2jax_process'
-          },
-        },
-
-        // Optional reveal.js plugins
-        dependencies: [
-          { src: 'https://rawgit.com/hakimel/reveal.js/master/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-          { src: 'https://rawgit.com/hakimel/reveal.js/master/plugin/zoom-js/zoom.js', async: true },
-          { src: 'https://rawgit.com/hakimel/reveal.js/master/plugin/math/math.js', async: true },
-          { src: 'https://rawgit.com/hakimel/reveal.js/master/plugin/notes/notes.js', async: true }
-        ]
-      });
-    </script>
-    </body>
+</div>
+</body>
 </html>

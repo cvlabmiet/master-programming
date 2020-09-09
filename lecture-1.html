@@ -1,15 +1,14 @@
-<!DOCTYPE html>
-<html lang="ru-RU">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru-RU" xml:lang="ru-RU">
 <head>
-  <meta charset="utf-8">
-  <meta name="generator" content="pandoc">
-  <meta name="author" content="Игорь Шаронов">
-  <meta name="dcterms.date" content="2018-09-05">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Игорь Шаронов" />
+  <meta name="date" content="2018-09-05" />
   <title>Master Programming</title>
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="https://rawgit.com/hakimel/reveal.js/master/css/reveal.css" data-external="1">
   <style type="text/css">
       code{white-space: pre-wrap;}
       span.smallcaps{font-variant: small-caps;}
@@ -80,18 +79,8 @@ code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="https://rawgit.com/hakimel/reveal.js/master/css/theme/serif.css" id="theme" data-external="1">
-  <!-- Printing and PDF exports -->
-  <script>
-    var link = document.createElement( 'link' );
-    link.rel = 'stylesheet';
-    link.type = 'text/css';
-    link.href = window.location.search.match( /print-pdf/gi ) ? 'https://rawgit.com/hakimel/reveal.js/master/css/print/pdf.css' : 'https://rawgit.com/hakimel/reveal.js/master/css/print/paper.css';
-    document.getElementsByTagName( 'head' )[0].appendChild( link );
-  </script>
-  <!--[if lt IE 9]>
-  <script src="https://rawgit.com/hakimel/reveal.js/master/lib/js/html5shiv.js"></script>
-  <![endif]-->
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" data-external="1"/>
   <style type="text/css">
       .reveal h1 { font-size: 2em; }
       .reveal h2 { font-size: 2em; }
@@ -99,31 +88,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       .reveal pre code { max-height: 600px; }
       div.column33 {display: inline-block; vertical-align: top; width: 32%;}
       div.column66 {display: inline-block; vertical-align: top; width: 66%;}
-      div.column50 {display: inline-block; vertical-align: top; width: 49%;}
+      div.column50 {display: inline-block; vertical-align: top; width: 45%;}
       .strike {text-decoration: line-through;}
       table, th, td {
           border: 1px solid black;
       }
   </style>
+  <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
+    charset="utf-8" type="text/javascript" data-external="1"></script>
 </head>
 <body>
-  <div class="reveal">
-    <div class="slides">
-
-<section id="title-slide">
+<div class="slide titlepage">
   <h1 class="title">Master programming</h1>
   <p class="subtitle">Лекция №1 (Вводная)</p>
-  <p class="author">Игорь Шаронов</p>
+  <p class="author">
+Игорь Шаронов
+  </p>
   <p class="date">2018-09-05</p>
-</section>
-
-<section>
-<section id="введение" class="title-slide slide level1">
+</div>
+<div id="введение" class="title-slide slide section level1">
 <h1>Введение</h1>
 
-</section>
-<section id="из-чего-состоит-курс" class="slide level2">
-<h2>Из чего состоит курс</h2>
+</div>
+<div id="из-чего-состоит-курс" class="slide section level2">
+<h1>Из чего состоит курс</h1>
 <ul>
 <li>Вводные понятия</li>
 <li>Система контроля версий</li>
@@ -136,46 +124,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Разработка в команде</li>
 <li><em>Домашняя лабораторная работа</em></li>
 </ul>
-</section>
-<section id="план-лекции" class="slide level2">
-<h2>План лекции</h2>
-<div>
+</div>
+<div id="план-лекции" class="slide section level2">
+<h1>План лекции</h1>
 <ol>
-<li class="fragment"><a href="#/операционная-система">Операционная система</a></li>
-<li class="fragment"><a href="#/редакторы">Редакторы</a></li>
-<li class="fragment"><a href="#/системы-сборки">Системы сборки</a></li>
-<li class="fragment"><a href="#/отладка-и-тестирование">Отладка и тестирование</a></li>
-<li class="fragment"><a href="#/системы-контроля-версий">Системы контроля версий</a></li>
-<li class="fragment"><a href="#/программирование">Программирование</a></li>
-<li class="fragment"><a href="#/заключение">Заключение</a></li>
+<li>Операционная система</li>
+<li>Редакторы</li>
+<li>Системы сборки</li>
+<li>Отладка и тестирование</li>
+<li>Системы контроля версий</li>
+<li>Программирование</li>
+<li>Заключение</li>
 </ol>
 </div>
-</section></section>
-<section>
-<section id="операционная-система" class="title-slide slide level1">
+
+<div id="операционная-система" class="title-slide slide section level1">
 <h1>Операционная система</h1>
 
-</section>
-<section id="основные-компоненты-ос" class="slide level2">
-<h2>Основные компоненты ОС</h2>
+</div>
+<div id="основные-компоненты-ос" class="slide section level2">
+<h1>Основные компоненты ОС</h1>
 <ul>
 <li>Планировщик задач</li>
 <li>Распределение памяти</li>
 <li>Изоляция (страничная адресация)</li>
 <li>Ресурсы</li>
 </ul>
-</section>
-<section id="объекты-ядра-ос" class="slide level2">
-<h2>Объекты ядра ОС</h2>
+</div>
+<div id="объекты-ядра-ос" class="slide section level2">
+<h1>Объекты ядра ОС</h1>
 <ul>
 <li>Процессы, потоки</li>
 <li>Файлы, каналы (pipes)</li>
 <li>Семафоры, мьютексы</li>
 <li>Проекции в память (mmap)</li>
 </ul>
-</section>
-<section id="linux" class="slide level2">
-<h2>Linux</h2>
+</div>
+<div id="linux" class="slide section level2">
+<h1>Linux</h1>
 <ul>
 <li>Основан на Unix</li>
 <li>Только ядро и компилятор</li>
@@ -184,9 +170,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a>$ <span class="fu">ls</span> /</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="ex">bin</span>  boot  dev  etc  home include lib  lib64 proc  root  run  sys  tmp  usr  var</span></code></pre></div>
-</section>
-<section id="жизнь-в-консоли" class="slide level2">
-<h2>Жизнь в консоли</h2>
+</div>
+<div id="жизнь-в-консоли" class="slide section level2">
+<h1>Жизнь в консоли</h1>
 <ul>
 <li>GNU Coreutils
 <ul>
@@ -202,9 +188,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>GNU Debugger</li>
 <li>Базовые утилиты: grep, sed (1974 г.), awk (1977 г.), bash, perl, python</li>
 </ul>
-</section>
-<section id="linux-в-использовании" class="slide level2">
-<h2>Linux в использовании</h2>
+</div>
+<div id="linux-в-использовании" class="slide section level2">
+<h1>Linux в использовании</h1>
 <ul>
 <li>xorg-server, протокол X11</li>
 <li>window-manager: оконный, тайловый</li>
@@ -218,14 +204,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li>драйверы в режиме пользователя: fuse, cuse, uio</li>
 </ul>
-</section></section>
-<section>
-<section id="редакторы" class="title-slide slide level1">
+</div>
+
+<div id="редакторы" class="title-slide slide section level1">
 <h1>Редакторы</h1>
 
-</section>
-<section id="популярные-редакторы" class="slide level2">
-<h2>Популярные редакторы</h2>
+</div>
+<div id="популярные-редакторы" class="slide section level2">
+<h1>Популярные редакторы</h1>
 <ul>
 <li>ed (1971 г.)</li>
 <li>sed, vi, vim, neovim</li>
@@ -235,9 +221,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>gedit</li>
 <li>IDE <span class="math inline">≠</span> Editor</li>
 </ul>
-</section>
-<section id="процесс-редактирования" class="slide level2">
-<h2>Процесс редактирования</h2>
+</div>
+<div id="процесс-редактирования" class="slide section level2">
+<h1>Процесс редактирования</h1>
 <ol>
 <li>Перемещение по тексту, поиск, скроллинг (view-mode)</li>
 <li>Разделение области просмотра/редактирования</li>
@@ -247,9 +233,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Поддержка пользовательских плагинов</li>
 <li><em>Использование уже готового функционала сторонних программ</em></li>
 </ol>
-</section>
-<section id="пример-vim" class="slide level2">
-<h2>Пример: Vim</h2>
+</div>
+<div id="пример-vim" class="slide section level2">
+<h1>Пример: Vim</h1>
 <ul>
 <li>3 режима: normal, insert (replace), visual</li>
 <li>Программируемая панель</li>
@@ -261,25 +247,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Отображение дерева функций</li>
 </ul></li>
-</ul>
-</section>
-<section id="пример-vim-продолжение" class="slide level2">
-<h2>Пример: Vim (продолжение)</h2>
-<ul>
 <li>Автодополнение (несколько видов)</li>
 <li>Запуск интерактивной оболочки вместо буфера</li>
 <li>Встраиваемое GUI</li>
 <li>Возможность использования без GUI</li>
 <li><strong>Холивары: neovim</strong></li>
 </ul>
-</section></section>
-<section>
-<section id="системы-сборки" class="title-slide slide level1">
+</div>
+
+<div id="системы-сборки" class="title-slide slide section level1">
 <h1>Системы сборки</h1>
 
-</section>
-<section id="известные-системы-сборки" class="slide level2">
-<h2>Известные системы сборки</h2>
+</div>
+<div id="известные-системы-сборки" class="slide section level2">
+<h1>Известные системы сборки</h1>
 <ul>
 <li>make (1977 г., Bell Labs)</li>
 <li>ninja</li>
@@ -288,9 +269,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>cmake</li>
 <li><span class="strike">свой велосипед</span> НЕТ!</li>
 </ul>
-</section>
-<section id="makefile" class="slide level2">
-<h2>Makefile</h2>
+</div>
+<div id="makefile" class="slide section level2">
+<h1>Makefile</h1>
 <div class="sourceCode" id="cb2"><pre class="sourceCode makefile"><code class="sourceCode makefile"><span id="cb2-1"><a href="#cb2-1"></a><span class="dt">SRC </span><span class="ch">:=</span><span class="st"> </span><span class="ch">$(</span><span class="kw">wildcard</span><span class="st"> src/*.cpp</span><span class="ch">)</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a><span class="dt">HDR </span><span class="ch">:=</span><span class="st"> </span><span class="ch">$(</span><span class="kw">wildcard</span><span class="st"> include/*.h</span><span class="ch">)</span></span>
 <span id="cb2-3"><a href="#cb2-3"></a><span class="dt">OBJ </span><span class="ch">:=</span><span class="st"> </span><span class="ch">$(</span><span class="kw">patsubst</span><span class="st"> src/%.cpp</span><span class="kw">,</span><span class="st">build/%.o</span><span class="kw">,</span><span class="ch">$(</span><span class="dt">SRC</span><span class="ch">))</span></span>
@@ -308,9 +289,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-15"><a href="#cb2-15"></a></span>
 <span id="cb2-16"><a href="#cb2-16"></a><span class="dv">clean:</span></span>
 <span id="cb2-17"><a href="#cb2-17"></a>»»»»@rm -f <span class="ch">$(</span><span class="dt">OBJ</span><span class="ch">)</span> app *.a</span></code></pre></div>
-</section>
-<section id="cmake" class="slide level2">
-<h2>CMake</h2>
+</div>
+<div id="cmake" class="slide section level2">
+<h1>CMake</h1>
 <ul>
 <li>Шаг конфигурации (аналогичен старому подходу <code>./configure</code>)</li>
 <li>Сборка привычными инструментами (<code>make</code>, <code>ninja</code>, <code>MSBuild</code>, …)</li>
@@ -319,14 +300,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Тьюринг-полный скриптовый язык</li>
 <li>Абстрагирование от операционной системы</li>
 </ul>
-</section></section>
-<section>
-<section id="отладка-и-тестирование" class="title-slide slide level1">
+</div>
+
+<div id="отладка-и-тестирование" class="title-slide slide section level1">
 <h1>Отладка и тестирование</h1>
 
-</section>
-<section id="отладка-программ" class="slide level2">
-<h2>Отладка программ</h2>
+</div>
+<div id="отладка-программ" class="slide section level2">
+<h1>Отладка программ</h1>
 <ul>
 <li>gdb</li>
 <li>nm, readelf, objdump</li>
@@ -334,9 +315,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>gprof, gcov</li>
 <li>логирование</li>
 </ul>
-</section>
-<section id="тестирование" class="slide level2">
-<h2>Тестирование</h2>
+</div>
+<div id="тестирование" class="slide section level2">
+<h1>Тестирование</h1>
 <ul>
 <li>TDD, BDD — способы написания программы</li>
 <li>Юнит-тестирование → интеграционное тестирование → продакшен-тестирование</li>
@@ -345,14 +326,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Тестовые данные: генерация на месте, хранение в репозитории или брать удалённо с сервера?</li>
 <li>Границы между разными формами тестирования</li>
 </ul>
-</section></section>
-<section>
-<section id="системы-контроля-версий" class="title-slide slide level1">
+</div>
+
+<div id="системы-контроля-версий" class="title-slide slide section level1">
 <h1>Системы контроля версий</h1>
 
-</section>
-<section id="разновидности" class="slide level2">
-<h2>Разновидности</h2>
+</div>
+<div id="разновидности" class="slide section level2">
+<h1>Разновидности</h1>
 <ul>
 <li>Version Control System (VCS)</li>
 <li>cvs</li>
@@ -362,9 +343,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><span class="strike">лучше я в архивах, по старинке</span> НЕТ!</li>
 <li>необходимо учитывать версионность продукта</li>
 </ul>
-</section>
-<section id="основные-понятия-vcs" class="slide level2">
-<h2>Основные понятия VCS</h2>
+</div>
+<div id="основные-понятия-vcs" class="slide section level2">
+<h1>Основные понятия VCS</h1>
 <div class="column50">
 <ul>
 <li>концепция diff-patch</li>
@@ -377,16 +358,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </div>
 <div class="column50">
-<p><img data-src="http://nvie.com/img/centr-decentr@2x.png" alt="image" /></p>
+<p><img src="http://nvie.com/img/centr-decentr@2x.png" alt="image" /></p>
 </div>
-</section></section>
-<section>
-<section id="программирование" class="title-slide slide level1">
+</div>
+
+<div id="программирование" class="title-slide slide section level1">
 <h1>Программирование</h1>
 
-</section>
-<section id="программирование-на-c" class="slide level2">
-<h2>Программирование на C++</h2>
+</div>
+<div id="программирование-на-c" class="slide section level2">
+<h1>Программирование на C++</h1>
 <ul>
 <li>Новый стандарт лучше старого?</li>
 <li><span class="strike">Лучше на C писать: понятнее и проще</span></li>
@@ -395,9 +376,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Концепции стабильного кода vs. понятный код</li>
 <li>Разработка по спирали</li>
 </ul>
-</section>
-<section id="документация" class="slide level2">
-<h2>Документация</h2>
+</div>
+<div id="документация" class="slide section level2">
+<h1>Документация</h1>
 <ul>
 <li>Зачем нужна документация, если её никто не читает?</li>
 <li>Пример документации — <a href="http://libfuse.github.io/doxygen">http://libfuse.github.io/doxygen</a></li>
@@ -407,9 +388,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Генерация linux-документации <code>man</code></li>
 <li>Свой велосипед?</li>
 </ul>
-</section>
-<section id="разработка-в-команде" class="slide level2">
-<h2>Разработка в команде</h2>
+</div>
+<div id="разработка-в-команде" class="slide section level2">
+<h1>Разработка в команде</h1>
 <ul>
 <li>Что такое команда и зачем она нужна?</li>
 <li>Распределение ролей в команде?</li>
@@ -420,74 +401,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><em>Agile</em> — выход из всех проблем</li>
 <li>Психология разработки</li>
 </ul>
-</section></section>
-<section>
-<section id="заключение" class="title-slide slide level1">
+</div>
+
+<div id="заключение" class="title-slide slide section level1">
 <h1>Заключение</h1>
 
-</section>
-<section id="бесплатные-ссылки" class="slide level2">
-<h2>Бесплатные ссылки</h2>
+</div>
+<div id="бесплатные-ссылки" class="slide section level2">
+<h1>Бесплатные ссылки</h1>
 <p>Бесплатные книжки про программирование в целом:</p>
 <p><a href="https://github.com/EbookFoundation/free-programming-books">https://github.com/EbookFoundation/free-programming-books</a></p>
-</section>
-<section id="лабораторная-работа" class="slide level2">
-<h2>Лабораторная работа</h2>
+</div>
+<div id="лабораторная-работа" class="slide section level2">
+<h1>Лабораторная работа</h1>
 <ol>
 <li>Заводим аккаунт на <a href="https://github.com">github</a></li>
 <li>Возвращаемся на главную страницу проекта и переходим по ссылке с заданиями</li>
 <li>Задания можно делать в любом порядке</li>
 </ol>
-</section></section>
-    </div>
-  </div>
-
-  <script src="https://rawgit.com/hakimel/reveal.js/master/lib/js/head.min.js" data-external="1"></script>
-  <script src="https://rawgit.com/hakimel/reveal.js/master/js/reveal.js" data-external="1"></script>
-
-  <script>
-
-      // Full list of configuration options available at:
-      // https://github.com/hakimel/reveal.js#configuration
-      Reveal.initialize({
-        // Display the page number of the current slide
-        slideNumber: true,
-        // Push each slide change to the browser history
-        history: false,
-        // Vertical centering of slides
-        center: false,
-        // Transition style
-        transition: 'cube', // none/fade/slide/convex/concave/zoom
-        // The "normal" size of the presentation, aspect ratio will be preserved
-        // when the presentation is scaled to fit different resolutions. Can be
-        // specified using percentage units.
-        width: '95%',
-        height: '95%',
-        math: {
-          mathjax: '',
-          config: 'TeX-AMS_HTML-full',
-          tex2jax: {
-            inlineMath: [['\\(','\\)']],
-            displayMath: [['\\[','\\]']],
-            balanceBraces: true,
-            processEscapes: false,
-            processRefs: true,
-            processEnvironments: true,
-            preview: 'TeX',
-            skipTags: ['script','noscript','style','textarea','pre','code'],
-            ignoreClass: 'tex2jax_ignore',
-            processClass: 'tex2jax_process'
-          },
-        },
-
-        // Optional reveal.js plugins
-        dependencies: [
-          { src: 'https://rawgit.com/hakimel/reveal.js/master/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-          { src: 'https://rawgit.com/hakimel/reveal.js/master/plugin/zoom-js/zoom.js', async: true },
-          { src: 'https://rawgit.com/hakimel/reveal.js/master/plugin/math/math.js', async: true },
-          { src: 'https://rawgit.com/hakimel/reveal.js/master/plugin/notes/notes.js', async: true }
-        ]
-      });
-    </script>
-    </body>
+</div>
+</body>
 </html>
