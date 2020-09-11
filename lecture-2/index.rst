@@ -18,6 +18,7 @@ Master programming
 * https://git-scm.com --- основной сайт с документацией по git
 * https://try.github.io --- онлайн путеводитель по git-у
 * https://githowto.com/ru --- ещё один путеводитель
+* https://learngitbranching.js.org/?demo --- попробовать git в реалтайме
 
 Предыстория
 -----------
@@ -64,10 +65,10 @@ Master programming
 Хеш-суммы
 ---------
 
-* crc32
-* md5
-* sha-1
-* sha-2: sha-224, sha-256, sha-384, sha-512
+* crc32 (пример: F6DE2FEA)
+* md5 (пример: C43FE3F8445CDB869C6A6DA9AEA90B21)
+* sha-1 (пример: 7DD987F846400079F4B03C058365A4869047B4A0)
+* sha-2: sha-224, sha-256, sha-384, sha-512 (пример: CA737F1014A48F4C0B6DD43CB177B0AFD9E5169367544C494011E3317DBF9A509CB1E5DC1E85A941BBEE3D7F2AFBC9B1)
 * Быстрая идентификация сообщения/файла/пароля
 
   .. code:: sh
