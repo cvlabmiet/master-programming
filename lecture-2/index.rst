@@ -127,7 +127,7 @@ Master programming
 
     $ mkdir /tmp/server
     $ git init --bare /tmp/server/repo
-    $ cd /tmp/123/repo/
+    $ cd /tmp/server/repo/
     repo (BARE:master) $ ls
     branches  config  description  HEAD  hooks  info  objects  refs
     $ git init /tmp/repo
