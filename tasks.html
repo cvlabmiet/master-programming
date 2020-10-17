@@ -261,5 +261,24 @@ git push --force</code></pre></li>
 <li>Следим, чтобы в коммит не попало левых изменений (<code>CMakeSettings.json</code>, <code>out</code> и т.д.)</li>
 </ul>
 </div>
+<div id="платформа-eclipse-che-браузер" class="slide section level2">
+<h1>Платформа Eclipse-Che (браузер)</h1>
+<ul>
+<li><a href="https://che.openshift.io">https://che.openshift.io</a></li>
+<li>Достаточно только браузера</li>
+<li>Логиниться на ресурс через github-аккаунт</li>
+<li>Создаём workspace из файла <code>eclipse-che.yml</code> внутри репозитория с заданиями</li>
+<li>Внутри workspace:
+<ul>
+<li>Ничего не сохраняется, поэтому надо свои изменения пушить на сервер</li>
+<li>Перейти в настройки и установить почту для Git (<code>&lt;username&gt;@users.noreply.github.com</code>) — это влияет на ошибку пуша своей ветки на github</li>
+</ul></li>
+<li>Поддерживает intellisense (но не всё доступно, так как компиляция и GUI находятся в разных докерах)</li>
+<li>Поддерживает отладку (но не все объекты можно посмотреть)</li>
+<li>Поддерживает git: создание веток, коммит, пуш изменений на сервер</li>
+<li>Есть окно терминала для “тонкой” отладки</li>
+<li>См. видео лекцию по подготовке лабораторных работ</li>
+</ul>
+</div>
 </body>
 </html>
