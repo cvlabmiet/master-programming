@@ -19,6 +19,7 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -123,16 +124,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1>Предыстория</h1>
 <ul>
 <li><p>diff — утилита для выяснения различий</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb1-1"><a href="#cb1-1"></a>$ diff -u lecture-1.html lecture-2.html | head -n 20</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="kw">--- lecture-1.html 2018-02-25 14:49:23.665411221 +0300</span></span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="dt">+++ lecture-2.html 2018-02-25 14:49:23.842322309 +0300</span></span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="dt">@@ -4,7 +4,7 @@</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a>   &lt;meta name=&quot;generator&quot; content=&quot;pandoc&quot;&gt;</span>
-<span id="cb1-6"><a href="#cb1-6"></a>   &lt;meta name=&quot;author&quot; content=&quot;Игорь Шаронов&quot;&gt;</span>
-<span id="cb1-7"><a href="#cb1-7"></a><span class="st">-  &lt;meta name=&quot;dcterms.date&quot; content=&quot;2018-01-15&quot;&gt;</span></span>
-<span id="cb1-8"><a href="#cb1-8"></a><span class="va">+  &lt;meta name=&quot;dcterms.date&quot; content=&quot;2018-02-18&quot;&gt;</span></span>
-<span id="cb1-9"><a href="#cb1-9"></a>   &lt;title&gt;Master programming&lt;/title&gt;</span>
-<span id="cb1-10"><a href="#cb1-10"></a>   &lt;meta name=&quot;apple-mobile-web-app-capable&quot; content=&quot;yes&quot;&gt;</span></code></pre></div></li>
+<div class="sourceCode" id="cb1"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>$ diff -u lecture-1.html lecture-2.html | head -n 20</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">--- lecture-1.html 2018-02-25 14:49:23.665411221 +0300</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="dt">+++ lecture-2.html 2018-02-25 14:49:23.842322309 +0300</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="dt">@@ -4,7 +4,7 @@</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>   &lt;meta name=&quot;generator&quot; content=&quot;pandoc&quot;&gt;</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>   &lt;meta name=&quot;author&quot; content=&quot;Игорь Шаронов&quot;&gt;</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="st">-  &lt;meta name=&quot;dcterms.date&quot; content=&quot;2018-01-15&quot;&gt;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="va">+  &lt;meta name=&quot;dcterms.date&quot; content=&quot;2018-02-18&quot;&gt;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>   &lt;title&gt;Master programming&lt;/title&gt;</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>   &lt;meta name=&quot;apple-mobile-web-app-capable&quot; content=&quot;yes&quot;&gt;</span></code></pre></div></li>
 <li><p>patch — обратное действие diff (патч)</p></li>
 <li><p>конфликты:</p>
 <pre><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; LOCAL:sample.txt
@@ -170,10 +171,10 @@ new lines from the patch
 <li><p>sha-1 (пример: 7DD987F846400079F4B03C058365A4869047B4A0)</p></li>
 <li><p>sha-2: sha-224, sha-256, sha-384, sha-512 (пример: CA737F1014A48F4C0B6DD43CB177B0AFD9E5169367544C494011E3317DBF9A509CB1E5DC1E85A941BBEE3D7F2AFBC9B1)</p></li>
 <li><p>Быстрая идентификация сообщения/файла/пароля</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1"></a>$ <span class="bu">echo</span> -n <span class="st">&#39;Master programming&#39;</span> <span class="kw">|</span> <span class="ex">md5sum</span> -</span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="ex">01e171232a1aa47e9fd2ae0530782b1f</span>  -</span>
-<span id="cb3-3"><a href="#cb3-3"></a>$ <span class="bu">echo</span> -n <span class="st">&#39;master programming&#39;</span> <span class="kw">|</span> <span class="ex">md5sum</span> -</span>
-<span id="cb3-4"><a href="#cb3-4"></a><span class="ex">e774d0115e01e1b735a7a1a9a3a85f09</span>  -</span></code></pre></div></li>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> echo <span class="at">-n</span> <span class="st">&#39;Master programming&#39;</span> <span class="kw">|</span> <span class="ex">md5sum</span> <span class="at">-</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">01e171232a1aa47e9fd2ae0530782b1f</span>  <span class="at">-</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> echo <span class="at">-n</span> <span class="st">&#39;master programming&#39;</span> <span class="kw">|</span> <span class="ex">md5sum</span> <span class="at">-</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ex">e774d0115e01e1b735a7a1a9a3a85f09</span>  <span class="at">-</span></span></code></pre></div></li>
 <li><p>Коллизии хешей</p></li>
 </ul>
 </div>
@@ -199,42 +200,42 @@ new lines from the patch
 </div>
 <div id="пример-1-добавление-нескольких-remote" class="slide section level2">
 <h1>Пример №1: добавление нескольких remote</h1>
-<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a>$ <span class="fu">git</span> clone git@github.com:cvlabmiet/master-programming</span>
-<span id="cb4-2"><a href="#cb4-2"></a>$ <span class="bu">cd</span> master-programming</span>
-<span id="cb4-3"><a href="#cb4-3"></a><span class="ex">master-programming</span> $ git remote add miet git@git.miet.ru:cvlab/master-programming</span>
-<span id="cb4-4"><a href="#cb4-4"></a><span class="ex">master-programming</span> $ git push miet master:master</span></code></pre></div>
-<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">(</span><span class="ex">lecture-3</span> *+<span class="kw">)</span> $ <span class="fu">git</span> st</span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="ex">On</span> branch lecture-3</span>
-<span id="cb5-3"><a href="#cb5-3"></a><span class="ex">Changes</span> to be committed:</span>
-<span id="cb5-4"><a href="#cb5-4"></a><span class="kw">(</span><span class="ex">use</span> <span class="st">&quot;git reset HEAD &lt;file&gt;...&quot;</span> to unstage<span class="kw">)</span></span>
-<span id="cb5-5"><a href="#cb5-5"></a>    <span class="ex">modified</span>:   CMakeLists.txt</span>
-<span id="cb5-6"><a href="#cb5-6"></a>    <span class="ex">modified</span>:   lecture-3.md</span>
-<span id="cb5-7"><a href="#cb5-7"></a><span class="ex">Changes</span> not staged for commit:</span>
-<span id="cb5-8"><a href="#cb5-8"></a>    <span class="kw">(</span><span class="ex">use</span> <span class="st">&quot;git add &lt;file&gt;...&quot;</span> to update what will be committed<span class="kw">)</span></span>
-<span id="cb5-9"><a href="#cb5-9"></a>    <span class="kw">(</span><span class="ex">use</span> <span class="st">&quot;git checkout -- &lt;file&gt;...&quot;</span> to discard changes in working directory<span class="kw">)</span></span>
-<span id="cb5-10"><a href="#cb5-10"></a>    <span class="ex">modified</span>:   lecture-3.md</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git clone git@github.com:cvlabmiet/master-programming</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd master-programming</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">master-programming</span> $ git remote add miet git@git.miet.ru:cvlab/master-programming</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="ex">master-programming</span> $ git push miet master:master</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">lecture-3</span> <span class="pp">*</span>+<span class="kw">)</span> <span class="ex">$</span> git st</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">On</span> branch lecture-3</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Changes</span> to be committed:</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">use</span> <span class="st">&quot;git reset HEAD &lt;file&gt;...&quot;</span> to unstage<span class="kw">)</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="ex">modified:</span>   CMakeLists.txt</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="ex">modified:</span>   lecture-3.md</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="ex">Changes</span> not staged for commit:</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">(</span><span class="ex">use</span> <span class="st">&quot;git add &lt;file&gt;...&quot;</span> to update what will be committed<span class="kw">)</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">(</span><span class="ex">use</span> <span class="st">&quot;git checkout -- &lt;file&gt;...&quot;</span> to discard changes in working directory<span class="kw">)</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="ex">modified:</span>   lecture-3.md</span></code></pre></div>
 </div>
 <div id="пример-2-создание-локального-репозитория" class="slide section level2">
 <h1>Пример №2: создание локального репозитория</h1>
-<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1"></a>$ <span class="fu">mkdir</span> /tmp/server</span>
-<span id="cb6-2"><a href="#cb6-2"></a>$ <span class="fu">git</span> init --bare /tmp/server/repo</span>
-<span id="cb6-3"><a href="#cb6-3"></a>$ <span class="bu">cd</span> /tmp/server/repo/</span>
-<span id="cb6-4"><a href="#cb6-4"></a><span class="ex">repo</span> (BARE:master) $ <span class="fu">ls</span></span>
-<span id="cb6-5"><a href="#cb6-5"></a><span class="ex">branches</span>  config  description  HEAD  hooks  info  objects  refs</span>
-<span id="cb6-6"><a href="#cb6-6"></a>$ <span class="fu">git</span> init /tmp/repo</span>
-<span id="cb6-7"><a href="#cb6-7"></a>$ <span class="bu">cd</span> /tmp/repo</span>
-<span id="cb6-8"><a href="#cb6-8"></a><span class="ex">repo</span> (master#) $ <span class="bu">echo</span> <span class="st">&#39;Empty repo&#39;</span> <span class="op">&gt;</span> README.md</span>
-<span id="cb6-9"><a href="#cb6-9"></a><span class="ex">repo</span> (master#) $ <span class="fu">git</span> add README.md</span>
-<span id="cb6-10"><a href="#cb6-10"></a><span class="ex">repo</span> (master#) $ <span class="fu">git</span> ci -am <span class="st">&quot;Initial commit&quot;</span></span>
-<span id="cb6-11"><a href="#cb6-11"></a><span class="ex">repo</span> (master) $ <span class="fu">git</span> remote add origin /tmp/server/repo</span>
-<span id="cb6-12"><a href="#cb6-12"></a><span class="ex">repo</span> (master) $ <span class="fu">git</span> push origin master:master</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mkdir /tmp/server</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git init <span class="at">--bare</span> /tmp/server/repo</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd /tmp/server/repo/</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="ex">repo</span> <span class="er">(</span><span class="ex">BARE:master</span><span class="kw">)</span> <span class="ex">$</span> ls</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="ex">branches</span>  config  description  HEAD  hooks  info  objects  refs</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git init /tmp/repo</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd /tmp/repo</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="ex">repo</span> <span class="er">(</span><span class="ex">master#</span><span class="kw">)</span> <span class="ex">$</span> echo <span class="st">&#39;Empty repo&#39;</span> <span class="op">&gt;</span> README.md</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="ex">repo</span> <span class="er">(</span><span class="ex">master#</span><span class="kw">)</span> <span class="ex">$</span> git add README.md</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="ex">repo</span> <span class="er">(</span><span class="ex">master#</span><span class="kw">)</span> <span class="ex">$</span> git ci <span class="at">-am</span> <span class="st">&quot;Initial commit&quot;</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="ex">repo</span> <span class="er">(</span><span class="ex">master</span><span class="kw">)</span> <span class="ex">$</span> git remote add origin /tmp/server/repo</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="ex">repo</span> <span class="er">(</span><span class="ex">master</span><span class="kw">)</span> <span class="ex">$</span> git push origin master:master</span></code></pre></div>
 </div>
 <div id="пример-3-сравнение-с-originmaster" class="slide section level2">
 <h1>Пример №3: сравнение с origin/master</h1>
-<div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1"></a>$ <span class="fu">git</span> fetch origin</span>
-<span id="cb7-2"><a href="#cb7-2"></a>$ <span class="fu">git</span> diff master origin/master</span>
-<span id="cb7-3"><a href="#cb7-3"></a>$ <span class="fu">git</span> show origin/master:lecture-3.md <span class="kw">|</span> <span class="fu">less</span></span>
-<span id="cb7-4"><a href="#cb7-4"></a>$ <span class="fu">git</span> co origin/master -b new-feature</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git fetch origin</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git diff master origin/master</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git show origin/master:lecture-3.md <span class="kw">|</span> <span class="fu">less</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git co origin/master <span class="at">-b</span> new-feature</span></code></pre></div>
 </div>
 
 <div id="объединение-веток" class="title-slide slide section level1">

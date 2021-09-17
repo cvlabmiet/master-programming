@@ -18,6 +18,7 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -173,22 +174,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>переходим к следующей специализации</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">template</span> &lt;<span class="kw">class</span> T&gt; <span class="dt">int</span> f(<span class="kw">typename</span> T::B*);</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="kw">template</span> &lt;<span class="kw">class</span> T&gt; <span class="dt">int</span> f(T);</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="dt">int</span> i = f&lt;<span class="dt">int</span>&gt;(<span class="dv">0</span>); <span class="co">// uses second overload</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">template</span> <span class="op">&lt;</span><span class="kw">class</span> T<span class="op">&gt;</span> <span class="dt">int</span> f<span class="op">(</span><span class="kw">typename</span> T<span class="op">::</span>B<span class="op">*);</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">template</span> <span class="op">&lt;</span><span class="kw">class</span> T<span class="op">&gt;</span> <span class="dt">int</span> f<span class="op">(</span>T<span class="op">);</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> i <span class="op">=</span> f<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;(</span><span class="dv">0</span><span class="op">);</span> <span class="co">// uses second overload</span></span></code></pre></div>
 </div>
 <div id="шаблоны" class="slide section level2">
 <h1>Шаблоны</h1>
 <ul>
 <li>Уровень компиляции</li>
-<li><code class="sourceCode cpp"><span class="kw">template</span>&lt;<span class="kw">class</span> T&gt; <span class="dt">int</span> func()</code>, где <code>T</code> — шаблонный параметр</li>
-<li><code class="sourceCode cpp">func&lt;<span class="dt">int</span>&gt;()</code>, где <code class="sourceCode cpp"><span class="dt">int</span></code> — аргумент шаблона</li>
+<li><code class="sourceCode cpp"><span class="kw">template</span><span class="op">&lt;</span><span class="kw">class</span> T<span class="op">&gt;</span> <span class="dt">int</span> func<span class="op">()</span></code>, где <code>T</code> — шаблонный параметр</li>
+<li><code class="sourceCode cpp">func<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;()</span></code>, где <code class="sourceCode cpp"><span class="dt">int</span></code> — аргумент шаблона</li>
 <li>Параметр шаблона может быть не-типовым (int, char, short, …)
 <ul>
-<li><code class="sourceCode cpp"><span class="kw">template</span>&lt;<span class="dt">size_t</span> N&gt; <span class="dt">int</span> get()</code></li>
+<li><code class="sourceCode cpp"><span class="kw">template</span><span class="op">&lt;</span><span class="dt">size_t</span> N<span class="op">&gt;</span> <span class="dt">int</span> get<span class="op">()</span></code></li>
 <li>Исключения: это не указатель и не тип <code class="sourceCode cpp"><span class="dt">double</span></code> или <code class="sourceCode cpp"><span class="dt">float</span></code></li>
 </ul></li>
-<li>Специализация функции — <code class="sourceCode cpp"><span class="kw">template</span>&lt;&gt; <span class="dt">int</span> func&lt;<span class="dt">float</span>&gt;()</code></li>
+<li>Специализация функции — <code class="sourceCode cpp"><span class="kw">template</span><span class="op">&lt;&gt;</span> <span class="dt">int</span> func<span class="op">&lt;</span><span class="dt">float</span><span class="op">&gt;()</span></code></li>
 </ul>
 </div>
 
@@ -214,22 +215,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Ключевое слово <code class="sourceCode cpp"><span class="kw">auto</span></code>
 <ul>
-<li><code class="sourceCode cpp"><span class="dt">int</span> k;</code> == <code class="sourceCode cpp"><span class="kw">decltype</span>(k) v;</code></li>
+<li><code class="sourceCode cpp"><span class="dt">int</span> k<span class="op">;</span></code> == <code class="sourceCode cpp"><span class="kw">decltype</span><span class="op">(</span>k<span class="op">)</span> v<span class="op">;</span></code></li>
 </ul></li>
-<li>Возвращаемое значение может быть написано после имени функции <code class="sourceCode cpp"><span class="kw">auto</span> func(<span class="dt">char</span> x) -&gt; <span class="dt">int</span>;</code></li>
+<li>Возвращаемое значение может быть написано после имени функции <code class="sourceCode cpp"><span class="kw">auto</span> func<span class="op">(</span><span class="dt">char</span> x<span class="op">)</span> <span class="op">-&gt;</span> <span class="dt">int</span><span class="op">;</span></code></li>
 <li>Появление неименнованных функций (лямбда-выражения)
 <ul>
-<li><code class="sourceCode cpp"><span class="kw">auto</span> f = [](<span class="dt">int</span> x) -&gt; <span class="dt">double</span> { <span class="cf">return</span> <span class="bu">std::</span>pow(x, <span class="fl">1.35</span>); };</code></li>
-<li><code class="sourceCode cpp">[a, &amp;b, =, &amp;]</code> — замыкание области видимости: по значению, по ссылке, замыкания всей области видимости</li>
+<li><code class="sourceCode cpp"><span class="kw">auto</span> f <span class="op">=</span> <span class="op">[](</span><span class="dt">int</span> x<span class="op">)</span> <span class="op">-&gt;</span> <span class="dt">double</span> <span class="op">{</span> <span class="cf">return</span> <span class="bu">std::</span>pow<span class="op">(</span>x<span class="op">,</span> <span class="fl">1.35</span><span class="op">);</span> <span class="op">};</span></code></li>
+<li><code class="sourceCode cpp"><span class="op">[</span>a<span class="op">,</span> <span class="op">&amp;</span>b<span class="op">,</span> <span class="op">=,</span> <span class="op">&amp;]</span></code> — замыкание области видимости: по значению, по ссылке, замыкания всей области видимости</li>
 </ul></li>
-<li><code class="sourceCode cpp"><span class="kw">constexpr</span></code> — функция выполнения на уровне компиляции <code class="sourceCode cpp"><span class="dt">int</span> n[func(<span class="dv">79</span>)]</code></li>
+<li><code class="sourceCode cpp"><span class="kw">constexpr</span></code> — функция выполнения на уровне компиляции <code class="sourceCode cpp"><span class="dt">int</span> n<span class="op">[</span>func<span class="op">(</span><span class="dv">79</span><span class="op">)]</span></code></li>
 <li>Универсальная инициализация через <code>{}</code>
 <ul>
-<li><code class="sourceCode cpp">myclass s(<span class="dv">7</span>, <span class="dv">9</span>, <span class="dv">8</span>)</code> и <code class="sourceCode cpp">myclass s{<span class="dv">7</span>, <span class="dv">9</span>, <span class="dv">8</span>}</code> — одно и то же</li>
+<li><code class="sourceCode cpp">myclass s<span class="op">(</span><span class="dv">7</span><span class="op">,</span> <span class="dv">9</span><span class="op">,</span> <span class="dv">8</span><span class="op">)</span></code> и <code class="sourceCode cpp">myclass s<span class="op">{</span><span class="dv">7</span><span class="op">,</span> <span class="dv">9</span><span class="op">,</span> <span class="dv">8</span><span class="op">}</span></code> — одно и то же</li>
 <li>теперь структуры без конструктора и с конструктором могут быть проинициализированы одинаково</li>
 </ul></li>
 <li>xvalue, rvalue, prvalue — move-нотации</li>
-<li>Цикл по коллекции <code class="sourceCode cpp"><span class="cf">for</span> (<span class="at">const</span> <span class="kw">auto</span>&amp; x : array) { ... }</code></li>
+<li>Цикл по коллекции <code class="sourceCode cpp"><span class="cf">for</span> <span class="op">(</span><span class="at">const</span> <span class="kw">auto</span><span class="op">&amp;</span> x <span class="op">:</span> array<span class="op">)</span> <span class="op">{</span> <span class="op">...</span> <span class="op">}</span></code></li>
 </ul>
 </div>
 <div id="новые-возможности-языка-продолжение" class="slide section level2">
@@ -240,7 +241,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code class="sourceCode cpp"><span class="kw">nullptr</span></code> вместо <code class="sourceCode cpp">NULL</code> и введение <code class="sourceCode cpp"><span class="dt">nullptr_t</span></code></li>
 <li><code class="sourceCode cpp"><span class="kw">enum</span> <span class="kw">class</span></code> (всё ещё нет автоматического преобразования в строку)</li>
 <li><code class="sourceCode cpp"><span class="kw">static_assert</span></code> — ассерт на уровне компиляции</li>
-<li><code class="sourceCode cpp"><span class="kw">alignas</span>(T)</code> — выравнивание данных как у <code>T</code></li>
+<li><code class="sourceCode cpp"><span class="kw">alignas</span><span class="op">(</span>T<span class="op">)</span></code> — выравнивание данных как у <code>T</code></li>
 <li><strong>Вариативные шаблоны</strong></li>
 </ul>
 </div>
@@ -266,28 +267,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="новые-возможности-языка-1" class="slide section level2">
 <h1>Новые возможности языка</h1>
 <ul>
-<li><p>Автоматический вывод возвращаемого значения <code class="sourceCode cpp"><span class="kw">auto</span> func();</code></p></li>
-<li><p><code class="sourceCode cpp"><span class="kw">decltype</span>(<span class="kw">auto</span>)</code> — там, где <code class="sourceCode cpp"><span class="kw">auto</span></code> отбрасывает слишком много</p></li>
-<li><p>Шаблонные переменные <code class="sourceCode cpp"><span class="kw">template</span>&lt;<span class="kw">class</span> T&gt; T xxx = T(<span class="fl">2.78962161</span><span class="bu">L</span>);</code></p></li>
+<li><p>Автоматический вывод возвращаемого значения <code class="sourceCode cpp"><span class="kw">auto</span> func<span class="op">();</span></code></p></li>
+<li><p><code class="sourceCode cpp"><span class="kw">decltype</span><span class="op">(</span><span class="kw">auto</span><span class="op">)</span></code> — там, где <code class="sourceCode cpp"><span class="kw">auto</span></code> отбрасывает слишком много</p></li>
+<li><p>Шаблонные переменные <code class="sourceCode cpp"><span class="kw">template</span><span class="op">&lt;</span><span class="kw">class</span> T<span class="op">&gt;</span> T xxx <span class="op">=</span> T<span class="op">(</span><span class="fl">2.78962161</span><span class="bu">L</span><span class="op">);</span></code></p></li>
 <li><p>Агрегатная инициализация</p>
 <blockquote>
-<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">struct</span> abc</span>
-<span id="cb2-2"><a href="#cb2-2"></a>{</span>
-<span id="cb2-3"><a href="#cb2-3"></a>    <span class="dt">int</span> x = <span class="dv">47</span>;</span>
-<span id="cb2-4"><a href="#cb2-4"></a>    <span class="dt">bool</span> f = <span class="kw">true</span>;</span>
-<span id="cb2-5"><a href="#cb2-5"></a>    <span class="bu">std::</span>string s = <span class="st">&quot;abc&quot;</span>;</span>
-<span id="cb2-6"><a href="#cb2-6"></a>};</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> abc</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> x <span class="op">=</span> <span class="dv">47</span><span class="op">;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">bool</span> f <span class="op">=</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">std::</span>string<span class="op"> </span>s <span class="op">=</span> <span class="st">&quot;abc&quot;</span><span class="op">;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span></code></pre></div>
 </blockquote></li>
 <li><p>Литералы двоичных чисел и разделители разрядов <code class="sourceCode cpp"><span class="bn">0b10110</span></code>, <code class="sourceCode cpp"><span class="dv">100&#39;500</span></code></p></li>
-<li><p>Обобщённые лямбда-выражения <code class="sourceCode cpp">[](<span class="kw">auto</span> x) { <span class="cf">return</span> x*x + <span class="dv">1</span>; }</code></p></li>
-<li><p>Атрибут <code class="sourceCode cpp">[[<span class="at">deprecated</span>]]</code></p></li>
+<li><p>Обобщённые лямбда-выражения <code class="sourceCode cpp"><span class="op">[](</span><span class="kw">auto</span> x<span class="op">)</span> <span class="op">{</span> <span class="cf">return</span> x<span class="op">*</span>x <span class="op">+</span> <span class="dv">1</span><span class="op">;</span> <span class="op">}</span></code></p></li>
+<li><p>Атрибут <code class="sourceCode cpp"><span class="op">[[</span><span class="at">deprecated</span><span class="op">]]</span></code></p></li>
 </ul>
 </div>
 <div id="нововведения-в-stl" class="slide section level2">
 <h1>Нововведения в STL</h1>
 <ul>
-<li>Пользовательские литералы <code class="sourceCode cpp"><span class="kw">auto</span> dur = <span class="dv">60</span><span class="bu">s</span>;</code></li>
-<li><code class="sourceCode cpp"><span class="bu">std::</span>cbegin/<span class="bu">std::</span>cend</code></li>
+<li>Пользовательские литералы <code class="sourceCode cpp"><span class="kw">auto</span> dur <span class="op">=</span> <span class="dv">60</span><span class="bu">s</span><span class="op">;</span></code></li>
+<li><code class="sourceCode cpp"><span class="bu">std::</span>cbegin<span class="op">/</span><span class="bu">std::</span>cend</code></li>
 <li><code class="sourceCode cpp"><span class="bu">std::</span>make_index_sequence</code> для <code class="sourceCode cpp"><span class="bu">std::</span>integral_constant</code> полезен при разворачивании кортежа в аргументы</li>
 </ul>
 </div>
@@ -299,12 +300,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="новые-возможности-языка-2" class="slide section level2">
 <h1>Новые возможности языка</h1>
 <ul>
-<li>Упакованные выражения <code class="sourceCode cpp"><span class="kw">template</span>&lt;<span class="kw">class</span>... Ts&gt; <span class="dt">bool</span> foo(Ts... args) { <span class="cf">return</span> (args &amp;&amp; ...); }</code></li>
-<li>Инициализация переменной в <code class="sourceCode cpp"><span class="cf">if</span></code> и <code class="sourceCode cpp"><span class="cf">switch</span></code>: <code class="sourceCode cpp"><span class="cf">if</span> (<span class="kw">auto</span> a = getA(); a.isValid()) ...</code></li>
-<li>Автоматический вывод аргументов шаблона класса <code class="sourceCode cpp"><span class="bu">std::</span>vector v{{<span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>}}</code></li>
-<li>Structured binding declarations <code class="sourceCode cpp"><span class="at">const</span> <span class="kw">auto</span>&amp; [x, y] = mystruct_object;</code></li>
-<li><code class="sourceCode cpp">[[<span class="at">fallthrough</span>]]</code>, <code class="sourceCode cpp">[[<span class="at">nodiscard</span>]]</code>, <code class="sourceCode cpp">[[<span class="at">maybe_unused</span>]]</code></li>
-<li>Вложенные пространства имён <code class="sourceCode cpp"><span class="kw">namespace</span> A::B {}</code> == <code class="sourceCode cpp"><span class="kw">namespace</span> A { <span class="kw">namespace</span> B {} }</code></li>
+<li>Упакованные выражения <code class="sourceCode cpp"><span class="kw">template</span><span class="op">&lt;</span><span class="kw">class</span><span class="op">...</span> Ts<span class="op">&gt;</span> <span class="dt">bool</span> foo<span class="op">(</span>Ts<span class="op">...</span> args<span class="op">)</span> <span class="op">{</span> <span class="cf">return</span> <span class="op">(</span>args <span class="op">&amp;&amp;</span> <span class="op">...);</span> <span class="op">}</span></code></li>
+<li>Инициализация переменной в <code class="sourceCode cpp"><span class="cf">if</span></code> и <code class="sourceCode cpp"><span class="cf">switch</span></code>: <code class="sourceCode cpp"><span class="cf">if</span> <span class="op">(</span><span class="kw">auto</span> a <span class="op">=</span> getA<span class="op">();</span> a<span class="op">.</span>isValid<span class="op">())</span> <span class="op">...</span></code></li>
+<li>Автоматический вывод аргументов шаблона класса <code class="sourceCode cpp"><span class="bu">std::</span>vector<span class="op"> </span>v<span class="op">{{</span><span class="dv">7</span><span class="op">,</span> <span class="dv">8</span><span class="op">,</span> <span class="dv">9</span><span class="op">}}</span></code></li>
+<li>Structured binding declarations <code class="sourceCode cpp"><span class="at">const</span> <span class="kw">auto</span><span class="op">&amp;</span> <span class="op">[</span>x<span class="op">,</span> y<span class="op">]</span> <span class="op">=</span> mystruct_object<span class="op">;</span></code></li>
+<li><code class="sourceCode cpp"><span class="op">[[</span><span class="at">fallthrough</span><span class="op">]]</span></code>, <code class="sourceCode cpp"><span class="op">[[</span><span class="at">nodiscard</span><span class="op">]]</span></code>, <code class="sourceCode cpp"><span class="op">[[</span><span class="at">maybe_unused</span><span class="op">]]</span></code></li>
+<li>Вложенные пространства имён <code class="sourceCode cpp"><span class="kw">namespace</span> A<span class="op">::</span>B <span class="op">{}</span></code> == <code class="sourceCode cpp"><span class="kw">namespace</span> A <span class="op">{</span> <span class="kw">namespace</span> B <span class="op">{}</span> <span class="op">}</span></code></li>
 <li><code class="sourceCode cpp"><span class="cf">if</span> <span class="kw">constexpr</span></code> взамен <code class="sourceCode cpp"><span class="bu">std::</span>enable_if</code> и SFINAE</li>
 </ul>
 </div>
@@ -328,18 +329,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="о-using-директиве" class="slide section level2">
 <h1>О using директиве</h1>
 <ul>
-<li>Алиас типа: <code class="sourceCode cpp"><span class="kw">using</span> type_int = <span class="dt">int</span>;</code></li>
-<li>Шаблонные алиас типа: <code class="sourceCode cpp"><span class="kw">template</span>&lt;<span class="kw">class</span> T&gt; <span class="kw">using</span> my_vector = <span class="bu">std::</span>vector&lt;T&gt;;</code></li>
+<li>Алиас типа: <code class="sourceCode cpp"><span class="kw">using</span> type_int <span class="op">=</span> <span class="dt">int</span><span class="op">;</span></code></li>
+<li>Шаблонные алиас типа: <code class="sourceCode cpp"><span class="kw">template</span><span class="op">&lt;</span><span class="kw">class</span> T<span class="op">&gt;</span> <span class="kw">using</span> my_vector <span class="op">=</span> <span class="bu">std::</span>vector<span class="op">&lt;</span>T<span class="op">&gt;;</span></code></li>
 <li>Расширение области видимости:
 <ul>
-<li>пространства имён <code class="sourceCode cpp"><span class="kw">using</span> <span class="kw">namespace</span> std;</code></li>
-<li>методов базового класса <code class="sourceCode cpp"><span class="kw">using</span> Base::method1;</code>
+<li>пространства имён <code class="sourceCode cpp"><span class="kw">using</span> <span class="kw">namespace</span> std<span class="op">;</span></code></li>
+<li>методов базового класса <code class="sourceCode cpp"><span class="kw">using</span> Base<span class="op">::</span>method1<span class="op">;</span></code>
 <ul>
 <li>попадают все сигнатуры <code>method1</code></li>
 </ul></li>
-<li>конструкторов <code class="sourceCode cpp"><span class="kw">using</span> Base::Base</code>
+<li>конструкторов <code class="sourceCode cpp"><span class="kw">using</span> Base<span class="op">::</span>Base</code>
 <ul>
-<li>если класс шаблонный, необходимо указать имя самого класса <code class="sourceCode cpp"><span class="kw">using</span> Derived::Base::Base;</code></li>
+<li>если класс шаблонный, необходимо указать имя самого класса <code class="sourceCode cpp"><span class="kw">using</span> Derived<span class="op">::</span>Base<span class="op">::</span>Base<span class="op">;</span></code></li>
 <li>наследуются все конструкторы из <code>Base</code>, кроме автогенерируемых конструкторов <code>Base</code></li>
 </ul></li>
 </ul></li>
@@ -350,8 +351,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1>О rvalue</h1>
 <ul>
 <li><p>Copy elision</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1"></a>T f() { <span class="cf">return</span> T(); }</span>
-<span id="cb3-2"><a href="#cb3-2"></a>T x = f(); <span class="co">// конструктор копирования не будет вызван</span></span></code></pre></div></li>
+<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>T f<span class="op">()</span> <span class="op">{</span> <span class="cf">return</span> T<span class="op">();</span> <span class="op">}</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>T x <span class="op">=</span> f<span class="op">();</span> <span class="co">// конструктор копирования не будет вызван</span></span></code></pre></div></li>
 <li><p>Типы ссылок</p>
 <div class="column66">
 <ul>
@@ -366,27 +367,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIKICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8IS0tIEdlbmVyYXRlZCBieSBncmFwaHZpeiB2ZXJzaW9uIDIuNDMuMCAoMCkKIC0tPgo8IS0tIFRpdGxlOiBHIFBhZ2VzOiAxIC0tPgo8c3ZnIHdpZHRoPSIyOTBwdCIgaGVpZ2h0PSIxODhwdCIKIHZpZXdCb3g9IjAuMDAgMC4wMCAyODkuNTQgMTg4LjAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj4KPGcgaWQ9ImdyYXBoMCIgY2xhc3M9ImdyYXBoIiB0cmFuc2Zvcm09InNjYWxlKDEgMSkgcm90YXRlKDApIHRyYW5zbGF0ZSg0IDE4NCkiPgo8dGl0bGU+RzwvdGl0bGU+Cjxwb2x5Z29uIGZpbGw9IndoaXRlIiBzdHJva2U9InRyYW5zcGFyZW50IiBwb2ludHM9Ii00LDQgLTQsLTE4NCAyODUuNTQsLTE4NCAyODUuNTQsNCAtNCw0Ii8+CjwhLS0gZXhwcmVzc2lvbiAtLT4KPGcgaWQ9Im5vZGUxIiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5leHByZXNzaW9uPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSJibGFjayIgY3g9IjEzNS43IiBjeT0iLTE2MiIgcng9IjU5LjU5IiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMTM1LjciIHk9Ii0xNTguMyIgZm9udC1mYW1pbHk9IlRpbWVzLVJvbWFuIiBmb250LXNpemU9IjE0LjAwIj5leHByZXNzaW9uPC90ZXh0Pgo8L2c+CjwhLS0gZ2x2YWx1ZSAtLT4KPGcgaWQ9Im5vZGUyIiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5nbHZhbHVlPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSJibGFjayIgY3g9Ijg1LjciIGN5PSItOTAiIHJ4PSI0My41OSIgcnk9IjE4Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9Ijg1LjciIHk9Ii04Ni4zIiBmb250LWZhbWlseT0iVGltZXMtUm9tYW4iIGZvbnQtc2l6ZT0iMTQuMDAiPmdsdmFsdWU8L3RleHQ+CjwvZz4KPCEtLSBleHByZXNzaW9uJiM0NTsmZ3Q7Z2x2YWx1ZSAtLT4KPGcgaWQ9ImVkZ2UxIiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5leHByZXNzaW9uJiM0NTsmZ3Q7Z2x2YWx1ZTwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iYmxhY2siIGQ9Ik0xMjMuNTksLTE0NC4wNUMxMTcuNTcsLTEzNS42MyAxMTAuMTgsLTEyNS4yOCAxMDMuNTMsLTExNS45NyIvPgo8cG9seWdvbiBmaWxsPSJibGFjayIgc3Ryb2tlPSJibGFjayIgcG9pbnRzPSIxMDYuMzUsLTExMy44OSA5Ny42OSwtMTA3Ljc5IDEwMC42NSwtMTE3Ljk2IDEwNi4zNSwtMTEzLjg5Ii8+CjwvZz4KPCEtLSBydmFsdWUgLS0+CjxnIGlkPSJub2RlMyIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+cnZhbHVlPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0iQXF1YW1hcmluZSIgc3Ryb2tlPSJibGFjayIgY3g9IjE4Ni43IiBjeT0iLTkwIiByeD0iMzguOTkiIHJ5PSIxOCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIxODYuNyIgeT0iLTg2LjMiIGZvbnQtZmFtaWx5PSJUaW1lcy1Sb21hbiIgZm9udC1zaXplPSIxNC4wMCI+cnZhbHVlPC90ZXh0Pgo8L2c+CjwhLS0gZXhwcmVzc2lvbiYjNDU7Jmd0O3J2YWx1ZSAtLT4KPGcgaWQ9ImVkZ2UyIiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5leHByZXNzaW9uJiM0NTsmZ3Q7cnZhbHVlPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSJibGFjayIgZD0iTTE0OC4wNCwtMTQ0LjA1QzE1NC4yNywtMTM1LjUgMTYxLjk0LC0xMjQuOTcgMTY4LjgxLC0xMTUuNTYiLz4KPHBvbHlnb24gZmlsbD0iYmxhY2siIHN0cm9rZT0iYmxhY2siIHBvaW50cz0iMTcxLjc2LC0xMTcuNDUgMTc0LjgyLC0xMDcuMzEgMTY2LjEsLTExMy4zMyAxNzEuNzYsLTExNy40NSIvPgo8L2c+CjwhLS0gbHZhbHVlIC0tPgo8ZyBpZD0ibm9kZTQiIGNsYXNzPSJub2RlIj4KPHRpdGxlPmx2YWx1ZTwvdGl0bGU+CjxlbGxpcHNlIGZpbGw9IkFxdWFtYXJpbmUiIHN0cm9rZT0iYmxhY2siIGN4PSIzNy43IiBjeT0iLTE4IiByeD0iMzcuODkiIHJ5PSIxOCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIzNy43IiB5PSItMTQuMyIgZm9udC1mYW1pbHk9IlRpbWVzLVJvbWFuIiBmb250LXNpemU9IjE0LjAwIj5sdmFsdWU8L3RleHQ+CjwvZz4KPCEtLSBnbHZhbHVlJiM0NTsmZ3Q7bHZhbHVlIC0tPgo8ZyBpZD0iZWRnZTMiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPmdsdmFsdWUmIzQ1OyZndDtsdmFsdWU8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9ImJsYWNrIiBkPSJNNzQuMzIsLTcyLjQxQzY4LjQ2LC02My44NyA2MS4yLC01My4yOCA1NC42OSwtNDMuNzkiLz4KPHBvbHlnb24gZmlsbD0iYmxhY2siIHN0cm9rZT0iYmxhY2siIHBvaW50cz0iNTcuNTMsLTQxLjc0IDQ4Ljk5LC0zNS40NyA1MS43NiwtNDUuNyA1Ny41MywtNDEuNzQiLz4KPC9nPgo8IS0tIHh2YWx1ZSAtLT4KPGcgaWQ9Im5vZGU1IiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT54dmFsdWU8L3RpdGxlPgo8ZWxsaXBzZSBmaWxsPSJub25lIiBzdHJva2U9ImJsYWNrIiBjeD0iMTMzLjciIGN5PSItMTgiIHJ4PSI0MC4wOSIgcnk9IjE4Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjEzMy43IiB5PSItMTQuMyIgZm9udC1mYW1pbHk9IlRpbWVzLVJvbWFuIiBmb250LXNpemU9IjE0LjAwIj54dmFsdWU8L3RleHQ+CjwvZz4KPCEtLSBnbHZhbHVlJiM0NTsmZ3Q7eHZhbHVlIC0tPgo8ZyBpZD0iZWRnZTQiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPmdsdmFsdWUmIzQ1OyZndDt4dmFsdWU8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9ImJsYWNrIiBkPSJNOTcuMDcsLTcyLjQxQzEwMi45MywtNjMuODcgMTEwLjE5LC01My4yOCAxMTYuNywtNDMuNzkiLz4KPHBvbHlnb24gZmlsbD0iYmxhY2siIHN0cm9rZT0iYmxhY2siIHBvaW50cz0iMTE5LjYzLC00NS43IDEyMi40LC0zNS40NyAxMTMuODYsLTQxLjc0IDExOS42MywtNDUuNyIvPgo8L2c+CjwhLS0gcnZhbHVlJiM0NTsmZ3Q7eHZhbHVlIC0tPgo8ZyBpZD0iZWRnZTUiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPnJ2YWx1ZSYjNDU7Jmd0O3h2YWx1ZTwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iYmxhY2siIGQ9Ik0xNzQuNCwtNzIuNzZDMTY3Ljg4LC02NC4xNCAxNTkuNzIsLTUzLjM2IDE1Mi40MiwtNDMuNzMiLz4KPHBvbHlnb24gZmlsbD0iYmxhY2siIHN0cm9rZT0iYmxhY2siIHBvaW50cz0iMTU1LjEyLC00MS40OSAxNDYuMjksLTM1LjYzIDE0OS41NCwtNDUuNzIgMTU1LjEyLC00MS40OSIvPgo8L2c+CjwhLS0gcHJ2YWx1ZSAtLT4KPGcgaWQ9Im5vZGU2IiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5wcnZhbHVlPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSJibGFjayIgY3g9IjIzNi43IiBjeT0iLTE4IiByeD0iNDQuNjkiIHJ5PSIxOCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIyMzYuNyIgeT0iLTE0LjMiIGZvbnQtZmFtaWx5PSJUaW1lcy1Sb21hbiIgZm9udC1zaXplPSIxNC4wMCI+cHJ2YWx1ZTwvdGV4dD4KPC9nPgo8IS0tIHJ2YWx1ZSYjNDU7Jmd0O3BydmFsdWUgLS0+CjxnIGlkPSJlZGdlNiIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+cnZhbHVlJiM0NTsmZ3Q7cHJ2YWx1ZTwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iYmxhY2siIGQ9Ik0xOTguMjksLTcyLjc2QzIwNC4zOSwtNjQuMjMgMjEyLC01My41OCAyMTguODMsLTQ0LjAyIi8+Cjxwb2x5Z29uIGZpbGw9ImJsYWNrIiBzdHJva2U9ImJsYWNrIiBwb2ludHM9IjIyMS44NSwtNDUuODEgMjI0LjgyLC0zNS42MyAyMTYuMTYsLTQxLjc0IDIyMS44NSwtNDUuODEiLz4KPC9nPgo8L2c+Cjwvc3ZnPgo=" alt="image" /></p>
 </div></li>
 <li><p>Perfect forwarding и <a href="https://habr.com/post/242639">универсальная ссылка</a></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">template</span>&lt;<span class="kw">class</span>... Args&gt; <span class="dt">void</span> func(Args&amp;&amp;... args) {</span>
-<span id="cb4-2"><a href="#cb4-2"></a>    some_func(<span class="bu">std::</span>forward&lt;Args&gt;(args)...);</span>
-<span id="cb4-3"><a href="#cb4-3"></a>}</span>
-<span id="cb4-4"><a href="#cb4-4"></a></span>
-<span id="cb4-5"><a href="#cb4-5"></a><span class="bu">std::</span>vector v = {<span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">56</span>, <span class="dv">98</span>, <span class="dv">5</span>, <span class="dv">0</span>, -<span class="dv">1</span>, <span class="dv">8</span>};</span>
-<span id="cb4-6"><a href="#cb4-6"></a>func(v); <span class="co">// [Args = {std::vector&lt;int&gt;&amp;}], &amp; &amp;&amp; == &amp;</span></span>
-<span id="cb4-7"><a href="#cb4-7"></a>func(<span class="bu">std::</span>move(v)); <span class="co">// [Args = {std::vector&lt;int&gt;&amp;&amp;}], &amp;&amp; &amp;&amp; == &amp;&amp;</span></span>
-<span id="cb4-8"><a href="#cb4-8"></a>func(<span class="bu">std::</span>vector{<span class="fl">7.0</span>, <span class="fl">8.3</span>, -<span class="fl">96.87</span>, <span class="fl">7.1</span>}); <span class="co">// [Args = {std::vector&lt;double&gt;}], () == &amp;&amp;</span></span></code></pre></div></li>
+<div class="sourceCode" id="cb4"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">template</span><span class="op">&lt;</span><span class="kw">class</span><span class="op">...</span> Args<span class="op">&gt;</span> <span class="dt">void</span> func<span class="op">(</span>Args<span class="op">&amp;&amp;...</span> args<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    some_func<span class="op">(</span><span class="bu">std::</span>forward<span class="op">&lt;</span>Args<span class="op">&gt;(</span>args<span class="op">)...);</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>vector<span class="op"> </span>v <span class="op">=</span> <span class="op">{</span><span class="dv">7</span><span class="op">,</span> <span class="dv">8</span><span class="op">,</span> <span class="dv">56</span><span class="op">,</span> <span class="dv">98</span><span class="op">,</span> <span class="dv">5</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="op">-</span><span class="dv">1</span><span class="op">,</span> <span class="dv">8</span><span class="op">};</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>func<span class="op">(</span>v<span class="op">);</span> <span class="co">// [Args = {std::vector&lt;int&gt;&amp;}], &amp; &amp;&amp; == &amp;</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>func<span class="op">(</span><span class="bu">std::</span>move<span class="op">(</span>v<span class="op">));</span> <span class="co">// [Args = {std::vector&lt;int&gt;&amp;&amp;}], &amp;&amp; &amp;&amp; == &amp;&amp;</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>func<span class="op">(</span><span class="bu">std::</span>vector<span class="op">{</span><span class="fl">7.0</span><span class="op">,</span> <span class="fl">8.3</span><span class="op">,</span> <span class="op">-</span><span class="fl">96.87</span><span class="op">,</span> <span class="fl">7.1</span><span class="op">});</span> <span class="co">// [Args = {std::vector&lt;double&gt;}], () == &amp;&amp;</span></span></code></pre></div></li>
 </ul>
 </div>
 <div id="о-конструкторах" class="slide section level2">
 <h1>О конструкторах</h1>
-<div class="sourceCode" id="cb5"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">class</span> A {</span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="kw">public</span>:</span>
-<span id="cb5-3"><a href="#cb5-3"></a>    A(); <span class="co">// default constructor</span></span>
-<span id="cb5-4"><a href="#cb5-4"></a>    A(<span class="at">const</span> A&amp;); <span class="co">// copy constructor</span></span>
-<span id="cb5-5"><a href="#cb5-5"></a>    A(A&amp;&amp;); <span class="co">// move constructor</span></span>
-<span id="cb5-6"><a href="#cb5-6"></a>    A&amp; <span class="kw">operator</span>=(<span class="at">const</span> A&amp;); <span class="co">// copy assignment</span></span>
-<span id="cb5-7"><a href="#cb5-7"></a>    A&amp; <span class="kw">operator</span>=(A&amp;&amp;); <span class="co">// move assignment</span></span>
-<span id="cb5-8"><a href="#cb5-8"></a>    ~A(); <span class="co">// destructor</span></span>
-<span id="cb5-9"><a href="#cb5-9"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> A <span class="op">{</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span><span class="op">:</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    A<span class="op">();</span> <span class="co">// default constructor</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    A<span class="op">(</span><span class="at">const</span> A<span class="op">&amp;);</span> <span class="co">// copy constructor</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    A<span class="op">(</span>A<span class="op">&amp;&amp;);</span> <span class="co">// move constructor</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    A<span class="op">&amp;</span> <span class="kw">operator</span><span class="op">=(</span><span class="at">const</span> A<span class="op">&amp;);</span> <span class="co">// copy assignment</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    A<span class="op">&amp;</span> <span class="kw">operator</span><span class="op">=(</span>A<span class="op">&amp;&amp;);</span> <span class="co">// move assignment</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">~</span>A<span class="op">();</span> <span class="co">// destructor</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <ul>
 <li>Порождающие операторы: конструкторы, присваивания, деструктор</li>
 <li>Деструктор почти всегда генерируется сам, его перегрузка ни на что не влияет</li>
@@ -394,92 +395,92 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Перегрузка конструктора копирования или присваивания не затрагивает move-операции</li>
 <li><code class="sourceCode cpp"><span class="kw">delete</span></code> — явное удаление порождающего оператора</li>
 <li><code class="sourceCode cpp"><span class="cf">default</span></code> — попросить компилятор сгенерировать порождающий оператор</li>
-<li>Явное правило вывода конструктора: <code class="sourceCode cpp"><span class="kw">template</span>&lt;<span class="kw">class</span> T&gt; myclass(T&amp;&amp;, <span class="dt">int</span>) -&gt; myclass&lt;T&gt;;</code></li>
+<li>Явное правило вывода конструктора: <code class="sourceCode cpp"><span class="kw">template</span><span class="op">&lt;</span><span class="kw">class</span> T<span class="op">&gt;</span> myclass<span class="op">(</span>T<span class="op">&amp;&amp;,</span> <span class="dt">int</span><span class="op">)</span> <span class="op">-&gt;</span> myclass<span class="op">&lt;</span>T<span class="op">&gt;;</span></code></li>
 </ul>
 </div>
 <div id="о-шаблонах" class="slide section level2">
 <h1>О шаблонах</h1>
 <ul>
-<li><p><code class="sourceCode cpp"><span class="kw">template</span>&lt;<span class="kw">class</span>... Ts&gt; <span class="kw">class</span> myclass;</code> — пакет шаблонных параметров</p></li>
-<li><p><code class="sourceCode cpp"><span class="kw">template</span>&lt;<span class="kw">class</span> T&gt; <span class="kw">constexpr</span> T pi = T(<span class="fl">3.1415926535897932385</span><span class="bu">L</span>);</code> — шаблонная переменная</p></li>
-<li><p><code class="sourceCode cpp"><span class="dt">size_t</span> N = <span class="kw">sizeof</span>...(Ts);</code></p></li>
+<li><p><code class="sourceCode cpp"><span class="kw">template</span><span class="op">&lt;</span><span class="kw">class</span><span class="op">...</span> Ts<span class="op">&gt;</span> <span class="kw">class</span> myclass<span class="op">;</span></code> — пакет шаблонных параметров</p></li>
+<li><p><code class="sourceCode cpp"><span class="kw">template</span><span class="op">&lt;</span><span class="kw">class</span> T<span class="op">&gt;</span> <span class="kw">constexpr</span> T pi <span class="op">=</span> T<span class="op">(</span><span class="fl">3.1415926535897932385</span><span class="bu">L</span><span class="op">);</span></code> — шаблонная переменная</p></li>
+<li><p><code class="sourceCode cpp"><span class="dt">size_t</span> N <span class="op">=</span> <span class="kw">sizeof</span><span class="op">...(</span>Ts<span class="op">);</span></code></p></li>
 <li><p>Хранение аргументов в кортеже</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">template</span>&lt;<span class="kw">class</span>... Ts&gt;</span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="kw">struct</span> abc {</span>
-<span id="cb6-3"><a href="#cb6-3"></a>    abc(Ts... ts): x(ts...) {}</span>
-<span id="cb6-4"><a href="#cb6-4"></a></span>
-<span id="cb6-5"><a href="#cb6-5"></a>    <span class="bu">std::</span>tuple&lt;Ts...&gt; x;</span>
-<span id="cb6-6"><a href="#cb6-6"></a>}</span></code></pre></div></li>
+<div class="sourceCode" id="cb6"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">template</span><span class="op">&lt;</span><span class="kw">class</span><span class="op">...</span> Ts<span class="op">&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> abc <span class="op">{</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    abc<span class="op">(</span>Ts<span class="op">...</span> ts<span class="op">):</span> x<span class="op">(</span>ts<span class="op">...)</span> <span class="op">{}</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">std::</span>tuple<span class="op">&lt;</span>Ts<span class="op">...&gt;</span> x<span class="op">;</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div></li>
 </ul>
 </div>
 <div id="распаковка-кортежа-в-аргументы" class="slide section level2">
 <h1>Распаковка кортежа в аргументы</h1>
 <ul>
 <li><p>Использование <code class="sourceCode cpp"><span class="bu">std::</span>integer_sequence</code></p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">template</span>&lt;<span class="kw">class</span>... Ts&gt;</span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="dt">void</span> func1(<span class="at">const</span> <span class="bu">std::</span>tuple&lt;Ts...&gt;&amp; t)</span>
-<span id="cb7-3"><a href="#cb7-3"></a>{</span>
-<span id="cb7-4"><a href="#cb7-4"></a>    func_impl(t, <span class="bu">std::</span>make_sequence_for&lt;Ts...&gt;{});</span>
-<span id="cb7-5"><a href="#cb7-5"></a>}</span>
-<span id="cb7-6"><a href="#cb7-6"></a></span>
-<span id="cb7-7"><a href="#cb7-7"></a><span class="kw">template</span>&lt;<span class="kw">class</span> Tuple&gt;</span>
-<span id="cb7-8"><a href="#cb7-8"></a><span class="dt">void</span> func2(<span class="at">const</span> Tuple&amp; t)</span>
-<span id="cb7-9"><a href="#cb7-9"></a>{</span>
-<span id="cb7-10"><a href="#cb7-10"></a>    func_impl(t, <span class="bu">std::</span>make_index_sequence&lt;<span class="bu">std::</span>tuple_size_v&lt;Tuple&gt;&gt;{});</span>
-<span id="cb7-11"><a href="#cb7-11"></a>}</span>
-<span id="cb7-12"><a href="#cb7-12"></a></span>
-<span id="cb7-13"><a href="#cb7-13"></a><span class="kw">template</span>&lt;<span class="kw">class</span> Tuple, <span class="dt">size_t</span>... Is&gt;</span>
-<span id="cb7-14"><a href="#cb7-14"></a><span class="dt">void</span> func_impl(<span class="at">const</span> Tuple&amp; t, <span class="bu">std::</span>index_sequence&lt;Is...&gt;)</span>
-<span id="cb7-15"><a href="#cb7-15"></a>{</span>
-<span id="cb7-16"><a href="#cb7-16"></a>    (<span class="bu">std::</span>cout &lt;&lt; ... &lt;&lt; <span class="bu">std::</span>get&lt;Is&gt;(t));</span>
-<span id="cb7-17"><a href="#cb7-17"></a>}</span>
-<span id="cb7-18"><a href="#cb7-18"></a></span>
-<span id="cb7-19"><a href="#cb7-19"></a><span class="kw">template</span>&lt;<span class="kw">class</span>... Ts&gt;</span>
-<span id="cb7-20"><a href="#cb7-20"></a><span class="bu">std::</span>ostream&amp; <span class="kw">operator</span>&lt;&lt;(<span class="bu">std::</span>ostream&amp; os, <span class="at">const</span> <span class="bu">std::</span>tuple&lt;Ts...&gt;&amp; t)</span>
-<span id="cb7-21"><a href="#cb7-21"></a>{</span>
-<span id="cb7-22"><a href="#cb7-22"></a>    <span class="cf">return</span> <span class="bu">std::</span>apply([&amp;os](<span class="at">const</span> <span class="kw">auto</span>&amp;... xs) -&gt; <span class="kw">decltype</span>(<span class="kw">auto</span>) { <span class="cf">return</span> (os &lt;&lt; ... &lt;&lt; xs); }, t);</span>
-<span id="cb7-23"><a href="#cb7-23"></a>}</span></code></pre></div></li>
+<div class="sourceCode" id="cb7"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">template</span><span class="op">&lt;</span><span class="kw">class</span><span class="op">...</span> Ts<span class="op">&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> func1<span class="op">(</span><span class="at">const</span> <span class="bu">std::</span>tuple<span class="op">&lt;</span>Ts<span class="op">...&gt;&amp;</span> t<span class="op">)</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    func_impl<span class="op">(</span>t<span class="op">,</span> <span class="bu">std::</span>make_sequence_for<span class="op">&lt;</span>Ts<span class="op">...&gt;{});</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="kw">template</span><span class="op">&lt;</span><span class="kw">class</span> Tuple<span class="op">&gt;</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> func2<span class="op">(</span><span class="at">const</span> Tuple<span class="op">&amp;</span> t<span class="op">)</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    func_impl<span class="op">(</span>t<span class="op">,</span> <span class="bu">std::</span>make_index_sequence<span class="op">&lt;</span><span class="bu">std::</span>tuple_size_v<span class="op">&lt;</span>Tuple<span class="op">&gt;&gt;{});</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="kw">template</span><span class="op">&lt;</span><span class="kw">class</span> Tuple<span class="op">,</span> <span class="dt">size_t</span><span class="op">...</span> Is<span class="op">&gt;</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> func_impl<span class="op">(</span><span class="at">const</span> Tuple<span class="op">&amp;</span> t<span class="op">,</span> <span class="bu">std::</span>index_sequence<span class="op">&lt;</span>Is<span class="op">...&gt;)</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="op">(</span><span class="bu">std::</span>cout<span class="op"> &lt;&lt;</span> <span class="op">...</span> <span class="op">&lt;&lt;</span> <span class="bu">std::</span>get<span class="op">&lt;</span>Is<span class="op">&gt;(</span>t<span class="op">));</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="kw">template</span><span class="op">&lt;</span><span class="kw">class</span><span class="op">...</span> Ts<span class="op">&gt;</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>ostream<span class="op">&amp;</span> <span class="kw">operator</span><span class="op">&lt;&lt;(</span><span class="bu">std::</span>ostream<span class="op">&amp;</span> os<span class="op">,</span> <span class="at">const</span> <span class="bu">std::</span>tuple<span class="op">&lt;</span>Ts<span class="op">...&gt;&amp;</span> t<span class="op">)</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">std::</span>apply<span class="op">([&amp;</span>os<span class="op">](</span><span class="at">const</span> <span class="kw">auto</span><span class="op">&amp;...</span> xs<span class="op">)</span> <span class="op">-&gt;</span> <span class="kw">decltype</span><span class="op">(</span><span class="kw">auto</span><span class="op">)</span> <span class="op">{</span> <span class="cf">return</span> <span class="op">(</span>os <span class="op">&lt;&lt;</span> <span class="op">...</span> <span class="op">&lt;&lt;</span> xs<span class="op">);</span> <span class="op">},</span> t<span class="op">);</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div></li>
 </ul>
 </div>
 <div id="операции-над-шаблонными-пакетами" class="slide section level2">
 <h1>Операции над шаблонными пакетами</h1>
-<div class="sourceCode" id="cb8"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">template</span> &lt;<span class="kw">typename</span>... bases&gt;</span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="kw">struct</span> X : bases... {</span>
-<span id="cb8-3"><a href="#cb8-3"></a>    <span class="kw">using</span> X::bases::g...;</span>
-<span id="cb8-4"><a href="#cb8-4"></a>};</span>
-<span id="cb8-5"><a href="#cb8-5"></a>X&lt;B, D&gt; x;</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">template</span> <span class="op">&lt;</span><span class="kw">typename</span><span class="op">...</span> bases<span class="op">&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> X <span class="op">:</span> bases<span class="op">...</span> <span class="op">{</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">using</span> X<span class="op">::</span>bases<span class="op">::</span>g<span class="op">...;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>X<span class="op">&lt;</span>B<span class="op">,</span> D<span class="op">&gt;</span> x<span class="op">;</span></span></code></pre></div>
 <p>Свёртки (наличие скобок важно)</p>
 <ul>
-<li><code class="sourceCode cpp">( pack op ... )</code> — свёртка слева</li>
-<li><code class="sourceCode cpp">( pack op ... op init )</code> — свёртка слева с начальным значением</li>
-<li><code class="sourceCode cpp">( ... op pack )</code> — свёртка справа</li>
-<li><code class="sourceCode cpp">( init op ... op pack )</code> — свёртка справа с начальным значением</li>
+<li><code class="sourceCode cpp"><span class="op">(</span> pack op <span class="op">...</span> <span class="op">)</span></code> — свёртка слева</li>
+<li><code class="sourceCode cpp"><span class="op">(</span> pack op <span class="op">...</span> op init <span class="op">)</span></code> — свёртка слева с начальным значением</li>
+<li><code class="sourceCode cpp"><span class="op">(</span> <span class="op">...</span> op pack <span class="op">)</span></code> — свёртка справа</li>
+<li><code class="sourceCode cpp"><span class="op">(</span> init op <span class="op">...</span> op pack <span class="op">)</span></code> — свёртка справа с начальным значением</li>
 </ul>
-<div class="sourceCode" id="cb9"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw">template</span>&lt;<span class="kw">typename</span> T, <span class="kw">typename</span>... Args&gt;</span>
-<span id="cb9-2"><a href="#cb9-2"></a><span class="dt">void</span> push_back_vec(<span class="bu">std::</span>vector&lt;T&gt;&amp; v, Args&amp;&amp;... args)</span>
-<span id="cb9-3"><a href="#cb9-3"></a>{</span>
-<span id="cb9-4"><a href="#cb9-4"></a>    (v.push_back(<span class="bu">std::</span>forward&lt;Args&gt;(args)), ...);</span>
-<span id="cb9-5"><a href="#cb9-5"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">template</span><span class="op">&lt;</span><span class="kw">typename</span> T<span class="op">,</span> <span class="kw">typename</span><span class="op">...</span> Args<span class="op">&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> push_back_vec<span class="op">(</span><span class="bu">std::</span>vector<span class="op">&lt;</span>T<span class="op">&gt;&amp;</span> v<span class="op">,</span> Args<span class="op">&amp;&amp;...</span> args<span class="op">)</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">(</span>v<span class="op">.</span>push_back<span class="op">(</span><span class="bu">std::</span>forward<span class="op">&lt;</span>Args<span class="op">&gt;(</span>args<span class="op">)),</span> <span class="op">...);</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 </div>
 <div id="о-лямбда-выражениях" class="slide section level2">
 <h1>О лямбда-выражениях</h1>
-<p><code class="sourceCode cpp"><span class="kw">auto</span> f = [a = <span class="dv">77</span>, &amp;b](<span class="kw">auto</span> x) <span class="at">mutable</span> -&gt; <span class="dt">int</span> { b = x - <span class="dv">78</span>; <span class="cf">return</span> a++; }</code></p>
+<p><code class="sourceCode cpp"><span class="kw">auto</span> f <span class="op">=</span> <span class="op">[</span>a <span class="op">=</span> <span class="dv">77</span><span class="op">,</span> <span class="op">&amp;</span>b<span class="op">](</span><span class="kw">auto</span> x<span class="op">)</span> <span class="at">mutable</span> <span class="op">-&gt;</span> <span class="dt">int</span> <span class="op">{</span> b <span class="op">=</span> x <span class="op">-</span> <span class="dv">78</span><span class="op">;</span> <span class="cf">return</span> a<span class="op">++;</span> <span class="op">}</span></code></p>
 <ul>
 <li><p>Лямбда-выражения == функторы</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">struct</span> functor</span>
-<span id="cb10-2"><a href="#cb10-2"></a>{</span>
-<span id="cb10-3"><a href="#cb10-3"></a>    functor(<span class="dt">int</span>&amp; b): <span class="va">a_</span>(<span class="dv">77</span>), <span class="va">b_</span>(b) {}</span>
-<span id="cb10-4"><a href="#cb10-4"></a>    <span class="dt">int</span> <span class="kw">operator</span>()(<span class="dt">int</span> x) <span class="at">const</span></span>
-<span id="cb10-5"><a href="#cb10-5"></a>    {</span>
-<span id="cb10-6"><a href="#cb10-6"></a>        <span class="va">b_</span> = x - <span class="dv">78</span>;</span>
-<span id="cb10-7"><a href="#cb10-7"></a>        <span class="cf">return</span> <span class="va">a_</span>++;</span>
-<span id="cb10-8"><a href="#cb10-8"></a>    }</span>
-<span id="cb10-9"><a href="#cb10-9"></a></span>
-<span id="cb10-10"><a href="#cb10-10"></a><span class="kw">private</span>:</span>
-<span id="cb10-11"><a href="#cb10-11"></a>    <span class="at">mutable</span> <span class="dt">int</span> <span class="va">a_</span>;</span>
-<span id="cb10-12"><a href="#cb10-12"></a>    <span class="dt">int</span>&amp; <span class="at">const</span> <span class="va">b_</span>;</span>
-<span id="cb10-13"><a href="#cb10-13"></a>} f;</span></code></pre></div></li>
-<li><p>Невозможно узнать тип лямбда-выражений, т.е. <code class="sourceCode cpp"><span class="kw">decltype</span>(lambda) s = ...</code> не работает</p></li>
+<div class="sourceCode" id="cb10"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> functor</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    functor<span class="op">(</span><span class="dt">int</span><span class="op">&amp;</span> b<span class="op">):</span> <span class="va">a_</span><span class="op">(</span><span class="dv">77</span><span class="op">),</span> <span class="va">b_</span><span class="op">(</span>b<span class="op">)</span> <span class="op">{}</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> <span class="kw">operator</span><span class="op">()(</span><span class="dt">int</span> x<span class="op">)</span> <span class="at">const</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">b_</span> <span class="op">=</span> x <span class="op">-</span> <span class="dv">78</span><span class="op">;</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">a_</span><span class="op">++;</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="kw">private</span><span class="op">:</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">mutable</span> <span class="dt">int</span> <span class="va">a_</span><span class="op">;</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span><span class="op">&amp;</span> <span class="at">const</span> <span class="va">b_</span><span class="op">;</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> f<span class="op">;</span></span></code></pre></div></li>
+<li><p>Невозможно узнать тип лямбда-выражений, т.е. <code class="sourceCode cpp"><span class="kw">decltype</span><span class="op">(</span>lambda<span class="op">)</span> s <span class="op">=</span> <span class="op">...</span></code> не работает</p></li>
 <li><p>Чтобы лямбды были полностью объектами, надо заворачивать их в объект <code class="sourceCode cpp"><span class="bu">std::</span>function</code></p></li>
 <li><p>Результат лямбды можно не писать, он будет выведен сам (кроме ссылок)</p></li>
 </ul>
@@ -491,18 +492,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="концепты-и-ограничители" class="slide section level2">
 <h1>Концепты и ограничители</h1>
-<div class="sourceCode" id="cb11"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb11-1"><a href="#cb11-1"></a><span class="co">// концепт</span></span>
-<span id="cb11-2"><a href="#cb11-2"></a><span class="kw">template</span>&lt;<span class="kw">typename</span> T&gt;</span>
-<span id="cb11-3"><a href="#cb11-3"></a><span class="kw">concept</span> EqualityComparable = <span class="kw">requires</span>(T a, T b)</span>
-<span id="cb11-4"><a href="#cb11-4"></a>{</span>
-<span id="cb11-5"><a href="#cb11-5"></a>    { a == b } -&gt; <span class="dt">bool</span>;</span>
-<span id="cb11-6"><a href="#cb11-6"></a>};</span>
-<span id="cb11-7"><a href="#cb11-7"></a></span>
-<span id="cb11-8"><a href="#cb11-8"></a><span class="co">// ограничитель: T должен обладать оператором ==</span></span>
-<span id="cb11-9"><a href="#cb11-9"></a><span class="kw">template</span>&lt;EqualityComparable T&gt; <span class="dt">void</span> f(T&amp;&amp;);</span>
-<span id="cb11-10"><a href="#cb11-10"></a></span>
-<span id="cb11-11"><a href="#cb11-11"></a><span class="co">// или</span></span>
-<span id="cb11-12"><a href="#cb11-12"></a><span class="kw">template</span>&lt;<span class="kw">class</span> T&gt; <span class="kw">requires</span> EqualityComparable&lt;T&gt; <span class="dt">void</span> f(T&amp;&amp;);</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">// концепт</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="kw">template</span><span class="op">&lt;</span><span class="kw">typename</span> T<span class="op">&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="kw">concept</span> EqualityComparable <span class="op">=</span> <span class="kw">requires</span><span class="op">(</span>T a<span class="op">,</span> T b<span class="op">)</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span> a <span class="op">==</span> b <span class="op">}</span> <span class="op">-&gt;</span> <span class="dt">bool</span><span class="op">;</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co">// ограничитель: T должен обладать оператором ==</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="kw">template</span><span class="op">&lt;</span>EqualityComparable T<span class="op">&gt;</span> <span class="dt">void</span> f<span class="op">(</span>T<span class="op">&amp;&amp;);</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co">// или</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="kw">template</span><span class="op">&lt;</span><span class="kw">class</span> T<span class="op">&gt;</span> <span class="kw">requires</span> EqualityComparable<span class="op">&lt;</span>T<span class="op">&gt;</span> <span class="dt">void</span> f<span class="op">(</span>T<span class="op">&amp;&amp;);</span></span></code></pre></div>
 <ul>
 <li>Компактнее вывод об ошибке (с концептами — 2 строки, без них — 50+)</li>
 <li>По сигнатуре можно понять, какой тип данных ожидает функция</li>
@@ -514,8 +515,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><code class="sourceCode cpp"><span class="bu">std::</span>bit_cast</code> — замена <code class="sourceCode cpp"><span class="kw">reinterpret_cast</span></code></li>
 <li>Стандартные концепты (Integral, Assignable, Constructible, …)</li>
-<li>Шаблонный тип может быть классом <code class="sourceCode cpp"><span class="kw">template</span>&lt;X x&gt; <span class="dt">void</span> func()</code> (есть ограничения, например, <code class="sourceCode cpp"><span class="kw">operator</span>&lt;=&gt;</code>)</li>
-<li><code class="sourceCode cpp"><span class="kw">operator</span>&lt;=&gt;</code> — один оператор покрывает все отношения порядка и равенства (spaceship)</li>
+<li>Шаблонный тип может быть классом <code class="sourceCode cpp"><span class="kw">template</span><span class="op">&lt;</span>X x<span class="op">&gt;</span> <span class="dt">void</span> func<span class="op">()</span></code> (есть ограничения, например, <code class="sourceCode cpp"><span class="kw">operator</span><span class="op">&lt;=&gt;</span></code>)</li>
+<li><code class="sourceCode cpp"><span class="kw">operator</span><span class="op">&lt;=&gt;</span></code> — один оператор покрывает все отношения порядка и равенства (spaceship)</li>
 <li>Все новые особенности языка можно проверить с помощью препроцессорных констант
 <ul>
 <li>например, <code class="sourceCode cpp">__cpp_lib_byte</code> говорит о наличии <code class="sourceCode cpp"><span class="bu">std::</span>byte</code></li>

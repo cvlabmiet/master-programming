@@ -18,6 +18,7 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -239,42 +240,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="mwe-minimal-workable-example" class="slide section level2">
 <h1>MWE (Minimal Workable Example)</h1>
-<div class="sourceCode" id="cb3"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">cmake_minimum_required</span>(<span class="ot">VERSION</span> 3.9)</span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="kw">project</span>(example <span class="ot">VERSION</span> 0.1.0 <span class="ot">LANGUAGES</span> <span class="ot">CXX</span> <span class="ot">DESCRIPTION</span> <span class="st">&quot;la-la-la&quot;</span>)</span>
-<span id="cb3-3"><a href="#cb3-3"></a></span>
-<span id="cb3-4"><a href="#cb3-4"></a><span class="kw">set</span>(<span class="dv">CMAKE_CXX_STANDARD</span> 17)</span>
-<span id="cb3-5"><a href="#cb3-5"></a></span>
-<span id="cb3-6"><a href="#cb3-6"></a><span class="kw">include</span>(CTest)</span>
-<span id="cb3-7"><a href="#cb3-7"></a></span>
-<span id="cb3-8"><a href="#cb3-8"></a><span class="kw">file</span>(<span class="ot">GLOB</span> SOURCES src/*.cpp)</span>
-<span id="cb3-9"><a href="#cb3-9"></a><span class="kw">add_library</span>(unit <span class="ot">STATIC</span> <span class="dv">${</span>SOURCES<span class="dv">}</span>) <span class="co"># libunit.a</span></span>
-<span id="cb3-10"><a href="#cb3-10"></a><span class="kw">target_include_directories</span>(unit <span class="ot">PUBLIC</span> include)</span>
-<span id="cb3-11"><a href="#cb3-11"></a></span>
-<span id="cb3-12"><a href="#cb3-12"></a><span class="kw">add_executable</span>(example app/main.cpp)</span>
-<span id="cb3-13"><a href="#cb3-13"></a><span class="kw">target_link_libraries</span>(example <span class="ot">PUBLIC</span> unit m dl)</span>
-<span id="cb3-14"><a href="#cb3-14"></a></span>
-<span id="cb3-15"><a href="#cb3-15"></a><span class="kw">add_test</span>(<span class="ot">NAME</span> simple_test <span class="ot">COMMAND</span> example --filter sim --dir /tmp)</span>
-<span id="cb3-16"><a href="#cb3-16"></a><span class="kw">set</span>_tests_properties(simple_test PROPERTIES PASS_REGULAR_EXPRESSION <span class="st">&quot;hello world&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">cmake_minimum_required</span>(<span class="ot">VERSION</span> <span class="dt">3.9</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">project</span>(example <span class="ot">VERSION</span> <span class="dt">0.1.0</span> <span class="ot">LANGUAGES</span> <span class="ot">CXX</span> <span class="ot">DESCRIPTION</span> <span class="st">&quot;la-la-la&quot;</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">set</span>(<span class="dv">CMAKE_CXX_STANDARD</span> 17)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="kw">include</span>(CTest)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="kw">file</span>(<span class="ot">GLOB</span> SOURCES src/*.cpp)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="kw">add_library</span>(unit <span class="ot">STATIC</span> <span class="dv">${SOURCES}</span>) <span class="co"># libunit.a</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="kw">target_include_directories</span>(unit <span class="ot">PUBLIC</span> include)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="kw">add_executable</span>(example app/main.cpp)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="kw">target_link_libraries</span>(example <span class="ot">PUBLIC</span> unit m dl)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="kw">add_test</span>(<span class="ot">NAME</span> simple_test <span class="ot">COMMAND</span> example --filter sim --dir /tmp)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="kw">set_tests_properties</span>(simple_test <span class="ot">PROPERTIES</span> <span class="ot">PASS_REGULAR_EXPRESSION</span> <span class="st">&quot;hello world&quot;</span>)</span></code></pre></div>
 </div>
 <div id="пример-создания-пакета" class="slide section level2">
 <h1>Пример создания пакета</h1>
-<div class="sourceCode" id="cb4"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">include</span>(GNUInstallDirs)</span>
-<span id="cb4-2"><a href="#cb4-2"></a></span>
-<span id="cb4-3"><a href="#cb4-3"></a><span class="kw">install</span>(<span class="ot">DIRECTORY</span> include/ <span class="ot">DESTINATION</span> <span class="dv">${CMAKE_INSTALL_INCLUDEDIR}</span>)</span>
-<span id="cb4-4"><a href="#cb4-4"></a><span class="kw">install</span>(<span class="ot">TARGETS</span> example unit</span>
-<span id="cb4-5"><a href="#cb4-5"></a>    <span class="ot">RUNTIME</span> <span class="ot">DESTINATION</span> <span class="dv">${CMAKE_INSTALL_BINDIR}</span></span>
-<span id="cb4-6"><a href="#cb4-6"></a>    <span class="ot">LIBRARY</span> <span class="ot">DESTINATION</span> <span class="dv">${CMAKE_INSTALL_LIBDIR}</span></span>
-<span id="cb4-7"><a href="#cb4-7"></a>    <span class="ot">ARCHIVE</span> <span class="ot">DESTINATION</span> <span class="dv">${CMAKE_INSTALL_LIBDIR}</span></span>
-<span id="cb4-8"><a href="#cb4-8"></a>)</span>
-<span id="cb4-9"><a href="#cb4-9"></a></span>
-<span id="cb4-10"><a href="#cb4-10"></a><span class="kw">list</span>(<span class="ot">APPEND</span> <span class="dv">CPACK_GENERATOR</span> TGZ)</span>
-<span id="cb4-11"><a href="#cb4-11"></a><span class="kw">set</span>(<span class="dv">CPACK_PACKAGE_VERSION_MAJOR</span> <span class="dv">${PROJECT_VERSION_MAJOR}</span>)</span>
-<span id="cb4-12"><a href="#cb4-12"></a><span class="kw">set</span>(<span class="dv">CPACK_PACKAGE_VERSION_MINOR</span> <span class="dv">${PROJECT_VERSION_MINOR}</span>)</span>
-<span id="cb4-13"><a href="#cb4-13"></a><span class="kw">set</span>(<span class="dv">CPACK_PACKAGE_VERSION_PATCH</span> <span class="dv">${PROJECT_VERSION_PATCH}</span>)</span>
-<span id="cb4-14"><a href="#cb4-14"></a><span class="kw">set</span>(<span class="dv">CPACK_SYSTEM_NAME</span> <span class="dv">${CMAKE_SYSTEM_NAME}</span>-<span class="dv">${CMAKE_SYSTEM_PROCESSOR}</span>)</span>
-<span id="cb4-15"><a href="#cb4-15"></a><span class="kw">set</span>(<span class="dv">CPACK_PACKAGE_CONTACT</span> <span class="st">&quot;MIET&quot;</span>)</span>
-<span id="cb4-16"><a href="#cb4-16"></a><span class="kw">set</span>(<span class="dv">CPACK_DEBIAN_PACKAGE_DEPENDS</span> <span class="st">&quot;libfuse3 (&gt;= 3.2.0)&quot;</span>)</span>
-<span id="cb4-17"><a href="#cb4-17"></a><span class="kw">include</span>(CPack)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">include</span>(GNUInstallDirs)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">install</span>(<span class="ot">DIRECTORY</span> include/ <span class="ot">DESTINATION</span> <span class="dv">${CMAKE_INSTALL_INCLUDEDIR}</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="kw">install</span>(<span class="ot">TARGETS</span> example unit</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="ot">RUNTIME</span> <span class="ot">DESTINATION</span> <span class="dv">${CMAKE_INSTALL_BINDIR}</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="ot">LIBRARY</span> <span class="ot">DESTINATION</span> <span class="dv">${CMAKE_INSTALL_LIBDIR}</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="ot">ARCHIVE</span> <span class="ot">DESTINATION</span> <span class="dv">${CMAKE_INSTALL_LIBDIR}</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="kw">list</span>(<span class="ot">APPEND</span> <span class="dv">CPACK_GENERATOR</span> TGZ)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="kw">set</span>(<span class="dv">CPACK_PACKAGE_VERSION_MAJOR</span> <span class="dv">${PROJECT_VERSION_MAJOR}</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="kw">set</span>(<span class="dv">CPACK_PACKAGE_VERSION_MINOR</span> <span class="dv">${PROJECT_VERSION_MINOR}</span>)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="kw">set</span>(<span class="dv">CPACK_PACKAGE_VERSION_PATCH</span> <span class="dv">${PROJECT_VERSION_PATCH}</span>)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="kw">set</span>(<span class="dv">CPACK_SYSTEM_NAME</span> <span class="dv">${CMAKE_SYSTEM_NAME}</span>-<span class="dv">${CMAKE_SYSTEM_PROCESSOR}</span>)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="kw">set</span>(<span class="va">CPACK_PACKAGE_CONTACT</span> <span class="st">&quot;MIET&quot;</span>)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="kw">set</span>(<span class="dv">CPACK_DEBIAN_PACKAGE_DEPENDS</span> <span class="st">&quot;libfuse3 (&gt;= 3.2.0)&quot;</span>)</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="kw">include</span>(CPack)</span></code></pre></div>
 </div>
 
 <div id="связывание-проектов" class="title-slide slide section level1">
@@ -292,17 +293,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="install-дерево-и-export" class="slide section level2">
 <h1>Install-дерево и export</h1>
-<div class="sourceCode" id="cb5"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">target_include_directories</span>(unit <span class="ot">PUBLIC</span> <span class="ot">$&lt;</span><span class="kw">INSTALL_INTERFACE</span><span class="ot">:include&gt;</span> <span class="ot">$&lt;</span><span class="kw">BUILD_INTERFACE</span><span class="ot">:</span><span class="dv">${CMAKE_SOURCE_DIR}</span><span class="ot">/include&gt;</span>)</span>
-<span id="cb5-2"><a href="#cb5-2"></a></span>
-<span id="cb5-3"><a href="#cb5-3"></a><span class="kw">install</span>(<span class="ot">TARGETS</span> example unit <span class="ot">EXPORT</span> <span class="dv">${PROJECT_NAME}</span>-config</span>
-<span id="cb5-4"><a href="#cb5-4"></a>    <span class="ot">RUNTIME</span> <span class="ot">DESTINATION</span> <span class="dv">${CMAKE_INSTALL_BINDIR}</span></span>
-<span id="cb5-5"><a href="#cb5-5"></a>    <span class="ot">LIBRARY</span> <span class="ot">DESTINATION</span> <span class="dv">${CMAKE_INSTALL_LIBDIR}</span></span>
-<span id="cb5-6"><a href="#cb5-6"></a>    <span class="ot">ARCHIVE</span> <span class="ot">DESTINATION</span> <span class="dv">${CMAKE_INSTALL_LIBDIR}</span></span>
-<span id="cb5-7"><a href="#cb5-7"></a>)</span>
-<span id="cb5-8"><a href="#cb5-8"></a><span class="kw">install</span>(<span class="ot">EXPORT</span> <span class="dv">${PROJECT_NAME}</span>-config <span class="ot">NAMESPACE</span> my:: <span class="ot">DESTINATION</span> <span class="dv">${CMAKE_INSTALL_DATADIR}</span>/cmake/<span class="dv">${PROJECT_NAME}</span>)</span>
-<span id="cb5-9"><a href="#cb5-9"></a></span>
-<span id="cb5-10"><a href="#cb5-10"></a><span class="kw">export</span>(<span class="ot">TARGETS</span> example unit <span class="ot">NAMESPACE</span> my:: <span class="ot">FILE</span> <span class="dv">${PROJECT_NAME}</span>-config.cmake)</span>
-<span id="cb5-11"><a href="#cb5-11"></a><span class="kw">export</span>(PACKAGE <span class="dv">${PROJECT_NAME}</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">target_include_directories</span>(unit <span class="ot">PUBLIC</span> <span class="ot">$&lt;</span><span class="kw">INSTALL_INTERFACE</span><span class="ot">:include&gt;</span> <span class="ot">$&lt;</span><span class="kw">BUILD_INTERFACE</span><span class="ot">:</span><span class="dv">${CMAKE_SOURCE_DIR}</span><span class="ot">/include&gt;</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">install</span>(<span class="ot">TARGETS</span> example unit <span class="ot">EXPORT</span> <span class="dv">${PROJECT_NAME}</span>-config</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="ot">RUNTIME</span> <span class="ot">DESTINATION</span> <span class="dv">${CMAKE_INSTALL_BINDIR}</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="ot">LIBRARY</span> <span class="ot">DESTINATION</span> <span class="dv">${CMAKE_INSTALL_LIBDIR}</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="ot">ARCHIVE</span> <span class="ot">DESTINATION</span> <span class="dv">${CMAKE_INSTALL_LIBDIR}</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="kw">install</span>(<span class="ot">EXPORT</span> <span class="dv">${PROJECT_NAME}</span>-config <span class="ot">NAMESPACE</span> my:: <span class="ot">DESTINATION</span> <span class="dv">${CMAKE_INSTALL_DATADIR}</span>/cmake/<span class="dv">${PROJECT_NAME}</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="kw">export</span>(<span class="ot">TARGETS</span> example unit <span class="ot">NAMESPACE</span> my:: <span class="ot">FILE</span> <span class="dv">${PROJECT_NAME}</span>-config.cmake)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="kw">export</span>(PACKAGE <span class="dv">${PROJECT_NAME}</span>)</span></code></pre></div>
 <ul>
 <li>Локальное дерево сборки:
 <ul>
@@ -318,10 +319,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="использование-в-стороннем-проекте" class="slide section level2">
 <h1>Использование в стороннем проекте</h1>
-<div class="sourceCode" id="cb6"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">find_package</span>(example <span class="ot">REQUIRED</span>)</span>
-<span id="cb6-2"><a href="#cb6-2"></a></span>
-<span id="cb6-3"><a href="#cb6-3"></a><span class="kw">add_executable</span>(myprog <span class="dv">${</span>SRCS<span class="dv">}</span>)</span>
-<span id="cb6-4"><a href="#cb6-4"></a><span class="kw">target_link_libraries</span>(myprog my::unit)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">find_package</span>(example <span class="ot">REQUIRED</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">add_executable</span>(myprog <span class="dv">${SRCS}</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="kw">target_link_libraries</span>(myprog <span class="bn">my::unit</span>)</span></code></pre></div>
 <ul>
 <li><p>Если проект <code>example</code> установлен по нестандартному пути <code>/path/to/example</code>, его можно указать в переменной окружения <code>CMAKE_PREFIX_PATH</code>:</p>
 <pre><code>$ export CMAKE_PREFIX_PATH+=:/path/to/example</code></pre></li>
@@ -329,21 +330,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="экспорты-для-сторонних-библиотек" class="slide section level2">
 <h1>Экспорты для сторонних библиотек</h1>
-<div class="sourceCode" id="cb8"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># Файл cmake/FindFuse.cmake</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="kw">find_path</span>(FUSE_INC fuse3/fuse.h)</span>
-<span id="cb8-3"><a href="#cb8-3"></a><span class="kw">find_library</span>(FUSE_LIBS fuse3)</span>
-<span id="cb8-4"><a href="#cb8-4"></a></span>
-<span id="cb8-5"><a href="#cb8-5"></a><span class="kw">add_library</span>(Fuse::fuse3 <span class="ot">INTERFACE</span> <span class="ot">IMPORTED</span>)</span>
-<span id="cb8-6"><a href="#cb8-6"></a><span class="kw">set</span>_target_properties(Fuse::fuse3 PROPERTIES</span>
-<span id="cb8-7"><a href="#cb8-7"></a>    <span class="dv">INTERFACE_LINK_LIBRARIES</span> <span class="dv">${</span>FUSE_LIBS<span class="dv">}</span></span>
-<span id="cb8-8"><a href="#cb8-8"></a>    INTERFACE_INCLUDE_DIRECTORIES <span class="dv">${</span>FUSE_INC<span class="dv">}</span></span>
-<span id="cb8-9"><a href="#cb8-9"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Файл cmake/FindFuse.cmake</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="kw">find_path</span>(FUSE_INC fuse3/fuse.h)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="kw">find_library</span>(FUSE_LIBS fuse3)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="kw">add_library</span>(<span class="bn">Fuse::fuse3</span> <span class="ot">INTERFACE</span> <span class="ot">IMPORTED</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="kw">set_target_properties</span>(<span class="bn">Fuse::fuse3</span> <span class="ot">PROPERTIES</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="ot">INTERFACE_LINK_LIBRARIES</span> <span class="dv">${FUSE_LIBS}</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="ot">INTERFACE_INCLUDE_DIRECTORIES</span> <span class="dv">${FUSE_INC}</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p>Использование</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw">list</span>(APPNED <span class="dv">CMAKE_MODULE_PATH</span> <span class="dv">${CMAKE_SOURCE_DIR}</span>/cmake)</span>
-<span id="cb9-2"><a href="#cb9-2"></a><span class="co">#list(APPEND CMAKE_MODULE_PATH $ENV{CMAKE_MODULE_PATH})</span></span>
-<span id="cb9-3"><a href="#cb9-3"></a></span>
-<span id="cb9-4"><a href="#cb9-4"></a><span class="kw">find_package</span>(Fuse <span class="ot">REQUIRED</span>)</span>
-<span id="cb9-5"><a href="#cb9-5"></a><span class="kw">target_link_libraries</span>(myprog <span class="ot">PUBLIC</span> Fuse::fuse3)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">list</span>(APPNED <span class="dv">CMAKE_MODULE_PATH</span> <span class="dv">${CMAKE_SOURCE_DIR}</span>/cmake)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#list(APPEND CMAKE_MODULE_PATH $ENV{CMAKE_MODULE_PATH})</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="kw">find_package</span>(Fuse <span class="ot">REQUIRED</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="kw">target_link_libraries</span>(myprog <span class="ot">PUBLIC</span> <span class="bn">Fuse::fuse3</span>)</span></code></pre></div>
 </div>
 
 <div id="дополнительная-функциональность" class="title-slide slide section level1">
@@ -357,19 +358,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Таргеты из других каталогов всегда read-only</li>
 <li><code>install</code> можно сделать только в той же директории, где находится таргет</li>
 </ul>
-<div class="sourceCode" id="cb10"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">cmake_minimum_required</span>(<span class="ot">VERSION</span> 3.9)</span>
-<span id="cb10-2"><a href="#cb10-2"></a><span class="kw">project</span>(example <span class="ot">CXX</span>)</span>
-<span id="cb10-3"><a href="#cb10-3"></a></span>
-<span id="cb10-4"><a href="#cb10-4"></a><span class="kw">file</span>(<span class="ot">GLOB</span> SRCS src/*cpp)</span>
-<span id="cb10-5"><a href="#cb10-5"></a><span class="kw">add_library</span>(unit <span class="dv">${</span>SRCS<span class="dv">}</span>)</span>
-<span id="cb10-6"><a href="#cb10-6"></a><span class="kw">add_subdirectory</span>(tests)</span></code></pre></div>
-<div class="sourceCode" id="cb11"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb11-1"><a href="#cb11-1"></a><span class="co"># tests/CMakeLists.txt</span></span>
-<span id="cb11-2"><a href="#cb11-2"></a><span class="kw">add_executable</span>(testengine main.cpp)</span>
-<span id="cb11-3"><a href="#cb11-3"></a><span class="kw">target_link_libraries</span>(testengine unit)</span>
-<span id="cb11-4"><a href="#cb11-4"></a></span>
-<span id="cb11-5"><a href="#cb11-5"></a><span class="kw">add_test</span>(first testengine -i one)</span>
-<span id="cb11-6"><a href="#cb11-6"></a><span class="kw">add_test</span>(second testengine -i two)</span>
-<span id="cb11-7"><a href="#cb11-7"></a><span class="kw">add_test</span>(third testengine -i three)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">cmake_minimum_required</span>(<span class="ot">VERSION</span> <span class="dt">3.9</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="kw">project</span>(example <span class="ot">CXX</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="kw">file</span>(<span class="ot">GLOB</span> SRCS src/*cpp)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="kw">add_library</span>(unit <span class="dv">${SRCS}</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="kw">add_subdirectory</span>(tests)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># tests/CMakeLists.txt</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="kw">add_executable</span>(testengine main.cpp)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="kw">target_link_libraries</span>(testengine unit)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="kw">add_test</span>(first testengine -i one)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="kw">add_test</span>(second testengine -i two)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="kw">add_test</span>(third testengine -i three)</span></code></pre></div>
 </div>
 <div id="тесты" class="slide section level2">
 <h1>Тесты</h1>
