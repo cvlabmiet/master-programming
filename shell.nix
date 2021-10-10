@@ -10,8 +10,10 @@ mkShell rec {
     plantuml PandocElements
     asciidoc-full-with-plugins
     gcc
+    gdb
   ];
   LANG = "C.UTF-8";
+  hardeningDisable = [ "all" ];
   shellHook = ''
     alias make="cmake --build . --"
     echo Welcome to ${name} environment!

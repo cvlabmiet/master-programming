@@ -18,7 +18,7 @@ int main()
     std::string_view text2{"cosmic pizza"};
 
     std::pair<std::string, std::string> presult;
-    x3::parse(text2.begin(), text2.end(), *(~x3::char_(' ')) >> ' ' >> *x3::char_, presult);
+    x3::parse(text2.begin(), text2.end(), *~x3::char_(' ') >> ' ' >> *x3::char_, presult);
 
     std::cout << "Result of pair: " << presult.first << ", " << presult.second << "\n";
 }
