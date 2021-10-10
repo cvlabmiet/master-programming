@@ -1,5 +1,8 @@
-add_library(lecture-7-images OBJECT images/ref.dot)
+file(GLOB SRCS *.cpp)
+foreach(__src ${SRCS})
+    get_filename_component(__name ${__src} NAME_WE)
+    add_executable(${__name} ${__src})
+    list(APPEND __exe ${__name})
+endforeach()
 
-add_html(lecture-7 index.rst)
-target_compile_options(lecture-7 PUBLIC -f rst+smart -s)
-target_link_libraries(lecture-7 PUBLIC metadata lecture-7-images ${SLIDY_OUTPUT})
+add_asciidoc(lecture-7 index.adoc DEPENDS ${__exe})

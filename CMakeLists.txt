@@ -3,7 +3,7 @@ project(master-programming VERSION 0.1.0 LANGUAGES CXX
     DESCRIPTION "A source code for the course Master computer programming"
 )
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 add_compile_options($<$<COMPILE_LANGUAGE:CXX>:-Wpedantic\;-Werror\;-Wall\;-Wextra>)
 
 find_package(docproc REQUIRED COMPONENTS plantuml dot)

@@ -153,8 +153,7 @@ Master programming
     template<class A, class B>
     std::ostream& operator<<(std::ostream& stream, const std::vector<A, B>& v)
     {
-        std::copy(v.begin(), v.end() - 1, std::ostream_iterator<decltype(v[0])>(stream, ", "));
-        return v.empty() ? stream : stream << v.back();
+        std::copy(v.begin(), v.end(), std::experimental::make_ostream_joiner(stream, ", "));
     }
 
     std::vector a{{7.8, 8.0, 59.9, -9.1, 1.598, 90.35}};
