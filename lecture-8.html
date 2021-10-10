@@ -4207,7 +4207,7 @@ http://www.gnu.org/software/src-highlite -->
 
     <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> name <span style="color: #990000">=</span> x3<span style="color: #990000">::</span>rule<span style="color: #990000">&lt;</span><span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">name</span><span style="color: #990000">,</span> std<span style="color: #990000">::</span>string<span style="color: #990000">&gt;</span><span style="color: #FF0000">{}</span> <span style="font-style: italic"><span style="color: #9A1900">// явное прописывание тэга и атрибута</span></span>
               <span style="color: #990000">=</span> x3<span style="color: #990000">::</span>alpha <span style="color: #990000">&gt;&gt;</span> <span style="color: #990000">*</span>x3<span style="color: #990000">::</span>alnum<span style="color: #990000">;</span> <span style="font-style: italic"><span style="color: #9A1900">// переменные в C-стиле</span></span>
-    <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> quote <span style="color: #990000">=</span> <span style="color: #FF0000">'"'</span> <span style="color: #990000">&gt;&gt;</span> x3<span style="color: #990000">::</span>lexeme<span style="color: #990000">[*(~</span>x3<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">char_</span></span><span style="color: #990000">(</span><span style="color: #FF0000">'"'</span><span style="color: #990000">))]</span> <span style="color: #990000">&gt;&gt;</span> <span style="color: #FF0000">'"'</span><span style="color: #990000">;</span> <span style="font-style: italic"><span style="color: #9A1900">// строковые значения в кавычках</span></span>
+    <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> quote <span style="color: #990000">=</span> x3<span style="color: #990000">::</span>lexeme<span style="color: #990000">[</span><span style="color: #FF0000">'"'</span> <span style="color: #990000">&gt;&gt;</span> <span style="color: #990000">*~</span>x3<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">char_</span></span><span style="color: #990000">(</span><span style="color: #FF0000">'"'</span><span style="color: #990000">)</span> <span style="color: #990000">&gt;&gt;</span> <span style="color: #FF0000">'"'</span><span style="color: #990000">];</span> <span style="font-style: italic"><span style="color: #9A1900">// строковые значения в кавычках</span></span>
 
     <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> it <span style="color: #990000">=</span> text<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">begin</span></span><span style="color: #990000">();</span>
     <span style="color: #009900">bool</span> parsed <span style="color: #990000">=</span> x3<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">phrase_parse</span></span><span style="color: #990000">(</span>it<span style="color: #990000">,</span> text<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">end</span></span><span style="color: #990000">(),</span>
@@ -4249,7 +4249,7 @@ http://www.gnu.org/software/src-highlite -->
 
     <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> name <span style="color: #990000">=</span> x3<span style="color: #990000">::</span>rule<span style="color: #990000">&lt;</span><span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">name</span><span style="color: #990000">,</span> std<span style="color: #990000">::</span>string<span style="color: #990000">&gt;</span><span style="color: #FF0000">{}</span> <span style="font-style: italic"><span style="color: #9A1900">// явное прописывание тэга и атрибута</span></span>
               <span style="color: #990000">=</span> x3<span style="color: #990000">::</span>alpha <span style="color: #990000">&gt;&gt;</span> <span style="color: #990000">*</span>x3<span style="color: #990000">::</span>alnum<span style="color: #990000">;</span> <span style="font-style: italic"><span style="color: #9A1900">// переменные в C-стиле</span></span>
-    <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> quote <span style="color: #990000">=</span> <span style="color: #FF0000">'"'</span> <span style="color: #990000">&gt;&gt;</span> x3<span style="color: #990000">::</span>lexeme<span style="color: #990000">[*(~</span>x3<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">char_</span></span><span style="color: #990000">(</span><span style="color: #FF0000">'"'</span><span style="color: #990000">))]</span> <span style="color: #990000">&gt;&gt;</span> <span style="color: #FF0000">'"'</span><span style="color: #990000">;</span> <span style="font-style: italic"><span style="color: #9A1900">// строковые значения в кавычках</span></span>
+    <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> quote <span style="color: #990000">=</span> x3<span style="color: #990000">::</span>lexeme<span style="color: #990000">[</span><span style="color: #FF0000">'"'</span> <span style="color: #990000">&gt;&gt;</span> <span style="color: #990000">*~</span>x3<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">char_</span></span><span style="color: #990000">(</span><span style="color: #FF0000">'"'</span><span style="color: #990000">)</span> <span style="color: #990000">&gt;&gt;</span> <span style="color: #FF0000">'"'</span><span style="color: #990000">];</span> <span style="font-style: italic"><span style="color: #9A1900">// строковые значения в кавычках</span></span>
 
     <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> it <span style="color: #990000">=</span> text<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">begin</span></span><span style="color: #990000">();</span>
     <span style="color: #009900">bool</span> parsed <span style="color: #990000">=</span> x3<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">phrase_parse</span></span><span style="color: #990000">(</span>it<span style="color: #990000">,</span> text<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">end</span></span><span style="color: #990000">(),</span>
@@ -4368,7 +4368,7 @@ http://www.gnu.org/software/src-highlite -->
     std<span style="color: #990000">::</span><span style="color: #008080">string_view</span> text2<span style="color: #FF0000">{</span><span style="color: #FF0000">"cosmic pizza"</span><span style="color: #FF0000">}</span><span style="color: #990000">;</span>
 
     std<span style="color: #990000">::</span><span style="color: #008080">pair&lt;std::string, std::string&gt;</span> presult<span style="color: #990000">;</span>
-    x3<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">parse</span></span><span style="color: #990000">(</span>text2<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">begin</span></span><span style="color: #990000">(),</span> text2<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">end</span></span><span style="color: #990000">(),</span> <span style="color: #990000">*(~</span>x3<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">char_</span></span><span style="color: #990000">(</span><span style="color: #FF0000">' '</span><span style="color: #990000">))</span> <span style="color: #990000">&gt;&gt;</span> <span style="color: #FF0000">' '</span> <span style="color: #990000">&gt;&gt;</span> <span style="color: #990000">*</span>x3<span style="color: #990000">::</span>char_<span style="color: #990000">,</span> presult<span style="color: #990000">);</span>
+    x3<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">parse</span></span><span style="color: #990000">(</span>text2<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">begin</span></span><span style="color: #990000">(),</span> text2<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">end</span></span><span style="color: #990000">(),</span> <span style="color: #990000">*~</span>x3<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">char_</span></span><span style="color: #990000">(</span><span style="color: #FF0000">' '</span><span style="color: #990000">)</span> <span style="color: #990000">&gt;&gt;</span> <span style="color: #FF0000">' '</span> <span style="color: #990000">&gt;&gt;</span> <span style="color: #990000">*</span>x3<span style="color: #990000">::</span>char_<span style="color: #990000">,</span> presult<span style="color: #990000">);</span>
 
     std<span style="color: #990000">::</span>cout <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"Result of pair: "</span> <span style="color: #990000">&lt;&lt;</span> presult<span style="color: #990000">.</span>first <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">", "</span> <span style="color: #990000">&lt;&lt;</span> presult<span style="color: #990000">.</span>second <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"</span><span style="color: #CC33CC">\n</span><span style="color: #FF0000">"</span><span style="color: #990000">;</span>
 <span style="color: #FF0000">}</span></tt></pre></div></div>
@@ -4514,6 +4514,712 @@ cellspacing="0" cellpadding="4">
 </tbody>
 </table>
 </div>
+</div></div>
+<div class="sect1 slide">
+<h1 id="_пример_реального_парсера">6. Пример реального парсера</h1>
+
+<div class="sectionbody">
+</div></div>
+<div class="sect2 slide">
+<h1 id="_csv">6.1. CSV</h1>
+
+<div class="sectionbody">
+<ul class="">
+<li>
+<span>
+CSV&#8201;&#8212;&#8201;Comma Separated Values (значения, разделённые запятыми)
+</span>
+</li>
+<li>
+<span>
+Элементарная таблица/база данных
+</span>
+</li>
+<li>
+<span>
+Ещё бывает TSV (tabulated)
+</span>
+</li>
+<li>
+<span>
+Формат хранения&#8201;&#8212;&#8201;текстовый, с расширение <code>csv</code>
+</span>
+</li>
+</ul>
+</div></div>
+<div class="sect2 slide">
+<h1 id="_спецификация">6.2. Спецификация</h1>
+
+<div class="sectionbody">
+<ul class="">
+<li>
+<span>
+CSV состоит из строк (первая строка считается <em>заголовком</em>)
+</span>
+</li>
+<li>
+<span>
+Каждая строка заканчивается символом <em>новая строка</em>
+</span>
+</li>
+<li>
+<span>
+Ячейки CSV разделяются запятой
+</span>
+</li>
+<li>
+<span>
+Каждая ячейка может иметь пробелы и быть заключена в кавычки
+</span>
+</li>
+<li>
+<span>
+Если нужно поставить запятую внутри ячейки, нужно обязательно использовать кавычки
+</span>
+</li>
+</ul>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;iostream&gt;</span>
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;stdexcept&gt;</span>
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;string&gt;</span>
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;vector&gt;</span>
+
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;boost/spirit/home/x3.hpp&gt;</span>
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;boost/range/adaptor/indexed.hpp&gt;</span>
+
+<span style="font-style: italic"><span style="color: #9A1900">/* An example of CSV:</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"> *      kind,of,header</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"> *      abc,with space,"quote"</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"> *      "comma , inside",132,  spaces  dot</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"> *</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"> * CSV (comma separated value) EBNF appr. specification (</span></span><span style="text-decoration: underline"><span style="color: #0000FF">http://www.rfc-editor.org/rfc/rfc4180.txt</span></span><span style="font-style: italic"><span style="color: #9A1900">)</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"> *      string := [^,\n]+</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"> *      qstring := " [^"]* "</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"> *      cell := qstring | string</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"> *      row := cell (, cell)* \n</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"> *      csv := row+</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"> */</span></span>
+
+<span style="font-weight: bold"><span style="color: #0000FF">namespace</span></span> types<span style="color: #990000">::</span>csv
+<span style="color: #FF0000">{</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">using</span></span> csv <span style="color: #990000">=</span> std<span style="color: #990000">::</span>vector<span style="color: #990000">&lt;</span>std<span style="color: #990000">::</span>vector<span style="color: #990000">&lt;</span>std<span style="color: #990000">::</span>string<span style="color: #990000">&gt;&gt;;</span>
+<span style="color: #FF0000">}</span>
+
+<span style="font-weight: bold"><span style="color: #0000FF">namespace</span></span> parser<span style="color: #990000">::</span>csv
+<span style="color: #FF0000">{</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">namespace</span></span> x3 <span style="color: #990000">=</span> boost<span style="color: #990000">::</span>spirit<span style="color: #990000">::</span>x3<span style="color: #990000">;</span>
+
+    <span style="font-weight: bold"><span style="color: #0000FF">const</span></span> <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> string <span style="color: #990000">=</span> x3<span style="color: #990000">::</span>lexeme<span style="color: #990000">[+~</span>x3<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">char_</span></span><span style="color: #990000">(</span><span style="color: #FF0000">",</span><span style="color: #CC33CC">\n</span><span style="color: #FF0000">"</span><span style="color: #990000">)];</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">const</span></span> <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> qstring <span style="color: #990000">=</span> x3<span style="color: #990000">::</span>lexeme<span style="color: #990000">[</span><span style="color: #FF0000">'"'</span> <span style="color: #990000">&gt;&gt;</span>  <span style="color: #990000">*((</span><span style="color: #FF0000">'</span><span style="color: #CC33CC">\\</span><span style="color: #FF0000">'</span> <span style="color: #990000">&gt;&gt;</span> x3<span style="color: #990000">::</span>char_<span style="color: #990000">)</span> <span style="color: #990000">|</span> <span style="color: #990000">~</span>x3<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">char_</span></span><span style="color: #990000">(</span><span style="color: #FF0000">"</span><span style="color: #CC33CC">\"</span><span style="color: #FF0000">"</span><span style="color: #990000">))</span> <span style="color: #990000">&gt;&gt;</span> <span style="color: #FF0000">'"'</span><span style="color: #990000">];</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">const</span></span> <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> cell <span style="color: #990000">=</span> qstring <span style="color: #990000">|</span> string<span style="color: #990000">;</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">const</span></span> <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> row <span style="color: #990000">=</span> x3<span style="color: #990000">::</span>rule<span style="color: #990000">&lt;</span><span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">row</span><span style="color: #990000">,</span> std<span style="color: #990000">::</span>vector<span style="color: #990000">&lt;</span>std<span style="color: #990000">::</span>string<span style="color: #990000">&gt;&gt;</span><span style="color: #FF0000">{}</span>
+                   <span style="color: #990000">=</span> <span style="color: #990000">(</span>cell <span style="color: #990000">%</span> <span style="color: #FF0000">','</span><span style="color: #990000">)</span> <span style="color: #990000">&gt;&gt;</span> x3<span style="color: #990000">::</span>no_skip<span style="color: #990000">[</span>x3<span style="color: #990000">::</span>eol<span style="color: #990000">];</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">const</span></span> <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> csv <span style="color: #990000">=</span> x3<span style="color: #990000">::</span>rule<span style="color: #990000">&lt;</span><span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">csv</span><span style="color: #990000">,</span> types<span style="color: #990000">::</span>csv<span style="color: #990000">::</span>csv<span style="color: #990000">&gt;</span><span style="color: #FF0000">{}</span>
+                   <span style="color: #990000">=</span> <span style="color: #990000">+</span>row<span style="color: #990000">;</span>
+
+    <span style="font-weight: bold"><span style="color: #0000FF">template</span></span><span style="color: #990000">&lt;</span><span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">Container</span><span style="color: #990000">&gt;</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> <span style="font-weight: bold"><span style="color: #000000">parse</span></span><span style="color: #990000">(</span><span style="font-weight: bold"><span style="color: #0000FF">const</span></span> Container<span style="color: #990000">&amp;</span> cnt<span style="color: #990000">)</span>
+    <span style="color: #FF0000">{</span>
+        types<span style="color: #990000">::</span>csv<span style="color: #990000">::</span><span style="color: #008080">csv</span> result<span style="color: #990000">;</span>
+        <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> it <span style="color: #990000">=</span> cnt<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">begin</span></span><span style="color: #990000">();</span>
+        <span style="font-weight: bold"><span style="color: #0000FF">if</span></span> <span style="color: #990000">(!</span>x3<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">phrase_parse</span></span><span style="color: #990000">(</span>it<span style="color: #990000">,</span> cnt<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">end</span></span><span style="color: #990000">(),</span> csv<span style="color: #990000">,</span> x3<span style="color: #990000">::</span>ascii<span style="color: #990000">::</span>space<span style="color: #990000">,</span> result<span style="color: #990000">))</span>
+            <span style="font-weight: bold"><span style="color: #0000FF">throw</span></span> std<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">runtime_error</span></span><span style="color: #990000">(</span><span style="color: #FF0000">"Invalid input data"</span><span style="color: #990000">);</span>
+
+        <span style="font-weight: bold"><span style="color: #0000FF">if</span></span> <span style="color: #990000">(</span>it <span style="color: #990000">!=</span> cnt<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">end</span></span><span style="color: #990000">())</span>
+            <span style="font-weight: bold"><span style="color: #0000FF">throw</span></span> std<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">out_of_range</span></span><span style="color: #990000">(</span><span style="color: #FF0000">"Parsing is not complete"</span><span style="color: #990000">);</span>
+
+        <span style="font-weight: bold"><span style="color: #0000FF">return</span></span> result<span style="color: #990000">;</span>
+    <span style="color: #FF0000">}</span>
+<span style="color: #FF0000">}</span>
+
+<span style="color: #009900">int</span> <span style="font-weight: bold"><span style="color: #000000">main</span></span><span style="color: #990000">()</span>
+<span style="color: #FF0000">{</span>
+    std<span style="color: #990000">::</span><span style="color: #008080">string</span> csv_data <span style="color: #990000">=</span> R<span style="color: #FF0000">"(</span>
+<span style="color: #FF0000">        kind,of,header</span>
+<span style="color: #FF0000">        abc,with space,"</span>quote<span style="color: #FF0000">"</span>
+<span style="color: #FF0000">        "</span>comma <span style="color: #990000">,</span> inside<span style="color: #FF0000">",132,  spaces  dot</span>
+<span style="color: #FF0000">        new text, quote </span><span style="color: #CC33CC">\"</span><span style="color: #FF0000">escaped,   "</span>   similar<span style="color: #990000">\</span><span style="color: #FF0000">"  "</span>
+        empty<span style="color: #990000">,</span><span style="color: #FF0000">""</span><span style="color: #990000">,</span><span style="color: #FF0000">""</span>
+    <span style="color: #990000">)</span><span style="color: #FF0000">";</span>
+
+<span style="color: #FF0000">    auto result = parser::csv::parse(csv_data);</span>
+<span style="color: #FF0000">    for (const auto&amp; row : result | boost::adaptors::indexed())</span>
+<span style="color: #FF0000">    {</span>
+<span style="color: #FF0000">        std::cout &lt;&lt; "</span>Row #<span style="color: #FF0000">" &lt;&lt; row.index() &lt;&lt; "</span><span style="color: #990000">:</span><span style="color: #FF0000">";</span>
+<span style="color: #FF0000">        for (const auto&amp; cell : row.value() | boost::adaptors::indexed())</span>
+<span style="color: #FF0000">            std::cout &lt;&lt; "</span> F#<span style="color: #FF0000">" &lt;&lt; cell.index() &lt;&lt; "</span><span style="color: #990000">:</span> <span style="color: #990000">[</span><span style="color: #FF0000">" &lt;&lt; cell.value() &lt;&lt; "</span><span style="color: #990000">]</span><span style="color: #FF0000">";</span>
+
+<span style="color: #FF0000">        std::cout &lt;&lt; "</span><span style="color: #990000">\</span>n<span style="color: #FF0000">";</span>
+<span style="color: #FF0000">    }</span>
+<span style="color: #FF0000">}</span></tt></pre></div></div>
+</div></div>
+<div class="sect2 slide">
+<h1 id="_процесс_парсинга">6.3. Процесс парсинга</h1>
+
+<div class="sectionbody">
+<ul class="">
+<li>
+<span>
+Пропуск всех пробельных символов
+</span>
+</li>
+<li>
+<span>
+Использование <code>x3::phrase_parse</code>
+</span>
+</li>
+<li>
+<span>
+Детектирование некорректного синтаксиса и наличие полного парсинга
+</span>
+</li>
+</ul>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;iostream&gt;</span>
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;stdexcept&gt;</span>
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;string&gt;</span>
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;vector&gt;</span>
+
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;boost/spirit/home/x3.hpp&gt;</span>
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;boost/range/adaptor/indexed.hpp&gt;</span>
+
+<span style="font-style: italic"><span style="color: #9A1900">/* An example of CSV:</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"> *      kind,of,header</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"> *      abc,with space,"quote"</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"> *      "comma , inside",132,  spaces  dot</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"> *</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"> * CSV (comma separated value) EBNF appr. specification (</span></span><span style="text-decoration: underline"><span style="color: #0000FF">http://www.rfc-editor.org/rfc/rfc4180.txt</span></span><span style="font-style: italic"><span style="color: #9A1900">)</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"> *      string := [^,\n]+</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"> *      qstring := " [^"]* "</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"> *      cell := qstring | string</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"> *      row := cell (, cell)* \n</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"> *      csv := row+</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"> */</span></span>
+
+<span style="font-weight: bold"><span style="color: #0000FF">namespace</span></span> types<span style="color: #990000">::</span>csv
+<span style="color: #FF0000">{</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">using</span></span> csv <span style="color: #990000">=</span> std<span style="color: #990000">::</span>vector<span style="color: #990000">&lt;</span>std<span style="color: #990000">::</span>vector<span style="color: #990000">&lt;</span>std<span style="color: #990000">::</span>string<span style="color: #990000">&gt;&gt;;</span>
+<span style="color: #FF0000">}</span>
+
+<span style="font-weight: bold"><span style="color: #0000FF">namespace</span></span> parser<span style="color: #990000">::</span>csv
+<span style="color: #FF0000">{</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">namespace</span></span> x3 <span style="color: #990000">=</span> boost<span style="color: #990000">::</span>spirit<span style="color: #990000">::</span>x3<span style="color: #990000">;</span>
+
+    <span style="font-weight: bold"><span style="color: #0000FF">const</span></span> <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> string <span style="color: #990000">=</span> x3<span style="color: #990000">::</span>lexeme<span style="color: #990000">[+~</span>x3<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">char_</span></span><span style="color: #990000">(</span><span style="color: #FF0000">",</span><span style="color: #CC33CC">\n</span><span style="color: #FF0000">"</span><span style="color: #990000">)];</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">const</span></span> <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> qstring <span style="color: #990000">=</span> x3<span style="color: #990000">::</span>lexeme<span style="color: #990000">[</span><span style="color: #FF0000">'"'</span> <span style="color: #990000">&gt;&gt;</span>  <span style="color: #990000">*((</span><span style="color: #FF0000">'</span><span style="color: #CC33CC">\\</span><span style="color: #FF0000">'</span> <span style="color: #990000">&gt;&gt;</span> x3<span style="color: #990000">::</span>char_<span style="color: #990000">)</span> <span style="color: #990000">|</span> <span style="color: #990000">~</span>x3<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">char_</span></span><span style="color: #990000">(</span><span style="color: #FF0000">"</span><span style="color: #CC33CC">\"</span><span style="color: #FF0000">"</span><span style="color: #990000">))</span> <span style="color: #990000">&gt;&gt;</span> <span style="color: #FF0000">'"'</span><span style="color: #990000">];</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">const</span></span> <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> cell <span style="color: #990000">=</span> qstring <span style="color: #990000">|</span> string<span style="color: #990000">;</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">const</span></span> <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> row <span style="color: #990000">=</span> x3<span style="color: #990000">::</span>rule<span style="color: #990000">&lt;</span><span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">row</span><span style="color: #990000">,</span> std<span style="color: #990000">::</span>vector<span style="color: #990000">&lt;</span>std<span style="color: #990000">::</span>string<span style="color: #990000">&gt;&gt;</span><span style="color: #FF0000">{}</span>
+                   <span style="color: #990000">=</span> <span style="color: #990000">(</span>cell <span style="color: #990000">%</span> <span style="color: #FF0000">','</span><span style="color: #990000">)</span> <span style="color: #990000">&gt;&gt;</span> x3<span style="color: #990000">::</span>no_skip<span style="color: #990000">[</span>x3<span style="color: #990000">::</span>eol<span style="color: #990000">];</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">const</span></span> <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> csv <span style="color: #990000">=</span> x3<span style="color: #990000">::</span>rule<span style="color: #990000">&lt;</span><span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">csv</span><span style="color: #990000">,</span> types<span style="color: #990000">::</span>csv<span style="color: #990000">::</span>csv<span style="color: #990000">&gt;</span><span style="color: #FF0000">{}</span>
+                   <span style="color: #990000">=</span> <span style="color: #990000">+</span>row<span style="color: #990000">;</span>
+
+    <span style="font-weight: bold"><span style="color: #0000FF">template</span></span><span style="color: #990000">&lt;</span><span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">Container</span><span style="color: #990000">&gt;</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> <span style="font-weight: bold"><span style="color: #000000">parse</span></span><span style="color: #990000">(</span><span style="font-weight: bold"><span style="color: #0000FF">const</span></span> Container<span style="color: #990000">&amp;</span> cnt<span style="color: #990000">)</span>
+    <span style="color: #FF0000">{</span>
+        types<span style="color: #990000">::</span>csv<span style="color: #990000">::</span><span style="color: #008080">csv</span> result<span style="color: #990000">;</span>
+        <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> it <span style="color: #990000">=</span> cnt<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">begin</span></span><span style="color: #990000">();</span>
+        <span style="font-weight: bold"><span style="color: #0000FF">if</span></span> <span style="color: #990000">(!</span>x3<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">phrase_parse</span></span><span style="color: #990000">(</span>it<span style="color: #990000">,</span> cnt<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">end</span></span><span style="color: #990000">(),</span> csv<span style="color: #990000">,</span> x3<span style="color: #990000">::</span>ascii<span style="color: #990000">::</span>space<span style="color: #990000">,</span> result<span style="color: #990000">))</span>
+            <span style="font-weight: bold"><span style="color: #0000FF">throw</span></span> std<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">runtime_error</span></span><span style="color: #990000">(</span><span style="color: #FF0000">"Invalid input data"</span><span style="color: #990000">);</span>
+
+        <span style="font-weight: bold"><span style="color: #0000FF">if</span></span> <span style="color: #990000">(</span>it <span style="color: #990000">!=</span> cnt<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">end</span></span><span style="color: #990000">())</span>
+            <span style="font-weight: bold"><span style="color: #0000FF">throw</span></span> std<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">out_of_range</span></span><span style="color: #990000">(</span><span style="color: #FF0000">"Parsing is not complete"</span><span style="color: #990000">);</span>
+
+        <span style="font-weight: bold"><span style="color: #0000FF">return</span></span> result<span style="color: #990000">;</span>
+    <span style="color: #FF0000">}</span>
+<span style="color: #FF0000">}</span>
+
+<span style="color: #009900">int</span> <span style="font-weight: bold"><span style="color: #000000">main</span></span><span style="color: #990000">()</span>
+<span style="color: #FF0000">{</span>
+    std<span style="color: #990000">::</span><span style="color: #008080">string</span> csv_data <span style="color: #990000">=</span> R<span style="color: #FF0000">"(</span>
+<span style="color: #FF0000">        kind,of,header</span>
+<span style="color: #FF0000">        abc,with space,"</span>quote<span style="color: #FF0000">"</span>
+<span style="color: #FF0000">        "</span>comma <span style="color: #990000">,</span> inside<span style="color: #FF0000">",132,  spaces  dot</span>
+<span style="color: #FF0000">        new text, quote </span><span style="color: #CC33CC">\"</span><span style="color: #FF0000">escaped,   "</span>   similar<span style="color: #990000">\</span><span style="color: #FF0000">"  "</span>
+        empty<span style="color: #990000">,</span><span style="color: #FF0000">""</span><span style="color: #990000">,</span><span style="color: #FF0000">""</span>
+    <span style="color: #990000">)</span><span style="color: #FF0000">";</span>
+
+<span style="color: #FF0000">    auto result = parser::csv::parse(csv_data);</span>
+<span style="color: #FF0000">    for (const auto&amp; row : result | boost::adaptors::indexed())</span>
+<span style="color: #FF0000">    {</span>
+<span style="color: #FF0000">        std::cout &lt;&lt; "</span>Row #<span style="color: #FF0000">" &lt;&lt; row.index() &lt;&lt; "</span><span style="color: #990000">:</span><span style="color: #FF0000">";</span>
+<span style="color: #FF0000">        for (const auto&amp; cell : row.value() | boost::adaptors::indexed())</span>
+<span style="color: #FF0000">            std::cout &lt;&lt; "</span> F#<span style="color: #FF0000">" &lt;&lt; cell.index() &lt;&lt; "</span><span style="color: #990000">:</span> <span style="color: #990000">[</span><span style="color: #FF0000">" &lt;&lt; cell.value() &lt;&lt; "</span><span style="color: #990000">]</span><span style="color: #FF0000">";</span>
+
+<span style="color: #FF0000">        std::cout &lt;&lt; "</span><span style="color: #990000">\</span>n<span style="color: #FF0000">";</span>
+<span style="color: #FF0000">    }</span>
+<span style="color: #FF0000">}</span></tt></pre></div></div>
+</div></div>
+<div class="sect2 slide">
+<h1 id="_типы_csv">6.4. Типы CSV</h1>
+
+<div class="sectionbody">
+<ul class="">
+<li>
+<span>
+Ячейка CSV&#8201;&#8212;&#8201;это строка <code>std::string</code>
+</span>
+</li>
+<li>
+<span>
+Каждая строка&#8201;&#8212;&#8201;это массив ячеек &#8658; <code>std::vector&lt;std::string&gt;</code>
+</span>
+</li>
+<li>
+<span>
+Полное CSV&#8201;&#8212;&#8201;это массив массива ячеек &#8658; <code>std::vector&lt;std::vector&lt;std::string&gt;&gt;</code>
+</span>
+</li>
+</ul>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="font-style: italic"><span style="color: #9A1900">/*</span></span>
+<span style="font-style: italic"><span style="color: #9A1900">#include &lt;iostream&gt;</span></span>
+<span style="font-style: italic"><span style="color: #9A1900">#include &lt;stdexcept&gt;</span></span>
+<span style="font-style: italic"><span style="color: #9A1900">#include &lt;string&gt;</span></span>
+<span style="font-style: italic"><span style="color: #9A1900">#include &lt;vector&gt;</span></span>
+
+<span style="font-style: italic"><span style="color: #9A1900">#include &lt;boost/spirit/home/x3.hpp&gt;</span></span>
+<span style="font-style: italic"><span style="color: #9A1900">#include &lt;boost/range/adaptor/indexed.hpp&gt;</span></span>
+
+<span style="font-style: italic"><span style="color: #9A1900">/* An example of CSV:</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"> *      kind,of,header</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"> *      abc,with space,"quote"</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"> *      "comma , inside",132,  spaces  dot</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"> *</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"> * CSV (comma separated value) EBNF appr. specification (</span></span><span style="text-decoration: underline"><span style="color: #0000FF">http://www.rfc-editor.org/rfc/rfc4180.txt</span></span><span style="font-style: italic"><span style="color: #9A1900">)</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"> *      string := [^,\n]+</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"> *      qstring := " [^"]* "</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"> *      cell := qstring | string</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"> *      row := cell (, cell)* \n</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"> *      csv := row+</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"> */</span></span>
+
+<span style="font-weight: bold"><span style="color: #0000FF">namespace</span></span> types<span style="color: #990000">::</span>csv
+<span style="color: #FF0000">{</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">using</span></span> csv <span style="color: #990000">=</span> std<span style="color: #990000">::</span>vector<span style="color: #990000">&lt;</span>std<span style="color: #990000">::</span>vector<span style="color: #990000">&lt;</span>std<span style="color: #990000">::</span>string<span style="color: #990000">&gt;&gt;;</span>
+<span style="color: #FF0000">}</span>
+
+<span style="font-weight: bold"><span style="color: #0000FF">namespace</span></span> parser<span style="color: #990000">::</span>csv
+<span style="color: #FF0000">{</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">namespace</span></span> x3 <span style="color: #990000">=</span> boost<span style="color: #990000">::</span>spirit<span style="color: #990000">::</span>x3<span style="color: #990000">;</span>
+
+    <span style="font-weight: bold"><span style="color: #0000FF">const</span></span> <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> string <span style="color: #990000">=</span> x3<span style="color: #990000">::</span>lexeme<span style="color: #990000">[+~</span>x3<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">char_</span></span><span style="color: #990000">(</span><span style="color: #FF0000">",</span><span style="color: #CC33CC">\n</span><span style="color: #FF0000">"</span><span style="color: #990000">)];</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">const</span></span> <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> qstring <span style="color: #990000">=</span> x3<span style="color: #990000">::</span>lexeme<span style="color: #990000">[</span><span style="color: #FF0000">'"'</span> <span style="color: #990000">&gt;&gt;</span>  <span style="color: #990000">*((</span><span style="color: #FF0000">'</span><span style="color: #CC33CC">\\</span><span style="color: #FF0000">'</span> <span style="color: #990000">&gt;&gt;</span> x3<span style="color: #990000">::</span>char_<span style="color: #990000">)</span> <span style="color: #990000">|</span> <span style="color: #990000">~</span>x3<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">char_</span></span><span style="color: #990000">(</span><span style="color: #FF0000">"</span><span style="color: #CC33CC">\"</span><span style="color: #FF0000">"</span><span style="color: #990000">))</span> <span style="color: #990000">&gt;&gt;</span> <span style="color: #FF0000">'"'</span><span style="color: #990000">];</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">const</span></span> <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> cell <span style="color: #990000">=</span> qstring <span style="color: #990000">|</span> string<span style="color: #990000">;</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">const</span></span> <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> row <span style="color: #990000">=</span> x3<span style="color: #990000">::</span>rule<span style="color: #990000">&lt;</span><span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">row</span><span style="color: #990000">,</span> std<span style="color: #990000">::</span>vector<span style="color: #990000">&lt;</span>std<span style="color: #990000">::</span>string<span style="color: #990000">&gt;&gt;</span><span style="color: #FF0000">{}</span>
+                   <span style="color: #990000">=</span> <span style="color: #990000">(</span>cell <span style="color: #990000">%</span> <span style="color: #FF0000">','</span><span style="color: #990000">)</span> <span style="color: #990000">&gt;&gt;</span> x3<span style="color: #990000">::</span>no_skip<span style="color: #990000">[</span>x3<span style="color: #990000">::</span>eol<span style="color: #990000">];</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">const</span></span> <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> csv <span style="color: #990000">=</span> x3<span style="color: #990000">::</span>rule<span style="color: #990000">&lt;</span><span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">csv</span><span style="color: #990000">,</span> types<span style="color: #990000">::</span>csv<span style="color: #990000">::</span>csv<span style="color: #990000">&gt;</span><span style="color: #FF0000">{}</span>
+                   <span style="color: #990000">=</span> <span style="color: #990000">+</span>row<span style="color: #990000">;</span>
+
+    <span style="font-weight: bold"><span style="color: #0000FF">template</span></span><span style="color: #990000">&lt;</span><span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">Container</span><span style="color: #990000">&gt;</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> <span style="font-weight: bold"><span style="color: #000000">parse</span></span><span style="color: #990000">(</span><span style="font-weight: bold"><span style="color: #0000FF">const</span></span> Container<span style="color: #990000">&amp;</span> cnt<span style="color: #990000">)</span>
+    <span style="color: #FF0000">{</span>
+        types<span style="color: #990000">::</span>csv<span style="color: #990000">::</span><span style="color: #008080">csv</span> result<span style="color: #990000">;</span>
+        <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> it <span style="color: #990000">=</span> cnt<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">begin</span></span><span style="color: #990000">();</span>
+        <span style="font-weight: bold"><span style="color: #0000FF">if</span></span> <span style="color: #990000">(!</span>x3<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">phrase_parse</span></span><span style="color: #990000">(</span>it<span style="color: #990000">,</span> cnt<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">end</span></span><span style="color: #990000">(),</span> csv<span style="color: #990000">,</span> x3<span style="color: #990000">::</span>ascii<span style="color: #990000">::</span>space<span style="color: #990000">,</span> result<span style="color: #990000">))</span>
+            <span style="font-weight: bold"><span style="color: #0000FF">throw</span></span> std<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">runtime_error</span></span><span style="color: #990000">(</span><span style="color: #FF0000">"Invalid input data"</span><span style="color: #990000">);</span>
+
+        <span style="font-weight: bold"><span style="color: #0000FF">if</span></span> <span style="color: #990000">(</span>it <span style="color: #990000">!=</span> cnt<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">end</span></span><span style="color: #990000">())</span>
+            <span style="font-weight: bold"><span style="color: #0000FF">throw</span></span> std<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">out_of_range</span></span><span style="color: #990000">(</span><span style="color: #FF0000">"Parsing is not complete"</span><span style="color: #990000">);</span>
+
+        <span style="font-weight: bold"><span style="color: #0000FF">return</span></span> result<span style="color: #990000">;</span>
+    <span style="color: #FF0000">}</span>
+<span style="color: #FF0000">}</span>
+
+<span style="color: #009900">int</span> <span style="font-weight: bold"><span style="color: #000000">main</span></span><span style="color: #990000">()</span>
+<span style="color: #FF0000">{</span>
+    std<span style="color: #990000">::</span><span style="color: #008080">string</span> csv_data <span style="color: #990000">=</span> R<span style="color: #FF0000">"(</span>
+<span style="color: #FF0000">        kind,of,header</span>
+<span style="color: #FF0000">        abc,with space,"</span>quote<span style="color: #FF0000">"</span>
+<span style="color: #FF0000">        "</span>comma <span style="color: #990000">,</span> inside<span style="color: #FF0000">",132,  spaces  dot</span>
+<span style="color: #FF0000">        new text, quote </span><span style="color: #CC33CC">\"</span><span style="color: #FF0000">escaped,   "</span>   similar<span style="color: #990000">\</span><span style="color: #FF0000">"  "</span>
+        empty<span style="color: #990000">,</span><span style="color: #FF0000">""</span><span style="color: #990000">,</span><span style="color: #FF0000">""</span>
+    <span style="color: #990000">)</span><span style="color: #FF0000">";</span>
+
+<span style="color: #FF0000">    auto result = parser::csv::parse(csv_data);</span>
+<span style="color: #FF0000">    for (const auto&amp; row : result | boost::adaptors::indexed())</span>
+<span style="color: #FF0000">    {</span>
+<span style="color: #FF0000">        std::cout &lt;&lt; "</span>Row #<span style="color: #FF0000">" &lt;&lt; row.index() &lt;&lt; "</span><span style="color: #990000">:</span><span style="color: #FF0000">";</span>
+<span style="color: #FF0000">        for (const auto&amp; cell : row.value() | boost::adaptors::indexed())</span>
+<span style="color: #FF0000">            std::cout &lt;&lt; "</span> F#<span style="color: #FF0000">" &lt;&lt; cell.index() &lt;&lt; "</span><span style="color: #990000">:</span> <span style="color: #990000">[</span><span style="color: #FF0000">" &lt;&lt; cell.value() &lt;&lt; "</span><span style="color: #990000">]</span><span style="color: #FF0000">";</span>
+
+<span style="color: #FF0000">        std::cout &lt;&lt; "</span><span style="color: #990000">\</span>n<span style="color: #FF0000">";</span>
+<span style="color: #FF0000">    }</span>
+<span style="color: #FF0000">}</span>
+<span style="color: #FF0000"> */</span>
+<span style="color: #FF0000">#include &lt;iostream&gt;</span>
+<span style="color: #FF0000">#include &lt;stdexcept&gt;</span>
+<span style="color: #FF0000">#include &lt;string&gt;</span>
+<span style="color: #FF0000">#include &lt;vector&gt;</span>
+
+<span style="color: #FF0000">#include &lt;boost/spirit/home/x3.hpp&gt;</span>
+<span style="color: #FF0000">#include &lt;boost/range/adaptor/indexed.hpp&gt;</span>
+
+<span style="color: #FF0000">/* An example of CSV:</span>
+<span style="color: #FF0000"> *      kind,of,header</span>
+<span style="color: #FF0000"> *      abc,with space,"</span>quote<span style="color: #FF0000">"</span>
+<span style="color: #FF0000"> *      "</span>comma <span style="color: #990000">,</span> inside<span style="color: #FF0000">",132,  spaces  dot</span>
+<span style="color: #FF0000"> *</span>
+<span style="color: #FF0000"> * CSV (comma separated value) EBNF appr. specification (http://www.rfc-editor.org/rfc/rfc4180.txt)</span>
+<span style="color: #FF0000"> *      string := [^,</span><span style="color: #CC33CC">\n</span><span style="color: #FF0000">]+</span>
+<span style="color: #FF0000"> *      qstring := "</span> <span style="color: #990000">[^</span><span style="color: #FF0000">"]* "</span>
+ <span style="color: #990000">*</span>      cell <span style="color: #990000">:=</span> qstring <span style="color: #990000">|</span> string
+ <span style="color: #990000">*</span>      row <span style="color: #990000">:=</span> <span style="font-weight: bold"><span style="color: #000000">cell</span></span> <span style="color: #990000">(,</span> cell<span style="color: #990000">)*</span> <span style="color: #990000">\</span>n
+ <span style="color: #990000">*</span>      csv <span style="color: #990000">:=</span> row<span style="color: #990000">+</span>
+ <span style="color: #990000">*/</span>
+
+<span style="font-weight: bold"><span style="color: #0000FF">namespace</span></span> types<span style="color: #990000">::</span>csv
+<span style="color: #FF0000">{</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">using</span></span> csv <span style="color: #990000">=</span> std<span style="color: #990000">::</span>vector<span style="color: #990000">&lt;</span>std<span style="color: #990000">::</span>vector<span style="color: #990000">&lt;</span>std<span style="color: #990000">::</span>string<span style="color: #990000">&gt;&gt;;</span>
+<span style="color: #FF0000">}</span>
+
+<span style="font-weight: bold"><span style="color: #0000FF">namespace</span></span> parser<span style="color: #990000">::</span>csv
+<span style="color: #FF0000">{</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">namespace</span></span> x3 <span style="color: #990000">=</span> boost<span style="color: #990000">::</span>spirit<span style="color: #990000">::</span>x3<span style="color: #990000">;</span>
+
+    <span style="font-weight: bold"><span style="color: #0000FF">const</span></span> <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> string <span style="color: #990000">=</span> x3<span style="color: #990000">::</span>lexeme<span style="color: #990000">[+~</span>x3<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">char_</span></span><span style="color: #990000">(</span><span style="color: #FF0000">",</span><span style="color: #CC33CC">\n</span><span style="color: #FF0000">"</span><span style="color: #990000">)];</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">const</span></span> <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> qstring <span style="color: #990000">=</span> x3<span style="color: #990000">::</span>lexeme<span style="color: #990000">[</span><span style="color: #FF0000">'"'</span> <span style="color: #990000">&gt;&gt;</span>  <span style="color: #990000">*((</span><span style="color: #FF0000">'</span><span style="color: #CC33CC">\\</span><span style="color: #FF0000">'</span> <span style="color: #990000">&gt;&gt;</span> x3<span style="color: #990000">::</span>char_<span style="color: #990000">)</span> <span style="color: #990000">|</span> <span style="color: #990000">~</span>x3<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">char_</span></span><span style="color: #990000">(</span><span style="color: #FF0000">"</span><span style="color: #CC33CC">\"</span><span style="color: #FF0000">"</span><span style="color: #990000">))</span> <span style="color: #990000">&gt;&gt;</span> <span style="color: #FF0000">'"'</span><span style="color: #990000">];</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">const</span></span> <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> cell <span style="color: #990000">=</span> qstring <span style="color: #990000">|</span> string<span style="color: #990000">;</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">const</span></span> <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> row <span style="color: #990000">=</span> x3<span style="color: #990000">::</span>rule<span style="color: #990000">&lt;</span><span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">row</span><span style="color: #990000">,</span> std<span style="color: #990000">::</span>vector<span style="color: #990000">&lt;</span>std<span style="color: #990000">::</span>string<span style="color: #990000">&gt;&gt;</span><span style="color: #FF0000">{}</span>
+                   <span style="color: #990000">=</span> <span style="color: #990000">(</span>cell <span style="color: #990000">%</span> <span style="color: #FF0000">','</span><span style="color: #990000">)</span> <span style="color: #990000">&gt;&gt;</span> x3<span style="color: #990000">::</span>no_skip<span style="color: #990000">[</span>x3<span style="color: #990000">::</span>eol<span style="color: #990000">];</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">const</span></span> <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> csv <span style="color: #990000">=</span> x3<span style="color: #990000">::</span>rule<span style="color: #990000">&lt;</span><span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">csv</span><span style="color: #990000">,</span> types<span style="color: #990000">::</span>csv<span style="color: #990000">::</span>csv<span style="color: #990000">&gt;</span><span style="color: #FF0000">{}</span>
+                   <span style="color: #990000">=</span> <span style="color: #990000">+</span>row<span style="color: #990000">;</span>
+
+    <span style="font-weight: bold"><span style="color: #0000FF">template</span></span><span style="color: #990000">&lt;</span><span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">Container</span><span style="color: #990000">&gt;</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> <span style="font-weight: bold"><span style="color: #000000">parse</span></span><span style="color: #990000">(</span><span style="font-weight: bold"><span style="color: #0000FF">const</span></span> Container<span style="color: #990000">&amp;</span> cnt<span style="color: #990000">)</span>
+    <span style="color: #FF0000">{</span>
+        types<span style="color: #990000">::</span>csv<span style="color: #990000">::</span><span style="color: #008080">csv</span> result<span style="color: #990000">;</span>
+        <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> it <span style="color: #990000">=</span> cnt<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">begin</span></span><span style="color: #990000">();</span>
+        <span style="font-weight: bold"><span style="color: #0000FF">if</span></span> <span style="color: #990000">(!</span>x3<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">phrase_parse</span></span><span style="color: #990000">(</span>it<span style="color: #990000">,</span> cnt<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">end</span></span><span style="color: #990000">(),</span> csv<span style="color: #990000">,</span> x3<span style="color: #990000">::</span>ascii<span style="color: #990000">::</span>space<span style="color: #990000">,</span> result<span style="color: #990000">))</span>
+            <span style="font-weight: bold"><span style="color: #0000FF">throw</span></span> std<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">runtime_error</span></span><span style="color: #990000">(</span><span style="color: #FF0000">"Invalid input data"</span><span style="color: #990000">);</span>
+
+        <span style="font-weight: bold"><span style="color: #0000FF">if</span></span> <span style="color: #990000">(</span>it <span style="color: #990000">!=</span> cnt<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">end</span></span><span style="color: #990000">())</span>
+            <span style="font-weight: bold"><span style="color: #0000FF">throw</span></span> std<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">out_of_range</span></span><span style="color: #990000">(</span><span style="color: #FF0000">"Parsing is not complete"</span><span style="color: #990000">);</span>
+
+        <span style="font-weight: bold"><span style="color: #0000FF">return</span></span> result<span style="color: #990000">;</span>
+    <span style="color: #FF0000">}</span>
+<span style="color: #FF0000">}</span>
+
+<span style="color: #009900">int</span> <span style="font-weight: bold"><span style="color: #000000">main</span></span><span style="color: #990000">()</span>
+<span style="color: #FF0000">{</span>
+    std<span style="color: #990000">::</span><span style="color: #008080">string</span> csv_data <span style="color: #990000">=</span> R<span style="color: #FF0000">"(</span>
+<span style="color: #FF0000">        kind,of,header</span>
+<span style="color: #FF0000">        abc,with space,"</span>quote<span style="color: #FF0000">"</span>
+<span style="color: #FF0000">        "</span>comma <span style="color: #990000">,</span> inside<span style="color: #FF0000">",132,  spaces  dot</span>
+<span style="color: #FF0000">        new text, quote </span><span style="color: #CC33CC">\"</span><span style="color: #FF0000">escaped,   "</span>   similar<span style="color: #990000">\</span><span style="color: #FF0000">"  "</span>
+        empty<span style="color: #990000">,</span><span style="color: #FF0000">""</span><span style="color: #990000">,</span><span style="color: #FF0000">""</span>
+    <span style="color: #990000">)</span><span style="color: #FF0000">";</span>
+
+<span style="color: #FF0000">    auto result = parser::csv::parse(csv_data);</span>
+<span style="color: #FF0000">    for (const auto&amp; row : result | boost::adaptors::indexed())</span>
+<span style="color: #FF0000">    {</span>
+<span style="color: #FF0000">        std::cout &lt;&lt; "</span>Row #<span style="color: #FF0000">" &lt;&lt; row.index() &lt;&lt; "</span><span style="color: #990000">:</span><span style="color: #FF0000">";</span>
+<span style="color: #FF0000">        for (const auto&amp; cell : row.value() | boost::adaptors::indexed())</span>
+<span style="color: #FF0000">            std::cout &lt;&lt; "</span> F#<span style="color: #FF0000">" &lt;&lt; cell.index() &lt;&lt; "</span><span style="color: #990000">:</span> <span style="color: #990000">[</span><span style="color: #FF0000">" &lt;&lt; cell.value() &lt;&lt; "</span><span style="color: #990000">]</span><span style="color: #FF0000">";</span>
+
+<span style="color: #FF0000">        std::cout &lt;&lt; "</span><span style="color: #990000">\</span>n<span style="color: #FF0000">";</span>
+<span style="color: #FF0000">    }</span>
+<span style="color: #FF0000">}</span></tt></pre></div></div>
+</div></div>
+<div class="sect2 slide">
+<h1 id="_грамматика_csv">6.5. Грамматика CSV</h1>
+
+<div class="sectionbody">
+<ul class="">
+<li>
+<span>
+Просто переписываем EBNF для CSV
+</span>
+</li>
+<li>
+<span>
+Там, где компилятор не справляется с автовыведением типа, прописываем явно <code>x3::rule</code>
+</span>
+</li>
+<li>
+<span>
+Добавляем дополнительную логику для экранирования символа двойной кавычки
+</span>
+</li>
+</ul>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="font-style: italic"><span style="color: #9A1900">/* EBNF:</span></span>
+<span style="font-style: italic"><span style="color: #9A1900">#include &lt;iostream&gt;</span></span>
+<span style="font-style: italic"><span style="color: #9A1900">#include &lt;stdexcept&gt;</span></span>
+<span style="font-style: italic"><span style="color: #9A1900">#include &lt;string&gt;</span></span>
+<span style="font-style: italic"><span style="color: #9A1900">#include &lt;vector&gt;</span></span>
+
+<span style="font-style: italic"><span style="color: #9A1900">#include &lt;boost/spirit/home/x3.hpp&gt;</span></span>
+<span style="font-style: italic"><span style="color: #9A1900">#include &lt;boost/range/adaptor/indexed.hpp&gt;</span></span>
+
+<span style="font-style: italic"><span style="color: #9A1900">/* An example of CSV:</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"> *      kind,of,header</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"> *      abc,with space,"quote"</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"> *      "comma , inside",132,  spaces  dot</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"> *</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"> * CSV (comma separated value) EBNF appr. specification (</span></span><span style="text-decoration: underline"><span style="color: #0000FF">http://www.rfc-editor.org/rfc/rfc4180.txt</span></span><span style="font-style: italic"><span style="color: #9A1900">)</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"> *      string := [^,\n]+</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"> *      qstring := " [^"]* "</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"> *      cell := qstring | string</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"> *      row := cell (, cell)* \n</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"> *      csv := row+</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"> */</span></span>
+
+<span style="font-weight: bold"><span style="color: #0000FF">namespace</span></span> types<span style="color: #990000">::</span>csv
+<span style="color: #FF0000">{</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">using</span></span> csv <span style="color: #990000">=</span> std<span style="color: #990000">::</span>vector<span style="color: #990000">&lt;</span>std<span style="color: #990000">::</span>vector<span style="color: #990000">&lt;</span>std<span style="color: #990000">::</span>string<span style="color: #990000">&gt;&gt;;</span>
+<span style="color: #FF0000">}</span>
+
+<span style="font-weight: bold"><span style="color: #0000FF">namespace</span></span> parser<span style="color: #990000">::</span>csv
+<span style="color: #FF0000">{</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">namespace</span></span> x3 <span style="color: #990000">=</span> boost<span style="color: #990000">::</span>spirit<span style="color: #990000">::</span>x3<span style="color: #990000">;</span>
+
+    <span style="font-weight: bold"><span style="color: #0000FF">const</span></span> <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> string <span style="color: #990000">=</span> x3<span style="color: #990000">::</span>lexeme<span style="color: #990000">[+~</span>x3<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">char_</span></span><span style="color: #990000">(</span><span style="color: #FF0000">",</span><span style="color: #CC33CC">\n</span><span style="color: #FF0000">"</span><span style="color: #990000">)];</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">const</span></span> <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> qstring <span style="color: #990000">=</span> x3<span style="color: #990000">::</span>lexeme<span style="color: #990000">[</span><span style="color: #FF0000">'"'</span> <span style="color: #990000">&gt;&gt;</span>  <span style="color: #990000">*((</span><span style="color: #FF0000">'</span><span style="color: #CC33CC">\\</span><span style="color: #FF0000">'</span> <span style="color: #990000">&gt;&gt;</span> x3<span style="color: #990000">::</span>char_<span style="color: #990000">)</span> <span style="color: #990000">|</span> <span style="color: #990000">~</span>x3<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">char_</span></span><span style="color: #990000">(</span><span style="color: #FF0000">"</span><span style="color: #CC33CC">\"</span><span style="color: #FF0000">"</span><span style="color: #990000">))</span> <span style="color: #990000">&gt;&gt;</span> <span style="color: #FF0000">'"'</span><span style="color: #990000">];</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">const</span></span> <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> cell <span style="color: #990000">=</span> qstring <span style="color: #990000">|</span> string<span style="color: #990000">;</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">const</span></span> <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> row <span style="color: #990000">=</span> x3<span style="color: #990000">::</span>rule<span style="color: #990000">&lt;</span><span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">row</span><span style="color: #990000">,</span> std<span style="color: #990000">::</span>vector<span style="color: #990000">&lt;</span>std<span style="color: #990000">::</span>string<span style="color: #990000">&gt;&gt;</span><span style="color: #FF0000">{}</span>
+                   <span style="color: #990000">=</span> <span style="color: #990000">(</span>cell <span style="color: #990000">%</span> <span style="color: #FF0000">','</span><span style="color: #990000">)</span> <span style="color: #990000">&gt;&gt;</span> x3<span style="color: #990000">::</span>no_skip<span style="color: #990000">[</span>x3<span style="color: #990000">::</span>eol<span style="color: #990000">];</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">const</span></span> <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> csv <span style="color: #990000">=</span> x3<span style="color: #990000">::</span>rule<span style="color: #990000">&lt;</span><span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">csv</span><span style="color: #990000">,</span> types<span style="color: #990000">::</span>csv<span style="color: #990000">::</span>csv<span style="color: #990000">&gt;</span><span style="color: #FF0000">{}</span>
+                   <span style="color: #990000">=</span> <span style="color: #990000">+</span>row<span style="color: #990000">;</span>
+
+    <span style="font-weight: bold"><span style="color: #0000FF">template</span></span><span style="color: #990000">&lt;</span><span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">Container</span><span style="color: #990000">&gt;</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> <span style="font-weight: bold"><span style="color: #000000">parse</span></span><span style="color: #990000">(</span><span style="font-weight: bold"><span style="color: #0000FF">const</span></span> Container<span style="color: #990000">&amp;</span> cnt<span style="color: #990000">)</span>
+    <span style="color: #FF0000">{</span>
+        types<span style="color: #990000">::</span>csv<span style="color: #990000">::</span><span style="color: #008080">csv</span> result<span style="color: #990000">;</span>
+        <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> it <span style="color: #990000">=</span> cnt<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">begin</span></span><span style="color: #990000">();</span>
+        <span style="font-weight: bold"><span style="color: #0000FF">if</span></span> <span style="color: #990000">(!</span>x3<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">phrase_parse</span></span><span style="color: #990000">(</span>it<span style="color: #990000">,</span> cnt<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">end</span></span><span style="color: #990000">(),</span> csv<span style="color: #990000">,</span> x3<span style="color: #990000">::</span>ascii<span style="color: #990000">::</span>space<span style="color: #990000">,</span> result<span style="color: #990000">))</span>
+            <span style="font-weight: bold"><span style="color: #0000FF">throw</span></span> std<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">runtime_error</span></span><span style="color: #990000">(</span><span style="color: #FF0000">"Invalid input data"</span><span style="color: #990000">);</span>
+
+        <span style="font-weight: bold"><span style="color: #0000FF">if</span></span> <span style="color: #990000">(</span>it <span style="color: #990000">!=</span> cnt<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">end</span></span><span style="color: #990000">())</span>
+            <span style="font-weight: bold"><span style="color: #0000FF">throw</span></span> std<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">out_of_range</span></span><span style="color: #990000">(</span><span style="color: #FF0000">"Parsing is not complete"</span><span style="color: #990000">);</span>
+
+        <span style="font-weight: bold"><span style="color: #0000FF">return</span></span> result<span style="color: #990000">;</span>
+    <span style="color: #FF0000">}</span>
+<span style="color: #FF0000">}</span>
+
+<span style="color: #009900">int</span> <span style="font-weight: bold"><span style="color: #000000">main</span></span><span style="color: #990000">()</span>
+<span style="color: #FF0000">{</span>
+    std<span style="color: #990000">::</span><span style="color: #008080">string</span> csv_data <span style="color: #990000">=</span> R<span style="color: #FF0000">"(</span>
+<span style="color: #FF0000">        kind,of,header</span>
+<span style="color: #FF0000">        abc,with space,"</span>quote<span style="color: #FF0000">"</span>
+<span style="color: #FF0000">        "</span>comma <span style="color: #990000">,</span> inside<span style="color: #FF0000">",132,  spaces  dot</span>
+<span style="color: #FF0000">        new text, quote </span><span style="color: #CC33CC">\"</span><span style="color: #FF0000">escaped,   "</span>   similar<span style="color: #990000">\</span><span style="color: #FF0000">"  "</span>
+        empty<span style="color: #990000">,</span><span style="color: #FF0000">""</span><span style="color: #990000">,</span><span style="color: #FF0000">""</span>
+    <span style="color: #990000">)</span><span style="color: #FF0000">";</span>
+
+<span style="color: #FF0000">    auto result = parser::csv::parse(csv_data);</span>
+<span style="color: #FF0000">    for (const auto&amp; row : result | boost::adaptors::indexed())</span>
+<span style="color: #FF0000">    {</span>
+<span style="color: #FF0000">        std::cout &lt;&lt; "</span>Row #<span style="color: #FF0000">" &lt;&lt; row.index() &lt;&lt; "</span><span style="color: #990000">:</span><span style="color: #FF0000">";</span>
+<span style="color: #FF0000">        for (const auto&amp; cell : row.value() | boost::adaptors::indexed())</span>
+<span style="color: #FF0000">            std::cout &lt;&lt; "</span> F#<span style="color: #FF0000">" &lt;&lt; cell.index() &lt;&lt; "</span><span style="color: #990000">:</span> <span style="color: #990000">[</span><span style="color: #FF0000">" &lt;&lt; cell.value() &lt;&lt; "</span><span style="color: #990000">]</span><span style="color: #FF0000">";</span>
+
+<span style="color: #FF0000">        std::cout &lt;&lt; "</span><span style="color: #990000">\</span>n<span style="color: #FF0000">";</span>
+<span style="color: #FF0000">    }</span>
+<span style="color: #FF0000">}</span>
+<span style="color: #FF0000"> */</span>
+<span style="color: #FF0000">#include &lt;iostream&gt;</span>
+<span style="color: #FF0000">#include &lt;stdexcept&gt;</span>
+<span style="color: #FF0000">#include &lt;string&gt;</span>
+<span style="color: #FF0000">#include &lt;vector&gt;</span>
+
+<span style="color: #FF0000">#include &lt;boost/spirit/home/x3.hpp&gt;</span>
+<span style="color: #FF0000">#include &lt;boost/range/adaptor/indexed.hpp&gt;</span>
+
+<span style="color: #FF0000">/* An example of CSV:</span>
+<span style="color: #FF0000"> *      kind,of,header</span>
+<span style="color: #FF0000"> *      abc,with space,"</span>quote<span style="color: #FF0000">"</span>
+<span style="color: #FF0000"> *      "</span>comma <span style="color: #990000">,</span> inside<span style="color: #FF0000">",132,  spaces  dot</span>
+<span style="color: #FF0000"> *</span>
+<span style="color: #FF0000"> * CSV (comma separated value) EBNF appr. specification (http://www.rfc-editor.org/rfc/rfc4180.txt)</span>
+<span style="color: #FF0000"> *      string := [^,</span><span style="color: #CC33CC">\n</span><span style="color: #FF0000">]+</span>
+<span style="color: #FF0000"> *      qstring := "</span> <span style="color: #990000">[^</span><span style="color: #FF0000">"]* "</span>
+ <span style="color: #990000">*</span>      cell <span style="color: #990000">:=</span> qstring <span style="color: #990000">|</span> string
+ <span style="color: #990000">*</span>      row <span style="color: #990000">:=</span> <span style="font-weight: bold"><span style="color: #000000">cell</span></span> <span style="color: #990000">(,</span> cell<span style="color: #990000">)*</span> <span style="color: #990000">\</span>n
+ <span style="color: #990000">*</span>      csv <span style="color: #990000">:=</span> row<span style="color: #990000">+</span>
+ <span style="color: #990000">*/</span>
+
+<span style="font-weight: bold"><span style="color: #0000FF">namespace</span></span> types<span style="color: #990000">::</span>csv
+<span style="color: #FF0000">{</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">using</span></span> csv <span style="color: #990000">=</span> std<span style="color: #990000">::</span>vector<span style="color: #990000">&lt;</span>std<span style="color: #990000">::</span>vector<span style="color: #990000">&lt;</span>std<span style="color: #990000">::</span>string<span style="color: #990000">&gt;&gt;;</span>
+<span style="color: #FF0000">}</span>
+
+<span style="font-weight: bold"><span style="color: #0000FF">namespace</span></span> parser<span style="color: #990000">::</span>csv
+<span style="color: #FF0000">{</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">namespace</span></span> x3 <span style="color: #990000">=</span> boost<span style="color: #990000">::</span>spirit<span style="color: #990000">::</span>x3<span style="color: #990000">;</span>
+
+    <span style="font-weight: bold"><span style="color: #0000FF">const</span></span> <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> string <span style="color: #990000">=</span> x3<span style="color: #990000">::</span>lexeme<span style="color: #990000">[+~</span>x3<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">char_</span></span><span style="color: #990000">(</span><span style="color: #FF0000">",</span><span style="color: #CC33CC">\n</span><span style="color: #FF0000">"</span><span style="color: #990000">)];</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">const</span></span> <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> qstring <span style="color: #990000">=</span> x3<span style="color: #990000">::</span>lexeme<span style="color: #990000">[</span><span style="color: #FF0000">'"'</span> <span style="color: #990000">&gt;&gt;</span>  <span style="color: #990000">*((</span><span style="color: #FF0000">'</span><span style="color: #CC33CC">\\</span><span style="color: #FF0000">'</span> <span style="color: #990000">&gt;&gt;</span> x3<span style="color: #990000">::</span>char_<span style="color: #990000">)</span> <span style="color: #990000">|</span> <span style="color: #990000">~</span>x3<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">char_</span></span><span style="color: #990000">(</span><span style="color: #FF0000">"</span><span style="color: #CC33CC">\"</span><span style="color: #FF0000">"</span><span style="color: #990000">))</span> <span style="color: #990000">&gt;&gt;</span> <span style="color: #FF0000">'"'</span><span style="color: #990000">];</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">const</span></span> <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> cell <span style="color: #990000">=</span> qstring <span style="color: #990000">|</span> string<span style="color: #990000">;</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">const</span></span> <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> row <span style="color: #990000">=</span> x3<span style="color: #990000">::</span>rule<span style="color: #990000">&lt;</span><span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">row</span><span style="color: #990000">,</span> std<span style="color: #990000">::</span>vector<span style="color: #990000">&lt;</span>std<span style="color: #990000">::</span>string<span style="color: #990000">&gt;&gt;</span><span style="color: #FF0000">{}</span>
+                   <span style="color: #990000">=</span> <span style="color: #990000">(</span>cell <span style="color: #990000">%</span> <span style="color: #FF0000">','</span><span style="color: #990000">)</span> <span style="color: #990000">&gt;&gt;</span> x3<span style="color: #990000">::</span>no_skip<span style="color: #990000">[</span>x3<span style="color: #990000">::</span>eol<span style="color: #990000">];</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">const</span></span> <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> csv <span style="color: #990000">=</span> x3<span style="color: #990000">::</span>rule<span style="color: #990000">&lt;</span><span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">csv</span><span style="color: #990000">,</span> types<span style="color: #990000">::</span>csv<span style="color: #990000">::</span>csv<span style="color: #990000">&gt;</span><span style="color: #FF0000">{}</span>
+                   <span style="color: #990000">=</span> <span style="color: #990000">+</span>row<span style="color: #990000">;</span>
+
+    <span style="font-weight: bold"><span style="color: #0000FF">template</span></span><span style="color: #990000">&lt;</span><span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">Container</span><span style="color: #990000">&gt;</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> <span style="font-weight: bold"><span style="color: #000000">parse</span></span><span style="color: #990000">(</span><span style="font-weight: bold"><span style="color: #0000FF">const</span></span> Container<span style="color: #990000">&amp;</span> cnt<span style="color: #990000">)</span>
+    <span style="color: #FF0000">{</span>
+        types<span style="color: #990000">::</span>csv<span style="color: #990000">::</span><span style="color: #008080">csv</span> result<span style="color: #990000">;</span>
+        <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> it <span style="color: #990000">=</span> cnt<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">begin</span></span><span style="color: #990000">();</span>
+        <span style="font-weight: bold"><span style="color: #0000FF">if</span></span> <span style="color: #990000">(!</span>x3<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">phrase_parse</span></span><span style="color: #990000">(</span>it<span style="color: #990000">,</span> cnt<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">end</span></span><span style="color: #990000">(),</span> csv<span style="color: #990000">,</span> x3<span style="color: #990000">::</span>ascii<span style="color: #990000">::</span>space<span style="color: #990000">,</span> result<span style="color: #990000">))</span>
+            <span style="font-weight: bold"><span style="color: #0000FF">throw</span></span> std<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">runtime_error</span></span><span style="color: #990000">(</span><span style="color: #FF0000">"Invalid input data"</span><span style="color: #990000">);</span>
+
+        <span style="font-weight: bold"><span style="color: #0000FF">if</span></span> <span style="color: #990000">(</span>it <span style="color: #990000">!=</span> cnt<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">end</span></span><span style="color: #990000">())</span>
+            <span style="font-weight: bold"><span style="color: #0000FF">throw</span></span> std<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">out_of_range</span></span><span style="color: #990000">(</span><span style="color: #FF0000">"Parsing is not complete"</span><span style="color: #990000">);</span>
+
+        <span style="font-weight: bold"><span style="color: #0000FF">return</span></span> result<span style="color: #990000">;</span>
+    <span style="color: #FF0000">}</span>
+<span style="color: #FF0000">}</span>
+
+<span style="color: #009900">int</span> <span style="font-weight: bold"><span style="color: #000000">main</span></span><span style="color: #990000">()</span>
+<span style="color: #FF0000">{</span>
+    std<span style="color: #990000">::</span><span style="color: #008080">string</span> csv_data <span style="color: #990000">=</span> R<span style="color: #FF0000">"(</span>
+<span style="color: #FF0000">        kind,of,header</span>
+<span style="color: #FF0000">        abc,with space,"</span>quote<span style="color: #FF0000">"</span>
+<span style="color: #FF0000">        "</span>comma <span style="color: #990000">,</span> inside<span style="color: #FF0000">",132,  spaces  dot</span>
+<span style="color: #FF0000">        new text, quote </span><span style="color: #CC33CC">\"</span><span style="color: #FF0000">escaped,   "</span>   similar<span style="color: #990000">\</span><span style="color: #FF0000">"  "</span>
+        empty<span style="color: #990000">,</span><span style="color: #FF0000">""</span><span style="color: #990000">,</span><span style="color: #FF0000">""</span>
+    <span style="color: #990000">)</span><span style="color: #FF0000">";</span>
+
+<span style="color: #FF0000">    auto result = parser::csv::parse(csv_data);</span>
+<span style="color: #FF0000">    for (const auto&amp; row : result | boost::adaptors::indexed())</span>
+<span style="color: #FF0000">    {</span>
+<span style="color: #FF0000">        std::cout &lt;&lt; "</span>Row #<span style="color: #FF0000">" &lt;&lt; row.index() &lt;&lt; "</span><span style="color: #990000">:</span><span style="color: #FF0000">";</span>
+<span style="color: #FF0000">        for (const auto&amp; cell : row.value() | boost::adaptors::indexed())</span>
+<span style="color: #FF0000">            std::cout &lt;&lt; "</span> F#<span style="color: #FF0000">" &lt;&lt; cell.index() &lt;&lt; "</span><span style="color: #990000">:</span> <span style="color: #990000">[</span><span style="color: #FF0000">" &lt;&lt; cell.value() &lt;&lt; "</span><span style="color: #990000">]</span><span style="color: #FF0000">";</span>
+
+<span style="color: #FF0000">        std::cout &lt;&lt; "</span><span style="color: #990000">\</span>n<span style="color: #FF0000">";</span>
+<span style="color: #FF0000">    }</span>
+<span style="color: #FF0000">}</span></tt></pre></div></div>
+</div></div>
+<div class="sect2 slide">
+<h1 id="_полный_пример_с_запуском">6.6. Полный пример с запуском</h1>
+
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;iostream&gt;</span>
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;stdexcept&gt;</span>
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;string&gt;</span>
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;vector&gt;</span>
+
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;boost/spirit/home/x3.hpp&gt;</span>
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;boost/range/adaptor/indexed.hpp&gt;</span>
+
+<span style="font-style: italic"><span style="color: #9A1900">/* An example of CSV:</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"> *      kind,of,header</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"> *      abc,with space,"quote"</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"> *      "comma , inside",132,  spaces  dot</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"> *</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"> * CSV (comma separated value) EBNF appr. specification (</span></span><span style="text-decoration: underline"><span style="color: #0000FF">http://www.rfc-editor.org/rfc/rfc4180.txt</span></span><span style="font-style: italic"><span style="color: #9A1900">)</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"> *      string := [^,\n]+</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"> *      qstring := " [^"]* "</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"> *      cell := qstring | string</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"> *      row := cell (, cell)* \n</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"> *      csv := row+</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"> */</span></span>
+
+<span style="font-weight: bold"><span style="color: #0000FF">namespace</span></span> types<span style="color: #990000">::</span>csv
+<span style="color: #FF0000">{</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">using</span></span> csv <span style="color: #990000">=</span> std<span style="color: #990000">::</span>vector<span style="color: #990000">&lt;</span>std<span style="color: #990000">::</span>vector<span style="color: #990000">&lt;</span>std<span style="color: #990000">::</span>string<span style="color: #990000">&gt;&gt;;</span>
+<span style="color: #FF0000">}</span>
+
+<span style="font-weight: bold"><span style="color: #0000FF">namespace</span></span> parser<span style="color: #990000">::</span>csv
+<span style="color: #FF0000">{</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">namespace</span></span> x3 <span style="color: #990000">=</span> boost<span style="color: #990000">::</span>spirit<span style="color: #990000">::</span>x3<span style="color: #990000">;</span>
+
+    <span style="font-weight: bold"><span style="color: #0000FF">const</span></span> <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> string <span style="color: #990000">=</span> x3<span style="color: #990000">::</span>lexeme<span style="color: #990000">[+~</span>x3<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">char_</span></span><span style="color: #990000">(</span><span style="color: #FF0000">",</span><span style="color: #CC33CC">\n</span><span style="color: #FF0000">"</span><span style="color: #990000">)];</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">const</span></span> <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> qstring <span style="color: #990000">=</span> x3<span style="color: #990000">::</span>lexeme<span style="color: #990000">[</span><span style="color: #FF0000">'"'</span> <span style="color: #990000">&gt;&gt;</span>  <span style="color: #990000">*((</span><span style="color: #FF0000">'</span><span style="color: #CC33CC">\\</span><span style="color: #FF0000">'</span> <span style="color: #990000">&gt;&gt;</span> x3<span style="color: #990000">::</span>char_<span style="color: #990000">)</span> <span style="color: #990000">|</span> <span style="color: #990000">~</span>x3<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">char_</span></span><span style="color: #990000">(</span><span style="color: #FF0000">"</span><span style="color: #CC33CC">\"</span><span style="color: #FF0000">"</span><span style="color: #990000">))</span> <span style="color: #990000">&gt;&gt;</span> <span style="color: #FF0000">'"'</span><span style="color: #990000">];</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">const</span></span> <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> cell <span style="color: #990000">=</span> qstring <span style="color: #990000">|</span> string<span style="color: #990000">;</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">const</span></span> <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> row <span style="color: #990000">=</span> x3<span style="color: #990000">::</span>rule<span style="color: #990000">&lt;</span><span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">row</span><span style="color: #990000">,</span> std<span style="color: #990000">::</span>vector<span style="color: #990000">&lt;</span>std<span style="color: #990000">::</span>string<span style="color: #990000">&gt;&gt;</span><span style="color: #FF0000">{}</span>
+                   <span style="color: #990000">=</span> <span style="color: #990000">(</span>cell <span style="color: #990000">%</span> <span style="color: #FF0000">','</span><span style="color: #990000">)</span> <span style="color: #990000">&gt;&gt;</span> x3<span style="color: #990000">::</span>no_skip<span style="color: #990000">[</span>x3<span style="color: #990000">::</span>eol<span style="color: #990000">];</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">const</span></span> <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> csv <span style="color: #990000">=</span> x3<span style="color: #990000">::</span>rule<span style="color: #990000">&lt;</span><span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">csv</span><span style="color: #990000">,</span> types<span style="color: #990000">::</span>csv<span style="color: #990000">::</span>csv<span style="color: #990000">&gt;</span><span style="color: #FF0000">{}</span>
+                   <span style="color: #990000">=</span> <span style="color: #990000">+</span>row<span style="color: #990000">;</span>
+
+    <span style="font-weight: bold"><span style="color: #0000FF">template</span></span><span style="color: #990000">&lt;</span><span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">Container</span><span style="color: #990000">&gt;</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> <span style="font-weight: bold"><span style="color: #000000">parse</span></span><span style="color: #990000">(</span><span style="font-weight: bold"><span style="color: #0000FF">const</span></span> Container<span style="color: #990000">&amp;</span> cnt<span style="color: #990000">)</span>
+    <span style="color: #FF0000">{</span>
+        types<span style="color: #990000">::</span>csv<span style="color: #990000">::</span><span style="color: #008080">csv</span> result<span style="color: #990000">;</span>
+        <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> it <span style="color: #990000">=</span> cnt<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">begin</span></span><span style="color: #990000">();</span>
+        <span style="font-weight: bold"><span style="color: #0000FF">if</span></span> <span style="color: #990000">(!</span>x3<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">phrase_parse</span></span><span style="color: #990000">(</span>it<span style="color: #990000">,</span> cnt<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">end</span></span><span style="color: #990000">(),</span> csv<span style="color: #990000">,</span> x3<span style="color: #990000">::</span>ascii<span style="color: #990000">::</span>space<span style="color: #990000">,</span> result<span style="color: #990000">))</span>
+            <span style="font-weight: bold"><span style="color: #0000FF">throw</span></span> std<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">runtime_error</span></span><span style="color: #990000">(</span><span style="color: #FF0000">"Invalid input data"</span><span style="color: #990000">);</span>
+
+        <span style="font-weight: bold"><span style="color: #0000FF">if</span></span> <span style="color: #990000">(</span>it <span style="color: #990000">!=</span> cnt<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">end</span></span><span style="color: #990000">())</span>
+            <span style="font-weight: bold"><span style="color: #0000FF">throw</span></span> std<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">out_of_range</span></span><span style="color: #990000">(</span><span style="color: #FF0000">"Parsing is not complete"</span><span style="color: #990000">);</span>
+
+        <span style="font-weight: bold"><span style="color: #0000FF">return</span></span> result<span style="color: #990000">;</span>
+    <span style="color: #FF0000">}</span>
+<span style="color: #FF0000">}</span>
+
+<span style="color: #009900">int</span> <span style="font-weight: bold"><span style="color: #000000">main</span></span><span style="color: #990000">()</span>
+<span style="color: #FF0000">{</span>
+    std<span style="color: #990000">::</span><span style="color: #008080">string</span> csv_data <span style="color: #990000">=</span> R<span style="color: #FF0000">"(</span>
+<span style="color: #FF0000">        kind,of,header</span>
+<span style="color: #FF0000">        abc,with space,"</span>quote<span style="color: #FF0000">"</span>
+<span style="color: #FF0000">        "</span>comma <span style="color: #990000">,</span> inside<span style="color: #FF0000">",132,  spaces  dot</span>
+<span style="color: #FF0000">        new text, quote </span><span style="color: #CC33CC">\"</span><span style="color: #FF0000">escaped,   "</span>   similar<span style="color: #990000">\</span><span style="color: #FF0000">"  "</span>
+        empty<span style="color: #990000">,</span><span style="color: #FF0000">""</span><span style="color: #990000">,</span><span style="color: #FF0000">""</span>
+    <span style="color: #990000">)</span><span style="color: #FF0000">";</span>
+
+<span style="color: #FF0000">    auto result = parser::csv::parse(csv_data);</span>
+<span style="color: #FF0000">    for (const auto&amp; row : result | boost::adaptors::indexed())</span>
+<span style="color: #FF0000">    {</span>
+<span style="color: #FF0000">        std::cout &lt;&lt; "</span>Row #<span style="color: #FF0000">" &lt;&lt; row.index() &lt;&lt; "</span><span style="color: #990000">:</span><span style="color: #FF0000">";</span>
+<span style="color: #FF0000">        for (const auto&amp; cell : row.value() | boost::adaptors::indexed())</span>
+<span style="color: #FF0000">            std::cout &lt;&lt; "</span> F#<span style="color: #FF0000">" &lt;&lt; cell.index() &lt;&lt; "</span><span style="color: #990000">:</span> <span style="color: #990000">[</span><span style="color: #FF0000">" &lt;&lt; cell.value() &lt;&lt; "</span><span style="color: #990000">]</span><span style="color: #FF0000">";</span>
+
+<span style="color: #FF0000">        std::cout &lt;&lt; "</span><span style="color: #990000">\</span>n<span style="color: #FF0000">";</span>
+<span style="color: #FF0000">    }</span>
+<span style="color: #FF0000">}</span></tt></pre></div></div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre><code>Row #0: F#0: [kind] F#1: [of] F#2: [header]
+Row #1: F#0: [abc] F#1: [with space] F#2: [quote]
+Row #2: F#0: [comma , inside] F#1: [132] F#2: [spaces  dot]
+Row #3: F#0: [new text] F#1: [quote \"escaped] F#2: [   similar"  ]
+Row #4: F#0: [empty] F#1: [] F#2: []</code></pre>
+</div></div>
+</div></div>
+<div class="sect2 slide">
+<h1 id="_отступления_от_стандарта">6.7. Отступления от стандарта</h1>
+
+<div class="sectionbody">
+<ul class="">
+<li>
+<span>
+В конце строки используется <code>\n</code>, а не <code>\r\n</code>
+</span>
+</li>
+<li>
+<span>
+Используется символ <code>\</code> для экранирования кавычек, а не парные двойные кавычки
+</span>
+</li>
+<li>
+<span>
+Пустые ячейки не парсятся, например, <code>empty,,</code> должно выдавать 3 ячейки
+</span>
+</li>
+</ul>
 </div></div>
 </body>
 </html>
