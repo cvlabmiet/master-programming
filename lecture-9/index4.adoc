@@ -1,0 +1,93 @@
+== Структуры данных
+
+=== Вошедшие в STL
+
+* https://www.boost.org/libs/optional[boost/optional.hpp]
+* https://www.boost.org/libs/tuple[boost/tuple.hpp]
+* https://www.boost.org/libs/any[boost/any.hpp]
+* https://www.boost.org/libs/variant[boost/variant.hpp]
+* Также предоставляется заголовочный файл `io` для каждого из типов
+
+=== Дерево свойств
+
+* https://www.boost.org/libs/property_tree[boost/property_tree/]
+* Предоставляет структуру для хранения ключ-значение
+* Ключ может быть задан в виде пути
+* Рекурсивный тип
+* `path_type` позволяет использовать свой разделить в пути
+* Писатели
+** `put` -- положить значение по ключу
+** `put_child` -- положить `ptree` по ключу
+** `add_child` -- добавить `ptree` к ключу (эмуляция массива)
+* Читатели
+** `get_value` -- получить значение, тип определяется шаблонным параметром
+** `get_optional` -- получить значение или нет
+** `get_child` -- получить потомка `ptree`
+** `get_child_optional` -- получить потомка или нет
+* `json_parser::write_json` и `json_parser::read_json` дают возможность сериализовать `ptree`
+** Также поддерживается `ini_parser` и `xml_parser`
+
+<<<
+
+[source,cpp]
+----
+include::example4-1.cpp[]
+----
+
+.Output
+----
+sys::[{outdir}/example4-1]
+----
+
+=== Динамический bitset
+
+* https://www.boost.org/libs/dynamic_bitset[boost/dynamic_bitset.hpp]
+* Динамическое решение для `std::bitset`
+* Оперирует блоками -- минимальный размер порций входных битов
+* В процессе добавления битов меняет свой внутренний размер
+* Повторяет интерфейс `std::bitset`
+* Может быть выведен в поток ввода/вывода
+* Есть конструктор от итераторов + функция `to_block_range` позволяет сделать сериализацию данных
+
+[source,cpp]
+----
+include::example4-2.cpp[]
+----
+
+.Output
+----
+sys::[{outdir}/example4-2]
+----
+
+=== Трёхзначный булевый тип
+
+* https://boost.org/libs/logic[boost/logic/tribool.hpp]
+* Промежуточное значение `indeterminate`
+* `tribool_io.hpp` для вывода всех состояний
+
+[source,cpp]
+----
+include::example4-3.cpp[]
+----
+
+.Output
+----
+sys::[{outdir}/example4-3]
+----
+
+=== Сжатые пары
+
+* https://www.boost.org/libs/utility/compressed_pair.htm[boost/compressed_pair.hpp]
+* Аналогичен `std::pair`
+* Если параметр шаблона пустой класс, тогда `compressed_pair` использует меньше памяти
+* Доступ к значениям осуществляется через методы `first()` и `second()`
+
+[source,cpp]
+----
+include::example4-4.cpp[]
+----
+
+.Output
+----
+sys::[{outdir}/example4-4]
+----

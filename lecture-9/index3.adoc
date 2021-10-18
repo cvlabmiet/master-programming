@@ -1,0 +1,163 @@
+== Контейнеры
+
+=== Мульти-индекс
+
+* https://www.boost.org/libs/multi_index[boost/multi_index/]
+* Позволяет реализовать контейнер с несколькими интерфейсами
+* Ключи-экстракторы `member`, `const_mem_fun` (`mem_fun`), `identity`, `global_fun`, `composite_key`
+* Изменять значения в контейнере можно только через функцию `modify`
+* Используется метод `get` для получения конкретного интерфейса
+* Контейнер должен удовлетворять условиям всех интерфейсов
+
+[width="75%",cols="2",options="header"]
+|====
+| Интерфейс | Совместимый тип
+| `sequenced` | `std::list`
+| `hashed_unique` | `std::unordered_set`
+| `hashed_non_unique` | `std::unordered_multiset`
+| `ordered_non_unique` | `std::multiset`
+| `ordered_unique` | `std::set`
+| `random_access` | `std::vector`
+|====
+
+<<<
+
+[source,cpp]
+----
+include::example3-1.cpp[]
+----
+
+.Output
+----
+sys::[{outdir}/example3-1]
+----
+
+=== Bimap
+
+* https://www.boost.org/libs/bimap[boost/bimap.hpp]
+* Ассоциативный массив, в котором значения также являются ключами
+* Основан на `boost::multi_index_container`
+* Предоставляет ссылки `left` и `right` для получения интерфейса `std::set`
+* Не позволяет использовать одинаковые ключи, поэтому вводятся специальные структуры
+** `boost::bimaps::set_of` используется по умолчанию
+** `boost::bimaps::multiset_of` используется для неуникальных значений
+** `boost::bimaps::list_of`, `boost::bimaps::vector_of`, `boost::bimaps::unconstrained_set_of`, ...
+* Модификаторы `boost::bimaps::_key` и `boost::bimaps::_data`
+
+[source,cpp]
+----
+include::example3-2.cpp[]
+----
+
+.Output
+----
+sys::[{outdir}/example3-2]
+----
+
+=== Array
+
+* https://www.boost.org/libs/array[boost/array.hpp]
+* Массив на стеке, количество элементов необходимо задавать руками
+* Обвязка над стандартными массивами, например, `int a[42]`
+* Полностью аналогичен `std::array`
+
+=== Неупорядоченные (ассоциативные) массивы
+
+* https://www.boost.org/libs/unordered[boost/unordered_*.hpp]
+* Данные внутри массивов не обладают порядком, так как используется хэш
+* Для помещаемых данных необходимо наличие перегруженных `operator==` и `hash_value`
+* Полностью эквивалентно `std::unordered_set/multiset` и `std::unordered_map/multimap`
+
+=== Циклический буфер
+
+* https://www.boost.org/libs/circular_buffer[boost/circular_buffer.hpp]
+* Контейнер с интерфейсом `std::vector`
+* Описывается с помощью двух массивов: головы и хвоста
+* API
+** `is_linearized` -- можно ли буфер представить только одним массивом
+** `array_one`, `array_two` -- голова и хвост буфера
+** `linearize` -- перераспределение элементов
+
+[source,cpp]
+----
+include::example3-3.cpp[]
+----
+
+.Output
+----
+sys::[{outdir}/example3-3]
+----
+
+=== Куча
+
+* https://www.boost.org/libs/heap[boost/heap/]
+* Структура данных с частичным или полным упорядочиванием
+* Расширение `std::priority_queue`
+* `priority_queue` позволяет не только вставлять элементы, но и итерироваться по ним
+* `binomial_heap` позволяет:
+** итерироваться в упорядоченном массиве
+** производить слияние массивов
+** обновлять элементы
+* `fibonacci_heap` предоставляет вставку за O(1)
+
+[source,cpp]
+----
+include::example3-4.cpp[]
+----
+
+.Output
+----
+sys::[{outdir}/example3-4]
+----
+
+=== Intrusive
+
+* http://www.boost.org/libs/intrusive[boost/intrusive/]
+* Эффективное представление объектов через `list` и `set` с точки зрения попадания в кеш
+** Объекты хранятся отдельно от контейнера
+** Необходимо, чтобы их представление контейнера также попадало в кеш
+** Интеграция контейнерных данных внутрь объекта
+* В качестве объектов подходят
+** наследники `list/set_base_hook`
+** содержащие в себе переменную `list/set_member_hook`
+* Автоматическое удаление объекта из контейнера с помощью `link_mode`
+
+[source,cpp]
+----
+include::example3-5.cpp[]
+----
+
+.Output
+----
+sys::[{outdir}/example3-5]
+----
+
+=== Массивы произвольной размерности
+
+* https://www.boost.org/libs/multi_array[boost/multi_array.hpp]
+* Количество размерностей -- константа, размеры размерностей задаются на уровне исполнения
+* Используется `boost::extents[N][M]` для задания размера матрицы NxM
+* Для получения среза массива достаточно вызвать `operator[]`, либо использовать `boost::indices`
+* Метод `origin` предоставляет доступ к сырому указателю
+* `boost::multi_array_ref` и `boost::const_multi_array_ref` являются обёртками над C-массивом
+
+[source,cpp]
+----
+include::example3-6.cpp[]
+----
+
+.Output
+----
+sys::[{outdir}/example3-6]
+----
+
+Контейнеры
+----------
+
+* https://www.boost.org/libs/container[boost/container/]
+* Поддерживаются рекурсивные типы
+* `stable_vector` позволяет изменять данные, при это итераторы всегда остаются валидными
+* `flat_set/map` представляют "плоские" структуры, без деревьев
+* `slist` == `std::forward_list`
+* `static_vector` подобен `std::array`, но ведёт себя как `std::vector`
+* `small_vector` имеет преалоцированную память, подходит для массивов с малой длиной

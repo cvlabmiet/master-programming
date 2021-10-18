@@ -1,0 +1,44 @@
+== Обработка ошибок
+
+=== System
+
+* https://www.boost.org/libs/system[boost/system/]
+* Содержит специальные классы с ошибками: `error_code`, `errc::make_error_code`, ...
+* Переехал полностью в C++11
+* Поддерживает posix-совместимые ошибки
+** Есть информация о номере ошибки
+** Человеческое имя ошибки
+** К какой категории относится
+* Путём наследования от `boost::system::error_category`
+* `error_code` для платформо специфичных ошибок, `error_condition` для всех платформ
+* `boost::system::system_error` используется для генерации исключения на базе `error_code`
+
+[source,cpp]
+----
+include::example13-1.cpp[]
+----
+
+.Output
+----
+sys2::[{outdir}/example13-1]
+----
+
+=== Исключения
+
+* https://www.boost.org/libs/exception[boost/exception/]
+* Дополняет функциональность `std::exception`
+* Макрос `BOOST_THROW_EXCEPTION` позволяет сохранять информацию о файле и строчке исключения
+* В исключение можно дописать дополнительную информацию с помощью `boost::error_info`
+** В STL этот механизм называется `std::nested_exception`
+* `boost::diagnostic_information` для получения всей информации об исключении
+* `boost::get_error_info` вывод информации об исключении напрямую
+
+[source,cpp,linenums]
+----
+include::example13-2.cpp[]
+----
+
+.Output
+----
+sys2::[{outdir}/example13-2]
+----

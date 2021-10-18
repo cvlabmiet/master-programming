@@ -1,0 +1,57 @@
+== Языковые расширения
+
+=== Coroutine
+
+* https://www.boost.org/libs/coroutine2[boost/coroutine2/]
+* Переключение исполнения функции по точкам синхронизации
+* В некоторых языках это ключевые слова `yield` и `await`
+* Построение coroutine с помощью типов `pull_type` и `push_type`
+* Для обеспечения передачи аргументов используется `tuple`
+
+<<<
+
+[source,cpp]
+----
+include::example12-1.cpp[]
+----
+
+.Output
+----
+sys::[{outdir}/example12-1]
+----
+
+=== Parameter
+
+* https://www.boost.org/libs/parameter[boost/parameter.hpp]
+* Предоставляет ассоциативные параметры функций, как в языке python
+* Заменяет так называемую Named Parameter Idiom
+* Макросы `BOOST_PARAMETER_FUNCTION` и `BOOST_PARAMETER_NAME` делают всю работу
+* Дополнительные макросы для работы с методами класса и шаблонами
+
+[source,cpp]
+----
+include::example12-2.cpp[]
+----
+
+.Output
+----
+sys::[{outdir}/example12-2]
+----
+
+=== Conversion
+
+* https://www.boost.org/libs/conversion/cast.htm[boost/cast.hpp]
+* Расширение возможностей `dynamic_cast`
+* `boost::polymorphic_downcast` для кастования к наследнику из базового класса
+* `boost::polymorphic_cast` для кастования между базовыми классами
+* Всегда генерирует исключение при ошибке
+
+[source,cpp]
+----
+include::example12-3.cpp[]
+----
+
+.Output
+----
+sys::[{outdir}/example12-3]
+----

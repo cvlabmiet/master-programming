@@ -1,7 +1,7 @@
 with import <nixpkgs> {};
 mkShell rec {
   name = "master-programming";
-  buildInputs = [ boost ];
+  buildInputs = [ (boost17x.override { useMpi = true; }) mpi icu ];
   nativeBuildInputs = [
     cmake
     ninja

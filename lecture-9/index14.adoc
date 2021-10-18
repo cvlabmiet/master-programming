@@ -1,0 +1,46 @@
+== Работа с числами
+
+=== Аккумуляторы
+
+* https://www.boost.org/libs/accumulators[boost/accumulators/]
+* Доступ к различным аккумуляторам, в том числе статистическим
+* `accumulator_set` для создания аккумулятора по тэгу
+* Различные статистики
+* Умеет работать с `std::complex`, `std::valarray`, `std::vector` и примитивными типами
+* Экстракторы `count`, `mean`, `variance`, `moment<N>` нужны для получения итогового значения
+
+[source,cpp]
+----
+include::example14-1.cpp[]
+----
+
+.Output
+----
+sys::[{outdir}/example14-1]
+----
+
+=== Преобразование чисел
+
+* https://www.boost.org/libs/numeric/conversion[boost/numeric/conversion/]
+* `boost::numeric_cast` позволяет производить преобразование числа в разные типы
+* Генерируется исключение, если число не помещается в заданный тип
+* Существуют исключения `positive_overflow`, `negative_overflow`, ...
+* Класс `boost::numeric::converter` позволяет создавать конвертеры более детально
+* Класс `bounds` служит для определения границ числа, соответствует `std::numeric_limits`
+* Можно написать свои политики перехвата переполнения, округления
+
+[source,cpp]
+----
+include::example14-2.cpp[]
+----
+
+.Output
+----
+sys::[{outdir}/example14-2]
+----
+
+=== Что уже вошло в STL
+
+* https://www.boost.org/libs/integer[boost/cstdint.hpp] == `cstdint`
+* https://www.boost.org/libs/algorithm/minmax[boost/minmax.hpp] == `std::minmax`, `std::minmax_element`
+* https://www.boost.org/libs/random[boost/random.hpp] == `random`

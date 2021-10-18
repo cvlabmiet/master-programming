@@ -7,6 +7,7 @@ set(CMAKE_CXX_STANDARD 20)
 add_compile_options($<$<COMPILE_LANGUAGE:CXX>:-Wpedantic\;-Werror\;-Wall\;-Wextra>)
 
 find_package(docproc REQUIRED COMPONENTS plantuml dot)
+find_package(Boost REQUIRED COMPONENTS timer chrono thread mpi coroutine serialization program_options log_setup log)
 
 add_library(metadata metadata.yml)
 

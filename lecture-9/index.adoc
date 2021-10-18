@@ -1,0 +1,80 @@
+= Master programming. pass:[<br>] Лекция №9 (Обзор библиотек boost)
+:author: Игорь Шаронов
+:date: 2021-10-17
+:lang: ru
+:numbered:
+
+== Введение
+
+=== Характеристика библиотеки
+
+* Boost -- набор библиотек, по большей части "in-header"
+* Распространяется по собственной лицензии https://www.boost.org/users/license.html[Boost Software License]
+* Основной сайт: https://www.boost.org
+* Время возникновения -- 1999 г.
+* Разработка ведётся на https://github.com/boostorg/boost[github] (все библиотеки подключаются в виде git-модулей)
+* Система сборки своя, boostjam
+* Большинство идей и библиотек попали в STL
+
+=== Тематики библиотек
+
+https://theboostcpplibraries.com
+
+[cols="2*a",frame="none",grid="none"]
+|====
+|
+. RAII и управление памятью
+. Обработка строк
+. Контейнеры
+. Структуры данных
+. Алгоритмы
+. Межпроцессорное взаимодействие
+. Потоки и файлы
+. Время
+. Функциональное программирование
+
+|
+[start=10]
+. Параллельное программирование
+. Обобщённое программирование
+. Языковые исключения
+. Обработка ошибок
+. Работа с числами
+. Библиотеки для работы с приложением
+. Дизайн паттерны
+. Другие библиотеки
+|====
+
+include::index1.adoc[]
+
+include::index2.adoc[]
+
+include::index3.adoc[]
+
+include::index4.adoc[]
+
+include::index5.adoc[]
+
+include::index6.adoc[]
+
+include::index7.adoc[]
+
+include::index8.adoc[]
+
+include::index9.adoc[]
+
+include::index10.adoc[]
+
+include::index11.adoc[]
+
+include::index12.adoc[]
+
+include::index13.adoc[]
+
+include::index14.adoc[]
+
+include::index15.adoc[]
+
+include::index16.adoc[]
+
+include::index17.adoc[]
