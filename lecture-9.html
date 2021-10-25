@@ -5,7 +5,7 @@
 <title>Master programming. <br> Лекция №9 (Обзор библиотек boost)</title>
 <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
 <meta name="copyright" content="Copyright &#169; Игорь Шаронов" />
-<meta name="generator" content="AsciiDoc 9.0.4" />
+<meta name="generator" content="AsciiDoc 9.1.0" />
 <style type="text/css">
 /* Shared CSS for AsciiDoc xhtml11 and html5 backends */
 
@@ -6962,8 +6962,8 @@ http://www.gnu.org/software/src-highlite -->
 <div class="listingblock">
 <div class="title">Output</div>
 <div class="content">
-<pre><code>17179774770000000 nanoseconds since process start-up
-286329 minutes since process start-up</code></pre>
+<pre><code>17180242240000000 nanoseconds since process start-up
+286337 minutes since process start-up</code></pre>
 </div></div>
 </div></div>
 <div class="sect2 slide">
@@ -7038,7 +7038,7 @@ http://www.gnu.org/software/src-highlite -->
 <div class="title">Output</div>
 <div class="content">
 <pre><code>Done
- 0.040424s wall, 0.020000s user + 0.000000s system = 0.020000s CPU (49.5%)</code></pre>
+ 0.042330s wall, 0.010000s user + 0.000000s system = 0.010000s CPU (23.6%)</code></pre>
 </div></div>
 </div></div>
 <div class="sect1 slide">
@@ -7121,15 +7121,31 @@ http://www.gnu.org/software/src-highlite -->
 </ul>
 </li>
 </ul>
+</div></div>
+<div class="sect1 slide">
+<h1>» 11.1.   (продолжение)</h1>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content"><!-- Generator: GNU source-highlight
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><tt><span style="font-weight: bold"><span style="color: #0000FF">using</span></span> <span style="font-weight: bold"><span style="color: #0000FF">namespace</span></span> boost<span style="color: #990000">::</span>phoenix<span style="color: #990000">::</span>placeholders<span style="color: #990000">;</span>
+<pre><tt><span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;iostream&gt;</span>
 
-std<span style="color: #990000">::</span><span style="color: #008080">vector</span> v<span style="color: #FF0000">{{</span><span style="color: #993399">1</span><span style="color: #990000">,</span> <span style="color: #993399">2</span><span style="color: #990000">,</span> <span style="color: #993399">3</span><span style="color: #990000">,</span> <span style="color: #993399">4</span><span style="color: #990000">,</span> <span style="color: #993399">5</span><span style="color: #FF0000">}}</span><span style="color: #990000">;</span>
-std<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">for_each</span></span><span style="color: #990000">(</span>v<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">begin</span></span><span style="color: #990000">(),</span> v<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">end</span></span><span style="color: #990000">(),</span> std<span style="color: #990000">::</span>cout <span style="color: #990000">&lt;&lt;</span> arg1 <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">","</span><span style="color: #990000">);</span></tt></pre></div></div>
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;boost/phoenix/phoenix.hpp&gt;</span>
+
+<span style="color: #009900">int</span> <span style="font-weight: bold"><span style="color: #000000">main</span></span><span style="color: #990000">()</span>
+<span style="color: #FF0000">{</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">using</span></span> <span style="font-weight: bold"><span style="color: #0000FF">namespace</span></span> boost<span style="color: #990000">::</span>phoenix<span style="color: #990000">::</span>placeholders<span style="color: #990000">;</span>
+
+    std<span style="color: #990000">::</span><span style="color: #008080">vector</span> v<span style="color: #FF0000">{{</span><span style="color: #993399">1</span><span style="color: #990000">,</span> <span style="color: #993399">2</span><span style="color: #990000">,</span> <span style="color: #993399">3</span><span style="color: #990000">,</span> <span style="color: #993399">4</span><span style="color: #990000">,</span> <span style="color: #993399">5</span><span style="color: #FF0000">}}</span><span style="color: #990000">;</span>
+    std<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">for_each</span></span><span style="color: #990000">(</span>v<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">begin</span></span><span style="color: #990000">(),</span> v<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">end</span></span><span style="color: #990000">(),</span> std<span style="color: #990000">::</span>cout <span style="color: #990000">&lt;&lt;</span> arg1 <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">","</span><span style="color: #990000">);</span>
+<span style="color: #FF0000">}</span></tt></pre></div></div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre><code>1,2,3,4,5,</code></pre>
+</div></div>
 </div></div>
 <div class="sect2 slide">
 <h1 id="_функциональные_объекты">11.2. Функциональные объекты</h1>
@@ -7220,10 +7236,26 @@ std<span style="color: #990000">::</span><span style="font-weight: bold"><span s
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><tt>std<span style="color: #990000">::</span><span style="color: #008080">vector</span> v<span style="color: #FF0000">{{</span><span style="color: #993399">1</span><span style="color: #990000">,</span> <span style="color: #993399">3</span><span style="color: #990000">,</span> <span style="color: #993399">2</span><span style="color: #FF0000">}}</span><span style="color: #990000">;</span>
-std<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">for_each</span></span><span style="color: #990000">(</span>v<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">begin</span></span><span style="color: #990000">(),</span> v<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">end</span></span><span style="color: #990000">(),</span>
-    boost<span style="color: #990000">::</span>lambda<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">if_then</span></span><span style="color: #990000">(</span>boost<span style="color: #990000">::</span>lambda<span style="color: #990000">::</span>_1 <span style="color: #990000">&gt;</span> <span style="color: #993399">1</span><span style="color: #990000">,</span> std<span style="color: #990000">::</span>cout <span style="color: #990000">&lt;&lt;</span> boost<span style="color: #990000">::</span>lambda<span style="color: #990000">::</span>_1 <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"</span><span style="color: #CC33CC">\n</span><span style="color: #FF0000">"</span><span style="color: #990000">)</span>
-<span style="color: #990000">);</span></tt></pre></div></div>
+<pre><tt><span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;algorithm&gt;</span>
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;iostream&gt;</span>
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;vector&gt;</span>
+
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;boost/lambda/lambda.hpp&gt;</span>
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;boost/lambda/if.hpp&gt;</span>
+
+<span style="color: #009900">int</span> <span style="font-weight: bold"><span style="color: #000000">main</span></span><span style="color: #990000">()</span>
+<span style="color: #FF0000">{</span>
+    std<span style="color: #990000">::</span><span style="color: #008080">vector</span> v<span style="color: #FF0000">{{</span><span style="color: #993399">1</span><span style="color: #990000">,</span> <span style="color: #993399">3</span><span style="color: #990000">,</span> <span style="color: #993399">2</span><span style="color: #FF0000">}}</span><span style="color: #990000">;</span>
+    std<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">for_each</span></span><span style="color: #990000">(</span>v<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">begin</span></span><span style="color: #990000">(),</span> v<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">end</span></span><span style="color: #990000">(),</span>
+        boost<span style="color: #990000">::</span>lambda<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">if_then</span></span><span style="color: #990000">(</span>boost<span style="color: #990000">::</span>lambda<span style="color: #990000">::</span>_1 <span style="color: #990000">&gt;</span> <span style="color: #993399">1</span><span style="color: #990000">,</span> std<span style="color: #990000">::</span>cout <span style="color: #990000">&lt;&lt;</span> boost<span style="color: #990000">::</span>lambda<span style="color: #990000">::</span>_1 <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"</span><span style="color: #CC33CC">\n</span><span style="color: #FF0000">"</span><span style="color: #990000">)</span>
+    <span style="color: #990000">);</span>
+<span style="color: #FF0000">}</span></tt></pre></div></div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre><code>3
+2</code></pre>
+</div></div>
 </div></div>
 <div class="sect1 slide">
 <h1 id="_параллельное_программирование">12. Параллельное программирование</h1>
@@ -7289,30 +7321,16 @@ std<span style="color: #990000">::</span><span style="font-weight: bold"><span s
 Мьютексы, локи и условные переменные эквивалентны STL-версии
 </span>
 </li>
+</ul>
+</div></div>
+<div class="sect1 slide">
+<h1>» 12.1.   (продолжение)</h1>
+<div class="sectionbody">
+<ul class="">
 <li>
 <span>
 <code>boost::thread_specific_ptr</code> для компиляторов, не поддерживающих <code>thread_local</code> из C++11
 </span>
-<div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt>std<span style="color: #990000">::</span><span style="color: #008080">mutex</span> mutex<span style="color: #990000">;</span>
-
-<span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> worker <span style="color: #990000">=</span> <span style="color: #990000">[&amp;</span>mutex<span style="color: #990000">]()</span> <span style="color: #FF0000">{</span>
-    <span style="font-weight: bold"><span style="color: #0000FF">static</span></span> boost<span style="color: #990000">::</span><span style="color: #008080">thread_specific_ptr&lt;bool&gt;</span> tls<span style="color: #990000">;</span>
-    <span style="font-weight: bold"><span style="color: #0000FF">if</span></span> <span style="color: #990000">(!</span>tls<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">get</span></span><span style="color: #990000">())</span>
-    <span style="color: #FF0000">{</span>
-        tls<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">reset</span></span><span style="color: #990000">(</span><span style="font-weight: bold"><span style="color: #0000FF">new</span></span> <span style="color: #009900">bool</span><span style="color: #FF0000">{</span><span style="font-weight: bold"><span style="color: #0000FF">true</span></span><span style="color: #FF0000">}</span><span style="color: #990000">);</span>
-        std<span style="color: #990000">::</span><span style="color: #008080">lock_guard</span> lock<span style="color: #FF0000">{</span>mutex<span style="color: #FF0000">}</span><span style="color: #990000">;</span>
-        std<span style="color: #990000">::</span>cout <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"done"</span> <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">'</span><span style="color: #CC33CC">\n</span><span style="color: #FF0000">'</span><span style="color: #990000">;</span>
-    <span style="color: #FF0000">}</span>
-<span style="color: #FF0000">}</span><span style="color: #990000">;</span>
-
-std<span style="color: #990000">::</span><span style="color: #008080">thread</span> t<span style="color: #990000">[]</span> <span style="color: #990000">=</span> <span style="color: #FF0000">{</span>std<span style="color: #990000">::</span>thread<span style="color: #FF0000">{</span>worker<span style="color: #FF0000">}</span><span style="color: #990000">,</span> std<span style="color: #990000">::</span>thread<span style="color: #FF0000">{</span>worker<span style="color: #FF0000">}</span><span style="color: #990000">,</span> std<span style="color: #990000">::</span>thread<span style="color: #FF0000">{</span>worker<span style="color: #FF0000">}}</span><span style="color: #990000">;</span>
-<span style="font-weight: bold"><span style="color: #0000FF">for</span></span> <span style="color: #990000">(</span><span style="font-weight: bold"><span style="color: #0000FF">auto</span></span><span style="color: #990000">&amp;</span> x <span style="color: #990000">:</span> t<span style="color: #990000">)</span>
-    x<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">join</span></span><span style="color: #990000">();</span></tt></pre></div></div>
 </li>
 <li>
 <span>
@@ -7320,6 +7338,56 @@ std<span style="color: #990000">::</span><span style="color: #008080">thread</sp
 </span>
 </li>
 </ul>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;iostream&gt;</span>
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;memory&gt;</span>
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;mutex&gt;</span>
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;thread&gt;</span>
+
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;boost/thread/tss.hpp&gt;</span>
+
+<span style="color: #009900">int</span> <span style="font-weight: bold"><span style="color: #000000">main</span></span><span style="color: #990000">(</span><span style="color: #009900">int</span> argc<span style="color: #990000">,</span> <span style="font-weight: bold"><span style="color: #0000FF">const</span></span> <span style="color: #009900">char</span><span style="color: #990000">**)</span>
+<span style="color: #FF0000">{</span>
+    std<span style="color: #990000">::</span><span style="color: #008080">mutex</span> mutex<span style="color: #990000">;</span>
+
+    <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> helper <span style="color: #990000">=</span> <span style="color: #990000">[](</span><span style="font-weight: bold"><span style="color: #0000FF">auto</span></span><span style="color: #990000">&amp;</span> ptr<span style="color: #990000">)</span> <span style="color: #FF0000">{</span>
+        <span style="font-weight: bold"><span style="color: #0000FF">if</span></span> <span style="color: #990000">(!</span>ptr<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">get</span></span><span style="color: #990000">())</span>
+        <span style="color: #FF0000">{</span>
+            ptr<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">reset</span></span><span style="color: #990000">(</span><span style="font-weight: bold"><span style="color: #0000FF">new</span></span> <span style="color: #009900">bool</span><span style="color: #FF0000">{</span><span style="font-weight: bold"><span style="color: #0000FF">true</span></span><span style="color: #FF0000">}</span><span style="color: #990000">);</span>
+            std<span style="color: #990000">::</span>cout <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"done"</span> <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">'</span><span style="color: #CC33CC">\n</span><span style="color: #FF0000">'</span><span style="color: #990000">;</span>
+        <span style="color: #FF0000">}</span>
+    <span style="color: #FF0000">}</span><span style="color: #990000">;</span>
+
+    <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> worker <span style="color: #990000">=</span> <span style="color: #990000">[&amp;</span>mutex<span style="color: #990000">,</span> <span style="color: #990000">&amp;</span>helper<span style="color: #990000">,</span> flag <span style="color: #990000">=</span> argc <span style="color: #990000">&gt;</span> <span style="color: #993399">1</span><span style="color: #990000">]()</span> <span style="color: #FF0000">{</span>
+        <span style="font-weight: bold"><span style="color: #0000FF">static</span></span> boost<span style="color: #990000">::</span><span style="color: #008080">thread_specific_ptr&lt;bool&gt;</span> ptr1<span style="color: #990000">;</span>
+        <span style="font-weight: bold"><span style="color: #0000FF">static</span></span> std<span style="color: #990000">::</span><span style="color: #008080">shared_ptr&lt;bool&gt;</span> ptr2<span style="color: #990000">;</span>
+        std<span style="color: #990000">::</span><span style="color: #008080">lock_guard</span> lock<span style="color: #FF0000">{</span>mutex<span style="color: #FF0000">}</span><span style="color: #990000">;</span>
+        <span style="font-weight: bold"><span style="color: #0000FF">if</span></span> <span style="color: #990000">(</span>flag<span style="color: #990000">)</span>
+            <span style="font-weight: bold"><span style="color: #000000">helper</span></span><span style="color: #990000">(</span>ptr2<span style="color: #990000">);</span>
+        <span style="font-weight: bold"><span style="color: #0000FF">else</span></span>
+            <span style="font-weight: bold"><span style="color: #000000">helper</span></span><span style="color: #990000">(</span>ptr1<span style="color: #990000">);</span>
+    <span style="color: #FF0000">}</span><span style="color: #990000">;</span>
+
+    std<span style="color: #990000">::</span><span style="color: #008080">thread</span> t<span style="color: #990000">[]</span> <span style="color: #990000">=</span> <span style="color: #FF0000">{</span>std<span style="color: #990000">::</span>thread<span style="color: #FF0000">{</span>worker<span style="color: #FF0000">}</span><span style="color: #990000">,</span> std<span style="color: #990000">::</span>thread<span style="color: #FF0000">{</span>worker<span style="color: #FF0000">}</span><span style="color: #990000">,</span> std<span style="color: #990000">::</span>thread<span style="color: #FF0000">{</span>worker<span style="color: #FF0000">}}</span><span style="color: #990000">;</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">for</span></span> <span style="color: #990000">(</span><span style="font-weight: bold"><span style="color: #0000FF">auto</span></span><span style="color: #990000">&amp;</span> x <span style="color: #990000">:</span> t<span style="color: #990000">)</span>
+        x<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">join</span></span><span style="color: #990000">();</span>
+<span style="color: #FF0000">}</span></tt></pre></div></div>
+<div class="listingblock">
+<div class="title">Output boost::thread_specific_ptr</div>
+<div class="content">
+<pre><code>done
+done
+done</code></pre>
+</div></div>
+<div class="listingblock">
+<div class="title">Output shared_ptr</div>
+<div class="content">
+<pre><code>done</code></pre>
+</div></div>
 </div></div>
 <div class="sect2 slide">
 <h1 id="_atomic">12.2. Atomic</h1>
@@ -7449,33 +7517,65 @@ std<span style="color: #990000">::</span><span style="color: #008080">thread</sp
 Дополнительные методы <code>consume_one</code> и <code>consume_all</code>
 </span>
 </li>
+<li>
+<span>
+Если в какой-то момент очередь будет пустая, <code>consume_on</code> вернёт <code>false</code>.
+Поэтому нужны допольнительные механизмы детектирования окончания работы с очередью
+</span>
+</li>
 </ul>
+</div></div>
+<div class="sect1 slide">
+<h1>» 12.3.   (продолжение)</h1>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content"><!-- Generator: GNU source-highlight
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><tt>boost<span style="color: #990000">::</span>lockfree<span style="color: #990000">::</span><span style="color: #008080">queue&lt;int&gt;</span> q<span style="color: #990000">;</span>
-std<span style="color: #990000">::</span><span style="color: #008080">atomic&lt;int&gt;</span> sum <span style="color: #990000">=</span> <span style="color: #993399">0</span><span style="color: #990000">;</span>
+<pre><tt><span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;atomic&gt;</span>
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;future&gt;</span>
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;iostream&gt;</span>
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;thread&gt;</span>
 
-<span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> produce <span style="color: #990000">=</span> <span style="color: #990000">[&amp;</span>q<span style="color: #990000">]()</span> <span style="color: #FF0000">{</span>
-    <span style="font-weight: bold"><span style="color: #0000FF">for</span></span> <span style="color: #990000">(</span><span style="color: #009900">int</span> i <span style="color: #990000">=</span> <span style="color: #993399">1</span><span style="color: #990000">;</span> i <span style="color: #990000">&lt;=</span> <span style="color: #993399">100</span><span style="color: #990000">;</span> <span style="color: #990000">++</span>i<span style="color: #990000">)</span>
-        q<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">push</span></span><span style="color: #990000">(</span>i<span style="color: #990000">);</span>
-<span style="color: #FF0000">}</span><span style="color: #990000">;</span>
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;boost/lockfree/queue.hpp&gt;</span>
 
-<span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> consume <span style="color: #990000">=</span> <span style="color: #990000">[&amp;</span>q<span style="color: #990000">](</span><span style="font-weight: bold"><span style="color: #0000FF">auto</span></span><span style="color: #990000">&amp;</span> x<span style="color: #990000">)</span> <span style="color: #FF0000">{</span>
-    <span style="font-weight: bold"><span style="color: #0000FF">while</span></span> <span style="color: #990000">(</span>q<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">consume_one</span></span><span style="color: #990000">([](</span><span style="color: #009900">int</span> i<span style="color: #990000">)</span><span style="color: #FF0000">{</span> x <span style="color: #990000">+=</span> i<span style="color: #990000">;</span> <span style="color: #FF0000">}</span><span style="color: #990000">));</span>
-<span style="color: #FF0000">}</span><span style="color: #990000">;</span>
+<span style="color: #009900">int</span> <span style="font-weight: bold"><span style="color: #000000">main</span></span><span style="color: #990000">()</span>
+<span style="color: #FF0000">{</span>
+    boost<span style="color: #990000">::</span>lockfree<span style="color: #990000">::</span><span style="color: #008080">queue&lt;int&gt;</span> q<span style="color: #990000">;</span>
+    std<span style="color: #990000">::</span><span style="color: #008080">atomic&lt;int&gt;</span> sum <span style="color: #990000">=</span> <span style="color: #993399">0</span><span style="color: #990000">;</span>
 
-std<span style="color: #990000">::</span><span style="color: #008080">thread</span> t1<span style="color: #FF0000">{</span>produce<span style="color: #FF0000">}</span><span style="color: #990000">;</span>
-std<span style="color: #990000">::</span><span style="color: #008080">thread</span> t2<span style="color: #FF0000">{</span>consume<span style="color: #FF0000">}</span><span style="color: #990000">;</span>
-std<span style="color: #990000">::</span><span style="color: #008080">thread</span> t3<span style="color: #FF0000">{</span>consume<span style="color: #FF0000">}</span><span style="color: #990000">;</span>
-t1<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">join</span></span><span style="color: #990000">();</span>
-t2<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">join</span></span><span style="color: #990000">();</span>
-t3<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">join</span></span><span style="color: #990000">();</span>
-q<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">consume_all</span></span><span style="color: #990000">([&amp;</span>sum<span style="color: #990000">](</span><span style="color: #009900">int</span> i<span style="color: #990000">)</span><span style="color: #FF0000">{</span> sum <span style="color: #990000">+=</span> i<span style="color: #990000">;</span> <span style="color: #FF0000">}</span><span style="color: #990000">);</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> produce <span style="color: #990000">=</span> <span style="color: #990000">[&amp;</span>q<span style="color: #990000">]()</span> <span style="color: #FF0000">{</span>
+        <span style="font-weight: bold"><span style="color: #0000FF">for</span></span> <span style="color: #990000">(</span><span style="color: #009900">int</span> i <span style="color: #990000">=</span> <span style="color: #993399">1</span><span style="color: #990000">;</span> i <span style="color: #990000">&lt;=</span> <span style="color: #993399">100</span><span style="color: #990000">;</span> <span style="color: #990000">++</span>i<span style="color: #990000">)</span>
+        <span style="color: #FF0000">{</span>
+            q<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">push</span></span><span style="color: #990000">(</span>i<span style="color: #990000">);</span>
+            std<span style="color: #990000">::</span>this_thread<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">yield</span></span><span style="color: #990000">();</span>
+        <span style="color: #FF0000">}</span>
+    <span style="color: #FF0000">}</span><span style="color: #990000">;</span>
 
-std<span style="color: #990000">::</span>cout <span style="color: #990000">&lt;&lt;</span> sum <span style="color: #990000">&lt;&lt;</span> std<span style="color: #990000">::</span>endl<span style="color: #990000">;</span></tt></pre></div></div>
+    std<span style="color: #990000">::</span><span style="color: #008080">function&lt;int(decltype(sum)&amp;)&gt;</span> consume <span style="color: #990000">=</span> <span style="color: #990000">[&amp;</span>q<span style="color: #990000">](</span><span style="font-weight: bold"><span style="color: #0000FF">auto</span></span><span style="color: #990000">&amp;</span> x<span style="color: #990000">)</span> <span style="color: #FF0000">{</span>
+        <span style="color: #009900">int</span> count <span style="color: #990000">=</span> <span style="color: #993399">0</span><span style="color: #990000">;</span>
+        <span style="font-weight: bold"><span style="color: #0000FF">while</span></span> <span style="color: #990000">(</span>q<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">consume_one</span></span><span style="color: #990000">([&amp;</span>x<span style="color: #990000">](</span><span style="color: #009900">int</span> i<span style="color: #990000">)</span><span style="color: #FF0000">{</span> x <span style="color: #990000">+=</span> i<span style="color: #990000">;</span> <span style="color: #FF0000">}</span><span style="color: #990000">))</span>
+            <span style="color: #990000">++</span>count<span style="color: #990000">;</span>
+        <span style="font-weight: bold"><span style="color: #0000FF">return</span></span> count<span style="color: #990000">;</span>
+    <span style="color: #FF0000">}</span><span style="color: #990000">;</span>
+
+    std<span style="color: #990000">::</span><span style="color: #008080">thread</span> t1<span style="color: #FF0000">{</span>produce<span style="color: #FF0000">}</span><span style="color: #990000">;</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> t2 <span style="color: #990000">=</span> std<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">async</span></span><span style="color: #990000">(</span>consume<span style="color: #990000">,</span> std<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">ref</span></span><span style="color: #990000">(</span>sum<span style="color: #990000">));</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> t3 <span style="color: #990000">=</span> std<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">async</span></span><span style="color: #990000">(</span>consume<span style="color: #990000">,</span> std<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">ref</span></span><span style="color: #990000">(</span>sum<span style="color: #990000">));</span>
+    t1<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">join</span></span><span style="color: #990000">();</span>
+
+    std<span style="color: #990000">::</span>cout <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"Thread2 count "</span> <span style="color: #990000">&lt;&lt;</span> t2<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">get</span></span><span style="color: #990000">()</span> <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"</span><span style="color: #CC33CC">\n</span><span style="color: #FF0000">"</span>
+              <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"Thread3 count "</span> <span style="color: #990000">&lt;&lt;</span> t3<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">get</span></span><span style="color: #990000">()</span> <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"</span><span style="color: #CC33CC">\n</span><span style="color: #FF0000">"</span>
+              <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"Sum "</span> <span style="color: #990000">&lt;&lt;</span> sum <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"</span><span style="color: #CC33CC">\n</span><span style="color: #FF0000">"</span><span style="color: #990000">;</span>
+    q<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">consume_all</span></span><span style="color: #990000">([&amp;</span>sum<span style="color: #990000">](</span><span style="color: #009900">int</span> i<span style="color: #990000">)</span><span style="color: #FF0000">{</span> sum <span style="color: #990000">+=</span> i<span style="color: #990000">;</span> <span style="color: #FF0000">}</span><span style="color: #990000">);</span>
+    std<span style="color: #990000">::</span>cout <span style="color: #990000">&lt;&lt;</span> sum <span style="color: #990000">&lt;&lt;</span> std<span style="color: #990000">::</span>endl<span style="color: #990000">;</span>
+<span style="color: #FF0000">}</span></tt></pre></div></div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre><code></code></pre>
+</div></div>
 </div></div>
 <div class="sect2 slide">
 <h1 id="_mpi">12.4. MPI</h1>
@@ -7553,6 +7653,12 @@ std<span style="color: #990000">::</span>cout <span style="color: #990000">&lt;&
 </li>
 </ul>
 </li>
+</ul>
+</div></div>
+<div class="sect1 slide">
+<h1>» 12.4.   (продолжение)</h1>
+<div class="sectionbody">
+<ul class="">
 <li>
 <span>
 <code>boost::mpi::any_source</code> для принятия сообщения от любого процесса
@@ -7594,26 +7700,49 @@ std<span style="color: #990000">::</span>cout <span style="color: #990000">&lt;&
 </span>
 </li>
 </ul>
+</div></div>
+<div class="sect1 slide">
+<h1>» 12.4.   (продолжение)</h1>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content"><!-- Generator: GNU source-highlight
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><tt>boost<span style="color: #990000">::</span>mpi<span style="color: #990000">::</span><span style="color: #008080">environment</span> env<span style="color: #FF0000">{</span>argc<span style="color: #990000">,</span> argv<span style="color: #FF0000">}</span><span style="color: #990000">;</span>
-boost<span style="color: #990000">::</span>mpi<span style="color: #990000">::</span><span style="color: #008080">communicator</span> world<span style="color: #990000">;</span>
+<pre><tt><span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;algorithm&gt;</span>
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;iostream&gt;</span>
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;string&gt;</span>
 
-std<span style="color: #990000">::</span><span style="color: #008080">string</span> s<span style="color: #990000">;</span>
-<span style="font-weight: bold"><span style="color: #0000FF">if</span></span> <span style="color: #990000">(</span>world<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">rank</span></span><span style="color: #990000">()</span> <span style="color: #990000">==</span> <span style="color: #993399">0</span><span style="color: #990000">)</span>
-    s <span style="color: #990000">=</span> <span style="color: #FF0000">"Hello, world!"</span><span style="color: #990000">;</span>
-<span style="font-weight: bold"><span style="color: #0000FF">else</span></span> <span style="font-weight: bold"><span style="color: #0000FF">if</span></span> <span style="color: #990000">(</span>world<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">rank</span></span><span style="color: #990000">()</span> <span style="color: #990000">==</span> <span style="color: #993399">1</span><span style="color: #990000">)</span>
-    s <span style="color: #990000">=</span> <span style="color: #FF0000">"Hello, moon!"</span><span style="color: #990000">;</span>
-<span style="font-weight: bold"><span style="color: #0000FF">else</span></span> <span style="font-weight: bold"><span style="color: #0000FF">if</span></span> <span style="color: #990000">(</span>world<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">rank</span></span><span style="color: #990000">()</span> <span style="color: #990000">==</span> <span style="color: #993399">2</span><span style="color: #990000">)</span>
-    s <span style="color: #990000">=</span> <span style="color: #FF0000">"Hello, sun!"</span><span style="color: #990000">;</span>
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;boost/mpi.hpp&gt;</span>
 
-std<span style="color: #990000">::</span><span style="color: #008080">string</span> result<span style="color: #990000">;</span>
-boost<span style="color: #990000">::</span>mpi<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">reduce</span></span><span style="color: #990000">(</span>world<span style="color: #990000">,</span> s<span style="color: #990000">,</span> result<span style="color: #990000">,</span> std<span style="color: #990000">::</span>min<span style="color: #990000">&lt;</span>std<span style="color: #990000">::</span>string<span style="color: #990000">&gt;,</span> <span style="color: #993399">0</span><span style="color: #990000">);</span>
-<span style="font-weight: bold"><span style="color: #0000FF">if</span></span> <span style="color: #990000">(</span>world<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">rank</span></span><span style="color: #990000">()</span> <span style="color: #990000">==</span> <span style="color: #993399">0</span><span style="color: #990000">)</span>
-    std<span style="color: #990000">::</span>cout <span style="color: #990000">&lt;&lt;</span> result <span style="color: #990000">&lt;&lt;</span> std<span style="color: #990000">::</span>endl<span style="color: #990000">;</span></tt></pre></div></div>
+<span style="color: #009900">int</span> <span style="font-weight: bold"><span style="color: #000000">main</span></span><span style="color: #990000">(</span><span style="color: #009900">int</span> argc<span style="color: #990000">,</span> <span style="color: #009900">char</span><span style="color: #990000">*</span> argv<span style="color: #990000">[])</span>
+<span style="color: #FF0000">{</span>
+    boost<span style="color: #990000">::</span>mpi<span style="color: #990000">::</span><span style="color: #008080">environment</span> env<span style="color: #FF0000">{</span>argc<span style="color: #990000">,</span> argv<span style="color: #FF0000">}</span><span style="color: #990000">;</span>
+    boost<span style="color: #990000">::</span>mpi<span style="color: #990000">::</span><span style="color: #008080">communicator</span> world<span style="color: #990000">;</span>
+
+    std<span style="color: #990000">::</span><span style="color: #008080">string</span> s <span style="color: #990000">=</span> <span style="color: #FF0000">"Hello, others!"</span><span style="color: #990000">;</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">if</span></span> <span style="color: #990000">(</span>world<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">rank</span></span><span style="color: #990000">()</span> <span style="color: #990000">==</span> <span style="color: #993399">0</span><span style="color: #990000">)</span>
+        s <span style="color: #990000">=</span> <span style="color: #FF0000">"Hello, world!"</span><span style="color: #990000">;</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">else</span></span> <span style="font-weight: bold"><span style="color: #0000FF">if</span></span> <span style="color: #990000">(</span>world<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">rank</span></span><span style="color: #990000">()</span> <span style="color: #990000">==</span> <span style="color: #993399">1</span><span style="color: #990000">)</span>
+        s <span style="color: #990000">=</span> <span style="color: #FF0000">"Hello, moon!"</span><span style="color: #990000">;</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">else</span></span> <span style="font-weight: bold"><span style="color: #0000FF">if</span></span> <span style="color: #990000">(</span>world<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">rank</span></span><span style="color: #990000">()</span> <span style="color: #990000">==</span> <span style="color: #993399">2</span><span style="color: #990000">)</span>
+        s <span style="color: #990000">=</span> <span style="color: #FF0000">"Hello, sun!"</span><span style="color: #990000">;</span>
+
+    std<span style="color: #990000">::</span>cout <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"I am process "</span> <span style="color: #990000">&lt;&lt;</span> world<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">rank</span></span><span style="color: #990000">()</span>
+              <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">" on "</span> <span style="color: #990000">&lt;&lt;</span> world<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">size</span></span><span style="color: #990000">()</span> <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">", my value is ["</span> <span style="color: #990000">&lt;&lt;</span> s <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"]</span><span style="color: #CC33CC">\n</span><span style="color: #FF0000">"</span><span style="color: #990000">;</span>
+
+    std<span style="color: #990000">::</span><span style="color: #008080">string</span> result<span style="color: #990000">;</span>
+    boost<span style="color: #990000">::</span>mpi<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">reduce</span></span><span style="color: #990000">(</span>world<span style="color: #990000">,</span> s<span style="color: #990000">,</span> result<span style="color: #990000">,</span> <span style="color: #990000">[](</span><span style="font-weight: bold"><span style="color: #0000FF">const</span></span> <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span><span style="color: #990000">&amp;...</span> xs<span style="color: #990000">)</span> <span style="color: #FF0000">{</span> <span style="font-weight: bold"><span style="color: #0000FF">return</span></span> std<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">min</span></span><span style="color: #990000">(</span>xs<span style="color: #990000">...);</span> <span style="color: #FF0000">}</span><span style="color: #990000">,</span> <span style="color: #993399">0</span><span style="color: #990000">);</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">if</span></span> <span style="color: #990000">(</span>world<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">rank</span></span><span style="color: #990000">()</span> <span style="color: #990000">==</span> <span style="color: #993399">0</span><span style="color: #990000">)</span>
+        std<span style="color: #990000">::</span>cout <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"The alphabet lowest output is ["</span> <span style="color: #990000">&lt;&lt;</span> result <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"]</span><span style="color: #CC33CC">\n</span><span style="color: #FF0000">"</span><span style="color: #990000">;</span>
+<span style="color: #FF0000">}</span></tt></pre></div></div>
+<div class="listingblock">
+<div class="title">Output <code>mpirun ./example10-3</code></div>
+<div class="content">
+<pre><code>I am process 0 on 2, my value is [Hello, world!]
+I am process 1 on 2, my value is [Hello, moon!]
+The alphabet lowest output is [Hello, moon!]</code></pre>
+</div></div>
 </div></div>
 <div class="sect1 slide">
 <h1 id="_обобщённое_программирование">13. Обобщённое программирование</h1>
@@ -7688,7 +7817,7 @@ boost<span style="color: #990000">::</span>mpi<span style="color: #990000">::</s
 </li>
 <li>
 <span>
-Похож на boost::mpl, но предоставляет работу со значениями
+Похож на <code>boost::mpl</code>, но предоставляет работу со значениями
 </span>
 </li>
 <li>
@@ -7725,6 +7854,8 @@ std<span style="color: #990000">::</span>cout <span style="color: #990000">&lt;&
 <span>
 Чтобы использовать алгоритмы из fusion для своих структур, следует воспользоваться <code>BOOST_FUSION_ADAPT_STRUCT</code>
 </span>
+</li>
+</ul>
 <div class="listingblock">
 <div class="content"><!-- Generator: GNU source-highlight
 by Lorenzo Bettini
@@ -7733,8 +7864,6 @@ http://www.gnu.org/software/src-highlite -->
 <pre><tt><span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> m <span style="color: #990000">=</span> make_map<span style="color: #990000">&lt;</span>uint8_t<span style="color: #990000">,</span> uint16_t<span style="color: #990000">,</span> uint32_t<span style="color: #990000">&gt;(</span><span style="color: #FF0000">"Boost"</span><span style="color: #990000">,</span> <span style="color: #993399">10</span><span style="color: #990000">,</span> <span style="color: #993399">3.14</span><span style="color: #990000">);</span>
 <span style="font-weight: bold"><span style="color: #0000FF">if</span></span> <span style="color: #990000">(</span>has_key<span style="color: #990000">&lt;</span>uint16_t<span style="color: #990000">&gt;(</span>m<span style="color: #990000">))</span>
     std<span style="color: #990000">::</span>cout <span style="color: #990000">&lt;&lt;</span> at_key<span style="color: #990000">&lt;</span>uint16_t<span style="color: #990000">&gt;(</span>m<span style="color: #990000">)</span> <span style="color: #990000">&lt;&lt;</span> std<span style="color: #990000">::</span>endl<span style="color: #990000">;</span></tt></pre></div></div>
-</li>
-</ul>
 </div></div>
 <div class="sect1 slide">
 <h1 id="_языковые_расширения">14. Языковые расширения</h1>
@@ -7772,29 +7901,42 @@ http://www.gnu.org/software/src-highlite -->
 </span>
 </li>
 </ul>
+</div></div>
+<div class="sect1 slide">
+<h1>» 14.1.   (продолжение)</h1>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content"><!-- Generator: GNU source-highlight
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><tt><span style="font-weight: bold"><span style="color: #0000FF">using</span></span> boost<span style="color: #990000">::</span>coroutines2<span style="color: #990000">::</span>coroutine<span style="color: #990000">;</span>
+<pre><tt><span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;iostream&gt;</span>
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;string&gt;</span>
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;tuple&gt;</span>
 
-<span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> cooperative <span style="color: #990000">=</span> <span style="color: #990000">[](</span>coroutine<span style="color: #990000">&lt;</span>std<span style="color: #990000">::</span>tuple<span style="color: #990000">&lt;</span><span style="color: #009900">int</span><span style="color: #990000">,</span> std<span style="color: #990000">::</span>string<span style="color: #990000">&gt;&gt;::</span><span style="color: #008080">pull_type</span> <span style="color: #990000">&amp;</span>source<span style="color: #990000">)</span> <span style="color: #FF0000">{</span>
-    <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> args <span style="color: #990000">=</span> source<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">get</span></span><span style="color: #990000">();</span>
-    std<span style="color: #990000">::</span>cout <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"first = "</span> <span style="color: #990000">&lt;&lt;</span> std<span style="color: #990000">::</span>get<span style="color: #990000">&lt;</span><span style="color: #993399">0</span><span style="color: #990000">&gt;(</span>args<span style="color: #990000">)</span> <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">" "</span> <span style="color: #990000">&lt;&lt;</span> std<span style="color: #990000">::</span>get<span style="color: #990000">&lt;</span><span style="color: #993399">1</span><span style="color: #990000">&gt;(</span>args<span style="color: #990000">)</span> <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"</span><span style="color: #CC33CC">\n</span><span style="color: #FF0000">"</span><span style="color: #990000">;</span>
-    <span style="font-weight: bold"><span style="color: #000000">source</span></span><span style="color: #990000">();</span>
-    args <span style="color: #990000">=</span> source<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">get</span></span><span style="color: #990000">();</span>
-    std<span style="color: #990000">::</span>cout <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"second = "</span> <span style="color: #990000">&lt;&lt;</span> std<span style="color: #990000">::</span>get<span style="color: #990000">&lt;</span><span style="color: #993399">0</span><span style="color: #990000">&gt;(</span>args<span style="color: #990000">)</span> <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">" "</span> <span style="color: #990000">&lt;&lt;</span> std<span style="color: #990000">::</span>get<span style="color: #990000">&lt;</span><span style="color: #993399">1</span><span style="color: #990000">&gt;(</span>args<span style="color: #990000">)</span> <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"</span><span style="color: #CC33CC">\n</span><span style="color: #FF0000">"</span><span style="color: #990000">;</span>
-<span style="color: #FF0000">}</span><span style="color: #990000">;</span>
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;boost/coroutine2/coroutine.hpp&gt;</span>
 
-coroutine<span style="color: #990000">&lt;</span>std<span style="color: #990000">::</span>tuple<span style="color: #990000">&lt;</span><span style="color: #009900">int</span><span style="color: #990000">,</span> std<span style="color: #990000">::</span>string<span style="color: #990000">&gt;&gt;::</span><span style="color: #008080">push_type</span> sink<span style="color: #FF0000">{</span>cooperative<span style="color: #FF0000">}</span><span style="color: #990000">;</span>
-std<span style="color: #990000">::</span>cout <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"start: "</span>
-<span style="font-weight: bold"><span style="color: #000000">sink</span></span><span style="color: #990000">(</span>std<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">make_tuple</span></span><span style="color: #990000">(</span><span style="color: #993399">0</span><span style="color: #990000">,</span> <span style="color: #FF0000">"aaa"</span><span style="color: #990000">));</span>
-std<span style="color: #990000">::</span>cout <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"next: "</span><span style="color: #990000">;</span>
-<span style="font-weight: bold"><span style="color: #000000">sink</span></span><span style="color: #990000">(</span>std<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">make_tuple</span></span><span style="color: #990000">(</span><span style="color: #993399">1</span><span style="color: #990000">,</span> <span style="color: #FF0000">"bbb"</span><span style="color: #990000">));</span>
-std<span style="color: #990000">::</span>cout <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"end</span><span style="color: #CC33CC">\n</span><span style="color: #FF0000">"</span><span style="color: #990000">;</span></tt></pre></div></div>
+<span style="color: #009900">int</span> <span style="font-weight: bold"><span style="color: #000000">main</span></span><span style="color: #990000">()</span>
+<span style="color: #FF0000">{</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">namespace</span></span> bc2 <span style="color: #990000">=</span> boost<span style="color: #990000">::</span>coroutines2<span style="color: #990000">;</span>
+
+    <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> cooperative <span style="color: #990000">=</span> <span style="color: #990000">[](</span>bc2<span style="color: #990000">::</span>coroutine<span style="color: #990000">&lt;</span>std<span style="color: #990000">::</span>tuple<span style="color: #990000">&lt;</span><span style="color: #009900">int</span><span style="color: #990000">,</span> std<span style="color: #990000">::</span>string<span style="color: #990000">&gt;&gt;::</span><span style="color: #008080">pull_type</span> <span style="color: #990000">&amp;</span>source<span style="color: #990000">)</span> <span style="color: #FF0000">{</span>
+        <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> args <span style="color: #990000">=</span> source<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">get</span></span><span style="color: #990000">();</span>
+        std<span style="color: #990000">::</span>cout <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"first = "</span> <span style="color: #990000">&lt;&lt;</span> std<span style="color: #990000">::</span>get<span style="color: #990000">&lt;</span><span style="color: #993399">0</span><span style="color: #990000">&gt;(</span>args<span style="color: #990000">)</span> <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">" "</span> <span style="color: #990000">&lt;&lt;</span> std<span style="color: #990000">::</span>get<span style="color: #990000">&lt;</span><span style="color: #993399">1</span><span style="color: #990000">&gt;(</span>args<span style="color: #990000">)</span> <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"</span><span style="color: #CC33CC">\n</span><span style="color: #FF0000">"</span><span style="color: #990000">;</span>
+        <span style="font-weight: bold"><span style="color: #000000">source</span></span><span style="color: #990000">();</span>
+        args <span style="color: #990000">=</span> source<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">get</span></span><span style="color: #990000">();</span>
+        std<span style="color: #990000">::</span>cout <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"second = "</span> <span style="color: #990000">&lt;&lt;</span> std<span style="color: #990000">::</span>get<span style="color: #990000">&lt;</span><span style="color: #993399">0</span><span style="color: #990000">&gt;(</span>args<span style="color: #990000">)</span> <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">" "</span> <span style="color: #990000">&lt;&lt;</span> std<span style="color: #990000">::</span>get<span style="color: #990000">&lt;</span><span style="color: #993399">1</span><span style="color: #990000">&gt;(</span>args<span style="color: #990000">)</span> <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"</span><span style="color: #CC33CC">\n</span><span style="color: #FF0000">"</span><span style="color: #990000">;</span>
+    <span style="color: #FF0000">}</span><span style="color: #990000">;</span>
+
+    bc2<span style="color: #990000">::</span>coroutine<span style="color: #990000">&lt;</span>std<span style="color: #990000">::</span>tuple<span style="color: #990000">&lt;</span><span style="color: #009900">int</span><span style="color: #990000">,</span> std<span style="color: #990000">::</span>string<span style="color: #990000">&gt;&gt;::</span><span style="color: #008080">push_type</span> sink<span style="color: #FF0000">{</span>cooperative<span style="color: #FF0000">}</span><span style="color: #990000">;</span>
+    std<span style="color: #990000">::</span>cout <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"start: "</span><span style="color: #990000">;</span>
+    <span style="font-weight: bold"><span style="color: #000000">sink</span></span><span style="color: #990000">(</span>std<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">make_tuple</span></span><span style="color: #990000">(</span><span style="color: #993399">0</span><span style="color: #990000">,</span> <span style="color: #FF0000">"aaa"</span><span style="color: #990000">));</span>
+    std<span style="color: #990000">::</span>cout <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"next: "</span><span style="color: #990000">;</span>
+    <span style="font-weight: bold"><span style="color: #000000">sink</span></span><span style="color: #990000">(</span>std<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">make_tuple</span></span><span style="color: #990000">(</span><span style="color: #993399">1</span><span style="color: #990000">,</span> <span style="color: #FF0000">"bbb"</span><span style="color: #990000">));</span>
+    std<span style="color: #990000">::</span>cout <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"end</span><span style="color: #CC33CC">\n</span><span style="color: #FF0000">"</span><span style="color: #990000">;</span>
+<span style="color: #FF0000">}</span></tt></pre></div></div>
 <div class="listingblock">
-<div class="title">Будет выведено</div>
+<div class="title">Output</div>
 <div class="content">
 <pre><code>start: first = 0 aaa
 next: second = 1 bbb
@@ -7837,7 +7979,12 @@ end</code></pre>
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><tt><span style="font-weight: bold"><span style="color: #000000">BOOST_PARAMETER_NAME</span></span><span style="color: #990000">(</span>a<span style="color: #990000">)</span>
+<pre><tt><span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;iostream&gt;</span>
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;string&gt;</span>
+
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;boost/parameter.hpp&gt;</span>
+
+<span style="font-weight: bold"><span style="color: #000000">BOOST_PARAMETER_NAME</span></span><span style="color: #990000">(</span>a<span style="color: #990000">)</span>
 <span style="font-weight: bold"><span style="color: #000000">BOOST_PARAMETER_NAME</span></span><span style="color: #990000">(</span>b<span style="color: #990000">)</span>
 <span style="font-weight: bold"><span style="color: #000000">BOOST_PARAMETER_NAME</span></span><span style="color: #990000">(</span>c<span style="color: #990000">)</span>
 <span style="font-weight: bold"><span style="color: #000000">BOOST_PARAMETER_NAME</span></span><span style="color: #990000">(</span>d<span style="color: #990000">)</span>
@@ -7868,6 +8015,15 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #FF0000">{</span>
     <span style="font-weight: bold"><span style="color: #000000">complicated</span></span><span style="color: #990000">(</span>_b <span style="color: #990000">=</span> <span style="color: #FF0000">'B'</span><span style="color: #990000">,</span> _a <span style="color: #990000">=</span> <span style="color: #993399">1</span><span style="color: #990000">,</span> _d <span style="color: #990000">=</span> <span style="color: #FF0000">"lala"</span><span style="color: #990000">);</span>
 <span style="color: #FF0000">}</span></tt></pre></div></div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre><code>1
+B
+3.14
+lala
+true</code></pre>
+</div></div>
 </div></div>
 <div class="sect2 slide">
 <h1 id="_conversion">14.3. Conversion</h1>
@@ -7905,28 +8061,40 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><tt><span style="font-weight: bold"><span style="color: #0000FF">struct</span></span> <span style="color: #008080">base1</span> <span style="color: #FF0000">{</span> <span style="font-weight: bold"><span style="color: #0000FF">virtual</span></span> <span style="color: #990000">~</span><span style="font-weight: bold"><span style="color: #000000">base1</span></span><span style="color: #990000">()</span> <span style="color: #990000">=</span> <span style="font-weight: bold"><span style="color: #0000FF">default</span></span><span style="color: #990000">;</span> <span style="color: #FF0000">}</span><span style="color: #990000">;</span>
+<pre><tt><span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;iostream&gt;</span>
+
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;boost/cast.hpp&gt;</span>
+
+<span style="font-weight: bold"><span style="color: #0000FF">struct</span></span> <span style="color: #008080">base1</span> <span style="color: #FF0000">{</span> <span style="font-weight: bold"><span style="color: #0000FF">virtual</span></span> <span style="color: #990000">~</span><span style="font-weight: bold"><span style="color: #000000">base1</span></span><span style="color: #990000">()</span> <span style="color: #990000">=</span> <span style="font-weight: bold"><span style="color: #0000FF">default</span></span><span style="color: #990000">;</span> <span style="color: #FF0000">}</span><span style="color: #990000">;</span>
 <span style="font-weight: bold"><span style="color: #0000FF">struct</span></span> <span style="color: #008080">base2</span> <span style="color: #FF0000">{</span> <span style="font-weight: bold"><span style="color: #0000FF">virtual</span></span> <span style="color: #990000">~</span><span style="font-weight: bold"><span style="color: #000000">base2</span></span><span style="color: #990000">()</span> <span style="color: #990000">=</span> <span style="font-weight: bold"><span style="color: #0000FF">default</span></span><span style="color: #990000">;</span> <span style="color: #FF0000">}</span><span style="color: #990000">;</span>
 <span style="font-weight: bold"><span style="color: #0000FF">struct</span></span> <span style="color: #008080">derived</span> <span style="color: #990000">:</span> <span style="font-weight: bold"><span style="color: #0000FF">public</span></span> base1<span style="color: #990000">,</span> <span style="font-weight: bold"><span style="color: #0000FF">public</span></span> base2 <span style="color: #FF0000">{}</span><span style="color: #990000">;</span>
 
 <span style="color: #009900">void</span> <span style="font-weight: bold"><span style="color: #000000">downcast</span></span><span style="color: #990000">(</span><span style="color: #008080">base1</span> <span style="color: #990000">*</span>b1<span style="color: #990000">)</span>
 <span style="color: #FF0000">{</span>
-    <span style="color: #008080">derived</span> <span style="color: #990000">*</span>d <span style="color: #990000">=</span> boost<span style="color: #990000">::</span>polymorphic_downcast<span style="color: #990000">&lt;</span>derived<span style="color: #990000">*&gt;(</span>b1<span style="color: #990000">);</span>
+    derived<span style="color: #990000">*</span> d <span style="color: #990000">=</span> boost<span style="color: #990000">::</span>polymorphic_downcast<span style="color: #990000">&lt;</span>derived<span style="color: #990000">*&gt;(</span>b1<span style="color: #990000">);</span>
+    std<span style="color: #990000">::</span>cout <span style="color: #990000">&lt;&lt;</span> d <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"</span><span style="color: #CC33CC">\n</span><span style="color: #FF0000">"</span><span style="color: #990000">;</span>
 <span style="color: #FF0000">}</span>
 
 <span style="color: #009900">void</span> <span style="font-weight: bold"><span style="color: #000000">crosscast</span></span><span style="color: #990000">(</span><span style="color: #008080">base1</span> <span style="color: #990000">*</span>b1<span style="color: #990000">)</span>
 <span style="color: #FF0000">{</span>
-    <span style="color: #008080">base2</span> <span style="color: #990000">*</span>b2 <span style="color: #990000">=</span> boost<span style="color: #990000">::</span>polymorphic_cast<span style="color: #990000">&lt;</span>base2<span style="color: #990000">*&gt;(</span>b1<span style="color: #990000">);</span>
+    base2<span style="color: #990000">*</span> b2 <span style="color: #990000">=</span> boost<span style="color: #990000">::</span>polymorphic_cast<span style="color: #990000">&lt;</span>base2<span style="color: #990000">*&gt;(</span>b1<span style="color: #990000">);</span>
+    std<span style="color: #990000">::</span>cout <span style="color: #990000">&lt;&lt;</span> b2 <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"</span><span style="color: #CC33CC">\n</span><span style="color: #FF0000">"</span><span style="color: #990000">;</span>
 <span style="color: #FF0000">}</span>
 
 <span style="color: #009900">int</span> <span style="font-weight: bold"><span style="color: #000000">main</span></span><span style="color: #990000">()</span>
 <span style="color: #FF0000">{</span>
-    <span style="color: #008080">derived</span> <span style="color: #990000">*</span>d <span style="color: #990000">=</span> <span style="font-weight: bold"><span style="color: #0000FF">new</span></span> derived<span style="color: #990000">;</span>
+    derived<span style="color: #990000">*</span> d <span style="color: #990000">=</span> <span style="font-weight: bold"><span style="color: #0000FF">new</span></span> derived<span style="color: #990000">;</span>
     <span style="font-weight: bold"><span style="color: #000000">downcast</span></span><span style="color: #990000">(</span>d<span style="color: #990000">);</span>
 
-    <span style="color: #008080">base1</span> <span style="color: #990000">*</span>b1 <span style="color: #990000">=</span> <span style="font-weight: bold"><span style="color: #0000FF">new</span></span> derived<span style="color: #990000">;</span>
+    base1<span style="color: #990000">*</span> b1 <span style="color: #990000">=</span> <span style="font-weight: bold"><span style="color: #0000FF">new</span></span> derived<span style="color: #990000">;</span>
     <span style="font-weight: bold"><span style="color: #000000">crosscast</span></span><span style="color: #990000">(</span>b1<span style="color: #990000">);</span>
 <span style="color: #FF0000">}</span></tt></pre></div></div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre><code>0x1c70eb0
+0x1c71ee8</code></pre>
+</div></div>
 </div></div>
 <div class="sect1 slide">
 <h1 id="_обработка_ошибок">15. Обработка ошибок</h1>
@@ -7996,16 +8164,28 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><tt><span style="font-weight: bold"><span style="color: #0000FF">try</span></span>
+<pre><tt><span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;iostream&gt;</span>
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;system_error&gt;</span>
+
+<span style="color: #009900">int</span> <span style="font-weight: bold"><span style="color: #000000">main</span></span><span style="color: #990000">()</span>
 <span style="color: #FF0000">{</span>
-    <span style="font-weight: bold"><span style="color: #0000FF">throw</span></span> system_error<span style="color: #FF0000">{</span>errc<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">make_error_code</span></span><span style="color: #990000">(</span>errc<span style="color: #990000">::</span>not_supported<span style="color: #990000">)</span><span style="color: #FF0000">}</span><span style="color: #990000">;</span>
-<span style="color: #FF0000">}</span>
-<span style="font-weight: bold"><span style="color: #0000FF">catch</span></span> <span style="color: #990000">(</span>system_error<span style="color: #990000">&amp;</span> e<span style="color: #990000">)</span>
-<span style="color: #FF0000">{</span>
-    <span style="color: #008080">error_code</span> ec <span style="color: #990000">=</span> e<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">code</span></span><span style="color: #990000">();</span>
-    std<span style="color: #990000">::</span>cerr <span style="color: #990000">&lt;&lt;</span> ec<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">value</span></span><span style="color: #990000">()</span> <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">'</span><span style="color: #CC33CC">\n</span><span style="color: #FF0000">'</span><span style="color: #990000">;</span>
-    std<span style="color: #990000">::</span>cerr <span style="color: #990000">&lt;&lt;</span> ec<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">category</span></span><span style="color: #990000">().</span><span style="font-weight: bold"><span style="color: #000000">name</span></span><span style="color: #990000">()</span> <span style="color: #990000">&lt;&lt;</span> std<span style="color: #990000">::</span>endl<span style="color: #990000">;</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">try</span></span>
+    <span style="color: #FF0000">{</span>
+        <span style="font-weight: bold"><span style="color: #0000FF">throw</span></span> std<span style="color: #990000">::</span>system_error<span style="color: #FF0000">{</span>std<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">make_error_code</span></span><span style="color: #990000">(</span>std<span style="color: #990000">::</span>errc<span style="color: #990000">::</span>not_supported<span style="color: #990000">)</span><span style="color: #FF0000">}</span><span style="color: #990000">;</span>
+    <span style="color: #FF0000">}</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">catch</span></span> <span style="color: #990000">(</span><span style="font-weight: bold"><span style="color: #0000FF">const</span></span> std<span style="color: #990000">::</span>system_error<span style="color: #990000">&amp;</span> e<span style="color: #990000">)</span>
+    <span style="color: #FF0000">{</span>
+        std<span style="color: #990000">::</span><span style="color: #008080">error_code</span> ec <span style="color: #990000">=</span> e<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">code</span></span><span style="color: #990000">();</span>
+        std<span style="color: #990000">::</span>cerr <span style="color: #990000">&lt;&lt;</span> ec<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">value</span></span><span style="color: #990000">()</span> <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">'</span><span style="color: #CC33CC">\n</span><span style="color: #FF0000">'</span><span style="color: #990000">;</span>
+        std<span style="color: #990000">::</span>cerr <span style="color: #990000">&lt;&lt;</span> ec<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">category</span></span><span style="color: #990000">().</span><span style="font-weight: bold"><span style="color: #000000">name</span></span><span style="color: #990000">()</span> <span style="color: #990000">&lt;&lt;</span> std<span style="color: #990000">::</span>endl<span style="color: #990000">;</span>
+    <span style="color: #FF0000">}</span>
 <span style="color: #FF0000">}</span></tt></pre></div></div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre><code>95
+generic</code></pre>
+</div></div>
 </div></div>
 <div class="sect2 slide">
 <h1 id="_исключения">15.2. Исключения</h1>
@@ -8055,25 +8235,42 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><tt>error_info <span style="color: #990000">=</span> boost<span style="color: #990000">::</span><span style="color: #008080">error_info&lt;struct tag_errmsg, std::string&gt;</span> errmsg_info<span style="color: #990000">;</span>
-
-<span style="font-weight: bold"><span style="color: #0000FF">try</span></span>
-<span style="color: #FF0000">{</span>
-    <span style="font-weight: bold"><span style="color: #0000FF">try</span></span>
-    <span style="color: #FF0000">{</span>
-        <span style="font-weight: bold"><span style="color: #000000">BOOST_THROW_EXCEPTION</span></span><span style="color: #990000">(</span>std<span style="color: #990000">::</span>runtime_error<span style="color: #FF0000">{</span><span style="color: #FF0000">"123"</span><span style="color: #FF0000">}</span><span style="color: #990000">);</span>
-    <span style="color: #FF0000">}</span>
-    <span style="font-weight: bold"><span style="color: #0000FF">catch</span></span> <span style="color: #990000">(</span>boost<span style="color: #990000">::</span><span style="color: #008080">exception</span> <span style="color: #990000">&amp;</span>e<span style="color: #990000">)</span>
-    <span style="color: #FF0000">{</span>
-        e <span style="color: #990000">&lt;&lt;</span> errmsg_info<span style="color: #FF0000">{</span><span style="color: #FF0000">"writing lots of zeros failed"</span><span style="color: #FF0000">}</span><span style="color: #990000">;</span>
-        <span style="font-weight: bold"><span style="color: #0000FF">throw</span></span><span style="color: #990000">;</span>
-    <span style="color: #FF0000">}</span>
-<span style="color: #FF0000">}</span>
-<span style="font-weight: bold"><span style="color: #0000FF">catch</span></span> <span style="color: #990000">(</span>boost<span style="color: #990000">::</span><span style="color: #008080">exception</span> <span style="color: #990000">&amp;</span>e<span style="color: #990000">)</span>
-<span style="color: #FF0000">{</span>
-    std<span style="color: #990000">::</span>cerr <span style="color: #990000">&lt;&lt;</span> <span style="color: #990000">*</span>boost<span style="color: #990000">::</span>get_error_info<span style="color: #990000">&lt;</span>errmsg_info<span style="color: #990000">&gt;(</span>e<span style="color: #990000">);</span>
-    std<span style="color: #990000">::</span>cerr <span style="color: #990000">&lt;&lt;</span> boost<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">diagnostic_information</span></span><span style="color: #990000">(</span>e<span style="color: #990000">);</span>
-<span style="color: #FF0000">}</span></tt></pre></div></div>
+<pre><tt><span style="color: #000000">    1:</span> <span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;iostream&gt;</span>
+<span style="color: #000000">    2:</span> <span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;string&gt;</span>
+<span style="color: #000000">    3:</span> <span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;stdexcept&gt;</span>
+<span style="color: #000000">    4:</span>
+<span style="color: #000000">    5:</span> <span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;boost/exception/all.hpp&gt;</span>
+<span style="color: #000000">    6:</span>
+<span style="color: #000000">    7:</span> <span style="color: #009900">int</span> <span style="font-weight: bold"><span style="color: #000000">main</span></span><span style="color: #990000">()</span>
+<span style="color: #000000">    8:</span> <span style="color: #FF0000">{</span>
+<span style="color: #000000">    9:</span>     <span style="font-weight: bold"><span style="color: #0000FF">using</span></span> errmsg_info <span style="color: #990000">=</span> boost<span style="color: #990000">::</span>error_info<span style="color: #990000">&lt;</span><span style="font-weight: bold"><span style="color: #0000FF">struct</span></span> <span style="color: #008080">tag_errmsg</span><span style="color: #990000">,</span> std<span style="color: #990000">::</span>string<span style="color: #990000">&gt;;</span>
+<span style="color: #000000">   10:</span>
+<span style="color: #000000">   11:</span>     <span style="font-weight: bold"><span style="color: #0000FF">try</span></span>
+<span style="color: #000000">   12:</span>     <span style="color: #FF0000">{</span>
+<span style="color: #000000">   13:</span>         <span style="font-weight: bold"><span style="color: #0000FF">try</span></span>
+<span style="color: #000000">   14:</span>         <span style="color: #FF0000">{</span>
+<span style="color: #000000">   15:</span>             <span style="font-weight: bold"><span style="color: #000000">BOOST_THROW_EXCEPTION</span></span><span style="color: #990000">(</span>std<span style="color: #990000">::</span>runtime_error<span style="color: #FF0000">{</span><span style="color: #FF0000">"123"</span><span style="color: #FF0000">}</span><span style="color: #990000">);</span>
+<span style="color: #000000">   16:</span>         <span style="color: #FF0000">}</span>
+<span style="color: #000000">   17:</span>         <span style="font-weight: bold"><span style="color: #0000FF">catch</span></span> <span style="color: #990000">(</span><span style="font-weight: bold"><span style="color: #0000FF">const</span></span> boost<span style="color: #990000">::</span>exception<span style="color: #990000">&amp;</span> e<span style="color: #990000">)</span>
+<span style="color: #000000">   18:</span>         <span style="color: #FF0000">{</span>
+<span style="color: #000000">   19:</span>             e <span style="color: #990000">&lt;&lt;</span> errmsg_info<span style="color: #FF0000">{</span><span style="color: #FF0000">"writing lots of zeros failed"</span><span style="color: #FF0000">}</span><span style="color: #990000">;</span>
+<span style="color: #000000">   20:</span>             <span style="font-weight: bold"><span style="color: #0000FF">throw</span></span><span style="color: #990000">;</span>
+<span style="color: #000000">   21:</span>         <span style="color: #FF0000">}</span>
+<span style="color: #000000">   22:</span>     <span style="color: #FF0000">}</span>
+<span style="color: #000000">   23:</span>     <span style="font-weight: bold"><span style="color: #0000FF">catch</span></span> <span style="color: #990000">(</span><span style="font-weight: bold"><span style="color: #0000FF">const</span></span> boost<span style="color: #990000">::</span>exception<span style="color: #990000">&amp;</span> e<span style="color: #990000">)</span>
+<span style="color: #000000">   24:</span>     <span style="color: #FF0000">{</span>
+<span style="color: #000000">   25:</span>         std<span style="color: #990000">::</span>cerr <span style="color: #990000">&lt;&lt;</span> <span style="color: #990000">*</span>boost<span style="color: #990000">::</span>get_error_info<span style="color: #990000">&lt;</span>errmsg_info<span style="color: #990000">&gt;(</span>e<span style="color: #990000">);</span>
+<span style="color: #000000">   26:</span>         std<span style="color: #990000">::</span>cerr <span style="color: #990000">&lt;&lt;</span> boost<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">diagnostic_information</span></span><span style="color: #990000">(</span>e<span style="color: #990000">);</span>
+<span style="color: #000000">   27:</span>     <span style="color: #FF0000">}</span>
+<span style="color: #000000">   28:</span> <span style="color: #FF0000">}</span></tt></pre></div></div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre><code>writing lots of zeros failed/home/runner/work/master-programming/master-programming/lecture-9/example13-2.cpp(15): Throw in function int main()
+Dynamic exception type: boost::wrapexcept&lt;std::runtime_error&gt;
+std::exception::what: 123
+[main::tag_errmsg*] = writing lots of zeros failed</code></pre>
+</div></div>
 </div></div>
 <div class="sect1 slide">
 <h1 id="_работа_с_числами">16. Работа с числами</h1>
@@ -8121,15 +8318,28 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><tt><span style="font-weight: bold"><span style="color: #0000FF">using</span></span> <span style="font-weight: bold"><span style="color: #0000FF">namespace</span></span> boost<span style="color: #990000">::</span>accumulators<span style="color: #990000">;</span>
+<pre><tt><span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;iostream&gt;</span>
 
-<span style="color: #008080">accumulator_set&lt;double, features&lt;tag::mean, tag::variance&gt;, int&gt;</span> acc<span style="color: #990000">;</span>
-<span style="font-weight: bold"><span style="color: #000000">acc</span></span><span style="color: #990000">(</span><span style="color: #993399">8</span><span style="color: #990000">,</span> weight <span style="color: #990000">=</span> <span style="color: #993399">1</span><span style="color: #990000">);</span>
-<span style="font-weight: bold"><span style="color: #000000">acc</span></span><span style="color: #990000">(</span><span style="color: #993399">9</span><span style="color: #990000">,</span> weight <span style="color: #990000">=</span> <span style="color: #993399">1</span><span style="color: #990000">);</span>
-<span style="font-weight: bold"><span style="color: #000000">acc</span></span><span style="color: #990000">(</span><span style="color: #993399">10</span><span style="color: #990000">,</span> weight <span style="color: #990000">=</span> <span style="color: #993399">4</span><span style="color: #990000">);</span>
-<span style="font-weight: bold"><span style="color: #000000">acc</span></span><span style="color: #990000">(</span><span style="color: #993399">11</span><span style="color: #990000">,</span> weight <span style="color: #990000">=</span> <span style="color: #993399">1</span><span style="color: #990000">);</span>
-<span style="font-weight: bold"><span style="color: #000000">acc</span></span><span style="color: #990000">(</span><span style="color: #993399">12</span><span style="color: #990000">,</span> weight <span style="color: #990000">=</span> <span style="color: #993399">1</span><span style="color: #990000">);</span>
-std<span style="color: #990000">::</span>cout <span style="color: #990000">&lt;&lt;</span> <span style="font-weight: bold"><span style="color: #000000">mean</span></span><span style="color: #990000">(</span>acc<span style="color: #990000">)</span> <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">":"</span> <span style="color: #990000">&lt;&lt;</span> <span style="font-weight: bold"><span style="color: #000000">variance</span></span><span style="color: #990000">(</span>acc<span style="color: #990000">)</span> <span style="color: #990000">&lt;&lt;</span> std<span style="color: #990000">::</span>endl<span style="color: #990000">;</span></tt></pre></div></div>
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;boost/accumulators/accumulators.hpp&gt;</span>
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;boost/accumulators/statistics.hpp&gt;</span>
+
+<span style="color: #009900">int</span> <span style="font-weight: bold"><span style="color: #000000">main</span></span><span style="color: #990000">()</span>
+<span style="color: #FF0000">{</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">namespace</span></span> ba <span style="color: #990000">=</span> boost<span style="color: #990000">::</span>accumulators<span style="color: #990000">;</span>
+
+    ba<span style="color: #990000">::</span><span style="color: #008080">accumulator_set&lt;double, ba::features&lt;ba::tag::mean, ba::tag::variance&gt;, int&gt;</span> acc<span style="color: #990000">;</span>
+    <span style="font-weight: bold"><span style="color: #000000">acc</span></span><span style="color: #990000">(</span><span style="color: #993399">8</span><span style="color: #990000">,</span> ba<span style="color: #990000">::</span>weight<span style="color: #990000">=</span><span style="color: #993399">1</span><span style="color: #990000">);</span>
+    <span style="font-weight: bold"><span style="color: #000000">acc</span></span><span style="color: #990000">(</span><span style="color: #993399">9</span><span style="color: #990000">,</span> ba<span style="color: #990000">::</span>weight<span style="color: #990000">=</span><span style="color: #993399">1</span><span style="color: #990000">);</span>
+    <span style="font-weight: bold"><span style="color: #000000">acc</span></span><span style="color: #990000">(</span><span style="color: #993399">10</span><span style="color: #990000">,</span> ba<span style="color: #990000">::</span>weight<span style="color: #990000">=</span><span style="color: #993399">4</span><span style="color: #990000">);</span>
+    <span style="font-weight: bold"><span style="color: #000000">acc</span></span><span style="color: #990000">(</span><span style="color: #993399">11</span><span style="color: #990000">,</span> ba<span style="color: #990000">::</span>weight<span style="color: #990000">=</span><span style="color: #993399">1</span><span style="color: #990000">);</span>
+    <span style="font-weight: bold"><span style="color: #000000">acc</span></span><span style="color: #990000">(</span><span style="color: #993399">12</span><span style="color: #990000">,</span> ba<span style="color: #990000">::</span>weight<span style="color: #990000">=</span><span style="color: #993399">1</span><span style="color: #990000">);</span>
+    std<span style="color: #990000">::</span>cout <span style="color: #990000">&lt;&lt;</span> ba<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">mean</span></span><span style="color: #990000">(</span>acc<span style="color: #990000">)</span> <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">":"</span> <span style="color: #990000">&lt;&lt;</span> ba<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">variance</span></span><span style="color: #990000">(</span>acc<span style="color: #990000">)</span> <span style="color: #990000">&lt;&lt;</span> std<span style="color: #990000">::</span>endl<span style="color: #990000">;</span>
+<span style="color: #FF0000">}</span></tt></pre></div></div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre><code>10:1.25</code></pre>
+</div></div>
 </div></div>
 <div class="sect2 slide">
 <h1 id="_преобразование_чисел">16.2. Преобразование чисел</h1>
@@ -8177,16 +8387,28 @@ std<span style="color: #990000">::</span>cout <span style="color: #990000">&lt;&
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><tt><span style="font-weight: bold"><span style="color: #0000FF">try</span></span>
+<pre><tt><span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;iostream&gt;</span>
+
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;boost/numeric/conversion/cast.hpp&gt;</span>
+
+<span style="color: #009900">int</span> <span style="font-weight: bold"><span style="color: #000000">main</span></span><span style="color: #990000">()</span>
 <span style="color: #FF0000">{</span>
-    <span style="color: #009900">int</span> i <span style="color: #990000">=</span> <span style="color: #993399">0x10000</span><span style="color: #990000">;</span>
-    <span style="color: #009900">short</span> s <span style="color: #990000">=</span> boost<span style="color: #990000">::</span>numeric_cast<span style="color: #990000">&lt;</span><span style="color: #009900">short</span><span style="color: #990000">&gt;(</span>i<span style="color: #990000">);</span>
-    std<span style="color: #990000">::</span>cout <span style="color: #990000">&lt;&lt;</span> s <span style="color: #990000">&lt;&lt;</span> std<span style="color: #990000">::</span>endl<span style="color: #990000">;</span>
-<span style="color: #FF0000">}</span>
-<span style="font-weight: bold"><span style="color: #0000FF">catch</span></span> <span style="color: #990000">(</span>boost<span style="color: #990000">::</span>numeric<span style="color: #990000">::</span><span style="color: #008080">bad_numeric_cast</span> <span style="color: #990000">&amp;</span>e<span style="color: #990000">)</span>
-<span style="color: #FF0000">{</span>
-    std<span style="color: #990000">::</span>cerr <span style="color: #990000">&lt;&lt;</span> e<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">what</span></span><span style="color: #990000">()</span> <span style="color: #990000">&lt;&lt;</span> std<span style="color: #990000">::</span>endl<span style="color: #990000">;</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">try</span></span>
+    <span style="color: #FF0000">{</span>
+        <span style="color: #009900">int</span> i <span style="color: #990000">=</span> <span style="color: #993399">0x10000</span><span style="color: #990000">;</span>
+        <span style="color: #009900">short</span> s <span style="color: #990000">=</span> boost<span style="color: #990000">::</span>numeric_cast<span style="color: #990000">&lt;</span><span style="color: #009900">short</span><span style="color: #990000">&gt;(</span>i<span style="color: #990000">);</span>
+        std<span style="color: #990000">::</span>cout <span style="color: #990000">&lt;&lt;</span> s <span style="color: #990000">&lt;&lt;</span> std<span style="color: #990000">::</span>endl<span style="color: #990000">;</span>
+    <span style="color: #FF0000">}</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">catch</span></span> <span style="color: #990000">(</span>boost<span style="color: #990000">::</span>numeric<span style="color: #990000">::</span><span style="color: #008080">bad_numeric_cast</span> <span style="color: #990000">&amp;</span>e<span style="color: #990000">)</span>
+    <span style="color: #FF0000">{</span>
+        std<span style="color: #990000">::</span>cout <span style="color: #990000">&lt;&lt;</span> e<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">what</span></span><span style="color: #990000">()</span> <span style="color: #990000">&lt;&lt;</span> std<span style="color: #990000">::</span>endl<span style="color: #990000">;</span>
+    <span style="color: #FF0000">}</span>
 <span style="color: #FF0000">}</span></tt></pre></div></div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre><code>bad numeric conversion: positive overflow</code></pre>
+</div></div>
 </div></div>
 <div class="sect2 slide">
 <h1 id="_что_уже_вошло_в_stl">16.3. Что уже вошло в STL</h1>
@@ -8227,137 +8449,131 @@ http://www.gnu.org/software/src-highlite -->
 </li>
 <li>
 <span>
-Бэкенд&#8201;&#8212;&#8201;поток ввода/вывода, в который будут выводится сообщения
+Логгер&#8201;&#8212;&#8201;синглтон
 </span>
 </li>
 <li>
 <span>
-Фротнэнд&#8201;&#8212;&#8201;объекты, через которые проходят сообщения в бэкенд, например, <code>boost::log::sinks::asynchronous_sink</code>
-</span>
-<ul class="">
-<li>
-<span>
-По сути это фильтры
-</span>
-</li>
-</ul>
-</li>
-<li>
-<span>
-Ядро&#8201;&#8212;&#8201;синглтон <code>boost::log::core::get()</code>, в котором регистрируются фронтэнды
-</span>
-<ul class="">
-<li>
-<span>
-Если фильтры зарегистрированы в самом ядре, это глобальные фильтры
+Поддержка мультипоточности (несколько писателей)
 </span>
 </li>
 <li>
 <span>
-Если фильтры зарегистрированы во фронтэнде, это локальные фильтры фронтэнда
-</span>
-</li>
-</ul>
-</li>
-<li>
-<span>
-Логер&#8201;&#8212;&#8201;через него записываются сообщения пользователем
-</span>
-<ul class="">
-<li>
-<span>
-Макрос <code>BOOST_LOG</code> позволяет использовать интерфейс <code>std::ostream</code>
+Поддержка ротации логов
 </span>
 </li>
 <li>
 <span>
-Макрос <code>BOOST_LOG_SEV</code> позволяет дополнительно передавать уровень логирования
-</span>
-</li>
-</ul>
-</li>
-<li>
-<span>
-Собственный фильтр&#8201;&#8212;&#8201;функция, аргумент которой <code>attribute_value_set</code>, возвращает тип <code>bool</code>
+Поддержка нескольких уровней логирования
 </span>
 </li>
 <li>
 <span>
-Собственный форматер&#8201;&#8212;&#8201;функция с сигнатурой <code>void(const record_view&amp; view, formatting_ostream&amp; os)</code>
-</span>
-<ul class="">
-<li>
-<span>
-Из <code>view</code> можно получить <code>attribute_value_set</code> через функцию <code>attribute_values()</code>
+Есть некоторые встроенные атрибуты и форматеры. Можно писать свои
 </span>
 </li>
 <li>
 <span>
-Вывод необходимо направлять в <code>os</code>
+Вся настройка ведётся через функцию, которая вызывается первой в <code>main</code>
 </span>
 </li>
-</ul>
+<li>
+<span>
+Активно используются <code>boost::parameters</code> и <code>boost::fusion</code>
+</span>
+</li>
+<li>
+<span>
+Процесс логирования напоминает запись сообщений в поток
+</span>
 </li>
 </ul>
 </div></div>
 <div class="sect1 slide">
 <h1>» 17.1.   (продолжение)</h1>
 <div class="sectionbody">
-<ul class="">
-<li>
-<span>
-<code>BOOST_LOG_ATTRIBUTE_KEYWORD</code> позволяет создавать атрибуты
-</span>
-<ul class="">
-<li>
-<span>
-Задавать их можно сразу во фронтэнде с помощью <code>boost::log::expressions</code> (отсылка к Xpressive)
-</span>
-</li>
-<li>
-<span>
-Форматер также может быть написан в виде лямбда-выражения
-</span>
-</li>
-</ul>
-</li>
-<li>
-<span>
-Макрос <code>BOOST_LOG_SCOPED_LOGGER_ATTR</code> позволяет задавать локальный атрибут
-</span>
-</li>
-<li>
-<span>
-Исключения обрабатываются в ядре, путём установки посетителя через метод <code>set_exception_handler</code>
-</span>
-</li>
-</ul>
 <div class="listingblock">
 <div class="content"><!-- Generator: GNU source-highlight
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><tt><span style="font-weight: bold"><span style="color: #0000FF">using</span></span> <span style="font-weight: bold"><span style="color: #0000FF">namespace</span></span> boost<span style="color: #990000">::</span>log<span style="color: #990000">;</span>
+<pre><tt><span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;boost/log/core.hpp&gt;</span>
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;boost/log/trivial.hpp&gt;</span>
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;boost/log/expressions.hpp&gt;</span>
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;boost/log/sinks/text_file_backend.hpp&gt;</span>
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;boost/log/utility/setup/file.hpp&gt;</span>
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;boost/log/utility/setup/common_attributes.hpp&gt;</span>
 
-<span style="font-weight: bold"><span style="color: #000000">BOOST_LOG_ATTRIBUTE_KEYWORD</span></span><span style="color: #990000">(</span>severity<span style="color: #990000">,</span> <span style="color: #FF0000">"Severity"</span><span style="color: #990000">,</span> <span style="color: #009900">int</span><span style="color: #990000">)</span>
-<span style="font-weight: bold"><span style="color: #000000">BOOST_LOG_INLINE_GLOBAL_LOGGER_DEFAULT</span></span><span style="color: #990000">(</span>lg<span style="color: #990000">,</span> sources<span style="color: #990000">::</span>severity_logger<span style="color: #990000">&lt;</span><span style="color: #009900">int</span><span style="color: #990000">&gt;)</span>
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;boost/dll/runtime_symbol_info.hpp&gt;</span>
+
+<span style="font-weight: bold"><span style="color: #0000FF">namespace</span></span> bg <span style="color: #990000">=</span> boost<span style="color: #990000">::</span>log<span style="color: #990000">;</span>
+
+<span style="color: #009900">void</span> <span style="font-weight: bold"><span style="color: #000000">init</span></span><span style="color: #990000">()</span>
+<span style="color: #FF0000">{</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> exe_path <span style="color: #990000">=</span> boost<span style="color: #990000">::</span>dll<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">program_location</span></span><span style="color: #990000">();</span>
+
+    bg<span style="color: #990000">::</span>add_file_log
+    <span style="color: #990000">(</span>
+        bg<span style="color: #990000">::</span>keywords<span style="color: #990000">::</span>file_name<span style="color: #990000">=</span>exe_path<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">parent_path</span></span><span style="color: #990000">()</span> <span style="color: #990000">/</span> <span style="color: #FF0000">"sample_%N.log"</span><span style="color: #990000">,</span> <span style="font-style: italic"><span style="color: #9A1900">// <b>&lt;1&gt;</b></span></span>
+        bg<span style="color: #990000">::</span>keywords<span style="color: #990000">::</span>rotation_size<span style="color: #990000">=</span><span style="color: #993399">10</span> <span style="color: #990000">*</span> <span style="color: #993399">1024</span> <span style="color: #990000">*</span> <span style="color: #993399">1024</span><span style="color: #990000">,</span> <span style="font-style: italic"><span style="color: #9A1900">// <b>&lt;2&gt;</b></span></span>
+        bg<span style="color: #990000">::</span>keywords<span style="color: #990000">::</span>time_based_rotation<span style="color: #990000">=</span>bg<span style="color: #990000">::</span>sinks<span style="color: #990000">::</span>file<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">rotation_at_time_point</span></span><span style="color: #990000">(</span><span style="color: #993399">0</span><span style="color: #990000">,</span> <span style="color: #993399">0</span><span style="color: #990000">,</span> <span style="color: #993399">0</span><span style="color: #990000">),</span> <span style="font-style: italic"><span style="color: #9A1900">// <b>&lt;3&gt;</b></span></span>
+        bg<span style="color: #990000">::</span>keywords<span style="color: #990000">::</span>format<span style="color: #990000">=</span><span style="color: #FF0000">"[%TimeStamp%]: %Message%"</span> <span style="font-style: italic"><span style="color: #9A1900">// <b>&lt;4&gt;</b></span></span>
+    <span style="color: #990000">);</span>
+
+    bg<span style="color: #990000">::</span>core<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">get</span></span><span style="color: #990000">()-&gt;</span><span style="font-weight: bold"><span style="color: #000000">set_filter</span></span><span style="color: #990000">(</span>bg<span style="color: #990000">::</span>trivial<span style="color: #990000">::</span>severity <span style="color: #990000">&gt;=</span> bg<span style="color: #990000">::</span>trivial<span style="color: #990000">::</span>info<span style="color: #990000">);</span>
+
+    bg<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">add_common_attributes</span></span><span style="color: #990000">();</span> <span style="font-style: italic"><span style="color: #9A1900">// <b>&lt;5&gt;</b></span></span>
+<span style="color: #FF0000">}</span>
 
 <span style="color: #009900">int</span> <span style="font-weight: bold"><span style="color: #000000">main</span></span><span style="color: #990000">()</span>
 <span style="color: #FF0000">{</span>
-    <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> sink <span style="color: #990000">=</span> std<span style="color: #990000">::</span>make_shared<span style="color: #990000">&lt;</span>sinks<span style="color: #990000">::</span>asynchronous_sink<span style="color: #990000">&lt;</span>sinks<span style="color: #990000">::</span>text_ostream_backend<span style="color: #990000">&gt;&gt;();</span>
-    std<span style="color: #990000">::</span><span style="color: #008080">shared_ptr</span> stream<span style="color: #FF0000">{</span><span style="color: #990000">&amp;</span>std<span style="color: #990000">::</span>clog<span style="color: #990000">,</span> boost<span style="color: #990000">::</span>empty_deleter<span style="color: #FF0000">{}}</span><span style="color: #990000">;</span>
+    <span style="font-weight: bold"><span style="color: #000000">init</span></span><span style="color: #990000">();</span>
 
-    sink<span style="color: #990000">-&gt;</span><span style="font-weight: bold"><span style="color: #000000">locked_backend</span></span><span style="color: #990000">()-&gt;</span><span style="font-weight: bold"><span style="color: #000000">add_stream</span></span><span style="color: #990000">(</span>stream<span style="color: #990000">);</span>
-    sink<span style="color: #990000">-&gt;</span><span style="font-weight: bold"><span style="color: #000000">set_filter</span></span><span style="color: #990000">(</span>severity <span style="color: #990000">&gt;</span> <span style="color: #993399">0</span><span style="color: #990000">);</span>
-    sink<span style="color: #990000">-&gt;</span><span style="font-weight: bold"><span style="color: #000000">set_formatter</span></span><span style="color: #990000">(</span>expressions<span style="color: #990000">::</span>stream <span style="color: #990000">&lt;&lt;</span> severity <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">": "</span> <span style="color: #990000">&lt;&lt;</span> expressions<span style="color: #990000">::</span>smessage<span style="color: #990000">);</span>
-
-    core<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">get</span></span><span style="color: #990000">()-&gt;</span><span style="font-weight: bold"><span style="color: #000000">add_sink</span></span><span style="color: #990000">(</span>sink<span style="color: #990000">);</span>
-
-    <span style="font-weight: bold"><span style="color: #000000">BOOST_LOG_SEV</span></span><span style="color: #990000">(</span>lg<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">get</span></span><span style="color: #990000">(),</span> <span style="color: #993399">0</span><span style="color: #990000">)</span> <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"note"</span><span style="color: #990000">;</span>
-    <span style="font-weight: bold"><span style="color: #000000">BOOST_LOG_SEV</span></span><span style="color: #990000">(</span>lg<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">get</span></span><span style="color: #990000">(),</span> <span style="color: #993399">1</span><span style="color: #990000">)</span> <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"warning"</span><span style="color: #990000">;</span>
-    <span style="font-weight: bold"><span style="color: #000000">BOOST_LOG_SEV</span></span><span style="color: #990000">(</span>lg<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">get</span></span><span style="color: #990000">(),</span> <span style="color: #993399">2</span><span style="color: #990000">)</span> <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"error"</span><span style="color: #990000">;</span>
-    sink<span style="color: #990000">-&gt;</span><span style="font-weight: bold"><span style="color: #000000">flush</span></span><span style="color: #990000">();</span>
+    <span style="font-weight: bold"><span style="color: #000000">BOOST_LOG_TRIVIAL</span></span><span style="color: #990000">(</span>trace<span style="color: #990000">)</span> <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"A trace severity message"</span><span style="color: #990000">;</span>
+    <span style="font-weight: bold"><span style="color: #000000">BOOST_LOG_TRIVIAL</span></span><span style="color: #990000">(</span>debug<span style="color: #990000">)</span> <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"A debug severity message"</span><span style="color: #990000">;</span>
+    <span style="font-weight: bold"><span style="color: #000000">BOOST_LOG_TRIVIAL</span></span><span style="color: #990000">(</span>info<span style="color: #990000">)</span> <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"An informational severity message"</span><span style="color: #990000">;</span>
+    <span style="font-weight: bold"><span style="color: #000000">BOOST_LOG_TRIVIAL</span></span><span style="color: #990000">(</span>warning<span style="color: #990000">)</span> <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"A warning severity message"</span><span style="color: #990000">;</span>
+    <span style="font-weight: bold"><span style="color: #000000">BOOST_LOG_TRIVIAL</span></span><span style="color: #990000">(</span>error<span style="color: #990000">)</span> <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"An error severity message"</span><span style="color: #990000">;</span>
+    <span style="font-weight: bold"><span style="color: #000000">BOOST_LOG_TRIVIAL</span></span><span style="color: #990000">(</span>fatal<span style="color: #990000">)</span> <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"A fatal severity message"</span><span style="color: #990000">;</span>
 <span style="color: #FF0000">}</span></tt></pre></div></div>
+<div class="colist arabic"><ol>
+<li>
+<p>
+Паттерн имени лога
+</p>
+</li>
+<li>
+<p>
+Условие размера лога при ротации
+</p>
+</li>
+<li>
+<p>
+Возможна также ротация по времени, например, в полночь
+</p>
+</li>
+<li>
+<p>
+Формат сообщений, которые будем видеть в логах
+</p>
+</li>
+<li>
+<p>
+Включение общих атрибутов, например, <code>%TimeStamp%</code>
+</p>
+</li>
+</ol></div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre><code>$ ./example15-1
+
+$ cat ./sample_0.log
+[2021-10-25 13:20:54.037780]: An informational severity message
+[2021-10-25 13:20:54.037890]: A warning severity message
+[2021-10-25 13:20:54.037898]: An error severity message
+[2021-10-25 13:20:54.037903]: A fatal severity message</code></pre>
+</div></div>
 </div></div>
 <div class="sect2 slide">
 <h1 id="_аргументы_командной_строки">17.2. Аргументы командной строки</h1>
@@ -8465,43 +8681,49 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><tt><span style="font-weight: bold"><span style="color: #0000FF">namespace</span></span> po <span style="color: #990000">=</span> boost<span style="color: #990000">::</span>program_options<span style="color: #990000">;</span>
+<pre><tt><span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;fstream&gt;</span>
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;iostream&gt;</span>
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;string&gt;</span>
 
-po<span style="color: #990000">::</span><span style="color: #008080">options_description</span> generalOptions<span style="color: #FF0000">{</span><span style="color: #FF0000">"General"</span><span style="color: #FF0000">}</span><span style="color: #990000">;</span>
-generalOptions<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">add_options</span></span><span style="color: #990000">()</span>
-    <span style="color: #990000">(</span><span style="color: #FF0000">"help,h"</span><span style="color: #990000">,</span> <span style="color: #FF0000">"Help screen"</span><span style="color: #990000">)</span>
-    <span style="color: #990000">(</span><span style="color: #FF0000">"config"</span><span style="color: #990000">,</span> po<span style="color: #990000">::</span>value<span style="color: #990000">&lt;</span>std<span style="color: #990000">::</span>string<span style="color: #990000">&gt;()-&gt;</span><span style="font-weight: bold"><span style="color: #000000">default_value</span></span><span style="color: #990000">(</span><span style="color: #FF0000">"/etc/config.cfg"</span><span style="color: #990000">),</span> <span style="color: #FF0000">"Config file"</span><span style="color: #990000">)</span>
-    <span style="color: #990000">(</span><span style="color: #FF0000">"age"</span><span style="color: #990000">,</span> po<span style="color: #990000">::</span>value<span style="color: #990000">&lt;</span><span style="color: #009900">int</span><span style="color: #990000">&gt;(),</span> <span style="color: #FF0000">"Age"</span><span style="color: #990000">);</span>
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;boost/program_options.hpp&gt;</span>
 
-po<span style="color: #990000">::</span><span style="color: #008080">variables_map</span> vm<span style="color: #990000">;</span>
-po<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">store</span></span><span style="color: #990000">(</span>po<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">parse_command_line</span></span><span style="color: #990000">(</span>argc<span style="color: #990000">,</span> argv<span style="color: #990000">,</span> generalOptions<span style="color: #990000">),</span> vm<span style="color: #990000">);</span>
-<span style="font-weight: bold"><span style="color: #0000FF">if</span></span> <span style="color: #990000">(</span>vm<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">count</span></span><span style="color: #990000">(</span><span style="color: #FF0000">"config"</span><span style="color: #990000">))</span>
+<span style="color: #009900">int</span> <span style="font-weight: bold"><span style="color: #000000">main</span></span><span style="color: #990000">(</span><span style="color: #009900">int</span> argc<span style="color: #990000">,</span> <span style="color: #009900">char</span><span style="color: #990000">**</span> argv<span style="color: #990000">)</span>
 <span style="color: #FF0000">{</span>
-    std<span style="color: #990000">::</span><span style="color: #008080">ifstream</span> ifs<span style="color: #FF0000">{</span>vm<span style="color: #990000">[</span><span style="color: #FF0000">"config"</span><span style="color: #990000">].</span>as<span style="color: #990000">&lt;</span>std<span style="color: #990000">::</span>string<span style="color: #990000">&gt;()</span><span style="color: #FF0000">}</span><span style="color: #990000">;</span>
-    <span style="font-weight: bold"><span style="color: #0000FF">if</span></span> <span style="color: #990000">(</span>ifs<span style="color: #990000">)</span>
-        po<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">store</span></span><span style="color: #990000">(</span>po<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">parse_config_file</span></span><span style="color: #990000">(</span>ifs<span style="color: #990000">,</span> fileOptions<span style="color: #990000">),</span> vm<span style="color: #990000">);</span>
-<span style="color: #FF0000">}</span>
-po<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">notify</span></span><span style="color: #990000">(</span>vm<span style="color: #990000">);</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">namespace</span></span> po <span style="color: #990000">=</span> boost<span style="color: #990000">::</span>program_options<span style="color: #990000">;</span>
 
-<span style="font-weight: bold"><span style="color: #0000FF">if</span></span> <span style="color: #990000">(</span>vm<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">count</span></span><span style="color: #990000">(</span><span style="color: #FF0000">"help"</span><span style="color: #990000">))</span>
-    std<span style="color: #990000">::</span>cout <span style="color: #990000">&lt;&lt;</span> generalOptions <span style="color: #990000">&lt;&lt;</span> std<span style="color: #990000">::</span>endl<span style="color: #990000">;</span>
-<span style="font-weight: bold"><span style="color: #0000FF">else</span></span> <span style="font-weight: bold"><span style="color: #0000FF">if</span></span> <span style="color: #990000">(</span>vm<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">count</span></span><span style="color: #990000">(</span><span style="color: #FF0000">"age"</span><span style="color: #990000">))</span>
-    std<span style="color: #990000">::</span>cout <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"Your age is: "</span> <span style="color: #990000">&lt;&lt;</span> vm<span style="color: #990000">[</span><span style="color: #FF0000">"age"</span><span style="color: #990000">].</span>as<span style="color: #990000">&lt;</span><span style="color: #009900">int</span><span style="color: #990000">&gt;()</span> <span style="color: #990000">&lt;&lt;</span> std<span style="color: #990000">::</span>endl<span style="color: #990000">;</span></tt></pre></div></div>
+    po<span style="color: #990000">::</span><span style="color: #008080">options_description</span> generalOptions<span style="color: #FF0000">{</span><span style="color: #FF0000">"General"</span><span style="color: #FF0000">}</span><span style="color: #990000">;</span>
+    generalOptions<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">add_options</span></span><span style="color: #990000">()</span>
+        <span style="color: #990000">(</span><span style="color: #FF0000">"help,h"</span><span style="color: #990000">,</span> <span style="color: #FF0000">"Help screen"</span><span style="color: #990000">)</span>
+        <span style="color: #990000">(</span><span style="color: #FF0000">"config"</span><span style="color: #990000">,</span> po<span style="color: #990000">::</span>value<span style="color: #990000">&lt;</span>std<span style="color: #990000">::</span>string<span style="color: #990000">&gt;()-&gt;</span><span style="font-weight: bold"><span style="color: #000000">default_value</span></span><span style="color: #990000">(</span><span style="color: #FF0000">"/etc/config.cfg"</span><span style="color: #990000">),</span> <span style="color: #FF0000">"Config file"</span><span style="color: #990000">)</span>
+        <span style="color: #990000">(</span><span style="color: #FF0000">"age"</span><span style="color: #990000">,</span> po<span style="color: #990000">::</span>value<span style="color: #990000">&lt;</span><span style="color: #009900">int</span><span style="color: #990000">&gt;(),</span> <span style="color: #FF0000">"Age"</span><span style="color: #990000">);</span>
+
+    po<span style="color: #990000">::</span><span style="color: #008080">variables_map</span> vm<span style="color: #990000">;</span>
+    po<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">store</span></span><span style="color: #990000">(</span>po<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">parse_command_line</span></span><span style="color: #990000">(</span>argc<span style="color: #990000">,</span> argv<span style="color: #990000">,</span> generalOptions<span style="color: #990000">),</span> vm<span style="color: #990000">);</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">if</span></span> <span style="color: #990000">(</span>vm<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">count</span></span><span style="color: #990000">(</span><span style="color: #FF0000">"config"</span><span style="color: #990000">))</span>
+    <span style="color: #FF0000">{</span>
+        std<span style="color: #990000">::</span><span style="color: #008080">ifstream</span> ifs<span style="color: #FF0000">{</span>vm<span style="color: #990000">[</span><span style="color: #FF0000">"config"</span><span style="color: #990000">].</span>as<span style="color: #990000">&lt;</span>std<span style="color: #990000">::</span>string<span style="color: #990000">&gt;()</span><span style="color: #FF0000">}</span><span style="color: #990000">;</span>
+        <span style="font-weight: bold"><span style="color: #0000FF">if</span></span> <span style="color: #990000">(</span>ifs<span style="color: #990000">)</span>
+            po<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">store</span></span><span style="color: #990000">(</span>po<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">parse_config_file</span></span><span style="color: #990000">(</span>ifs<span style="color: #990000">,</span> generalOptions<span style="color: #990000">),</span> vm<span style="color: #990000">);</span>
+    <span style="color: #FF0000">}</span>
+    po<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">notify</span></span><span style="color: #990000">(</span>vm<span style="color: #990000">);</span>
+
+    <span style="font-weight: bold"><span style="color: #0000FF">if</span></span> <span style="color: #990000">(</span>vm<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">count</span></span><span style="color: #990000">(</span><span style="color: #FF0000">"help"</span><span style="color: #990000">))</span>
+        std<span style="color: #990000">::</span>cout <span style="color: #990000">&lt;&lt;</span> generalOptions <span style="color: #990000">&lt;&lt;</span> std<span style="color: #990000">::</span>endl<span style="color: #990000">;</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">else</span></span> <span style="font-weight: bold"><span style="color: #0000FF">if</span></span> <span style="color: #990000">(</span>vm<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">count</span></span><span style="color: #990000">(</span><span style="color: #FF0000">"age"</span><span style="color: #990000">))</span>
+        std<span style="color: #990000">::</span>cout <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"Your age is: "</span> <span style="color: #990000">&lt;&lt;</span> vm<span style="color: #990000">[</span><span style="color: #FF0000">"age"</span><span style="color: #990000">].</span>as<span style="color: #990000">&lt;</span><span style="color: #009900">int</span><span style="color: #990000">&gt;()</span> <span style="color: #990000">&lt;&lt;</span> std<span style="color: #990000">::</span>endl<span style="color: #990000">;</span>
+<span style="color: #FF0000">}</span></tt></pre></div></div>
 <div class="listingblock">
-<div class="title">Примерный вывод:</div>
+<div class="title">Output</div>
 <div class="content">
-<pre><code>[09:31] igor@nixos-pc tmp [nix-shell] % ./out -h
+<pre><code>$ ./example15-2 -h
 General:
-    -h [ --help ]                   Help screen
-    --config arg (=/etc/config.cfg) Config file
-    --age arg                       Age
+  -h [ --help ]                   Help screen
+  --config arg (=/etc/config.cfg) Config file
+  --age arg                       Age
 
-[09:33] igor@nixos-pc tmp [nix-shell] % ./out --age 21
+$ ./example15-2 --age 21
 Your age is: 21
-[09:39] igor@nixos-pc tmp [nix-shell] % cat ./abc.cfg
-age = 22
-[09:39] igor@nixos-pc tmp [nix-shell] % ./out --config ./abc.cfg
-Your age is: 22</code></pre>
+$ ./example15-2 --config &lt;(echo age = 22)</code></pre>
 </div></div>
 </div></div>
 <div class="sect2 slide">
@@ -8578,6 +8800,12 @@ Your age is: 22</code></pre>
 </li>
 </ul>
 </li>
+</ul>
+</div></div>
+<div class="sect1 slide">
+<h1>» 17.3.   (продолжение)</h1>
+<div class="sectionbody">
+<ul class="">
 <li>
 <span>
 Объявление версии объекта делается через макрос <code>BOOST_CLASS_VERSION(MyAwesomeObject, 42)</code>
@@ -8588,12 +8816,6 @@ Your age is: 22</code></pre>
 Умеет работать с умными указателями и создавать объекты в куче
 </span>
 </li>
-</ul>
-</div></div>
-<div class="sect1 slide">
-<h1>» 17.3.   (продолжение)</h1>
-<div class="sectionbody">
-<ul class="">
 <li>
 <span>
 Сериализация базового класса в наследнике делается через приведение к <code>boost::serialization::base_object&lt;BaseClass&gt;(*this);</code>
@@ -8624,12 +8846,21 @@ Your age is: 22</code></pre>
 </ul>
 </li>
 </ul>
+</div></div>
+<div class="sect1 slide">
+<h1>» 17.3.   (продолжение)</h1>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content"><!-- Generator: GNU source-highlight
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><tt><span style="font-weight: bold"><span style="color: #0000FF">using</span></span> <span style="font-weight: bold"><span style="color: #0000FF">namespace</span></span> boost<span style="color: #990000">::</span>archive<span style="color: #990000">;</span>
+<pre><tt><span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;iostream&gt;</span>
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;sstream&gt;</span>
+
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;boost/serialization/base_object.hpp&gt;</span>
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;boost/archive/text_oarchive.hpp&gt;</span>
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;boost/archive/text_iarchive.hpp&gt;</span>
 
 <span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">animal</span>
 <span style="color: #FF0000">{</span>
@@ -8641,7 +8872,7 @@ http://www.gnu.org/software/src-highlite -->
     <span style="font-weight: bold"><span style="color: #0000FF">friend</span></span> <span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">boost</span><span style="color: #990000">::</span>serialization<span style="color: #990000">::</span>access<span style="color: #990000">;</span>
 
     <span style="font-weight: bold"><span style="color: #0000FF">template</span></span> <span style="color: #990000">&lt;</span><span style="font-weight: bold"><span style="color: #0000FF">typename</span></span> <span style="color: #008080">Archive</span><span style="color: #990000">&gt;</span>
-    <span style="color: #009900">void</span> <span style="font-weight: bold"><span style="color: #000000">serialize</span></span><span style="color: #990000">(</span><span style="color: #008080">Archive</span> <span style="color: #990000">&amp;</span>ar<span style="color: #990000">,</span> <span style="font-weight: bold"><span style="color: #0000FF">const</span></span> <span style="color: #009900">unsigned</span> <span style="color: #009900">int</span> version<span style="color: #990000">)</span> <span style="color: #FF0000">{</span> ar <span style="color: #990000">&amp;</span> legs_<span style="color: #990000">;</span> <span style="color: #FF0000">}</span>
+    <span style="color: #009900">void</span> <span style="font-weight: bold"><span style="color: #000000">serialize</span></span><span style="color: #990000">(</span><span style="color: #008080">Archive</span> <span style="color: #990000">&amp;</span>ar<span style="color: #990000">,</span> <span style="font-weight: bold"><span style="color: #0000FF">const</span></span> <span style="color: #009900">unsigned</span> <span style="color: #009900">int</span> <span style="font-style: italic"><span style="color: #9A1900">/*version*/</span></span><span style="color: #990000">)</span> <span style="color: #FF0000">{</span> ar <span style="color: #990000">&amp;</span> legs_<span style="color: #990000">;</span> <span style="color: #FF0000">}</span>
 
     <span style="color: #009900">int</span> legs_<span style="color: #990000">;</span>
 <span style="color: #FF0000">}</span><span style="color: #990000">;</span>
@@ -8656,7 +8887,7 @@ http://www.gnu.org/software/src-highlite -->
     <span style="font-weight: bold"><span style="color: #0000FF">friend</span></span> <span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">boost</span><span style="color: #990000">::</span>serialization<span style="color: #990000">::</span>access<span style="color: #990000">;</span>
 
     <span style="font-weight: bold"><span style="color: #0000FF">template</span></span> <span style="color: #990000">&lt;</span><span style="font-weight: bold"><span style="color: #0000FF">typename</span></span> <span style="color: #008080">Archive</span><span style="color: #990000">&gt;</span>
-    <span style="color: #009900">void</span> <span style="font-weight: bold"><span style="color: #000000">serialize</span></span><span style="color: #990000">(</span><span style="color: #008080">Archive</span> <span style="color: #990000">&amp;</span>ar<span style="color: #990000">,</span> <span style="font-weight: bold"><span style="color: #0000FF">const</span></span> <span style="color: #009900">unsigned</span> <span style="color: #009900">int</span> version<span style="color: #990000">)</span>
+    <span style="color: #009900">void</span> <span style="font-weight: bold"><span style="color: #000000">serialize</span></span><span style="color: #990000">(</span><span style="color: #008080">Archive</span> <span style="color: #990000">&amp;</span>ar<span style="color: #990000">,</span> <span style="font-weight: bold"><span style="color: #0000FF">const</span></span> <span style="color: #009900">unsigned</span> <span style="color: #009900">int</span> <span style="font-style: italic"><span style="color: #9A1900">/*version*/</span></span><span style="color: #990000">)</span>
     <span style="color: #FF0000">{</span>
         ar <span style="color: #990000">&amp;</span> boost<span style="color: #990000">::</span>serialization<span style="color: #990000">::</span>base_object<span style="color: #990000">&lt;</span>animal<span style="color: #990000">&gt;(*</span><span style="font-weight: bold"><span style="color: #0000FF">this</span></span><span style="color: #990000">);</span>
         ar <span style="color: #990000">&amp;</span> can_fly_<span style="color: #990000">;</span>
@@ -8665,25 +8896,33 @@ http://www.gnu.org/software/src-highlite -->
     <span style="color: #009900">bool</span> can_fly_<span style="color: #990000">;</span>
 <span style="color: #FF0000">}</span><span style="color: #990000">;</span>
 
-std<span style="color: #990000">::</span><span style="color: #008080">stringstream</span> ss<span style="color: #990000">;</span>
+<span style="color: #009900">int</span> <span style="font-weight: bold"><span style="color: #000000">main</span></span><span style="color: #990000">()</span>
+<span style="color: #FF0000">{</span>
+    std<span style="color: #990000">::</span><span style="color: #008080">stringstream</span> ss<span style="color: #990000">;</span>
 
-<span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> serialize <span style="color: #990000">=</span> <span style="color: #990000">[](</span><span style="font-weight: bold"><span style="color: #0000FF">auto</span></span><span style="color: #990000">&amp;</span> os<span style="color: #990000">,</span> <span style="font-weight: bold"><span style="color: #0000FF">const</span></span> bird<span style="color: #990000">&amp;</span> obj<span style="color: #990000">)</span> <span style="color: #FF0000">{</span>
-    <span style="color: #008080">text_oarchive</span> oa<span style="color: #FF0000">{</span>os<span style="color: #FF0000">}</span><span style="color: #990000">;</span>
-    oa <span style="color: #990000">&lt;&lt;</span> obj<span style="color: #990000">;</span>
-<span style="color: #FF0000">}</span><span style="color: #990000">;</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> serialize <span style="color: #990000">=</span> <span style="color: #990000">[](</span><span style="font-weight: bold"><span style="color: #0000FF">auto</span></span><span style="color: #990000">&amp;</span> os<span style="color: #990000">,</span> <span style="font-weight: bold"><span style="color: #0000FF">const</span></span> bird<span style="color: #990000">&amp;</span> obj<span style="color: #990000">)</span> <span style="color: #FF0000">{</span>
+        boost<span style="color: #990000">::</span>archive<span style="color: #990000">::</span><span style="color: #008080">text_oarchive</span> oa<span style="color: #FF0000">{</span>os<span style="color: #FF0000">}</span><span style="color: #990000">;</span>
+        oa <span style="color: #990000">&lt;&lt;</span> obj<span style="color: #990000">;</span>
+    <span style="color: #FF0000">}</span><span style="color: #990000">;</span>
 
-<span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> deserialize <span style="color: #990000">=</span> <span style="color: #990000">[](</span><span style="font-weight: bold"><span style="color: #0000FF">auto</span></span><span style="color: #990000">&amp;</span> is<span style="color: #990000">)</span> <span style="color: #FF0000">{</span>
-    <span style="color: #008080">text_iarchive</span> ia<span style="color: #FF0000">{</span>is<span style="color: #FF0000">}</span><span style="color: #990000">;</span>
-    <span style="color: #008080">bird</span> obj<span style="color: #990000">;</span>
-    ia <span style="color: #990000">&gt;&gt;</span> obj<span style="color: #990000">;</span>
-    <span style="font-weight: bold"><span style="color: #0000FF">return</span></span> obj<span style="color: #990000">;</span>
-<span style="color: #FF0000">}</span><span style="color: #990000">;</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> deserialize <span style="color: #990000">=</span> <span style="color: #990000">[](</span><span style="font-weight: bold"><span style="color: #0000FF">auto</span></span><span style="color: #990000">&amp;</span> is<span style="color: #990000">)</span> <span style="color: #FF0000">{</span>
+        boost<span style="color: #990000">::</span>archive<span style="color: #990000">::</span><span style="color: #008080">text_iarchive</span> ia<span style="color: #FF0000">{</span>is<span style="color: #FF0000">}</span><span style="color: #990000">;</span>
+        <span style="color: #008080">bird</span> obj<span style="color: #990000">;</span>
+        ia <span style="color: #990000">&gt;&gt;</span> obj<span style="color: #990000">;</span>
+        <span style="font-weight: bold"><span style="color: #0000FF">return</span></span> obj<span style="color: #990000">;</span>
+    <span style="color: #FF0000">}</span><span style="color: #990000">;</span>
 
-<span style="color: #008080">bird</span> penguin<span style="color: #FF0000">{</span><span style="font-weight: bold"><span style="color: #0000FF">false</span></span><span style="color: #FF0000">}</span><span style="color: #990000">;</span>
-<span style="font-weight: bold"><span style="color: #000000">serialize</span></span><span style="color: #990000">(</span>ss<span style="color: #990000">,</span> penguin<span style="color: #990000">);</span>
+    <span style="color: #008080">bird</span> penguin<span style="color: #FF0000">{</span><span style="font-weight: bold"><span style="color: #0000FF">false</span></span><span style="color: #FF0000">}</span><span style="color: #990000">;</span>
+    <span style="font-weight: bold"><span style="color: #000000">serialize</span></span><span style="color: #990000">(</span>ss<span style="color: #990000">,</span> penguin<span style="color: #990000">);</span>
 
-<span style="color: #008080">bird</span> b <span style="color: #990000">=</span> <span style="font-weight: bold"><span style="color: #000000">deserialize</span></span><span style="color: #990000">(</span>ss<span style="color: #990000">);</span>
-std<span style="color: #990000">::</span>cout <span style="color: #990000">&lt;&lt;</span> b<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">legs</span></span><span style="color: #990000">()</span> <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">" "</span> <span style="color: #990000">&lt;&lt;</span> std<span style="color: #990000">::</span>boolalpha <span style="color: #990000">&lt;&lt;</span> b<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">can_fly</span></span><span style="color: #990000">()</span> <span style="color: #990000">&lt;&lt;</span> std<span style="color: #990000">::</span>endl<span style="color: #990000">;</span></tt></pre></div></div>
+    <span style="color: #008080">bird</span> b <span style="color: #990000">=</span> <span style="font-weight: bold"><span style="color: #000000">deserialize</span></span><span style="color: #990000">(</span>ss<span style="color: #990000">);</span>
+    std<span style="color: #990000">::</span>cout <span style="color: #990000">&lt;&lt;</span> b<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">legs</span></span><span style="color: #990000">()</span> <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">" "</span> <span style="color: #990000">&lt;&lt;</span> std<span style="color: #990000">::</span>boolalpha <span style="color: #990000">&lt;&lt;</span> b<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">can_fly</span></span><span style="color: #990000">()</span> <span style="color: #990000">&lt;&lt;</span> std<span style="color: #990000">::</span>endl<span style="color: #990000">;</span>
+<span style="color: #FF0000">}</span></tt></pre></div></div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre><code>2 false</code></pre>
+</div></div>
 </div></div>
 <div class="sect2 slide">
 <h1 id="_uuid">17.4. UUID</h1>
@@ -8760,14 +8999,32 @@ POD тип размера 128 битов
 </span>
 </li>
 </ul>
+</div></div>
+<div class="sect1 slide">
+<h1>» 17.4.   (продолжение)</h1>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content"><!-- Generator: GNU source-highlight
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><tt>boost<span style="color: #990000">::</span>uuids<span style="color: #990000">::</span><span style="color: #008080">string_generator</span> string_gen<span style="color: #990000">;</span>
-boost<span style="color: #990000">::</span>uuids<span style="color: #990000">::</span><span style="color: #008080">uuid</span> id <span style="color: #990000">=</span> <span style="font-weight: bold"><span style="color: #000000">string_gen</span></span><span style="color: #990000">(</span><span style="color: #FF0000">"CF77C981-F61B-7817-10FF-D916FCC3EAA4"</span><span style="color: #990000">);</span>
-std<span style="color: #990000">::</span>cout <span style="color: #990000">&lt;&lt;</span> id<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">variant</span></span><span style="color: #990000">()</span> <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">":"</span> <span style="color: #990000">&lt;&lt;</span> id<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">version</span></span><span style="color: #990000">()</span> <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">" = "</span> <span style="color: #990000">&lt;&lt;</span> id <span style="color: #990000">&lt;&lt;</span> std<span style="color: #990000">::</span>endl<span style="color: #990000">;</span></tt></pre></div></div>
+<pre><tt><span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;iostream&gt;</span>
+
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;boost/uuid/uuid.hpp&gt;</span>
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;boost/uuid/uuid_generators.hpp&gt;</span>
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;boost/uuid/uuid_io.hpp&gt;</span>
+
+<span style="color: #009900">int</span> <span style="font-weight: bold"><span style="color: #000000">main</span></span><span style="color: #990000">()</span>
+<span style="color: #FF0000">{</span>
+    boost<span style="color: #990000">::</span>uuids<span style="color: #990000">::</span><span style="color: #008080">string_generator</span> string_gen<span style="color: #990000">;</span>
+    boost<span style="color: #990000">::</span>uuids<span style="color: #990000">::</span><span style="color: #008080">uuid</span> id <span style="color: #990000">=</span> <span style="font-weight: bold"><span style="color: #000000">string_gen</span></span><span style="color: #990000">(</span><span style="color: #FF0000">"CF77C981-F61B-7817-10FF-D916FCC3EAA4"</span><span style="color: #990000">);</span>
+    std<span style="color: #990000">::</span>cout <span style="color: #990000">&lt;&lt;</span> id<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">variant</span></span><span style="color: #990000">()</span> <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">":"</span> <span style="color: #990000">&lt;&lt;</span> id<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">version</span></span><span style="color: #990000">()</span> <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">" = "</span> <span style="color: #990000">&lt;&lt;</span> id <span style="color: #990000">&lt;&lt;</span> std<span style="color: #990000">::</span>endl<span style="color: #990000">;</span>
+<span style="color: #FF0000">}</span></tt></pre></div></div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre><code>0:-1 = cf77c981-f61b-7817-10ff-d916fcc3eaa4</code></pre>
+</div></div>
 </div></div>
 <div class="sect1 slide">
 <h1 id="_дизайн_паттерны">18. Дизайн паттерны</h1>
@@ -8829,25 +9086,48 @@ std<span style="color: #990000">::</span>cout <span style="color: #990000">&lt;&
 </ul>
 </li>
 </ul>
+</div></div>
+<div class="sect1 slide">
+<h1>» 18.1.   (продолжение)</h1>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content"><!-- Generator: GNU source-highlight
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><tt><span style="font-weight: bold"><span style="color: #0000FF">struct</span></span> <span style="color: #008080">person</span>
+<pre><tt><span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;iostream&gt;</span>
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;string&gt;</span>
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;vector&gt;</span>
+
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;boost/flyweight.hpp&gt;</span>
+
+<span style="font-weight: bold"><span style="color: #0000FF">struct</span></span> <span style="color: #008080">person</span>
 <span style="color: #FF0000">{</span>
     <span style="font-weight: bold"><span style="color: #0000FF">struct</span></span> <span style="color: #008080">country</span> <span style="color: #FF0000">{}</span><span style="color: #990000">;</span>
 
     <span style="color: #009900">int</span> id<span style="color: #990000">;</span>
-    <span style="color: #008080">flyweight&lt;std::string&gt;</span> city<span style="color: #990000">;</span>
-    <span style="color: #008080">flyweight&lt;std::string, tag&lt;country&gt;&gt;</span> country<span style="color: #990000">;</span>
+    boost<span style="color: #990000">::</span><span style="color: #008080">flyweight&lt;std::string&gt;</span> city<span style="color: #990000">;</span>
+    boost<span style="color: #990000">::</span><span style="color: #008080">flyweight&lt;std::string, boost::flyweights::tag&lt;country&gt;&gt;</span> country<span style="color: #990000">;</span>
+
     <span style="font-weight: bold"><span style="color: #000000">person</span></span><span style="color: #990000">(</span><span style="color: #009900">int</span> id<span style="color: #990000">,</span> std<span style="color: #990000">::</span><span style="color: #008080">string</span> city<span style="color: #990000">,</span> std<span style="color: #990000">::</span><span style="color: #008080">string</span> country<span style="color: #990000">)</span>
         <span style="color: #990000">:</span> id<span style="color: #FF0000">{</span>id<span style="color: #FF0000">}</span><span style="color: #990000">,</span> city<span style="color: #FF0000">{</span>std<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">move</span></span><span style="color: #990000">(</span>city<span style="color: #990000">)</span><span style="color: #FF0000">}</span><span style="color: #990000">,</span> country<span style="color: #FF0000">{</span>std<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">move</span></span><span style="color: #990000">(</span>country<span style="color: #990000">)</span><span style="color: #FF0000">}</span> <span style="color: #FF0000">{}</span>
 <span style="color: #FF0000">}</span><span style="color: #990000">;</span>
 
-std<span style="color: #990000">::</span><span style="color: #008080">vector&lt;person&gt;</span> persons<span style="color: #990000">;</span>
-<span style="font-weight: bold"><span style="color: #0000FF">for</span></span> <span style="color: #990000">(</span><span style="color: #009900">int</span> i <span style="color: #990000">=</span> <span style="color: #993399">0</span><span style="color: #990000">;</span> i <span style="color: #990000">&lt;</span> <span style="color: #993399">100000</span><span style="color: #990000">;</span> <span style="color: #990000">++</span>i<span style="color: #990000">)</span>
-    persons<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">push_back</span></span><span style="color: #990000">(</span><span style="color: #FF0000">{</span>i<span style="color: #990000">,</span> <span style="color: #FF0000">"Berlin"</span><span style="color: #990000">,</span> <span style="color: #FF0000">"Germany"</span><span style="color: #FF0000">}</span><span style="color: #990000">);</span></tt></pre></div></div>
+<span style="color: #009900">int</span> <span style="font-weight: bold"><span style="color: #000000">main</span></span><span style="color: #990000">()</span>
+<span style="color: #FF0000">{</span>
+    std<span style="color: #990000">::</span><span style="color: #008080">vector&lt;person&gt;</span> persons<span style="color: #990000">;</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">for</span></span> <span style="color: #990000">(</span><span style="color: #009900">int</span> i <span style="color: #990000">=</span> <span style="color: #993399">0</span><span style="color: #990000">;</span> i <span style="color: #990000">&lt;</span> <span style="color: #993399">100000</span><span style="color: #990000">;</span> <span style="color: #990000">++</span>i<span style="color: #990000">)</span>
+        persons<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">push_back</span></span><span style="color: #990000">(</span><span style="color: #FF0000">{</span>i<span style="color: #990000">,</span> <span style="color: #FF0000">"Berlin"</span><span style="color: #990000">,</span> <span style="color: #FF0000">"Germany"</span><span style="color: #FF0000">}</span><span style="color: #990000">);</span>
+
+    std<span style="color: #990000">::</span>cout <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"100th: "</span> <span style="color: #990000">&lt;&lt;</span> persons<span style="color: #990000">[</span><span style="color: #993399">100</span><span style="color: #990000">].</span>city <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">" "</span> <span style="color: #990000">&lt;&lt;</span> <span style="color: #990000">&amp;</span>persons<span style="color: #990000">[</span><span style="color: #993399">100</span><span style="color: #990000">].</span>city<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">get</span></span><span style="color: #990000">()</span> <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"</span><span style="color: #CC33CC">\n</span><span style="color: #FF0000">"</span>
+              <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"200th: "</span> <span style="color: #990000">&lt;&lt;</span> persons<span style="color: #990000">[</span><span style="color: #993399">200</span><span style="color: #990000">].</span>city <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">" "</span> <span style="color: #990000">&lt;&lt;</span> <span style="color: #990000">&amp;</span>persons<span style="color: #990000">[</span><span style="color: #993399">200</span><span style="color: #990000">].</span>city<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">get</span></span><span style="color: #990000">()</span> <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"</span><span style="color: #CC33CC">\n</span><span style="color: #FF0000">"</span><span style="color: #990000">;</span>
+<span style="color: #FF0000">}</span></tt></pre></div></div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre><code>100th: Berlin 0xf862d0
+200th: Berlin 0xf862d0</code></pre>
+</div></div>
 </div></div>
 <div class="sect2 slide">
 <h1 id="_signals2">18.2. Signals2</h1>
@@ -8909,25 +9189,41 @@ std<span style="color: #990000">::</span><span style="color: #008080">vector&lt;
 </span>
 </li>
 </ul>
+</div></div>
+<div class="sect1 slide">
+<h1>» 18.2.   (продолжение)</h1>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content"><!-- Generator: GNU source-highlight
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><tt>boost<span style="color: #990000">::</span>signals2<span style="color: #990000">::</span><span style="color: #008080">signal&lt;void()&gt;</span> s<span style="color: #990000">;</span>
+<pre><tt><span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;iostream&gt;</span>
 
-<span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> hello <span style="color: #990000">=</span> <span style="color: #990000">[]</span> <span style="color: #FF0000">{</span>
-    std<span style="color: #990000">::</span>cout <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"Hello, world!"</span> <span style="color: #990000">&lt;&lt;</span> std<span style="color: #990000">::</span>endl<span style="color: #990000">;</span>
-<span style="color: #FF0000">}</span><span style="color: #990000">;</span>
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;boost/signals2.hpp&gt;</span>
 
-<span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> disconnect <span style="color: #990000">=</span> <span style="color: #990000">[&amp;</span>s<span style="color: #990000">,</span> hello<span style="color: #990000">]</span> <span style="color: #FF0000">{</span>
-    s<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">disconnect</span></span><span style="color: #990000">(</span>hello<span style="color: #990000">);</span>
-<span style="color: #FF0000">}</span><span style="color: #990000">;</span>
+<span style="color: #009900">int</span> <span style="font-weight: bold"><span style="color: #000000">main</span></span><span style="color: #990000">()</span>
+<span style="color: #FF0000">{</span>
+    boost<span style="color: #990000">::</span>signals2<span style="color: #990000">::</span><span style="color: #008080">signal&lt;void()&gt;</span> s<span style="color: #990000">;</span>
 
-s<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">connect</span></span><span style="color: #990000">(</span>hello<span style="color: #990000">);</span>
-s<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">connect</span></span><span style="color: #990000">(</span>disconnect<span style="color: #990000">);</span>
-<span style="font-weight: bold"><span style="color: #000000">s</span></span><span style="color: #990000">();</span>
-<span style="font-weight: bold"><span style="color: #000000">s</span></span><span style="color: #990000">();</span></tt></pre></div></div>
+    <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> hello <span style="color: #990000">=</span> <span style="color: #990000">[]</span> <span style="color: #FF0000">{</span>
+        std<span style="color: #990000">::</span>cout <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"Hello, world!"</span> <span style="color: #990000">&lt;&lt;</span> std<span style="color: #990000">::</span>endl<span style="color: #990000">;</span>
+    <span style="color: #FF0000">}</span><span style="color: #990000">;</span>
+
+    <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> disconnect <span style="color: #990000">=</span> <span style="color: #990000">[&amp;</span>s<span style="color: #990000">,</span> hello<span style="color: #990000">]</span> <span style="color: #FF0000">{</span>
+        s<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">disconnect</span></span><span style="color: #990000">(</span>hello<span style="color: #990000">);</span>
+    <span style="color: #FF0000">}</span><span style="color: #990000">;</span>
+
+    s<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">connect</span></span><span style="color: #990000">(</span>hello<span style="color: #990000">);</span>
+    s<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">connect</span></span><span style="color: #990000">(</span>disconnect<span style="color: #990000">);</span>
+    <span style="font-weight: bold"><span style="color: #000000">s</span></span><span style="color: #990000">();</span>
+    <span style="font-weight: bold"><span style="color: #000000">s</span></span><span style="color: #990000">();</span>
+<span style="color: #FF0000">}</span></tt></pre></div></div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre><code>Hello, world!</code></pre>
+</div></div>
 </div></div>
 <div class="sect2 slide">
 <h1 id="_машина_состояний">18.3. Машина состояний</h1>
@@ -8941,6 +9237,11 @@ s<span style="color: #990000">.</span><span style="font-weight: bold"><span styl
 </li>
 <li>
 <span>
+3 фронтэнда (basic, функциональный и eUML) и 1 бекэнд
+</span>
+</li>
+<li>
+<span>
 Машина состояний строится из состояний, событий, атрибутов событий (действий), гардов
 </span>
 </li>
@@ -8948,42 +9249,15 @@ s<span style="color: #990000">.</span><span style="font-weight: bold"><span styl
 <span>
 FSM (Finite State Machine) задаётся с помощью таблицы переходов
 </span>
-<ul class="">
-<li>
-<span>
-Каждая строка таблицы содержит начальное состояние, событие, конечное состояние, атрибут, гард
-</span>
 </li>
 <li>
 <span>
-<code>row</code> определяет полную строку таблицы
+Для взаимодействия сущностей машины состояний служит <em>таблица переходов</em>
 </span>
-</li>
-<li>
-<span>
-<code>a_row</code> определяет строку таблицы с атрибутом, но без гарда
-</span>
-</li>
-<li>
-<span>
-<code>g_row</code> позволяет опускать определение атрибута
-</span>
-</li>
-<li>
-<span>
-<code>_row</code> позволяет опускать определение атрибута и гарда
-</span>
-</li>
-</ul>
 </li>
 <li>
 <span>
 Есть вспомогательные макросы для описания всех частей FSM
-</span>
-</li>
-<li>
-<span>
-MSM предлагает бекэнды, фронтэнд должен написать пользователь
 </span>
 </li>
 <li>
@@ -9001,16 +9275,26 @@ MSM предлагает бекэнды, фронтэнд должен напи�
 <code>process_event</code> для переключения состояния
 </span>
 </li>
+<li>
+<span>
+функция <code>fsm_</code> для получения доступа к внутренним атрибутам
+</span>
+</li>
 </ul>
 </li>
 <li>
 <span>
-Класс <code>msm::front::state&lt;&gt;</code> служит для полного определения состояний
+Класс <code>boost::msm::front::state&lt;&gt;</code> служит для полного определения состояний
 </span>
 </li>
 <li>
 <span>
-Класс <code>msm::front::state_machine</code> позволяет определять машину состояний
+Класс <code>boost::msm::front::state_machine</code> позволяет определять машину состояний
+</span>
+</li>
+<li>
+<span>
+Вспомогательные макросы для сокращения кода
 </span>
 </li>
 </ul>
@@ -9023,58 +9307,80 @@ MSM предлагает бекэнды, фронтэнд должен напи�
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><tt><span style="font-weight: bold"><span style="color: #0000FF">struct</span></span> <span style="color: #008080">play</span> <span style="color: #FF0000">{}</span><span style="color: #990000">;</span>
-<span style="font-weight: bold"><span style="color: #0000FF">struct</span></span> <span style="color: #008080">open_close</span> <span style="color: #FF0000">{}</span><span style="color: #990000">;</span>
-<span style="font-weight: bold"><span style="color: #0000FF">struct</span></span> <span style="color: #008080">stop</span> <span style="color: #FF0000">{}</span><span style="color: #990000">;</span>
-<span style="font-style: italic"><span style="color: #9A1900">// ...</span></span>
+<pre><tt><span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;iostream&gt;</span>
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;type_traits&gt;</span>
 
-<span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">player</span> <span style="color: #990000">:</span> <span style="font-weight: bold"><span style="color: #0000FF">public</span></span> state_machine<span style="color: #990000">&lt;</span>player<span style="color: #990000">&gt;</span>
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;boost/msm/front/euml/euml.hpp&gt;</span>
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;boost/msm/front/euml/state_grammar.hpp&gt;</span>
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;boost/msm/back/state_machine.hpp&gt;</span>
+
+<span style="font-weight: bold"><span style="color: #0000FF">using</span></span> <span style="font-weight: bold"><span style="color: #0000FF">namespace</span></span> boost<span style="color: #990000">::</span>msm<span style="color: #990000">::</span>front<span style="color: #990000">::</span>euml<span style="color: #990000">;</span>
+
+<span style="font-weight: bold"><span style="color: #000000">BOOST_MSM_EUML_DECLARE_ATTRIBUTE</span></span><span style="color: #990000">(</span><span style="color: #009900">int</span><span style="color: #990000">,</span> switched_on<span style="color: #990000">)</span>
+
+<span style="font-weight: bold"><span style="color: #000000">BOOST_MSM_EUML_STATE</span></span><span style="color: #990000">((),</span> Off<span style="color: #990000">)</span>
+<span style="font-weight: bold"><span style="color: #000000">BOOST_MSM_EUML_STATE</span></span><span style="color: #990000">((),</span> On<span style="color: #990000">)</span>
+
+<span style="font-weight: bold"><span style="color: #000000">BOOST_MSM_EUML_EVENT</span></span><span style="color: #990000">(</span>press<span style="color: #990000">)</span>
+
+<span style="font-weight: bold"><span style="color: #000000">BOOST_MSM_EUML_ACTION</span></span><span style="color: #990000">(</span>WriteMessage<span style="color: #990000">)</span>
 <span style="color: #FF0000">{</span>
-    <span style="font-weight: bold"><span style="color: #0000FF">enum</span></span> <span style="color: #008080">states</span> <span style="color: #FF0000">{</span> Empty<span style="color: #990000">,</span> Open<span style="color: #990000">,</span> Stopped<span style="color: #990000">,</span> Playing<span style="color: #990000">,</span> Paused <span style="color: #990000">,</span> initial_state <span style="color: #990000">=</span> Empty <span style="color: #FF0000">}</span><span style="color: #990000">;</span>
-
-    <span style="color: #009900">void</span> <span style="font-weight: bold"><span style="color: #000000">start_playback</span></span><span style="color: #990000">(</span><span style="color: #008080">play</span> <span style="font-weight: bold"><span style="color: #0000FF">const</span></span><span style="color: #990000">&amp;)</span> <span style="color: #FF0000">{</span> std<span style="color: #990000">::</span>cout <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"player::start_playback</span><span style="color: #CC33CC">\n</span><span style="color: #FF0000">"</span><span style="color: #990000">;</span> <span style="color: #FF0000">}</span>
-    <span style="color: #009900">void</span> <span style="font-weight: bold"><span style="color: #000000">open_drawer</span></span><span style="color: #990000">(</span><span style="color: #008080">open_close</span> <span style="font-weight: bold"><span style="color: #0000FF">const</span></span><span style="color: #990000">&amp;)</span> <span style="color: #FF0000">{</span> std<span style="color: #990000">::</span>cout <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"player::open_drawer</span><span style="color: #CC33CC">\n</span><span style="color: #FF0000">"</span><span style="color: #990000">;</span> <span style="color: #FF0000">}</span>
-    <span style="font-style: italic"><span style="color: #9A1900">// ...</span></span>
-
-    <span style="font-weight: bold"><span style="color: #0000FF">struct</span></span> <span style="color: #008080">transition_table</span> <span style="color: #990000">:</span> mpl<span style="color: #990000">::</span>vector<span style="color: #990000">&lt;</span>
-    <span style="font-style: italic"><span style="color: #9A1900">//    Start     Event        Target      Action                      Guard</span></span>
-    <span style="font-style: italic"><span style="color: #9A1900">//   +---------+------------+-----------+---------------------------+----------------------------+</span></span>
-    a_row<span style="color: #990000">&lt;</span> Stopped <span style="color: #990000">,</span> play       <span style="color: #990000">,</span>  Playing  <span style="color: #990000">,</span> <span style="color: #990000">&amp;</span>player_<span style="color: #990000">::</span>start_playback                               <span style="color: #990000">&gt;,</span>
-    a_row<span style="color: #990000">&lt;</span> Stopped <span style="color: #990000">,</span> open_close <span style="color: #990000">,</span>  Open     <span style="color: #990000">,</span> <span style="color: #990000">&amp;</span>player_<span style="color: #990000">::</span>open_drawer                                  <span style="color: #990000">&gt;,</span>
-     _row<span style="color: #990000">&lt;</span> Stopped <span style="color: #990000">,</span> stop       <span style="color: #990000">,</span>  Stopped                                                           <span style="color: #990000">&gt;,</span>
-    <span style="font-style: italic"><span style="color: #9A1900">//   +---------+------------+-----------+---------------------------+----------------------------+</span></span>
-    a_row<span style="color: #990000">&lt;</span> Open    <span style="color: #990000">,</span> open_close <span style="color: #990000">,</span>  Empty    <span style="color: #990000">,</span> <span style="color: #990000">&amp;</span>player_<span style="color: #990000">::</span>close_drawer                                 <span style="color: #990000">&gt;,</span>
-    <span style="font-style: italic"><span style="color: #9A1900">//   +---------+------------+-----------+---------------------------+----------------------------+</span></span>
-    a_row<span style="color: #990000">&lt;</span> Empty   <span style="color: #990000">,</span> open_close <span style="color: #990000">,</span>  Open     <span style="color: #990000">,</span> <span style="color: #990000">&amp;</span>player_<span style="color: #990000">::</span>open_drawer                                  <span style="color: #990000">&gt;,</span>
-      row<span style="color: #990000">&lt;</span> Empty   <span style="color: #990000">,</span> cd_detected<span style="color: #990000">,</span>  Stopped  <span style="color: #990000">,</span> <span style="color: #990000">&amp;</span>player_<span style="color: #990000">::</span>store_cd_info   <span style="color: #990000">,</span> <span style="color: #990000">&amp;</span>player_<span style="color: #990000">::</span>good_disk_format <span style="color: #990000">&gt;,</span>
-      row<span style="color: #990000">&lt;</span> Empty   <span style="color: #990000">,</span> cd_detected<span style="color: #990000">,</span>  Playing  <span style="color: #990000">,</span> <span style="color: #990000">&amp;</span>player_<span style="color: #990000">::</span>store_cd_info   <span style="color: #990000">,</span> <span style="color: #990000">&amp;</span>player_<span style="color: #990000">::</span>auto_start       <span style="color: #990000">&gt;,</span>
-    <span style="font-style: italic"><span style="color: #9A1900">//   +---------+------------+-----------+---------------------------+----------------------------+</span></span>
-    a_row<span style="color: #990000">&lt;</span> Playing <span style="color: #990000">,</span> stop       <span style="color: #990000">,</span>  Stopped  <span style="color: #990000">,</span> <span style="color: #990000">&amp;</span>player_<span style="color: #990000">::</span>stop_playback                                <span style="color: #990000">&gt;,</span>
-    a_row<span style="color: #990000">&lt;</span> Playing <span style="color: #990000">,</span> pause      <span style="color: #990000">,</span>  Paused   <span style="color: #990000">,</span> <span style="color: #990000">&amp;</span>player_<span style="color: #990000">::</span>pause_playback                               <span style="color: #990000">&gt;,</span>
-    a_row<span style="color: #990000">&lt;</span> Playing <span style="color: #990000">,</span> open_close <span style="color: #990000">,</span>  Open     <span style="color: #990000">,</span> <span style="color: #990000">&amp;</span>player_<span style="color: #990000">::</span>stop_and_open                                <span style="color: #990000">&gt;,</span>
-    <span style="font-style: italic"><span style="color: #9A1900">//   +---------+------------+-----------+---------------------------+----------------------------+</span></span>
-    a_row<span style="color: #990000">&lt;</span> Paused  <span style="color: #990000">,</span> end_pause  <span style="color: #990000">,</span>  Playing  <span style="color: #990000">,</span> <span style="color: #990000">&amp;</span>player_<span style="color: #990000">::</span>resume_playback                              <span style="color: #990000">&gt;,</span>
-    a_row<span style="color: #990000">&lt;</span> Paused  <span style="color: #990000">,</span> stop       <span style="color: #990000">,</span>  Stopped  <span style="color: #990000">,</span> <span style="color: #990000">&amp;</span>player_<span style="color: #990000">::</span>stop_playback                                <span style="color: #990000">&gt;,</span>
-    a_row<span style="color: #990000">&lt;</span> Paused  <span style="color: #990000">,</span> open_close <span style="color: #990000">,</span>  Open     <span style="color: #990000">,</span> <span style="color: #990000">&amp;</span>player_<span style="color: #990000">::</span>stop_and_open                                <span style="color: #990000">&gt;</span>
-    <span style="font-style: italic"><span style="color: #9A1900">//   +---------+------------+-----------+---------------------------+----------------------------+</span></span>
-    <span style="color: #990000">&gt;</span> <span style="color: #FF0000">{}</span><span style="color: #990000">;</span>
-
-    <span style="font-style: italic"><span style="color: #9A1900">/*template&lt;class Event, class Fsm&gt;</span></span>
-<span style="font-style: italic"><span style="color: #9A1900">    void no_transition(const Event&amp; e, Fsm&amp; fsm, int state)</span></span>
-<span style="font-style: italic"><span style="color: #9A1900">    {</span></span>
-<span style="font-style: italic"><span style="color: #9A1900">        std::cout &lt;&lt; "no transition from state " &lt;&lt; state &lt;&lt; " on event " &lt;&lt; typeid(e).name() &lt;&lt; std::endl;</span></span>
-<span style="font-style: italic"><span style="color: #9A1900">    }*/</span></span>
+    <span style="font-weight: bold"><span style="color: #0000FF">template</span></span><span style="color: #990000">&lt;</span><span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">Evt</span><span style="color: #990000">,</span> <span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">Fsm</span><span style="color: #990000">,</span> <span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">SourceState</span><span style="color: #990000">,</span> <span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">TargetState</span><span style="color: #990000">&gt;</span>
+    <span style="color: #009900">void</span> <span style="font-weight: bold"><span style="color: #0000FF">operator</span></span><span style="color: #990000">()(</span><span style="font-weight: bold"><span style="color: #0000FF">const</span></span> Evt<span style="color: #990000">&amp;,</span> Fsm<span style="color: #990000">&amp;,</span> <span style="font-weight: bold"><span style="color: #0000FF">const</span></span> SourceState<span style="color: #990000">&amp;,</span> <span style="font-weight: bold"><span style="color: #0000FF">const</span></span> TargetState<span style="color: #990000">&amp;)</span>
+    <span style="color: #FF0000">{</span>
+        <span style="font-weight: bold"><span style="color: #0000FF">if</span></span> <span style="font-weight: bold"><span style="color: #0000FF">constexpr</span></span> <span style="color: #990000">(</span>std<span style="color: #990000">::</span>is_same_v<span style="color: #990000">&lt;</span>SourceState<span style="color: #990000">,</span> <span style="font-weight: bold"><span style="color: #0000FF">decltype</span></span><span style="color: #990000">(</span>Off<span style="color: #990000">)&gt;)</span>
+            std<span style="color: #990000">::</span>cout <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"Switched on</span><span style="color: #CC33CC">\n</span><span style="color: #FF0000">"</span><span style="color: #990000">;</span>
+        <span style="font-weight: bold"><span style="color: #0000FF">else</span></span>
+            std<span style="color: #990000">::</span>cout <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"Switched off</span><span style="color: #CC33CC">\n</span><span style="color: #FF0000">"</span><span style="color: #990000">;</span>
+    <span style="color: #FF0000">}</span>
 <span style="color: #FF0000">}</span><span style="color: #990000">;</span>
 
-<span style="color: #008080">player</span> my_player<span style="color: #990000">;</span>
-my_player<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">process_event</span></span><span style="color: #990000">(</span>open_close<span style="color: #FF0000">{}</span><span style="color: #990000">);</span>
-my_player<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">process_event</span></span><span style="color: #990000">(</span>open_close<span style="color: #FF0000">{}</span><span style="color: #990000">);</span>
-my_player<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">process_event</span></span><span style="color: #990000">(</span>play<span style="color: #FF0000">{}</span><span style="color: #990000">);</span>
-std<span style="color: #990000">::</span>cout <span style="color: #990000">&lt;&lt;</span> my_player<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">current_state</span></span><span style="color: #990000">()</span> <span style="color: #990000">&lt;&lt;</span> std<span style="color: #990000">::</span>endl<span style="color: #990000">;</span></tt></pre></div></div>
-<div class="paragraph"><p>==Другие библиотеки</p></div>
+<span style="font-weight: bold"><span style="color: #000000">BOOST_MSM_EUML_TRANSITION_TABLE</span></span><span style="color: #990000">((</span>
+    Off <span style="color: #990000">+</span> press <span style="color: #990000">[</span><span style="font-weight: bold"><span style="color: #000000">fsm_</span></span><span style="color: #990000">(</span>switched_on<span style="color: #990000">)</span> <span style="color: #990000">&lt;</span> Int_<span style="color: #990000">&lt;</span><span style="color: #993399">2</span><span style="color: #990000">&gt;()]</span> <span style="color: #990000">/</span> <span style="color: #990000">(++</span><span style="font-weight: bold"><span style="color: #000000">fsm_</span></span><span style="color: #990000">(</span>switched_on<span style="color: #990000">),</span> <span style="font-weight: bold"><span style="color: #000000">WriteMessage</span></span><span style="color: #990000">())</span> <span style="color: #990000">==</span> On<span style="color: #990000">,</span>
+    On <span style="color: #990000">+</span> press <span style="color: #990000">/</span> <span style="font-weight: bold"><span style="color: #000000">WriteMessage</span></span><span style="color: #990000">()</span> <span style="color: #990000">==</span> Off
+<span style="color: #990000">),</span> light_transition_table<span style="color: #990000">)</span>
+
+<span style="font-weight: bold"><span style="color: #000000">BOOST_MSM_EUML_DECLARE_STATE_MACHINE</span></span><span style="color: #990000">((</span>
+    light_transition_table<span style="color: #990000">,</span> init_ <span style="color: #990000">&lt;&lt;</span> Off<span style="color: #990000">,</span> no_action<span style="color: #990000">,</span> no_action<span style="color: #990000">,</span> attributes_ <span style="color: #990000">&lt;&lt;</span> switched_on
+<span style="color: #990000">),</span> light_state_machine<span style="color: #990000">)</span>
+
+<span style="color: #009900">int</span> <span style="font-weight: bold"><span style="color: #000000">main</span></span><span style="color: #990000">()</span>
+<span style="color: #FF0000">{</span>
+    boost<span style="color: #990000">::</span>msm<span style="color: #990000">::</span>back<span style="color: #990000">::</span><span style="color: #008080">state_machine&lt;light_state_machine&gt;</span> light<span style="color: #990000">;</span>
+    std<span style="color: #990000">::</span>cout <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"Current state: "</span> <span style="color: #990000">&lt;&lt;</span> <span style="color: #990000">*(</span>light<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">current_state</span></span><span style="color: #990000">())</span> <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"</span><span style="color: #CC33CC">\n</span><span style="color: #FF0000">"</span><span style="color: #990000">;</span>
+    light<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">process_event</span></span><span style="color: #990000">(</span>press<span style="color: #990000">);</span>
+    std<span style="color: #990000">::</span>cout <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"Current state: "</span> <span style="color: #990000">&lt;&lt;</span> <span style="color: #990000">*(</span>light<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">current_state</span></span><span style="color: #990000">())</span> <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"</span><span style="color: #CC33CC">\n</span><span style="color: #FF0000">"</span><span style="color: #990000">;</span>
+    light<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">process_event</span></span><span style="color: #990000">(</span>press<span style="color: #990000">);</span>
+    std<span style="color: #990000">::</span>cout <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"Current state: "</span> <span style="color: #990000">&lt;&lt;</span> <span style="color: #990000">*(</span>light<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">current_state</span></span><span style="color: #990000">())</span> <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"</span><span style="color: #CC33CC">\n</span><span style="color: #FF0000">"</span><span style="color: #990000">;</span>
+    light<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">process_event</span></span><span style="color: #990000">(</span>press<span style="color: #990000">);</span>
+    std<span style="color: #990000">::</span>cout <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"Current state: "</span> <span style="color: #990000">&lt;&lt;</span> <span style="color: #990000">*(</span>light<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">current_state</span></span><span style="color: #990000">())</span> <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"</span><span style="color: #CC33CC">\n</span><span style="color: #FF0000">"</span><span style="color: #990000">;</span>
+    light<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">process_event</span></span><span style="color: #990000">(</span>press<span style="color: #990000">);</span>
+    std<span style="color: #990000">::</span>cout <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"Current state: "</span> <span style="color: #990000">&lt;&lt;</span> <span style="color: #990000">*(</span>light<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">current_state</span></span><span style="color: #990000">())</span> <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"</span><span style="color: #CC33CC">\n</span><span style="color: #FF0000">"</span><span style="color: #990000">;</span>
+    light<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">process_event</span></span><span style="color: #990000">(</span>press<span style="color: #990000">);</span>
+    std<span style="color: #990000">::</span>cout <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"Current state: "</span> <span style="color: #990000">&lt;&lt;</span> <span style="color: #990000">*(</span>light<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">current_state</span></span><span style="color: #990000">())</span> <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"</span><span style="color: #CC33CC">\n</span><span style="color: #FF0000">"</span><span style="color: #990000">;</span>
+<span style="color: #FF0000">}</span></tt></pre></div></div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre><code>Current state: 0
+Switched on
+Current state: 1
+Switched off
+Current state: 0
+Switched on
+Current state: 1
+Switched off
+Current state: 0
+Current state: 0</code></pre>
+</div></div>
+</div></div>
+<div class="sect1 slide">
+<h1 id="_другие_библиотеки">19. Другие библиотеки</h1>
+
+<div class="sectionbody">
 </div></div>
 <div class="sect2 slide">
-<h1 id="_utility">18.4. Utility</h1>
+<h1 id="_utility">19.1. Utility</h1>
 
 <div class="sectionbody">
 <ul class="">
@@ -9149,7 +9455,7 @@ std<span style="color: #990000">::</span>cout <span style="color: #990000">&lt;&
 </ul>
 </div></div>
 <div class="sect2 slide">
-<h1 id="_assign">18.5. Assign</h1>
+<h1 id="_assign">19.2. Assign</h1>
 
 <div class="sectionbody">
 <ul class="">
@@ -9204,7 +9510,7 @@ boost<span style="color: #990000">::</span>assign<span style="color: #990000">::
 values <span style="color: #990000">+=</span> <span style="color: #993399">1</span><span style="color: #990000">,</span><span style="color: #993399">2</span><span style="color: #990000">,</span><span style="color: #993399">3</span><span style="color: #990000">,</span><span style="color: #993399">4</span><span style="color: #990000">,</span><span style="color: #993399">5</span><span style="color: #990000">,</span><span style="color: #993399">6</span><span style="color: #990000">,</span><span style="color: #993399">7</span><span style="color: #990000">,</span><span style="color: #993399">8</span><span style="color: #990000">,</span><span style="color: #993399">9</span><span style="color: #990000">;</span></tt></pre></div></div>
 </div></div>
 <div class="sect2 slide">
-<h1 id="_операторы">18.6. Операторы</h1>
+<h1 id="_операторы">19.3. Операторы</h1>
 
 <div class="sectionbody">
 <ul class="">
