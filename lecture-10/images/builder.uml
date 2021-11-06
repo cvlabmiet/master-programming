@@ -1,4 +1,6 @@
 @startuml
+skinparam classFontSize 14
+
 interface Builder {
     +buildPartA()
     +buildPartB()

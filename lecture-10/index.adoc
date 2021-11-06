@@ -1,0 +1,77 @@
+= Master programming. pass:[<br>] Лекция №10 (Паттерны проектирования)
+:author: Игорь Шаронов
+:date: 2021-11-02
+:lang: ru
+:numbered:
+
+== История и классификация паттернов проектирования
+
+=== Что такое паттерн проектирования?
+
+* Часто встречающееся решение определённой проблемы при проектировании архитектуры программ
+* Способы организации взаимодействия данных (отличие от алгоритма)
+* Пример самого распространённого паттерна (идиома) -- ООП
+* Идея пришла от дизайнера городов (1977г.)
+* 1995г. -- GOF book
+* Проверенные решения проектирования
+* Словарь для общения
+
+=== Классификация паттернов
+
+[cols="a,a,a",frame="none",grid="none",options="header"]
+|====
+| Порождающие | Структурные | Поведенческие
+
+|
+* Factory method
+* Abstract factory
+* Builder
+* Prototype
+* Singleton
+
+|
+* Adapter
+* Bridge
+* Composite
+* Decorator
+* Facade
+* Flyweight
+* Proxy
+
+|
+* Chain of responsibility
+* Command
+* Iterator
+* Mediator
+* Memento
+* Observer
+* State
+* Strategy
+* Template method
+* Visitor
+|====
+
+Источник: https://refactoring.guru/ru
+
+=== Обозначения UML
+
+[cols="2*a",frame="none",grid="none"]
+|====
+|
+[dot]
+----
+\include::images/notation.dot[]
+----
+
+|
+[uml]
+----
+\include::images/notation.uml[]
+----
+|====
+
+include::index-1.adoc[]
+
+include::index-2.adoc[]
+
+include::index-3.adoc[]

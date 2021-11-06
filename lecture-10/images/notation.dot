@@ -1,0 +1,62 @@
+digraph
+{
+    node[shape=box]
+
+    Class[label=<<table id="Class" cellborder="0">
+            <tr><td>(C) Имя класса &#60;шаблонный_тип&#62;</td></tr>
+            <hr/>
+            <tr><td align="left">+ открытая_переменная: тип</td></tr>
+            <tr><td align="left">- закрытая_переменная</td></tr>
+            <tr><td align="left"># защищённая_переменная</td></tr>
+            <tr><td align="left">$ статичная_переменная</td></tr>
+            <hr/>
+            <tr><td align="left">+ открытый_метод(): возвращаемый_тип</td></tr>
+            <tr><td align="left">- закрытый_метод()</td></tr>
+            <tr><td align="left"># защищённый_метод()</td></tr>
+            <tr><td align="left">$ статичный_метод()</td></tr>
+        </table>>
+        shape=plain
+    ]
+
+    Interface[label=<<table id="Interface" cellborder="0">
+                <tr><td>(I) Интерфейс</td></tr>
+                <hr/>
+                <tr><td align="left">+ метод1()</td></tr>
+                <tr><td align="left">+ метод2()</td></tr>
+                <tr><td align="left">метод3()</td></tr>
+                <tr><td align="left">@ абстрактный_метод()</td></tr>
+        </table>>
+        shape=plain
+    ]
+
+    {rank=same; Class; Interface}
+
+    A -> B [
+        label="Наследование A от B\n(стрелка указывает на базовый класс)"
+        arrowhead=empty
+    ]
+    {rank=same; A; B;}
+    Class -> A, Interface -> B [style=invis]
+
+    C -> D [
+        label="Аггрегирование: C использует D\n(время жизни у обоих может быть разным)"
+        arrowhead=ediamond
+    ]
+    {rank=same; C; D;}
+    A -> C, B -> D [style=invis]
+
+    E -> F [
+        label="Композиция: F принадлежит E\n(время жизни у обоих одинаковое)"
+        arrowhead=diamond
+    ]
+    {rank=same; E; F;}
+    C -> E, D -> F [style=invis]
+
+    G -> H [
+        label="G содержит массив объектов H"
+        arrowhead=diamond
+        headlabel="1+"
+    ]
+    {rank=same; G; H;}
+    E -> G, F -> H [style=invis]
+}

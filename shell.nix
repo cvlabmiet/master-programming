@@ -7,6 +7,7 @@ mkShell rec {
     ninja
     pandoc docproc
     graphviz
+    xdot
     plantuml PandocElements
     asciidoc-full-with-plugins
     gcc
