@@ -12,10 +12,10 @@
 #. `Отладка <lecture-4/index.rst>`_
 #. `Тестирование <lecture-5/index.rst>`_
 #. `Обзор STL <lecture-6/index.rst>`_
-#. `Современное программирования на C++ <lecture-7/index.rst>`_
+#. `Современное программирования на C++ <lecture-7/index.adoc>`_
 #. `Обзор boost::spirit <lecture-8/index.adoc>`_
-#. `Обзор библиотек boost <lecture-9/index.rst>`_
-#. `Паттерны проектирования <lecture-10/index.rst>`_
-#. `Разработка в команде <lecture-11/index.rst>`_
-#. `Пример проекта на C++ <lecture-12/index.rst>`_
-#. `Некоторые приёмы программирования <lecture-13/index.rst>`_
+#. `Обзор библиотек boost <lecture-9/index.adoc>`_
+#. `Паттерны проектирования <lecture-10/index.adoc>`_
+#. `Некоторые приёмы программирования <lecture-11/index.adoc>`_
+#. `Пример проекта на C++ <lecture-12/index.adoc>`_
+#. `Разработка в команде <lecture-13/index.adoc>`_
