@@ -1,4 +1,4 @@
-digraph g
+digraph
 {
     rankdir = LR;
 
