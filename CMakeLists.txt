@@ -23,8 +23,8 @@ function(add_asciidoc __target __files)
         list(APPEND __abs_files ${__file})
     endforeach()
 
-    add_custom_command(OUTPUT ${__target}.html
-        COMMAND ${ASCIIDOC} -o ${CMAKE_CURRENT_BINARY_DIR}/${__target}.html
+    add_custom_command(OUTPUT index.html
+        COMMAND ${ASCIIDOC} -o ${CMAKE_CURRENT_BINARY_DIR}/index.html
             --backend ${CMAKE_SOURCE_DIR}/templates/slidy-custom
             -a stylesheet=${CMAKE_SOURCE_DIR}/templates/slidy-custom.css
             ${__abs_files}
@@ -33,7 +33,7 @@ function(add_asciidoc __target __files)
             ${CMAKE_SOURCE_DIR}/templates/slidy-custom.css
             ${__prefix_DEPENDS}
         WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
-    add_custom_target(${__target} ALL DEPENDS ${__target}.html)
+    add_custom_target(${__target} ALL DEPENDS index.html)
 endfunction()
 
 add_subdirectory(lecture-1)
@@ -51,11 +51,11 @@ add_subdirectory(lecture-12)
 add_subdirectory(lecture-13)
 add_subdirectory(tasks)
 
-set(INDEX_FILE ${CMAKE_CURRENT_BINARY_DIR}/index.rst)
-file(READ README.rst README_CONTENT)
-string(REGEX REPLACE "(lecture-[0-9]+|tasks)/index\\.(rst|adoc)" "\\1.html" README_CONTENT ${README_CONTENT})
-file(GENERATE OUTPUT ${INDEX_FILE} CONTENT ${README_CONTENT})
+add_custom_command(OUTPUT index.html
+    COMMAND ${ASCIIDOC} -o ${CMAKE_CURRENT_BINARY_DIR}/index.html
+        --backend html5 -a env-html=1
+        ${CMAKE_SOURCE_DIR}/README.adoc
+    DEPENDS README.adoc)
+add_custom_target(main ALL DEPENDS index.html)
 
-add_html(index ${INDEX_FILE})
-target_link_libraries(index "-M title:'Master Programming'")
 add_html(nixos-setup nixos-setup.md)

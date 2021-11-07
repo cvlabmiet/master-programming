@@ -3,6 +3,7 @@ mkShell rec {
   name = "master-programming";
   buildInputs = [ (boost17x.override { useMpi = true; }) mpi icu ];
   nativeBuildInputs = [
+    bash
     cmake
     ninja
     pandoc docproc

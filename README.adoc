@@ -1,0 +1,26 @@
+= Master Programming
+:theme: flask
+
+:filesuffix: .adoc
+ifdef::env-html[:filesuffix: {outfilesuffix}]
+
+== О проекте
+
+Лекции по программированию для студентов НИУ МИЭТ.
+Описание лабораторных работ по курсу можно найти в link:tasks/index{filesuffix}[master-programming-task].
+
+Список лекций (в формате слайдов лекции доступны со https://cvlabmiet.github.io/master-programming[страницы проекта]):
+
+. link:lecture-1/index{filesuffix}[Обзор курса]
+. link:lecture-2/index{filesuffix}[Работа с git]
+. link:lecture-3/index{filesuffix}[CMake]
+. link:lecture-4/index{filesuffix}[Отладка]
+. link:lecture-5/index{filesuffix}[Тестирование]
+. link:lecture-6/index{filesuffix}[Обзор STL]
+. link:lecture-7/index{filesuffix}[Современное программирования на C++]
+. link:lecture-8/index{filesuffix}[Обзор boost::spirit]
+. link:lecture-9/index{filesuffix}[Обзор библиотек boost]
+. link:lecture-10/index{filesuffix}[Паттерны проектирования]
+. link:lecture-11/index{filesuffix}[Некоторые приёмы программирования]
+. link:lecture-12/index{filesuffix}[Пример проекта на C++]
+. link:lecture-13/index{filesuffix}[Разработка в команде]
