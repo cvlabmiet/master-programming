@@ -1,0 +1,18 @@
+digraph {
+    layout=circo
+    root=STL
+    mindist=0.15
+
+    STL -> Containers
+    STL -> Iterators
+    STL -> Algorithms
+    STL -> Numerics
+    STL -> "Input/Output"
+    STL -> "Smart pointers"
+    STL -> Chrono
+    STL -> Regex
+    STL -> Atomic
+    STL -> Thread
+    STL -> Filesystem
+    STL -> "..."
+}
