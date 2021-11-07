@@ -1,389 +1,4818 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="ru-RU" xml:lang="ru-RU">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru" xml:lang="ru">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta http-equiv="Content-Style-Type" content="text/css" />
-  <meta name="generator" content="pandoc" />
-  <meta name="author" content="Игорь Шаронов" />
-  <meta name="date" content="2018-09-15" />
-  <title>Master Programming</title>
-  <style type="text/css">
-      code{white-space: pre-wrap;}
-      span.smallcaps{font-variant: small-caps;}
-      span.underline{text-decoration: underline;}
-      div.column{display: inline-block; vertical-align: top; width: 50%;}
-  </style>
-  <style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-  </style>
-  <link rel="stylesheet" type="text/css" media="screen, projection, print" href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" data-external="1" />
-  <style type="text/css">
-      .reveal h1 { font-size: 2em; }
-      .reveal h2 { font-size: 2em; }
-      .reveal h3 { font-size: 1em; }
-      .reveal pre code { max-height: 600px; }
-      div.column33 {display: inline-block; vertical-align: top; width: 32%;}
-      div.column66 {display: inline-block; vertical-align: top; width: 66%;}
-      div.column50 {display: inline-block; vertical-align: top; width: 45%;}
-      .strike {text-decoration: line-through;}
-      table, th, td {
-          border: 1px solid black;
-      }
-  </style>
-  <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js" charset="utf-8" type="text/javascript" data-external="1"></script>
-</head>
-<body>
-<div class="slide titlepage">
-  <h1 class="title">Master programming</h1>
-  <p class="subtitle">Лекция №3 (CMake)</p>
-  <p class="author">
-Игорь Шаронов
-  </p>
-  <p class="date">2018-09-15</p>
-</div>
-<div id="основные-понятия" class="title-slide slide section level1">
-<h1>Основные понятия</h1>
+<title>Master programming. <br> Лекция №3 (CMake)</title>
+<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
+<meta name="copyright" content="Copyright &#169; Игорь Шаронов" />
+<meta name="generator" content="AsciiDoc 9.1.0" />
+<style type="text/css">
+/* Shared CSS for AsciiDoc xhtml11 and html5 backends */
 
+/* Default font. */
+body {
+  font-family: Georgia,serif;
+}
+
+/* Title font. */
+h1, h2, h3, h4, h5, h6,
+div.title, caption.title,
+thead, p.table.header,
+#toctitle,
+#author, #revnumber, #revdate, #revremark,
+#footer {
+  font-family: Arial,Helvetica,sans-serif;
+}
+
+body {
+  margin: 1em 5% 1em 5%;
+}
+
+a {
+  color: blue;
+  text-decoration: underline;
+}
+a:visited {
+  color: fuchsia;
+}
+
+em {
+  font-style: italic;
+  color: navy;
+}
+
+strong {
+  font-weight: bold;
+  color: #083194;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #527bbd;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+h1, h2, h3 {
+  border-bottom: 2px solid silver;
+}
+h2 {
+  padding-top: 0.5em;
+}
+h3 {
+  float: left;
+}
+h3 + * {
+  clear: left;
+}
+h5 {
+  font-size: 1.0em;
+}
+
+div.sectionbody {
+  margin-left: 0;
+}
+
+hr {
+  border: 1px solid silver;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+ul, ol, li > p {
+  margin-top: 0;
+}
+ul > li     { color: #aaa; }
+ul > li > * { color: black; }
+
+.monospaced, code, pre {
+  font-family: "Courier New", Courier, monospace;
+  font-size: inherit;
+  color: navy;
+  padding: 0;
+  margin: 0;
+}
+pre {
+  white-space: pre-wrap;
+}
+
+#author {
+  color: #527bbd;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+#email {
+}
+#revnumber, #revdate, #revremark {
+}
+
+#footer {
+  font-size: small;
+  border-top: 2px solid silver;
+  padding-top: 0.5em;
+  margin-top: 4.0em;
+}
+#footer-text {
+  float: left;
+  padding-bottom: 0.5em;
+}
+#footer-badges {
+  float: right;
+  padding-bottom: 0.5em;
+}
+
+#preamble {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+div.imageblock, div.exampleblock, div.verseblock,
+div.quoteblock, div.literalblock, div.listingblock, div.sidebarblock,
+div.admonitionblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.admonitionblock {
+  margin-top: 2.0em;
+  margin-bottom: 2.0em;
+  margin-right: 10%;
+  color: #606060;
+}
+
+div.content { /* Block element content. */
+  padding: 0;
+}
+
+/* Block element titles. */
+div.title, caption.title {
+  color: #527bbd;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 1.0em;
+  margin-bottom: 0.5em;
+}
+div.title + * {
+  margin-top: 0;
+}
+
+td div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content + div.title {
+  margin-top: 0.0em;
+}
+
+div.sidebarblock > div.content {
+  background: #ffffee;
+  border: 1px solid #dddddd;
+  border-left: 4px solid #f0f0f0;
+  padding: 0.5em;
+}
+
+div.listingblock > div.content {
+  border: 1px solid #dddddd;
+  border-left: 5px solid #f0f0f0;
+  background: #f8f8f8;
+  padding: 0.5em;
+}
+
+div.quoteblock, div.verseblock {
+  padding-left: 1.0em;
+  margin-left: 1.0em;
+  margin-right: 10%;
+  border-left: 5px solid #f0f0f0;
+  color: #888;
+}
+
+div.quoteblock > div.attribution {
+  padding-top: 0.5em;
+  text-align: right;
+}
+
+div.verseblock > pre.content {
+  font-family: inherit;
+  font-size: inherit;
+}
+div.verseblock > div.attribution {
+  padding-top: 0.75em;
+  text-align: left;
+}
+/* DEPRECATED: Pre version 8.2.7 verse style literal block. */
+div.verseblock + div.attribution {
+  text-align: left;
+}
+
+div.admonitionblock .icon {
+  vertical-align: top;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #527bbd;
+  padding-right: 0.5em;
+}
+div.admonitionblock td.content {
+  padding-left: 0.5em;
+  border-left: 3px solid #dddddd;
+}
+
+div.exampleblock > div.content {
+  border-left: 3px solid #dddddd;
+  padding-left: 0.5em;
+}
+
+div.imageblock div.content { padding-left: 0; }
+span.image img { border-style: none; vertical-align: text-bottom; }
+a.image:visited { color: white; }
+
+dl {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+dt {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  font-style: normal;
+  color: navy;
+}
+dd > *:first-child {
+  margin-top: 0.1em;
+}
+
+ul, ol {
+    list-style-position: outside;
+}
+ol.arabic {
+  list-style-type: decimal;
+}
+ol.loweralpha {
+  list-style-type: lower-alpha;
+}
+ol.upperalpha {
+  list-style-type: upper-alpha;
+}
+ol.lowerroman {
+  list-style-type: lower-roman;
+}
+ol.upperroman {
+  list-style-type: upper-roman;
+}
+
+div.compact ul, div.compact ol,
+div.compact p, div.compact p,
+div.compact div, div.compact div {
+  margin-top: 0.1em;
+  margin-bottom: 0.1em;
+}
+
+tfoot {
+  font-weight: bold;
+}
+td > div.verse {
+  white-space: pre;
+}
+
+div.hdlist {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+div.hdlist tr {
+  padding-bottom: 15px;
+}
+dt.hdlist1.strong, td.hdlist1.strong {
+  font-weight: bold;
+}
+td.hdlist1 {
+  vertical-align: top;
+  font-style: normal;
+  padding-right: 0.8em;
+  color: navy;
+}
+td.hdlist2 {
+  vertical-align: top;
+}
+div.hdlist.compact tr {
+  margin: 0;
+  padding-bottom: 0;
+}
+
+.comment {
+  background: yellow;
+}
+
+.footnote, .footnoteref {
+  font-size: 0.8em;
+}
+
+span.footnote, span.footnoteref {
+  vertical-align: super;
+}
+
+#footnotes {
+  margin: 20px 0 20px 0;
+  padding: 7px 0 0 0;
+}
+
+#footnotes div.footnote {
+  margin: 0 0 5px 0;
+}
+
+#footnotes hr {
+  border: none;
+  border-top: 1px solid silver;
+  height: 1px;
+  text-align: left;
+  margin-left: 0;
+  width: 20%;
+  min-width: 100px;
+}
+
+div.colist td {
+  padding-right: 0.5em;
+  padding-bottom: 0.3em;
+  vertical-align: top;
+}
+div.colist td img {
+  margin-top: 0.3em;
+}
+
+@media print {
+  #footer-badges { display: none; }
+}
+
+#toc {
+  margin-bottom: 2.5em;
+}
+
+#toctitle {
+  color: #527bbd;
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-top: 1.0em;
+  margin-bottom: 0.1em;
+}
+
+div.toclevel0, div.toclevel1, div.toclevel2, div.toclevel3, div.toclevel4 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+div.toclevel2 {
+  margin-left: 2em;
+  font-size: 0.9em;
+}
+div.toclevel3 {
+  margin-left: 4em;
+  font-size: 0.9em;
+}
+div.toclevel4 {
+  margin-left: 6em;
+  font-size: 0.9em;
+}
+
+span.aqua { color: aqua; }
+span.black { color: black; }
+span.blue { color: blue; }
+span.fuchsia { color: fuchsia; }
+span.gray { color: gray; }
+span.green { color: green; }
+span.lime { color: lime; }
+span.maroon { color: maroon; }
+span.navy { color: navy; }
+span.olive { color: olive; }
+span.purple { color: purple; }
+span.red { color: red; }
+span.silver { color: silver; }
+span.teal { color: teal; }
+span.white { color: white; }
+span.yellow { color: yellow; }
+
+span.aqua-background { background: aqua; }
+span.black-background { background: black; }
+span.blue-background { background: blue; }
+span.fuchsia-background { background: fuchsia; }
+span.gray-background { background: gray; }
+span.green-background { background: green; }
+span.lime-background { background: lime; }
+span.maroon-background { background: maroon; }
+span.navy-background { background: navy; }
+span.olive-background { background: olive; }
+span.purple-background { background: purple; }
+span.red-background { background: red; }
+span.silver-background { background: silver; }
+span.teal-background { background: teal; }
+span.white-background { background: white; }
+span.yellow-background { background: yellow; }
+
+span.big { font-size: 2em; }
+span.small { font-size: 0.6em; }
+
+span.underline { text-decoration: underline; }
+span.overline { text-decoration: overline; }
+span.line-through { text-decoration: line-through; }
+
+div.unbreakable { page-break-inside: avoid; }
+
+
+/*
+ * xhtml11 specific
+ *
+ * */
+
+div.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.tableblock > table {
+  border: 3px solid #527bbd;
+}
+thead, p.table.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.table {
+  margin-top: 0;
+}
+/* Because the table frame attribute is overridden by CSS in most browsers. */
+div.tableblock > table[frame="void"] {
+  border-style: none;
+}
+div.tableblock > table[frame="hsides"] {
+  border-left-style: none;
+  border-right-style: none;
+}
+div.tableblock > table[frame="vsides"] {
+  border-top-style: none;
+  border-bottom-style: none;
+}
+
+
+/*
+ * html5 specific
+ *
+ * */
+
+table.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+thead, p.tableblock.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.tableblock {
+  margin-top: 0;
+}
+table.tableblock {
+  border-width: 3px;
+  border-spacing: 0px;
+  border-style: solid;
+  border-color: #527bbd;
+  border-collapse: collapse;
+}
+th.tableblock, td.tableblock {
+  border-width: 1px;
+  padding: 4px;
+  border-style: solid;
+  border-color: #527bbd;
+}
+
+table.tableblock.frame-topbot {
+  border-left-style: hidden;
+  border-right-style: hidden;
+}
+table.tableblock.frame-sides {
+  border-top-style: hidden;
+  border-bottom-style: hidden;
+}
+table.tableblock.frame-none {
+  border-style: hidden;
+}
+
+th.tableblock.halign-left, td.tableblock.halign-left {
+  text-align: left;
+}
+th.tableblock.halign-center, td.tableblock.halign-center {
+  text-align: center;
+}
+th.tableblock.halign-right, td.tableblock.halign-right {
+  text-align: right;
+}
+
+th.tableblock.valign-top, td.tableblock.valign-top {
+  vertical-align: top;
+}
+th.tableblock.valign-middle, td.tableblock.valign-middle {
+  vertical-align: middle;
+}
+th.tableblock.valign-bottom, td.tableblock.valign-bottom {
+  vertical-align: bottom;
+}
+
+
+/*
+ * manpage specific
+ *
+ * */
+
+body.manpage h1 {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  border-top: 2px solid silver;
+  border-bottom: 2px solid silver;
+}
+body.manpage h2 {
+  border-style: none;
+}
+body.manpage div.sectionbody {
+  margin-left: 3em;
+}
+
+@media print {
+  body.manpage div#toc { display: none; }
+}
+/* slidy.css
+
+   Copyright (c) 2005-2010 W3C (MIT, ERCIM, Keio), All Rights Reserved.
+   W3C liability, trademark, document use and software licensing
+   rules apply, see:
+
+   http://www.w3.org/Consortium/Legal/copyright-documents
+   http://www.w3.org/Consortium/Legal/copyright-software
+*/
+
+/*
+   SJR: 2010-09-29: Modified for AsciiDoc slidy backend.
+   Mostly just commented out stuff that is handled by AsciiDoc's CSS files.
+*/
+
+body
+{
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+  width: 100%;
+  height: 100%;
+  color: black;
+  background-color: white;
+/*
+  font-family: "Gill Sans MT", "Gill Sans", GillSans, sans-serif;
+*/
+  font-size: 14pt;
+}
+
+div.toolbar {
+  position: fixed; z-index: 200;
+  top: auto; bottom: 0; left: 0; right: 0;
+  height: 1.2em; text-align: right;
+  padding-left: 1em;
+  padding-right: 1em;
+  font-size: 60%;
+  color: red;
+  background-color: rgb(240,240,240);
+  border-top: solid 1px rgb(180,180,180);
+}
+
+div.toolbar span.copyright {
+  color: black;
+  margin-left: 0.5em;
+}
+
+div.initial_prompt {
+  position: absolute;
+  z-index: 1000;
+  bottom: 1.2em;
+  width: 90%;
+  background-color: rgb(200,200,200);
+  opacity: 0.35;
+  background-color: rgb(200,200,200, 0.35);
+  cursor: pointer;
+}
+
+div.initial_prompt p.help {
+  text-align: center;
+}
+
+div.initial_prompt p.close {
+  text-align: right;
+  font-style: italic;
+}
+
+div.slidy_toc {
+  position: absolute;
+  z-index: 300;
+  width: 60%;
+  max-width: 30em;
+  height: 30em;
+  overflow: auto;
+  top: auto;
+  right: auto;
+  left: 4em;
+  bottom: 4em;
+  padding: 1em;
+  background: rgb(240,240,240);
+  border-style: solid;
+  border-width: 2px;
+  font-size: 60%;
+}
+
+div.slidy_toc .toc_heading {
+  text-align: center;
+  width: 100%;
+  margin: 0;
+  margin-bottom: 1em;
+  border-bottom-style: solid;
+  border-bottom-color: rgb(180,180,180);
+  border-bottom-width: 1px;
+}
+
+div.slide {
+  z-index: 20;
+  margin: 0 0 0 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-width: 0;
+  clear: both;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  line-height: 120%;
+  background-color: transparent;
+}
+
+div.background {
+  display: none;
+}
+
+div.handout {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+div.slide.titlepage {
+  text-align: center;
+}
+
+div.slide.titlepage.h1 {
+  padding-top: 10%;
+}
+
+div.slide h1 {
+  padding-left: 0;
+  padding-right: 20pt;
+  padding-top: 4pt;
+  padding-bottom: 4pt;
+  margin-top: 0;
+  margin-left: 0;
+  margin-right: 60pt;
+  margin-bottom: 0.5em;
+  display: block;
+  font-size: 160%;
+  line-height: 1.2em;
+  background: transparent;
+}
+
+div.toc {
+  position: absolute;
+  top: auto;
+  bottom: 4em;
+  left: 4em;
+  right: auto;
+  width: 60%;
+  max-width: 30em;
+  height: 30em;
+  border: solid thin black;
+  padding: 1em;
+  background: rgb(240,240,240);
+  color: black;
+  z-index: 300;
+  overflow: auto;
+  display: block;
+  visibility: visible;
+}
+
+div.toc-heading {
+  width: 100%;
+  border-bottom: solid 1px rgb(180,180,180);
+  margin-bottom: 1em;
+  text-align: center;
+}
+
+/*
+pre {
+ font-size: 80%;
+ font-weight: bold;
+ line-height: 120%;
+ padding-top: 0.2em;
+ padding-bottom: 0.2em;
+ padding-left: 1em;
+ padding-right: 1em;
+ border-style: solid;
+ border-left-width: 1em;
+ border-top-width: thin;
+ border-right-width: thin;
+ border-bottom-width: thin;
+ border-color: #95ABD0;
+ color: #00428C;
+ background-color: #E4E5E7;
+}
+*/
+
+/*
+li pre { margin-left: 0; }
+
+blockquote { font-style: italic }
+
+img { background-color: transparent }
+
+p.copyright { font-size: smaller }
+*/
+
+.center { text-align: center }
+.footnote { font-size: smaller; margin-left: 2em; }
+
+/*
+a img { border-width: 0; border-style: none }
+*/
+
+a:visited { color: navy }
+a:link { color: navy }
+a:hover { color: red; text-decoration: underline }
+a:active { color: red; text-decoration: underline }
+
+a {text-decoration: none}
+.navbar a:link {color: white}
+.navbar a:visited {color: yellow}
+.navbar a:active {color: red}
+.navbar a:hover {color: red}
+
+/*
+ul { list-style-type: square; }
+ul ul { list-style-type: disc; }
+ul ul ul { list-style-type: circle; }
+ul ul ul ul { list-style-type: disc; }
+li { margin-left: 0.5em; margin-top: 0.5em; }
+li li { font-size: 85%; font-style: italic }
+li li li { font-size: 85%; font-style: normal }
+*/
+
+div dt
+{
+  margin-left: 0;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+  font-weight: bold;
+}
+div dd
+{
+  margin-left: 2em;
+  margin-bottom: 0.5em;
+}
+
+
+/*
+p,pre,ul,ol,blockquote,h2,h3,h4,h5,h6,dl,table {
+  margin-left: 1em;
+  margin-right: 1em;
+}
+*/
+
+p.subhead { font-weight: bold; margin-top: 2em; }
+
+.smaller { font-size: smaller }
+.bigger { font-size: 130% }
+
+/*
+td,th { padding: 0.2em }
+*/
+
+ul {
+  margin: 0.5em 1.5em 0.5em 1.5em;
+  padding: 0;
+}
+
+ol {
+  margin: 0.5em 1.5em 0.5em 1.5em;
+  padding: 0;
+}
+
+ul { list-style-type: square; }
+ul ul { list-style-type: disc; }
+ul ul ul { list-style-type: circle; }
+ul ul ul ul { list-style-type: disc; }
+
+/*
+ul li {
+  list-style: square;
+  margin: 0.1em 0em 0.6em 0;
+  padding: 0 0 0 0;
+  line-height: 140%;
+}
+
+ol li {
+  margin: 0.1em 0em 0.6em 1.5em;
+  padding: 0 0 0 0px;
+  line-height: 140%;
+  list-style-type: decimal;
+}
+
+li ul li {
+  font-size: 85%;
+  font-style: italic;
+  list-style-type: disc;
+  background: transparent;
+  padding: 0 0 0 0;
+}
+li li ul li {
+  font-size: 85%;
+  font-style: normal;
+  list-style-type: circle;
+  background: transparent;
+  padding: 0 0 0 0;
+}
+li li li ul li {
+  list-style-type: disc;
+  background: transparent;
+  padding: 0 0 0 0;
+}
+
+li ol li {
+  list-style-type: decimal;
+}
+
+
+li li ol li {
+  list-style-type: decimal;
+}
+*/
+
+/*
+ setting class="outline" on ol or ul makes it behave as an
+ ouline list where blocklevel content in li elements is
+ hidden by default and can be expanded or collapsed with
+ mouse click. Set class="expand" on li to override default
+*/
+
+ol.outline li:hover { cursor: pointer }
+ol.outline li.nofold:hover { cursor: default }
+
+ul.outline li:hover { cursor: pointer }
+ul.outline li.nofold:hover { cursor: default }
+
+ol.outline { list-style:decimal; }
+ol.outline ol { list-style-type:lower-alpha }
+
+ol.outline li.nofold {
+  padding: 0 0 0 20px;
+  background: transparent url(../graphics/nofold-dim.gif) no-repeat 0px 0.5em;
+}
+ol.outline li.unfolded {
+  padding: 0 0 0 20px;
+  background: transparent url(../graphics/fold-dim.gif) no-repeat 0px 0.5em;
+}
+ol.outline li.folded {
+  padding: 0 0 0 20px;
+  background: transparent url(../graphics/unfold-dim.gif) no-repeat 0px 0.5em;
+}
+ol.outline li.unfolded:hover {
+  padding: 0 0 0 20px;
+  background: transparent url(../graphics/fold.gif) no-repeat 0px 0.5em;
+}
+ol.outline li.folded:hover {
+  padding: 0 0 0 20px;
+  background: transparent url(../graphics/unfold.gif) no-repeat 0px 0.5em;
+}
+
+ul.outline li.nofold {
+  padding: 0 0 0 20px;
+  background: transparent url(../graphics/nofold-dim.gif) no-repeat 0px 0.5em;
+}
+ul.outline li.unfolded {
+  padding: 0 0 0 20px;
+  background: transparent url(../graphics/fold-dim.gif) no-repeat 0px 0.5em;
+}
+ul.outline li.folded {
+  padding: 0 0 0 20px;
+  background: transparent url(../graphics/unfold-dim.gif) no-repeat 0px 0.5em;
+}
+ul.outline li.unfolded:hover {
+  padding: 0 0 0 20px;
+  background: transparent url(../graphics/fold.gif) no-repeat 0px 0.5em;
+}
+ul.outline li.folded:hover {
+  padding: 0 0 0 20px;
+  background: transparent url(../graphics/unfold.gif) no-repeat 0px 0.5em;
+}
+
+/* for slides with class "title" in table of contents */
+a.titleslide { font-weight: bold; font-style: italic }
+
+/*
+ hide images for work around for save as bug
+ where browsers fail to save images used by CSS
+*/
+img.hidden { display: none; visibility: hidden }
+div.initial_prompt { display: none; visibility: hidden }
+
+  div.slide {
+     visibility: visible;
+     position: inherit;
+  }
+  div.handout {
+     border-top-style: solid;
+     border-top-width: thin;
+     border-top-color: black;
+  }
+
+@media screen {
+  .hidden { display: none; visibility: visible }
+
+  div.slide.hidden { display: block; visibility: visible }
+  div.handout.hidden { display: block; visibility: visible }
+  div.background { display: none; visibility: hidden }
+  body.single_slide div.initial_prompt { display: block; visibility: visible }
+  body.single_slide div.background { display: block; visibility: visible }
+  body.single_slide div.background.hidden { display: none; visibility: hidden }
+  body.single_slide .invisible { visibility: hidden }
+  body.single_slide .hidden { display: none; visibility: hidden }
+  body.single_slide div.slide { position: absolute }
+  body.single_slide div.handout { display: none; visibility: hidden }
+}
+
+@media print {
+  .hidden { display: block; visibility: visible }
+
+/*
+  div.slide pre { font-size: 60%; padding-left: 0.5em; }
+*/
+  div.toolbar { display: none; visibility: hidden; }
+  div.slidy_toc { display: none; visibility: hidden; }
+  div.background { display: none; visibility: hidden; }
+  div.slide { page-break-before: always }
+  /* :first-child isn't reliable for print media */
+  div.slide.first-slide { page-break-before: avoid }
+}
+
+
+/* SJR: AsciiDoc slidy backend tweaks */
+
+ol, ul {
+  margin: 0.8em 1.5em 0.8em 1.8em;
+}
+li > ul, li > ol {
+  margin-top: 0.5em;
+}
+
+.outline > li.folded,
+.outline > li.unfolded {
+  color: #527bbd;
+}
+ul > li{ color: #aaa; }
+ul > li > *, ol > li > * { color: black; }
+
+li {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+
+/* Slidy custom CSS */
+
+a:link { color: navy; text-decoration: underline }
+</style>
+<script type="text/javascript">
+/*<![CDATA[*/
+/* slidy.js
+
+   Copyright (c) 2005-2010 W3C (MIT, ERCIM, Keio), All Rights Reserved.
+   W3C liability, trademark, document use and software licensing
+   rules apply, see:
+
+   http://www.w3.org/Consortium/Legal/copyright-documents
+   http://www.w3.org/Consortium/Legal/copyright-software
+*/
+
+// the slidy object implementation
+var w3c_slidy = {
+  // classify which kind of browser we're running under
+  ns_pos: (typeof window.pageYOffset!='undefined'),
+  khtml: ((navigator.userAgent).indexOf("KHTML") >= 0 ? true : false),
+  opera: ((navigator.userAgent).indexOf("Opera") >= 0 ? true : false),
+  ipad: ((navigator.userAgent).indexOf("iPad") >= 0 ? true : false),
+  iphone: ((navigator.userAgent).indexOf("iPhone") >= 0 ? true : false),
+  ie: (typeof document.all != "undefined" && !this.opera),
+  ie6: (!this.ns_pos && navigator.userAgent.indexOf("MSIE 6") != -1),
+  ie7: (!this.ns_pos && navigator.userAgent.indexOf("MSIE 7") != -1),
+  ie8: (!this.ns_pos && navigator.userAgent.indexOf("MSIE 8") != -1),
+  ie9: (!this.ns_pos && navigator.userAgent.indexOf("MSIE 9") != -1),
+  keyboardless: (this.ipad || this.iphone),
+
+  // are we running as XHTML? (doesn't work on Opera)
+  is_xhtml: /xml/.test(document.contentType),
+
+  slide_number: 0, // integer slide count: 0, 1, 2, ...
+  slide_number_element: null, // element containing slide number
+  slides: [], // set to array of slide div's
+  notes: [], // set to array of handout div's
+  backgrounds: [], // set to array of background div's
+  toolbar: null, // element containing toolbar
+  title: null, // document title
+  last_shown: null, // last incrementally shown item
+  eos: null,  // span element for end of slide indicator
+  toc: null, // table of contents
+  outline: null, // outline element with the focus
+  selected_text_len: 0, // length of drag selection on document
+  view_all: 0,  // 1 to view all slides + handouts
+  want_toolbar: true,  // user preference to show/hide toolbar
+  mouse_click_enabled: true, // enables left click for next slide
+  scroll_hack: 0, // IE work around for position: fixed
+  disable_slide_click: false,  // used by clicked anchors
+
+  lang: "en", // updated to language specified by html file
+
+  help_anchor: null, // used for keyboard focus hack in showToolbar()
+  help_page: "http://www.w3.org/Talks/Tools/Slidy2/help/help.html",
+  help_text: "Navigate with mouse click, space bar, Cursor Left/Right, " +
+             "or Pg Up and Pg Dn. Use S and B to change font size.",
+
+  size_index: 0,
+  size_adjustment: 0,
+  sizes:  new Array("10pt", "12pt", "14pt", "16pt", "18pt", "20pt",
+                    "22pt", "24pt", "26pt", "28pt", "30pt", "32pt"),
+
+  // needed for efficient resizing
+  last_width: 0,
+  last_height: 0,
+
+
+  // Needed for cross browser support for relative width/height on
+  // object elements. The work around is to save width/height attributes
+  // and then to recompute absolute width/height dimensions on resizing
+   objects: [],
+
+  // attach initialiation event handlers
+  set_up: function () {
+    var init = function() { w3c_slidy.init(); };
+    if (typeof window.addEventListener != "undefined")
+      window.addEventListener("load", init, false);
+    else
+      window.attachEvent("onload", init);
+  },
+
+  hide_slides: function () {
+    if (document.body && !w3c_slidy.initialized)
+      document.body.style.visibility = "hidden";
+    else
+      setTimeout(w3c_slidy.hide_slides, 50);
+  },
+
+  // hack to persuade IE to compute correct document height
+  // as needed for simulating fixed positioning of toolbar
+  ie_hack: function () {
+    window.resizeBy(0,-1);
+    window.resizeBy(0, 1);
+  },
+
+  init: function () {
+    //alert("slidy starting test 10");
+    document.body.style.visibility = "visible";
+    w3c_slidy_i18n.init();
+    this.add_toolbar();
+    this.wrap_implicit_slides();
+    this.collect_slides();
+    this.collect_notes();
+    this.collect_backgrounds();
+    this.objects = document.body.getElementsByTagName("object");
+    this.patch_anchors();
+    this.slide_number = this.find_slide_number(location.href);
+    window.offscreenbuffering = true;
+    this.size_adjustment = this.find_size_adjust();
+    this.time_left = this.find_duration();
+    this.hide_image_toolbar();  // suppress IE image toolbar popup
+    this.init_outliner();  // activate fold/unfold support
+    this.title = document.title;
+
+    // work around for opera bug
+    this.is_xhtml = (document.body.tagName == "BODY" ? false : true);
+
+    if (this.slides.length > 0)
+    {
+      var slide = this.slides[this.slide_number];
+
+      if (this.slide_number > 0)
+      {
+        this.set_visibility_all_incremental("visible");
+        this.last_shown = this.previous_incremental_item(null);
+        this.set_eos_status(true);
+      }
+      else
+      {
+        this.last_shown = null;
+        this.set_visibility_all_incremental("hidden");
+        this.set_eos_status(!this.next_incremental_item(this.last_shown));
+      }
+
+      this.set_location();
+      this.add_class(this.slides[0], "first-slide");
+      w3c_slidy.show_slide(slide);
+    }
+
+    this.toc = this.table_of_contents();
+
+    this.add_initial_prompt();
+
+    // bind event handlers without interfering with custom page scripts
+    // Tap events behave too weirdly to support clicks reliably on
+    // iPhone and iPad, so exclude these from click handler
+
+    if (!this.keyboardless)
+      this.add_listener(document.body, "click", this.mouse_button_click);
+
+    this.add_listener(document, "keydown", this.key_down);
+    this.add_listener(document, "keypress", this.key_press);
+    this.add_listener(window, "resize", this.resized);
+    this.add_listener(window, "scroll", this.scrolled);
+    this.add_listener(window, "unload", this.unloaded);
+
+    if (!document.body.onclick)
+      document.body.onclick = function () { };
+
+    this.single_slide_view();
+
+    //this.set_location();
+
+    this.resized();
+
+    if (this.ie7)
+      setTimeout(w3c_slidy.ie_hack, 100);
+
+    this.show_toolbar();
+
+    // for back button detection
+    setInterval(function () { w3c_slidy.check_location(); }, 200);
+    w3c_slidy.initialized = true;
+  },
+
+  // create div element with links to each slide
+  table_of_contents: function () {
+    var toc = this.create_element("div");
+    this.add_class(toc, "slidy_toc hidden");
+    //toc.setAttribute("tabindex", "0");
+
+    var heading = this.create_element("div");
+    this.add_class(heading, "toc-heading");
+    heading.innerHTML = "Table of Contents".localize();
+
+    toc.appendChild(heading);
+    var previous = null;
+
+    for (var i = 0; i < this.slides.length; ++i)
+    {
+      var title = this.has_class(this.slides[i], "title");
+      var num = document.createTextNode((i + 1) + ". ");
+
+      toc.appendChild(num);
+
+      var a = this.create_element("a");
+      a.setAttribute("href", "#(" + (i+1) + ")");
+
+      if (title)
+        this.add_class(a, "titleslide");
+
+      var name = document.createTextNode(this.slide_name(i));
+      a.appendChild(name);
+      a.onclick = w3c_slidy.toc_click;
+      a.onkeydown = w3c_slidy.toc_keydown;
+      a.previous = previous;
+
+      if (previous)
+        previous.next = a;
+
+      toc.appendChild(a);
+
+      if (i == 0)
+        toc.first = a;
+
+      if (i < this.slides.length - 1)
+      {
+        var br = this.create_element("br");
+        toc.appendChild(br);
+      }
+
+      previous = a;
+    }
+
+    toc.focus = function () {
+      if (this.first)
+        this.first.focus();
+    }
+
+    toc.onmouseup = w3c_slidy.mouse_button_up;
+
+    toc.onclick = function (e) {
+      e||(e=window.event);
+
+      if (w3c_slidy.selected_text_len <= 0)
+         w3c_slidy.hide_table_of_contents();
+
+      w3c_slidy.stop_propagation(e);
+
+      if (e.cancel != undefined)
+        e.cancel = true;
+
+      if (e.returnValue != undefined)
+        e.returnValue = false;
+
+      return false;
+    };
+
+    document.body.insertBefore(toc, document.body.firstChild);
+    return toc;
+  },
+
+  is_shown_toc: function () {
+    return !w3c_slidy.has_class(w3c_slidy.toc, "hidden");
+  },
+
+  show_table_of_contents: function () {
+    w3c_slidy.remove_class(w3c_slidy.toc, "hidden");
+    var toc = w3c_slidy.toc;
+    toc.focus();
+
+    if (w3c_slidy.ie7 && w3c_slidy.slide_number == 0)
+      setTimeout(w3c_slidy.ie_hack, 100);
+  },
+
+  hide_table_of_contents: function () {
+    w3c_slidy.add_class(w3c_slidy.toc, "hidden");
+
+    if (!w3c_slidy.opera)
+      w3c_slidy.help_anchor.focus();
+  },
+
+  toggle_table_of_contents: function () {
+    if (w3c_slidy.is_shown_toc())
+      w3c_slidy.hide_table_of_contents();
+    else
+      w3c_slidy.show_table_of_contents();
+  },
+
+  // called on clicking toc entry
+  toc_click: function (e) {
+    if (!e)
+      e = window.event;
+
+    var target = w3c_slidy.get_target(e);
+
+    if (target && target.nodeType == 1)
+    {
+      var uri = target.getAttribute("href");
+
+      if (uri)
+      {
+        //alert("going to " + uri);
+        var slide = w3c_slidy.slides[w3c_slidy.slide_number];
+        w3c_slidy.hide_slide(slide);
+        w3c_slidy.slide_number = w3c_slidy.find_slide_number(uri);
+        slide = w3c_slidy.slides[w3c_slidy.slide_number];
+        w3c_slidy.last_shown = null;
+        w3c_slidy.set_location();
+        w3c_slidy.set_visibility_all_incremental("hidden");
+        w3c_slidy.set_eos_status(!w3c_slidy.next_incremental_item(w3c_slidy.last_shown));
+        w3c_slidy.show_slide(slide);
+        //target.focus();
+
+        try
+        {
+          if (!w3c_slidy.opera)
+            w3c_slidy.help_anchor.focus();
+        }
+        catch (e)
+        {
+        }
+      }
+    }
+
+    w3c_slidy.hide_table_of_contents(e);
+    if (w3c_slidy.ie7) w3c_slidy.ie_hack();
+    w3c_slidy.stop_propagation(e);
+    return w3c_slidy.cancel(e);
+  },
+
+  // called onkeydown for toc entry
+  toc_keydown: function (event) {
+    var key;
+
+    if (!event)
+      var event = window.event;
+
+    // kludge around NS/IE differences
+    if (window.event)
+      key = window.event.keyCode;
+    else if (event.which)
+      key = event.which;
+    else
+      return true; // Yikes! unknown browser
+
+    // ignore event if key value is zero
+    // as for alt on Opera and Konqueror
+    if (!key)
+      return true;
+
+    // check for concurrent control/command/alt key
+    // but are these only present on mouse events?
+
+    if (event.ctrlKey || event.altKey)
+      return true;
+
+    if (key == 13)
+    {
+      var uri = this.getAttribute("href");
+
+      if (uri)
+      {
+        //alert("going to " + uri);
+       var slide = w3c_slidy.slides[w3c_slidy.slide_number];
+        w3c_slidy.hide_slide(slide);
+        w3c_slidy.slide_number = w3c_slidy.find_slide_number(uri);
+        slide = w3c_slidy.slides[w3c_slidy.slide_number];
+        w3c_slidy.last_shown = null;
+        w3c_slidy.set_location();
+        w3c_slidy.set_visibility_all_incremental("hidden");
+        w3c_slidy.set_eos_status(!w3c_slidy.next_incremental_item(w3c_slidy.last_shown));
+        w3c_slidy.show_slide(slide);
+        //target.focus();
+
+        try
+        {
+          if (!w3c_slidy.opera)
+            w3c_slidy.help_anchor.focus();
+        }
+        catch (e)
+        {
+        }
+      }
+
+      w3c_slidy.hide_table_of_contents();
+
+      if (self.ie7)
+       w3c_slidy.ie_hack();
+
+      return w3c_slidy.cancel(event);
+    }
+
+    if (key == 40 && this.next)
+    {
+      this.next.focus();
+      return w3c_slidy.cancel(event);
+    }
+
+    if (key == 38 && this.previous)
+    {
+      this.previous.focus();
+      return w3c_slidy.cancel(event);
+    }
+
+    return true;
+  },
+
+
+  // ### OBSOLETE ###
+  before_print: function () {
+    this.show_all_slides();
+    this.hide_toolbar();
+    alert("before print");
+  },
+
+  // ### OBSOLETE ###
+  after_print: function () {
+    if (!this.view_all)
+    {
+      this.single_slide_view();
+      this.show_toolbar();
+    }
+    alert("after print");
+  },
+
+  // ### OBSOLETE ###
+  print_slides: function () {
+    this.before_print();
+    window.print();
+    this.after_print();
+  },
+
+  // ### OBSOLETE ?? ###
+  toggle_view: function () {
+    if (this.view_all)
+    {
+      this.single_slide_view();
+      this.show_toolbar();
+      this.view_all = 0;
+    }
+    else
+    {
+      this.show_all_slides();
+      this.hide_toolbar();
+      this.view_all = 1;
+    }
+  },
+
+  // prepare for printing  ### OBSOLETE ###
+  show_all_slides: function () {
+    this.remove_class(document.body, "single_slide");
+    this.set_visibility_all_incremental("visible");
+  },
+
+  // restore after printing  ### OBSOLETE ###
+  single_slide_view: function () {
+    this.add_class(document.body, "single_slide");
+    this.set_visibility_all_incremental("visible");
+    this.last_shown = this.previous_incremental_item(null);
+  },
+
+  // suppress IE's image toolbar pop up
+  hide_image_toolbar: function () {
+    if (!this.ns_pos)
+    {
+      var images = document.getElementsByTagName("IMG");
+
+      for (var i = 0; i < images.length; ++i)
+        images[i].setAttribute("galleryimg", "no");
+    }
+  },
+
+  unloaded: function (e) {
+    //alert("unloaded");
+  },
+
+  // Safari and Konqueror don't yet support getComputedStyle()
+  // and they always reload page when location.href is updated
+  is_KHTML: function () {
+    var agent = navigator.userAgent;
+    return (agent.indexOf("KHTML") >= 0 ? true : false);
+  },
+
+  // find slide name from first h1 element
+  // default to document title + slide number
+  slide_name: function (index) {
+    var name = null;
+    var slide = this.slides[index];
+
+    var heading = this.find_heading(slide);
+
+    if (heading)
+      name = this.extract_text(heading);
+
+    if (!name)
+      name = this.title + "(" + (index + 1) + ")";
+
+    name.replace(/\&/g, "&amp;");
+    name.replace(/\</g, "&lt;");
+    name.replace(/\>/g, "&gt;");
+
+    return name;
+  },
+
+  // find first h1 element in DOM tree
+  find_heading: function (node) {
+    if (!node || node.nodeType != 1)
+      return null;
+
+    if (node.nodeName == "H1" || node.nodeName == "h1")
+      return node;
+
+    var child = node.firstChild;
+
+    while (child)
+    {
+      node = this.find_heading(child);
+
+      if (node)
+        return node;
+
+      child = child.nextSibling;
+    }
+
+    return null;
+  },
+
+  // recursively extract text from DOM tree
+  extract_text: function (node) {
+    if (!node)
+      return "";
+
+    // text nodes
+    if (node.nodeType == 3)
+      return node.nodeValue;
+
+    // elements
+    if (node.nodeType == 1)
+    {
+      node = node.firstChild;
+      var text = "";
+
+      while (node)
+      {
+        text = text + this.extract_text(node);
+        node = node.nextSibling;
+      }
+
+      return text;
+    }
+
+    return "";
+  },
+
+  // find copyright text from meta element
+  find_copyright: function () {
+    var name, content;
+    var meta = document.getElementsByTagName("meta");
+
+    for (var i = 0; i < meta.length; ++i)
+    {
+      name = meta[i].getAttribute("name");
+      content = meta[i].getAttribute("content");
+
+      if (name == "copyright")
+        return content;
+    }
+
+    return null;
+  },
+
+  find_size_adjust: function () {
+    var name, content, offset;
+    var meta = document.getElementsByTagName("meta");
+
+    for (var i = 0; i < meta.length; ++i)
+    {
+      name = meta[i].getAttribute("name");
+      content = meta[i].getAttribute("content");
+
+      if (name == "font-size-adjustment")
+        return 1 * content;
+    }
+
+    return 1;
+  },
+
+  // <meta name="duration" content="20" />  for 20 minutes
+  find_duration: function () {
+    var name, content, offset;
+    var meta = document.getElementsByTagName("meta");
+
+    for (var i = 0; i < meta.length; ++i)
+    {
+      name = meta[i].getAttribute("name");
+      content = meta[i].getAttribute("content");
+
+      if (name == "duration")
+        return 60000 * content;
+    }
+
+    return null;
+  },
+
+  replace_by_non_breaking_space: function (str) {
+    for (var i = 0; i < str.length; ++i)
+      str[i] = 160;
+  },
+
+  // ### CHECK ME ### is use of "li" okay for text/html?
+  // for XHTML do we also need to specify namespace?
+  init_outliner: function () {
+    var items = document.getElementsByTagName("li");
+
+    for (var i = 0; i < items.length; ++i)
+    {
+      var target = items[i];
+
+      if (!this.has_class(target.parentNode, "outline"))
+        continue;
+
+      target.onclick = this.outline_click;
+/* ### more work needed for IE6
+      if (!this.ns_pos)
+      {
+        target.onmouseover = this.hover_outline;
+        target.onmouseout = this.unhover_outline;
+      }
+*/
+      if (this.foldable(target))
+      {
+        target.foldable = true;
+        target.onfocus = function () {w3c_slidy.outline = this;};
+        target.onblur = function () {w3c_slidy.outline = null;};
+
+        if (!target.getAttribute("tabindex"))
+          target.setAttribute("tabindex", "0");
+
+        if (this.has_class(target, "expand"))
+          this.unfold(target);
+        else
+          this.fold(target);
+      }
+      else
+      {
+        this.add_class(target, "nofold");
+        target.visible = true;
+        target.foldable = false;
+      }
+    }
+  },
+
+  foldable: function (item) {
+    if (!item || item.nodeType != 1)
+      return false;
+
+    var node = item.firstChild;
+
+    while (node)
+    {
+      if (node.nodeType == 1 && this.is_block(node))
+        return true;
+
+      node = node.nextSibling;
+    }
+
+    return false;
+  },
+
+  // ### CHECK ME ### switch to add/remove "hidden" class
+  fold: function (item) {
+    if (item)
+    {
+      this.remove_class(item, "unfolded");
+      this.add_class(item, "folded");
+    }
+
+    var node = item ? item.firstChild : null;
+
+    while (node)
+    {
+      if (node.nodeType == 1 && this.is_block(node)) // element
+      {
+         w3c_slidy.add_class(node, "hidden");
+      }
+
+      node = node.nextSibling;
+    }
+
+    item.visible = false;
+  },
+
+  // ### CHECK ME ### switch to add/remove "hidden" class
+  unfold: function (item) {
+    if (item)
+    {
+      this.add_class(item, "unfolded");
+      this.remove_class(item, "folded");
+    }
+
+    var node = item ? item.firstChild : null;
+
+    while (node)
+    {
+      if (node.nodeType == 1 && this.is_block(node)) // element
+      {
+        w3c_slidy.remove_class(node, "hidden");
+      }
+
+      node = node.nextSibling;
+    }
+
+    item.visible = true;
+  },
+
+  outline_click: function (e) {
+    if (!e)
+      e = window.event;
+
+    var rightclick = false;
+    var target = w3c_slidy.get_target(e);
+
+    while (target && target.visible == undefined)
+      target = target.parentNode;
+
+    if (!target)
+      return true;
+
+    if (e.which)
+      rightclick = (e.which == 3);
+    else if (e.button)
+      rightclick = (e.button == 2);
+
+    if (!rightclick && target.visible != undefined)
+    {
+      if (target.foldable)
+      {
+        if (target.visible)
+          w3c_slidy.fold(target);
+        else
+          w3c_slidy.unfold(target);
+      }
+
+      w3c_slidy.stop_propagation(e);
+      e.cancel = true;
+      e.returnValue = false;
+    }
+
+    return false;
+  },
+
+  add_initial_prompt: function () {
+    var prompt = this.create_element("div");
+    prompt.setAttribute("class", "initial_prompt");
+
+    var p1 = this.create_element("p");
+    prompt.appendChild(p1);
+    p1.setAttribute("class", "help");
+
+    if (this.keyboardless)
+      p1.innerHTML = "Tap footer to move to next slide";
+    else
+      p1.innerHTML = "Space or Right Arrow to move to next " +
+                     "slide, click help below for more details";
+
+    this.add_listener(prompt, "click", function (e) {
+      document.body.removeChild(prompt);
+      w3c_slidy.stop_propagation(e);
+
+      if (e.cancel != undefined)
+        e.cancel = true;
+
+      if (e.returnValue != undefined)
+        e.returnValue = false;
+
+      return false;
+    });
+
+    document.body.appendChild(prompt);
+    this.initial_prompt = prompt;
+    setTimeout(function() {document.body.removeChild(prompt);}, 5000);
+  },
+
+  add_toolbar: function () {
+    var counter, page;
+
+     this.toolbar = this.create_element("div");
+     this.toolbar.setAttribute("class", "toolbar");
+
+     // a reasonably behaved browser
+     if (this.ns_pos || !this.ie6)
+     {
+       var right = this.create_element("div");
+       right.setAttribute("style", "float: right; text-align: right");
+
+       counter = this.create_element("span")
+       counter.innerHTML = "slide".localize() + " n/m";
+       right.appendChild(counter);
+       this.toolbar.appendChild(right);
+
+       var left = this.create_element("div");
+       left.setAttribute("style", "text-align: left");
+
+       // global end of slide indicator
+       this.eos = this.create_element("span");
+       this.eos.innerHTML = "* ";
+       left.appendChild(this.eos);
+
+       var help = this.create_element("a");
+       help.setAttribute("href", this.help_page);
+       help.setAttribute("title", this.help_text.localize());
+       help.innerHTML = "help?".localize();
+       left.appendChild(help);
+       this.help_anchor = help;  // save for focus hack
+
+       var gap1 = document.createTextNode(" ");
+       left.appendChild(gap1);
+
+       var contents = this.create_element("a");
+       contents.setAttribute("href", "javascript:w3c_slidy.toggle_table_of_contents()");
+       contents.setAttribute("title", "table of contents".localize());
+       contents.innerHTML = "contents?".localize();
+       left.appendChild(contents);
+
+       var gap2 = document.createTextNode(" ");
+       left.appendChild(gap2);
+
+       var copyright = this.find_copyright();
+
+       if (copyright)
+       {
+         var span = this.create_element("span");
+         span.className = "copyright";
+         span.innerHTML = copyright;
+         left.appendChild(span);
+       }
+
+       this.toolbar.setAttribute("tabindex", "0");
+       this.toolbar.appendChild(left);
+     }
+     else // IE6 so need to work around its poor CSS support
+     {
+       this.toolbar.style.position = (this.ie7 ? "fixed" : "absolute");
+       this.toolbar.style.zIndex = "200";
+       this.toolbar.style.width = "99.9%";
+       this.toolbar.style.height = "1.2em";
+       this.toolbar.style.top = "auto";
+       this.toolbar.style.bottom = "0";
+       this.toolbar.style.left = "0";
+       this.toolbar.style.right = "0";
+       this.toolbar.style.textAlign = "left";
+       this.toolbar.style.fontSize = "60%";
+       this.toolbar.style.color = "red";
+       this.toolbar.borderWidth = 0;
+       this.toolbar.className = "toolbar";
+       this.toolbar.style.background = "rgb(240,240,240)";
+
+       // would like to have help text left aligned
+       // and page counter right aligned, floating
+       // div's don't work, so instead use nested
+       // absolutely positioned div's.
+
+       var sp = this.create_element("span");
+       sp.innerHTML = "&nbsp;&nbsp;*&nbsp;";
+       this.toolbar.appendChild(sp);
+       this.eos = sp;  // end of slide indicator
+
+       var help = this.create_element("a");
+       help.setAttribute("href", this.help_page);
+       help.setAttribute("title", this.help_text.localize());
+       help.innerHTML = "help?".localize();
+       this.toolbar.appendChild(help);
+       this.help_anchor = help;  // save for focus hack
+
+       var gap1 = document.createTextNode(" ");
+       this.toolbar.appendChild(gap1);
+
+       var contents = this.create_element("a");
+       contents.setAttribute("href", "javascript:toggleTableOfContents()");
+       contents.setAttribute("title", "table of contents".localize());
+       contents.innerHTML = "contents?".localize();
+       this.toolbar.appendChild(contents);
+
+       var gap2 = document.createTextNode(" ");
+       this.toolbar.appendChild(gap2);
+
+       var copyright = this.find_copyright();
+
+       if (copyright)
+       {
+         var span = this.create_element("span");
+         span.innerHTML = copyright;
+         span.style.color = "black";
+         span.style.marginLeft = "0.5em";
+         this.toolbar.appendChild(span);
+       }
+
+       counter = this.create_element("div")
+       counter.style.position = "absolute";
+       counter.style.width = "auto"; //"20%";
+       counter.style.height = "1.2em";
+       counter.style.top = "auto";
+       counter.style.bottom = 0;
+       counter.style.right = "0";
+       counter.style.textAlign = "right";
+       counter.style.color = "red";
+       counter.style.background = "rgb(240,240,240)";
+
+       counter.innerHTML = "slide".localize() + " n/m";
+       this.toolbar.appendChild(counter);
+     }
+
+     // ensure that click isn't passed through to the page
+     this.toolbar.onclick =
+         function (e) {
+           if (!e)
+             e = window.event;
+
+           var target = e.target;
+
+           if (!target && e.srcElement)
+             target = e.srcElement;
+
+           // work around Safari bug
+           if (target && target.nodeType == 3)
+             target = target.parentNode;
+
+           w3c_slidy.stop_propagation(e);
+
+           if (target && target.nodeName.toLowerCase() != "a")
+             w3c_slidy.mouse_button_click(e);
+         };
+
+     this.slide_number_element = counter;
+     this.set_eos_status(false);
+     document.body.appendChild(this.toolbar);
+  },
+
+  // wysiwyg editors make it hard to use div elements
+  // e.g. amaya loses the div when you copy and paste
+  // this function wraps div elements around implicit
+  // slides which start with an h1 element and continue
+  // up to the next heading or div element
+  wrap_implicit_slides: function () {
+    var i, heading, node, next, div;
+    var headings = document.getElementsByTagName("h1");
+
+    if (!headings)
+      return;
+
+    for (i = 0; i < headings.length; ++i)
+    {
+      heading = headings[i];
+
+      if (heading.parentNode != document.body)
+        continue;
+
+      node = heading.nextSibling;
+
+      div = document.createElement("div");
+      this.add_class(div, "slide");
+      document.body.replaceChild(div, heading);
+      div.appendChild(heading);
+
+      while (node)
+      {
+        if (node.nodeType == 1 &&    // an element
+             (node.nodeName == "H1" ||
+              node.nodeName == "h1" ||
+              node.nodeName == "DIV" ||
+              node.nodeName == "div"))
+          break;
+
+        next = node.nextSibling;
+        node = document.body.removeChild(node);
+        div.appendChild(node);
+        node = next;
+      }
+    }
+  },
+
+// return new array of all slides
+  collect_slides: function () {
+    var slides = new Array();
+    var divs = document.body.getElementsByTagName("div");
+
+    for (var i = 0; i < divs.length; ++i)
+    {
+      div = divs.item(i);
+
+      if (this.has_class(div, "slide"))
+      {
+        // add slide to collection
+        slides[slides.length] = div;
+
+        // hide each slide as it is found
+        this.add_class(div, "hidden");
+
+        // add dummy <br/> at end for scrolling hack
+        var node1 = document.createElement("br");
+        div.appendChild(node1);
+        var node2 = document.createElement("br");
+        div.appendChild(node2);
+      }
+      else if (this.has_class(div, "background"))
+      {  // work around for Firefox SVG reload bug
+        // which otherwise replaces 1st SVG graphic with 2nd
+        div.style.display = "block";
+      }
+    }
+
+    this.slides = slides;
+  },
+
+  // return new array of all <div class="handout">
+  collect_notes: function () {
+    var notes = new Array();
+    var divs = document.body.getElementsByTagName("div");
+
+    for (var i = 0; i < divs.length; ++i)
+    {
+      div = divs.item(i);
+
+      if (this.has_class(div, "handout"))
+      {
+        // add note to collection
+        notes[notes.length] = div;
+
+        // and hide it
+        this.add_class(div, "hidden");
+      }
+    }
+
+    this.notes = notes;
+  },
+
+  // return new array of all <div class="background">
+  // including named backgrounds e.g. class="background titlepage"
+  collect_backgrounds: function () {
+    var backgrounds = new Array();
+    var divs = document.body.getElementsByTagName("div");
+
+    for (var i = 0; i < divs.length; ++i)
+    {
+      div = divs.item(i);
+
+      if (this.has_class(div, "background"))
+      {
+        // add background to collection
+        backgrounds[backgrounds.length] = div;
+
+        // and hide it
+        this.add_class(div, "hidden");
+      }
+    }
+
+    this.backgrounds = backgrounds;
+  },
+
+  // set click handlers on all anchors
+  patch_anchors: function () {
+    var self = w3c_slidy;
+    var handler = function (event) {
+      // compare this.href with location.href
+      // for link to another slide in this doc
+
+      if (self.page_address(this.href) == self.page_address(location.href))
+      {
+        // yes, so find new slide number
+        var newslidenum = self.find_slide_number(this.href);
+
+        if (newslidenum != self.slide_number)
+        {
+          var slide = self.slides[self.slide_number];
+          self.hide_slide(slide);
+          self.slide_number = newslidenum;
+          slide = self.slides[self.slide_number];
+          self.show_slide(slide);
+          self.set_location();
+        }
+      }
+      else if (this.target == null)
+        location.href = this.href;
+
+      this.blur();
+      self.disable_slide_click = true;
+    };
+
+    var anchors = document.body.getElementsByTagName("a");
+
+    for (var i = 0; i < anchors.length; ++i)
+    {
+      if (window.addEventListener)
+        anchors[i].addEventListener("click", handler, false);
+      else
+        anchors[i].attachEvent("onclick", handler);
+    }
+  },
+
+  // ### CHECK ME ### see which functions are invoked via setTimeout
+  // either directly or indirectly for use of w3c_slidy vs this
+  show_slide_number: function () {
+    var timer = w3c_slidy.get_timer();
+    w3c_slidy.slide_number_element.innerHTML = timer + "slide".localize() + " " +
+           (w3c_slidy.slide_number + 1) + "/" + w3c_slidy.slides.length;
+  },
+
+  // every 200mS check if the location has been changed as a
+  // result of the user activating the Back button/menu item
+  // doesn't work for Opera < 9.5
+  check_location: function () {
+    var hash = location.hash;
+
+    if (w3c_slidy.slide_number > 0 && (hash == "" || hash == "#"))
+      w3c_slidy.goto_slide(0);
+    else if (hash.length > 2 && hash != "#("+(w3c_slidy.slide_number+1)+")")
+    {
+      var num = parseInt(location.hash.substr(2));
+
+      if (!isNaN(num))
+        w3c_slidy.goto_slide(num-1);
+    }
+
+    if (w3c_slidy.time_left && w3c_slidy.slide_number > 0)
+    {
+      w3c_slidy.show_slide_number();
+
+      if (w3c_slidy.time_left > 0)
+        w3c_slidy.time_left -= 200;
+    }
+  },
+
+  get_timer: function () {
+    var timer = "";
+    if (w3c_slidy.time_left)
+    {
+      var mins, secs;
+      secs = Math.floor(w3c_slidy.time_left/1000);
+      mins = Math.floor(secs / 60);
+      secs = secs % 60;
+      timer = (mins ? mins+"m" : "") + secs + "s ";
+    }
+
+    return timer;
+  },
+
+  // this doesn't push location onto history stack for IE
+  // for which a hidden iframe hack is needed: load page into
+  // the iframe with script that set's parent's location.hash
+  // but that won't work for standalone use unless we can
+  // create the page dynamically via a javascript: URL
+  set_location: function () {
+     var uri = w3c_slidy.page_address(location.href);
+     var hash = "#(" + (w3c_slidy.slide_number+1) + ")";
+
+     if (w3c_slidy.slide_number >= 0)
+       uri = uri + hash;
+
+     if (w3c_slidy.ie && !w3c_slidy.ie8)
+       w3c_slidy.push_hash(hash);
+
+     if (uri != location.href) // && !khtml
+        location.href = uri;
+
+     if (this.khtml)
+        hash = "(" + (w3c_slidy.slide_number+1) + ")";
+
+     if (!this.ie && location.hash != hash && location.hash != "")
+       location.hash = hash;
+
+     document.title = w3c_slidy.title + " (" + (w3c_slidy.slide_number+1) + ")";
+     w3c_slidy.show_slide_number();
+  },
+
+  page_address: function (uri) {
+    var i = uri.indexOf("#");
+
+    if (i < 0)
+      i = uri.indexOf("%23");
+
+    // check if anchor is entire page
+
+    if (i < 0)
+      return uri;  // yes
+
+    return uri.substr(0, i);
+  },
+
+  // only used for IE6 and IE7
+  on_frame_loaded: function (hash) {
+    location.hash = hash;
+    var uri = w3c_slidy.page_address(location.href);
+    location.href = uri + hash;
+  },
+
+  // history hack with thanks to Bertrand Le Roy
+  push_hash: function (hash) {
+    if (hash == "") hash = "#(1)";
+      window.location.hash = hash;
+
+    var doc = document.getElementById("historyFrame").contentWindow.document;
+    doc.open("javascript:'<html></html>'");
+    // PWL modified this string literal to break the close script tag
+    // which otherwise gets parsed when incorporated
+    doc.write("<html><head><script type=\"text/javascript\">window.parent.w3c_slidy.on_frame_loaded('"+
+      (hash) + "');</" + "script></head><body>hello mum</body></html>");
+    doc.close();
+    },
+
+  // find current slide based upon location
+  // first find target anchor and then look
+  // for associated div element enclosing it
+  // finally map that to slide number
+  find_slide_number: function (uri) {
+    // first get anchor from page location
+
+    var i = uri.indexOf("#");
+
+    // check if anchor is entire page
+    if (i < 0)
+      return 0;  // yes
+
+    var anchor = unescape(uri.substr(i+1));
+
+    // now use anchor as XML ID to find target
+    var target = document.getElementById(anchor);
+
+    if (!target)
+    {
+      // does anchor look like "(2)" for slide 2 ??
+      // where first slide is (1)
+      var re = /\((\d)+\)/;
+
+      if (anchor.match(re))
+      {
+        var num = parseInt(anchor.substring(1, anchor.length-1));
+
+        if (num > this.slides.length)
+          num = 1;
+
+        if (--num < 0)
+          num = 0;
+
+        return num;
+      }
+
+      // accept [2] for backwards compatibility
+      re = /\[(\d)+\]/;
+
+      if (anchor.match(re))
+      {
+         var num = parseInt(anchor.substring(1, anchor.length-1));
+
+         if (num > this.slides.length)
+            num = 1;
+
+         if (--num < 0)
+            num = 0;
+
+         return num;
+      }
+
+      // oh dear unknown anchor
+      return 0;
+    }
+
+    // search for enclosing slide
+
+    while (true)
+    {
+      // browser coerces html elements to uppercase!
+      if (target.nodeName.toLowerCase() == "div" &&
+            this.has_class(target, "slide"))
+      {
+        // found the slide element
+        break;
+      }
+
+      // otherwise try parent element if any
+
+      target = target.parentNode;
+
+      if (!target)
+      {
+        return 0;   // no luck!
+      }
+    };
+
+    for (i = 0; i < slides.length; ++i)
+    {
+      if (slides[i] == target)
+        return i;  // success
+    }
+
+    // oh dear still no luck
+    return 0;
+  },
+
+  previous_slide: function (incremental) {
+    if (!w3c_slidy.view_all)
+    {
+      var slide;
+
+      if ((incremental || w3c_slidy.slide_number == 0) && w3c_slidy.last_shown != null)
+      {
+        w3c_slidy.last_shown = w3c_slidy.hide_previous_item(w3c_slidy.last_shown);
+        w3c_slidy.set_eos_status(false);
+      }
+      else if (w3c_slidy.slide_number > 0)
+      {
+        slide = w3c_slidy.slides[w3c_slidy.slide_number];
+        w3c_slidy.hide_slide(slide);
+
+        w3c_slidy.slide_number = w3c_slidy.slide_number - 1;
+        slide = w3c_slidy.slides[w3c_slidy.slide_number];
+        w3c_slidy.set_visibility_all_incremental("visible");
+        w3c_slidy.last_shown = w3c_slidy.previous_incremental_item(null);
+        w3c_slidy.set_eos_status(true);
+        w3c_slidy.show_slide(slide);
+      }
+
+      w3c_slidy.set_location();
+
+      if (!w3c_slidy.ns_pos)
+        w3c_slidy.refresh_toolbar(200);
+    }
+  },
+
+  next_slide: function (incremental) {
+    if (!w3c_slidy.view_all)
+    {
+      var slide, last = w3c_slidy.last_shown;
+
+      if (incremental || w3c_slidy.slide_number == w3c_slidy.slides.length - 1)
+         w3c_slidy.last_shown = w3c_slidy.reveal_next_item(w3c_slidy.last_shown);
+
+      if ((!incremental || w3c_slidy.last_shown == null) &&
+             w3c_slidy.slide_number < w3c_slidy.slides.length - 1)
+      {
+         slide = w3c_slidy.slides[w3c_slidy.slide_number];
+         w3c_slidy.hide_slide(slide);
+
+         w3c_slidy.slide_number = w3c_slidy.slide_number + 1;
+         slide = w3c_slidy.slides[w3c_slidy.slide_number];
+         w3c_slidy.last_shown = null;
+         w3c_slidy.set_visibility_all_incremental("hidden");
+         w3c_slidy.show_slide(slide);
+      }
+      else if (!w3c_slidy.last_shown)
+      {
+         if (last && incremental)
+           w3c_slidy.last_shown = last;
+      }
+
+      w3c_slidy.set_location();
+
+      w3c_slidy.set_eos_status(!w3c_slidy.next_incremental_item(w3c_slidy.last_shown));
+
+      if (!w3c_slidy.ns_pos)
+         w3c_slidy.refresh_toolbar(200);
+     }
+  },
+
+  // to first slide with nothing revealed
+  // i.e. state at start of presentation
+  first_slide: function () {
+     if (!w3c_slidy.view_all)
+     {
+       var slide;
+
+       if (w3c_slidy.slide_number != 0)
+       {
+         slide = w3c_slidy.slides[w3c_slidy.slide_number];
+         w3c_slidy.hide_slide(slide);
+
+         w3c_slidy.slide_number = 0;
+         slide = w3c_slidy.slides[w3c_slidy.slide_number];
+         w3c_slidy.last_shown = null;
+         w3c_slidy.set_visibility_all_incremental("hidden");
+         w3c_slidy.show_slide(slide);
+       }
+
+       w3c_slidy.set_eos_status(
+         !w3c_slidy.next_incremental_item(w3c_slidy.last_shown));
+       w3c_slidy.set_location();
+     }
+  },
+
+  // goto last slide with everything revealed
+  // i.e. state at end of presentation
+  last_slide: function () {
+    if (!w3c_slidy.view_all)
+    {
+      var slide;
+
+      w3c_slidy.last_shown = null; //revealNextItem(lastShown);
+
+      if (w3c_slidy.last_shown == null &&
+          w3c_slidy.slide_number < w3c_slidy.slides.length - 1)
+      {
+         slide = w3c_slidy.slides[w3c_slidy.slide_number];
+         w3c_slidy.hide_slide(slide);
+         w3c_slidy.slide_number = w3c_slidy.slides.length - 1;
+         slide = w3c_slidy.slides[w3c_slidy.slide_number];
+         w3c_slidy.set_visibility_all_incremental("visible");
+         w3c_slidy.last_shown = w3c_slidy.previous_incremental_item(null);
+
+         w3c_slidy.show_slide(slide);
+      }
+      else
+      {
+         w3c_slidy.set_visibility_all_incremental("visible");
+         w3c_slidy.last_shown = w3c_slidy.previous_incremental_item(null);
+      }
+
+      w3c_slidy.set_eos_status(true);
+      w3c_slidy.set_location();
+    }
+  },
+
+
+  // ### check this and consider add/remove class
+  set_eos_status: function (state) {
+    if (this.eos)
+      this.eos.style.color = (state ? "rgb(240,240,240)" : "red");
+  },
+
+  // first slide is 0
+  goto_slide: function (num) {
+    //alert("going to slide " + (num+1));
+    var slide = w3c_slidy.slides[w3c_slidy.slide_number];
+    w3c_slidy.hide_slide(slide);
+    w3c_slidy.slide_number = num;
+    slide = w3c_slidy.slides[w3c_slidy.slide_number];
+    w3c_slidy.last_shown = null;
+    w3c_slidy.set_visibility_all_incremental("hidden");
+    w3c_slidy.set_eos_status(!w3c_slidy.next_incremental_item(w3c_slidy.last_shown));
+    document.title = w3c_slidy.title + " (" + (w3c_slidy.slide_number+1) + ")";
+    w3c_slidy.show_slide(slide);
+    w3c_slidy.show_slide_number();
+  },
+
+
+  show_slide: function (slide) {
+    this.sync_background(slide);
+    window.scrollTo(0,0);
+    this.remove_class(slide, "hidden");
+  },
+
+  hide_slide: function (slide) {
+    this.add_class(slide, "hidden");
+  },
+
+  // show just the backgrounds pertinent to this slide
+  // when slide background-color is transparent
+  // this should now work with rgba color values
+  sync_background: function (slide) {
+    var background;
+    var bgColor;
+
+    if (slide.currentStyle)
+      bgColor = slide.currentStyle["backgroundColor"];
+    else if (document.defaultView)
+    {
+      var styles = document.defaultView.getComputedStyle(slide,null);
+
+      if (styles)
+        bgColor = styles.getPropertyValue("background-color");
+      else // broken implementation probably due Safari or Konqueror
+      {
+        //alert("defective implementation of getComputedStyle()");
+        bgColor = "transparent";
+      }
+    }
+    else
+      bgColor == "transparent";
+
+    if (bgColor == "transparent" ||
+        bgColor.indexOf("rgba") >= 0 ||
+        bgColor.indexOf("opacity") >= 0)
+    {
+      var slideClass = this.get_class_list(slide);
+
+      for (var i = 0; i < this.backgrounds.length; i++)
+      {
+        background = this.backgrounds[i];
+
+        var bgClass = this.get_class_list(background);
+
+        if (this.matching_background(slideClass, bgClass))
+          this.remove_class(background, "hidden");
+        else
+          this.add_class(background, "hidden");
+      }
+    }
+    else // forcibly hide all backgrounds
+      this.hide_backgrounds();
+  },
+
+  hide_backgrounds: function () {
+    for (var i = 0; i < this.backgrounds.length; i++)
+    {
+      background = this.backgrounds[i];
+      this.add_class(background, "hidden");
+    }
+  },
+
+  // compare classes for slide and background
+  matching_background: function (slideClass, bgClass) {
+    var i, count, pattern, result;
+
+    // define pattern as regular expression
+    pattern = /\w+/g;
+
+    // check background class names
+    result = bgClass.match(pattern);
+
+    for (i = count = 0; i < result.length; i++)
+    {
+      if (result[i] == "hidden")
+        continue;
+
+      if (result[i] == "background")
+	continue;
+
+      ++count;
+    }
+
+    if (count == 0)  // default match
+      return true;
+
+    // check for matches and place result in array
+    result = slideClass.match(pattern);
+
+    // now check if desired name is present for background
+    for (i = count = 0; i < result.length; i++)
+    {
+      if (result[i] == "hidden")
+        continue;
+
+      if (this.has_token(bgClass, result[i]))
+        return true;
+    }
+
+    return false;
+  },
+
+  resized: function () {
+     var width = 0;
+
+     if ( typeof( window.innerWidth ) == 'number' )
+       width = window.innerWidth;  // Non IE browser
+     else if (document.documentElement && document.documentElement.clientWidth)
+       width = document.documentElement.clientWidth;  // IE6
+     else if (document.body && document.body.clientWidth)
+       width = document.body.clientWidth; // IE4
+
+     var height = 0;
+
+     if ( typeof( window.innerHeight ) == 'number' )
+       height = window.innerHeight;  // Non IE browser
+     else if (document.documentElement && document.documentElement.clientHeight)
+       height = document.documentElement.clientHeight;  // IE6
+     else if (document.body && document.body.clientHeight)
+       height = document.body.clientHeight; // IE4
+
+     if (height && (width/height > 1.05*1024/768))
+     {
+       width = height * 1024.0/768;
+     }
+
+     // IE fires onresize even when only font size is changed!
+     // so we do a check to avoid blocking < and > actions
+     if (width != w3c_slidy.last_width || height != w3c_slidy.last_height)
+     {
+       if (width >= 1100)
+         w3c_slidy.size_index = 5;    // 4
+       else if (width >= 1000)
+         w3c_slidy.size_index = 4;    // 3
+       else if (width >= 800)
+         w3c_slidy.size_index = 3;    // 2
+       else if (width >= 600)
+         w3c_slidy.size_index = 2;    // 1
+       else if (width)
+         w3c_slidy.size_index = 0;
+
+       // add in font size adjustment from meta element e.g.
+       // <meta name="font-size-adjustment" content="-2" />
+       // useful when slides have too much content ;-)
+
+       if (0 <= w3c_slidy.size_index + w3c_slidy.size_adjustment &&
+             w3c_slidy.size_index + w3c_slidy.size_adjustment < w3c_slidy.sizes.length)
+         w3c_slidy.size_index = w3c_slidy.size_index + w3c_slidy.size_adjustment;
+
+       // enables cross browser use of relative width/height
+       // on object elements for use with SVG and Flash media
+       w3c_slidy.adjust_object_dimensions(width, height);
+
+       if (document.body.style.fontSize != w3c_slidy.sizes[w3c_slidy.size_index])
+       {
+         document.body.style.fontSize = w3c_slidy.sizes[w3c_slidy.size_index];
+       }
+
+       w3c_slidy.last_width = width;
+       w3c_slidy.last_height = height;
+
+       // force reflow to work around Mozilla bug
+       if (w3c_slidy.ns_pos)
+       {
+         var slide = w3c_slidy.slides[w3c_slidy.slide_number];
+         w3c_slidy.hide_slide(slide);
+         w3c_slidy.show_slide(slide);
+       }
+
+       // force correct positioning of toolbar
+       w3c_slidy.refresh_toolbar(200);
+     }
+  },
+
+  scrolled: function () {
+    if (w3c_slidy.toolbar && !w3c_slidy.ns_pos && !w3c_slidy.ie7)
+    {
+      w3c_slidy.hack_offset = w3c_slidy.scroll_x_offset();
+      // hide toolbar
+      w3c_slidy.toolbar.style.display = "none";
+
+      // make it reappear later
+      if (w3c_slidy.scrollhack == 0 && !w3c_slidy.view_all)
+      {
+        setTimeout(function () {w3c_slidy.show_toolbar(); }, 1000);
+        w3c_slidy.scrollhack = 1;
+      }
+    }
+  },
+
+  hide_toolbar: function () {
+    w3c_slidy.add_class(w3c_slidy.toolbar, "hidden");
+    window.focus();
+  },
+
+  // used to ensure IE refreshes toolbar in correct position
+  refresh_toolbar: function (interval) {
+    if (!w3c_slidy.ns_pos && !w3c_slidy.ie7)
+    {
+      w3c_slidy.hide_toolbar();
+      setTimeout(function () {w3c_slidy.show_toolbar(); }, interval);
+    }
+  },
+
+  // restores toolbar after short delay
+  show_toolbar: function () {
+    if (w3c_slidy.want_toolbar)
+    {
+      w3c_slidy.toolbar.style.display = "block";
+
+      if (!w3c_slidy.ns_pos)
+      {
+        // adjust position to allow for scrolling
+        var xoffset = w3c_slidy.scroll_x_offset();
+        w3c_slidy.toolbar.style.left = xoffset;
+        w3c_slidy.toolbar.style.right = xoffset;
+
+        // determine vertical scroll offset
+        //var yoffset = scrollYOffset();
+
+        // bottom is doc height - window height - scroll offset
+        //var bottom = documentHeight() - lastHeight - yoffset
+
+        //if (yoffset > 0 || documentHeight() > lastHeight)
+        //   bottom += 16;  // allow for height of scrollbar
+
+        w3c_slidy.toolbar.style.bottom = 0; //bottom;
+      }
+
+      w3c_slidy.remove_class(w3c_slidy.toolbar, "hidden");
+    }
+
+    w3c_slidy.scrollhack = 0;
+
+
+    // set the keyboard focus to the help link on the
+    // toolbar to ensure that document has the focus
+    // IE doesn't always work with window.focus()
+    // and this hack has benefit of Enter for help
+
+    try
+    {
+      if (!w3c_slidy.opera)
+        w3c_slidy.help_anchor.focus();
+    }
+    catch (e)
+    {
+    }
+  },
+
+// invoked via F key
+  toggle_toolbar: function () {
+    if (!w3c_slidy.view_all)
+    {
+      if (w3c_slidy.has_class(w3c_slidy.toolbar, "hidden"))
+      {
+        w3c_slidy.remove_class(w3c_slidy.toolbar, "hidden")
+        w3c_slidy.want_toolbar = 1;
+      }
+      else
+      {
+        w3c_slidy.add_class(w3c_slidy.toolbar, "hidden")
+        w3c_slidy.want_toolbar = 0;
+      }
+    }
+  },
+
+  scroll_x_offset: function () {
+    if (window.pageXOffset)
+      return self.pageXOffset;
+
+    if (document.documentElement &&
+             document.documentElement.scrollLeft)
+      return document.documentElement.scrollLeft;
+
+    if (document.body)
+      return document.body.scrollLeft;
+
+    return 0;
+  },
+
+  scroll_y_offset: function () {
+    if (window.pageYOffset)
+      return self.pageYOffset;
+
+    if (document.documentElement &&
+             document.documentElement.scrollTop)
+      return document.documentElement.scrollTop;
+
+    if (document.body)
+      return document.body.scrollTop;
+
+    return 0;
+  },
+
+  // looking for a way to determine height of slide content
+  // the slide itself is set to the height of the window
+  optimize_font_size: function () {
+    var slide = w3c_slidy.slides[w3c_slidy.slide_number];
+
+    //var dh = documentHeight(); //getDocHeight(document);
+    var dh = slide.scrollHeight;
+    var wh = getWindowHeight();
+    var u = 100 * dh / wh;
+
+    alert("window utilization = " + u + "% (doc "
+      + dh + " win " + wh + ")");
+  },
+
+  // from document object
+  get_doc_height: function (doc) {
+    if (!doc)
+      doc = document;
+
+    if (doc && doc.body && doc.body.offsetHeight)
+      return doc.body.offsetHeight;  // ns/gecko syntax
+
+    if (doc && doc.body && doc.body.scrollHeight)
+      return doc.body.scrollHeight;
+
+    alert("couldn't determine document height");
+  },
+
+  get_window_height: function () {
+    if ( typeof( window.innerHeight ) == 'number' )
+      return window.innerHeight;  // Non IE browser
+
+    if (document.documentElement && document.documentElement.clientHeight)
+      return document.documentElement.clientHeight;  // IE6
+
+    if (document.body && document.body.clientHeight)
+      return document.body.clientHeight; // IE4
+  },
+
+  document_height: function () {
+    var sh, oh;
+
+    sh = document.body.scrollHeight;
+    oh = document.body.offsetHeight;
+
+    if (sh && oh)
+    {
+      return (sh > oh ? sh : oh);
+    }
+
+    // no idea!
+    return 0;
+  },
+
+  smaller: function () {
+    if (w3c_slidy.size_index > 0)
+    {
+      --w3c_slidy.size_index;
+    }
+
+    w3c_slidy.toolbar.style.display = "none";
+    document.body.style.fontSize = w3c_slidy.sizes[w3c_slidy.size_index];
+    var slide = w3c_slidy.slides[w3c_slidy.slide_number];
+    w3c_slidy.hide_slide(slide);
+    w3c_slidy.show_slide(slide);
+    setTimeout(function () {w3c_slidy.show_toolbar(); }, 50);
+  },
+
+  bigger: function () {
+    if (w3c_slidy.size_index < w3c_slidy.sizes.length - 1)
+    {
+      ++w3c_slidy.size_index;
+    }
+
+    w3c_slidy.toolbar.style.display = "none";
+    document.body.style.fontSize = w3c_slidy.sizes[w3c_slidy.size_index];
+    var slide = w3c_slidy.slides[w3c_slidy.slide_number];
+    w3c_slidy.hide_slide(slide);
+    w3c_slidy.show_slide(slide);
+    setTimeout(function () {w3c_slidy.show_toolbar(); }, 50);
+  },
+
+  // enables cross browser use of relative width/height
+  // on object elements for use with SVG and Flash media
+  // with thanks to Ivan Herman for the suggestion
+  adjust_object_dimensions: function (width, height) {
+    for( var i = 0; i < w3c_slidy.objects.length; i++ )
+    {
+      var obj = this.objects[i];
+      var mimeType = obj.getAttribute("type");
+
+      if (mimeType == "image/svg+xml" || mimeType == "application/x-shockwave-flash")
+      {
+        if ( !obj.initialWidth )
+          obj.initialWidth = obj.getAttribute("width");
+
+        if ( !obj.initialHeight )
+          obj.initialHeight = obj.getAttribute("height");
+
+        if ( obj.initialWidth && obj.initialWidth.charAt(obj.initialWidth.length-1) == "%" )
+        {
+          var w = parseInt(obj.initialWidth.slice(0, obj.initialWidth.length-1));
+          var newW = width * (w/100.0);
+          obj.setAttribute("width",newW);
+        }
+
+        if ( obj.initialHeight &&
+             obj.initialHeight.charAt(obj.initialHeight.length-1) == "%" )
+        {
+          var h = parseInt(obj.initialHeight.slice(0, obj.initialHeight.length-1));
+          var newH = height * (h/100.0);
+          obj.setAttribute("height", newH);
+        }
+      }
+    }
+  },
+
+  // needed for Opera to inhibit default behavior
+  // since Opera delivers keyPress even if keyDown
+  // was cancelled
+  key_press: function (event) {
+    if (!event)
+      event = window.event;
+
+    if (!w3c_slidy.key_wanted)
+      return w3c_slidy.cancel(event);
+
+    return true;
+  },
+
+  //  See e.g. http://www.quirksmode.org/js/events/keys.html for keycodes
+  key_down: function (event) {
+    var key;
+
+    w3c_slidy.key_wanted = true;
+
+    if (!event)
+      event = window.event;
+
+    // kludge around NS/IE differences
+    if (window.event)
+      key = window.event.keyCode;
+    else if (event.which)
+      key = event.which;
+    else
+      return true; // Yikes! unknown browser
+
+    // ignore event if key value is zero
+    // as for alt on Opera and Konqueror
+    if (!key)
+       return true;
+
+    // check for concurrent control/command/alt key
+    // but are these only present on mouse events?
+
+    if (event.ctrlKey || event.altKey || event.metaKey)
+       return true;
+
+    // dismiss table of contents if visible
+    if (w3c_slidy.is_shown_toc() && key != 9 && key != 16 && key != 38 && key != 40)
+    {
+      w3c_slidy.hide_table_of_contents();
+
+      if (key == 27 || key == 84 || key == 67)
+        return w3c_slidy.cancel(event);
+    }
+
+    if (key == 34) // Page Down
+    {
+      if (w3c_slidy.view_all)
+        return true;
+
+      w3c_slidy.next_slide(false);
+      return w3c_slidy.cancel(event);
+    }
+    else if (key == 33) // Page Up
+    {
+      if (w3c_slidy.view_all)
+        return true;
+
+      w3c_slidy.previous_slide(false);
+      return w3c_slidy.cancel(event);
+    }
+    else if (key == 32) // space bar
+    {
+      w3c_slidy.next_slide(true);
+      return w3c_slidy.cancel(event);
+    }
+    else if (key == 37) // Left arrow
+    {
+      w3c_slidy.previous_slide(!event.shiftKey);
+      return w3c_slidy.cancel(event);
+    }
+    else if (key == 36) // Home
+    {
+      w3c_slidy.first_slide();
+      return w3c_slidy.cancel(event);
+    }
+    else if (key == 35) // End
+    {
+      w3c_slidy.last_slide();
+      return w3c_slidy.cancel(event);
+    }
+    else if (key == 39) // Right arrow
+    {
+      w3c_slidy.next_slide(!event.shiftKey);
+      return w3c_slidy.cancel(event);
+    }
+    else if (key == 13) // Enter
+    {
+      if (w3c_slidy.outline)
+      {
+        if (w3c_slidy.outline.visible)
+          w3c_slidy.fold(w3c_slidy.outline);
+        else
+          w3c_slidy.unfold(w3c_slidy.outline);
+
+       return w3c_slidy.cancel(event);
+      }
+    }
+    else if (key == 188)  // < for smaller fonts
+    {
+      w3c_slidy.smaller();
+      return w3c_slidy.cancel(event);
+    }
+    else if (key == 190)  // > for larger fonts
+    {
+      w3c_slidy.bigger();
+      return w3c_slidy.cancel(event);
+    }
+    else if (key == 189 || key == 109)  // - for smaller fonts
+    {
+      w3c_slidy.smaller();
+      return w3c_slidy.cancel(event);
+    }
+    else if (key == 187 || key == 191 || key == 107)  // = +  for larger fonts
+    {
+      w3c_slidy.bigger();
+      return w3c_slidy.cancel(event);
+    }
+    else if (key == 83)  // S for smaller fonts
+    {
+      w3c_slidy.smaller();
+      return w3c_slidy.cancel(event);
+    }
+    else if (key == 66)  // B for larger fonts
+    {
+      w3c_slidy.bigger();
+      return w3c_slidy.cancel(event);
+    }
+    else if (key == 90)  // Z for last slide
+    {
+      w3c_slidy.last_slide();
+      return w3c_slidy.cancel(event);
+    }
+    else if (key == 70)  // F for toggle toolbar
+    {
+      w3c_slidy.toggle_toolbar();
+      return w3c_slidy.cancel(event);
+    }
+    else if (key == 65)  // A for toggle view single/all slides
+    {
+      w3c_slidy.toggle_view();
+      return w3c_slidy.cancel(event);
+    }
+    else if (key == 75)  // toggle action of left click for next page
+    {
+      w3c_slidy.mouse_click_enabled = !w3c_slidy.mouse_click_enabled;
+      var alert_msg = (w3c_slidy.mouse_click_enabled ?
+                "enabled" : "disabled") +  " mouse click advance";
+
+      alert(alert_msg.localize());
+      return w3c_slidy.cancel(event);
+    }
+    else if (key == 84 || key == 67)  // T or C for table of contents
+    {
+      if (w3c_slidy.toc)
+        w3c_slidy.toggle_table_of_contents();
+
+      return w3c_slidy.cancel(event);
+    }
+    else if (key == 72) // H for help
+    {
+      window.location = w3c_slidy.help_page;
+      return w3c_slidy.cancel(event);
+    }
+    //else alert("key code is "+ key);
+
+    return true;
+  },
+
+  // safe for both text/html and application/xhtml+xml
+  create_element: function (name) {
+    if (this.xhtml && (typeof document.createElementNS != 'undefined'))
+      return document.createElementNS("http://www.w3.org/1999/xhtml", name)
+
+    return document.createElement(name);
+  },
+
+  get_element_style: function (elem, IEStyleProp, CSSStyleProp) {
+    if (elem.currentStyle)
+    {
+      return elem.currentStyle[IEStyleProp];
+    }
+    else if (window.getComputedStyle)
+    {
+      var compStyle = window.getComputedStyle(elem, "");
+      return compStyle.getPropertyValue(CSSStyleProp);
+    }
+    return "";
+  },
+
+  // the string str is a whitespace separated list of tokens
+  // test if str contains a particular token, e.g. "slide"
+  has_token: function (str, token) {
+    if (str)
+    {
+      // define pattern as regular expression
+      var pattern = /\w+/g;
+
+      // check for matches
+      // place result in array
+      var result = str.match(pattern);
+
+      // now check if desired token is present
+      for (var i = 0; i < result.length; i++)
+      {
+        if (result[i] == token)
+          return true;
+      }
+    }
+
+    return false;
+  },
+
+  get_class_list: function (element) {
+    if (typeof element.className != 'undefined')
+      return element.className;
+
+    return element.getAttribute("class");
+  },
+
+  has_class: function (element, name) {
+    if (element.nodeType != 1)
+      return false;
+
+    var regexp = new RegExp("(^| )" + name + "\W*");
+
+    if (typeof element.className != 'undefined')
+      return regexp.test(element.className);
+
+    return regexp.test(element.getAttribute("class"));
+  },
+
+  remove_class: function (element, name) {
+    var regexp = new RegExp("(^| )" + name + "\W*");
+    var clsval = "";
+
+    if (typeof element.className != 'undefined')
+    {
+      clsval = element.className;
+
+      if (clsval)
+      {
+        clsval = clsval.replace(regexp, "");
+        element.className = clsval;
+      }
+    }
+    else
+    {
+      clsval = element.getAttribute("class");
+
+      if (clsval)
+      {
+        clsval = clsval.replace(regexp, "");
+        element.setAttribute("class", clsval);
+      }
+    }
+  },
+
+  add_class: function (element, name) {
+    if (!this.has_class(element, name))
+    {
+      if (typeof element.className != 'undefined')
+        element.className += " " + name;
+      else
+      {
+        var clsval = element.getAttribute("class");
+        clsval = clsval ? clsval + " " + name : name;
+        element.setAttribute("class", clsval);
+      }
+    }
+  },
+
+  // HTML elements that can be used with class="incremental"
+  // note that you can also put the class on containers like
+  // up, ol, dl, and div to make their contents appear
+  // incrementally. Upper case is used since this is what
+  // browsers report for HTML node names (text/html).
+  incremental_elements: null,
+  okay_for_incremental: function (name) {
+    if (!this.incremental_elements)
+    {
+      var inclist = new Array();
+      inclist["p"] = true;
+      inclist["pre"] = true;
+      inclist["li"] = true;
+      inclist["blockquote"] = true;
+      inclist["dt"] = true;
+      inclist["dd"] = true;
+      inclist["h2"] = true;
+      inclist["h3"] = true;
+      inclist["h4"] = true;
+      inclist["h5"] = true;
+      inclist["h6"] = true;
+      inclist["span"] = true;
+      inclist["address"] = true;
+      inclist["table"] = true;
+      inclist["tr"] = true;
+      inclist["th"] = true;
+      inclist["td"] = true;
+      inclist["img"] = true;
+      inclist["object"] = true;
+      this.incremental_elements = inclist;
+    }
+    return this.incremental_elements[name.toLowerCase()];
+  },
+
+  next_incremental_item: function (node) {
+    var br = this.is_xhtml ? "br" : "BR";
+    var slide = w3c_slidy.slides[w3c_slidy.slide_number];
+
+    for (;;)
+    {
+      node = w3c_slidy.next_node(slide, node);
+
+      if (node == null || node.parentNode == null)
+        break;
+
+      if (node.nodeType == 1)  // ELEMENT
+      {
+        if (node.nodeName == br)
+          continue;
+
+        if (w3c_slidy.has_class(node, "incremental")
+             && w3c_slidy.okay_for_incremental(node.nodeName))
+          return node;
+
+        if (w3c_slidy.has_class(node.parentNode, "incremental")
+             && !w3c_slidy.has_class(node, "non-incremental"))
+          return node;
+      }
+    }
+
+    return node;
+  },
+
+  previous_incremental_item: function (node) {
+    var br = this.is_xhtml ? "br" : "BR";
+    var slide = w3c_slidy.slides[w3c_slidy.slide_number];
+
+    for (;;)
+    {
+      node = w3c_slidy.previous_node(slide, node);
+
+      if (node == null || node.parentNode == null)
+        break;
+
+      if (node.nodeType == 1)
+      {
+        if (node.nodeName == br)
+          continue;
+
+        if (w3c_slidy.has_class(node, "incremental")
+             && w3c_slidy.okay_for_incremental(node.nodeName))
+          return node;
+
+        if (w3c_slidy.has_class(node.parentNode, "incremental")
+             && !w3c_slidy.has_class(node, "non-incremental"))
+          return node;
+      }
+    }
+
+    return node;
+  },
+
+  // set visibility for all elements on current slide with
+  // a parent element with attribute class="incremental"
+  set_visibility_all_incremental: function (value) {
+    var node = this.next_incremental_item(null);
+
+    if (value == "hidden")
+    {
+      while (node)
+      {
+        w3c_slidy.add_class(node, "invisible");
+        node = w3c_slidy.next_incremental_item(node);
+      }
+    }
+    else // value == "visible"
+    {
+      while (node)
+      {
+        w3c_slidy.remove_class(node, "invisible");
+        node = w3c_slidy.next_incremental_item(node);
+      }
+    }
+  },
+
+  // reveal the next hidden item on the slide
+  // node is null or the node that was last revealed
+  reveal_next_item: function (node) {
+    node = w3c_slidy.next_incremental_item(node);
+
+    if (node && node.nodeType == 1)  // an element
+      w3c_slidy.remove_class(node, "invisible");
+
+    return node;
+  },
+
+  // exact inverse of revealNextItem(node)
+  hide_previous_item: function (node) {
+    if (node && node.nodeType == 1)  // an element
+      w3c_slidy.add_class(node, "invisible");
+
+    return this.previous_incremental_item(node);
+  },
+
+  // left to right traversal of root's content
+  next_node: function (root, node) {
+    if (node == null)
+      return root.firstChild;
+
+    if (node.firstChild)
+      return node.firstChild;
+
+    if (node.nextSibling)
+      return node.nextSibling;
+
+    for (;;)
+    {
+      node = node.parentNode;
+
+      if (!node || node == root)
+        break;
+
+      if (node && node.nextSibling)
+        return node.nextSibling;
+    }
+
+    return null;
+  },
+
+  // right to left traversal of root's content
+  previous_node: function (root, node) {
+    if (node == null)
+    {
+      node = root.lastChild;
+
+      if (node)
+      {
+        while (node.lastChild)
+          node = node.lastChild;
+      }
+
+      return node;
+    }
+
+    if (node.previousSibling)
+    {
+      node = node.previousSibling;
+
+      while (node.lastChild)
+        node = node.lastChild;
+
+      return node;
+    }
+
+    if (node.parentNode != root)
+      return node.parentNode;
+
+    return null;
+  },
+
+  previous_sibling_element: function (el) {
+    el = el.previousSibling;
+
+    while (el && el.nodeType != 1)
+      el = el.previousSibling;
+
+    return el;
+  },
+
+  next_sibling_element: function (el) {
+    el = el.nextSibling;
+
+    while (el && el.nodeType != 1)
+      el = el.nextSibling;
+
+    return el;
+  },
+
+  first_child_element: function (el) {
+    var node;
+
+    for (node = el.firstChild; node; node = node.nextSibling)
+    {
+      if (node.nodeType == 1)
+        break;
+    }
+
+    return node;
+  },
+
+  first_tag: function (element, tag) {
+    var node;
+
+    if (!this.is_xhtml)
+      tag = tag.toUpperCase();
+
+    for (node = element.firstChild; node; node = node.nextSibling)
+    {
+      if (node.nodeType == 1 && node.nodeName == tag)
+        break;
+    }
+
+    return node;
+  },
+
+  hide_selection: function () {
+    if (window.getSelection) // Firefox, Chromium, Safari, Opera
+    {
+      var selection = window.getSelection();
+
+      if (selection.rangeCount > 0)
+      {
+        var range = selection.getRangeAt(0);
+        range.collapse (false);
+      }
+    }
+    else // Internet Explorer
+    {
+      var textRange = document.selection.createRange ();
+      textRange.collapse (false);
+    }
+  },
+
+  get_selected_text: function () {
+    try
+    {
+      if (window.getSelection)
+        return window.getSelection().toString();
+
+      if (document.getSelection)
+        return document.getSelection().toString();
+
+      if (document.selection)
+        return document.selection.createRange().text;
+    }
+    catch (e)
+    {
+    }
+
+    return "";
+  },
+
+  // make note of length of selected text
+  // as this evaluates to zero in click event
+  mouse_button_up: function (e) {
+    w3c_slidy.selected_text_len = w3c_slidy.get_selected_text().length;
+  },
+
+  // right mouse button click is reserved for context menus
+  // it is more reliable to detect rightclick than leftclick
+  mouse_button_click: function (e) {
+    var rightclick = false;
+    var leftclick = false;
+    var middleclick = false;
+    var target;
+
+    if (!e)
+      var e = window.event;
+
+    if (e.target)
+      target = e.target;
+    else if (e.srcElement)
+      target = e.srcElement;
+
+    // work around Safari bug
+    if (target.nodeType == 3)
+      target = target.parentNode;
+
+    if (e.which) // all browsers except IE
+    {
+      leftclick = (e.which == 1);
+      middleclick = (e.which == 2);
+      rightclick = (e.which == 3);
+    }
+    else if (e.button)
+    {
+      // Konqueror gives 1 for left, 4 for middle
+      // IE6 gives 0 for left and not 1 as I expected
+
+      if (e.button == 4)
+        middleclick = true;
+
+      // all browsers agree on 2 for right button
+      rightclick = (e.button == 2);
+    }
+    else leftclick = true;
+/*
+    alert("you clicked over a " + target.nodeName + " element\n" +
+    "w3c_slidy.mouse_click_enabled = " + w3c_slidy.mouse_click_enabled + "\n" +
+    "leftclick = " + leftclick + "\n" +
+    "selected text length = " + w3c_slidy.selected_text_len);
+    //alert("selected text length = " + w3c_slidy.selected_text_len);
+*/
+    if (w3c_slidy.selected_text_len > 0)
+    {
+      w3c_slidy.stop_propagation(e);
+      e.cancel = true;
+      e.returnValue = false;
+      return false;
+    }
+
+    // dismiss table of contents
+    w3c_slidy.hide_table_of_contents();
+
+    // check if target is something that probably want's clicks
+    // e.g. a, embed, object, input, textarea, select, option
+    var tag = target.nodeName.toLowerCase();
+
+    if (w3c_slidy.mouse_click_enabled && leftclick &&
+        tag != "a" &&
+        tag != "embed" &&
+        tag != "object" &&
+        tag != "video" &&
+        tag != "input" &&
+        tag != "textarea" &&
+        tag != "select" &&
+        tag != "option" &&
+        !target.onclick)
+    {
+      w3c_slidy.next_slide(true);
+      w3c_slidy.stop_propagation(e);
+      e.cancel = true;
+      e.returnValue = false;
+      return false;
+    }
+  },
+
+  get_key: function (e)
+  {
+    var key;
+
+    // kludge around NS/IE differences
+    if (typeof window.event != "undefined")
+      key = window.event.keyCode;
+    else if (e.which)
+      key = e.which;
+
+    return key;
+  },
+
+  get_target: function (e) {
+    var target;
+
+    if (!e)
+      e = window.event;
+
+    if (e.target)
+      target = e.target;
+    else if (e.srcElement)
+      target = e.srcElement;
+
+    if (target.nodeType != 1)
+      target = target.parentNode;
+
+    return target;
+  },
+
+  // does display property provide correct defaults?
+  is_block: function (elem) {
+    var tag = elem.nodeName.toLowerCase();
+
+    return tag == "ol" || tag == "ul" || tag == "p" ||
+           tag == "li" || tag == "table" || tag == "pre" ||
+           tag == "h1" || tag == "h2" || tag == "h3" ||
+           tag == "h4" || tag == "h5" || tag == "h6" ||
+           tag == "blockquote" || tag == "address";
+  },
+
+  add_listener: function (element, event, handler) {
+    if (window.addEventListener)
+      element.addEventListener(event, handler, false);
+    else
+      element.attachEvent("on"+event, handler);
+  },
+
+  // used to prevent event propagation from field controls
+  stop_propagation: function (event) {
+    event = event ? event : window.event;
+    event.cancelBubble = true;  // for IE
+
+    if (event.stopPropagation)
+      event.stopPropagation();
+
+    return true;
+  },
+
+  cancel: function (event) {
+    if (event)
+    {
+       event.cancel = true;
+       event.returnValue = false;
+
+      if (event.preventDefault)
+        event.preventDefault();
+    }
+
+    w3c_slidy.key_wanted = false;
+    return false;
+  }
+};
+
+// for each language define an associative array
+// and also the help text which is longer
+
+var w3c_slidy_i18n = {
+  strings_es: {
+    "slide":"pág.",
+    "help?":"Ayuda",
+    "contents?":"Índice",
+    "table of contents":"tabla de contenidos",
+    "Table of Contents":"Tabla de Contenidos",
+    "restart presentation":"Reiniciar presentación",
+    "restart?":"Inicio"
+  },
+  help_es:
+    "Utilice el ratón, barra espaciadora, teclas Izda/Dcha, " +
+    "o Re pág y Av pág. Use S y B para cambiar el tamaño de fuente.",
+
+  strings_ca: {
+    "slide":"pàg..",
+    "help?":"Ajuda",
+    "contents?":"Índex",
+    "table of contents":"taula de continguts",
+    "Table of Contents":"Taula de Continguts",
+    "restart presentation":"Reiniciar presentació",
+    "restart?":"Inici"
+  },
+  help_ca:
+    "Utilitzi el ratolí, barra espaiadora, tecles Esq./Dta. " +
+    "o Re pàg y Av pàg. Usi S i B per canviar grandària de font.",
+
+  strings_cs: {
+    "slide":"snímek",
+    "help?":"nápověda",
+    "contents?":"obsah",
+    "table of contents":"obsah prezentace",
+    "Table of Contents":"Obsah prezentace",
+    "restart presentation":"znovu spustit prezentaci",
+    "restart?":"restart"
+  },
+  help_cs:
+    "Prezentaci můžete procházet pomocí kliknutí myši, mezerníku, " +
+    "šipek vlevo a vpravo nebo kláves PageUp a PageDown. Písmo se " +
+    "dá zvětšit a zmenšit pomocí kláves B a S.",
+
+  strings_nl: {
+    "slide":"pagina",
+    "help?":"Help?",
+    "contents?":"Inhoud?",
+    "table of contents":"inhoudsopgave",
+    "Table of Contents":"Inhoudsopgave",
+    "restart presentation":"herstart presentatie",
+    "restart?":"Herstart?"
+  },
+  help_nl:
+     "Navigeer d.m.v. het muis, spatiebar, Links/Rechts toetsen, " +
+     "of PgUp en PgDn. Gebruik S en B om de karaktergrootte te veranderen.",
+
+  strings_de: {
+    "slide":"Seite",
+    "help?":"Hilfe",
+    "contents?":"Übersicht",
+    "table of contents":"Inhaltsverzeichnis",
+    "Table of Contents":"Inhaltsverzeichnis",
+    "restart presentation":"Präsentation neu starten",
+    "restart?":"Neustart"
+  },
+  help_de:
+    "Benutzen Sie die Maus, Leerschlag, die Cursortasten links/rechts oder " +
+    "Page up/Page Down zum Wechseln der Seiten und S und B für die Schriftgrösse.",
+
+  strings_pl: {
+    "slide":"slajd",
+    "help?":"pomoc?",
+    "contents?":"spis treści?",
+    "table of contents":"spis treści",
+    "Table of Contents":"Spis Treści",
+    "restart presentation":"Restartuj prezentację",
+    "restart?":"restart?"
+  },
+  help_pl:
+    "Zmieniaj slajdy klikając myszą, naciskając spację, strzałki lewo/prawo" +
+    "lub PgUp / PgDn. Użyj klawiszy S i B, aby zmienić rozmiar czczionki.",
+
+  strings_fr: {
+    "slide":"page",
+    "help?":"Aide",
+    "contents?":"Index",
+    "table of contents":"table des matières",
+    "Table of Contents":"Table des matières",
+    "restart presentation":"Recommencer l'exposé",
+    "restart?":"Début"
+  },
+  help_fr:
+    "Naviguez avec la souris, la barre d'espace, les flèches " +
+    "gauche/droite ou les touches Pg Up, Pg Dn. Utilisez " +
+    "les touches S et B pour modifier la taille de la police.",
+
+  strings_hu: {
+    "slide":"oldal",
+    "help?":"segítség",
+    "contents?":"tartalom",
+    "table of contents":"tartalomjegyzék",
+    "Table of Contents":"Tartalomjegyzék",
+    "restart presentation":"bemutató újraindítása",
+    "restart?":"újraindítás"
+  },
+  help_hu:
+    "Az oldalak közti lépkedéshez kattintson az egérrel, vagy " +
+    "használja a szóköz, a bal, vagy a jobb nyíl, illetve a Page Down, " +
+    "Page Up billentyűket. Az S és a B billentyűkkel változtathatja " +
+    "a szöveg méretét.",
+
+  strings_it: {
+    "slide":"pag.",
+    "help?":"Aiuto",
+    "contents?":"Indice",
+    "table of contents":"indice",
+    "Table of Contents":"Indice",
+    "restart presentation":"Ricominciare la presentazione",
+    "restart?":"Inizio"
+  },
+  help_it:
+    "Navigare con mouse, barra spazio, frecce sinistra/destra o " +
+    "PgUp e PgDn. Usare S e B per cambiare la dimensione dei caratteri.",
+
+  strings_el: {
+    "slide":"σελίδα",
+    "help?":"βοήθεια;",
+    "contents?":"περιεχόμενα;",
+    "table of contents":"πίνακας περιεχομένων",
+    "Table of Contents":"Πίνακας Περιεχομένων",
+    "restart presentation":"επανεκκίνηση παρουσίασης",
+    "restart?":"επανεκκίνηση;"
+  },
+  help_el:
+    "Πλοηγηθείτε με το κλίκ του ποντικιού, το space, τα βέλη αριστερά/δεξιά, " +
+    "ή Page Up και Page Down. Χρησιμοποιήστε τα πλήκτρα S και B για να αλλάξετε " +
+    "το μέγεθος της γραμματοσειράς.",
+
+  strings_ja: {
+    "slide":"スライド",
+    "help?":"ヘルプ",
+    "contents?":"目次",
+    "table of contents":"目次を表示",
+    "Table of Contents":"目次",
+    "restart presentation":"最初から再生",
+    "restart?":"最初から"
+  },
+  help_ja:
+     "マウス左クリック ・ スペース ・ 左右キー " +
+     "または Page Up ・ Page Downで操作， S ・ Bでフォントサイズ変更",
+
+  strings_zh: {
+    "slide":"幻灯片",
+    "help?":"帮助?",
+    "contents?":"内容?",
+    "table of contents":"目录",
+    "Table of Contents":"目录",
+    "restart presentation":"重新启动展示",
+    "restart?":"重新启动?"
+  },
+  help_zh:
+    "用鼠标点击, 空格条, 左右箭头, Pg Up 和 Pg Dn 导航. " +
+    "用 S, B 改变字体大小.",
+
+  strings_ru: {
+    "slide":"слайд",
+    "help?":"помощь?",
+    "contents?":"содержание?",
+    "table of contents":"оглавление",
+    "Table of Contents":"Оглавление",
+    "restart presentation":"перезапустить презентацию",
+    "restart?":"перезапуск?"
+  },
+  help_ru:
+    "Перемещайтесь кликая мышкой, используя клавишу пробел, стрелки" +
+    "влево/вправо или Pg Up и Pg Dn. Клавиши S и B меняют размер шрифта.",
+
+  strings_sv: {
+    "slide":"sida",
+    "help?":"hjälp",
+    "contents?":"innehåll",
+    "table of contents":"innehållsförteckning",
+    "Table of Contents":"Innehållsförteckning",
+    "restart presentation":"visa presentationen från början",
+    "restart?":"börja om"
+  },
+  help_sv:
+    "Bläddra med ett klick med vänstra musknappen, mellanslagstangenten, " +
+    "vänster- och högerpiltangenterna eller tangenterna Pg Up, Pg Dn. " +
+    "Använd tangenterna S och B för att ändra textens storlek.",
+
+// each such language array is declared in the localize array
+// which is set on string prototype and used as in "foo".localize();
+  localize: {
+    "es":this.strings_es,
+    "ca":this.strings_ca,
+    "cs":this.strings_cs,
+    "nl":this.strings_nl,
+    "de":this.strings_de,
+    "pl":this.strings_pl,
+    "fr":this.strings_fr,
+    "hu":this.strings_hu,
+    "it":this.strings_it,
+    "el":this.strings_el,
+    "jp":this.strings_ja,
+    "zh":this.strings_zh,
+    "ru":this.strings_ru,
+    "sv":this.strings_sv
+  },
+
+  init: function () {
+    var i18n = w3c_slidy_i18n;
+    var help_text = w3c_slidy.help_text;
+    i18n.strings_es[help_text] = i18n.help_es;
+    i18n.strings_ca[help_text] = i18n.help_ca;
+    i18n.strings_cs[help_text] = i18n.help_cs;
+    i18n.strings_nl[help_text] = i18n.help_nl;
+    i18n.strings_de[help_text] = i18n.help_de;
+    i18n.strings_pl[help_text] = i18n.help_pl;
+    i18n.strings_fr[help_text] = i18n.help_fr;
+    i18n.strings_hu[help_text] = i18n.help_hu;
+    i18n.strings_it[help_text] = i18n.help_it;
+    i18n.strings_el[help_text] = i18n.help_el;
+    i18n.strings_ja[help_text] = i18n.help_ja;
+    i18n.strings_zh[help_text] = i18n.help_zh;
+    i18n.strings_ru[help_text] = i18n.help_ru;
+    i18n.strings_sv[help_text] = i18n.help_sv;
+
+    w3c_slidy.lang = document.body.parentNode.getAttribute("lang");
+
+    if (!w3c_slidy.lang)
+      w3c_slidy.lang = document.body.parentNode.getAttribute("xml:lang");
+
+    if (!w3c_slidy.lang)
+      w3c_slidy.lang = "en";
+
+    // add localize method to all strings
+    // for use as in "contents".localize()
+   String.prototype.localize = function() {
+     if (this == "")
+       return this;
+
+     // try full language code, e.g. en-US
+     var s, lookup = w3c_slidy_i18n.localize[w3c_slidy.lang];
+
+     if (lookup)
+     {
+       s = lookup[this];
+
+       if (s)
+        return s;
+     }
+
+     // strip country code suffix, e.g.
+     // try en if undefined for en-US
+     var lg = w3c_slidy.lang.split("-");
+
+     if (lg.length > 1)
+     {
+       lookup = w3c_slidy_i18n.localize[lg[0]];
+
+       if (lookup)
+       {
+         s = lookup[this];
+
+         if (s)
+          return s;
+       }
+     }
+
+     // otherwise string as is
+     return this;
+   };
+  }
+};
+
+// hack for back button behavior
+if (w3c_slidy.ie6 || w3c_slidy.ie7)
+{
+  document.write("<iframe id='historyFrame' " +
+  "src='javascript:\"<html"+"></"+"html>\"' " +
+  "height='1' width='1' " +
+  "style='position:absolute;left:-800px'></iframe>");
+}
+
+// attach event listeners for initialization
+w3c_slidy.set_up();
+
+// hide the slides as soon as body element is available
+// to reduce annoying screen mess before the onload event
+setTimeout(w3c_slidy.hide_slides, 50);
+
+/*]]>*/
+</script>
+</head>
+<body class="article">
+<div id="header" class="slide">
+<h1>Master programming. <br> Лекция №3 (CMake)</h1>
+<span id="author">Игорь Шаронов</span><br />
+<span id="revdate">2021-11-06</span>
 </div>
-<div id="артефакты-сборки" class="slide section level2">
-<h1>Артефакты сборки</h1>
-<ul>
-<li><code>XXX.o</code> — объектный файл, <strong>единица компиляции</strong></li>
-<li><code>libXXX.a</code> — архив объектных файлов, <strong>статическая библиотека</strong></li>
-<li><code>libXXX.so</code> — <strong>динамическая библиотека</strong>, имеет тот же уровень, что и исполнимый файл</li>
-<li><code>libXXX.so.2</code> — динамическая библиотека с версией. Версию обрабатывает загрузчик</li>
-<li>ELF — формат представления исполняемых файлов и динамических библиотек</li>
+</div></div>
+<div class="sect1 slide">
+<h1 id="_основные_понятия">1. Основные понятия</h1>
+
+<div class="sectionbody">
+</div></div>
+<div class="sect2 slide">
+<h1 id="_артефакты_сборки">1.1. Артефакты сборки</h1>
+
+<div class="sectionbody">
+<ul class="">
+<li>
+<span>
+<code>XXX.o</code>&#8201;&#8212;&#8201;объектный файл, <strong>единица компиляции</strong>
+</span>
+</li>
+<li>
+<span>
+<code>libXXX.a</code>&#8201;&#8212;&#8201;архив объектных файлов, <strong>статическая библиотека</strong>
+</span>
+</li>
+<li>
+<span>
+<code>libXXX.so</code>&#8201;&#8212;&#8201;<strong>динамическая библиотека</strong>, имеет тот же уровень, что и исполнимый файл
+</span>
+</li>
+<li>
+<span>
+<code>libXXX.so.2</code>&#8201;&#8212;&#8201;динамическая библиотека с версией.
+Версию обрабатывает загрузчик
+</span>
+</li>
+<li>
+<span>
+ELF&#8201;&#8212;&#8201;формат представления исполняемых файлов и динамических библиотек
+</span>
+</li>
 </ul>
-</div>
-<div id="зависимости-реального-времени" class="slide section level2">
-<h1>Зависимости реального времени</h1>
-<pre class><code>[nix-shell] % ldd /nix/store/9f89z51na7w931aja8lqlmhqny9h16cj-gnugrep-3.1/bin/grep
+</div></div>
+<div class="sect2 slide">
+<h1 id="_зависимости_реального_времени">1.2. Зависимости реального времени</h1>
+
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre><code>[nix-shell] % ldd /nix/store/9f89z51na7w931aja8lqlmhqny9h16cj-gnugrep-3.1/bin/grep
     linux-vdso.so.1 (0x00007ffc5cde0000)
     libpcre.so.1 =&gt; /nix/store/pcre-8.42/lib/libpcre.so.1 (0x00007f48f3e86000)
     libc.so.6 =&gt; /nix/store/glibc-2.27/lib/libc.so.6 (0x00007f48f3ad2000)
     libpthread.so.0 =&gt; /nix/store/glibc-2.27/lib/libpthread.so.0 (0x00007f48f38b3000)
     /nix/store/glibc-2.27/lib/ld-linux-x86-64.so.2 =&gt; /nix/store/glibc-2.27/lib64/ld-linux-x86-64.so.2 (0x00007f48f40f8000)</code></pre>
-<ul>
-<li><code>ld-linux</code> — загрузчик динамических библиотек</li>
-<li><code>LD_LIBRARY_PATH</code> — добавочные пути поиска динамических библиотек</li>
-<li><code>rpath</code> — добавочные пути поиска внутри ELF-файла</li>
-<li><code>LD_PRELOAD</code> — способ перегрузки функции динамической библиотеке</li>
+</div></div>
+<ul class="">
+<li>
+<span>
+<code>ld-linux</code>&#8201;&#8212;&#8201;загрузчик динамических библиотек
+</span>
+</li>
+<li>
+<span>
+<code>LD_LIBRARY_PATH</code>&#8201;&#8212;&#8201;добавочные пути поиска динамических библиотек
+</span>
+</li>
+<li>
+<span>
+<code>rpath</code>&#8201;&#8212;&#8201;добавочные пути поиска внутри ELF-файла
+</span>
+</li>
+<li>
+<span>
+<code>LD_PRELOAD</code>&#8201;&#8212;&#8201;способ перегрузки функции динамической библиотеке
+</span>
+</li>
 </ul>
-</div>
-<div id="этапы-сборки-программ-и-библиотек" class="slide section level2">
-<h1>Этапы сборки программ и библиотек</h1>
-<ol>
-<li>Препроцессинг — замена <code>#define</code>, <code>#include</code> и макросов</li>
-<li>Компиляция — получение объектного кода</li>
-<li>Архивирование (необязательно) — получение статической библиотеки</li>
-<li>Линковка — сборка всего в исполняемый файл или динамическую библиотек</li>
+</div></div>
+<div class="sect2 slide">
+<h1 id="_этапы_сборки_программ_и_библиотек">1.3. Этапы сборки программ и библиотек</h1>
+
+<div class="sectionbody">
+<ol class="arabic">
+<li>
+<span>
+Препроцессинг&#8201;&#8212;&#8201;замена <code>#define</code>, <code>#include</code> и макросов
+</span>
+</li>
+<li>
+<span>
+Компиляция&#8201;&#8212;&#8201;получение объектного кода
+</span>
+</li>
+<li>
+<span>
+Архивирование (необязательно)&#8201;&#8212;&#8201;получение статической библиотеки
+</span>
+</li>
+<li>
+<span>
+Линковка&#8201;&#8212;&#8201;сборка всего в исполняемый файл или динамическую библиотек
+</span>
+</li>
 </ol>
-</div>
-<div id="пример-этапов-сборки" class="slide section level2">
-<h1>Пример этапов сборки</h1>
-<p><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIKICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8IS0tIEdlbmVyYXRlZCBieSBncmFwaHZpeiB2ZXJzaW9uIDIuNDcuMyAoMCkKIC0tPgo8IS0tIFRpdGxlOiBnIFBhZ2VzOiAxIC0tPgo8c3ZnIHdpZHRoPSIxMDk4cHQiIGhlaWdodD0iNDIzcHQiCiB2aWV3Qm94PSIwLjAwIDAuMDAgMTA5Ny45MyA0MjMuMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPgo8ZyBpZD0iZ3JhcGgwIiBjbGFzcz0iZ3JhcGgiIHRyYW5zZm9ybT0ic2NhbGUoMSAxKSByb3RhdGUoMCkgdHJhbnNsYXRlKDQgNDE5KSI+Cjx0aXRsZT5nPC90aXRsZT4KPHBvbHlnb24gZmlsbD0id2hpdGUiIHN0cm9rZT0idHJhbnNwYXJlbnQiIHBvaW50cz0iLTQsNCAtNCwtNDE5IDEwOTMuOTMsLTQxOSAxMDkzLjkzLDQgLTQsNCIvPgo8ZyBpZD0iY2x1c3QxIiBjbGFzcz0iY2x1c3RlciI+Cjx0aXRsZT5jbHVzdGVyMDwvdGl0bGU+Cjxwb2x5Z29uIGZpbGw9IiNlYmViZWIiIHN0cm9rZT0iYmxhY2siIHN0cm9rZS1kYXNoYXJyYXk9IjEsNSIgcG9pbnRzPSI4LC0yMzUgOCwtMzY0IDI2NiwtMzY0IDI2NiwtMjM1IDgsLTIzNSIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIxMzciIHk9Ii0zNDguOCIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIj7Qo9GA0L7QstC10L3RjCDQuNGB0L/QvtC70L3QtdC90LjRjzwvdGV4dD4KPC9nPgo8ZyBpZD0iY2x1c3QzIiBjbGFzcz0iY2x1c3RlciI+Cjx0aXRsZT5jbHVzdGVyMTwvdGl0bGU+Cjxwb2x5Z29uIGZpbGw9Im5vbmUiIHN0cm9rZT0iYmxhY2siIHN0cm9rZS1kYXNoYXJyYXk9IjEsNSIgcG9pbnRzPSIzMTMsLTExNiAzMTMsLTQwNyA1OTIuMTgsLTQwNyA1OTIuMTgsLTExNiAzMTMsLTExNiIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI0NTIuNTkiIHk9Ii0zOTEuOCIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIj7Qo9GA0L7QstC10L3RjCDQutC+0LzQv9C40LvRj9GG0LjQuDwvdGV4dD4KPC9nPgo8ZyBpZD0iY2x1c3Q2IiBjbGFzcz0iY2x1c3RlciI+Cjx0aXRsZT5jbHVzdGVyMjwvdGl0bGU+Cjxwb2x5Z29uIGZpbGw9Im5vbmUiIHN0cm9rZT0iYmxhY2siIHN0cm9rZS1kYXNoYXJyYXk9IjEsNSIgcG9pbnRzPSI2NjguMTgsLTggNjY4LjE4LC00MDcgMTA4OS45MywtNDA3IDEwODkuOTMsLTggNjY4LjE4LC04Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9Ijg3OS4wNiIgeT0iLTM5MS44IiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiPtCj0YDQvtCy0LXQvdGMINC60L7QtNCwPC90ZXh0Pgo8L2c+CjxnIGlkPSJjbHVzdDciIGNsYXNzPSJjbHVzdGVyIj4KPHRpdGxlPmNsdXN0ZXIzPC90aXRsZT4KPHBvbHlnb24gZmlsbD0ibm9uZSIgc3Ryb2tlPSJibGFjayIgc3Ryb2tlLWRhc2hhcnJheT0iMSw1IiBwb2ludHM9Ijg4Mi4xOCwtMTYgODgyLjE4LC0xNDUgMTA4MS45MywtMTQ1IDEwODEuOTMsLTE2IDg4Mi4xOCwtMTYiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iOTgyLjA2IiB5PSItMTI5LjgiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCI+0KPRgNC+0LLQtdC90Ywg0L/RgNC10L/RgNC+0YbQtdGB0YHQuNC90LPQsDwvdGV4dD4KPC9nPgo8IS0tIGFwcDAgLS0+CjxnIGlkPSJub2RlMSIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+YXBwMDwvdGl0bGU+Cjxwb2x5Z29uIGZpbGw9Im5vbmUiIHN0cm9rZT0iYmxhY2siIHBvaW50cz0iNzAsLTMzMyAxNiwtMzMzIDE2LC0yOTcgNzAsLTI5NyA3MCwtMzMzIi8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjQzIiB5PSItMzExLjMiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCI+YXBwMDwvdGV4dD4KPC9nPgo8IS0tIGxpYmEgLS0+CjxnIGlkPSJub2RlMyIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+bGliYTwvdGl0bGU+Cjxwb2x5Z29uIGZpbGw9Im5vbmUiIHN0cm9rZT0iYmxhY2siIHBvaW50cz0iMjU4LC0zMjcgMTk1LC0zMjcgMTk1LC0yOTEgMjU4LC0yOTEgMjU4LC0zMjciLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMjI2LjUiIHk9Ii0zMDUuMyIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIj5saWJhLnNvPC90ZXh0Pgo8L2c+CjwhLS0gYXBwMCYjNDU7Jmd0O2xpYmEgLS0+CjxnIGlkPSJlZGdlMSIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+YXBwMCYjNDU7Jmd0O2xpYmE8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9Im1lZGl1bWFxdWFtYXJpbmUiIGQ9Ik03MCwtMzE0LjE0Qzk5Ljk0LC0zMTMuMTUgMTQ5LjQ5LC0zMTEuNTEgMTg0LjYsLTMxMC4zNSIvPgo8cG9seWdvbiBmaWxsPSJtZWRpdW1hcXVhbWFyaW5lIiBzdHJva2U9Im1lZGl1bWFxdWFtYXJpbmUiIHBvaW50cz0iMTg1LjEyLC0zMTMuODQgMTk1LC0zMTAuMDEgMTg0Ljg5LC0zMDYuODQgMTg1LjEyLC0zMTMuODQiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMTMyLjUiIHk9Ii0zMTYuOCIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIj5sZCYjNDU7bGludXgsIGxpbms8L3RleHQ+CjwvZz4KPCEtLSBsaWJjIC0tPgo8ZyBpZD0ibm9kZTQiIGNsYXNzPSJub2RlIj4KPHRpdGxlPmxpYmM8L3RpdGxlPgo8ZWxsaXBzZSBmaWxsPSJub25lIiBzdHJva2U9ImJsYWNrIiBjeD0iMzY5LjEiIGN5PSItMjUwIiByeD0iMzYiIHJ5PSIxOCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIzNjkuMSIgeT0iLTI0Ni4zIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiPmxpYmMuYTwvdGV4dD4KPC9nPgo8IS0tIGFwcDAmIzQ1OyZndDtsaWJjIC0tPgo8ZyBpZD0iZWRnZTE4IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5hcHAwJiM0NTsmZ3Q7bGliYzwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iYmx1ZSIgZD0iTTYxLjg4LC0yOTYuOTRDNjQuNjUsLTI5NCA2Ny40NCwtMjkwLjk1IDcwLC0yODggNzguNTEsLTI3OC4yIDc2LjQ5LC0yNzEgODgsLTI2NSAxNjQuMDQsLTIyNS40IDI2Ny45NSwtMjMzLjE3IDMyNS40NCwtMjQxLjg5Ii8+Cjxwb2x5Z29uIGZpbGw9ImJsdWUiIHN0cm9rZT0iYmx1ZSIgcG9pbnRzPSIzMjUuMiwtMjQ1LjM5IDMzNS42MiwtMjQzLjUxIDMyNi4zLC0yMzguNDggMzI1LjIsLTI0NS4zOSIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIyMjYuNSIgeT0iLTIzOS44IiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiPmxpbms8L3RleHQ+CjwvZz4KPCEtLSBvYmo1IC0tPgo8ZyBpZD0ibm9kZTExIiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5vYmo1PC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSJibGFjayIgY3g9IjM2OS4xIiBjeT0iLTE5NiIgcng9IjQ4LjE5IiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMzY5LjEiIHk9Ii0xOTIuMyIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIj5tYWluMC5vPC90ZXh0Pgo8L2c+CjwhLS0gYXBwMCYjNDU7Jmd0O29iajUgLS0+CjxnIGlkPSJlZGdlMTkiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPmFwcDAmIzQ1OyZndDtvYmo1PC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSJibHVlIiBkPSJNNjMuNjIsLTI5Ni43MUM2NS45NywtMjkzLjk1IDY4LjE4LC0yOTEuMDEgNzAsLTI4OCA4My4xLC0yNjYuMzYgNjguODUsLTI1MC41NCA4OCwtMjM0IDE1MC44OCwtMTc5LjY5IDI1My4xMiwtMTgwLjYgMzE1LjE0LC0xODcuNDQiLz4KPHBvbHlnb24gZmlsbD0iYmx1ZSIgc3Ryb2tlPSJibHVlIiBwb2ludHM9IjMxNC43NiwtMTkwLjkyIDMyNS4xMSwtMTg4LjYzIDMxNS41OSwtMTgzLjk3IDMxNC43NiwtMTkwLjkyIi8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjIyNi41IiB5PSItMTkxLjgiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCI+bGluazwvdGV4dD4KPC9nPgo8IS0tIGFwcDEgLS0+CjxnIGlkPSJub2RlMiIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+YXBwMTwvdGl0bGU+Cjxwb2x5Z29uIGZpbGw9Im5vbmUiIHN0cm9rZT0iYmxhY2siIHBvaW50cz0iNzAsLTI3OSAxNiwtMjc5IDE2LC0yNDMgNzAsLTI0MyA3MCwtMjc5Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjQzIiB5PSItMjU3LjMiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCI+YXBwMTwvdGV4dD4KPC9nPgo8IS0tIGFwcDEmIzQ1OyZndDtsaWJhIC0tPgo8ZyBpZD0iZWRnZTIiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPmFwcDEmIzQ1OyZndDtsaWJhPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSJtZWRpdW1hcXVhbWFyaW5lIiBkPSJNNzAuMDEsLTI2NS44Qzk3LjAxLC0yNzEuMDMgMTQwLjM1LC0yODAuMTIgMTc3LC0yOTEgMTc5Ljc0LC0yOTEuODEgMTgyLjU2LC0yOTIuNzEgMTg1LjM4LC0yOTMuNjQiLz4KPHBvbHlnb24gZmlsbD0ibWVkaXVtYXF1YW1hcmluZSIgc3Ryb2tlPSJtZWRpdW1hcXVhbWFyaW5lIiBwb2ludHM9IjE4NC4zMywtMjk2Ljk4IDE5NC45MiwtMjk2Ljk1IDE4Ni42MiwtMjkwLjM3IDE4NC4zMywtMjk2Ljk4Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjEzMi41IiB5PSItMjk0LjgiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCI+bGQmIzQ1O2xpbnV4LCBsaW5rPC90ZXh0Pgo8L2c+CjwhLS0gb2JqNiAtLT4KPGcgaWQ9Im5vZGUxMiIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+b2JqNjwvdGl0bGU+CjxlbGxpcHNlIGZpbGw9Im5vbmUiIHN0cm9rZT0iYmxhY2siIGN4PSIzNjkuMSIgY3k9Ii0xNDIiIHJ4PSI0OC4xOSIgcnk9IjE4Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjM2OS4xIiB5PSItMTM4LjMiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCI+bWFpbjEubzwvdGV4dD4KPC9nPgo8IS0tIGFwcDEmIzQ1OyZndDtvYmo2IC0tPgo8ZyBpZD0iZWRnZTIwIiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5hcHAxJiM0NTsmZ3Q7b2JqNjwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iYmx1ZSIgZD0iTTUwLjE3LC0yNDIuNzVDNTYuODMsLTIyNS45IDY5LjA5LC0yMDEuNSA4OCwtMTg4IDE1NC4xNiwtMTQwLjc2IDI1MS4zNSwtMTM1LjMgMzEyLjEyLC0xMzcuMzkiLz4KPHBvbHlnb24gZmlsbD0iYmx1ZSIgc3Ryb2tlPSJibHVlIiBwb2ludHM9IjMxMi4xNSwtMTQwLjkgMzIyLjI5LC0xMzcuODMgMzEyLjQ0LC0xMzMuOSAzMTIuMTUsLTE0MC45Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjIyNi41IiB5PSItMTQ3LjgiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCI+bGluazwvdGV4dD4KPC9nPgo8IS0tIGxpYmQgLS0+CjxnIGlkPSJub2RlNSIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+bGliZDwvdGl0bGU+CjxlbGxpcHNlIGZpbGw9Im5vbmUiIHN0cm9rZT0iYmxhY2siIGN4PSIzNjkuMSIgY3k9Ii0zMDkiIHJ4PSIzNi4yOSIgcnk9IjE4Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjM2OS4xIiB5PSItMzA1LjMiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCI+bGliZC5hPC90ZXh0Pgo8L2c+CjwhLS0gbGliYSYjNDU7Jmd0O2xpYmQgLS0+CjxnIGlkPSJlZGdlMjEiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPmxpYmEmIzQ1OyZndDtsaWJkPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSJibHVlIiBkPSJNMjU4LjAxLC0zMDlDMjc2Ljg5LC0zMDkgMzAxLjQ3LC0zMDkgMzIyLjYyLC0zMDkiLz4KPHBvbHlnb24gZmlsbD0iYmx1ZSIgc3Ryb2tlPSJibHVlIiBwb2ludHM9IjMyMi42OSwtMzEyLjUgMzMyLjY5LC0zMDkgMzIyLjY5LC0zMDUuNSAzMjIuNjksLTMxMi41Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjI4OS41IiB5PSItMzEyLjgiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCI+bGluazwvdGV4dD4KPC9nPgo8IS0tIG9iajAgLS0+CjxnIGlkPSJub2RlNiIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+b2JqMDwvdGl0bGU+CjxlbGxpcHNlIGZpbGw9Im5vbmUiIHN0cm9rZT0iYmxhY2siIGN4PSI1NDUuMTkiIGN5PSItMTk2IiByeD0iMzguOTkiIHJ5PSIxOCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI1NDUuMTkiIHk9Ii0xOTIuMyIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIj5vYmowLm88L3RleHQ+CjwvZz4KPCEtLSBsaWJjJiM0NTsmZ3Q7b2JqMCAtLT4KPGcgaWQ9ImVkZ2UzIiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5saWJjJiM0NTsmZ3Q7b2JqMDwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iZGFya2dyZWVuIiBkPSJNNDAwLjAyLC0yNDAuNzJDNDI4LjI3LC0yMzEuOTYgNDcwLjg5LC0yMTguNzQgNTAyLjQ2LC0yMDguOTQiLz4KPHBvbHlnb24gZmlsbD0iZGFya2dyZWVuIiBzdHJva2U9ImRhcmtncmVlbiIgcG9pbnRzPSI1MDMuNzgsLTIxMi4yIDUxMi4zLC0yMDUuODkgNTAxLjcxLC0yMDUuNTEgNTAzLjc4LC0yMTIuMiIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI0NjEuNjkiIHk9Ii0yMzIuOCIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIj5hcmNoaXZlPC90ZXh0Pgo8L2c+CjwhLS0gb2JqMSAtLT4KPGcgaWQ9Im5vZGU3IiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5vYmoxPC90aXRsZT4KPGVsbGlwc2UgZmlsbD0ibm9uZSIgc3Ryb2tlPSJibGFjayIgY3g9IjU0NS4xOSIgY3k9Ii0xNDIiIHJ4PSIzOC45OSIgcnk9IjE4Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjU0NS4xOSIgeT0iLTEzOC4zIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiPm9iajEubzwvdGV4dD4KPC9nPgo8IS0tIGxpYmMmIzQ1OyZndDtvYmoxIC0tPgo8ZyBpZD0iZWRnZTQiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPmxpYmMmIzQ1OyZndDtvYmoxPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSJkYXJrZ3JlZW4iIGQ9Ik0zOTYuMTIsLTIzOC4xQzQwMy40NiwtMjMzLjk4IDQxMS4wOSwtMjI4Ljg5IDQxNy4xOSwtMjIzIDQyOC4xLC0yMTIuNDYgNDIzLjg5LC0yMDQuMTIgNDM1LjE5LC0xOTQgNDU0LjY1LC0xNzYuNTggNDgwLjk4LC0xNjMuOCA1MDIuODgsLTE1NS4yNyIvPgo8cG9seWdvbiBmaWxsPSJkYXJrZ3JlZW4iIHN0cm9rZT0iZGFya2dyZWVuIiBwb2ludHM9IjUwNC4xNCwtMTU4LjU0IDUxMi4yOCwtMTUxLjc2IDUwMS42OSwtMTUxLjk4IDUwNC4xNCwtMTU4LjU0Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjQ2MS42OSIgeT0iLTE5Ny44IiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiPmFyY2hpdmU8L3RleHQ+CjwvZz4KPCEtLSBvYmoyIC0tPgo8ZyBpZD0ibm9kZTgiIGNsYXNzPSJub2RlIj4KPHRpdGxlPm9iajI8L3RpdGxlPgo8ZWxsaXBzZSBmaWxsPSJub25lIiBzdHJva2U9ImJsYWNrIiBjeD0iNTQ1LjE5IiBjeT0iLTI1MCIgcng9IjM4Ljk5IiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iNTQ1LjE5IiB5PSItMjQ2LjMiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCI+b2JqMi5vPC90ZXh0Pgo8L2c+CjwhLS0gbGliYyYjNDU7Jmd0O29iajIgLS0+CjxnIGlkPSJlZGdlNSIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+bGliYyYjNDU7Jmd0O29iajI8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9ImRhcmtncmVlbiIgZD0iTTQwNC45MSwtMjUwQzQzMC45OCwtMjUwIDQ2Ni45NywtMjUwIDQ5NS44MywtMjUwIi8+Cjxwb2x5Z29uIGZpbGw9ImRhcmtncmVlbiIgc3Ryb2tlPSJkYXJrZ3JlZW4iIHBvaW50cz0iNDk2LjExLC0yNTMuNSA1MDYuMTEsLTI1MCA0OTYuMTEsLTI0Ni41IDQ5Ni4xMSwtMjUzLjUiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iNDYxLjY5IiB5PSItMjUzLjgiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCI+YXJjaGl2ZTwvdGV4dD4KPC9nPgo8IS0tIG9iajMgLS0+CjxnIGlkPSJub2RlOSIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+b2JqMzwvdGl0bGU+CjxlbGxpcHNlIGZpbGw9Im5vbmUiIHN0cm9rZT0iYmxhY2siIGN4PSI1NDUuMTkiIGN5PSItMzA0IiByeD0iMzguOTkiIHJ5PSIxOCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI1NDUuMTkiIHk9Ii0zMDAuMyIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIj5vYmozLm88L3RleHQ+CjwvZz4KPCEtLSBsaWJkJiM0NTsmZ3Q7b2JqMyAtLT4KPGcgaWQ9ImVkZ2U2IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5saWJkJiM0NTsmZ3Q7b2JqMzwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iZGFya2dyZWVuIiBkPSJNNDA1Ljc1LC0zMDcuOThDNDMxLjc5LC0zMDcuMjMgNDY3LjQxLC0zMDYuMjEgNDk1Ljk5LC0zMDUuMzgiLz4KPHBvbHlnb24gZmlsbD0iZGFya2dyZWVuIiBzdHJva2U9ImRhcmtncmVlbiIgcG9pbnRzPSI0OTYuMjgsLTMwOC44OCA1MDYuMTcsLTMwNS4wOSA0OTYuMDgsLTMwMS44OCA0OTYuMjgsLTMwOC44OCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI0NjEuNjkiIHk9Ii0zMTAuOCIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIj5hcmNoaXZlPC90ZXh0Pgo8L2c+CjwhLS0gb2JqNCAtLT4KPGcgaWQ9Im5vZGUxMCIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+b2JqNDwvdGl0bGU+CjxlbGxpcHNlIGZpbGw9Im5vbmUiIHN0cm9rZT0iYmxhY2siIGN4PSI1NDUuMTkiIGN5PSItMzU4IiByeD0iMzguOTkiIHJ5PSIxOCIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI1NDUuMTkiIHk9Ii0zNTQuMyIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIj5vYmo0Lm88L3RleHQ+CjwvZz4KPCEtLSBsaWJkJiM0NTsmZ3Q7b2JqNCAtLT4KPGcgaWQ9ImVkZ2U3IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5saWJkJiM0NTsmZ3Q7b2JqNDwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iZGFya2dyZWVuIiBkPSJNNDAxLjIyLC0zMTcuNzZDNDI5LjI4LC0zMjUuNjYgNDcwLjgsLTMzNy4zNCA1MDEuODcsLTM0Ni4wOSIvPgo8cG9seWdvbiBmaWxsPSJkYXJrZ3JlZW4iIHN0cm9rZT0iZGFya2dyZWVuIiBwb2ludHM9IjUwMC45OSwtMzQ5LjQ4IDUxMS41NiwtMzQ4LjgyIDUwMi44OCwtMzQyLjc0IDUwMC45OSwtMzQ5LjQ4Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjQ2MS42OSIgeT0iLTM0NS44IiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiPmFyY2hpdmU8L3RleHQ+CjwvZz4KPCEtLSBzcmMwIC0tPgo8ZyBpZD0ibm9kZTEzIiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5zcmMwPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSJibGFjayIgZD0iTTczOS4xOCwtMjE0QzczOS4xOCwtMjE0IDcwNC4xOCwtMjE0IDcwNC4xOCwtMjE0IDY5OC4xOCwtMjE0IDY5Mi4xOCwtMjA4IDY5Mi4xOCwtMjAyIDY5Mi4xOCwtMjAyIDY5Mi4xOCwtMTkwIDY5Mi4xOCwtMTkwIDY5Mi4xOCwtMTg0IDY5OC4xOCwtMTc4IDcwNC4xOCwtMTc4IDcwNC4xOCwtMTc4IDczOS4xOCwtMTc4IDczOS4xOCwtMTc4IDc0NS4xOCwtMTc4IDc1MS4xOCwtMTg0IDc1MS4xOCwtMTkwIDc1MS4xOCwtMTkwIDc1MS4xOCwtMjAyIDc1MS4xOCwtMjAyIDc1MS4xOCwtMjA4IDc0NS4xOCwtMjE0IDczOS4xOCwtMjE0Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjcyMS42OCIgeT0iLTE5Mi4zIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiPnNyYzAuYzwvdGV4dD4KPC9nPgo8IS0tIG9iajAmIzQ1OyZndDtzcmMwIC0tPgo8ZyBpZD0iZWRnZTgiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPm9iajAmIzQ1OyZndDtzcmMwPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZWQiIGQ9Ik01ODQuNDgsLTE5NkM2MTMuMzQsLTE5NiA2NTIuNzcsLTE5NiA2ODEuNzgsLTE5NiIvPgo8cG9seWdvbiBmaWxsPSJyZWQiIHN0cm9rZT0icmVkIiBwb2ludHM9IjY4MS45NSwtMTk5LjUgNjkxLjk1LC0xOTYgNjgxLjk1LC0xOTIuNSA2ODEuOTUsLTE5OS41Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjYzMC4xOCIgeT0iLTE5OS44IiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiPmNvbXBpbGU8L3RleHQ+CjwvZz4KPCEtLSBzcmMxIC0tPgo8ZyBpZD0ibm9kZTE0IiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5zcmMxPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSJibGFjayIgZD0iTTczOS4xOCwtMTYwQzczOS4xOCwtMTYwIDcwNC4xOCwtMTYwIDcwNC4xOCwtMTYwIDY5OC4xOCwtMTYwIDY5Mi4xOCwtMTU0IDY5Mi4xOCwtMTQ4IDY5Mi4xOCwtMTQ4IDY5Mi4xOCwtMTM2IDY5Mi4xOCwtMTM2IDY5Mi4xOCwtMTMwIDY5OC4xOCwtMTI0IDcwNC4xOCwtMTI0IDcwNC4xOCwtMTI0IDczOS4xOCwtMTI0IDczOS4xOCwtMTI0IDc0NS4xOCwtMTI0IDc1MS4xOCwtMTMwIDc1MS4xOCwtMTM2IDc1MS4xOCwtMTM2IDc1MS4xOCwtMTQ4IDc1MS4xOCwtMTQ4IDc1MS4xOCwtMTU0IDc0NS4xOCwtMTYwIDczOS4xOCwtMTYwIi8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjcyMS42OCIgeT0iLTEzOC4zIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiPnNyYzEuYzwvdGV4dD4KPC9nPgo8IS0tIG9iajEmIzQ1OyZndDtzcmMxIC0tPgo8ZyBpZD0iZWRnZTkiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPm9iajEmIzQ1OyZndDtzcmMxPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZWQiIGQ9Ik01ODQuNDgsLTE0MkM2MTMuMzQsLTE0MiA2NTIuNzcsLTE0MiA2ODEuNzgsLTE0MiIvPgo8cG9seWdvbiBmaWxsPSJyZWQiIHN0cm9rZT0icmVkIiBwb2ludHM9IjY4MS45NSwtMTQ1LjUgNjkxLjk1LC0xNDIgNjgxLjk1LC0xMzguNSA2ODEuOTUsLTE0NS41Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjYzMC4xOCIgeT0iLTE0NS44IiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiPmNvbXBpbGU8L3RleHQ+CjwvZz4KPCEtLSBzcmMyIC0tPgo8ZyBpZD0ibm9kZTE1IiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5zcmMyPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSJibGFjayIgZD0iTTczOS4xOCwtMjY4QzczOS4xOCwtMjY4IDcwNC4xOCwtMjY4IDcwNC4xOCwtMjY4IDY5OC4xOCwtMjY4IDY5Mi4xOCwtMjYyIDY5Mi4xOCwtMjU2IDY5Mi4xOCwtMjU2IDY5Mi4xOCwtMjQ0IDY5Mi4xOCwtMjQ0IDY5Mi4xOCwtMjM4IDY5OC4xOCwtMjMyIDcwNC4xOCwtMjMyIDcwNC4xOCwtMjMyIDczOS4xOCwtMjMyIDczOS4xOCwtMjMyIDc0NS4xOCwtMjMyIDc1MS4xOCwtMjM4IDc1MS4xOCwtMjQ0IDc1MS4xOCwtMjQ0IDc1MS4xOCwtMjU2IDc1MS4xOCwtMjU2IDc1MS4xOCwtMjYyIDc0NS4xOCwtMjY4IDczOS4xOCwtMjY4Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjcyMS42OCIgeT0iLTI0Ni4zIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiPnNyYzIuYzwvdGV4dD4KPC9nPgo8IS0tIG9iajImIzQ1OyZndDtzcmMyIC0tPgo8ZyBpZD0iZWRnZTEwIiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5vYmoyJiM0NTsmZ3Q7c3JjMjwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0icmVkIiBkPSJNNTg0LjQ4LC0yNTBDNjEzLjM0LC0yNTAgNjUyLjc3LC0yNTAgNjgxLjc4LC0yNTAiLz4KPHBvbHlnb24gZmlsbD0icmVkIiBzdHJva2U9InJlZCIgcG9pbnRzPSI2ODEuOTUsLTI1My41IDY5MS45NSwtMjUwIDY4MS45NSwtMjQ2LjUgNjgxLjk1LC0yNTMuNSIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI2MzAuMTgiIHk9Ii0yNTMuOCIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIj5jb21waWxlPC90ZXh0Pgo8L2c+CjwhLS0gc3JjMyAtLT4KPGcgaWQ9Im5vZGUxNiIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+c3JjMzwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iYmxhY2siIGQ9Ik03NDguMTgsLTMyMkM3NDguMTgsLTMyMiA2OTUuMTgsLTMyMiA2OTUuMTgsLTMyMiA2ODkuMTgsLTMyMiA2ODMuMTgsLTMxNiA2ODMuMTgsLTMxMCA2ODMuMTgsLTMxMCA2ODMuMTgsLTI5OCA2ODMuMTgsLTI5OCA2ODMuMTgsLTI5MiA2ODkuMTgsLTI4NiA2OTUuMTgsLTI4NiA2OTUuMTgsLTI4NiA3NDguMTgsLTI4NiA3NDguMTgsLTI4NiA3NTQuMTgsLTI4NiA3NjAuMTgsLTI5MiA3NjAuMTgsLTI5OCA3NjAuMTgsLTI5OCA3NjAuMTgsLTMxMCA3NjAuMTgsLTMxMCA3NjAuMTgsLTMxNiA3NTQuMTgsLTMyMiA3NDguMTgsLTMyMiIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI3MjEuNjgiIHk9Ii0zMDAuMyIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIj5zcmMzLmNwcDwvdGV4dD4KPC9nPgo8IS0tIG9iajMmIzQ1OyZndDtzcmMzIC0tPgo8ZyBpZD0iZWRnZTExIiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5vYmozJiM0NTsmZ3Q7c3JjMzwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0icmVkIiBkPSJNNTg0LjQ4LC0zMDRDNjEwLjQ2LC0zMDQgNjQ0Ljk5LC0zMDQgNjcyLjc5LC0zMDQiLz4KPHBvbHlnb24gZmlsbD0icmVkIiBzdHJva2U9InJlZCIgcG9pbnRzPSI2NzMuMDgsLTMwNy41IDY4My4wOCwtMzA0IDY3My4wOCwtMzAwLjUgNjczLjA4LC0zMDcuNSIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI2MzAuMTgiIHk9Ii0zMDcuOCIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIj5jb21waWxlPC90ZXh0Pgo8L2c+CjwhLS0gc3JjNCAtLT4KPGcgaWQ9Im5vZGUxNyIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+c3JjNDwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iYmxhY2siIGQ9Ik03NDguMTgsLTM3NkM3NDguMTgsLTM3NiA2OTUuMTgsLTM3NiA2OTUuMTgsLTM3NiA2ODkuMTgsLTM3NiA2ODMuMTgsLTM3MCA2ODMuMTgsLTM2NCA2ODMuMTgsLTM2NCA2ODMuMTgsLTM1MiA2ODMuMTgsLTM1MiA2ODMuMTgsLTM0NiA2ODkuMTgsLTM0MCA2OTUuMTgsLTM0MCA2OTUuMTgsLTM0MCA3NDguMTgsLTM0MCA3NDguMTgsLTM0MCA3NTQuMTgsLTM0MCA3NjAuMTgsLTM0NiA3NjAuMTgsLTM1MiA3NjAuMTgsLTM1MiA3NjAuMTgsLTM2NCA3NjAuMTgsLTM2NCA3NjAuMTgsLTM3MCA3NTQuMTgsLTM3NiA3NDguMTgsLTM3NiIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI3MjEuNjgiIHk9Ii0zNTQuMyIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIj5zcmM0LmNwcDwvdGV4dD4KPC9nPgo8IS0tIG9iajQmIzQ1OyZndDtzcmM0IC0tPgo8ZyBpZD0iZWRnZTEyIiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5vYmo0JiM0NTsmZ3Q7c3JjNDwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0icmVkIiBkPSJNNTg0LjQ4LC0zNThDNjEwLjQ2LC0zNTggNjQ0Ljk5LC0zNTggNjcyLjc5LC0zNTgiLz4KPHBvbHlnb24gZmlsbD0icmVkIiBzdHJva2U9InJlZCIgcG9pbnRzPSI2NzMuMDgsLTM2MS41IDY4My4wOCwtMzU4IDY3My4wOCwtMzU0LjUgNjczLjA4LC0zNjEuNSIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI2MzAuMTgiIHk9Ii0zNjEuOCIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIj5jb21waWxlPC90ZXh0Pgo8L2c+CjwhLS0gbWFpbjAgLS0+CjxnIGlkPSJub2RlMTgiIGNsYXNzPSJub2RlIj4KPHRpdGxlPm1haW4wPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSJibGFjayIgZD0iTTc0Ni4xOCwtMTA2Qzc0Ni4xOCwtMTA2IDY5Ny4xOCwtMTA2IDY5Ny4xOCwtMTA2IDY5MS4xOCwtMTA2IDY4NS4xOCwtMTAwIDY4NS4xOCwtOTQgNjg1LjE4LC05NCA2ODUuMTgsLTgyIDY4NS4xOCwtODIgNjg1LjE4LC03NiA2OTEuMTgsLTcwIDY5Ny4xOCwtNzAgNjk3LjE4LC03MCA3NDYuMTgsLTcwIDc0Ni4xOCwtNzAgNzUyLjE4LC03MCA3NTguMTgsLTc2IDc1OC4xOCwtODIgNzU4LjE4LC04MiA3NTguMTgsLTk0IDc1OC4xOCwtOTQgNzU4LjE4LC0xMDAgNzUyLjE4LC0xMDYgNzQ2LjE4LC0xMDYiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iNzIxLjY4IiB5PSItODQuMyIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIj5tYWluMC5jPC90ZXh0Pgo8L2c+CjwhLS0gb2JqNSYjNDU7Jmd0O21haW4wIC0tPgo8ZyBpZD0iZWRnZTEzIiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5vYmo1JiM0NTsmZ3Q7bWFpbjA8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9InJlZCIgZD0iTTM5Ny4zOCwtMTgxLjIxQzQwMy45OCwtMTc3LjQgNDEwLjkzLC0xNzMuMTkgNDE3LjE5LC0xNjkgNDU4Ljc4LC0xNDEuMTUgNDU5LjMxLC0xMTcuNTIgNTA2LjE5LC0xMDAgNTYxLjM0LC03OS4zOSA2MzAuMDIsLTc5LjYzIDY3NC41OSwtODIuODUiLz4KPHBvbHlnb24gZmlsbD0icmVkIiBzdHJva2U9InJlZCIgcG9pbnRzPSI2NzQuNTcsLTg2LjM2IDY4NC44MiwtODMuNjcgNjc1LjEzLC03OS4zOCA2NzQuNTcsLTg2LjM2Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjU0NS4xOSIgeT0iLTEwMy44IiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiPmNvbXBpbGU8L3RleHQ+CjwvZz4KPCEtLSBtYWluMSAtLT4KPGcgaWQ9Im5vZGUxOSIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+bWFpbjE8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9ImJsYWNrIiBkPSJNNzU1LjE4LC01MkM3NTUuMTgsLTUyIDY4OC4xOCwtNTIgNjg4LjE4LC01MiA2ODIuMTgsLTUyIDY3Ni4xOCwtNDYgNjc2LjE4LC00MCA2NzYuMTgsLTQwIDY3Ni4xOCwtMjggNjc2LjE4LC0yOCA2NzYuMTgsLTIyIDY4Mi4xOCwtMTYgNjg4LjE4LC0xNiA2ODguMTgsLTE2IDc1NS4xOCwtMTYgNzU1LjE4LC0xNiA3NjEuMTgsLTE2IDc2Ny4xOCwtMjIgNzY3LjE4LC0yOCA3NjcuMTgsLTI4IDc2Ny4xOCwtNDAgNzY3LjE4LC00MCA3NjcuMTgsLTQ2IDc2MS4xOCwtNTIgNzU1LjE4LC01MiIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI3MjEuNjgiIHk9Ii0zMC4zIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiPm1haW4xLmNwcDwvdGV4dD4KPC9nPgo8IS0tIG9iajYmIzQ1OyZndDttYWluMSAtLT4KPGcgaWQ9ImVkZ2UxNCIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+b2JqNiYjNDU7Jmd0O21haW4xPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZWQiIGQ9Ik0zOTUuNzQsLTEyNi45OUM0MDcuNzIsLTExOS45OSA0MjIuMTgsLTExMS41NiA0MzUuMTksLTEwNCA0NjYuNywtODUuNyA0NzEuNzEsLTc0Ljc3IDUwNi4xOSwtNjMgNTU4LjU0LC00NS4xMyA2MjEuNiwtMzguMjIgNjY1Ljc1LC0zNS41OCIvPgo8cG9seWdvbiBmaWxsPSJyZWQiIHN0cm9rZT0icmVkIiBwb2ludHM9IjY2Ni4yLC0zOS4wNiA2NzUuOTksLTM1LjAyIDY2NS44MiwtMzIuMDcgNjY2LjIsLTM5LjA2Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjU0NS4xOSIgeT0iLTY2LjgiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCI+Y29tcGlsZTwvdGV4dD4KPC9nPgo8IS0tIGhkcjAgLS0+CjxnIGlkPSJub2RlMjAiIGNsYXNzPSJub2RlIj4KPHRpdGxlPmhkcjA8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9ImJsYWNrIiBkPSJNOTcwLjA4LC0xMTAuNDhDOTcwLjA4LC0xMTAuNDggOTM0LjM3LC05OS41MiA5MzQuMzcsLTk5LjUyIDkyOC42NCwtOTcuNzYgOTI4LjY0LC05NC4yNCA5MzQuMzcsLTkyLjQ4IDkzNC4zNywtOTIuNDggOTcwLjA4LC04MS41MiA5NzAuMDgsLTgxLjUyIDk3NS44MiwtNzkuNzYgOTg3LjI5LC03OS43NiA5OTMuMDMsLTgxLjUyIDk5My4wMywtODEuNTIgMTAyOC43NCwtOTIuNDggMTAyOC43NCwtOTIuNDggMTAzNC40NywtOTQuMjQgMTAzNC40NywtOTcuNzYgMTAyOC43NCwtOTkuNTIgMTAyOC43NCwtOTkuNTIgOTkzLjAzLC0xMTAuNDggOTkzLjAzLC0xMTAuNDggOTg3LjI5LC0xMTIuMjQgOTc1LjgyLC0xMTIuMjQgOTcwLjA4LC0xMTAuNDgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iOTgxLjU2IiB5PSItOTIuMyIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIj5oZHIwLmg8L3RleHQ+CjwvZz4KPCEtLSBzcmMwJiM0NTsmZ3Q7aGRyMCAtLT4KPGcgaWQ9ImVkZ2UxNSIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+c3JjMCYjNDU7Jmd0O2hkcjA8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9InNhbG1vbiIgZD0iTTc1MS4yNywtMTg0LjkyQzc5OC44MiwtMTY2LjQ4IDg5NC4wMywtMTI5LjU1IDk0NS41NCwtMTA5LjU4Ii8+Cjxwb2x5Z29uIGZpbGw9InNhbG1vbiIgc3Ryb2tlPSJzYWxtb24iIHBvaW50cz0iOTQ2Ljg3LC0xMTIuODIgOTU0LjkzLC0xMDUuOTQgOTQ0LjM0LC0xMDYuMjkgOTQ2Ljg3LC0xMTIuODIiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iODI0LjY4IiB5PSItMTcyLjgiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxNC4wMCI+cHJlcHJvY2VzczwvdGV4dD4KPC9nPgo8IS0tIG1haW4wJiM0NTsmZ3Q7aGRyMCAtLT4KPGcgaWQ9ImVkZ2UxNiIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+bWFpbjAmIzQ1OyZndDtoZHIwPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSJzYWxtb24iIGQ9Ik03NTguMjcsLTg5LjFDNzk5LjM3LC05MC4zOCA4NjcuNzYsLTkyLjUgOTE3Ljg1LC05NC4wNSIvPgo8cG9seWdvbiBmaWxsPSJzYWxtb24iIHN0cm9rZT0ic2FsbW9uIiBwb2ludHM9IjkxNy44MiwtOTcuNTYgOTI3LjkyLC05NC4zNyA5MTguMDQsLTkwLjU2IDkxNy44MiwtOTcuNTYiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iODI0LjY4IiB5PSItOTUuOCIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIj5wcmVwcm9jZXNzPC90ZXh0Pgo8L2c+CjwhLS0gaGRyMSAtLT4KPGcgaWQ9Im5vZGUyMSIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+aGRyMTwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iYmxhY2siIGQ9Ik05NjkuODgsLTU3LjIxQzk2OS44OCwtNTcuMjEgOTE3Ljk4LC00NC43OSA5MTcuOTgsLTQ0Ljc5IDkxMi4xNSwtNDMuNCA5MTIuMTUsLTQwLjYgOTE3Ljk4LC0zOS4yMSA5MTcuOTgsLTM5LjIxIDk2OS44OCwtMjYuNzkgOTY5Ljg4LC0yNi43OSA5NzUuNzIsLTI1LjQgOTg3LjM5LC0yNS40IDk5My4yMywtMjYuNzkgOTkzLjIzLC0yNi43OSAxMDQ1LjEzLC0zOS4yMSAxMDQ1LjEzLC0zOS4yMSAxMDUwLjk2LC00MC42IDEwNTAuOTYsLTQzLjQgMTA0NS4xMywtNDQuNzkgMTA0NS4xMywtNDQuNzkgOTkzLjIzLC01Ny4yMSA5OTMuMjMsLTU3LjIxIDk4Ny4zOSwtNTguNiA5NzUuNzIsLTU4LjYgOTY5Ljg4LC01Ny4yMSIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI5ODEuNTYiIHk9Ii0zOC4zIiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTQuMDAiPmhkcjEuaHBwPC90ZXh0Pgo8L2c+CjwhLS0gbWFpbjEmIzQ1OyZndDtoZHIxIC0tPgo8ZyBpZD0iZWRnZTE3IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5tYWluMSYjNDU7Jmd0O2hkcjE8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9InNhbG1vbiIgZD0iTTc2Ny4zMSwtMzUuMzhDODA1LjAyLC0zNi41NSA4NTkuODcsLTM4LjI2IDkwNC41LC0zOS42NCIvPgo8cG9seWdvbiBmaWxsPSJzYWxtb24iIHN0cm9rZT0ic2FsbW9uIiBwb2ludHM9IjkwNC42MywtNDMuMTUgOTE0LjczLC0zOS45NiA5MDQuODQsLTM2LjE1IDkwNC42MywtNDMuMTUiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iODI0LjY4IiB5PSItNDEuOCIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjE0LjAwIj5wcmVwcm9jZXNzPC90ZXh0Pgo8L2c+CjwvZz4KPC9zdmc+Cg==" alt="image" /></p>
-</div>
+</div></div>
+<div class="sect2 slide">
+<h1 id="_пример_этапов_сборки">1.4. Пример этапов сборки</h1>
 
-<div id="введение-в-cmake" class="title-slide slide section level1">
-<h1>Введение в CMake</h1>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.47.3 (0)
+ -->
+<!-- Pages: 1 -->
+<svg width="1404pt" height="444pt"
+ viewBox="0.00 0.00 1403.90 444.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 440)">
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-440 1399.9,-440 1399.9,4 -4,4"/>
+<g id="clust1" class="cluster">
+<title>cluster0</title>
+<polygon fill="#ebebeb" stroke="black" stroke-dasharray="1,5" points="8,-256 8,-385 337,-385 337,-256 8,-256"/>
+<text text-anchor="middle" x="172.5" y="-369.8" font-family="Times,serif" font-size="14.00">Уровень исполнения</text>
+</g>
+<g id="clust3" class="cluster">
+<title>cluster1</title>
+<polygon fill="none" stroke="black" stroke-dasharray="1,5" points="396,-107 396,-428 772.9,-428 772.9,-107 396,-107"/>
+<text text-anchor="middle" x="584.45" y="-412.8" font-family="Times,serif" font-size="14.00">Уровень компиляции</text>
+</g>
+<g id="clust6" class="cluster">
+<title>cluster2</title>
+<polygon fill="none" stroke="black" stroke-dasharray="1,5" points="873.9,-8 873.9,-407 1387.9,-407 1387.9,-8 873.9,-8"/>
+<text text-anchor="middle" x="1130.9" y="-391.8" font-family="Times,serif" font-size="14.00">Уровень кода</text>
+</g>
+<g id="clust7" class="cluster">
+<title>cluster3</title>
+<polygon fill="none" stroke="black" stroke-dasharray="1,5" points="1145.9,-16 1145.9,-193 1379.9,-193 1379.9,-16 1145.9,-16"/>
+<text text-anchor="middle" x="1262.9" y="-177.8" font-family="Times,serif" font-size="14.00">Уровень препроцессинга</text>
+</g>
+<!-- app0 -->
+<g id="node1" class="node">
+<title>app0</title>
+<polygon fill="none" stroke="black" points="83,-354 16,-354 16,-318 83,-318 83,-354"/>
+<text text-anchor="middle" x="49.5" y="-331" font-family="Times,serif" font-size="20.00">app0</text>
+</g>
+<!-- liba -->
+<g id="node3" class="node">
+<title>liba</title>
+<polygon fill="none" stroke="black" points="329,-344 246,-344 246,-308 329,-308 329,-344"/>
+<text text-anchor="middle" x="287.5" y="-321" font-family="Times,serif" font-size="20.00">liba.so</text>
+</g>
+<!-- app0&#45;&gt;liba -->
+<g id="edge1" class="edge">
+<title>app0&#45;&gt;liba</title>
+<path fill="none" stroke="mediumaquamarine" d="M83.31,-334.61C122.76,-332.94 189.4,-330.11 235.55,-328.16"/>
+<polygon fill="mediumaquamarine" stroke="mediumaquamarine" points="235.81,-331.65 245.65,-327.73 235.51,-324.66 235.81,-331.65"/>
+<text text-anchor="middle" x="164.5" y="-339" font-family="Times,serif" font-size="20.00">ld&#45;linux, link</text>
+</g>
+<!-- libc -->
+<g id="node4" class="node">
+<title>libc</title>
+<ellipse fill="none" stroke="black" cx="473.3" cy="-256" rx="50.82" ry="21.43"/>
+<text text-anchor="middle" x="473.3" y="-251" font-family="Times,serif" font-size="20.00">libc.a</text>
+</g>
+<!-- app0&#45;&gt;libc -->
+<g id="edge18" class="edge">
+<title>app0&#45;&gt;libc</title>
+<path fill="none" stroke="blue" d="M74.07,-317.98C77.23,-315.13 80.3,-312.1 83,-309 92.96,-297.56 87.99,-287.8 101,-280 199.76,-220.81 341,-232.41 417.68,-244.92"/>
+<polygon fill="blue" stroke="blue" points="417.16,-248.38 427.61,-246.6 418.33,-241.48 417.16,-248.38"/>
+<text text-anchor="middle" x="287.5" y="-242" font-family="Times,serif" font-size="20.00">link</text>
+</g>
+<!-- obj5 -->
+<g id="node11" class="node">
+<title>obj5</title>
+<ellipse fill="none" stroke="black" cx="473.3" cy="-196" rx="69.09" ry="21.43"/>
+<text text-anchor="middle" x="473.3" y="-191" font-family="Times,serif" font-size="20.00">main0.o</text>
+</g>
+<!-- app0&#45;&gt;obj5 -->
+<g id="edge19" class="edge">
+<title>app0&#45;&gt;obj5</title>
+<path fill="none" stroke="blue" d="M75.99,-317.73C78.63,-315.04 81.06,-312.11 83,-309 100.92,-280.29 76.42,-258.27 101,-235 182.77,-157.57 324.59,-167.28 407.27,-181.51"/>
+<polygon fill="blue" stroke="blue" points="406.84,-184.99 417.3,-183.31 408.07,-178.1 406.84,-184.99"/>
+<text text-anchor="middle" x="287.5" y="-180" font-family="Times,serif" font-size="20.00">link</text>
+</g>
+<!-- app1 -->
+<g id="node2" class="node">
+<title>app1</title>
+<polygon fill="none" stroke="black" points="83,-300 16,-300 16,-264 83,-264 83,-300"/>
+<text text-anchor="middle" x="49.5" y="-277" font-family="Times,serif" font-size="20.00">app1</text>
+</g>
+<!-- app1&#45;&gt;liba -->
+<g id="edge2" class="edge">
+<title>app1&#45;&gt;liba</title>
+<path fill="none" stroke="mediumaquamarine" d="M83.05,-282.97C119.02,-284.66 178.43,-289.3 228,-302 230.99,-302.77 234.02,-303.65 237.06,-304.62"/>
+<polygon fill="mediumaquamarine" stroke="mediumaquamarine" points="236.12,-308 246.72,-307.97 238.42,-301.39 236.12,-308"/>
+<text text-anchor="middle" x="164.5" y="-308" font-family="Times,serif" font-size="20.00">ld&#45;linux, link</text>
+</g>
+<!-- obj6 -->
+<g id="node12" class="node">
+<title>obj6</title>
+<ellipse fill="none" stroke="black" cx="473.3" cy="-136" rx="69.09" ry="21.43"/>
+<text text-anchor="middle" x="473.3" y="-131" font-family="Times,serif" font-size="20.00">main1.o</text>
+</g>
+<!-- app1&#45;&gt;obj6 -->
+<g id="edge20" class="edge">
+<title>app1&#45;&gt;obj6</title>
+<path fill="none" stroke="blue" d="M53.73,-263.95C59.07,-239.59 72.18,-196.62 101,-174 187.89,-105.81 323.69,-111.58 404.74,-123.05"/>
+<polygon fill="blue" stroke="blue" points="404.42,-126.54 414.83,-124.55 405.45,-119.62 404.42,-126.54"/>
+<text text-anchor="middle" x="287.5" y="-125" font-family="Times,serif" font-size="20.00">link</text>
+</g>
+<!-- libd -->
+<g id="node5" class="node">
+<title>libd</title>
+<ellipse fill="none" stroke="black" cx="473.3" cy="-326" rx="52.15" ry="21.43"/>
+<text text-anchor="middle" x="473.3" y="-321" font-family="Times,serif" font-size="20.00">libd.a</text>
+</g>
+<!-- liba&#45;&gt;libd -->
+<g id="edge21" class="edge">
+<title>liba&#45;&gt;libd</title>
+<path fill="none" stroke="blue" d="M329.29,-326C353.2,-326 383.89,-326 410.7,-326"/>
+<polygon fill="blue" stroke="blue" points="410.76,-329.5 420.76,-326 410.76,-322.5 410.76,-329.5"/>
+<text text-anchor="middle" x="366.5" y="-332" font-family="Times,serif" font-size="20.00">link</text>
+</g>
+<!-- obj0 -->
+<g id="node6" class="node">
+<title>obj0</title>
+<ellipse fill="none" stroke="black" cx="709.75" cy="-196" rx="55.31" ry="21.43"/>
+<text text-anchor="middle" x="709.75" y="-191" font-family="Times,serif" font-size="20.00">obj0.o</text>
+</g>
+<!-- libc&#45;&gt;obj0 -->
+<g id="edge3" class="edge">
+<title>libc&#45;&gt;obj0</title>
+<path fill="none" stroke="darkgreen" d="M514.53,-243.27C528.99,-238.85 545.47,-234.01 560.59,-230 590.35,-222.11 623.76,-214.35 651.31,-208.24"/>
+<polygon fill="darkgreen" stroke="darkgreen" points="652.16,-211.64 661.18,-206.07 650.66,-204.8 652.16,-211.64"/>
+<text text-anchor="middle" x="598.59" y="-236" font-family="Times,serif" font-size="20.00">archive</text>
+</g>
+<!-- obj1 -->
+<g id="node7" class="node">
+<title>obj1</title>
+<ellipse fill="none" stroke="black" cx="709.75" cy="-136" rx="55.31" ry="21.43"/>
+<text text-anchor="middle" x="709.75" y="-131" font-family="Times,serif" font-size="20.00">obj1.o</text>
+</g>
+<!-- libc&#45;&gt;obj1 -->
+<g id="edge4" class="edge">
+<title>libc&#45;&gt;obj1</title>
+<path fill="none" stroke="darkgreen" d="M515.25,-243.78C525.1,-239.38 534.96,-233.57 542.59,-226 556.44,-212.28 546.15,-199.1 560.59,-186 584.42,-164.38 617.95,-152.06 647.08,-145.07"/>
+<polygon fill="darkgreen" stroke="darkgreen" points="648.18,-148.41 657.18,-142.81 646.65,-141.58 648.18,-148.41"/>
+<text text-anchor="middle" x="598.59" y="-192" font-family="Times,serif" font-size="20.00">archive</text>
+</g>
+<!-- obj2 -->
+<g id="node8" class="node">
+<title>obj2</title>
+<ellipse fill="none" stroke="black" cx="709.75" cy="-256" rx="55.31" ry="21.43"/>
+<text text-anchor="middle" x="709.75" y="-251" font-family="Times,serif" font-size="20.00">obj2.o</text>
+</g>
+<!-- libc&#45;&gt;obj2 -->
+<g id="edge5" class="edge">
+<title>libc&#45;&gt;obj2</title>
+<path fill="none" stroke="darkgreen" d="M524.3,-256C559.22,-256 606.14,-256 643.92,-256"/>
+<polygon fill="darkgreen" stroke="darkgreen" points="644.32,-259.5 654.32,-256 644.32,-252.5 644.32,-259.5"/>
+<text text-anchor="middle" x="598.59" y="-262" font-family="Times,serif" font-size="20.00">archive</text>
+</g>
+<!-- obj3 -->
+<g id="node9" class="node">
+<title>obj3</title>
+<ellipse fill="none" stroke="black" cx="709.75" cy="-316" rx="55.31" ry="21.43"/>
+<text text-anchor="middle" x="709.75" y="-311" font-family="Times,serif" font-size="20.00">obj3.o</text>
+</g>
+<!-- libd&#45;&gt;obj3 -->
+<g id="edge6" class="edge">
+<title>libd&#45;&gt;obj3</title>
+<path fill="none" stroke="darkgreen" d="M525.46,-323.82C560.43,-322.33 607.06,-320.34 644.53,-318.74"/>
+<polygon fill="darkgreen" stroke="darkgreen" points="645,-322.22 654.84,-318.3 644.7,-315.23 645,-322.22"/>
+<text text-anchor="middle" x="598.59" y="-328" font-family="Times,serif" font-size="20.00">archive</text>
+</g>
+<!-- obj4 -->
+<g id="node10" class="node">
+<title>obj4</title>
+<ellipse fill="none" stroke="black" cx="709.75" cy="-376" rx="55.31" ry="21.43"/>
+<text text-anchor="middle" x="709.75" y="-371" font-family="Times,serif" font-size="20.00">obj4.o</text>
+</g>
+<!-- libd&#45;&gt;obj4 -->
+<g id="edge7" class="edge">
+<title>libd&#45;&gt;obj4</title>
+<path fill="none" stroke="darkgreen" d="M517.63,-337.61C531.33,-341.13 546.55,-344.89 560.59,-348 589.6,-354.43 622.01,-360.66 649.1,-365.61"/>
+<polygon fill="darkgreen" stroke="darkgreen" points="648.74,-369.1 659.2,-367.44 649.99,-362.21 648.74,-369.1"/>
+<text text-anchor="middle" x="598.59" y="-368" font-family="Times,serif" font-size="20.00">archive</text>
+</g>
+<!-- src0 -->
+<g id="node13" class="node">
+<title>src0</title>
+<path fill="none" stroke="black" d="M969.9,-214C969.9,-214 915.9,-214 915.9,-214 909.9,-214 903.9,-208 903.9,-202 903.9,-202 903.9,-190 903.9,-190 903.9,-184 909.9,-178 915.9,-178 915.9,-178 969.9,-178 969.9,-178 975.9,-178 981.9,-184 981.9,-190 981.9,-190 981.9,-202 981.9,-202 981.9,-208 975.9,-214 969.9,-214"/>
+<text text-anchor="middle" x="942.9" y="-191" font-family="Times,serif" font-size="20.00">src0.c</text>
+</g>
+<!-- obj0&#45;&gt;src0 -->
+<g id="edge8" class="edge">
+<title>obj0&#45;&gt;src0</title>
+<path fill="none" stroke="red" d="M764.94,-196C803.85,-196 855.84,-196 893.39,-196"/>
+<polygon fill="red" stroke="red" points="893.57,-199.5 903.57,-196 893.57,-192.5 893.57,-199.5"/>
+<text text-anchor="middle" x="823.4" y="-202" font-family="Times,serif" font-size="20.00">compile</text>
+</g>
+<!-- src1 -->
+<g id="node14" class="node">
+<title>src1</title>
+<path fill="none" stroke="black" d="M969.9,-160C969.9,-160 915.9,-160 915.9,-160 909.9,-160 903.9,-154 903.9,-148 903.9,-148 903.9,-136 903.9,-136 903.9,-130 909.9,-124 915.9,-124 915.9,-124 969.9,-124 969.9,-124 975.9,-124 981.9,-130 981.9,-136 981.9,-136 981.9,-148 981.9,-148 981.9,-154 975.9,-160 969.9,-160"/>
+<text text-anchor="middle" x="942.9" y="-137" font-family="Times,serif" font-size="20.00">src1.c</text>
+</g>
+<!-- obj1&#45;&gt;src1 -->
+<g id="edge9" class="edge">
+<title>obj1&#45;&gt;src1</title>
+<path fill="none" stroke="red" d="M764.94,-137.41C803.85,-138.42 855.84,-139.77 893.39,-140.74"/>
+<polygon fill="red" stroke="red" points="893.48,-144.24 903.57,-141.01 893.66,-137.25 893.48,-144.24"/>
+<text text-anchor="middle" x="823.4" y="-145" font-family="Times,serif" font-size="20.00">compile</text>
+</g>
+<!-- src2 -->
+<g id="node15" class="node">
+<title>src2</title>
+<path fill="none" stroke="black" d="M969.9,-268C969.9,-268 915.9,-268 915.9,-268 909.9,-268 903.9,-262 903.9,-256 903.9,-256 903.9,-244 903.9,-244 903.9,-238 909.9,-232 915.9,-232 915.9,-232 969.9,-232 969.9,-232 975.9,-232 981.9,-238 981.9,-244 981.9,-244 981.9,-256 981.9,-256 981.9,-262 975.9,-268 969.9,-268"/>
+<text text-anchor="middle" x="942.9" y="-245" font-family="Times,serif" font-size="20.00">src2.c</text>
+</g>
+<!-- obj2&#45;&gt;src2 -->
+<g id="edge10" class="edge">
+<title>obj2&#45;&gt;src2</title>
+<path fill="none" stroke="red" d="M764.94,-254.59C803.85,-253.58 855.84,-252.23 893.39,-251.26"/>
+<polygon fill="red" stroke="red" points="893.66,-254.75 903.57,-250.99 893.48,-247.76 893.66,-254.75"/>
+<text text-anchor="middle" x="823.4" y="-260" font-family="Times,serif" font-size="20.00">compile</text>
+</g>
+<!-- src3 -->
+<g id="node16" class="node">
+<title>src3</title>
+<path fill="none" stroke="black" d="M982.9,-322C982.9,-322 902.9,-322 902.9,-322 896.9,-322 890.9,-316 890.9,-310 890.9,-310 890.9,-298 890.9,-298 890.9,-292 896.9,-286 902.9,-286 902.9,-286 982.9,-286 982.9,-286 988.9,-286 994.9,-292 994.9,-298 994.9,-298 994.9,-310 994.9,-310 994.9,-316 988.9,-322 982.9,-322"/>
+<text text-anchor="middle" x="942.9" y="-299" font-family="Times,serif" font-size="20.00">src3.cpp</text>
+</g>
+<!-- obj3&#45;&gt;src3 -->
+<g id="edge11" class="edge">
+<title>obj3&#45;&gt;src3</title>
+<path fill="none" stroke="red" d="M764.65,-313.2C799.26,-311.41 844.29,-309.07 880.31,-307.2"/>
+<polygon fill="red" stroke="red" points="880.89,-310.67 890.69,-306.66 880.52,-303.68 880.89,-310.67"/>
+<text text-anchor="middle" x="823.4" y="-318" font-family="Times,serif" font-size="20.00">compile</text>
+</g>
+<!-- src4 -->
+<g id="node17" class="node">
+<title>src4</title>
+<path fill="none" stroke="black" d="M982.9,-376C982.9,-376 902.9,-376 902.9,-376 896.9,-376 890.9,-370 890.9,-364 890.9,-364 890.9,-352 890.9,-352 890.9,-346 896.9,-340 902.9,-340 902.9,-340 982.9,-340 982.9,-340 988.9,-340 994.9,-346 994.9,-352 994.9,-352 994.9,-364 994.9,-364 994.9,-370 988.9,-376 982.9,-376"/>
+<text text-anchor="middle" x="942.9" y="-353" font-family="Times,serif" font-size="20.00">src4.cpp</text>
+</g>
+<!-- obj4&#45;&gt;src4 -->
+<g id="edge12" class="edge">
+<title>obj4&#45;&gt;src4</title>
+<path fill="none" stroke="red" d="M764.07,-371.85C798.92,-369.13 844.55,-365.58 880.86,-362.75"/>
+<polygon fill="red" stroke="red" points="881.13,-366.24 890.83,-361.98 880.59,-359.26 881.13,-366.24"/>
+<text text-anchor="middle" x="823.4" y="-376" font-family="Times,serif" font-size="20.00">compile</text>
+</g>
+<!-- main0 -->
+<g id="node18" class="node">
+<title>main0</title>
+<path fill="none" stroke="black" d="M979.4,-106C979.4,-106 906.4,-106 906.4,-106 900.4,-106 894.4,-100 894.4,-94 894.4,-94 894.4,-82 894.4,-82 894.4,-76 900.4,-70 906.4,-70 906.4,-70 979.4,-70 979.4,-70 985.4,-70 991.4,-76 991.4,-82 991.4,-82 991.4,-94 991.4,-94 991.4,-100 985.4,-106 979.4,-106"/>
+<text text-anchor="middle" x="942.9" y="-83" font-family="Times,serif" font-size="20.00">main0.c</text>
+</g>
+<!-- obj5&#45;&gt;main0 -->
+<g id="edge13" class="edge">
+<title>obj5&#45;&gt;main0</title>
+<path fill="none" stroke="red" d="M518.99,-180.01C527.23,-176.07 535.48,-171.4 542.59,-166 552.65,-158.36 551.15,-152.39 560.59,-144 597.64,-111.07 607.02,-97.89 654.59,-84 731.5,-61.55 824.99,-68.84 883.99,-77.39"/>
+<polygon fill="red" stroke="red" points="883.82,-80.91 894.23,-78.94 884.87,-73.99 883.82,-80.91"/>
+<text text-anchor="middle" x="709.75" y="-90" font-family="Times,serif" font-size="20.00">compile</text>
+</g>
+<!-- main1 -->
+<g id="node19" class="node">
+<title>main1</title>
+<path fill="none" stroke="black" d="M991.9,-52C991.9,-52 893.9,-52 893.9,-52 887.9,-52 881.9,-46 881.9,-40 881.9,-40 881.9,-28 881.9,-28 881.9,-22 887.9,-16 893.9,-16 893.9,-16 991.9,-16 991.9,-16 997.9,-16 1003.9,-22 1003.9,-28 1003.9,-28 1003.9,-40 1003.9,-40 1003.9,-46 997.9,-52 991.9,-52"/>
+<text text-anchor="middle" x="942.9" y="-29" font-family="Times,serif" font-size="20.00">main1.cpp</text>
+</g>
+<!-- obj6&#45;&gt;main1 -->
+<g id="edge14" class="edge">
+<title>obj6&#45;&gt;main1</title>
+<path fill="none" stroke="red" d="M493.08,-115.58C509.47,-98.83 534.64,-75.59 560.59,-61 657.54,-6.49 790.96,-11.78 871.56,-21.93"/>
+<polygon fill="red" stroke="red" points="871.23,-25.42 881.6,-23.26 872.15,-18.48 871.23,-25.42"/>
+<text text-anchor="middle" x="709.75" y="-32" font-family="Times,serif" font-size="20.00">compile</text>
+</g>
+<!-- hdr0 -->
+<g id="node20" class="node">
+<title>hdr0</title>
+<path fill="none" stroke="black" d="M1251.62,-157.92C1251.62,-157.92 1191.19,-136.08 1191.19,-136.08 1185.54,-134.04 1185.54,-129.96 1191.19,-127.92 1191.19,-127.92 1251.62,-106.08 1251.62,-106.08 1257.26,-104.04 1268.54,-104.04 1274.19,-106.08 1274.19,-106.08 1334.62,-127.92 1334.62,-127.92 1340.26,-129.96 1340.26,-134.04 1334.62,-136.08 1334.62,-136.08 1274.19,-157.92 1274.19,-157.92 1268.54,-159.96 1257.26,-159.96 1251.62,-157.92"/>
+<text text-anchor="middle" x="1262.9" y="-127" font-family="Times,serif" font-size="20.00">hdr0.h</text>
+</g>
+<!-- src0&#45;&gt;hdr0 -->
+<g id="edge15" class="edge">
+<title>src0&#45;&gt;hdr0</title>
+<path fill="none" stroke="salmon" d="M981.94,-188.34C1035.62,-177.54 1134.24,-157.69 1198.93,-144.67"/>
+<polygon fill="salmon" stroke="salmon" points="1199.9,-148.05 1209.01,-142.64 1198.52,-141.19 1199.9,-148.05"/>
+<text text-anchor="middle" x="1078.9" y="-184" font-family="Times,serif" font-size="20.00">preprocess</text>
+</g>
+<!-- main0&#45;&gt;hdr0 -->
+<g id="edge16" class="edge">
+<title>main0&#45;&gt;hdr0</title>
+<path fill="none" stroke="salmon" d="M991.51,-94.59C1044.85,-101.97 1131.81,-114 1192.66,-122.42"/>
+<polygon fill="salmon" stroke="salmon" points="1192.19,-125.89 1202.58,-123.79 1193.15,-118.95 1192.19,-125.89"/>
+<text text-anchor="middle" x="1078.9" y="-119" font-family="Times,serif" font-size="20.00">preprocess</text>
+</g>
+<!-- hdr1 -->
+<g id="node21" class="node">
+<title>hdr1</title>
+<path fill="none" stroke="black" d="M1251.33,-80.82C1251.33,-80.82 1165.47,-57.18 1165.47,-57.18 1159.69,-55.59 1159.69,-52.41 1165.47,-50.82 1165.47,-50.82 1251.33,-27.18 1251.33,-27.18 1257.12,-25.59 1268.69,-25.59 1274.47,-27.18 1274.47,-27.18 1360.33,-50.82 1360.33,-50.82 1366.12,-52.41 1366.12,-55.59 1360.33,-57.18 1360.33,-57.18 1274.47,-80.82 1274.47,-80.82 1268.69,-82.41 1257.12,-82.41 1251.33,-80.82"/>
+<text text-anchor="middle" x="1262.9" y="-49" font-family="Times,serif" font-size="20.00">hdr1.hpp</text>
+</g>
+<!-- main1&#45;&gt;hdr1 -->
+<g id="edge17" class="edge">
+<title>main1&#45;&gt;hdr1</title>
+<path fill="none" stroke="salmon" d="M1004.09,-37.79C1048.99,-40.61 1111.31,-44.53 1163.44,-47.81"/>
+<polygon fill="salmon" stroke="salmon" points="1163.52,-51.32 1173.72,-48.45 1163.95,-44.33 1163.52,-51.32"/>
+<text text-anchor="middle" x="1078.9" y="-51" font-family="Times,serif" font-size="20.00">preprocess</text>
+</g>
+</g>
+</svg></div>
+</div>
+</div></div>
+<div class="sect1 slide">
+<h1 id="_введение_в_cmake">2. Введение в CMake</h1>
 
-</div>
-<div id="ссылки" class="slide section level2">
-<h1>Ссылки</h1>
-<ul>
-<li><a href="https://cmake.org/cmake-tutorial">https://cmake.org/cmake-tutorial</a> — тьюториал</li>
-<li><a href="https://cmake.org/cmake/help/latest/index.html">https://cmake.org/cmake/help/latest/index.html</a> — документация</li>
-<li><a href="http://ttroy50.github.io/cmake-examples">http://ttroy50.github.io/cmake-examples</a> — примеры по CMake</li>
-</ul>
-</div>
-<div id="структура-проекта-для-cmake" class="slide section level2">
-<h1>Структура проекта для CMake</h1>
-<ul>
-<li>Нечто большее, чем система сборки — конфигуратор систем сборки</li>
-<li><code>CMakeLists.txt</code> — конфигурационные файлы CMake</li>
-<li>Каждая директория может содержать <code>CMakeLists.txt</code></li>
-<li>Связывание с помощью <code>add_subdirectory</code></li>
-<li><code>add_library</code>, <code>add_executable</code> — добавление основных целей (targets)</li>
-<li><code>target_*</code> — изменение свойств целей</li>
-<li><code>add_test</code> — добавление теста</li>
-<li><code>export(package)</code> — регистрирование проекта</li>
-<li><code>include(CPack)</code> — генерирование установочного пакета</li>
-</ul>
-</div>
-<div id="цели-по-умолчанию" class="slide section level2">
-<h1>Цели по умолчанию</h1>
-<ul>
-<li>all или просто <code>make</code> без целей</li>
-<li>rebuild_cache — перестройка кеша (переконфигурирование)</li>
-<li>clean — очистить дерево сборки от артефактов</li>
-<li>test — запуск тестов
-<ul>
-<li>аналогично запуску <code>ctest</code></li>
-</ul></li>
-<li>install — установка собранных артефактов (используется в цели package)</li>
-<li>package — создание пакета
-<ul>
-<li>аналогично запуску <code>cpack</code></li>
-</ul></li>
-<li><code>&lt;name&gt;</code> — собирает отдельную цель <code>name</code>, созданную в <code>CMakeLists.txt</code></li>
-<li>help — выводит доступные цели</li>
-</ul>
-</div>
+<div class="sectionbody">
+</div></div>
+<div class="sect2 slide">
+<h1 id="_ссылки">2.1. Ссылки</h1>
 
-<div id="синтаксис-языка-cmake" class="title-slide slide section level1">
-<h1>Синтаксис языка CMake</h1>
-
-</div>
-<div id="синтаксис-cmake" class="slide section level2">
-<h1>Синтаксис CMake</h1>
-<ul>
-<li>Идентификаторы переменных такие же, как в C++</li>
-<li>Имена функций и макросов регистронезависимы</li>
-<li>Основные структуры языка:
-<ul>
-<li>условные операторы и циклы (<code>if</code>, <code>foreach</code>)</li>
-<li>функции и макросы (<code>function</code>, <code>macro</code>)</li>
-<li>модули (<code>include</code>)</li>
-</ul></li>
-<li>Точка входа — файл <code>CMakeLists.txt</code></li>
-<li>Режимы запуска
-<ul>
-<li><code>cmake &lt;dir&gt;</code> — запускает <code>&lt;dir&gt;/CMakeLists.txt</code></li>
-<li><code>cmake -P &lt;script&gt;</code> — режим скрипта</li>
-<li><code>cmake -E &lt;cmd&gt;</code> — командный режим</li>
-<li>другие режимы</li>
-</ul></li>
+<div class="sectionbody">
+<ul class="">
+<li>
+<span>
+<a href="https://cmake.org/cmake-tutorial">https://cmake.org/cmake-tutorial</a>&#8201;&#8212;&#8201;тьюториал
+</span>
+</li>
+<li>
+<span>
+<a href="https://cmake.org/cmake/help/latest/index.html">https://cmake.org/cmake/help/latest/index.html</a>&#8201;&#8212;&#8201;документация
+</span>
+</li>
+<li>
+<span>
+<a href="http://ttroy50.github.io/cmake-examples">http://ttroy50.github.io/cmake-examples</a>&#8201;&#8212;&#8201;примеры по CMake
+</span>
+</li>
 </ul>
-</div>
-<div id="переменные" class="slide section level2">
-<h1>Переменные</h1>
-<ul>
-<li><p><code>VAL</code> — имя переменной</p></li>
-<li><p><code>${VAL}</code> — разыменование переменной, её значение</p></li>
-<li><p><code>set(VAL &quot;123 value&quot;)</code> — установка значения переменной</p></li>
-<li><p><code>set(VAL 1 2 3) === set(VAL &quot;1;2;3&quot;)</code> — списки</p></li>
-<li><p>Значение переменных можно передавать в строке ввода:</p>
-<pre><code>$ cmake -DMYVAL=&quot;value&quot; -DMYVAL2=123 -DMYVAL3=ON</code></pre></li>
-<li><p><code>option(MYVAL &quot;Опциональная переменная&quot; ON)</code> — может быть <code>ON</code>, <code>OFF</code></p></li>
-<li><p><code>$ENV{HOME}</code> — доступ к переменным окружения</p></li>
-<li><p>Важные переменные: <code>CMAKE_PREFIX_PATH</code>, <code>CMAKE_PROGRAM_PATH</code>, <code>CMAKE_TOOLCHAIN_FILE</code></p></li>
-<li><p>Стандартные переменные: <code>CMAKE_SOURCE_DIR</code>, <code>CMAKE_CURRENT_SOURCE_DIR</code>, <code>CMAKE_BINARY_DIR</code>, <code>CMAKE_CURRENT_BINARY_DIR</code>, <code>CMAKE_CURRENT_LIST_DIR</code></p></li>
-</ul>
-</div>
+</div></div>
+<div class="sect2 slide">
+<h1 id="_структура_проекта_для_cmake">2.2. Структура проекта для CMake</h1>
 
-<div id="примеры" class="title-slide slide section level1">
-<h1>Примеры</h1>
-
-</div>
-<div id="mwe-minimal-workable-example" class="slide section level2">
-<h1>MWE (Minimal Workable Example)</h1>
-<div class="sourceCode" id="cb3"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">cmake_minimum_required</span>(<span class="ot">VERSION</span> <span class="dt">3.9</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">project</span>(example <span class="ot">VERSION</span> <span class="dt">0.1.0</span> <span class="ot">LANGUAGES</span> <span class="ot">CXX</span> <span class="ot">DESCRIPTION</span> <span class="st">&quot;la-la-la&quot;</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">set</span>(<span class="dv">CMAKE_CXX_STANDARD</span> 17)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="kw">include</span>(CTest)</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="kw">file</span>(<span class="ot">GLOB</span> SOURCES src/*.cpp)</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="kw">add_library</span>(unit <span class="ot">STATIC</span> <span class="dv">${SOURCES}</span>) <span class="co"># libunit.a</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="kw">target_include_directories</span>(unit <span class="ot">PUBLIC</span> include)</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="kw">add_executable</span>(example app/main.cpp)</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="kw">target_link_libraries</span>(example <span class="ot">PUBLIC</span> unit m dl)</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="kw">add_test</span>(<span class="ot">NAME</span> simple_test <span class="ot">COMMAND</span> example --filter sim --dir /tmp)</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="kw">set_tests_properties</span>(simple_test <span class="ot">PROPERTIES</span> <span class="ot">PASS_REGULAR_EXPRESSION</span> <span class="st">&quot;hello world&quot;</span>)</span></code></pre></div>
-</div>
-<div id="пример-создания-пакета" class="slide section level2">
-<h1>Пример создания пакета</h1>
-<div class="sourceCode" id="cb4"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">include</span>(GNUInstallDirs)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">install</span>(<span class="ot">DIRECTORY</span> include/ <span class="ot">DESTINATION</span> <span class="dv">${CMAKE_INSTALL_INCLUDEDIR}</span>)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="kw">install</span>(<span class="ot">TARGETS</span> example unit</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="ot">RUNTIME</span> <span class="ot">DESTINATION</span> <span class="dv">${CMAKE_INSTALL_BINDIR}</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="ot">LIBRARY</span> <span class="ot">DESTINATION</span> <span class="dv">${CMAKE_INSTALL_LIBDIR}</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="ot">ARCHIVE</span> <span class="ot">DESTINATION</span> <span class="dv">${CMAKE_INSTALL_LIBDIR}</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="kw">list</span>(<span class="ot">APPEND</span> <span class="dv">CPACK_GENERATOR</span> TGZ)</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="kw">set</span>(<span class="dv">CPACK_PACKAGE_VERSION_MAJOR</span> <span class="dv">${PROJECT_VERSION_MAJOR}</span>)</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="kw">set</span>(<span class="dv">CPACK_PACKAGE_VERSION_MINOR</span> <span class="dv">${PROJECT_VERSION_MINOR}</span>)</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="kw">set</span>(<span class="dv">CPACK_PACKAGE_VERSION_PATCH</span> <span class="dv">${PROJECT_VERSION_PATCH}</span>)</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="kw">set</span>(<span class="dv">CPACK_SYSTEM_NAME</span> <span class="dv">${CMAKE_SYSTEM_NAME}</span>-<span class="dv">${CMAKE_SYSTEM_PROCESSOR}</span>)</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="kw">set</span>(<span class="va">CPACK_PACKAGE_CONTACT</span> <span class="st">&quot;MIET&quot;</span>)</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="kw">set</span>(<span class="dv">CPACK_DEBIAN_PACKAGE_DEPENDS</span> <span class="st">&quot;libfuse3 (&gt;= 3.2.0)&quot;</span>)</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="kw">include</span>(CPack)</span></code></pre></div>
-</div>
-
-<div id="связывание-проектов" class="title-slide slide section level1">
-<h1>Связывание проектов</h1>
-
-</div>
-<div id="экспорты" class="slide section level2">
-<h1>Экспорты</h1>
-<ul>
-<li>Связывание проектов можно осуществить с помощью экспорта целей</li>
-<li><code>find_package</code> позволяет осуществить подключение сторонних целей</li>
-<li>В CMake есть локальный реестр пакетов (<code>~/.cmake/packages</code>)</li>
-<li>С помощью <code>find_package</code> и <code>CMAKE_MODULE_PATH</code> можно экспортировать существующие библиотеки</li>
+<div class="sectionbody">
+<ul class="">
+<li>
+<span>
+Нечто большее, чем система сборки&#8201;&#8212;&#8201;конфигуратор систем сборки
+</span>
+</li>
+<li>
+<span>
+<code>CMakeLists.txt</code>&#8201;&#8212;&#8201;конфигурационные файлы CMake
+</span>
+</li>
+<li>
+<span>
+Каждая директория может содержать <code>CMakeLists.txt</code>
+</span>
+</li>
+<li>
+<span>
+Связывание с помощью <code>add_subdirectory</code>
+</span>
+</li>
+<li>
+<span>
+<code>add_library</code>, <code>add_executable</code>&#8201;&#8212;&#8201;добавление основных целей (targets)
+</span>
+</li>
+<li>
+<span>
+<code>target_*</code>&#8201;&#8212;&#8201;изменение свойств целей
+</span>
+</li>
+<li>
+<span>
+<code>add_test</code>&#8201;&#8212;&#8201;добавление теста
+</span>
+</li>
+<li>
+<span>
+<code>export(package)</code>&#8201;&#8212;&#8201;регистрирование проекта
+</span>
+</li>
+<li>
+<span>
+<code>include(CPack)</code>&#8201;&#8212;&#8201;генерирование установочного пакета
+</span>
+</li>
 </ul>
-</div>
-<div id="install-дерево-и-export" class="slide section level2">
-<h1>Install-дерево и export</h1>
-<div class="sourceCode" id="cb5"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">target_include_directories</span>(unit <span class="ot">PUBLIC</span> <span class="ot">$&lt;</span><span class="kw">INSTALL_INTERFACE</span><span class="ot">:include&gt;</span> <span class="ot">$&lt;</span><span class="kw">BUILD_INTERFACE</span><span class="ot">:</span><span class="dv">${CMAKE_SOURCE_DIR}</span><span class="ot">/include&gt;</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">install</span>(<span class="ot">TARGETS</span> example unit <span class="ot">EXPORT</span> <span class="dv">${PROJECT_NAME}</span>-config</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="ot">RUNTIME</span> <span class="ot">DESTINATION</span> <span class="dv">${CMAKE_INSTALL_BINDIR}</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="ot">LIBRARY</span> <span class="ot">DESTINATION</span> <span class="dv">${CMAKE_INSTALL_LIBDIR}</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="ot">ARCHIVE</span> <span class="ot">DESTINATION</span> <span class="dv">${CMAKE_INSTALL_LIBDIR}</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="kw">install</span>(<span class="ot">EXPORT</span> <span class="dv">${PROJECT_NAME}</span>-config <span class="ot">NAMESPACE</span> my:: <span class="ot">DESTINATION</span> <span class="dv">${CMAKE_INSTALL_DATADIR}</span>/cmake/<span class="dv">${PROJECT_NAME}</span>)</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="kw">export</span>(<span class="ot">TARGETS</span> example unit <span class="ot">NAMESPACE</span> my:: <span class="ot">FILE</span> <span class="dv">${PROJECT_NAME}</span>-config.cmake)</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="kw">export</span>(PACKAGE <span class="dv">${PROJECT_NAME}</span>)</span></code></pre></div>
-<ul>
-<li>Локальное дерево сборки:
-<ul>
-<li><code>export(TARGETS ...)</code> — создание экспорт-файла в дереве сборки</li>
-<li><code>export(PACKAGE ...)</code> — создание ссылки в локальном реестре на каталог сборки</li>
-</ul></li>
-<li>Install-дерево:
-<ul>
-<li><code>install(TARGETS ... EXPORT ...)</code> — прописывание целей в экспорте</li>
-<li><code>install(EXPORT ...)</code> — установка экспорт-файла</li>
-</ul></li>
-</ul>
-</div>
-<div id="использование-в-стороннем-проекте" class="slide section level2">
-<h1>Использование в стороннем проекте</h1>
-<div class="sourceCode" id="cb6"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">find_package</span>(example <span class="ot">REQUIRED</span>)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">add_executable</span>(myprog <span class="dv">${SRCS}</span>)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="kw">target_link_libraries</span>(myprog <span class="bn">my::unit</span>)</span></code></pre></div>
-<ul>
-<li><p>Если проект <code>example</code> установлен по нестандартному пути <code>/path/to/example</code>, его можно указать в переменной окружения <code>CMAKE_PREFIX_PATH</code>:</p>
-<pre><code>$ export CMAKE_PREFIX_PATH+=:/path/to/example</code></pre></li>
-</ul>
-</div>
-<div id="экспорты-для-сторонних-библиотек" class="slide section level2">
-<h1>Экспорты для сторонних библиотек</h1>
-<div class="sourceCode" id="cb8"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Файл cmake/FindFuse.cmake</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="kw">find_path</span>(FUSE_INC fuse3/fuse.h)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="kw">find_library</span>(FUSE_LIBS fuse3)</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="kw">add_library</span>(<span class="bn">Fuse::fuse3</span> <span class="ot">INTERFACE</span> <span class="ot">IMPORTED</span>)</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="kw">set_target_properties</span>(<span class="bn">Fuse::fuse3</span> <span class="ot">PROPERTIES</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="ot">INTERFACE_LINK_LIBRARIES</span> <span class="dv">${FUSE_LIBS}</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="ot">INTERFACE_INCLUDE_DIRECTORIES</span> <span class="dv">${FUSE_INC}</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
-<p>Использование</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">list</span>(APPNED <span class="dv">CMAKE_MODULE_PATH</span> <span class="dv">${CMAKE_SOURCE_DIR}</span>/cmake)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#list(APPEND CMAKE_MODULE_PATH $ENV{CMAKE_MODULE_PATH})</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="kw">find_package</span>(Fuse <span class="ot">REQUIRED</span>)</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="kw">target_link_libraries</span>(myprog <span class="ot">PUBLIC</span> <span class="bn">Fuse::fuse3</span>)</span></code></pre></div>
-</div>
+</div></div>
+<div class="sect2 slide">
+<h1 id="_цели_по_умолчанию">2.3. Цели по умолчанию</h1>
 
-<div id="дополнительная-функциональность" class="title-slide slide section level1">
-<h1>Дополнительная функциональность</h1>
+<div class="sectionbody">
+<ul class="">
+<li>
+<span>
+all или просто <code>make</code> без целей
+</span>
+</li>
+<li>
+<span>
+rebuild_cache&#8201;&#8212;&#8201;перестройка кеша (переконфигурирование)
+</span>
+</li>
+<li>
+<span>
+clean&#8201;&#8212;&#8201;очистить дерево сборки от артефактов
+</span>
+</li>
+<li>
+<span>
+test&#8201;&#8212;&#8201;запуск тестов
+</span>
+<ul class="">
+<li>
+<span>
+аналогично запуску <code>ctest</code>
+</span>
+</li>
+</ul>
+</li>
+<li>
+<span>
+install&#8201;&#8212;&#8201;установка собранных артефактов (используется в цели package)
+</span>
+</li>
+<li>
+<span>
+package&#8201;&#8212;&#8201;создание пакета
+</span>
+<ul class="">
+<li>
+<span>
+аналогично запуску <code>cpack</code>
+</span>
+</li>
+</ul>
+</li>
+<li>
+<span>
+<code>&lt;name&gt;</code>&#8201;&#8212;&#8201;собирает отдельную цель <code>name</code>, созданную в <code>CMakeLists.txt</code>
+</span>
+</li>
+<li>
+<span>
+help&#8201;&#8212;&#8201;выводит доступные цели
+</span>
+</li>
+</ul>
+</div></div>
+<div class="sect1 slide">
+<h1 id="_синтаксис_языка_cmake">3. Синтаксис языка CMake</h1>
 
-</div>
-<div id="подкаталоги" class="slide section level2">
-<h1>Подкаталоги</h1>
-<ul>
-<li><code>add_subdirectory</code> — добавление каталога, в котором есть <code>CMakeLists.txt</code></li>
-<li>Таргеты из других каталогов всегда read-only</li>
-<li><code>install</code> можно сделать только в той же директории, где находится таргет</li>
+<div class="sectionbody">
+</div></div>
+<div class="sect2 slide">
+<h1 id="_синтаксис_cmake">3.1. Синтаксис CMake</h1>
+
+<div class="sectionbody">
+<ul class="">
+<li>
+<span>
+Идентификаторы переменных такие же, как в C++
+</span>
+</li>
+<li>
+<span>
+Имена функций и макросов регистронезависимы
+</span>
+</li>
+<li>
+<span>
+Основные структуры языка:
+</span>
+<ul class="">
+<li>
+<span>
+условные операторы и циклы (<code>if</code>, <code>foreach</code>)
+</span>
+</li>
+<li>
+<span>
+функции и макросы (<code>function</code>, <code>macro</code>)
+</span>
+</li>
+<li>
+<span>
+модули (<code>include</code>)
+</span>
+</li>
 </ul>
-<div class="sourceCode" id="cb10"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">cmake_minimum_required</span>(<span class="ot">VERSION</span> <span class="dt">3.9</span>)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="kw">project</span>(example <span class="ot">CXX</span>)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="kw">file</span>(<span class="ot">GLOB</span> SRCS src/*cpp)</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="kw">add_library</span>(unit <span class="dv">${SRCS}</span>)</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="kw">add_subdirectory</span>(tests)</span></code></pre></div>
-<div class="sourceCode" id="cb11"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># tests/CMakeLists.txt</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="kw">add_executable</span>(testengine main.cpp)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="kw">target_link_libraries</span>(testengine unit)</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="kw">add_test</span>(first testengine -i one)</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="kw">add_test</span>(second testengine -i two)</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="kw">add_test</span>(third testengine -i three)</span></code></pre></div>
-</div>
-<div id="тесты" class="slide section level2">
-<h1>Тесты</h1>
-<ul>
-<li>Добавление теста: <code>add_test(NAME name COMMAND cmd args)</code></li>
-<li>Добавление параметров тестирования <code>set_tests_properties</code>
-<ul>
-<li>возможности test suite (<code>FIXTURES_SETUP/REQUIRED/CLEANUP</code>)</li>
-<li>установка переменных окружения (<code>ENVIRONMENT</code>)</li>
-</ul></li>
-<li>Успешность теста — возвращаемое значение команды</li>
-<li>Аналог команды <code>expect</code> из linux</li>
+</li>
+<li>
+<span>
+Точка входа&#8201;&#8212;&#8201;файл <code>CMakeLists.txt</code>
+</span>
+</li>
+<li>
+<span>
+Режимы запуска
+</span>
+<ul class="">
+<li>
+<span>
+<code>cmake &lt;dir&gt;</code>&#8201;&#8212;&#8201;запускает <code>&lt;dir&gt;/CMakeLists.txt</code>
+</span>
+</li>
+<li>
+<span>
+<code>cmake -P &lt;script&gt;</code>&#8201;&#8212;&#8201;режим скрипта
+</span>
+</li>
+<li>
+<span>
+<code>cmake -E &lt;cmd&gt;</code>&#8201;&#8212;&#8201;командный режим
+</span>
+</li>
+<li>
+<span>
+другие режимы
+</span>
+</li>
 </ul>
-</div>
+</li>
+</ul>
+</div></div>
+<div class="sect2 slide">
+<h1 id="_переменные">3.2. Переменные</h1>
+
+<div class="sectionbody">
+<ul class="">
+<li>
+<span>
+<code>VAL</code>&#8201;&#8212;&#8201;имя переменной
+</span>
+</li>
+<li>
+<span>
+<code>${VAL}</code>&#8201;&#8212;&#8201;разыменование переменной, её значение
+</span>
+</li>
+<li>
+<span>
+<code>set(VAL "123 value")</code>&#8201;&#8212;&#8201;установка значения переменной
+</span>
+</li>
+<li>
+<span>
+<code>set(VAL 1 2 3) === set(VAL "1;2;3")</code>&#8201;&#8212;&#8201;списки
+</span>
+</li>
+<li>
+<span>
+Значение переменных можно передавать в строке ввода:
+</span>
+<div class="listingblock">
+<div class="content">
+<pre><code>$ cmake -DMYVAL="value" -DMYVAL2=123 -DMYVAL3=ON</code></pre>
+</div></div>
+</li>
+<li>
+<span>
+<code>option(MYVAL "Опциональная переменная" ON)</code>&#8201;&#8212;&#8201;может быть <code>ON</code>, <code>OFF</code>
+</span>
+</li>
+<li>
+<span>
+<code>$ENV{HOME}</code>&#8201;&#8212;&#8201;доступ к переменным окружения
+</span>
+</li>
+<li>
+<span>
+Важные переменные: <code>CMAKE_PREFIX_PATH</code>, <code>CMAKE_PROGRAM_PATH</code>, <code>CMAKE_TOOLCHAIN_FILE</code>
+</span>
+</li>
+<li>
+<span>
+Стандартные переменные: <code>CMAKE_SOURCE_DIR</code>, <code>CMAKE_CURRENT_SOURCE_DIR</code>, <code>CMAKE_BINARY_DIR</code>,
+<code>CMAKE_CURRENT_BINARY_DIR</code>, <code>CMAKE_CURRENT_LIST_DIR</code>
+</span>
+</li>
+</ul>
+</div></div>
+<div class="sect1 slide">
+<h1 id="_примеры">4. Примеры</h1>
+
+<div class="sectionbody">
+</div></div>
+<div class="sect2 slide">
+<h1 id="_mwe_minimal_workable_example">4.1. MWE (Minimal Workable Example)</h1>
+
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>cmake_minimum_required(VERSION 3.9)
+project(example VERSION 0.1.0 LANGUAGES CXX DESCRIPTION "la-la-la")
+
+set(CMAKE_CXX_STANDARD 17)
+
+include(CTest)
+
+file(GLOB SOURCES src/*.cpp)
+add_library(unit STATIC ${SOURCES}) # libunit.a
+target_include_directories(unit PUBLIC include)
+
+add_executable(example app/main.cpp)
+target_link_libraries(example PUBLIC unit m dl)
+
+add_test(NAME simple_test COMMAND example --filter sim --dir /tmp)
+set_tests_properties(simple_test PROPERTIES PASS_REGULAR_EXPRESSION "hello world")</tt></pre></div></div>
+</div></div>
+<div class="sect2 slide">
+<h1 id="_пример_создания_пакета">4.2. Пример создания пакета</h1>
+
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>include(GNUInstallDirs)
+
+install(DIRECTORY include/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+install(TARGETS example unit
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+)
+
+list(APPEND CPACK_GENERATOR TGZ)
+set(CPACK_PACKAGE_VERSION_MAJOR ${PROJECT_VERSION_MAJOR})
+set(CPACK_PACKAGE_VERSION_MINOR ${PROJECT_VERSION_MINOR})
+set(CPACK_PACKAGE_VERSION_PATCH ${PROJECT_VERSION_PATCH})
+set(CPACK_SYSTEM_NAME ${CMAKE_SYSTEM_NAME}-${CMAKE_SYSTEM_PROCESSOR})
+set(CPACK_PACKAGE_CONTACT "MIET")
+set(CPACK_DEBIAN_PACKAGE_DEPENDS "libfuse3 (&gt;= 3.2.0)")
+include(CPack)</tt></pre></div></div>
+</div></div>
+<div class="sect1 slide">
+<h1 id="_связывание_проектов">5. Связывание проектов</h1>
+
+<div class="sectionbody">
+</div></div>
+<div class="sect2 slide">
+<h1 id="_экспорты">5.1. Экспорты</h1>
+
+<div class="sectionbody">
+<ul class="">
+<li>
+<span>
+Связывание проектов можно осуществить с помощью экспорта целей
+</span>
+</li>
+<li>
+<span>
+<code>find_package</code> позволяет осуществить подключение сторонних целей
+</span>
+</li>
+<li>
+<span>
+В CMake есть локальный реестр пакетов (<code>~/.cmake/packages</code>)
+</span>
+</li>
+<li>
+<span>
+С помощью <code>find_package</code> и <code>CMAKE_MODULE_PATH</code> можно экспортировать существующие библиотеки
+</span>
+</li>
+</ul>
+</div></div>
+<div class="sect2 slide">
+<h1 id="_install_дерево_и_export">5.2. Install-дерево и export</h1>
+
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>target_include_directories(unit PUBLIC $&lt;INSTALL_INTERFACE:include&gt; $&lt;BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include&gt;)
+
+install(TARGETS example unit EXPORT ${PROJECT_NAME}-config
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+)
+install(EXPORT ${PROJECT_NAME}-config NAMESPACE my:: DESTINATION ${CMAKE_INSTALL_DATADIR}/cmake/${PROJECT_NAME})
+
+export(TARGETS example unit NAMESPACE my:: FILE ${PROJECT_NAME}-config.cmake)
+export(PACKAGE ${PROJECT_NAME})</tt></pre></div></div>
+<ul class="">
+<li>
+<span>
+Локальное дерево сборки:
+</span>
+<ul class="">
+<li>
+<span>
+<code>export(TARGETS ...)</code>&#8201;&#8212;&#8201;создание экспорт-файла в дереве сборки
+</span>
+</li>
+<li>
+<span>
+<code>export(PACKAGE ...)</code>&#8201;&#8212;&#8201;создание ссылки в локальном реестре на каталог сборки
+</span>
+</li>
+</ul>
+</li>
+<li>
+<span>
+Install-дерево:
+</span>
+<ul class="">
+<li>
+<span>
+<code>install(TARGETS ... EXPORT ...)</code>&#8201;&#8212;&#8201;прописывание целей в экспорте
+</span>
+</li>
+<li>
+<span>
+<code>install(EXPORT ...)</code>&#8201;&#8212;&#8201;установка экспорт-файла
+</span>
+</li>
+</ul>
+</li>
+</ul>
+</div></div>
+<div class="sect2 slide">
+<h1 id="_использование_в_стороннем_проекте">5.3. Использование в стороннем проекте</h1>
+
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>find_package(example REQUIRED)
+
+add_executable(myprog ${SRCS})
+target_link_libraries(myprog my::unit)</tt></pre></div></div>
+<div class="paragraph"><p>Если проект <code>example</code> установлен по нестандартному пути <code>/path/to/example</code>, его можно указать в переменной
+окружения <code>CMAKE_PREFIX_PATH</code>:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>$ export CMAKE_PREFIX_PATH+=:/path/to/example</code></pre>
+</div></div>
+</div></div>
+<div class="sect2 slide">
+<h1 id="_экспорты_для_сторонних_библиотек">5.4. Экспорты для сторонних библиотек</h1>
+
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt># Файл cmake/FindFuse.cmake
+find_path(FUSE_INC fuse3/fuse.h)
+find_library(FUSE_LIBS fuse3)
+
+add_library(Fuse::fuse3 INTERFACE IMPORTED)
+set_target_properties(Fuse::fuse3 PROPERTIES
+    INTERFACE_LINK_LIBRARIES ${FUSE_LIBS}
+    INTERFACE_INCLUDE_DIRECTORIES ${FUSE_INC}
+)</tt></pre></div></div>
+<div class="listingblock">
+<div class="title">Использование</div>
+<div class="content"><!-- Generator: GNU source-highlight
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>list(APPNED CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
+#list(APPEND CMAKE_MODULE_PATH $ENV{CMAKE_MODULE_PATH})
+
+find_package(Fuse REQUIRED)
+target_link_libraries(myprog PUBLIC Fuse::fuse3)</tt></pre></div></div>
+</div></div>
+<div class="sect1 slide">
+<h1 id="_дополнительная_функциональность">6. Дополнительная функциональность</h1>
+
+<div class="sectionbody">
+</div></div>
+<div class="sect2 slide">
+<h1 id="_подкаталоги">6.1. Подкаталоги</h1>
+
+<div class="sectionbody">
+<ul class="">
+<li>
+<span>
+<code>add_subdirectory</code>&#8201;&#8212;&#8201;добавление каталога, в котором есть <code>CMakeLists.txt</code>
+</span>
+</li>
+<li>
+<span>
+Таргеты из других каталогов всегда read-only
+</span>
+</li>
+<li>
+<span>
+<code>install</code> можно сделать только в той же директории, где находится таргет
+</span>
+</li>
+</ul>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>cmake_minimum_required(VERSION 3.9)
+project(example CXX)
+
+file(GLOB SRCS src/*cpp)
+add_library(unit ${SRCS})
+add_subdirectory(tests)</tt></pre></div></div>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt># tests/CMakeLists.txt
+add_executable(testengine main.cpp)
+target_link_libraries(testengine unit)
+
+add_test(first testengine -i one)
+add_test(second testengine -i two)
+add_test(third testengine -i three)</tt></pre></div></div>
+</div></div>
+<div class="sect2 slide">
+<h1 id="_тесты">6.2. Тесты</h1>
+
+<div class="sectionbody">
+<ul class="">
+<li>
+<span>
+Добавление теста: <code>add_test(NAME name COMMAND cmd args)</code>
+</span>
+</li>
+<li>
+<span>
+Добавление параметров тестирования <code>set_tests_properties</code>
+</span>
+<ul class="">
+<li>
+<span>
+возможности test suite (<code>FIXTURES_SETUP/REQUIRED/CLEANUP</code>)
+</span>
+</li>
+<li>
+<span>
+установка переменных окружения (<code>ENVIRONMENT</code>)
+</span>
+</li>
+</ul>
+</li>
+<li>
+<span>
+Успешность теста&#8201;&#8212;&#8201;возвращаемое значение команды
+</span>
+</li>
+<li>
+<span>
+Аналог команды <code>expect</code> из linux
+</span>
+</li>
+</ul>
+</div></div>
 </body>
 </html>
