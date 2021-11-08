@@ -57,5 +57,3 @@ add_custom_command(OUTPUT index.html
         ${CMAKE_SOURCE_DIR}/README.adoc
     DEPENDS README.adoc)
 add_custom_target(main ALL DEPENDS index.html)
-
-add_html(nixos-setup nixos-setup.md)
