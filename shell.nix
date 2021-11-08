@@ -6,12 +6,8 @@ mkShell rec {
     bash
     cmake
     ninja
-    pandoc docproc
-    graphviz
-    xdot
-    plantuml PandocElements
+    graphviz plantuml xdot
     asciidoc-full-with-plugins
-    gcc
     gdb
   ];
   LANG = "C.UTF-8";

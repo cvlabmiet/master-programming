@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.9)
+cmake_minimum_required(VERSION 3.19)
 project(master-programming VERSION 0.1.0 LANGUAGES CXX
     DESCRIPTION "A source code for the course Master computer programming"
 )
@@ -6,15 +6,12 @@ project(master-programming VERSION 0.1.0 LANGUAGES CXX
 set(CMAKE_CXX_STANDARD 20)
 add_compile_options($<$<COMPILE_LANGUAGE:CXX>:-Wpedantic\;-Werror\;-Wall\;-Wextra>)
 
-find_package(docproc REQUIRED COMPONENTS plantuml dot)
+find_program(ASCIIDOC asciidoc REQUIRED)
+find_program(DOT dot REQUIRED)
+find_program(PLANTUML plantuml REQUIRED)
+
 find_package(Boost REQUIRED COMPONENTS timer chrono thread mpi coroutine serialization program_options log_setup log)
 
-add_library(metadata metadata.yml)
-
-set(SLIDY_OUTPUT "-t slidy" --template=${CMAKE_SOURCE_DIR}/templates/slidy.thtml)
-set(REVEALJS_OUTPUT "-t revealjs" --template=${CMAKE_SOURCE_DIR}/templates/revealjs.thtml)
-
-find_program(ASCIIDOC asciidoc REQUIRED)
 function(add_asciidoc __target __files)
     cmake_parse_arguments(__prefix "" "" "DEPENDS" ${ARGN})
     set(__abs_files)
