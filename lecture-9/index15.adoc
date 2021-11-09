@@ -49,7 +49,7 @@ include::{outdir}/sample_0.log[]
 * Поддерживаются значения по умолчанию для аргументов
 ** `--has-default positional options here` => `--has-default -- positional options here`
 * Возможность считывать флаги из файла
-* Некоторая громоздкость при создании `variables_map`, стоит взглянуть на https://github.com/jarro2783/cxxopts
+* Некоторая громоздкость при создании `variables_map`, стоит взглянуть на https://github.com/jarro2783/cxxopts[]
 * В случае провала генерируется исключение `boost::program_options::error`
 * С помощью `parse_environment()` и `environment_iterator` можно загружать опции через переменные окружения
 
@@ -67,7 +67,7 @@ sys::[{outdir}/example15-2 -h]
 $ ./example15-2 --age 21
 sys::[{outdir}/example15-2 --age 21]
 $ ./example15-2 --config <(echo age = 22)
-sys::[{outdir}/example15-2 --config <(echo age = 22)]
+sys::[{outdir}/example15-2 --config example15-2.ini]
 ----
 
 === Сериализация

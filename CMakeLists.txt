@@ -21,14 +21,16 @@ function(add_asciidoc __target __files)
     endforeach()
 
     add_custom_command(OUTPUT index.html
-        COMMAND ${ASCIIDOC} -o ${CMAKE_CURRENT_BINARY_DIR}/index.html
-            --backend ${CMAKE_SOURCE_DIR}/templates/slidy-custom
-            -a stylesheet=${CMAKE_SOURCE_DIR}/templates/slidy-custom.css
-            ${__abs_files}
+        COMMAND ${CMAKE_COMMAND} -P ${CMAKE_SOURCE_DIR}/cmake/warn2err.cmake --
+                ${ASCIIDOC} -o ${CMAKE_CURRENT_BINARY_DIR}/index.html
+                --backend ${CMAKE_SOURCE_DIR}/cmake/templates/slidy-custom
+                -a stylesheet=${CMAKE_SOURCE_DIR}/cmake/templates/slidy-custom.css
+                ${__abs_files}
         DEPENDS ${__files}
-            ${CMAKE_SOURCE_DIR}/templates/slidy-custom.conf
-            ${CMAKE_SOURCE_DIR}/templates/slidy-custom.css
-            ${__prefix_DEPENDS}
+                ${CMAKE_SOURCE_DIR}/cmake/warn2err.cmake
+                ${CMAKE_SOURCE_DIR}/cmake/templates/slidy-custom.conf
+                ${CMAKE_SOURCE_DIR}/cmake/templates/slidy-custom.css
+                ${__prefix_DEPENDS}
         WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
     add_custom_target(${__target} ALL DEPENDS index.html)
 endfunction()
@@ -49,8 +51,9 @@ add_subdirectory(lecture-13)
 add_subdirectory(tasks)
 
 add_custom_command(OUTPUT index.html
-    COMMAND ${ASCIIDOC} -o ${CMAKE_CURRENT_BINARY_DIR}/index.html
-        --backend html5 -a env-html=1
-        ${CMAKE_SOURCE_DIR}/README.adoc
-    DEPENDS README.adoc)
+    COMMAND ${CMAKE_COMMAND} -P ${CMAKE_SOURCE_DIR}/cmake/warn2err.cmake --
+            ${ASCIIDOC} -o ${CMAKE_CURRENT_BINARY_DIR}/index.html
+            --backend html5 -a env-html=1
+            ${CMAKE_SOURCE_DIR}/README.adoc
+    DEPENDS README.adoc ${CMAKE_SOURCE_DIR}/cmake/warn2err.cmake)
 add_custom_target(main ALL DEPENDS index.html)

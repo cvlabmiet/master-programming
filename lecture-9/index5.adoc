@@ -46,7 +46,8 @@ include::example5-2.cpp[]
 
 .Output
 ----
-sys::[{outdir}/example5-2 <<< "45 89 53"]
+$ ./example5-2 <<< "45 89 53"
+sys::[echo 45 89 53 | {outdir}/example5-2]
 ----
 
 === Граф (BGL)

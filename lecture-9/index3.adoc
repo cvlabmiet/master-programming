@@ -151,8 +151,7 @@ include::example3-6.cpp[]
 sys::[{outdir}/example3-6]
 ----
 
-Контейнеры
-----------
+=== Остальные контейнеры
 
 * https://www.boost.org/libs/container[boost/container/]
 * Поддерживаются рекурсивные типы

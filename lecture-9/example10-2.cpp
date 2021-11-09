@@ -7,7 +7,7 @@
 
 int main()
 {
-    boost::lockfree::queue<int> q;
+    boost::lockfree::queue<int> q(100);
     std::atomic<int> sum = 0;
 
     auto produce = [&q]() {
