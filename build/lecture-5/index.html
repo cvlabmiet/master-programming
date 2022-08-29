@@ -2,10 +2,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ru" xml:lang="ru">
 <head>
-<title>Master programming. <br> Лекция №13 (Разработка в команде)</title>
+<title>Master programming. <br> Лекция №5 (Тестирование)</title>
 <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
 <meta name="copyright" content="Copyright &#169; Игорь Шаронов" />
-<meta name="generator" content="AsciiDoc 9.1.0" />
+<meta name="generator" content="AsciiDoc 10.2.0" />
 <style type="text/css">
 /* Shared CSS for AsciiDoc xhtml11 and html5 backends */
 
@@ -3837,263 +3837,550 @@ setTimeout(w3c_slidy.hide_slides, 50);
 </head>
 <body class="article">
 <div id="header" class="slide">
-<h1>Master programming. <br> Лекция №13 (Разработка в команде)</h1>
+<h1>Master programming. <br> Лекция №5 (Тестирование)</h1>
 <span id="author">Игорь Шаронов</span><br />
-<span id="revdate">2021-11-06</span>
+<span id="revdate">2021-11-07</span>
 </div>
 </div></div>
 <div class="sect1 slide">
-<h1 id="_из_чего_строится_понятие_команда">1. Из чего строится понятие "команда"</h1>
+<h1 id="_основные_понятия_тестирования">1. Основные понятия тестирования</h1>
 
 <div class="sectionbody">
 </div></div>
 <div class="sect2 slide">
-<h1 id="_преимущества_и_недостатки_разработки_в_команде">1.1. Преимущества и недостатки разработки в команде</h1>
+<h1 id="_типы_тестирования">1.1. Типы тестирования</h1>
 
 <div class="sectionbody">
 <ul class="">
 <li>
 <span>
-Все люди разные
+Тестирование&#8201;&#8212;&#8201;это та же программа со своим кодом
 </span>
 </li>
 <li>
 <span>
-Конфликты неизбежны
+Unit-тесты
 </span>
 </li>
 <li>
 <span>
-Человеческий фактор
+Тестирование белого, серого, чёрного ящика
 </span>
 </li>
 <li>
 <span>
-Постоянные обсуждения
+Нагрузочное тестирование
 </span>
 </li>
 <li>
 <span>
-Параллелизация задач
+Стресс-тестирование
+</span>
+</li>
+<li>
+<span>
+Интеграционное тестирование
+</span>
+</li>
+<li>
+<span>
+TDD, BDD
 </span>
 </li>
 </ul>
 </div></div>
 <div class="sect2 slide">
-<h1 id="_должности">1.2. Должности</h1>
-
-<div class="sectionbody">
-<div class="tableblock">
-<table rules="none"
-width="100%"
-frame="void"
-cellspacing="0" cellpadding="4">
-<col width="50%" />
-<col width="50%" />
-<thead>
-<tr>
-<th align="left" valign="top"> Программисты </th>
-<th align="left" valign="top"> Управляющее звено</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="left" valign="top"><div><ul class="">
-<li>
-<span>
-Intern
-</span>
-</li>
-<li>
-<span>
-Junior
-</span>
-</li>
-<li>
-<span>
-Regular
-</span>
-</li>
-<li>
-<span>
-Senior
-</span>
-</li>
-<li>
-<span>
-Lead
-</span>
-</li>
-<li>
-<span>
-Expert
-</span>
-</li>
-<li>
-<span>
-Principal
-</span>
-</li>
-</ul></div></td>
-<td align="left" valign="top"><div><ul class="">
-<li>
-<span>
-Project manager
-</span>
-</li>
-<li>
-<span>
-Product owner
-</span>
-</li>
-<li>
-<span>
-Team Lead
-</span>
-</li>
-<li>
-<span>
-Agile coach
-</span>
-</li>
-<li>
-<span>
-Scrum master
-</span>
-</li>
-</ul></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div></div>
-<div class="sect2 slide">
-<h1 id="_состав_команды">1.3. Состав команды</h1>
+<h1 id="_терминология">1.2. Терминология</h1>
 
 <div class="sectionbody">
 <ul class="">
 <li>
 <span>
-Программисты
+Feature&#8201;&#8212;&#8201;предлагаемая функциональность
 </span>
 </li>
 <li>
 <span>
-Тестировщики (могут быть заменены программистами)
+Bug&#8201;&#8212;&#8201;неправильная реализация функциональности
 </span>
 </li>
 <li>
 <span>
-Интерны&#8201;&#8212;&#8201;не более 1-2 на команду
+Спецификация&#8201;&#8212;&#8201;набор функциональностей, которым обладает система
 </span>
 </li>
 <li>
 <span>
-Старший или ведущий программист
+Unit test&#8201;&#8212;&#8201;модульный тест
 </span>
 </li>
 <li>
 <span>
-Руководитель команды
-</span>
-</li>
-<li>
-<span>
-Управляющий проектом
-</span>
-</li>
-<li>
-<span>
-<strong>DevOps</strong>
-</span>
-</li>
-<li>
-<span>
-<strong>Релиз менеджер</strong>
-</span>
-</li>
-<li>
-<span>
-<strong>Владелец продукта</strong>
-</span>
-</li>
-</ul>
-</div></div>
-<div class="sect2 slide">
-<h1 id="_зачем_команда_собирается">1.4. Зачем команда собирается?</h1>
-
-<div class="sectionbody">
-<ul class="">
-<li>
-<span>
-Стендапы&#8201;&#8212;&#8201;текущее состояние дел
-</span>
-</li>
-<li>
-<span>
-Планирование и грумминг&#8201;&#8212;&#8201;оценка и приоритизация задач
-</span>
-</li>
-<li>
-<span>
-Митинги (обсуждения)
-</span>
-</li>
-<li>
-<span>
-Спринты и майлстоуны&#8201;&#8212;&#8201;мерила для оценок
-</span>
-</li>
-<li>
-<span>
-Ретроспективы
+Framework&#8201;&#8212;&#8201;движок (библиотека) для реализации конкретной функциональности
 </span>
 <ul class="">
 <li>
 <span>
-Анализ проделанной работы
+тестовый движок (gtest, catch2)
 </span>
 </li>
 <li>
 <span>
-Замечания на будущее
+движок пользовательского интерфейса (Qt, Gtk)
+</span>
+</li>
+<li>
+<span>
+Boost&#8201;&#8212;&#8201;это не движок, это набор библиотек
+</span>
+</li>
+<li>
+<span>
+НО! boost::async&#8201;&#8212;&#8201;это движок для сетевого взаимодействия
 </span>
 </li>
 </ul>
 </li>
 <li>
 <span>
-Проблема оценки задач&#8201;&#8212;&#8201;Gummy Bears
+Fixture, Suite, Case&#8201;&#8212;&#8201;способы иерархического представления тестов
+</span>
+</li>
+</ul>
+</div></div>
+<div class="sect1 slide">
+<h1 id="_модульное_тестирование">2. Модульное тестирование</h1>
+
+<div class="sectionbody">
+</div></div>
+<div class="sect2 slide">
+<h1 id="_особенности_модульного_тестирования">2.1. Особенности модульного тестирования</h1>
+
+<div class="sectionbody">
+<ul class="">
+<li>
+<span>
+Тестирование одного модуля без каких-либо зависимостей от других модулей
+</span>
+</li>
+<li>
+<span>
+Разновидность серого/чёрного ящика
+</span>
+</li>
+<li>
+<span>
+Уже готовый пример использования кода
+</span>
+</li>
+<li>
+<span>
+Возможнность регрессионного тестирования
+</span>
+</li>
+<li>
+<span>
+CUnit, Boost test, GTest, Catch, &#8230;
 </span>
 </li>
 </ul>
 </div></div>
 <div class="sect2 slide">
-<h1 id="_стадии_развития_конфликтов">1.5. Стадии развития конфликтов</h1>
+<h1 id="_пример_юнит_теста">2.2. Пример юнит-теста</h1>
 
 <div class="sectionbody">
-<ol class="arabic">
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;gtest/gtest.h&gt;</span>
+
+<span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">DwtTest</span><span style="color: #990000">:</span> <span style="font-weight: bold"><span style="color: #0000FF">public</span></span> <span style="color: #990000">::</span>testing<span style="color: #990000">::</span>Test
+<span style="color: #FF0000">{</span>
+<span style="font-weight: bold"><span style="color: #0000FF">protected</span></span><span style="color: #990000">:</span>
+    <span style="font-weight: bold"><span style="color: #000000">DwtTest</span></span><span style="color: #990000">()</span> <span style="color: #990000">:</span> <span style="font-weight: bold"><span style="color: #000000">img</span></span><span style="color: #990000">(</span>kWidth <span style="color: #990000">*</span> kHeight<span style="color: #990000">)</span> <span style="color: #FF0000">{</span>
+        std<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">fill</span></span><span style="color: #990000">(</span>img<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">begin</span></span><span style="color: #990000">(),</span> img<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">end</span></span><span style="color: #990000">(),</span> <span style="color: #993399">0</span><span style="color: #990000">);</span>
+
+        <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> it <span style="color: #990000">=</span> img<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">begin</span></span><span style="color: #990000">()</span> <span style="color: #990000">+</span> kHeight<span style="color: #990000">/</span><span style="color: #993399">2</span> <span style="color: #990000">*</span> kWidth<span style="color: #990000">;</span>
+        <span style="font-weight: bold"><span style="color: #0000FF">for</span></span> <span style="color: #990000">(</span><span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> i <span style="color: #990000">=</span> <span style="color: #993399">0</span><span style="color: #990000">;</span> i <span style="color: #990000">&lt;</span> kHeight<span style="color: #990000">/</span><span style="color: #993399">5</span><span style="color: #990000">;</span> <span style="color: #990000">++</span>i<span style="color: #990000">)</span>
+            std<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">fill_n</span></span><span style="color: #990000">(</span>it <span style="color: #990000">+</span> i <span style="color: #990000">*</span> kWidth <span style="color: #990000">+</span> kWidth<span style="color: #990000">/</span><span style="color: #993399">4</span><span style="color: #990000">,</span> kWidth<span style="color: #990000">/</span><span style="color: #993399">2</span><span style="color: #990000">,</span> <span style="color: #993399">255</span><span style="color: #990000">);</span>
+    <span style="color: #FF0000">}</span>
+
+    <span style="color: #009900">void</span> <span style="font-weight: bold"><span style="color: #000000">SetUp</span></span><span style="color: #990000">()</span> <span style="color: #FF0000">{}</span>
+    <span style="color: #009900">void</span> <span style="font-weight: bold"><span style="color: #000000">TearDown</span></span><span style="color: #990000">()</span> <span style="color: #FF0000">{}</span>
+
+<span style="font-weight: bold"><span style="color: #0000FF">protected</span></span><span style="color: #990000">:</span>
+    std<span style="color: #990000">::</span><span style="color: #008080">vector&lt;float&gt;</span> img<span style="color: #990000">;</span>
+<span style="color: #FF0000">}</span><span style="color: #990000">;</span>
+
+<span style="font-weight: bold"><span style="color: #000000">TEST_F</span></span><span style="color: #990000">(</span>DwtTest<span style="color: #990000">,</span> DwtIDwt<span style="color: #990000">)</span>
+<span style="color: #FF0000">{</span>
+    std<span style="color: #990000">::</span><span style="color: #008080">vector&lt;float&gt;</span> <span style="font-weight: bold"><span style="color: #000000">subbands</span></span><span style="color: #990000">(</span>img<span style="color: #990000">);</span>
+    <span style="font-weight: bold"><span style="color: #000000">ASSERT_EQ</span></span><span style="color: #990000">(</span><span style="font-weight: bold"><span style="color: #000000">wt2d_cdf97_fwd</span></span><span style="color: #990000">(</span>subbands<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">data</span></span><span style="color: #990000">(),</span> kHeight<span style="color: #990000">,</span> kWidth<span style="color: #990000">,</span> <span style="color: #993399">3</span><span style="color: #990000">),</span> <span style="color: #993399">0</span><span style="color: #990000">);</span>
+
+    std<span style="color: #990000">::</span><span style="color: #008080">vector&lt;float&gt;</span> <span style="font-weight: bold"><span style="color: #000000">restored</span></span><span style="color: #990000">(</span>subbands<span style="color: #990000">);</span>
+    <span style="font-weight: bold"><span style="color: #000000">ASSERT_EQ</span></span><span style="color: #990000">(</span><span style="font-weight: bold"><span style="color: #000000">wt2d_cdf97_inv</span></span><span style="color: #990000">(</span>restored<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">data</span></span><span style="color: #990000">(),</span> kHeight<span style="color: #990000">,</span> kWidth<span style="color: #990000">,</span> <span style="color: #993399">3</span><span style="color: #990000">),</span> <span style="color: #993399">0</span><span style="color: #990000">);</span>
+    <span style="font-weight: bold"><span style="color: #000000">ASSERT_EQ</span></span><span style="color: #990000">(</span>restored<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">size</span></span><span style="color: #990000">(),</span> img<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">size</span></span><span style="color: #990000">());</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">for</span></span> <span style="color: #990000">(</span><span style="color: #009900">int</span> i <span style="color: #990000">=</span> <span style="color: #993399">0</span><span style="color: #990000">;</span> i <span style="color: #990000">&lt;</span> img<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">size</span></span><span style="color: #990000">();</span> <span style="color: #990000">++</span>i<span style="color: #990000">)</span>
+        <span style="font-weight: bold"><span style="color: #000000">EXPECT_NEAR</span></span><span style="color: #990000">(</span>restored<span style="color: #990000">[</span>i<span style="color: #990000">],</span> img<span style="color: #990000">[</span>i<span style="color: #990000">],</span> <span style="color: #993399">1</span><span style="color: #990000">)</span> <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"Index "</span> <span style="color: #990000">&lt;&lt;</span> i<span style="color: #990000">;</span>
+<span style="color: #FF0000">}</span></tt></pre></div></div>
+</div></div>
+<div class="sect2 slide">
+<h1 id="_состав_модульного_теста">2.3. Состав модульного теста</h1>
+
+<div class="sectionbody">
+<ul class="">
 <li>
 <span>
-Всё прекрасно
+ASSERT, EXPECT&#8201;&#8212;&#8201;примитивы сравнения (ядро теста)
 </span>
 </li>
 <li>
 <span>
-Небольшие разногласия (умалчивание конфликта)
+WARN, ERROR&#8201;&#8212;&#8201;уровни остановки теста
 </span>
 </li>
 <li>
 <span>
-Тяжёлый конфликт
+Иерархии тестов: TestSuite (Fixture), TestCase&#8201;&#8212;&#8201;зависит от тестового движка
 </span>
 </li>
 <li>
 <span>
-Последствия
+TearUp/Down, FixtureSetup/Cleanup&#8201;&#8212;&#8201;ин(де)ициализация уровня теста
 </span>
 </li>
-</ol>
+<li>
+<span>
+Механизм добавления теста
+</span>
+</li>
+<li>
+<span>
+Система оповещения пользователя об ошибках
+</span>
+</li>
+<li>
+<span>
+Разные уровни тестов необходимы для организации генерации тестируемых данных
+</span>
+</li>
+</ul>
+</div></div>
+<div class="sect2 slide">
+<h1 id="_схема_иерархии_модульных_тестов">2.4. Схема иерархии модульных тестов</h1>
+
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre><code>TestSuite(S0)
+    constructor
+    TestCase(S0::C0)
+        constructor
+            actions
+            asserts, expects
+        destructor
+    TestCase(S0::C1)
+        constructor
+            actions
+            asserts, expects
+        destructor
+    destructor
+TestSuite(S1)
+    constructor
+    TestCase(S1::C0)
+    TestCase(S1::C1)
+    TestCase(S1::C2)
+    destructor
+...</code></pre>
+</div></div>
+</div></div>
+<div class="sect1 slide">
+<h1 id="_пример_фреймворка_модульного_тестирования">3. Пример фреймворка модульного тестирования</h1>
+
+<div class="sectionbody">
+</div></div>
+<div class="sect2 slide">
+<h1 id="_движок_тестирования_catch">3.1. Движок тестирования Catch</h1>
+
+<div class="sectionbody">
+<ul class="">
+<li>
+<span>
+<a href="https://github.com/catchorg/Catch2">https://github.com/catchorg/Catch2</a>
+</span>
+</li>
+<li>
+<span>
+Автоматическое добавление тестов
+</span>
+</li>
+<li>
+<span>
+Изменённая иерархия тестов:
+</span>
+<ul class="">
+<li>
+<span>
+нулевой уровень&#8201;&#8212;&#8201;глобальное пространство имён
+</span>
+</li>
+<li>
+<span>
+первый уровень&#8201;&#8212;&#8201;<code>TEST_CASE</code>
+</span>
+</li>
+<li>
+<span>
+второй уровень&#8201;&#8212;&#8201;<code>SECTION</code>
+</span>
+</li>
+</ul>
+</li>
+<li>
+<span>
+Поддержка BDD-стиля тестирования
+</span>
+</li>
+<li>
+<span>
+Привычные методы сравнения
+</span>
+</li>
+</ul>
+</div></div>
+<div class="sect2 slide">
+<h1 id="_примеры">3.2. Примеры</h1>
+
+<div class="sectionbody">
+<div class="paragraph"><p><a href="https://github.com/catchorg/Catch2/tree/master/examples">https://github.com/catchorg/Catch2/tree/master/examples</a></p></div>
+</div></div>
+<div class="sect1 slide">
+<h1 id="_подходы_разработки_через_тестирование">4. Подходы разработки через тестирование</h1>
+
+<div class="sectionbody">
+</div></div>
+<div class="sect2 slide">
+<h1 id="_test_driven_development">4.1. Test Driven Development</h1>
+
+<div class="sectionbody">
+<ul class="">
+<li>
+<span>
+Разработка через тестирование
+</span>
+</li>
+<li>
+<span>
+Каждая функционально сначала обретает тест, а потом непосредственный код
+</span>
+</li>
+<li>
+<span>
+Согласование интерфейса происходит раньше согласования реализации функциональности
+</span>
+</li>
+<li>
+<span>
+Является идеалогией, а не типом тестирования
+</span>
+</li>
+<li>
+<span>
+Тесты всегда свежие, так как сначала пишутся именно они
+</span>
+</li>
+</ul>
+</div></div>
+<div class="sect2 slide">
+<h1 id="_интеграционное_тестирование">4.2. Интеграционное тестирование</h1>
+
+<div class="sectionbody">
+<ul class="">
+<li>
+<span>
+Тестирование целиком
+</span>
+</li>
+<li>
+<span>
+Тестирование взаимодействия библиотек, систем или компонентов одной системы
+</span>
+</li>
+<li>
+<span>
+Подходят сторонние инструменты (expect)
+</span>
+<ul class="">
+<li>
+<span>
+<a href="https://habrahabr.ru/company/ruvds/blog/328436">https://habrahabr.ru/company/ruvds/blog/328436</a>
+</span>
+</li>
+<li>
+<span>
+<a href="https://www.ibm.com/developerworks/ru/library/l-expect_1">https://www.ibm.com/developerworks/ru/library/l-expect_1</a>
+</span>
+</li>
+</ul>
+</li>
+<li>
+<span>
+Неустойчиво к ошибкам компонент системы: ошибки могут интерферировать
+</span>
+</li>
+<li>
+<span>
+Найденная уязвимость должна приводить к возникновению дополнительных модульных тестов
+</span>
+</li>
+</ul>
+</div></div>
+<div class="sect2 slide">
+<h1 id="_mock_amp_stubs">4.3. Mock &amp; stubs</h1>
+
+<div class="sectionbody">
+<ul class="">
+<li>
+<span>
+Имитаторы и заглушки
+</span>
+</li>
+<li>
+<span>
+Ограничения:
+</span>
+<ul class="">
+<li>
+<span>
+компоненты должны находится в разных библиотеках
+</span>
+</li>
+<li>
+<span>
+невозможно имитировать внутренние объкты классов или функций
+</span>
+</li>
+<li>
+<span>
+имитируемые объкты должны иметь абстрактный интерфейс или быть шаблонным параметром
+</span>
+</li>
+<li>
+<span>
+решение возможно на уровне системы (<code>LD_PRELOAD</code>)
+</span>
+</li>
+</ul>
+</li>
+<li>
+<span>
+Заглушки&#8201;&#8212;&#8201;константы, частный случай имитаторов
+</span>
+</li>
+<li>
+<span>
+Имитаторы&#8201;&#8212;&#8201;способны имитировать действия
+</span>
+</li>
+<li>
+<span>
+Плохо автоматизируется
+</span>
+</li>
+<li>
+<span>
+Подходит для нереализованных или недоделанных компонентов системы
+</span>
+</li>
+</ul>
+</div></div>
+<div class="sect2 slide">
+<h1 id="_тесты_на_устойчивость">4.4. Тесты на устойчивость</h1>
+
+<div class="sectionbody">
+<ul class="">
+<li>
+<span>
+Стресс-тесты
+</span>
+</li>
+<li>
+<span>
+Абсолютно произвольные данные
+</span>
+</li>
+<li>
+<span>
+Показывает насколько система устройчива, а не степень её отладки
+</span>
+</li>
+<li>
+<span>
+В большинстве случаев ошибки являются архитектурными
+</span>
+</li>
+</ul>
+</div></div>
+<div class="sect2 slide">
+<h1 id="_нагрузочное_тестирование">4.5. Нагрузочное тестирование</h1>
+
+<div class="sectionbody">
+<ul class="">
+<li>
+<span>
+Бенчмарки (benchmark)
+</span>
+</li>
+<li>
+<span>
+Тестирование скорости всей системы или отдельных компонент
+</span>
+</li>
+<li>
+<span>
+Тестирование устройчивости системы под нагрузкой
+</span>
+</li>
+<li>
+<span>
+Определение параметров системы: максимальное количество пользователей, время ожидания и т.д.
+</span>
+</li>
+<li>
+<span>
+Самая простая утилита&#8201;&#8212;&#8201;<code>time</code>
+</span>
+</li>
+<li>
+<span>
+Метод понижения нагрузки:
+</span>
+<ul class="">
+<li>
+<span>
+для определения максимальной нагрузки
+</span>
+</li>
+<li>
+<span>
+понижать нагрузку в 2 раза и фиксировать параметры системы
+</span>
+</li>
+<li>
+<span>
+построить кривую параметров от объёма нагрузки
+</span>
+</li>
+<li>
+<span>
+эстраполировать результаты
+</span>
+</li>
+</ul>
+</li>
+</ul>
 </div></div>
 </body>
 </html>

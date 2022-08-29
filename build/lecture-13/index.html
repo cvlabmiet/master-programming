@@ -2,10 +2,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ru" xml:lang="ru">
 <head>
-<title>Master programming. <br> Лекция №2 (Работа с git)</title>
+<title>Master programming. <br> Лекция №13 (Разработка в команде)</title>
 <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
 <meta name="copyright" content="Copyright &#169; Игорь Шаронов" />
-<meta name="generator" content="AsciiDoc 9.1.0" />
+<meta name="generator" content="AsciiDoc 10.2.0" />
 <style type="text/css">
 /* Shared CSS for AsciiDoc xhtml11 and html5 backends */
 
@@ -3837,281 +3837,50 @@ setTimeout(w3c_slidy.hide_slides, 50);
 </head>
 <body class="article">
 <div id="header" class="slide">
-<h1>Master programming. <br> Лекция №2 (Работа с git)</h1>
+<h1>Master programming. <br> Лекция №13 (Разработка в команде)</h1>
 <span id="author">Игорь Шаронов</span><br />
-<span id="revdate">2018-09-09</span>
+<span id="revdate">2021-11-06</span>
 </div>
 </div></div>
 <div class="sect1 slide">
-<h1 id="_система_контроля_версий_git">1. Система контроля версий git</h1>
+<h1 id="_из_чего_строится_понятие_команда">1. Из чего строится понятие "команда"</h1>
 
 <div class="sectionbody">
 </div></div>
 <div class="sect2 slide">
-<h1 id="_основные_ссылки">1.1. Основные ссылки</h1>
+<h1 id="_преимущества_и_недостатки_разработки_в_команде">1.1. Преимущества и недостатки разработки в команде</h1>
 
 <div class="sectionbody">
 <ul class="">
 <li>
 <span>
-<a href="https://git-scm.com">https://git-scm.com</a>&#8201;&#8212;&#8201;основной сайт с документацией по git
+Все люди разные
 </span>
 </li>
 <li>
 <span>
-<a href="https://try.github.io">https://try.github.io</a>&#8201;&#8212;&#8201;онлайн путеводитель по git-у
+Конфликты неизбежны
 </span>
 </li>
 <li>
 <span>
-<a href="https://githowto.com/ru">https://githowto.com/ru</a>&#8201;&#8212;&#8201;ещё один путеводитель
+Человеческий фактор
 </span>
 </li>
 <li>
 <span>
-<a href="https://learngitbranching.js.org/?demo">https://learngitbranching.js.org/?demo</a>&#8201;&#8212;&#8201;попробовать git в реалтайме
+Постоянные обсуждения
+</span>
+</li>
+<li>
+<span>
+Параллелизация задач
 </span>
 </li>
 </ul>
 </div></div>
 <div class="sect2 slide">
-<h1 id="_предыстория">1.2. Предыстория</h1>
-
-<div class="sectionbody">
-<ul class="">
-<li>
-<span>
-<code>diff</code>&#8201;&#8212;&#8201;утилита для выяснения различий
-</span>
-<div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt>$ diff -u lecture-1.html lecture-2.html | head -n 20
-<span style="color: #FF6600">--- lecture-1.html 2018-02-25 14:49:23.665411221 +0300</span>
-<span style="color: #009900">+++ lecture-2.html 2018-02-25 14:49:23.842322309 +0300</span>
-<span style="color: #0000FF">@@ -4,7 +4,7 @@</span>
-   &lt;meta name="generator" content="pandoc"&gt;
-   &lt;meta name="author" content="Игорь Шаронов"&gt;
-<span style="color: #FF6600">-  &lt;meta name="dcterms.date" content="2018-01-15"&gt;</span>
-<span style="color: #009900">+  &lt;meta name="dcterms.date" content="2018-02-18"&gt;</span>
-   &lt;title&gt;Master programming&lt;/title&gt;
-   &lt;meta name="apple-mobile-web-app-capable" content="yes"&gt;</tt></pre></div></div>
-</li>
-<li>
-<span>
-<code>patch</code>&#8201;&#8212;&#8201;обратное действие <code>diff</code> (патч)
-</span>
-</li>
-<li>
-<span>
-конфликты
-</span>
-<div class="listingblock">
-<div class="content">
-<pre><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; LOCAL:sample.txt
-lines from the original file
-======= REMOTE:sample.txt
-new lines from the patch
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code></pre>
-</div></div>
-</li>
-</ul>
-</div></div>
-<div class="sect1 slide">
-<h1 id="_как_устроен_git">2. Как устроен git</h1>
-
-<div class="sectionbody">
-</div></div>
-<div class="sect2 slide">
-<h1 id="_внутренности_git_а">2.1. Внутренности git-а</h1>
-
-<div class="sectionbody">
-<ul class="">
-<li>
-<span>
-Директория .git/
-</span>
-<ul class="">
-<li>
-<span>
-.git/objects/&#8201;&#8212;&#8201;пулл объектов
-</span>
-</li>
-<li>
-<span>
-.git/refs/&#8201;&#8212;&#8201;указатели
-</span>
-</li>
-<li>
-<span>
-.git/HEAD&#8201;&#8212;&#8201;указатель текущей ветки
-</span>
-</li>
-</ul>
-</li>
-<li>
-<span>
-git&#8201;&#8212;&#8201;файловая система ассоциативного типа
-</span>
-</li>
-<li>
-<span>
-Виды объектов: blob, tree, commit, tag
-</span>
-</li>
-<li>
-<span>
-Виды ссылок: branch, tag, remotes
-</span>
-</li>
-<li>
-<span>
-Коммит: tree-объект, автор, коммитер, сообщение, parent
-</span>
-</li>
-</ul>
-</div></div>
-<div class="sect2 slide">
-<h1 id="_хеш_суммы">2.2. Хеш-суммы</h1>
-
-<div class="sectionbody">
-<ul class="">
-<li>
-<span>
-crc32 (пример: F6DE2FEA)
-</span>
-</li>
-<li>
-<span>
-md5 (пример: C43FE3F8445CDB869C6A6DA9AEA90B21)
-</span>
-</li>
-<li>
-<span>
-sha-1 (пример: 7DD987F846400079F4B03C058365A4869047B4A0)
-</span>
-</li>
-<li>
-<span>
-sha-2: sha-224, sha-256, sha-384, sha-512 (пример: CA737F1014A48F4C0B6DD43CB177B0AFD9E5169367544C494011E3317DBF9A509CB1E5DC1E85A941BBEE3D7F2AFBC9B1)
-</span>
-</li>
-<li>
-<span>
-Быстрая идентификация сообщения/файла/пароля
-</span>
-<div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt>$ echo -n <span style="color: #FF0000">'Master programming'</span> <span style="color: #990000">|</span> md5sum -
-01e171232a1aa47e9fd2ae0530782b1f  -
-$ echo -n <span style="color: #FF0000">'master programming'</span> <span style="color: #990000">|</span> md5sum -
-e774d0115e01e1b735a7a1a9a3a85f09  -</tt></pre></div></div>
-</li>
-<li>
-<span>
-Коллизии хешей
-</span>
-</li>
-</ul>
-</div></div>
-<div class="sect1 slide">
-<h1 id="_повседневное_использование">3. Повседневное использование</h1>
-
-<div class="sectionbody">
-</div></div>
-<div class="sect2 slide">
-<h1 id="_основные_команды">3.1. Основные команды</h1>
-
-<div class="sectionbody">
-<ul class="">
-<li>
-<span>
-<code>git status</code>: unstaged, staged, committed
-</span>
-</li>
-<li>
-<span>
-<code>git add &lt;file&gt;</code>&#8201;&#8212;&#8201;добавление <code>file</code> в <code>staged</code>
-</span>
-</li>
-<li>
-<span>
-<code>git checkout &lt;name&gt;</code>&#8201;&#8212;&#8201;переход на ветку <code>name</code>
-</span>
-</li>
-<li>
-<span>
-<code>git checkout -b &lt;name&gt;</code>&#8201;&#8212;&#8201;создание новой ветки <code>name</code>
-</span>
-</li>
-<li>
-<span>
-<code>git checkout -- &lt;file&gt;</code>&#8201;&#8212;&#8201;отменить все изменения файла <code>file</code>
-</span>
-</li>
-<li>
-<span>
-<code>git reset [&lt;commit&gt;|&lt;branch&gt;]</code>&#8201;&#8212;&#8201;перевести изменения из <code>committed</code> в состояние <code>unstaged</code>
-</span>
-</li>
-<li>
-<span>
-<code>git reset --hard</code>&#8201;&#8212;&#8201;отменить все изменения (потеря данных)
-</span>
-</li>
-<li>
-<span>
-<code>git push [&lt;remote&gt;]</code>&#8201;&#8212;&#8201;загрузка изменений на сервер <code>remote</code>
-</span>
-</li>
-<li>
-<span>
-<code>git push --force</code>&#8201;&#8212;&#8201;принудительная загрузка изменений (потеря данных)
-</span>
-</li>
-<li>
-<span>
-<code>git diff [&lt;commit&gt;]</code>&#8201;&#8212;&#8201;просмотр изменений
-</span>
-</li>
-</ul>
-</div></div>
-<div class="sect2 slide">
-<h1 id="_пример_1_добавление_нескольких_remote">3.2. Пример №1: добавление нескольких remote</h1>
-
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt>$ git clone git@github<span style="color: #990000">.</span>com<span style="color: #990000">:</span>cvlabmiet/master-programming
-$ cd master-programming
-master-programming $ git remote add miet git@git<span style="color: #990000">.</span>miet<span style="color: #990000">.</span>ru<span style="color: #990000">:</span>cvlab/master-programming
-master-programming $ git push miet master<span style="color: #990000">:</span>master</tt></pre></div></div>
-<div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt><span style="color: #990000">(</span>lecture-<span style="color: #993399">2</span> <span style="color: #990000">*+)</span> $ git st
-On branch lecture-<span style="color: #993399">2</span>
-Changes to be committed<span style="color: #990000">:</span>
-<span style="color: #990000">(</span>use <span style="color: #FF0000">"git reset HEAD &lt;file&gt;..."</span> to unstage<span style="color: #990000">)</span>
-    modified<span style="color: #990000">:</span>   CMakeLists<span style="color: #990000">.</span>txt
-    modified<span style="color: #990000">:</span>   lecture-<span style="color: #993399">2</span><span style="color: #990000">.</span>adoc
-Changes not staged <span style="font-weight: bold"><span style="color: #0000FF">for</span></span> commit<span style="color: #990000">:</span>
-    <span style="color: #990000">(</span>use <span style="color: #FF0000">"git add &lt;file&gt;..."</span> to update what will be committed<span style="color: #990000">)</span>
-    <span style="color: #990000">(</span>use <span style="color: #FF0000">"git checkout -- &lt;file&gt;..."</span> to discard changes <span style="font-weight: bold"><span style="color: #0000FF">in</span></span> working directory<span style="color: #990000">)</span>
-    modified<span style="color: #990000">:</span>   lecture-<span style="color: #993399">2</span><span style="color: #990000">.</span>adoc</tt></pre></div></div>
-</div></div>
-<div class="sect2 slide">
-<h1 id="_пример_2_создание_локального_репозитория">3.3. Пример №2: создание локального репозитория</h1>
+<h1 id="_должности">1.2. Должности</h1>
 
 <div class="sectionbody">
 <div class="tableblock">
@@ -4121,167 +3890,210 @@ frame="void"
 cellspacing="0" cellpadding="4">
 <col width="50%" />
 <col width="50%" />
-<tbody>
+<thead>
 <tr>
-<td align="left" valign="top"><div><div class="listingblock">
-<div class="title">На сервере</div>
-<div class="content"><!-- Generator: GNU source-highlight
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt>$ mkdir /tmp/server
-$ git init --bare /tmp/server/repo
-$ cd /tmp/server/repo<span style="color: #990000">/</span>
-repo <span style="color: #990000">(</span>BARE<span style="color: #990000">:</span>master<span style="color: #990000">)</span> $ ls
-branches  config  description  HEAD  hooks  info  objects  refs</tt></pre></div></div></div></td>
-<td align="left" valign="top"><div><div class="listingblock">
-<div class="title">На клиенте</div>
-<div class="content"><!-- Generator: GNU source-highlight
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt>$ git init /tmp/repo
-$ cd /tmp/repo
-repo <span style="color: #990000">(</span>master<span style="font-style: italic"><span style="color: #9A1900">#) $ echo 'Empty repo' &gt; README.md</span></span>
-repo <span style="color: #990000">(</span>master<span style="font-style: italic"><span style="color: #9A1900">#) $ git add README.md</span></span>
-repo <span style="color: #990000">(</span>master<span style="font-style: italic"><span style="color: #9A1900">#) $ git ci -am "Initial commit"</span></span>
-repo <span style="color: #990000">(</span>master<span style="color: #990000">)</span> $ git remote add origin /tmp/server/repo
-repo <span style="color: #990000">(</span>master<span style="color: #990000">)</span> $ git push origin master<span style="color: #990000">:</span>master</tt></pre></div></div></div></td>
+<th align="left" valign="top"> Программисты </th>
+<th align="left" valign="top"> Управляющее звено</th>
 </tr>
-</tbody>
-</table>
-</div>
-</div></div>
-<div class="sect2 slide">
-<h1 id="_пример_3_сравнение_с_origin_master">3.4. Пример №3: сравнение с origin/master</h1>
-
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt>$ git fetch origin
-$ git diff master origin/master
-$ git show origin/master<span style="color: #990000">:</span>lecture-<span style="color: #993399">3</span><span style="color: #990000">.</span>md <span style="color: #990000">|</span> less
-$ git co origin/master -b new-feature</tt></pre></div></div>
-</div></div>
-<div class="sect1 slide">
-<h1 id="_объединение_веток">4. Объединение веток</h1>
-
-<div class="sectionbody">
-</div></div>
-<div class="sect2 slide">
-<h1 id="_разрешение_конфликтов">4.1. Разрешение конфликтов</h1>
-
-<div class="sectionbody">
-<ul class="">
-<li>
-<span>
-LOCAL&#8201;&#8212;&#8201;локальные изменения текущей ветки
-</span>
-</li>
-<li>
-<span>
-REMOTE&#8201;&#8212;&#8201;изменения на сервере
-</span>
-</li>
-<li>
-<span>
-BASE&#8201;&#8212;&#8201;общий предок LOCAL и REMOTE
-</span>
-</li>
-<li>
-<span>
-MERGED&#8201;&#8212;&#8201;автоматическое разрешение конфликта
-</span>
-</li>
-<li>
-<span>
-merge&#8201;&#8212;&#8201;это тоже коммит
-</span>
-</li>
-<li>
-<span>
-Утилиты для разрешения конфликтов: vimdiff, kdiff3, meld, tortoisemerge
-</span>
-</li>
-</ul>
-<div class="listingblock">
-<div class="content">
-<pre><code>┌───────┬──────┬────────┐   ┌────────┬────────┐
-│ LOCAL │ BASE │ REMOTE │   │        │        │
-├───────┴──────┴────────┤   │ MERGED │ REMOTE │
-│        MERGED         │   │        │        │
-└───────────────────────┘   └────────┴────────┘</code></pre>
-</div></div>
-</div></div>
-<div class="sect2 slide">
-<h1 id="_стратегии_объединения_веток">4.2. Стратегии объединения веток</h1>
-
-<div class="sectionbody">
-<div class="tableblock">
-<table rules="none"
-width="100%"
-frame="void"
-cellspacing="0" cellpadding="4">
-<col width="50%" />
-<col width="50%" />
+</thead>
 <tbody>
 <tr>
-<td align="left" valign="top"><div><div class="paragraph"><p>Хотим объединить ветки topic и master:</p></div>
-<div class="listingblock">
-<div class="content">
-<pre><code>      A---B---C topic
-     /
-D---E---F---G master</code></pre>
-</div></div></div></td>
 <td align="left" valign="top"><div><ul class="">
 <li>
 <span>
-merge no-fast-forward (<code>git merge --no-ff</code>):
+Intern
 </span>
-<div class="listingblock">
-<div class="content">
-<pre><code>      A---B---C topic
-     /         \
-D---E---F---G---H master</code></pre>
-</div></div>
 </li>
 <li>
 <span>
-merge fast-forward (<code>git merge --ff</code>):
+Junior
 </span>
-<div class="listingblock">
-<div class="content">
-<pre><code>D---E-A-F-B-G-C master</code></pre>
-</div></div>
 </li>
 <li>
 <span>
-merge squash (<code>git merge --squash</code>):
+Regular
 </span>
-<div class="listingblock">
-<div class="content">
-<pre><code>D---E---F---G---T master</code></pre>
-</div></div>
 </li>
 <li>
 <span>
-rebase (<code>git rebase master</code>):
+Senior
 </span>
-<div class="listingblock">
-<div class="content">
-<pre><code>              A---B---C topic
-             /
-D---E---F---G master</code></pre>
-</div></div>
+</li>
+<li>
+<span>
+Lead
+</span>
+</li>
+<li>
+<span>
+Expert
+</span>
+</li>
+<li>
+<span>
+Principal
+</span>
+</li>
+</ul></div></td>
+<td align="left" valign="top"><div><ul class="">
+<li>
+<span>
+Project manager
+</span>
+</li>
+<li>
+<span>
+Product owner
+</span>
+</li>
+<li>
+<span>
+Team Lead
+</span>
+</li>
+<li>
+<span>
+Agile coach
+</span>
+</li>
+<li>
+<span>
+Scrum master
+</span>
 </li>
 </ul></div></td>
 </tr>
 </tbody>
 </table>
 </div>
+</div></div>
+<div class="sect2 slide">
+<h1 id="_состав_команды">1.3. Состав команды</h1>
+
+<div class="sectionbody">
+<ul class="">
+<li>
+<span>
+Программисты
+</span>
+</li>
+<li>
+<span>
+Тестировщики (могут быть заменены программистами)
+</span>
+</li>
+<li>
+<span>
+Интерны&#8201;&#8212;&#8201;не более 1-2 на команду
+</span>
+</li>
+<li>
+<span>
+Старший или ведущий программист
+</span>
+</li>
+<li>
+<span>
+Руководитель команды
+</span>
+</li>
+<li>
+<span>
+Управляющий проектом
+</span>
+</li>
+<li>
+<span>
+<strong>DevOps</strong>
+</span>
+</li>
+<li>
+<span>
+<strong>Релиз менеджер</strong>
+</span>
+</li>
+<li>
+<span>
+<strong>Владелец продукта</strong>
+</span>
+</li>
+</ul>
+</div></div>
+<div class="sect2 slide">
+<h1 id="_зачем_команда_собирается">1.4. Зачем команда собирается?</h1>
+
+<div class="sectionbody">
+<ul class="">
+<li>
+<span>
+Стендапы&#8201;&#8212;&#8201;текущее состояние дел
+</span>
+</li>
+<li>
+<span>
+Планирование и грумминг&#8201;&#8212;&#8201;оценка и приоритизация задач
+</span>
+</li>
+<li>
+<span>
+Митинги (обсуждения)
+</span>
+</li>
+<li>
+<span>
+Спринты и майлстоуны&#8201;&#8212;&#8201;мерила для оценок
+</span>
+</li>
+<li>
+<span>
+Ретроспективы
+</span>
+<ul class="">
+<li>
+<span>
+Анализ проделанной работы
+</span>
+</li>
+<li>
+<span>
+Замечания на будущее
+</span>
+</li>
+</ul>
+</li>
+<li>
+<span>
+Проблема оценки задач&#8201;&#8212;&#8201;Gummy Bears
+</span>
+</li>
+</ul>
+</div></div>
+<div class="sect2 slide">
+<h1 id="_стадии_развития_конфликтов">1.5. Стадии развития конфликтов</h1>
+
+<div class="sectionbody">
+<ol class="arabic">
+<li>
+<span>
+Всё прекрасно
+</span>
+</li>
+<li>
+<span>
+Небольшие разногласия (умалчивание конфликта)
+</span>
+</li>
+<li>
+<span>
+Тяжёлый конфликт
+</span>
+</li>
+<li>
+<span>
+Последствия
+</span>
+</li>
+</ol>
 </div></div>
 </body>
 </html>

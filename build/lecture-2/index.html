@@ -2,10 +2,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ru" xml:lang="ru">
 <head>
-<title>Master programming. <br> Лекция №4 (Отладка)</title>
+<title>Master programming. <br> Лекция №2 (Работа с git)</title>
 <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
 <meta name="copyright" content="Copyright &#169; Игорь Шаронов" />
-<meta name="generator" content="AsciiDoc 9.1.0" />
+<meta name="generator" content="AsciiDoc 10.2.0" />
 <style type="text/css">
 /* Shared CSS for AsciiDoc xhtml11 and html5 backends */
 
@@ -3837,533 +3837,281 @@ setTimeout(w3c_slidy.hide_slides, 50);
 </head>
 <body class="article">
 <div id="header" class="slide">
-<h1>Master programming. <br> Лекция №4 (Отладка)</h1>
+<h1>Master programming. <br> Лекция №2 (Работа с git)</h1>
 <span id="author">Игорь Шаронов</span><br />
-<span id="revdate">2021-11-06</span>
+<span id="revdate">2018-09-09</span>
 </div>
 </div></div>
 <div class="sect1 slide">
-<h1 id="_из_чего_состоит_программа">1. Из чего состоит программа?</h1>
+<h1 id="_система_контроля_версий_git">1. Система контроля версий git</h1>
 
 <div class="sectionbody">
 </div></div>
 <div class="sect2 slide">
-<h1 id="_этапы_сборки_программы">1.1. Этапы сборки программы</h1>
+<h1 id="_основные_ссылки">1.1. Основные ссылки</h1>
 
 <div class="sectionbody">
-<div class="paragraph"><p>Полную сборку (<code>g++ -o exe main.cpp</code>) можно разбить на этапы:</p></div>
-<ol class="arabic">
-<li>
-<span>
-препроцессинг (<code>g++ -E</code>) &#8594; исходный файл для компиляции
-</span>
-</li>
-<li>
-<span>
-компиляция (<code>g++ -c</code>) &#8594; объектный файл
-</span>
-</li>
-<li>
-<span>
-создание библиотечного архива (<code>ar -r</code>) &#8594; статическая библиотека
-</span>
-</li>
-<li>
-<span>
-линковка (<code>ld</code> или <code>g++</code>) &#8594; исполняемый файл или динамическая библиотека
-</span>
-</li>
-</ol>
-</div></div>
-<div class="sect2 slide">
-<h1 id="_изучение_объектного_файла">1.2. Изучение объектного файла</h1>
-
-<div class="sectionbody">
-<div class="paragraph"><p>Существуют несколько форматов объектных файлов:</p></div>
 <ul class="">
 <li>
 <span>
-COFF&#8201;&#8212;&#8201;для Windows (ранее использовался в UNIX)
+<a href="https://git-scm.com">https://git-scm.com</a>&#8201;&#8212;&#8201;основной сайт с документацией по git
 </span>
 </li>
 <li>
 <span>
-Mach-O&#8201;&#8212;&#8201;Mac OS X, iOS
+<a href="https://try.github.io">https://try.github.io</a>&#8201;&#8212;&#8201;онлайн путеводитель по git-у
 </span>
 </li>
 <li>
 <span>
-ELF&#8201;&#8212;&#8201;для исполнимых файлов и динамических библиотек (Linux-системы)
-</span>
-</li>
-</ul>
-<div class="paragraph"><p>Основные секции:</p></div>
-<ul class="">
-<li>
-<span>
-.text&#8201;&#8212;&#8201;секция кода
+<a href="https://githowto.com/ru">https://githowto.com/ru</a>&#8201;&#8212;&#8201;ещё один путеводитель
 </span>
 </li>
 <li>
 <span>
-.data&#8201;&#8212;&#8201;секция данных
-</span>
-</li>
-<li>
-<span>
-.rodata&#8201;&#8212;&#8201;секция констант
-</span>
-</li>
-<li>
-<span>
-.bss&#8201;&#8212;&#8201;секция неинициализированных данных
+<a href="https://learngitbranching.js.org/?demo">https://learngitbranching.js.org/?demo</a>&#8201;&#8212;&#8201;попробовать git в реалтайме
 </span>
 </li>
 </ul>
 </div></div>
 <div class="sect2 slide">
-<h1 id="_список_символов">1.3. Список символов</h1>
+<h1 id="_предыстория">1.2. Предыстория</h1>
 
 <div class="sectionbody">
 <ul class="">
 <li>
 <span>
-Утилита для вывода списка символов в объектном файле&#8201;&#8212;&#8201;<code>nm</code> (name mangling)
-</span>
-</li>
-<li>
-<span>
-Метод подходит для объектных файлов, статических и динамических библиотек и исполнимых файлов:
-</span>
-<div class="listingblock">
-<div class="content">
-<pre><code>$ nm fuse/elsimdrv | less
-
-000000000066f000 d _GLOBAL_OFFSET_TABLE_
-0000000000407f6a t _GLOBAL__sub_I_main
-00000000004388b0 t _GLOBAL__sub_I__ZN7simfuse9simfuse_t13ioctl_commandIL13eldrv_ioctl_e3222850823EEEiPvS3_PKc
-00000000004326a1 t _GLOBAL__sub_I__ZN7simfuse9simfuse_tC2ERKNSt7__cxx1112basic_stringIcSt11char_traitsIc...
-                 w __gmon_start__
-0000000000450538 r __GNU_EH_FRAME_HDR
-                 U __gxx_personality_v0@@CXXABI_1.3
-00000000004068f0 T _init
-000000000066ea10 t __init_array_end
-000000000066e9f0 t __init_array_start
-000000000044e640 R _IO_stdin_used</code></pre>
-</div></div>
-</li>
-<li>
-<span>
-Выводит смещение, тип символа и название функции (до манглинга)
-</span>
-</li>
-<li>
-<span>
-Типы символов: undefined, weak, text, data, &#8230; (<code>man nm</code>)
-</span>
-</li>
-</ul>
-</div></div>
-<div class="sect2 slide">
-<h1 id="_изучение_секций">1.4. Изучение секций</h1>
-
-<div class="sectionbody">
-<ul class="">
-<li>
-<span>
-Утилита <code>readelf</code>
-</span>
-</li>
-<li>
-<span>
-Выводит адреса секций, используемых библиотек, rpath, содержимого секций
-</span>
-</li>
-<li>
-<span>
-Вывод всей доступной информации: <code>$ readelf -W -a fuse/elsimdrv | less</code>
-</span>
-</li>
-<li>
-<span>
-Вывод содержимого секции: <code>$ readelf -p .text fuse/elsimdrv | less</code>
-</span>
-</li>
-<li>
-<span>
-Добавлять свои секции можно через скрипты линковки
-</span>
-</li>
-<li>
-<span>
-Есть способ добавлять символы в секции внутри исходного кода (зависит от компилятора):
+<code>diff</code>&#8201;&#8212;&#8201;утилита для выяснения различий
 </span>
 <div class="listingblock">
 <div class="content"><!-- Generator: GNU source-highlight
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><tt><span style="font-style: italic"><span style="color: #9A1900">// если в глобальной пространстве имён</span></span>
-<span style="font-weight: bold"><span style="color: #0000FF">static</span></span> <span style="color: #009900">int</span> a<span style="color: #990000">;</span> <span style="font-style: italic"><span style="color: #9A1900">// .bss</span></span>
-<span style="font-weight: bold"><span style="color: #0000FF">const</span></span> <span style="color: #009900">int</span> B <span style="color: #990000">=</span> <span style="color: #993399">44</span><span style="color: #990000">;</span> <span style="font-style: italic"><span style="color: #9A1900">// .rodata</span></span>
-<span style="color: #009900">int</span> bb<span style="color: #990000">[]</span> <span style="color: #990000">=</span> <span style="color: #FF0000">{</span><span style="color: #993399">0</span><span style="color: #990000">,</span> <span style="color: #993399">5</span><span style="color: #990000">,</span> <span style="color: #993399">8</span><span style="color: #990000">,</span> <span style="color: #993399">9</span><span style="color: #FF0000">}</span><span style="color: #990000">;</span> <span style="font-style: italic"><span style="color: #9A1900">// .data</span></span>
-<span style="font-style: italic"><span style="color: #9A1900">// через атрибуты</span></span>
-<span style="font-weight: bold"><span style="color: #0000FF">extern</span></span> <span style="color: #009900">void</span> <span style="font-weight: bold"><span style="color: #000000">foobar</span></span><span style="color: #990000">()</span> <span style="font-weight: bold"><span style="color: #000000">__attribute__</span></span><span style="color: #990000">((</span><span style="font-weight: bold"><span style="color: #000000">section</span></span><span style="color: #990000">(</span><span style="color: #FF0000">"bar"</span><span style="color: #990000">)));</span></tt></pre></div></div>
+<pre><tt>$ diff -u lecture-1.html lecture-2.html | head -n 20
+<span style="color: #FF6600">--- lecture-1.html 2018-02-25 14:49:23.665411221 +0300</span>
+<span style="color: #009900">+++ lecture-2.html 2018-02-25 14:49:23.842322309 +0300</span>
+<span style="color: #0000FF">@@ -4,7 +4,7 @@</span>
+   &lt;meta name="generator" content="pandoc"&gt;
+   &lt;meta name="author" content="Игорь Шаронов"&gt;
+<span style="color: #FF6600">-  &lt;meta name="dcterms.date" content="2018-01-15"&gt;</span>
+<span style="color: #009900">+  &lt;meta name="dcterms.date" content="2018-02-18"&gt;</span>
+   &lt;title&gt;Master programming&lt;/title&gt;
+   &lt;meta name="apple-mobile-web-app-capable" content="yes"&gt;</tt></pre></div></div>
 </li>
-</ul>
-</div></div>
-<div class="sect2 slide">
-<h1 id="_динамическая_и_статическая_линковки">1.5. Динамическая и статическая линковки</h1>
-
-<div class="sectionbody">
-<ul class="">
 <li>
 <span>
-Статическая линковка&#8201;&#8212;&#8201;линковка со объектыми файлами и статическими библиотеками
+<code>patch</code>&#8201;&#8212;&#8201;обратное действие <code>diff</code> (патч)
 </span>
 </li>
 <li>
 <span>
-Динамическая линковка&#8201;&#8212;&#8201;линковка с динамическими библиотеками
-</span>
-<ul class="">
-<li>
-<span>
-только разрешение имён
-</span>
-</li>
-<li>
-<span>
-код не встраивается в объектный файл
-</span>
-</li>
-<li>
-<span>
-библиотеку можно подменить при вызове
-</span>
-</li>
-<li>
-<span>
-будет использован первый загруженный символ (<code>LD_PRELOAD</code>)
-</span>
-</li>
-<li>
-<span>
-so-версионность
-</span>
-</li>
-</ul>
-</li>
-<li>
-<span>
-Позиционно независимый код (<code>-fPIC</code>) для динамических объектов
-</span>
-</li>
-<li>
-<span>
-Загрузку секций можно изменять с помощью ld-скриптов
-</span>
-</li>
-</ul>
-</div></div>
-<div class="sect1 slide">
-<h1 id="_как_работает_программа">2. Как работает программа?</h1>
-
-<div class="sectionbody">
-</div></div>
-<div class="sect2 slide">
-<h1 id="_запуск_программы">2.1. Запуск программы</h1>
-
-<div class="sectionbody">
-<ul class="">
-<li>
-<span>
-В действительности выполняется команда <code>/lib/ld-linux-x86-64.so ./program</code>
-</span>
-</li>
-<li>
-<span>
-Работа загрузчика динамических библиотек:
-</span>
-<ul class="">
-<li>
-<span>
-найти все используемые динамические библиотеки
-</span>
-</li>
-<li>
-<span>
-для поиска используются:
-</span>
-<ul class="">
-<li>
-<span>
-rpath объектного файла
-</span>
-</li>
-<li>
-<span>
-LD_LIBRARY_PATH
-</span>
-</li>
-<li>
-<span>
-LD_PRELOAD для перегрузки функций
-</span>
-</li>
-<li>
-<span>
-<code>/etc/ld.so.cache</code>
-</span>
-</li>
-</ul>
-</li>
-<li>
-<span>
-загрузка найденных библиотек и их зависимостей
-</span>
-</li>
-<li>
-<span>
-загрузка и запуск программы
-</span>
-</li>
-</ul>
-</li>
-<li>
-<span>
-<code>ldd</code>&#8201;&#8212;&#8201;узнать список загружаемых библиотек
-</span>
-</li>
-<li>
-<span>
-Если в программе нет динамической зависимости, загрузчик не используется
-</span>
-</li>
-</ul>
-</div></div>
-<div class="sect2 slide">
-<h1 id="_трассировка_программы">2.2. Трассировка программы</h1>
-
-<div class="sectionbody">
-<ul class="">
-<li>
-<span>
-<code>ltrace</code> позволяет выводить в реальном времени вызовы динамических библиотек
-</span>
-</li>
-<li>
-<span>
-<code>strace</code>&#8201;&#8212;&#8201;вывод системных вызовов
-</span>
-</li>
-<li>
-<span>
-Системный вызов&#8201;&#8212;&#8201;выполняется ядром (<code>man syscalls</code>):
+конфликты
 </span>
 <div class="listingblock">
 <div class="content">
-<pre><code>$ strace ls
-execve("/nix/store/cb3slv3szhp46xkrczqw7mscy5mnk64l-coreutils-8.29/bin/ls", ["ls"], 0x7ffe1f4b0c50 /* 143 vars */) = 0
-brk(NULL)                               = 0x2276000
-mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7f3e0ff22000
-access("/etc/ld-nix.so.preload", R_OK)  = -1 ENOENT (No such file or directory)
-openat(AT_FDCWD, "/run/opengl-driver/lib/tls/haswell/x86_64/librt.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
-stat("/run/opengl-driver/lib/tls/haswell/x86_64", 0x7fffcefcb4e0) = -1 ENOENT (No such file or directory)
-openat(AT_FDCWD, "/run/opengl-driver/lib/tls/haswell/librt.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
-stat("/run/opengl-driver/lib/tls/haswell", 0x7fffcefcb4e0) = -1 ENOENT (No such file or directory)
-...</code></pre>
+<pre><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; LOCAL:sample.txt
+lines from the original file
+======= REMOTE:sample.txt
+new lines from the patch
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code></pre>
 </div></div>
-</li>
-<li>
-<span>
-<code>strace -c</code>&#8201;&#8212;&#8201;простейший профайлер системных вызовов
-</span>
 </li>
 </ul>
 </div></div>
 <div class="sect1 slide">
-<h1 id="_как_отладить_программу">3. Как отладить программу?</h1>
+<h1 id="_как_устроен_git">2. Как устроен git</h1>
 
 <div class="sectionbody">
 </div></div>
 <div class="sect2 slide">
-<h1 id="_система_отладки_gdb">3.1. Система отладки GDB</h1>
+<h1 id="_внутренности_git_а">2.1. Внутренности git-а</h1>
 
 <div class="sectionbody">
 <ul class="">
 <li>
 <span>
-GDB&#8201;&#8212;&#8201;GNU Debugger
-</span>
-</li>
-<li>
-<span>
-Подобен интерпретатору
-</span>
-</li>
-<li>
-<span>
-Есть скриптовый режим
-</span>
-</li>
-<li>
-<span>
-Можно писать собственные плагины
-</span>
-</li>
-<li>
-<span>
-Поддерживает режим TUI
-</span>
-</li>
-<li>
-<span>
-Отладка крешдампов
-</span>
-</li>
-<li>
-<span>
-Почему у меня не видно символов? Нужны отладочные символы:
+Директория .git/
 </span>
 <ul class="">
 <li>
 <span>
-<code>g++ -g -O0</code>
+.git/objects/&#8201;&#8212;&#8201;пулл объектов
 </span>
 </li>
 <li>
 <span>
-<code>cmake -DCMAKE_BUILD_TYPE=Debug &lt;source_dir&gt;</code>&#8201;&#8212;&#8201;дебаг-режим
+.git/refs/&#8201;&#8212;&#8201;указатели
 </span>
 </li>
 <li>
 <span>
-<code>cmake -DCMAKE_BUILD_TYPE=Release &lt;source_dir&gt;</code>&#8201;&#8212;&#8201;релиз-режим (обычно соответствует <code>-O3</code>)
+.git/HEAD&#8201;&#8212;&#8201;указатель текущей ветки
 </span>
 </li>
 </ul>
 </li>
 <li>
 <span>
-<code>gdb-server</code>&#8201;&#8212;&#8201;удалённая отладка
+git&#8201;&#8212;&#8201;файловая система ассоциативного типа
+</span>
+</li>
+<li>
+<span>
+Виды объектов: blob, tree, commit, tag
+</span>
+</li>
+<li>
+<span>
+Виды ссылок: branch, tag, remotes
+</span>
+</li>
+<li>
+<span>
+Коммит: tree-объект, автор, коммитер, сообщение, parent
 </span>
 </li>
 </ul>
 </div></div>
 <div class="sect2 slide">
-<h1 id="_команды_gdb">3.2. Команды GDB</h1>
+<h1 id="_хеш_суммы">2.2. Хеш-суммы</h1>
 
 <div class="sectionbody">
 <ul class="">
 <li>
 <span>
-<code>gdb ./progname</code>&#8201;&#8212;&#8201;загрузка программы в отладчик
+crc32 (пример: F6DE2FEA)
 </span>
 </li>
 <li>
 <span>
-<code>break</code> или <code>break &lt;linenumber&gt;</code>&#8201;&#8212;&#8201;точка останова
+md5 (пример: C43FE3F8445CDB869C6A6DA9AEA90B21)
 </span>
 </li>
 <li>
 <span>
-<code>run [args]</code>&#8201;&#8212;&#8201;запуск программы с аргументами <code>args</code>
+sha-1 (пример: 7DD987F846400079F4B03C058365A4869047B4A0)
 </span>
 </li>
 <li>
 <span>
-<code>continue</code>&#8201;&#8212;&#8201;продолжение выполнения программы
+sha-2: sha-224, sha-256, sha-384, sha-512 (пример: CA737F1014A48F4C0B6DD43CB177B0AFD9E5169367544C494011E3317DBF9A509CB1E5DC1E85A941BBEE3D7F2AFBC9B1)
 </span>
 </li>
 <li>
 <span>
-<code>step</code> (<code>stepi</code>), <code>next</code> (<code>nexti</code>)&#8201;&#8212;&#8201;пошаговое выполнение
-</span>
-</li>
-<li>
-<span>
-<code>backtrace</code>&#8201;&#8212;&#8201;получение бэктрейса
-</span>
-</li>
-<li>
-<span>
-<code>frame &lt;num&gt;</code>&#8201;&#8212;&#8201;перейти на <code>&lt;num&gt;</code> уровень стека из бэктрейса
-</span>
-</li>
-<li>
-<span>
-<code>up</code>, <code>down</code>&#8201;&#8212;&#8201;пемерещения по уровням стека
-</span>
-</li>
-<li>
-<span>
-<code>thread &lt;num&gt;</code>&#8201;&#8212;&#8201;перемещение по потокам
-</span>
-</li>
-<li>
-<span>
-<code>quit</code> или комбинация Ctrl-D&#8201;&#8212;&#8201;завершение отладки
-</span>
-</li>
-<li>
-<span>
-можно писать только первые буквы команд
-</span>
-</li>
-</ul>
-</div></div>
-<div class="sect1 slide">
-<h1 id="_дополнительные_системы_отладки">4. Дополнительные системы отладки</h1>
-
-<div class="sectionbody">
-</div></div>
-<div class="sect2 slide">
-<h1 id="_ещё_способы_отладки">4.1. Ещё способы отладки</h1>
-
-<div class="sectionbody">
-<ul class="">
-<li>
-<span>
-Ключи компиляции: <code>-Wall</code>, <code>-pedantic</code>, <code>-Wextra</code>, <code>-fsanitize</code>
-</span>
-</li>
-<li>
-<span>
-Запуск программы через memchecker
-</span>
-</li>
-<li>
-<span>
-Valgrind:
+Быстрая идентификация сообщения/файла/пароля
 </span>
 <div class="listingblock">
-<div class="content">
-<pre><code>==8736== Invalid write of size 8
-==8736==    at 0x4C31133: memcpy@GLIBC_2.2.5 (in /lib/vgpreload_memcheck-amd64-linux.so)
-==8736==    by 0x4813B4: dma_copy_data (dma.c:48)
-==8736==    by 0x4815EE: dma_copy2d (dma.c:110)
-==8736==    by 0x47CFC0: copy_block_unsafe (copy_block.c:49)
-==8736==    by 0x47D549: copy_real_part (copy_block.c:259)
-==8736==    by 0x47DA75: copy_block_by_replicate_border (copy_block.c:362)
-==8736==    by 0x47E2C2: copy_block (copy_block.c:554)
-==8736==    by 0x480BB8: copy_output (parallel_context.c:60)
-==8736==    by 0x4810BE: wait_last (parallel_context.c:175)
-==8736==    by 0x47F681: iterate_through_static_tiles (tile_segmentation.c:436)
-==8736==    by 0x47FE71: tile_segmentation (tile_segmentation.c:567)
-==8736==    by 0x47233A: kernel_CombinePlane_3 (kernel_ChannelCombine.c:110)
-==8736==  Address 0x6bb1bc0 is 0 bytes after a block of size 307,200 alloc'd
-==8736==    at 0x4C2F126: memalign (in /lib/vgpreload_memcheck-amd64-linux.so)
-==8736==    by 0x454109: vxAllocatePlane (vx_image.c:203)
-==8736==    by 0x454974: vxInitializeImage (vx_image.c:341)
-==8736==    by 0x454A46: vxCreateImage (vx_image.c:358)
-==8736==    by 0x415DF4: main (sampleMinMaxLoc.c:65)</code></pre>
+<div class="content"><!-- Generator: GNU source-highlight
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>$ echo -n <span style="color: #FF0000">'Master programming'</span> <span style="color: #990000">|</span> md5sum -
+01e171232a1aa47e9fd2ae0530782b1f  -
+$ echo -n <span style="color: #FF0000">'master programming'</span> <span style="color: #990000">|</span> md5sum -
+e774d0115e01e1b735a7a1a9a3a85f09  -</tt></pre></div></div>
+</li>
+<li>
+<span>
+Коллизии хешей
+</span>
+</li>
+</ul>
 </div></div>
+<div class="sect1 slide">
+<h1 id="_повседневное_использование">3. Повседневное использование</h1>
+
+<div class="sectionbody">
+</div></div>
+<div class="sect2 slide">
+<h1 id="_основные_команды">3.1. Основные команды</h1>
+
+<div class="sectionbody">
+<ul class="">
+<li>
+<span>
+<code>git status</code>: unstaged, staged, committed
+</span>
+</li>
+<li>
+<span>
+<code>git add &lt;file&gt;</code>&#8201;&#8212;&#8201;добавление <code>file</code> в <code>staged</code>
+</span>
+</li>
+<li>
+<span>
+<code>git checkout &lt;name&gt;</code>&#8201;&#8212;&#8201;переход на ветку <code>name</code>
+</span>
+</li>
+<li>
+<span>
+<code>git checkout -b &lt;name&gt;</code>&#8201;&#8212;&#8201;создание новой ветки <code>name</code>
+</span>
+</li>
+<li>
+<span>
+<code>git checkout -- &lt;file&gt;</code>&#8201;&#8212;&#8201;отменить все изменения файла <code>file</code>
+</span>
+</li>
+<li>
+<span>
+<code>git reset [&lt;commit&gt;|&lt;branch&gt;]</code>&#8201;&#8212;&#8201;перевести изменения из <code>committed</code> в состояние <code>unstaged</code>
+</span>
+</li>
+<li>
+<span>
+<code>git reset --hard</code>&#8201;&#8212;&#8201;отменить все изменения (потеря данных)
+</span>
+</li>
+<li>
+<span>
+<code>git push [&lt;remote&gt;]</code>&#8201;&#8212;&#8201;загрузка изменений на сервер <code>remote</code>
+</span>
+</li>
+<li>
+<span>
+<code>git push --force</code>&#8201;&#8212;&#8201;принудительная загрузка изменений (потеря данных)
+</span>
+</li>
+<li>
+<span>
+<code>git diff [&lt;commit&gt;]</code>&#8201;&#8212;&#8201;просмотр изменений
+</span>
 </li>
 </ul>
 </div></div>
 <div class="sect2 slide">
-<h1 id="_остановка_в_дебаггере_при_утечке_памяти">4.2. Остановка в дебаггере при утечке памяти</h1>
+<h1 id="_пример_1_добавление_нескольких_remote">3.2. Пример №1: добавление нескольких remote</h1>
+
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>$ git clone git@github<span style="color: #990000">.</span>com<span style="color: #990000">:</span>cvlabmiet/master-programming
+$ cd master-programming
+master-programming $ git remote add miet git@git<span style="color: #990000">.</span>miet<span style="color: #990000">.</span>ru<span style="color: #990000">:</span>cvlab/master-programming
+master-programming $ git push miet master<span style="color: #990000">:</span>master</tt></pre></div></div>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="color: #990000">(</span>lecture-<span style="color: #993399">2</span> <span style="color: #990000">*+)</span> $ git st
+On branch lecture-<span style="color: #993399">2</span>
+Changes to be committed<span style="color: #990000">:</span>
+<span style="color: #990000">(</span>use <span style="color: #FF0000">"git reset HEAD &lt;file&gt;..."</span> to unstage<span style="color: #990000">)</span>
+    modified<span style="color: #990000">:</span>   CMakeLists<span style="color: #990000">.</span>txt
+    modified<span style="color: #990000">:</span>   lecture-<span style="color: #993399">2</span><span style="color: #990000">.</span>adoc
+Changes not staged <span style="font-weight: bold"><span style="color: #0000FF">for</span></span> commit<span style="color: #990000">:</span>
+    <span style="color: #990000">(</span>use <span style="color: #FF0000">"git add &lt;file&gt;..."</span> to update what will be committed<span style="color: #990000">)</span>
+    <span style="color: #990000">(</span>use <span style="color: #FF0000">"git checkout -- &lt;file&gt;..."</span> to discard changes <span style="font-weight: bold"><span style="color: #0000FF">in</span></span> working directory<span style="color: #990000">)</span>
+    modified<span style="color: #990000">:</span>   lecture-<span style="color: #993399">2</span><span style="color: #990000">.</span>adoc</tt></pre></div></div>
+</div></div>
+<div class="sect2 slide">
+<h1 id="_пример_2_создание_локального_репозитория">3.3. Пример №2: создание локального репозитория</h1>
 
 <div class="sectionbody">
 <div class="tableblock">
@@ -4376,38 +4124,160 @@ cellspacing="0" cellpadding="4">
 <tbody>
 <tr>
 <td align="left" valign="top"><div><div class="listingblock">
-<div class="title">Запуск valgrind</div>
-<div class="content">
-<pre><code>$ valgrind --vgdb=yes --vgdb-error=0 prog
-==20836== Memcheck, a memory error detector
-==20836== Copyright (C) 2002-2011, and GNU GPL'd, by Julian Seward et al.
-==20836== Using Valgrind-3.7.0 and LibVEX; rerun with -h for copyright info
-==20836== Command: /tmp/e
-==20836==
-==20836== (action at startup) vgdb me ...
-==20836==
-==20836== TO DEBUG THIS PROCESS USING GDB: start GDB like this
-==20836==   /path/to/gdb /tmp/e
-==20836== and then give GDB the following command
-==20836==   target remote | vgdb --pid=20836
-==20836== --pid is optional if only one valgrind process is running
-==20836==</code></pre>
-</div></div></div></td>
+<div class="title">На сервере</div>
+<div class="content"><!-- Generator: GNU source-highlight
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>$ mkdir /tmp/server
+$ git init --bare /tmp/server/repo
+$ cd /tmp/server/repo<span style="color: #990000">/</span>
+repo <span style="color: #990000">(</span>BARE<span style="color: #990000">:</span>master<span style="color: #990000">)</span> $ ls
+branches  config  description  HEAD  hooks  info  objects  refs</tt></pre></div></div></div></td>
 <td align="left" valign="top"><div><div class="listingblock">
-<div class="title">Запуск в другой сессии</div>
+<div class="title">На клиенте</div>
+<div class="content"><!-- Generator: GNU source-highlight
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>$ git init /tmp/repo
+$ cd /tmp/repo
+repo <span style="color: #990000">(</span>master<span style="font-style: italic"><span style="color: #9A1900">#) $ echo 'Empty repo' &gt; README.md</span></span>
+repo <span style="color: #990000">(</span>master<span style="font-style: italic"><span style="color: #9A1900">#) $ git add README.md</span></span>
+repo <span style="color: #990000">(</span>master<span style="font-style: italic"><span style="color: #9A1900">#) $ git ci -am "Initial commit"</span></span>
+repo <span style="color: #990000">(</span>master<span style="color: #990000">)</span> $ git remote add origin /tmp/server/repo
+repo <span style="color: #990000">(</span>master<span style="color: #990000">)</span> $ git push origin master<span style="color: #990000">:</span>master</tt></pre></div></div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div></div>
+<div class="sect2 slide">
+<h1 id="_пример_3_сравнение_с_origin_master">3.4. Пример №3: сравнение с origin/master</h1>
+
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>$ git fetch origin
+$ git diff master origin/master
+$ git show origin/master<span style="color: #990000">:</span>lecture-<span style="color: #993399">3</span><span style="color: #990000">.</span>md <span style="color: #990000">|</span> less
+$ git co origin/master -b new-feature</tt></pre></div></div>
+</div></div>
+<div class="sect1 slide">
+<h1 id="_объединение_веток">4. Объединение веток</h1>
+
+<div class="sectionbody">
+</div></div>
+<div class="sect2 slide">
+<h1 id="_разрешение_конфликтов">4.1. Разрешение конфликтов</h1>
+
+<div class="sectionbody">
+<ul class="">
+<li>
+<span>
+LOCAL&#8201;&#8212;&#8201;локальные изменения текущей ветки
+</span>
+</li>
+<li>
+<span>
+REMOTE&#8201;&#8212;&#8201;изменения на сервере
+</span>
+</li>
+<li>
+<span>
+BASE&#8201;&#8212;&#8201;общий предок LOCAL и REMOTE
+</span>
+</li>
+<li>
+<span>
+MERGED&#8201;&#8212;&#8201;автоматическое разрешение конфликта
+</span>
+</li>
+<li>
+<span>
+merge&#8201;&#8212;&#8201;это тоже коммит
+</span>
+</li>
+<li>
+<span>
+Утилиты для разрешения конфликтов: vimdiff, kdiff3, meld, tortoisemerge
+</span>
+</li>
+</ul>
+<div class="listingblock">
 <div class="content">
-<pre><code>$ gdb ./prog
-(gdb) target remote | vgdb --pid=20836
-Remote debugging using | vgdb
-relaying data between gdb and process 2418
-Reading symbols from /lib/ld-linux.so.2...done.
-Reading symbols from /usr/lib/debug/lib/ld-2.11.2.so.debug...done.
-Loaded symbols for /lib/ld-linux.so.2
-[Switching to Thread 2418]
-0x001f2850 in _start () from /lib/ld-linux.so.2
-(gdb) ...
-(gdb) monitor exit</code></pre>
+<pre><code>┌───────┬──────┬────────┐   ┌────────┬────────┐
+│ LOCAL │ BASE │ REMOTE │   │        │        │
+├───────┴──────┴────────┤   │ MERGED │ REMOTE │
+│        MERGED         │   │        │        │
+└───────────────────────┘   └────────┴────────┘</code></pre>
+</div></div>
+</div></div>
+<div class="sect2 slide">
+<h1 id="_стратегии_объединения_веток">4.2. Стратегии объединения веток</h1>
+
+<div class="sectionbody">
+<div class="tableblock">
+<table rules="none"
+width="100%"
+frame="void"
+cellspacing="0" cellpadding="4">
+<col width="50%" />
+<col width="50%" />
+<tbody>
+<tr>
+<td align="left" valign="top"><div><div class="paragraph"><p>Хотим объединить ветки topic и master:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>      A---B---C topic
+     /
+D---E---F---G master</code></pre>
 </div></div></div></td>
+<td align="left" valign="top"><div><ul class="">
+<li>
+<span>
+merge no-fast-forward (<code>git merge --no-ff</code>):
+</span>
+<div class="listingblock">
+<div class="content">
+<pre><code>      A---B---C topic
+     /         \
+D---E---F---G---H master</code></pre>
+</div></div>
+</li>
+<li>
+<span>
+merge fast-forward (<code>git merge --ff</code>):
+</span>
+<div class="listingblock">
+<div class="content">
+<pre><code>D---E-A-F-B-G-C master</code></pre>
+</div></div>
+</li>
+<li>
+<span>
+merge squash (<code>git merge --squash</code>):
+</span>
+<div class="listingblock">
+<div class="content">
+<pre><code>D---E---F---G---T master</code></pre>
+</div></div>
+</li>
+<li>
+<span>
+rebase (<code>git rebase master</code>):
+</span>
+<div class="listingblock">
+<div class="content">
+<pre><code>              A---B---C topic
+             /
+D---E---F---G master</code></pre>
+</div></div>
+</li>
+</ul></div></td>
 </tr>
 </tbody>
 </table>

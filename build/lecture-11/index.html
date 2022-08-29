@@ -2,10 +2,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ru" xml:lang="ru">
 <head>
-<title>Master programming. <br> Лекция №3 (CMake)</title>
+<title>Master programming. <br> Лекция №11 (Некоторые приёмы программирования)</title>
 <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
 <meta name="copyright" content="Copyright &#169; Игорь Шаронов" />
-<meta name="generator" content="AsciiDoc 9.1.0" />
+<meta name="generator" content="AsciiDoc 10.2.0" />
 <style type="text/css">
 /* Shared CSS for AsciiDoc xhtml11 and html5 backends */
 
@@ -3837,982 +3837,597 @@ setTimeout(w3c_slidy.hide_slides, 50);
 </head>
 <body class="article">
 <div id="header" class="slide">
-<h1>Master programming. <br> Лекция №3 (CMake)</h1>
+<h1>Master programming. <br> Лекция №11 (Некоторые приёмы программирования)</h1>
 <span id="author">Игорь Шаронов</span><br />
 <span id="revdate">2021-11-06</span>
 </div>
 </div></div>
 <div class="sect1 slide">
-<h1 id="_основные_понятия">1. Основные понятия</h1>
+<h1 id="_метапрограммирование">1. Метапрограммирование</h1>
 
 <div class="sectionbody">
 </div></div>
 <div class="sect2 slide">
-<h1 id="_артефакты_сборки">1.1. Артефакты сборки</h1>
+<h1 id="_crtp_curiously_recurring_template_pattern">1.1. CRTP (Curiously recurring template pattern)</h1>
 
 <div class="sectionbody">
 <ul class="">
 <li>
 <span>
-<code>XXX.o</code>&#8201;&#8212;&#8201;объектный файл, <strong>единица компиляции</strong>
+Статический полиморфизм
 </span>
 </li>
 <li>
 <span>
-<code>libXXX.a</code>&#8201;&#8212;&#8201;архив объектных файлов, <strong>статическая библиотека</strong>
+Замена виртуальных функций при компиляции
 </span>
 </li>
 <li>
 <span>
-<code>libXXX.so</code>&#8201;&#8212;&#8201;<strong>динамическая библиотека</strong>, имеет тот же уровень, что и исполнимый файл
-</span>
-</li>
-<li>
-<span>
-<code>libXXX.so.2</code>&#8201;&#8212;&#8201;динамическая библиотека с версией.
-Версию обрабатывает загрузчик
-</span>
-</li>
-<li>
-<span>
-ELF&#8201;&#8212;&#8201;формат представления исполняемых файлов и динамических библиотек
+Подходит только там, где это возможно
 </span>
 </li>
 </ul>
-</div></div>
-<div class="sect2 slide">
-<h1 id="_зависимости_реального_времени">1.2. Зависимости реального времени</h1>
-
-<div class="sectionbody">
 <div class="listingblock">
-<div class="content">
-<pre><code>[nix-shell] % ldd /nix/store/9f89z51na7w931aja8lqlmhqny9h16cj-gnugrep-3.1/bin/grep
-    linux-vdso.so.1 (0x00007ffc5cde0000)
-    libpcre.so.1 =&gt; /nix/store/pcre-8.42/lib/libpcre.so.1 (0x00007f48f3e86000)
-    libc.so.6 =&gt; /nix/store/glibc-2.27/lib/libc.so.6 (0x00007f48f3ad2000)
-    libpthread.so.0 =&gt; /nix/store/glibc-2.27/lib/libpthread.so.0 (0x00007f48f38b3000)
-    /nix/store/glibc-2.27/lib/ld-linux-x86-64.so.2 =&gt; /nix/store/glibc-2.27/lib64/ld-linux-x86-64.so.2 (0x00007f48f40f8000)</code></pre>
+<div class="content"><!-- Generator: GNU source-highlight
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="font-weight: bold"><span style="color: #0000FF">template</span></span><span style="color: #990000">&lt;</span><span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">Derived</span><span style="color: #990000">&gt;</span>
+<span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">A</span>
+<span style="color: #FF0000">{</span>
+<span style="font-weight: bold"><span style="color: #0000FF">public</span></span><span style="color: #990000">:</span>
+    <span style="color: #009900">void</span> <span style="font-weight: bold"><span style="color: #000000">method</span></span><span style="color: #990000">()</span>
+    <span style="color: #FF0000">{</span>
+        <span style="font-weight: bold"><span style="color: #0000FF">static_cast</span></span><span style="color: #990000">&lt;</span>Derived<span style="color: #990000">*&gt;(</span><span style="font-weight: bold"><span style="color: #0000FF">this</span></span><span style="color: #990000">)-&gt;</span><span style="font-weight: bold"><span style="color: #000000">some_method</span></span><span style="color: #990000">();</span>
+    <span style="color: #FF0000">}</span>
+<span style="color: #FF0000">}</span><span style="color: #990000">;</span>
+
+<span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">B</span><span style="color: #990000">:</span> A<span style="color: #990000">&lt;</span>B<span style="color: #990000">&gt;</span>
+<span style="color: #FF0000">{</span>
+<span style="font-weight: bold"><span style="color: #0000FF">public</span></span><span style="color: #990000">:</span>
+    <span style="color: #009900">void</span> <span style="font-weight: bold"><span style="color: #000000">some_method</span></span><span style="color: #990000">()</span>
+    <span style="color: #FF0000">{</span>
+        lala<span style="color: #990000">;</span>
+    <span style="color: #FF0000">}</span>
+<span style="color: #FF0000">}</span><span style="color: #990000">;</span></tt></pre></div></div>
 </div></div>
+<div class="sect2 slide">
+<h1 id="_статическая_функция_для_конструктора">1.2. Статическая функция для конструктора</h1>
+
+<div class="sectionbody">
 <ul class="">
 <li>
 <span>
-<code>ld-linux</code>&#8201;&#8212;&#8201;загрузчик динамических библиотек
+Необходимость проинициализировать базовый класс сложным образом
 </span>
 </li>
 <li>
 <span>
-<code>LD_LIBRARY_PATH</code>&#8201;&#8212;&#8201;добавочные пути поиска динамических библиотек
-</span>
-</li>
-<li>
-<span>
-<code>rpath</code>&#8201;&#8212;&#8201;добавочные пути поиска внутри ELF-файла
-</span>
-</li>
-<li>
-<span>
-<code>LD_PRELOAD</code>&#8201;&#8212;&#8201;способ перегрузки функции динамической библиотеке
+Нет доступа к переменным класса, так как он ещё не проинициализирован
 </span>
 </li>
 </ul>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">A</span><span style="color: #990000">:</span> <span style="font-weight: bold"><span style="color: #0000FF">public</span></span> vector<span style="color: #990000">&lt;</span><span style="color: #009900">int</span><span style="color: #990000">&gt;</span>
+<span style="color: #FF0000">{</span>
+<span style="font-weight: bold"><span style="color: #0000FF">public</span></span><span style="color: #990000">:</span>
+    <span style="font-weight: bold"><span style="color: #000000">A</span></span><span style="color: #990000">():</span> <span style="font-weight: bold"><span style="color: #000000">vector</span></span><span style="color: #990000">(</span><span style="font-weight: bold"><span style="color: #000000">init</span></span><span style="color: #990000">())</span>
+    <span style="color: #FF0000">{}</span>
+
+<span style="font-weight: bold"><span style="color: #0000FF">private</span></span><span style="color: #990000">:</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">static</span></span> <span style="color: #008080">vector&lt;int&gt;</span> <span style="font-weight: bold"><span style="color: #000000">init</span></span><span style="color: #990000">()</span>
+    <span style="color: #FF0000">{</span>
+        <span style="font-weight: bold"><span style="color: #0000FF">return</span></span> <span style="color: #990000">...</span>
+    <span style="color: #FF0000">}</span>
+<span style="color: #FF0000">}</span><span style="color: #990000">;</span></tt></pre></div></div>
 </div></div>
 <div class="sect2 slide">
-<h1 id="_этапы_сборки_программ_и_библиотек">1.3. Этапы сборки программ и библиотек</h1>
+<h1 id="_дополнительный_класс_для_инициализации">1.3. Дополнительный класс для инициализации</h1>
 
 <div class="sectionbody">
+<ul class="">
+<li>
+<span>
+Нужно переопределить порядок инициализации базового класса и наследника
+</span>
+</li>
+</ul>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">A</span><span style="color: #990000">:</span> <span style="font-weight: bold"><span style="color: #0000FF">public</span></span> vector<span style="color: #990000">&lt;</span><span style="color: #009900">double</span><span style="color: #990000">&gt;</span>
+<span style="color: #FF0000">{</span>
+<span style="font-weight: bold"><span style="color: #0000FF">public</span></span><span style="color: #990000">:</span>
+    <span style="font-style: italic"><span style="color: #9A1900">// Так не будет работать.</span></span>
+    <span style="font-weight: bold"><span style="color: #000000">A</span></span><span style="color: #990000">(</span><span style="color: #009900">double</span> y<span style="color: #990000">):</span> <span style="font-weight: bold"><span style="color: #000000">y_</span></span><span style="color: #990000">(</span>y <span style="color: #990000">*</span> y <span style="color: #990000">-</span> std<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">sin</span></span><span style="color: #990000">(</span>y<span style="color: #990000">)),</span> <span style="font-weight: bold"><span style="color: #000000">vector</span></span><span style="color: #990000">(</span><span style="color: #FF0000">{{</span>y_<span style="color: #990000">,</span> y_ <span style="color: #990000">+</span> <span style="color: #993399">1</span><span style="color: #990000">,</span> y_ <span style="color: #990000">+</span> <span style="color: #993399">2</span><span style="color: #FF0000">}}</span><span style="color: #990000">)</span>
+    <span style="color: #FF0000">{}</span>
+
+<span style="font-weight: bold"><span style="color: #0000FF">private</span></span><span style="color: #990000">:</span>
+    <span style="color: #009900">double</span> y_<span style="color: #990000">;</span>
+<span style="color: #FF0000">}</span><span style="color: #990000">;</span>
+
+<span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">B_helper</span>
+<span style="color: #FF0000">{</span>
+<span style="font-weight: bold"><span style="color: #0000FF">public</span></span><span style="color: #990000">:</span>
+    <span style="font-weight: bold"><span style="color: #000000">B_helper</span></span><span style="color: #990000">(</span><span style="color: #009900">double</span> y<span style="color: #990000">):</span> <span style="font-weight: bold"><span style="color: #000000">y_</span></span><span style="color: #990000">(</span>y <span style="color: #990000">*</span> y <span style="color: #990000">-</span> std<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">sqrt</span></span><span style="color: #990000">(</span>y<span style="color: #990000">))</span>
+    <span style="color: #FF0000">{}</span>
+
+<span style="font-weight: bold"><span style="color: #0000FF">private</span></span><span style="color: #990000">:</span>
+    <span style="color: #009900">double</span> y_<span style="color: #990000">;</span>
+<span style="color: #FF0000">}</span><span style="color: #990000">;</span>
+
+<span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">B</span><span style="color: #990000">:</span> <span style="font-weight: bold"><span style="color: #0000FF">public</span></span> B_helper<span style="color: #990000">,</span> <span style="font-weight: bold"><span style="color: #0000FF">public</span></span> vector<span style="color: #990000">&lt;</span><span style="color: #009900">double</span><span style="color: #990000">&gt;</span>
+<span style="color: #FF0000">{</span>
+<span style="font-weight: bold"><span style="color: #0000FF">public</span></span><span style="color: #990000">:</span>
+    <span style="font-weight: bold"><span style="color: #000000">B</span></span><span style="color: #990000">(</span><span style="color: #009900">double</span> y<span style="color: #990000">):</span> <span style="font-weight: bold"><span style="color: #000000">B_helper</span></span><span style="color: #990000">(</span>y<span style="color: #990000">),</span> <span style="font-weight: bold"><span style="color: #000000">vector</span></span><span style="color: #990000">(</span><span style="color: #FF0000">{{</span>y_<span style="color: #990000">,</span> y_ <span style="color: #990000">+</span> <span style="color: #993399">1</span><span style="color: #990000">,</span> y_ <span style="color: #990000">+</span> <span style="color: #993399">2</span><span style="color: #FF0000">}}</span><span style="color: #990000">)</span>
+    <span style="color: #FF0000">{}</span>
+<span style="color: #FF0000">}</span><span style="color: #990000">;</span></tt></pre></div></div>
+</div></div>
+<div class="sect2 slide">
+<h1 id="_расширение_функциональности_через_наследование">1.4. Расширение функциональности через наследование</h1>
+
+<div class="sectionbody">
+<ul class="">
+<li>
+<span>
+Изменение функциональности приводит к "порче" класса
+</span>
+</li>
+<li>
+<span>
+Расширение&#8201;&#8212;&#8201;это просто декоратор или адаптор
+</span>
+</li>
+<li>
+<span>
+Старый класс можно использовать для ещё одного расширения
+</span>
+</li>
+<li>
+<span>
+В базовом классе сохраняется малое количество методов
+</span>
+</li>
+</ul>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="font-weight: bold"><span style="color: #0000FF">struct</span></span> <span style="color: #008080">A</span>
+<span style="color: #FF0000">{</span>
+    <span style="color: #009900">void</span> <span style="font-weight: bold"><span style="color: #000000">some_method</span></span><span style="color: #990000">();</span>
+    <span style="color: #009900">void</span> <span style="font-weight: bold"><span style="color: #000000">another_method</span></span><span style="color: #990000">();</span>
+<span style="color: #FF0000">}</span>
+
+<span style="font-weight: bold"><span style="color: #0000FF">struct</span></span> <span style="color: #008080">B</span><span style="color: #990000">:</span> A
+<span style="color: #FF0000">{</span>
+    <span style="color: #009900">void</span> <span style="font-weight: bold"><span style="color: #000000">extra_method</span></span><span style="color: #990000">();</span>
+<span style="color: #FF0000">}</span></tt></pre></div></div>
+</div></div>
+<div class="sect2 slide">
+<h1 id="_атовыводимость_типов_для_конструктора">1.5. Атовыводимость типов для конструктора</h1>
+
+<div class="sectionbody">
+<ul class="">
+<li>
+<span>
+Неоднозначность в подстановке типа в конструкторе
+</span>
 <ol class="arabic">
 <li>
 <span>
-Препроцессинг&#8201;&#8212;&#8201;замена <code>#define</code>, <code>#include</code> и макросов
+Правило вывода
 </span>
 </li>
 <li>
 <span>
-Компиляция&#8201;&#8212;&#8201;получение объектного кода
-</span>
-</li>
-<li>
-<span>
-Архивирование (необязательно)&#8201;&#8212;&#8201;получение статической библиотеки
-</span>
-</li>
-<li>
-<span>
-Линковка&#8201;&#8212;&#8201;сборка всего в исполняемый файл или динамическую библиотек
+Make-функция
 </span>
 </li>
 </ol>
+</li>
+<li>
+<span>
+Реализация perfect forwarding
+</span>
+</li>
+</ul>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="font-weight: bold"><span style="color: #0000FF">template</span></span><span style="color: #990000">&lt;</span><span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">V</span><span style="color: #990000">&gt;</span>
+<span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">A</span>
+<span style="color: #FF0000">{</span>
+<span style="font-weight: bold"><span style="color: #0000FF">public</span></span><span style="color: #990000">:</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">template</span></span><span style="color: #990000">&lt;</span><span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">B</span><span style="color: #990000">&gt;</span>
+    <span style="font-weight: bold"><span style="color: #000000">A</span></span><span style="color: #990000">(</span><span style="color: #008080">B</span> x<span style="color: #990000">)</span>
+    <span style="color: #FF0000">{</span> <span style="color: #990000">...</span> <span style="color: #FF0000">}</span>
+<span style="color: #FF0000">}</span><span style="color: #990000">;</span>
+
+<span style="font-weight: bold"><span style="color: #0000FF">template</span></span><span style="color: #990000">&lt;</span><span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">B</span><span style="color: #990000">,</span> V <span style="color: #990000">=</span> <span style="color: #008080">deduce</span> B<span style="color: #990000">&gt;</span>
+<span style="color: #008080">A&lt;V&gt;</span> <span style="font-weight: bold"><span style="color: #000000">make</span></span><span style="color: #990000">(</span><span style="color: #008080">B</span> x<span style="color: #990000">)</span>
+<span style="color: #FF0000">{</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">return</span></span> A<span style="color: #990000">&lt;</span>V<span style="color: #990000">&gt;(</span>x<span style="color: #990000">);</span>
+<span style="color: #FF0000">}</span></tt></pre></div></div>
 </div></div>
 <div class="sect2 slide">
-<h1 id="_пример_этапов_сборки">1.4. Пример этапов сборки</h1>
+<h1 id="_константность_методов">1.6. Константность методов</h1>
 
 <div class="sectionbody">
-<div class="imageblock">
-<div class="content"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
- "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<!-- Generated by graphviz version 2.47.3 (0)
- -->
-<!-- Pages: 1 -->
-<svg width="1404pt" height="444pt"
- viewBox="0.00 0.00 1403.90 444.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 440)">
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-440 1399.9,-440 1399.9,4 -4,4"/>
-<g id="clust1" class="cluster">
-<title>cluster0</title>
-<polygon fill="#ebebeb" stroke="black" stroke-dasharray="1,5" points="8,-256 8,-385 337,-385 337,-256 8,-256"/>
-<text text-anchor="middle" x="172.5" y="-369.8" font-family="Times,serif" font-size="14.00">Уровень исполнения</text>
-</g>
-<g id="clust3" class="cluster">
-<title>cluster1</title>
-<polygon fill="none" stroke="black" stroke-dasharray="1,5" points="396,-107 396,-428 772.9,-428 772.9,-107 396,-107"/>
-<text text-anchor="middle" x="584.45" y="-412.8" font-family="Times,serif" font-size="14.00">Уровень компиляции</text>
-</g>
-<g id="clust6" class="cluster">
-<title>cluster2</title>
-<polygon fill="none" stroke="black" stroke-dasharray="1,5" points="873.9,-8 873.9,-407 1387.9,-407 1387.9,-8 873.9,-8"/>
-<text text-anchor="middle" x="1130.9" y="-391.8" font-family="Times,serif" font-size="14.00">Уровень кода</text>
-</g>
-<g id="clust7" class="cluster">
-<title>cluster3</title>
-<polygon fill="none" stroke="black" stroke-dasharray="1,5" points="1145.9,-16 1145.9,-193 1379.9,-193 1379.9,-16 1145.9,-16"/>
-<text text-anchor="middle" x="1262.9" y="-177.8" font-family="Times,serif" font-size="14.00">Уровень препроцессинга</text>
-</g>
-<!-- app0 -->
-<g id="node1" class="node">
-<title>app0</title>
-<polygon fill="none" stroke="black" points="83,-354 16,-354 16,-318 83,-318 83,-354"/>
-<text text-anchor="middle" x="49.5" y="-331" font-family="Times,serif" font-size="20.00">app0</text>
-</g>
-<!-- liba -->
-<g id="node3" class="node">
-<title>liba</title>
-<polygon fill="none" stroke="black" points="329,-344 246,-344 246,-308 329,-308 329,-344"/>
-<text text-anchor="middle" x="287.5" y="-321" font-family="Times,serif" font-size="20.00">liba.so</text>
-</g>
-<!-- app0&#45;&gt;liba -->
-<g id="edge1" class="edge">
-<title>app0&#45;&gt;liba</title>
-<path fill="none" stroke="mediumaquamarine" d="M83.31,-334.61C122.76,-332.94 189.4,-330.11 235.55,-328.16"/>
-<polygon fill="mediumaquamarine" stroke="mediumaquamarine" points="235.81,-331.65 245.65,-327.73 235.51,-324.66 235.81,-331.65"/>
-<text text-anchor="middle" x="164.5" y="-339" font-family="Times,serif" font-size="20.00">ld&#45;linux, link</text>
-</g>
-<!-- libc -->
-<g id="node4" class="node">
-<title>libc</title>
-<ellipse fill="none" stroke="black" cx="473.3" cy="-256" rx="50.82" ry="21.43"/>
-<text text-anchor="middle" x="473.3" y="-251" font-family="Times,serif" font-size="20.00">libc.a</text>
-</g>
-<!-- app0&#45;&gt;libc -->
-<g id="edge18" class="edge">
-<title>app0&#45;&gt;libc</title>
-<path fill="none" stroke="blue" d="M74.07,-317.98C77.23,-315.13 80.3,-312.1 83,-309 92.96,-297.56 87.99,-287.8 101,-280 199.76,-220.81 341,-232.41 417.68,-244.92"/>
-<polygon fill="blue" stroke="blue" points="417.16,-248.38 427.61,-246.6 418.33,-241.48 417.16,-248.38"/>
-<text text-anchor="middle" x="287.5" y="-242" font-family="Times,serif" font-size="20.00">link</text>
-</g>
-<!-- obj5 -->
-<g id="node11" class="node">
-<title>obj5</title>
-<ellipse fill="none" stroke="black" cx="473.3" cy="-196" rx="69.09" ry="21.43"/>
-<text text-anchor="middle" x="473.3" y="-191" font-family="Times,serif" font-size="20.00">main0.o</text>
-</g>
-<!-- app0&#45;&gt;obj5 -->
-<g id="edge19" class="edge">
-<title>app0&#45;&gt;obj5</title>
-<path fill="none" stroke="blue" d="M75.99,-317.73C78.63,-315.04 81.06,-312.11 83,-309 100.92,-280.29 76.42,-258.27 101,-235 182.77,-157.57 324.59,-167.28 407.27,-181.51"/>
-<polygon fill="blue" stroke="blue" points="406.84,-184.99 417.3,-183.31 408.07,-178.1 406.84,-184.99"/>
-<text text-anchor="middle" x="287.5" y="-180" font-family="Times,serif" font-size="20.00">link</text>
-</g>
-<!-- app1 -->
-<g id="node2" class="node">
-<title>app1</title>
-<polygon fill="none" stroke="black" points="83,-300 16,-300 16,-264 83,-264 83,-300"/>
-<text text-anchor="middle" x="49.5" y="-277" font-family="Times,serif" font-size="20.00">app1</text>
-</g>
-<!-- app1&#45;&gt;liba -->
-<g id="edge2" class="edge">
-<title>app1&#45;&gt;liba</title>
-<path fill="none" stroke="mediumaquamarine" d="M83.05,-282.97C119.02,-284.66 178.43,-289.3 228,-302 230.99,-302.77 234.02,-303.65 237.06,-304.62"/>
-<polygon fill="mediumaquamarine" stroke="mediumaquamarine" points="236.12,-308 246.72,-307.97 238.42,-301.39 236.12,-308"/>
-<text text-anchor="middle" x="164.5" y="-308" font-family="Times,serif" font-size="20.00">ld&#45;linux, link</text>
-</g>
-<!-- obj6 -->
-<g id="node12" class="node">
-<title>obj6</title>
-<ellipse fill="none" stroke="black" cx="473.3" cy="-136" rx="69.09" ry="21.43"/>
-<text text-anchor="middle" x="473.3" y="-131" font-family="Times,serif" font-size="20.00">main1.o</text>
-</g>
-<!-- app1&#45;&gt;obj6 -->
-<g id="edge20" class="edge">
-<title>app1&#45;&gt;obj6</title>
-<path fill="none" stroke="blue" d="M53.73,-263.95C59.07,-239.59 72.18,-196.62 101,-174 187.89,-105.81 323.69,-111.58 404.74,-123.05"/>
-<polygon fill="blue" stroke="blue" points="404.42,-126.54 414.83,-124.55 405.45,-119.62 404.42,-126.54"/>
-<text text-anchor="middle" x="287.5" y="-125" font-family="Times,serif" font-size="20.00">link</text>
-</g>
-<!-- libd -->
-<g id="node5" class="node">
-<title>libd</title>
-<ellipse fill="none" stroke="black" cx="473.3" cy="-326" rx="52.15" ry="21.43"/>
-<text text-anchor="middle" x="473.3" y="-321" font-family="Times,serif" font-size="20.00">libd.a</text>
-</g>
-<!-- liba&#45;&gt;libd -->
-<g id="edge21" class="edge">
-<title>liba&#45;&gt;libd</title>
-<path fill="none" stroke="blue" d="M329.29,-326C353.2,-326 383.89,-326 410.7,-326"/>
-<polygon fill="blue" stroke="blue" points="410.76,-329.5 420.76,-326 410.76,-322.5 410.76,-329.5"/>
-<text text-anchor="middle" x="366.5" y="-332" font-family="Times,serif" font-size="20.00">link</text>
-</g>
-<!-- obj0 -->
-<g id="node6" class="node">
-<title>obj0</title>
-<ellipse fill="none" stroke="black" cx="709.75" cy="-196" rx="55.31" ry="21.43"/>
-<text text-anchor="middle" x="709.75" y="-191" font-family="Times,serif" font-size="20.00">obj0.o</text>
-</g>
-<!-- libc&#45;&gt;obj0 -->
-<g id="edge3" class="edge">
-<title>libc&#45;&gt;obj0</title>
-<path fill="none" stroke="darkgreen" d="M514.53,-243.27C528.99,-238.85 545.47,-234.01 560.59,-230 590.35,-222.11 623.76,-214.35 651.31,-208.24"/>
-<polygon fill="darkgreen" stroke="darkgreen" points="652.16,-211.64 661.18,-206.07 650.66,-204.8 652.16,-211.64"/>
-<text text-anchor="middle" x="598.59" y="-236" font-family="Times,serif" font-size="20.00">archive</text>
-</g>
-<!-- obj1 -->
-<g id="node7" class="node">
-<title>obj1</title>
-<ellipse fill="none" stroke="black" cx="709.75" cy="-136" rx="55.31" ry="21.43"/>
-<text text-anchor="middle" x="709.75" y="-131" font-family="Times,serif" font-size="20.00">obj1.o</text>
-</g>
-<!-- libc&#45;&gt;obj1 -->
-<g id="edge4" class="edge">
-<title>libc&#45;&gt;obj1</title>
-<path fill="none" stroke="darkgreen" d="M515.25,-243.78C525.1,-239.38 534.96,-233.57 542.59,-226 556.44,-212.28 546.15,-199.1 560.59,-186 584.42,-164.38 617.95,-152.06 647.08,-145.07"/>
-<polygon fill="darkgreen" stroke="darkgreen" points="648.18,-148.41 657.18,-142.81 646.65,-141.58 648.18,-148.41"/>
-<text text-anchor="middle" x="598.59" y="-192" font-family="Times,serif" font-size="20.00">archive</text>
-</g>
-<!-- obj2 -->
-<g id="node8" class="node">
-<title>obj2</title>
-<ellipse fill="none" stroke="black" cx="709.75" cy="-256" rx="55.31" ry="21.43"/>
-<text text-anchor="middle" x="709.75" y="-251" font-family="Times,serif" font-size="20.00">obj2.o</text>
-</g>
-<!-- libc&#45;&gt;obj2 -->
-<g id="edge5" class="edge">
-<title>libc&#45;&gt;obj2</title>
-<path fill="none" stroke="darkgreen" d="M524.3,-256C559.22,-256 606.14,-256 643.92,-256"/>
-<polygon fill="darkgreen" stroke="darkgreen" points="644.32,-259.5 654.32,-256 644.32,-252.5 644.32,-259.5"/>
-<text text-anchor="middle" x="598.59" y="-262" font-family="Times,serif" font-size="20.00">archive</text>
-</g>
-<!-- obj3 -->
-<g id="node9" class="node">
-<title>obj3</title>
-<ellipse fill="none" stroke="black" cx="709.75" cy="-316" rx="55.31" ry="21.43"/>
-<text text-anchor="middle" x="709.75" y="-311" font-family="Times,serif" font-size="20.00">obj3.o</text>
-</g>
-<!-- libd&#45;&gt;obj3 -->
-<g id="edge6" class="edge">
-<title>libd&#45;&gt;obj3</title>
-<path fill="none" stroke="darkgreen" d="M525.46,-323.82C560.43,-322.33 607.06,-320.34 644.53,-318.74"/>
-<polygon fill="darkgreen" stroke="darkgreen" points="645,-322.22 654.84,-318.3 644.7,-315.23 645,-322.22"/>
-<text text-anchor="middle" x="598.59" y="-328" font-family="Times,serif" font-size="20.00">archive</text>
-</g>
-<!-- obj4 -->
-<g id="node10" class="node">
-<title>obj4</title>
-<ellipse fill="none" stroke="black" cx="709.75" cy="-376" rx="55.31" ry="21.43"/>
-<text text-anchor="middle" x="709.75" y="-371" font-family="Times,serif" font-size="20.00">obj4.o</text>
-</g>
-<!-- libd&#45;&gt;obj4 -->
-<g id="edge7" class="edge">
-<title>libd&#45;&gt;obj4</title>
-<path fill="none" stroke="darkgreen" d="M517.63,-337.61C531.33,-341.13 546.55,-344.89 560.59,-348 589.6,-354.43 622.01,-360.66 649.1,-365.61"/>
-<polygon fill="darkgreen" stroke="darkgreen" points="648.74,-369.1 659.2,-367.44 649.99,-362.21 648.74,-369.1"/>
-<text text-anchor="middle" x="598.59" y="-368" font-family="Times,serif" font-size="20.00">archive</text>
-</g>
-<!-- src0 -->
-<g id="node13" class="node">
-<title>src0</title>
-<path fill="none" stroke="black" d="M969.9,-214C969.9,-214 915.9,-214 915.9,-214 909.9,-214 903.9,-208 903.9,-202 903.9,-202 903.9,-190 903.9,-190 903.9,-184 909.9,-178 915.9,-178 915.9,-178 969.9,-178 969.9,-178 975.9,-178 981.9,-184 981.9,-190 981.9,-190 981.9,-202 981.9,-202 981.9,-208 975.9,-214 969.9,-214"/>
-<text text-anchor="middle" x="942.9" y="-191" font-family="Times,serif" font-size="20.00">src0.c</text>
-</g>
-<!-- obj0&#45;&gt;src0 -->
-<g id="edge8" class="edge">
-<title>obj0&#45;&gt;src0</title>
-<path fill="none" stroke="red" d="M764.94,-196C803.85,-196 855.84,-196 893.39,-196"/>
-<polygon fill="red" stroke="red" points="893.57,-199.5 903.57,-196 893.57,-192.5 893.57,-199.5"/>
-<text text-anchor="middle" x="823.4" y="-202" font-family="Times,serif" font-size="20.00">compile</text>
-</g>
-<!-- src1 -->
-<g id="node14" class="node">
-<title>src1</title>
-<path fill="none" stroke="black" d="M969.9,-160C969.9,-160 915.9,-160 915.9,-160 909.9,-160 903.9,-154 903.9,-148 903.9,-148 903.9,-136 903.9,-136 903.9,-130 909.9,-124 915.9,-124 915.9,-124 969.9,-124 969.9,-124 975.9,-124 981.9,-130 981.9,-136 981.9,-136 981.9,-148 981.9,-148 981.9,-154 975.9,-160 969.9,-160"/>
-<text text-anchor="middle" x="942.9" y="-137" font-family="Times,serif" font-size="20.00">src1.c</text>
-</g>
-<!-- obj1&#45;&gt;src1 -->
-<g id="edge9" class="edge">
-<title>obj1&#45;&gt;src1</title>
-<path fill="none" stroke="red" d="M764.94,-137.41C803.85,-138.42 855.84,-139.77 893.39,-140.74"/>
-<polygon fill="red" stroke="red" points="893.48,-144.24 903.57,-141.01 893.66,-137.25 893.48,-144.24"/>
-<text text-anchor="middle" x="823.4" y="-145" font-family="Times,serif" font-size="20.00">compile</text>
-</g>
-<!-- src2 -->
-<g id="node15" class="node">
-<title>src2</title>
-<path fill="none" stroke="black" d="M969.9,-268C969.9,-268 915.9,-268 915.9,-268 909.9,-268 903.9,-262 903.9,-256 903.9,-256 903.9,-244 903.9,-244 903.9,-238 909.9,-232 915.9,-232 915.9,-232 969.9,-232 969.9,-232 975.9,-232 981.9,-238 981.9,-244 981.9,-244 981.9,-256 981.9,-256 981.9,-262 975.9,-268 969.9,-268"/>
-<text text-anchor="middle" x="942.9" y="-245" font-family="Times,serif" font-size="20.00">src2.c</text>
-</g>
-<!-- obj2&#45;&gt;src2 -->
-<g id="edge10" class="edge">
-<title>obj2&#45;&gt;src2</title>
-<path fill="none" stroke="red" d="M764.94,-254.59C803.85,-253.58 855.84,-252.23 893.39,-251.26"/>
-<polygon fill="red" stroke="red" points="893.66,-254.75 903.57,-250.99 893.48,-247.76 893.66,-254.75"/>
-<text text-anchor="middle" x="823.4" y="-260" font-family="Times,serif" font-size="20.00">compile</text>
-</g>
-<!-- src3 -->
-<g id="node16" class="node">
-<title>src3</title>
-<path fill="none" stroke="black" d="M982.9,-322C982.9,-322 902.9,-322 902.9,-322 896.9,-322 890.9,-316 890.9,-310 890.9,-310 890.9,-298 890.9,-298 890.9,-292 896.9,-286 902.9,-286 902.9,-286 982.9,-286 982.9,-286 988.9,-286 994.9,-292 994.9,-298 994.9,-298 994.9,-310 994.9,-310 994.9,-316 988.9,-322 982.9,-322"/>
-<text text-anchor="middle" x="942.9" y="-299" font-family="Times,serif" font-size="20.00">src3.cpp</text>
-</g>
-<!-- obj3&#45;&gt;src3 -->
-<g id="edge11" class="edge">
-<title>obj3&#45;&gt;src3</title>
-<path fill="none" stroke="red" d="M764.65,-313.2C799.26,-311.41 844.29,-309.07 880.31,-307.2"/>
-<polygon fill="red" stroke="red" points="880.89,-310.67 890.69,-306.66 880.52,-303.68 880.89,-310.67"/>
-<text text-anchor="middle" x="823.4" y="-318" font-family="Times,serif" font-size="20.00">compile</text>
-</g>
-<!-- src4 -->
-<g id="node17" class="node">
-<title>src4</title>
-<path fill="none" stroke="black" d="M982.9,-376C982.9,-376 902.9,-376 902.9,-376 896.9,-376 890.9,-370 890.9,-364 890.9,-364 890.9,-352 890.9,-352 890.9,-346 896.9,-340 902.9,-340 902.9,-340 982.9,-340 982.9,-340 988.9,-340 994.9,-346 994.9,-352 994.9,-352 994.9,-364 994.9,-364 994.9,-370 988.9,-376 982.9,-376"/>
-<text text-anchor="middle" x="942.9" y="-353" font-family="Times,serif" font-size="20.00">src4.cpp</text>
-</g>
-<!-- obj4&#45;&gt;src4 -->
-<g id="edge12" class="edge">
-<title>obj4&#45;&gt;src4</title>
-<path fill="none" stroke="red" d="M764.07,-371.85C798.92,-369.13 844.55,-365.58 880.86,-362.75"/>
-<polygon fill="red" stroke="red" points="881.13,-366.24 890.83,-361.98 880.59,-359.26 881.13,-366.24"/>
-<text text-anchor="middle" x="823.4" y="-376" font-family="Times,serif" font-size="20.00">compile</text>
-</g>
-<!-- main0 -->
-<g id="node18" class="node">
-<title>main0</title>
-<path fill="none" stroke="black" d="M979.4,-106C979.4,-106 906.4,-106 906.4,-106 900.4,-106 894.4,-100 894.4,-94 894.4,-94 894.4,-82 894.4,-82 894.4,-76 900.4,-70 906.4,-70 906.4,-70 979.4,-70 979.4,-70 985.4,-70 991.4,-76 991.4,-82 991.4,-82 991.4,-94 991.4,-94 991.4,-100 985.4,-106 979.4,-106"/>
-<text text-anchor="middle" x="942.9" y="-83" font-family="Times,serif" font-size="20.00">main0.c</text>
-</g>
-<!-- obj5&#45;&gt;main0 -->
-<g id="edge13" class="edge">
-<title>obj5&#45;&gt;main0</title>
-<path fill="none" stroke="red" d="M518.99,-180.01C527.23,-176.07 535.48,-171.4 542.59,-166 552.65,-158.36 551.15,-152.39 560.59,-144 597.64,-111.07 607.02,-97.89 654.59,-84 731.5,-61.55 824.99,-68.84 883.99,-77.39"/>
-<polygon fill="red" stroke="red" points="883.82,-80.91 894.23,-78.94 884.87,-73.99 883.82,-80.91"/>
-<text text-anchor="middle" x="709.75" y="-90" font-family="Times,serif" font-size="20.00">compile</text>
-</g>
-<!-- main1 -->
-<g id="node19" class="node">
-<title>main1</title>
-<path fill="none" stroke="black" d="M991.9,-52C991.9,-52 893.9,-52 893.9,-52 887.9,-52 881.9,-46 881.9,-40 881.9,-40 881.9,-28 881.9,-28 881.9,-22 887.9,-16 893.9,-16 893.9,-16 991.9,-16 991.9,-16 997.9,-16 1003.9,-22 1003.9,-28 1003.9,-28 1003.9,-40 1003.9,-40 1003.9,-46 997.9,-52 991.9,-52"/>
-<text text-anchor="middle" x="942.9" y="-29" font-family="Times,serif" font-size="20.00">main1.cpp</text>
-</g>
-<!-- obj6&#45;&gt;main1 -->
-<g id="edge14" class="edge">
-<title>obj6&#45;&gt;main1</title>
-<path fill="none" stroke="red" d="M493.08,-115.58C509.47,-98.83 534.64,-75.59 560.59,-61 657.54,-6.49 790.96,-11.78 871.56,-21.93"/>
-<polygon fill="red" stroke="red" points="871.23,-25.42 881.6,-23.26 872.15,-18.48 871.23,-25.42"/>
-<text text-anchor="middle" x="709.75" y="-32" font-family="Times,serif" font-size="20.00">compile</text>
-</g>
-<!-- hdr0 -->
-<g id="node20" class="node">
-<title>hdr0</title>
-<path fill="none" stroke="black" d="M1251.62,-157.92C1251.62,-157.92 1191.19,-136.08 1191.19,-136.08 1185.54,-134.04 1185.54,-129.96 1191.19,-127.92 1191.19,-127.92 1251.62,-106.08 1251.62,-106.08 1257.26,-104.04 1268.54,-104.04 1274.19,-106.08 1274.19,-106.08 1334.62,-127.92 1334.62,-127.92 1340.26,-129.96 1340.26,-134.04 1334.62,-136.08 1334.62,-136.08 1274.19,-157.92 1274.19,-157.92 1268.54,-159.96 1257.26,-159.96 1251.62,-157.92"/>
-<text text-anchor="middle" x="1262.9" y="-127" font-family="Times,serif" font-size="20.00">hdr0.h</text>
-</g>
-<!-- src0&#45;&gt;hdr0 -->
-<g id="edge15" class="edge">
-<title>src0&#45;&gt;hdr0</title>
-<path fill="none" stroke="salmon" d="M981.94,-188.34C1035.62,-177.54 1134.24,-157.69 1198.93,-144.67"/>
-<polygon fill="salmon" stroke="salmon" points="1199.9,-148.05 1209.01,-142.64 1198.52,-141.19 1199.9,-148.05"/>
-<text text-anchor="middle" x="1078.9" y="-184" font-family="Times,serif" font-size="20.00">preprocess</text>
-</g>
-<!-- main0&#45;&gt;hdr0 -->
-<g id="edge16" class="edge">
-<title>main0&#45;&gt;hdr0</title>
-<path fill="none" stroke="salmon" d="M991.51,-94.59C1044.85,-101.97 1131.81,-114 1192.66,-122.42"/>
-<polygon fill="salmon" stroke="salmon" points="1192.19,-125.89 1202.58,-123.79 1193.15,-118.95 1192.19,-125.89"/>
-<text text-anchor="middle" x="1078.9" y="-119" font-family="Times,serif" font-size="20.00">preprocess</text>
-</g>
-<!-- hdr1 -->
-<g id="node21" class="node">
-<title>hdr1</title>
-<path fill="none" stroke="black" d="M1251.33,-80.82C1251.33,-80.82 1165.47,-57.18 1165.47,-57.18 1159.69,-55.59 1159.69,-52.41 1165.47,-50.82 1165.47,-50.82 1251.33,-27.18 1251.33,-27.18 1257.12,-25.59 1268.69,-25.59 1274.47,-27.18 1274.47,-27.18 1360.33,-50.82 1360.33,-50.82 1366.12,-52.41 1366.12,-55.59 1360.33,-57.18 1360.33,-57.18 1274.47,-80.82 1274.47,-80.82 1268.69,-82.41 1257.12,-82.41 1251.33,-80.82"/>
-<text text-anchor="middle" x="1262.9" y="-49" font-family="Times,serif" font-size="20.00">hdr1.hpp</text>
-</g>
-<!-- main1&#45;&gt;hdr1 -->
-<g id="edge17" class="edge">
-<title>main1&#45;&gt;hdr1</title>
-<path fill="none" stroke="salmon" d="M1004.09,-37.79C1048.99,-40.61 1111.31,-44.53 1163.44,-47.81"/>
-<polygon fill="salmon" stroke="salmon" points="1163.52,-51.32 1173.72,-48.45 1163.95,-44.33 1163.52,-51.32"/>
-<text text-anchor="middle" x="1078.9" y="-51" font-family="Times,serif" font-size="20.00">preprocess</text>
-</g>
-</g>
-</svg></div>
+<ul class="">
+<li>
+<span>
+Почти все методы нужно делать константными
+</span>
+</li>
+<li>
+<span>
+Можно было бы ввести ключевое слово <code>mutable</code>
+</span>
+</li>
+</ul>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="font-weight: bold"><span style="color: #0000FF">template</span></span><span style="color: #990000">&lt;</span><span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">T</span><span style="color: #990000">&gt;</span>
+<span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">iterator</span>
+<span style="color: #FF0000">{</span>
+<span style="font-weight: bold"><span style="color: #0000FF">public</span></span><span style="color: #990000">:</span>
+    T<span style="color: #990000">&amp;</span> <span style="font-weight: bold"><span style="color: #0000FF">operator</span></span><span style="color: #990000">*()</span> <span style="font-weight: bold"><span style="color: #0000FF">const</span></span>
+    <span style="color: #FF0000">{</span>
+        <span style="font-weight: bold"><span style="color: #0000FF">return</span></span> <span style="color: #990000">*</span>ptr_<span style="color: #990000">;</span>
+    <span style="color: #FF0000">}</span>
+
+<span style="font-weight: bold"><span style="color: #0000FF">private</span></span><span style="color: #990000">:</span>
+    T<span style="color: #990000">*</span> ptr_<span style="color: #990000">;</span>
+<span style="color: #FF0000">}</span><span style="color: #990000">;</span></tt></pre></div></div>
+</div></div>
+<div class="sect2 slide">
+<h1 id="_замена_виртуальности">1.7. Замена виртуальности</h1>
+
+<div class="sectionbody">
+<ul class="">
+<li>
+<span>
+Возможна только в тех случаях, когда точно известны все классы
+</span>
+</li>
+<li>
+<span>
+Основано на утиной типизации
+</span>
+</li>
+<li>
+<span>
+Используется <code>std::variant</code>
+</span>
+</li>
+<li>
+<span>
+Минусы: везде надо использовать <code>std::visit</code>, все функции должны быть шаблонизированы, возвращаемый тип должен быть одинаковым
+</span>
+</li>
+</ul>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">Lala</span>
+<span style="color: #FF0000">{</span>
+<span style="font-weight: bold"><span style="color: #0000FF">public</span></span><span style="color: #990000">:</span>
+    <span style="color: #009900">void</span> <span style="font-weight: bold"><span style="color: #000000">method</span></span><span style="color: #990000">();</span>
+<span style="color: #FF0000">}</span><span style="color: #990000">;</span>
+
+<span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">Lala2</span><span style="color: #990000">:</span> <span style="font-weight: bold"><span style="color: #0000FF">public</span></span> Lala
+<span style="color: #FF0000">{</span>
+<span style="font-weight: bold"><span style="color: #0000FF">public</span></span><span style="color: #990000">:</span>
+    <span style="color: #009900">void</span> <span style="font-weight: bold"><span style="color: #000000">method</span></span><span style="color: #990000">()</span>
+    <span style="color: #FF0000">{</span>
+        <span style="font-style: italic"><span style="color: #9A1900">// override</span></span>
+    <span style="color: #FF0000">}</span>
+<span style="color: #FF0000">}</span><span style="color: #990000">;</span>
+
+<span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">Lala3</span>
+<span style="color: #FF0000">{</span>
+<span style="font-weight: bold"><span style="color: #0000FF">public</span></span><span style="color: #990000">:</span>
+    <span style="color: #009900">void</span> <span style="font-weight: bold"><span style="color: #000000">method</span></span><span style="color: #990000">()</span>
+    <span style="color: #FF0000">{</span>
+        <span style="font-style: italic"><span style="color: #9A1900">// new implementation</span></span>
+    <span style="color: #FF0000">}</span>
+<span style="color: #FF0000">}</span><span style="color: #990000">;</span>
+
+std<span style="color: #990000">::</span><span style="color: #008080">variant&lt;Lala, Lala2, Lala3&gt;</span> obj <span style="color: #990000">=</span> <span style="color: #990000">...;</span>
+std<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">visit</span></span><span style="color: #990000">([](</span><span style="font-weight: bold"><span style="color: #0000FF">auto</span></span><span style="color: #990000">&amp;</span> x<span style="color: #990000">)</span> <span style="color: #FF0000">{</span> x<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">method</span></span><span style="color: #990000">();</span> <span style="color: #FF0000">}</span><span style="color: #990000">,</span> obj<span style="color: #990000">)</span></tt></pre></div></div>
+</div></div>
+<div class="sect1 slide">
+<h1 id="_solid">2. SOLID</h1>
+
+<div class="sectionbody">
+</div></div>
+<div class="sect2 slide">
+<h1 id="_s_принцип_единственной_ответственности">2.1. (S) Принцип единственной ответственности</h1>
+
+<div class="sectionbody">
+<ul class="">
+<li>
+<span>
+Класс должен отвечать за одну сущность
+</span>
+</li>
+<li>
+<span>
+Изменение класса должно быть связано только с изменением этой сущности
+</span>
+</li>
+</ul>
+<div class="paragraph"><div class="title">Пример</div><p>Конвертер форматов:</p></div>
+<ul class="">
+<li>
+<span>
+Изменился один из выходных форматов&#8201;&#8212;&#8201;изменяется конвертер
+</span>
+</li>
+<li>
+<span>
+Изменился один из входных форматов&#8201;&#8212;&#8201;изменяется конвертер
+</span>
+</li>
+<li>
+<span>
+Изменилось имя для работы с сервером&#8201;&#8212;&#8201;изменился конвертер (wat??)
+</span>
+</li>
+</ul>
+<div class="paragraph"><div class="title">Решение</div><p>Подход <code>pandoc</code>:</p></div>
+<ul class="">
+<li>
+<span>
+На каждый выходной формат свой конвертер
+</span>
+</li>
+<li>
+<span>
+На каждый входной формат свой читатель
+</span>
+</li>
+<li>
+<span>
+Введение внутреннего формата
+</span>
+</li>
+</ul>
+</div></div>
+<div class="sect2 slide">
+<h1 id="_o_принцип_открытости_закрытости">2.2. (O) Принцип открытости/закрытости</h1>
+
+<div class="sectionbody">
+<ul class="">
+<li>
+<span>
+Класс закрыт для изменений
+</span>
+</li>
+<li>
+<span>
+Получить новую функциональность можно через расширение класса (наследования, перегрузки)
+</span>
+</li>
+<li>
+<span>
+Принцип интерфейса и реализации
+</span>
+</li>
+<li>
+<span>
+Модульное тестирование в таком подходе: наследование от класса для предоставления скрытых связей внутри класса
+</span>
+</li>
+<li>
+<span>
+Полиморфизм в терминах наследования от интерфейса
+</span>
+</li>
+<li>
+<span>
+Множественное наследование от интерфейсов
+</span>
+</li>
+</ul>
+</div></div>
+<div class="sect2 slide">
+<h1 id="_l_принцип_подстановки_барбары_лисков">2.3. (L) Принцип подстановки Барбары Лисков</h1>
+
+<div class="sectionbody">
+<ul class="">
+<li>
+<span>
+Старое поведение базового класса должно оставаться неизменным в наследнике
+</span>
+</li>
+<li>
+<span>
+В программе можно вместо базового класса написать наследника&#8201;&#8212;&#8201;поведение должно остаться прежним
+</span>
+</li>
+</ul>
+<div class="paragraph"><p>Список с дублированными элементами.</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>test&lt;ListType&gt;():
+    ListType l;
+    l.add(44)
+    CHECK(l.size() == 1)
+
+DoubleList(List):
+    add(x):
+        List::add(x)
+        List::add(x)
+
+test&lt;DoubleList&gt;() // fail</code></pre>
+</div></div>
+<div class="paragraph"><p>Как быть?</p></div>
+<ul class="">
+<li>
+<span>
+Разобраться какой из интерфейсов должен остаться прежним
+</span>
+</li>
+<li>
+<span>
+Ввести понятие дублированный элемент, а не список с дублированием
+</span>
+</li>
+</ul>
+</div></div>
+<div class="sect2 slide">
+<h1 id="_i_принцип_разделения_интерфейса">2.4. (I) Принцип разделения интерфейса</h1>
+
+<div class="sectionbody">
+<ul class="">
+<li>
+<span>
+Много мелких интерфейсов лучше, чем один большой
+</span>
+</li>
+<li>
+<span>
+Принцип избегания "божественного объекта"
+</span>
+</li>
+<li>
+<span>
+Сущности не зависят от методов, которые не используют
+</span>
+</li>
+</ul>
+<div class="tableblock">
+<table rules="none"
+width="100%"
+frame="void"
+cellspacing="0" cellpadding="4">
+<col width="50%" />
+<col width="50%" />
+<thead>
+<tr>
+<th align="left" valign="top"> Объединённый интерфейс </th>
+<th align="left" valign="top"> Разделённый интерфейс</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><div><div class="listingblock">
+<div class="content">
+<pre><code>driver:
+    allocate(size): void*
+    deallocate(void*)
+    set_program(byte[])
+    read(ptr, count, offset): vector&lt;byte&gt;
+    write(ptr, count, offset)
+    enqueue()
+    wait()</code></pre>
+</div></div></div></td>
+<td align="left" valign="top"><div><div class="listingblock">
+<div class="content">
+<pre><code>allocator:
+    allocate(size): void*
+    deallocate(void*)
+
+driver_data:
+    ptr
+    count
+    offset
+
+io_handler:
+    enqueue(driver_data)
+    wait()
+
+driver(allocator):
+    set_program(byte[]) -&gt; io_handler</code></pre>
+</div></div></div></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div></div>
-<div class="sect1 slide">
-<h1 id="_введение_в_cmake">2. Введение в CMake</h1>
-
-<div class="sectionbody">
-</div></div>
 <div class="sect2 slide">
-<h1 id="_ссылки">2.1. Ссылки</h1>
+<h1 id="_d_принцип_инверсии_зависимостей">2.5. (D) Принцип инверсии зависимостей</h1>
 
 <div class="sectionbody">
 <ul class="">
 <li>
 <span>
-<a href="https://cmake.org/cmake-tutorial">https://cmake.org/cmake-tutorial</a>&#8201;&#8212;&#8201;тьюториал
+Модули верхних уровней не должны зависеть от модулей нижних уровней
 </span>
 </li>
 <li>
 <span>
-<a href="https://cmake.org/cmake/help/latest/index.html">https://cmake.org/cmake/help/latest/index.html</a>&#8201;&#8212;&#8201;документация
+Абстракции не должны зависеть от деталей
 </span>
 </li>
 <li>
 <span>
-<a href="http://ttroy50.github.io/cmake-examples">http://ttroy50.github.io/cmake-examples</a>&#8201;&#8212;&#8201;примеры по CMake
-</span>
-</li>
-</ul>
-</div></div>
-<div class="sect2 slide">
-<h1 id="_структура_проекта_для_cmake">2.2. Структура проекта для CMake</h1>
-
-<div class="sectionbody">
-<ul class="">
-<li>
-<span>
-Нечто большее, чем система сборки&#8201;&#8212;&#8201;конфигуратор систем сборки
+Разорвать связи можно введением дополнительного уровня
 </span>
 </li>
 <li>
 <span>
-<code>CMakeLists.txt</code>&#8201;&#8212;&#8201;конфигурационные файлы CMake
-</span>
-</li>
-<li>
-<span>
-Каждая директория может содержать <code>CMakeLists.txt</code>
-</span>
-</li>
-<li>
-<span>
-Связывание с помощью <code>add_subdirectory</code>
-</span>
-</li>
-<li>
-<span>
-<code>add_library</code>, <code>add_executable</code>&#8201;&#8212;&#8201;добавление основных целей (targets)
-</span>
-</li>
-<li>
-<span>
-<code>target_*</code>&#8201;&#8212;&#8201;изменение свойств целей
-</span>
-</li>
-<li>
-<span>
-<code>add_test</code>&#8201;&#8212;&#8201;добавление теста
-</span>
-</li>
-<li>
-<span>
-<code>export(package)</code>&#8201;&#8212;&#8201;регистрирование проекта
-</span>
-</li>
-<li>
-<span>
-<code>include(CPack)</code>&#8201;&#8212;&#8201;генерирование установочного пакета
+Проверка&#8201;&#8212;&#8201;написание модульного теста по типу белого ящика
 </span>
 </li>
 </ul>
-</div></div>
-<div class="sect2 slide">
-<h1 id="_цели_по_умолчанию">2.3. Цели по умолчанию</h1>
-
-<div class="sectionbody">
-<ul class="">
-<li>
-<span>
-all или просто <code>make</code> без целей
-</span>
-</li>
-<li>
-<span>
-rebuild_cache&#8201;&#8212;&#8201;перестройка кеша (переконфигурирование)
-</span>
-</li>
-<li>
-<span>
-clean&#8201;&#8212;&#8201;очистить дерево сборки от артефактов
-</span>
-</li>
-<li>
-<span>
-test&#8201;&#8212;&#8201;запуск тестов
-</span>
-<ul class="">
-<li>
-<span>
-аналогично запуску <code>ctest</code>
-</span>
-</li>
-</ul>
-</li>
-<li>
-<span>
-install&#8201;&#8212;&#8201;установка собранных артефактов (используется в цели package)
-</span>
-</li>
-<li>
-<span>
-package&#8201;&#8212;&#8201;создание пакета
-</span>
-<ul class="">
-<li>
-<span>
-аналогично запуску <code>cpack</code>
-</span>
-</li>
-</ul>
-</li>
-<li>
-<span>
-<code>&lt;name&gt;</code>&#8201;&#8212;&#8201;собирает отдельную цель <code>name</code>, созданную в <code>CMakeLists.txt</code>
-</span>
-</li>
-<li>
-<span>
-help&#8201;&#8212;&#8201;выводит доступные цели
-</span>
-</li>
-</ul>
-</div></div>
-<div class="sect1 slide">
-<h1 id="_синтаксис_языка_cmake">3. Синтаксис языка CMake</h1>
-
-<div class="sectionbody">
-</div></div>
-<div class="sect2 slide">
-<h1 id="_синтаксис_cmake">3.1. Синтаксис CMake</h1>
-
-<div class="sectionbody">
-<ul class="">
-<li>
-<span>
-Идентификаторы переменных такие же, как в C++
-</span>
-</li>
-<li>
-<span>
-Имена функций и макросов регистронезависимы
-</span>
-</li>
-<li>
-<span>
-Основные структуры языка:
-</span>
-<ul class="">
-<li>
-<span>
-условные операторы и циклы (<code>if</code>, <code>foreach</code>)
-</span>
-</li>
-<li>
-<span>
-функции и макросы (<code>function</code>, <code>macro</code>)
-</span>
-</li>
-<li>
-<span>
-модули (<code>include</code>)
-</span>
-</li>
-</ul>
-</li>
-<li>
-<span>
-Точка входа&#8201;&#8212;&#8201;файл <code>CMakeLists.txt</code>
-</span>
-</li>
-<li>
-<span>
-Режимы запуска
-</span>
-<ul class="">
-<li>
-<span>
-<code>cmake &lt;dir&gt;</code>&#8201;&#8212;&#8201;запускает <code>&lt;dir&gt;/CMakeLists.txt</code>
-</span>
-</li>
-<li>
-<span>
-<code>cmake -P &lt;script&gt;</code>&#8201;&#8212;&#8201;режим скрипта
-</span>
-</li>
-<li>
-<span>
-<code>cmake -E &lt;cmd&gt;</code>&#8201;&#8212;&#8201;командный режим
-</span>
-</li>
-<li>
-<span>
-другие режимы
-</span>
-</li>
-</ul>
-</li>
-</ul>
-</div></div>
-<div class="sect2 slide">
-<h1 id="_переменные">3.2. Переменные</h1>
-
-<div class="sectionbody">
-<ul class="">
-<li>
-<span>
-<code>VAL</code>&#8201;&#8212;&#8201;имя переменной
-</span>
-</li>
-<li>
-<span>
-<code>${VAL}</code>&#8201;&#8212;&#8201;разыменование переменной, её значение
-</span>
-</li>
-<li>
-<span>
-<code>set(VAL "123 value")</code>&#8201;&#8212;&#8201;установка значения переменной
-</span>
-</li>
-<li>
-<span>
-<code>set(VAL 1 2 3) === set(VAL "1;2;3")</code>&#8201;&#8212;&#8201;списки
-</span>
-</li>
-<li>
-<span>
-Значение переменных можно передавать в строке ввода:
-</span>
-<div class="listingblock">
+<div class="tableblock">
+<table rules="none"
+width="100%"
+frame="void"
+cellspacing="0" cellpadding="4">
+<col width="50%" />
+<col width="50%" />
+<thead>
+<tr>
+<th align="left" valign="top"> Встроенная зависимость </th>
+<th align="left" valign="top"> Зависимость вне класса</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><div><div class="listingblock">
 <div class="content">
-<pre><code>$ cmake -DMYVAL="value" -DMYVAL2=123 -DMYVAL3=ON</code></pre>
-</div></div>
-</li>
-<li>
-<span>
-<code>option(MYVAL "Опциональная переменная" ON)</code>&#8201;&#8212;&#8201;может быть <code>ON</code>, <code>OFF</code>
-</span>
-</li>
-<li>
-<span>
-<code>$ENV{HOME}</code>&#8201;&#8212;&#8201;доступ к переменным окружения
-</span>
-</li>
-<li>
-<span>
-Важные переменные: <code>CMAKE_PREFIX_PATH</code>, <code>CMAKE_PROGRAM_PATH</code>, <code>CMAKE_TOOLCHAIN_FILE</code>
-</span>
-</li>
-<li>
-<span>
-Стандартные переменные: <code>CMAKE_SOURCE_DIR</code>, <code>CMAKE_CURRENT_SOURCE_DIR</code>, <code>CMAKE_BINARY_DIR</code>,
-<code>CMAKE_CURRENT_BINARY_DIR</code>, <code>CMAKE_CURRENT_LIST_DIR</code>
-</span>
-</li>
-</ul>
-</div></div>
-<div class="sect1 slide">
-<h1 id="_примеры">4. Примеры</h1>
+<pre><code>tq:
+    - tile:
+        ptr
+        count
 
-<div class="sectionbody">
-</div></div>
-<div class="sect2 slide">
-<h1 id="_mwe_minimal_workable_example">4.1. MWE (Minimal Workable Example)</h1>
+    - vector&lt;tile&gt;
 
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt>cmake_minimum_required(VERSION 3.9)
-project(example VERSION 0.1.0 LANGUAGES CXX DESCRIPTION "la-la-la")
-
-set(CMAKE_CXX_STANDARD 17)
-
-include(CTest)
-
-file(GLOB SOURCES src/*.cpp)
-add_library(unit STATIC ${SOURCES}) # libunit.a
-target_include_directories(unit PUBLIC include)
-
-add_executable(example app/main.cpp)
-target_link_libraries(example PUBLIC unit m dl)
-
-add_test(NAME simple_test COMMAND example --filter sim --dir /tmp)
-set_tests_properties(simple_test PROPERTIES PASS_REGULAR_EXPRESSION "hello world")</tt></pre></div></div>
-</div></div>
-<div class="sect2 slide">
-<h1 id="_пример_создания_пакета">4.2. Пример создания пакета</h1>
-
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt>include(GNUInstallDirs)
-
-install(DIRECTORY include/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
-install(TARGETS example unit
-    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
-)
-
-list(APPEND CPACK_GENERATOR TGZ)
-set(CPACK_PACKAGE_VERSION_MAJOR ${PROJECT_VERSION_MAJOR})
-set(CPACK_PACKAGE_VERSION_MINOR ${PROJECT_VERSION_MINOR})
-set(CPACK_PACKAGE_VERSION_PATCH ${PROJECT_VERSION_PATCH})
-set(CPACK_SYSTEM_NAME ${CMAKE_SYSTEM_NAME}-${CMAKE_SYSTEM_PROCESSOR})
-set(CPACK_PACKAGE_CONTACT "MIET")
-set(CPACK_DEBIAN_PACKAGE_DEPENDS "libfuse3 (&gt;= 3.2.0)")
-include(CPack)</tt></pre></div></div>
-</div></div>
-<div class="sect1 slide">
-<h1 id="_связывание_проектов">5. Связывание проектов</h1>
-
-<div class="sectionbody">
-</div></div>
-<div class="sect2 slide">
-<h1 id="_экспорты">5.1. Экспорты</h1>
-
-<div class="sectionbody">
-<ul class="">
-<li>
-<span>
-Связывание проектов можно осуществить с помощью экспорта целей
-</span>
-</li>
-<li>
-<span>
-<code>find_package</code> позволяет осуществить подключение сторонних целей
-</span>
-</li>
-<li>
-<span>
-В CMake есть локальный реестр пакетов (<code>~/.cmake/packages</code>)
-</span>
-</li>
-<li>
-<span>
-С помощью <code>find_package</code> и <code>CMAKE_MODULE_PATH</code> можно экспортировать существующие библиотеки
-</span>
-</li>
-</ul>
-</div></div>
-<div class="sect2 slide">
-<h1 id="_install_дерево_и_export">5.2. Install-дерево и export</h1>
-
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt>target_include_directories(unit PUBLIC $&lt;INSTALL_INTERFACE:include&gt; $&lt;BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include&gt;)
-
-install(TARGETS example unit EXPORT ${PROJECT_NAME}-config
-    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
-)
-install(EXPORT ${PROJECT_NAME}-config NAMESPACE my:: DESTINATION ${CMAKE_INSTALL_DATADIR}/cmake/${PROJECT_NAME})
-
-export(TARGETS example unit NAMESPACE my:: FILE ${PROJECT_NAME}-config.cmake)
-export(PACKAGE ${PROJECT_NAME})</tt></pre></div></div>
-<ul class="">
-<li>
-<span>
-Локальное дерево сборки:
-</span>
-<ul class="">
-<li>
-<span>
-<code>export(TARGETS ...)</code>&#8201;&#8212;&#8201;создание экспорт-файла в дереве сборки
-</span>
-</li>
-<li>
-<span>
-<code>export(PACKAGE ...)</code>&#8201;&#8212;&#8201;создание ссылки в локальном реестре на каталог сборки
-</span>
-</li>
-</ul>
-</li>
-<li>
-<span>
-Install-дерево:
-</span>
-<ul class="">
-<li>
-<span>
-<code>install(TARGETS ... EXPORT ...)</code>&#8201;&#8212;&#8201;прописывание целей в экспорте
-</span>
-</li>
-<li>
-<span>
-<code>install(EXPORT ...)</code>&#8201;&#8212;&#8201;установка экспорт-файла
-</span>
-</li>
-</ul>
-</li>
-</ul>
-</div></div>
-<div class="sect2 slide">
-<h1 id="_использование_в_стороннем_проекте">5.3. Использование в стороннем проекте</h1>
-
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt>find_package(example REQUIRED)
-
-add_executable(myprog ${SRCS})
-target_link_libraries(myprog my::unit)</tt></pre></div></div>
-<div class="paragraph"><p>Если проект <code>example</code> установлен по нестандартному пути <code>/path/to/example</code>, его можно указать в переменной
-окружения <code>CMAKE_PREFIX_PATH</code>:</p></div>
-<div class="listingblock">
+    push(ptr, count)
+    begin(): vector&lt;tile&gt;::iterator
+    end(): vector&lt;tile&gt;::iterator</code></pre>
+</div></div></div></td>
+<td align="left" valign="top"><div><div class="listingblock">
 <div class="content">
-<pre><code>$ export CMAKE_PREFIX_PATH+=:/path/to/example</code></pre>
-</div></div>
-</div></div>
-<div class="sect2 slide">
-<h1 id="_экспорты_для_сторонних_библиотек">5.4. Экспорты для сторонних библиотек</h1>
-
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt># Файл cmake/FindFuse.cmake
-find_path(FUSE_INC fuse3/fuse.h)
-find_library(FUSE_LIBS fuse3)
-
-add_library(Fuse::fuse3 INTERFACE IMPORTED)
-set_target_properties(Fuse::fuse3 PROPERTIES
-    INTERFACE_LINK_LIBRARIES ${FUSE_LIBS}
-    INTERFACE_INCLUDE_DIRECTORIES ${FUSE_INC}
-)</tt></pre></div></div>
-<div class="listingblock">
-<div class="title">Использование</div>
-<div class="content"><!-- Generator: GNU source-highlight
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt>list(APPNED CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
-#list(APPEND CMAKE_MODULE_PATH $ENV{CMAKE_MODULE_PATH})
-
-find_package(Fuse REQUIRED)
-target_link_libraries(myprog PUBLIC Fuse::fuse3)</tt></pre></div></div>
-</div></div>
-<div class="sect1 slide">
-<h1 id="_дополнительная_функциональность">6. Дополнительная функциональность</h1>
-
-<div class="sectionbody">
-</div></div>
-<div class="sect2 slide">
-<h1 id="_подкаталоги">6.1. Подкаталоги</h1>
-
-<div class="sectionbody">
-<ul class="">
-<li>
-<span>
-<code>add_subdirectory</code>&#8201;&#8212;&#8201;добавление каталога, в котором есть <code>CMakeLists.txt</code>
-</span>
-</li>
-<li>
-<span>
-Таргеты из других каталогов всегда read-only
-</span>
-</li>
-<li>
-<span>
-<code>install</code> можно сделать только в той же директории, где находится таргет
-</span>
-</li>
-</ul>
-<div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt>cmake_minimum_required(VERSION 3.9)
-project(example CXX)
-
-file(GLOB SRCS src/*cpp)
-add_library(unit ${SRCS})
-add_subdirectory(tests)</tt></pre></div></div>
-<div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt># tests/CMakeLists.txt
-add_executable(testengine main.cpp)
-target_link_libraries(testengine unit)
-
-add_test(first testengine -i one)
-add_test(second testengine -i two)
-add_test(third testengine -i three)</tt></pre></div></div>
-</div></div>
-<div class="sect2 slide">
-<h1 id="_тесты">6.2. Тесты</h1>
-
-<div class="sectionbody">
-<ul class="">
-<li>
-<span>
-Добавление теста: <code>add_test(NAME name COMMAND cmd args)</code>
-</span>
-</li>
-<li>
-<span>
-Добавление параметров тестирования <code>set_tests_properties</code>
-</span>
-<ul class="">
-<li>
-<span>
-возможности test suite (<code>FIXTURES_SETUP/REQUIRED/CLEANUP</code>)
-</span>
-</li>
-<li>
-<span>
-установка переменных окружения (<code>ENVIRONMENT</code>)
-</span>
-</li>
-</ul>
-</li>
-<li>
-<span>
-Успешность теста&#8201;&#8212;&#8201;возвращаемое значение команды
-</span>
-</li>
-<li>
-<span>
-Аналог команды <code>expect</code> из linux
-</span>
-</li>
-</ul>
+<pre><code>tq2&lt;Tile&gt;:
+    - vector&lt;Tile&gt;
+    push&lt;Ptr&gt;(ptr, count)
+    begin(): vector&lt;Tile&gt;::iterator
+    end(): vector&lt;Tile&gt;::iterator</code></pre>
+</div></div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
 </div></div>
 </body>
 </html>

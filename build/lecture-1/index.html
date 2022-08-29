@@ -2,10 +2,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ru" xml:lang="ru">
 <head>
-<title>Master programming. <br> Лекция №11 (Некоторые приёмы программирования)</title>
+<title>Master programming <br> Лекция №1 (Вводная)</title>
 <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
 <meta name="copyright" content="Copyright &#169; Игорь Шаронов" />
-<meta name="generator" content="AsciiDoc 9.1.0" />
+<meta name="generator" content="AsciiDoc 10.2.0" />
 <style type="text/css">
 /* Shared CSS for AsciiDoc xhtml11 and html5 backends */
 
@@ -3837,482 +3837,710 @@ setTimeout(w3c_slidy.hide_slides, 50);
 </head>
 <body class="article">
 <div id="header" class="slide">
-<h1>Master programming. <br> Лекция №11 (Некоторые приёмы программирования)</h1>
+<h1>Master programming <br> Лекция №1 (Вводная)</h1>
 <span id="author">Игорь Шаронов</span><br />
-<span id="revdate">2021-11-06</span>
+<span id="revdate">2021-09-08</span>
 </div>
 </div></div>
 <div class="sect1 slide">
-<h1 id="_метапрограммирование">1. Метапрограммирование</h1>
+<h1 id="_введение">1. Введение</h1>
 
 <div class="sectionbody">
 </div></div>
 <div class="sect2 slide">
-<h1 id="_crtp_curiously_recurring_template_pattern">1.1. CRTP (Curiously recurring template pattern)</h1>
+<h1 id="_из_чего_состоит_курс">1.1. Из чего состоит курс</h1>
 
 <div class="sectionbody">
 <ul class="">
 <li>
 <span>
-Статический полиморфизм
+Вводные понятия
 </span>
 </li>
 <li>
 <span>
-Замена виртуальных функций при компиляции
+Система контроля версий
 </span>
 </li>
 <li>
 <span>
-Подходит только там, где это возможно
+Система сборки и отладки
+</span>
+</li>
+<li>
+<span>
+Тестирование
+</span>
+</li>
+<li>
+<span>
+Обзор STL
+</span>
+</li>
+<li>
+<span>
+Обзор Boost
+</span>
+</li>
+<li>
+<span>
+Паттерны проектирования (GoF)
+</span>
+</li>
+<li>
+<span>
+Современный C++
+</span>
+</li>
+<li>
+<span>
+Разработка в команде
+</span>
+</li>
+<li>
+<span>
+<strong>Домашняя лабораторная работа</strong>
 </span>
 </li>
 </ul>
-<div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt><span style="font-weight: bold"><span style="color: #0000FF">template</span></span><span style="color: #990000">&lt;</span><span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">Derived</span><span style="color: #990000">&gt;</span>
-<span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">A</span>
-<span style="color: #FF0000">{</span>
-<span style="font-weight: bold"><span style="color: #0000FF">public</span></span><span style="color: #990000">:</span>
-    <span style="color: #009900">void</span> <span style="font-weight: bold"><span style="color: #000000">method</span></span><span style="color: #990000">()</span>
-    <span style="color: #FF0000">{</span>
-        <span style="font-weight: bold"><span style="color: #0000FF">static_cast</span></span><span style="color: #990000">&lt;</span>Derived<span style="color: #990000">*&gt;(</span><span style="font-weight: bold"><span style="color: #0000FF">this</span></span><span style="color: #990000">)-&gt;</span><span style="font-weight: bold"><span style="color: #000000">some_method</span></span><span style="color: #990000">();</span>
-    <span style="color: #FF0000">}</span>
-<span style="color: #FF0000">}</span><span style="color: #990000">;</span>
-
-<span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">B</span><span style="color: #990000">:</span> A<span style="color: #990000">&lt;</span>B<span style="color: #990000">&gt;</span>
-<span style="color: #FF0000">{</span>
-<span style="font-weight: bold"><span style="color: #0000FF">public</span></span><span style="color: #990000">:</span>
-    <span style="color: #009900">void</span> <span style="font-weight: bold"><span style="color: #000000">some_method</span></span><span style="color: #990000">()</span>
-    <span style="color: #FF0000">{</span>
-        lala<span style="color: #990000">;</span>
-    <span style="color: #FF0000">}</span>
-<span style="color: #FF0000">}</span><span style="color: #990000">;</span></tt></pre></div></div>
 </div></div>
 <div class="sect2 slide">
-<h1 id="_статическая_функция_для_конструктора">1.2. Статическая функция для конструктора</h1>
+<h1 id="_план_лекции">1.2. План лекции</h1>
 
 <div class="sectionbody">
-<ul class="">
-<li>
-<span>
-Необходимость проинициализировать базовый класс сложным образом
-</span>
-</li>
-<li>
-<span>
-Нет доступа к переменным класса, так как он ещё не проинициализирован
-</span>
-</li>
-</ul>
-<div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt><span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">A</span><span style="color: #990000">:</span> <span style="font-weight: bold"><span style="color: #0000FF">public</span></span> vector<span style="color: #990000">&lt;</span><span style="color: #009900">int</span><span style="color: #990000">&gt;</span>
-<span style="color: #FF0000">{</span>
-<span style="font-weight: bold"><span style="color: #0000FF">public</span></span><span style="color: #990000">:</span>
-    <span style="font-weight: bold"><span style="color: #000000">A</span></span><span style="color: #990000">():</span> <span style="font-weight: bold"><span style="color: #000000">vector</span></span><span style="color: #990000">(</span><span style="font-weight: bold"><span style="color: #000000">init</span></span><span style="color: #990000">())</span>
-    <span style="color: #FF0000">{}</span>
-
-<span style="font-weight: bold"><span style="color: #0000FF">private</span></span><span style="color: #990000">:</span>
-    <span style="font-weight: bold"><span style="color: #0000FF">static</span></span> <span style="color: #008080">vector&lt;int&gt;</span> <span style="font-weight: bold"><span style="color: #000000">init</span></span><span style="color: #990000">()</span>
-    <span style="color: #FF0000">{</span>
-        <span style="font-weight: bold"><span style="color: #0000FF">return</span></span> <span style="color: #990000">...</span>
-    <span style="color: #FF0000">}</span>
-<span style="color: #FF0000">}</span><span style="color: #990000">;</span></tt></pre></div></div>
-</div></div>
-<div class="sect2 slide">
-<h1 id="_дополнительный_класс_для_инициализации">1.3. Дополнительный класс для инициализации</h1>
-
-<div class="sectionbody">
-<ul class="">
-<li>
-<span>
-Нужно переопределить порядок инициализации базового класса и наследника
-</span>
-</li>
-</ul>
-<div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt><span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">A</span><span style="color: #990000">:</span> <span style="font-weight: bold"><span style="color: #0000FF">public</span></span> vector<span style="color: #990000">&lt;</span><span style="color: #009900">double</span><span style="color: #990000">&gt;</span>
-<span style="color: #FF0000">{</span>
-<span style="font-weight: bold"><span style="color: #0000FF">public</span></span><span style="color: #990000">:</span>
-    <span style="font-style: italic"><span style="color: #9A1900">// Так не будет работать.</span></span>
-    <span style="font-weight: bold"><span style="color: #000000">A</span></span><span style="color: #990000">(</span><span style="color: #009900">double</span> y<span style="color: #990000">):</span> <span style="font-weight: bold"><span style="color: #000000">y_</span></span><span style="color: #990000">(</span>y <span style="color: #990000">*</span> y <span style="color: #990000">-</span> std<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">sin</span></span><span style="color: #990000">(</span>y<span style="color: #990000">)),</span> <span style="font-weight: bold"><span style="color: #000000">vector</span></span><span style="color: #990000">(</span><span style="color: #FF0000">{{</span>y_<span style="color: #990000">,</span> y_ <span style="color: #990000">+</span> <span style="color: #993399">1</span><span style="color: #990000">,</span> y_ <span style="color: #990000">+</span> <span style="color: #993399">2</span><span style="color: #FF0000">}}</span><span style="color: #990000">)</span>
-    <span style="color: #FF0000">{}</span>
-
-<span style="font-weight: bold"><span style="color: #0000FF">private</span></span><span style="color: #990000">:</span>
-    <span style="color: #009900">double</span> y_<span style="color: #990000">;</span>
-<span style="color: #FF0000">}</span><span style="color: #990000">;</span>
-
-<span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">B_helper</span>
-<span style="color: #FF0000">{</span>
-<span style="font-weight: bold"><span style="color: #0000FF">public</span></span><span style="color: #990000">:</span>
-    <span style="font-weight: bold"><span style="color: #000000">B_helper</span></span><span style="color: #990000">(</span><span style="color: #009900">double</span> y<span style="color: #990000">):</span> <span style="font-weight: bold"><span style="color: #000000">y_</span></span><span style="color: #990000">(</span>y <span style="color: #990000">*</span> y <span style="color: #990000">-</span> std<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">sqrt</span></span><span style="color: #990000">(</span>y<span style="color: #990000">))</span>
-    <span style="color: #FF0000">{}</span>
-
-<span style="font-weight: bold"><span style="color: #0000FF">private</span></span><span style="color: #990000">:</span>
-    <span style="color: #009900">double</span> y_<span style="color: #990000">;</span>
-<span style="color: #FF0000">}</span><span style="color: #990000">;</span>
-
-<span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">B</span><span style="color: #990000">:</span> <span style="font-weight: bold"><span style="color: #0000FF">public</span></span> B_helper<span style="color: #990000">,</span> <span style="font-weight: bold"><span style="color: #0000FF">public</span></span> vector<span style="color: #990000">&lt;</span><span style="color: #009900">double</span><span style="color: #990000">&gt;</span>
-<span style="color: #FF0000">{</span>
-<span style="font-weight: bold"><span style="color: #0000FF">public</span></span><span style="color: #990000">:</span>
-    <span style="font-weight: bold"><span style="color: #000000">B</span></span><span style="color: #990000">(</span><span style="color: #009900">double</span> y<span style="color: #990000">):</span> <span style="font-weight: bold"><span style="color: #000000">B_helper</span></span><span style="color: #990000">(</span>y<span style="color: #990000">),</span> <span style="font-weight: bold"><span style="color: #000000">vector</span></span><span style="color: #990000">(</span><span style="color: #FF0000">{{</span>y_<span style="color: #990000">,</span> y_ <span style="color: #990000">+</span> <span style="color: #993399">1</span><span style="color: #990000">,</span> y_ <span style="color: #990000">+</span> <span style="color: #993399">2</span><span style="color: #FF0000">}}</span><span style="color: #990000">)</span>
-    <span style="color: #FF0000">{}</span>
-<span style="color: #FF0000">}</span><span style="color: #990000">;</span></tt></pre></div></div>
-</div></div>
-<div class="sect2 slide">
-<h1 id="_расширение_функциональности_через_наследование">1.4. Расширение функциональности через наследование</h1>
-
-<div class="sectionbody">
-<ul class="">
-<li>
-<span>
-Изменение функциональности приводит к "порче" класса
-</span>
-</li>
-<li>
-<span>
-Расширение&#8201;&#8212;&#8201;это просто декоратор или адаптор
-</span>
-</li>
-<li>
-<span>
-Старый класс можно использовать для ещё одного расширения
-</span>
-</li>
-<li>
-<span>
-В базовом классе сохраняется малое количество методов
-</span>
-</li>
-</ul>
-<div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt><span style="font-weight: bold"><span style="color: #0000FF">struct</span></span> <span style="color: #008080">A</span>
-<span style="color: #FF0000">{</span>
-    <span style="color: #009900">void</span> <span style="font-weight: bold"><span style="color: #000000">some_method</span></span><span style="color: #990000">();</span>
-    <span style="color: #009900">void</span> <span style="font-weight: bold"><span style="color: #000000">another_method</span></span><span style="color: #990000">();</span>
-<span style="color: #FF0000">}</span>
-
-<span style="font-weight: bold"><span style="color: #0000FF">struct</span></span> <span style="color: #008080">B</span><span style="color: #990000">:</span> A
-<span style="color: #FF0000">{</span>
-    <span style="color: #009900">void</span> <span style="font-weight: bold"><span style="color: #000000">extra_method</span></span><span style="color: #990000">();</span>
-<span style="color: #FF0000">}</span></tt></pre></div></div>
-</div></div>
-<div class="sect2 slide">
-<h1 id="_атовыводимость_типов_для_конструктора">1.5. Атовыводимость типов для конструктора</h1>
-
-<div class="sectionbody">
-<ul class="">
-<li>
-<span>
-Неоднозначность в подстановке типа в конструкторе
-</span>
 <ol class="arabic">
 <li>
 <span>
-Правило вывода
+Операционная система
 </span>
 </li>
 <li>
 <span>
-Make-функция
+Редакторы
+</span>
+</li>
+<li>
+<span>
+Системы сборки
+</span>
+</li>
+<li>
+<span>
+Отладка и тестирование
+</span>
+</li>
+<li>
+<span>
+Системы контроля версий
+</span>
+</li>
+<li>
+<span>
+Программирование
+</span>
+</li>
+<li>
+<span>
+Заключение
 </span>
 </li>
 </ol>
-</li>
-<li>
-<span>
-Реализация perfect forwarding
-</span>
-</li>
-</ul>
-<div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt><span style="font-weight: bold"><span style="color: #0000FF">template</span></span><span style="color: #990000">&lt;</span><span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">V</span><span style="color: #990000">&gt;</span>
-<span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">A</span>
-<span style="color: #FF0000">{</span>
-<span style="font-weight: bold"><span style="color: #0000FF">public</span></span><span style="color: #990000">:</span>
-    <span style="font-weight: bold"><span style="color: #0000FF">template</span></span><span style="color: #990000">&lt;</span><span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">B</span><span style="color: #990000">&gt;</span>
-    <span style="font-weight: bold"><span style="color: #000000">A</span></span><span style="color: #990000">(</span><span style="color: #008080">B</span> x<span style="color: #990000">)</span>
-    <span style="color: #FF0000">{</span> <span style="color: #990000">...</span> <span style="color: #FF0000">}</span>
-<span style="color: #FF0000">}</span><span style="color: #990000">;</span>
-
-<span style="font-weight: bold"><span style="color: #0000FF">template</span></span><span style="color: #990000">&lt;</span><span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">B</span><span style="color: #990000">,</span> V <span style="color: #990000">=</span> <span style="color: #008080">deduce</span> B<span style="color: #990000">&gt;</span>
-<span style="color: #008080">A&lt;V&gt;</span> <span style="font-weight: bold"><span style="color: #000000">make</span></span><span style="color: #990000">(</span><span style="color: #008080">B</span> x<span style="color: #990000">)</span>
-<span style="color: #FF0000">{</span>
-    <span style="font-weight: bold"><span style="color: #0000FF">return</span></span> A<span style="color: #990000">&lt;</span>V<span style="color: #990000">&gt;(</span>x<span style="color: #990000">);</span>
-<span style="color: #FF0000">}</span></tt></pre></div></div>
-</div></div>
-<div class="sect2 slide">
-<h1 id="_константность_методов">1.6. Константность методов</h1>
-
-<div class="sectionbody">
-<ul class="">
-<li>
-<span>
-Почти все методы нужно делать константными
-</span>
-</li>
-<li>
-<span>
-Можно было бы ввести ключевое слово <code>mutable</code>
-</span>
-</li>
-</ul>
-<div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt><span style="font-weight: bold"><span style="color: #0000FF">template</span></span><span style="color: #990000">&lt;</span><span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">T</span><span style="color: #990000">&gt;</span>
-<span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">iterator</span>
-<span style="color: #FF0000">{</span>
-<span style="font-weight: bold"><span style="color: #0000FF">public</span></span><span style="color: #990000">:</span>
-    T<span style="color: #990000">&amp;</span> <span style="font-weight: bold"><span style="color: #0000FF">operator</span></span><span style="color: #990000">*()</span> <span style="font-weight: bold"><span style="color: #0000FF">const</span></span>
-    <span style="color: #FF0000">{</span>
-        <span style="font-weight: bold"><span style="color: #0000FF">return</span></span> <span style="color: #990000">*</span>ptr_<span style="color: #990000">;</span>
-    <span style="color: #FF0000">}</span>
-
-<span style="font-weight: bold"><span style="color: #0000FF">private</span></span><span style="color: #990000">:</span>
-    T<span style="color: #990000">*</span> ptr_<span style="color: #990000">;</span>
-<span style="color: #FF0000">}</span><span style="color: #990000">;</span></tt></pre></div></div>
-</div></div>
-<div class="sect2 slide">
-<h1 id="_замена_виртуальности">1.7. Замена виртуальности</h1>
-
-<div class="sectionbody">
-<ul class="">
-<li>
-<span>
-Возможна только в тех случаях, когда точно известны все классы
-</span>
-</li>
-<li>
-<span>
-Основано на утиной типизации
-</span>
-</li>
-<li>
-<span>
-Используется <code>std::variant</code>
-</span>
-</li>
-<li>
-<span>
-Минусы: везде надо использовать <code>std::visit</code>, все функции должны быть шаблонизированы, возвращаемый тип должен быть одинаковым
-</span>
-</li>
-</ul>
-<div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt><span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">Lala</span>
-<span style="color: #FF0000">{</span>
-<span style="font-weight: bold"><span style="color: #0000FF">public</span></span><span style="color: #990000">:</span>
-    <span style="color: #009900">void</span> <span style="font-weight: bold"><span style="color: #000000">method</span></span><span style="color: #990000">();</span>
-<span style="color: #FF0000">}</span><span style="color: #990000">;</span>
-
-<span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">Lala2</span><span style="color: #990000">:</span> <span style="font-weight: bold"><span style="color: #0000FF">public</span></span> Lala
-<span style="color: #FF0000">{</span>
-<span style="font-weight: bold"><span style="color: #0000FF">public</span></span><span style="color: #990000">:</span>
-    <span style="color: #009900">void</span> <span style="font-weight: bold"><span style="color: #000000">method</span></span><span style="color: #990000">()</span>
-    <span style="color: #FF0000">{</span>
-        <span style="font-style: italic"><span style="color: #9A1900">// override</span></span>
-    <span style="color: #FF0000">}</span>
-<span style="color: #FF0000">}</span><span style="color: #990000">;</span>
-
-<span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">Lala3</span>
-<span style="color: #FF0000">{</span>
-<span style="font-weight: bold"><span style="color: #0000FF">public</span></span><span style="color: #990000">:</span>
-    <span style="color: #009900">void</span> <span style="font-weight: bold"><span style="color: #000000">method</span></span><span style="color: #990000">()</span>
-    <span style="color: #FF0000">{</span>
-        <span style="font-style: italic"><span style="color: #9A1900">// new implementation</span></span>
-    <span style="color: #FF0000">}</span>
-<span style="color: #FF0000">}</span><span style="color: #990000">;</span>
-
-std<span style="color: #990000">::</span><span style="color: #008080">variant&lt;Lala, Lala2, Lala3&gt;</span> obj <span style="color: #990000">=</span> <span style="color: #990000">...;</span>
-std<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">visit</span></span><span style="color: #990000">([](</span><span style="font-weight: bold"><span style="color: #0000FF">auto</span></span><span style="color: #990000">&amp;</span> x<span style="color: #990000">)</span> <span style="color: #FF0000">{</span> x<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">method</span></span><span style="color: #990000">();</span> <span style="color: #FF0000">}</span><span style="color: #990000">,</span> obj<span style="color: #990000">)</span></tt></pre></div></div>
 </div></div>
 <div class="sect1 slide">
-<h1 id="_solid">2. SOLID</h1>
+<h1 id="_операционная_система">2. Операционная система</h1>
 
 <div class="sectionbody">
 </div></div>
 <div class="sect2 slide">
-<h1 id="_s_принцип_единственной_ответственности">2.1. (S) Принцип единственной ответственности</h1>
+<h1 id="_основные_компоненты_ос">2.1. Основные компоненты ОС</h1>
 
 <div class="sectionbody">
 <ul class="">
 <li>
 <span>
-Класс должен отвечать за одну сущность
+Планировщик задач
 </span>
 </li>
 <li>
 <span>
-Изменение класса должно быть связано только с изменением этой сущности
-</span>
-</li>
-</ul>
-<div class="paragraph"><div class="title">Пример</div><p>Конвертер форматов:</p></div>
-<ul class="">
-<li>
-<span>
-Изменился один из выходных форматов&#8201;&#8212;&#8201;изменяется конвертер
+Распределение памяти
 </span>
 </li>
 <li>
 <span>
-Изменился один из входных форматов&#8201;&#8212;&#8201;изменяется конвертер
+Изоляция (страничная адресация)
 </span>
 </li>
 <li>
 <span>
-Изменилось имя для работы с сервером&#8201;&#8212;&#8201;изменился конвертер (wat??)
-</span>
-</li>
-</ul>
-<div class="paragraph"><div class="title">Решение</div><p>Подход <code>pandoc</code>:</p></div>
-<ul class="">
-<li>
-<span>
-На каждый выходной формат свой конвертер
-</span>
-</li>
-<li>
-<span>
-На каждый входной формат свой читатель
-</span>
-</li>
-<li>
-<span>
-Введение внутреннего формата
+Ресурсы
 </span>
 </li>
 </ul>
 </div></div>
 <div class="sect2 slide">
-<h1 id="_o_принцип_открытости_закрытости">2.2. (O) Принцип открытости/закрытости</h1>
+<h1 id="_объекты_ядра_ос">2.2. Объекты ядра ОС</h1>
 
 <div class="sectionbody">
 <ul class="">
 <li>
 <span>
-Класс закрыт для изменений
+Процессы, потоки
 </span>
 </li>
 <li>
 <span>
-Получить новую функциональность можно через расширение класса (наследования, перегрузки)
+Файлы, каналы (pipes)
 </span>
 </li>
 <li>
 <span>
-Принцип интерфейса и реализации
+Семафоры, мьютексы
 </span>
 </li>
 <li>
 <span>
-Модульное тестирование в таком подходе: наследование от класса для предоставления скрытых связей внутри класса
-</span>
-</li>
-<li>
-<span>
-Полиморфизм в терминах наследования от интерфейса
-</span>
-</li>
-<li>
-<span>
-Множественное наследование от интерфейсов
+Проекции в память (mmap)
 </span>
 </li>
 </ul>
 </div></div>
 <div class="sect2 slide">
-<h1 id="_l_принцип_подстановки_барбары_лисков">2.3. (L) Принцип подстановки Барбары Лисков</h1>
+<h1 id="_linux">2.3. Linux</h1>
 
 <div class="sectionbody">
 <ul class="">
 <li>
 <span>
-Старое поведение базового класса должно оставаться неизменным в наследнике
+Основан на Unix
 </span>
 </li>
 <li>
 <span>
-В программе можно вместо базового класса написать наследника&#8201;&#8212;&#8201;поведение должно остаться прежним
+Только ядро и компилятор
+</span>
+</li>
+<li>
+<span>
+Linux &#x2260; Unix
+</span>
+</li>
+<li>
+<span>
+Virtual File System (VFS)&#8201;&#8212;&#8201;представление всех объектов в виде файлов
 </span>
 </li>
 </ul>
-<div class="paragraph"><p>Список с дублированными элементами.</p></div>
 <div class="listingblock">
 <div class="content">
-<pre><code>test&lt;ListType&gt;():
-    ListType l;
-    l.add(44)
-    CHECK(l.size() == 1)
-
-DoubleList(List):
-    add(x):
-        List::add(x)
-        List::add(x)
-
-test&lt;DoubleList&gt;() // fail</code></pre>
+<pre><code>$ ls /
+bin  boot  dev  etc  home include lib  lib64 proc  root  run  sys  tmp  usr  var</code></pre>
 </div></div>
-<div class="paragraph"><p>Как быть?</p></div>
-<ul class="">
-<li>
-<span>
-Разобраться какой из интерфейсов должен остаться прежним
-</span>
-</li>
-<li>
-<span>
-Ввести понятие дублированный элемент, а не список с дублированием
-</span>
-</li>
-</ul>
 </div></div>
 <div class="sect2 slide">
-<h1 id="_i_принцип_разделения_интерфейса">2.4. (I) Принцип разделения интерфейса</h1>
+<h1 id="_жизнь_в_консоли">2.4. Жизнь в консоли</h1>
 
 <div class="sectionbody">
 <ul class="">
 <li>
 <span>
-Много мелких интерфейсов лучше, чем один большой
+GNU Coreutils
+</span>
+<ul class="">
+<li>
+<span>
+текстовые утилиты: sort, tr, tail, cat, wc, uniq, &#8230;
 </span>
 </li>
 <li>
 <span>
-Принцип избегания "божественного объекта"
+файловые утилиты: ls, cp, dd, chmod, ln, mv, rm, &#8230;
 </span>
 </li>
 <li>
 <span>
-Сущности не зависят от методов, которые не используют
+скриптовые утилиты: basename, echo, pwd, tee, &#8230;
 </span>
 </li>
 </ul>
+</li>
+<li>
+<span>
+GNU Binutils
+</span>
+<ul class="">
+<li>
+<span>
+as, ld, ar, objcopy, strip, gprof, &#8230;
+</span>
+</li>
+<li>
+<span>
+nm, objdump, readelf, strings, addr2line, c++filt, &#8230;
+</span>
+</li>
+</ul>
+</li>
+<li>
+<span>
+GNU Debugger
+</span>
+</li>
+<li>
+<span>
+Базовые утилиты: grep, sed  (1974 г.), awk (1977 г.), bash, perl, python
+</span>
+</li>
+</ul>
+</div></div>
+<div class="sect2 slide">
+<h1 id="_linux_в_использовании">2.5. Linux в использовании</h1>
+
+<div class="sectionbody">
+<ul class="">
+<li>
+<span>
+xorg-server, протокол X11
+</span>
+</li>
+<li>
+<span>
+window-manager: оконный, тайловый
+</span>
+</li>
+<li>
+<span>
+демоны (daemons)
+</span>
+</li>
+<li>
+<span>
+драйверы:
+</span>
+<ul class="">
+<li>
+<span>
+обычные файлы, которые умеют обрабатывать вызов <code>ioctl</code>
+</span>
+</li>
+<li>
+<span>
+находятся в папке <code>/dev/</code>
+</span>
+</li>
+<li>
+<span>
+и в <code>/sys/class/</code>
+</span>
+</li>
+<li>
+<span>
+работают в режиме ядра
+</span>
+</li>
+</ul>
+</li>
+<li>
+<span>
+драйверы в режиме пользователя: fuse, cuse, uio
+</span>
+</li>
+</ul>
+</div></div>
+<div class="sect1 slide">
+<h1 id="_редакторы">3. Редакторы</h1>
+
+<div class="sectionbody">
+</div></div>
+<div class="sect2 slide">
+<h1 id="_популярные_редакторы">3.1. Популярные редакторы</h1>
+
+<div class="sectionbody">
+<ul class="">
+<li>
+<span>
+ed (1971 г.)
+</span>
+</li>
+<li>
+<span>
+sed, vi, vim, neovim
+</span>
+</li>
+<li>
+<span>
+emacs
+</span>
+</li>
+<li>
+<span>
+sublime
+</span>
+</li>
+<li>
+<span>
+notepad++
+</span>
+</li>
+<li>
+<span>
+gedit
+</span>
+</li>
+<li>
+<span>
+IDE &#x2260; Editor
+</span>
+</li>
+</ul>
+</div></div>
+<div class="sect2 slide">
+<h1 id="_процесс_редактирования">3.2. Процесс редактирования</h1>
+
+<div class="sectionbody">
+<ol class="arabic">
+<li>
+<span>
+Перемещение по тексту, поиск, скроллинг (view-mode)
+</span>
+</li>
+<li>
+<span>
+Разделение области просмотра/редактирования
+</span>
+</li>
+<li>
+<span>
+Подсветка синтаксиса
+</span>
+</li>
+<li>
+<span>
+Редактирование, замена, удаление, вставка
+</span>
+</li>
+<li>
+<span>
+Поиск-замена
+</span>
+</li>
+<li>
+<span>
+Поддержка пользовательских плагинов
+</span>
+</li>
+<li>
+<span>
+<strong>Использование уже готового функционала сторонних программ</strong>
+</span>
+</li>
+</ol>
+</div></div>
+<div class="sect2 slide">
+<h1 id="_пример_vim">3.3. Пример: Vim</h1>
+
+<div class="sectionbody">
+<ul class="">
+<li>
+<span>
+3 режима: normal, insert (replace), visual
+</span>
+</li>
+<li>
+<span>
+Программируемая панель
+</span>
+</li>
+<li>
+<span>
+Буферы, табы, окна
+</span>
+</li>
+<li>
+<span>
+Большое многообразие плагинов (VimL)
+</span>
+</li>
+<li>
+<span>
+Подсветка синтаксиса, цветовая схема&#8201;&#8212;&#8201;тоже плагин
+</span>
+</li>
+<li>
+<span>
+Орфография
+</span>
+</li>
+<li>
+<span>
+Использование ctag для перехода по функциям (любого языка, даже LaTeX)
+</span>
+<ul class="">
+<li>
+<span>
+Отображение дерева функций
+</span>
+</li>
+</ul>
+</li>
+<li>
+<span>
+Автодополнение (несколько видов)
+</span>
+</li>
+<li>
+<span>
+Запуск интерактивной оболочки вместо буфера
+</span>
+</li>
+<li>
+<span>
+Встраиваемое GUI
+</span>
+</li>
+<li>
+<span>
+Возможность использования без GUI
+</span>
+</li>
+<li>
+<span>
+<em><span class="red">Холивары: neovim</span></em>
+</span>
+</li>
+</ul>
+</div></div>
+<div class="sect1 slide">
+<h1 id="_системы_сборки">4. Системы сборки</h1>
+
+<div class="sectionbody">
+</div></div>
+<div class="sect2 slide">
+<h1 id="_известные_системы_сборки">4.1. Известные системы сборки</h1>
+
+<div class="sectionbody">
+<ul class="">
+<li>
+<span>
+make (1977 г., Bell Labs)
+</span>
+</li>
+<li>
+<span>
+ninja
+</span>
+</li>
+<li>
+<span>
+scons
+</span>
+</li>
+<li>
+<span>
+meson
+</span>
+</li>
+<li>
+<span>
+cmake
+</span>
+</li>
+<li>
+<span>
+<span class="line-through">свой велосипед</span> НЕТ!
+</span>
+</li>
+</ul>
+</div></div>
+<div class="sect2 slide">
+<h1 id="_makefile">4.2. Makefile</h1>
+
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="color: #990000">SRC :=</span> <span style="color: #009900">$(</span>wildcard src<span style="color: #990000">/*</span>.cpp<span style="color: #990000">)</span>
+<span style="color: #990000">HDR :=</span> <span style="color: #009900">$(</span>wildcard include<span style="color: #990000">/*</span>.h<span style="color: #990000">)</span>
+<span style="color: #990000">OBJ :=</span> <span style="color: #009900">$(</span>patsubst src<span style="color: #990000">/%</span>.cpp<span style="color: #990000">,</span>build<span style="color: #990000">/%</span>.o<span style="color: #990000">,</span><span style="color: #009900">$(SRC))</span>
+
+<span style="color: #990000">%</span>.o<span style="color: #990000">:</span> <span style="color: #990000">%</span>.cpp
+»»»»<span style="font-weight: bold"><span style="color: #000080">@g++ -c $&lt; -o $@</span></span>
+
+<span style="color: #990000">lib.a:</span> <span style="color: #009900">$(OBJ)</span>
+»»»»<span style="font-weight: bold"><span style="color: #000080">@ar -c $@</span></span> <span style="color: #009900">$^</span>
+
+<span style="color: #990000">app:</span> main.cpp lib.a
+»»»»g<span style="color: #990000">++</span> <span style="color: #009900">$^</span> -o <span style="color: #009900">$@</span>
+
+<span style="color: #990000">all:</span> app
+
+<span style="color: #990000">clean:</span>
+»»»»@rm -f <span style="color: #009900">$(OBJ)</span> app <span style="color: #990000">*</span>.a</tt></pre></div></div>
+</div></div>
+<div class="sect2 slide">
+<h1 id="_cmake">4.3. CMake</h1>
+
+<div class="sectionbody">
+<ul class="">
+<li>
+<span>
+Шаг конфигурации (аналогичен старому подходу <code>./configure</code>)
+</span>
+</li>
+<li>
+<span>
+Сборка привычными инструментами (<code>make</code>, <code>ninja</code>, <code>MSBuild</code>, &#8230;)
+</span>
+</li>
+<li>
+<span>
+Запуск тестов через <code>ctest</code>
+</span>
+</li>
+<li>
+<span>
+Пакетирование через <code>cpack</code> (tar.gz, deb, rpm, zip, &#8230;)
+</span>
+</li>
+<li>
+<span>
+Тьюринг-полный скриптовый язык
+</span>
+</li>
+<li>
+<span>
+Абстрагирование от операционной системы
+</span>
+</li>
+</ul>
+</div></div>
+<div class="sect1 slide">
+<h1 id="_отладка_и_тестирование">5. Отладка и тестирование</h1>
+
+<div class="sectionbody">
+</div></div>
+<div class="sect2 slide">
+<h1 id="_отладка_программ">5.1. Отладка программ</h1>
+
+<div class="sectionbody">
+<ul class="">
+<li>
+<span>
+gdb
+</span>
+</li>
+<li>
+<span>
+nm, readelf, objdump
+</span>
+</li>
+<li>
+<span>
+valgrind
+</span>
+</li>
+<li>
+<span>
+gprof, gcov
+</span>
+</li>
+<li>
+<span>
+логирование
+</span>
+</li>
+</ul>
+</div></div>
+<div class="sect2 slide">
+<h1 id="_тестирование">5.2. Тестирование</h1>
+
+<div class="sectionbody">
+<ul class="">
+<li>
+<span>
+TDD, BDD&#8201;&#8212;&#8201;способы написания программы
+</span>
+</li>
+<li>
+<span>
+Юнит-тестирование &#8594; интеграционное тестирование &#8594; продакшен-тестирование
+</span>
+</li>
+<li>
+<span>
+Статистика, бенчмарки
+</span>
+</li>
+<li>
+<span>
+Fixture, test suite, mock, stub, &#8230;
+</span>
+</li>
+<li>
+<span>
+Тестовые данные: генерация на месте, хранение в репозитории или брать удалённо с сервера?
+</span>
+</li>
+<li>
+<span>
+Границы между разными формами тестирования
+</span>
+</li>
+</ul>
+</div></div>
+<div class="sect1 slide">
+<h1 id="_системы_контроля_версий">6. Системы контроля версий</h1>
+
+<div class="sectionbody">
+</div></div>
+<div class="sect2 slide">
+<h1 id="_разновидности">6.1. Разновидности</h1>
+
+<div class="sectionbody">
+<ul class="">
+<li>
+<span>
+Version Control System (VCS)
+</span>
+</li>
+<li>
+<span>
+cvs
+</span>
+</li>
+<li>
+<span>
+subversion (svn)
+</span>
+</li>
+<li>
+<span>
+git
+</span>
+</li>
+<li>
+<span>
+mercurial (hg)
+</span>
+</li>
+<li>
+<span>
+<span class="line-through">лучше я в архивах, по старинке</span> НЕТ!
+</span>
+</li>
+<li>
+<span>
+необходимо учитывать версионность продукта
+</span>
+</li>
+</ul>
+</div></div>
+<div class="sect2 slide">
+<h1 id="_основные_понятия_vcs">6.2. Основные понятия VCS</h1>
+
+<div class="sectionbody">
 <div class="tableblock">
 <table rules="none"
 width="100%"
@@ -4320,114 +4548,217 @@ frame="void"
 cellspacing="0" cellpadding="4">
 <col width="50%" />
 <col width="50%" />
-<thead>
-<tr>
-<th align="left" valign="top"> Объединённый интерфейс </th>
-<th align="left" valign="top"> Разделённый интерфейс</th>
-</tr>
-</thead>
 <tbody>
 <tr>
-<td align="left" valign="top"><div><div class="listingblock">
-<div class="content">
-<pre><code>driver:
-    allocate(size): void*
-    deallocate(void*)
-    set_program(byte[])
-    read(ptr, count, offset): vector&lt;byte&gt;
-    write(ptr, count, offset)
-    enqueue()
-    wait()</code></pre>
-</div></div></div></td>
-<td align="left" valign="top"><div><div class="listingblock">
-<div class="content">
-<pre><code>allocator:
-    allocate(size): void*
-    deallocate(void*)
-
-driver_data:
-    ptr
-    count
-    offset
-
-io_handler:
-    enqueue(driver_data)
-    wait()
-
-driver(allocator):
-    set_program(byte[]) -&gt; io_handler</code></pre>
-</div></div></div></td>
+<td align="left" valign="top"><div><ul class="">
+<li>
+<span>
+Концепция diff-patch
+</span>
+</li>
+<li>
+<span>
+Изменения
+</span>
+</li>
+<li>
+<span>
+Коммит: изменения + сообщение + автор
+</span>
+</li>
+<li>
+<span>
+Ветка разработки
+</span>
+</li>
+<li>
+<span>
+Слияние (merge)
+</span>
+</li>
+<li>
+<span>
+Конфликты слияния
+</span>
+</li>
+<li>
+<span>
+pull, checkout, fetch, push
+</span>
+</li>
+</ul></div></td>
+<td align="left" valign="top"><p class="table"><span class="image">
+<img src="http://nvie.com/img/centr-decentr@2x.png" alt="http://nvie.com/img/centr-decentr@2x.png" />
+</span></p></td>
 </tr>
 </tbody>
 </table>
 </div>
 </div></div>
+<div class="sect1 slide">
+<h1 id="_программирование">7. Программирование</h1>
+
+<div class="sectionbody">
+</div></div>
 <div class="sect2 slide">
-<h1 id="_d_принцип_инверсии_зависимостей">2.5. (D) Принцип инверсии зависимостей</h1>
+<h1 id="_программирование_на_c">7.1. Программирование на C++</h1>
 
 <div class="sectionbody">
 <ul class="">
 <li>
 <span>
-Модули верхних уровней не должны зависеть от модулей нижних уровней
+Новый стандарт лучше старого?
 </span>
 </li>
 <li>
 <span>
-Абстракции не должны зависеть от деталей
+<span class="line-through">Лучше на C писать: понятнее и проще</span>
 </span>
 </li>
 <li>
 <span>
-Разорвать связи можно введением дополнительного уровня
+Соблюдение стиля кода
 </span>
 </li>
 <li>
 <span>
-Проверка&#8201;&#8212;&#8201;написание модульного теста по типу белого ящика
+<span class="line-through">Исключения&#8201;&#8212;&#8201;это зло!</span> Но надо быть аккуратнее
+</span>
+</li>
+<li>
+<span>
+Концепции стабильного кода vs. понятный код
+</span>
+</li>
+<li>
+<span>
+Разработка по спирали
 </span>
 </li>
 </ul>
-<div class="tableblock">
-<table rules="none"
-width="100%"
-frame="void"
-cellspacing="0" cellpadding="4">
-<col width="50%" />
-<col width="50%" />
-<thead>
-<tr>
-<th align="left" valign="top"> Встроенная зависимость </th>
-<th align="left" valign="top"> Зависимость вне класса</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="left" valign="top"><div><div class="listingblock">
-<div class="content">
-<pre><code>tq:
-    - tile:
-        ptr
-        count
+</div></div>
+<div class="sect2 slide">
+<h1 id="_документация">7.2. Документация</h1>
 
-    - vector&lt;tile&gt;
+<div class="sectionbody">
+<ul class="">
+<li>
+<span>
+Зачем нужна документация, если её никто не читает?
+</span>
+</li>
+<li>
+<span>
+Пример документации&#8201;&#8212;&#8201;<a href="http://libfuse.github.io/doxygen">http://libfuse.github.io/doxygen</a>
+</span>
+</li>
+<li>
+<span>
+<code>doxygen</code>
+</span>
+</li>
+<li>
+<span>
+Написание презентаций, статей и книг
+</span>
+</li>
+<li>
+<span>
+L<sup>A</sup>T<sub>E</sub>X, groff, docx, reStructuredText, HTML, AsciiDoc, DocBook, markdown&#8201;&#8212;&#8201;в чём писать документацию?
+</span>
+</li>
+<li>
+<span>
+Генерация linux-документации <code>man</code>
+</span>
+</li>
+<li>
+<span>
+Свой велосипед?
+</span>
+</li>
+</ul>
+</div></div>
+<div class="sect2 slide">
+<h1 id="_разработка_в_команде">7.3. Разработка в команде</h1>
 
-    push(ptr, count)
-    begin(): vector&lt;tile&gt;::iterator
-    end(): vector&lt;tile&gt;::iterator</code></pre>
-</div></div></div></td>
-<td align="left" valign="top"><div><div class="listingblock">
-<div class="content">
-<pre><code>tq2&lt;Tile&gt;:
-    - vector&lt;Tile&gt;
-    push&lt;Ptr&gt;(ptr, count)
-    begin(): vector&lt;Tile&gt;::iterator
-    end(): vector&lt;Tile&gt;::iterator</code></pre>
-</div></div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
+<div class="sectionbody">
+<ul class="">
+<li>
+<span>
+Что такое команда и зачем она нужна?
+</span>
+</li>
+<li>
+<span>
+Распределение ролей в команде?
+</span>
+</li>
+<li>
+<span>
+Зачем нужен тот чувак, который ничего не делает?
+</span>
+</li>
+<li>
+<span>
+Стендапы, планнинги, грумминги, ретроспективы&#8201;&#8212;&#8201;зачем они нужны?
+</span>
+</li>
+<li>
+<span>
+Deadline, sprint, milestone, release, post-mortem&#8201;&#8212;&#8201;а это зачем?
+</span>
+</li>
+<li>
+<span>
+CTO, CEO, <span class="line-through">IPO</span>, PM, PO&#8201;&#8212;&#8201;кто это такие?
+</span>
+</li>
+<li>
+<span>
+<strong>Agile</strong>&#8201;&#8212;&#8201;выход из всех проблем
+</span>
+</li>
+<li>
+<span>
+Психология разработки
+</span>
+</li>
+</ul>
+</div></div>
+<div class="sect1 slide">
+<h1 id="_заключение">8. Заключение</h1>
+
+<div class="sectionbody">
+</div></div>
+<div class="sect2 slide">
+<h1 id="_бесплатные_ссылки">8.1. Бесплатные ссылки</h1>
+
+<div class="sectionbody">
+<div class="paragraph"><p>Бесплатные книжки про программирование в целом:</p></div>
+<div class="paragraph"><p><a href="https://github.com/EbookFoundation/free-programming-books">https://github.com/EbookFoundation/free-programming-books</a></p></div>
+</div></div>
+<div class="sect2 slide">
+<h1 id="_лабораторная_работа">8.2. Лабораторная работа</h1>
+
+<div class="sectionbody">
+<ol class="arabic">
+<li>
+<span>
+Заводим аккаунт на <a href="https://github.com">github</a>
+</span>
+</li>
+<li>
+<span>
+Возвращаемся на главную страницу проекта и переходим по ссылке с заданиями
+</span>
+</li>
+<li>
+<span>
+Задания можно делать в любом порядке
+</span>
+</li>
+</ol>
 </div></div>
 </body>
 </html>

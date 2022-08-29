@@ -2,10 +2,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ru" xml:lang="ru">
 <head>
-<title>Master programming <br> Лекция №1 (Вводная)</title>
+<title>Master programming <br> Лекция №7 (Современный C++)</title>
 <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
 <meta name="copyright" content="Copyright &#169; Игорь Шаронов" />
-<meta name="generator" content="AsciiDoc 9.1.0" />
+<meta name="generator" content="AsciiDoc 10.2.0" />
 <style type="text/css">
 /* Shared CSS for AsciiDoc xhtml11 and html5 backends */
 
@@ -3837,523 +3837,919 @@ setTimeout(w3c_slidy.hide_slides, 50);
 </head>
 <body class="article">
 <div id="header" class="slide">
-<h1>Master programming <br> Лекция №1 (Вводная)</h1>
+<h1>Master programming <br> Лекция №7 (Современный C++)</h1>
 <span id="author">Игорь Шаронов</span><br />
-<span id="revdate">2021-09-08</span>
+<span id="revdate">2021-10-10</span>
 </div>
 </div></div>
 <div class="sect1 slide">
-<h1 id="_введение">1. Введение</h1>
+<h1 id="_обзор_стандартов">1. Обзор стандартов</h1>
 
 <div class="sectionbody">
 </div></div>
 <div class="sect2 slide">
-<h1 id="_из_чего_состоит_курс">1.1. Из чего состоит курс</h1>
+<h1 id="_возможности_языка_на_примере_стандарта_c_98">1.1. Возможности языка на примере стандарта C++98</h1>
 
 <div class="sectionbody">
 <ul class="">
 <li>
 <span>
-Вводные понятия
+<a href="https://isocpp.org">https://isocpp.org</a>, <a href="https://cppreference.com">https://cppreference.com</a>
 </span>
 </li>
 <li>
 <span>
-Система контроля версий
+STL (1994 г.)&#8201;&#8212;&#8201;не является частью языка, но входит в стандарт
 </span>
 </li>
 <li>
 <span>
-Система сборки и отладки
+Конструкторы и деструкторы
 </span>
 </li>
 <li>
 <span>
-Тестирование
+Наследование и полиморфизм
 </span>
 </li>
 <li>
 <span>
-Обзор STL
+Шаблонные классы
 </span>
 </li>
 <li>
 <span>
-Обзор Boost
+Шаблонные функции
 </span>
 </li>
 <li>
 <span>
-Паттерны проектирования (GoF)
+Специализации шаблонов и перегрузка функций
 </span>
 </li>
 <li>
 <span>
-Современный C++
+Константность объектов, методов, выражений (<code>constexpr</code>)
 </span>
 </li>
 <li>
 <span>
-Разработка в команде
+Пространства имён
 </span>
 </li>
 <li>
 <span>
-<strong>Домашняя лабораторная работа</strong>
+Исключения
+</span>
+</li>
+<li>
+<span>
+Строже типизирован, чем язык C
 </span>
 </li>
 </ul>
 </div></div>
 <div class="sect2 slide">
-<h1 id="_план_лекции">1.2. План лекции</h1>
-
-<div class="sectionbody">
-<ol class="arabic">
-<li>
-<span>
-Операционная система
-</span>
-</li>
-<li>
-<span>
-Редакторы
-</span>
-</li>
-<li>
-<span>
-Системы сборки
-</span>
-</li>
-<li>
-<span>
-Отладка и тестирование
-</span>
-</li>
-<li>
-<span>
-Системы контроля версий
-</span>
-</li>
-<li>
-<span>
-Программирование
-</span>
-</li>
-<li>
-<span>
-Заключение
-</span>
-</li>
-</ol>
-</div></div>
-<div class="sect1 slide">
-<h1 id="_операционная_система">2. Операционная система</h1>
-
-<div class="sectionbody">
-</div></div>
-<div class="sect2 slide">
-<h1 id="_основные_компоненты_ос">2.1. Основные компоненты ОС</h1>
+<h1 id="_инкапсуляция_наследование_полиморфизм">1.2. Инкапсуляция, наследование, полиморфизм</h1>
 
 <div class="sectionbody">
 <ul class="">
 <li>
 <span>
-Планировщик задач
+Инкапсуляция позволяет прятать сущности:
+</span>
+<ul class="">
+<li>
+<span>
+Агрегированные объекты
 </span>
 </li>
 <li>
 <span>
-Распределение памяти
+Наследование&#8201;&#8212;&#8201;способ реализации интерфейсов
+</span>
+</li>
+</ul>
+</li>
+<li>
+<span>
+Наследование&#8201;&#8212;&#8201;компилятор по типу класса определяет таблицу функций
 </span>
 </li>
 <li>
 <span>
-Изоляция (страничная адресация)
+Наследование в полиморфизме:
+</span>
+<ul class="">
+<li>
+<span>
+Справедливо только для указателей или ссылок на базовый класс
 </span>
 </li>
 <li>
 <span>
-Ресурсы
+Работает в рантайме
 </span>
+</li>
+<li>
+<span>
+Компилятор не может по типу указателя базового класса определить тип объекта
+</span>
+</li>
+<li>
+<span>
+Каждый объект содержит указатель на таблицу функций (методов)
+</span>
+<ul class="">
+<li>
+<span>
+Таблицы функций используются одни и те же для одинаковых типов
+</span>
+</li>
+</ul>
+</li>
+</ul>
 </li>
 </ul>
 </div></div>
 <div class="sect2 slide">
-<h1 id="_объекты_ядра_ос">2.2. Объекты ядра ОС</h1>
+<h1 id="_перегрузка">1.3. Перегрузка</h1>
 
 <div class="sectionbody">
 <ul class="">
 <li>
 <span>
-Процессы, потоки
+Перегрузка функций возможна только в сигнатуре
+</span>
+<ul class="">
+<li>
+<span>
+Возвращаемое значение не входим в сигнатуру (в C++)
+</span>
+</li>
+</ul>
+</li>
+<li>
+<span>
+Специализация класса&#8201;&#8212;&#8201;это тоже вид перегрузки
 </span>
 </li>
 <li>
 <span>
-Файлы, каналы (pipes)
+Частичная специализация класса
+</span>
+<ul class="">
+<li>
+<span>
+Частичной специализации функций не бывает (не отличимо от обычной перегрузки)
+</span>
+</li>
+</ul>
+</li>
+<li>
+<span>
+Можно делать только специализации
+</span>
+<ul class="">
+<li>
+<span>
+Более общий шаблонный класс останется пустым
 </span>
 </li>
 <li>
 <span>
-Семафоры, мьютексы
+Сигнализация об ошибке будет только в том случае, если не подойдёт ни одна специализация
 </span>
 </li>
-<li>
-<span>
-Проекции в память (mmap)
-</span>
+</ul>
 </li>
 </ul>
 </div></div>
 <div class="sect2 slide">
-<h1 id="_linux">2.3. Linux</h1>
+<h1 id="_sfinae">1.4. SFINAE</h1>
 
 <div class="sectionbody">
 <ul class="">
 <li>
 <span>
-Основан на Unix
+<a href="http://en.cppreference.com/w/cpp/language/sfinae">Substitution Failure Is Not A Error</a>
 </span>
 </li>
 <li>
 <span>
-Только ядро и компилятор
+Если вывод специализации приводит к ошибке, то
+</span>
+<ul class="">
+<li>
+<span>
+данная специализация отбрасывается
 </span>
 </li>
 <li>
 <span>
-Linux &#x2260; Unix
+переходим к следующей специализации
 </span>
 </li>
-<li>
-<span>
-Virtual File System (VFS)&#8201;&#8212;&#8201;представление всех объектов в виде файлов
-</span>
+</ul>
 </li>
 </ul>
 <div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;iostream&gt;</span>
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;list&gt;</span>
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;tuple&gt;</span>
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;vector&gt;</span>
+
+<span style="font-weight: bold"><span style="color: #0000FF">struct</span></span> <span style="color: #008080">sfinae</span>
+<span style="color: #FF0000">{</span>
+<span style="font-weight: bold"><span style="color: #0000FF">private</span></span><span style="color: #990000">:</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">template</span></span><span style="color: #990000">&lt;</span><span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">U</span><span style="color: #990000">&gt;</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">constexpr</span></span> <span style="font-weight: bold"><span style="color: #0000FF">static</span></span> <span style="color: #009900">bool</span> <span style="font-weight: bold"><span style="color: #000000">f</span></span><span style="color: #990000">(</span><span style="font-weight: bold"><span style="color: #0000FF">typename</span></span> <span style="color: #008080">U</span><span style="color: #990000">::</span>value_type<span style="color: #990000">*)</span>
+    <span style="color: #FF0000">{</span>
+        <span style="font-weight: bold"><span style="color: #0000FF">return</span></span> <span style="font-weight: bold"><span style="color: #0000FF">true</span></span><span style="color: #990000">;</span>
+    <span style="color: #FF0000">}</span>
+
+    <span style="font-weight: bold"><span style="color: #0000FF">template</span></span><span style="color: #990000">&lt;</span><span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">U</span><span style="color: #990000">&gt;</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">constexpr</span></span> <span style="font-weight: bold"><span style="color: #0000FF">static</span></span> <span style="color: #009900">bool</span> <span style="font-weight: bold"><span style="color: #000000">f</span></span><span style="color: #990000">(...)</span>
+    <span style="color: #FF0000">{</span>
+        <span style="font-weight: bold"><span style="color: #0000FF">return</span></span> <span style="font-weight: bold"><span style="color: #0000FF">false</span></span><span style="color: #990000">;</span>
+    <span style="color: #FF0000">}</span>
+
+<span style="font-weight: bold"><span style="color: #0000FF">public</span></span><span style="color: #990000">:</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">template</span></span><span style="color: #990000">&lt;</span><span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">T</span><span style="color: #990000">&gt;</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">constexpr</span></span> <span style="font-weight: bold"><span style="color: #0000FF">static</span></span> <span style="color: #009900">bool</span> is_container <span style="color: #990000">=</span> f<span style="color: #990000">&lt;</span>T<span style="color: #990000">&gt;(</span>nullptr<span style="color: #990000">);</span>
+<span style="color: #FF0000">}</span><span style="color: #990000">;</span>
+
+<span style="color: #009900">int</span> <span style="font-weight: bold"><span style="color: #000000">main</span></span><span style="color: #990000">()</span>
+<span style="color: #FF0000">{</span>
+    std<span style="color: #990000">::</span>cout <span style="color: #990000">&lt;&lt;</span> std<span style="color: #990000">::</span>boolalpha<span style="color: #990000">;</span>
+
+    <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> types <span style="color: #990000">=</span> std<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">make_tuple</span></span><span style="color: #990000">(</span>std<span style="color: #990000">::</span>vector<span style="color: #990000">&lt;</span><span style="color: #009900">int</span><span style="color: #990000">&gt;</span><span style="color: #FF0000">{}</span><span style="color: #990000">,</span> std<span style="color: #990000">::</span>list<span style="color: #990000">&lt;</span><span style="color: #009900">double</span><span style="color: #990000">&gt;</span><span style="color: #FF0000">{}</span><span style="color: #990000">,</span> <span style="color: #009900">int</span><span style="color: #FF0000">{}</span><span style="color: #990000">,</span> <span style="font-weight: bold"><span style="color: #0000FF">static_cast</span></span><span style="color: #990000">&lt;</span><span style="font-weight: bold"><span style="color: #0000FF">const</span></span> <span style="color: #009900">char</span><span style="color: #990000">*&gt;(</span>nullptr<span style="color: #990000">));</span>
+    std<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">apply</span></span><span style="color: #990000">([](</span><span style="font-weight: bold"><span style="color: #0000FF">auto</span></span><span style="color: #990000">...</span> xs<span style="color: #990000">)</span> <span style="color: #FF0000">{</span>
+        <span style="color: #990000">((</span>std<span style="color: #990000">::</span>cout <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"Is a container? "</span> <span style="color: #990000">&lt;&lt;</span> sfinae<span style="color: #990000">::</span>is_container<span style="color: #990000">&lt;</span><span style="font-weight: bold"><span style="color: #0000FF">decltype</span></span><span style="color: #990000">(</span>xs<span style="color: #990000">)&gt;</span> <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"</span><span style="color: #CC33CC">\n</span><span style="color: #FF0000">"</span><span style="color: #990000">),</span> <span style="color: #990000">...);</span>
+    <span style="color: #FF0000">}</span><span style="color: #990000">,</span> types<span style="color: #990000">);</span>
+<span style="color: #FF0000">}</span></tt></pre></div></div>
+<div class="listingblock">
+<div class="title">Output</div>
 <div class="content">
-<pre><code>$ ls /
-bin  boot  dev  etc  home include lib  lib64 proc  root  run  sys  tmp  usr  var</code></pre>
+<pre><code>Is a container? true
+Is a container? true
+Is a container? false
+Is a container? false</code></pre>
 </div></div>
 </div></div>
 <div class="sect2 slide">
-<h1 id="_жизнь_в_консоли">2.4. Жизнь в консоли</h1>
+<h1 id="_шаблоны">1.5. Шаблоны</h1>
 
 <div class="sectionbody">
 <ul class="">
 <li>
 <span>
-GNU Coreutils
+Уровень компиляции
+</span>
+</li>
+<li>
+<span>
+<code>template&lt;class T&gt; int func()</code>, где <code>T</code>&#8201;&#8212;&#8201;шаблонный параметр
+</span>
+</li>
+<li>
+<span>
+<code>func&lt;int&gt;()</code>, где <code>int</code>&#8201;&#8212;&#8201;аргумент шаблона
+</span>
+</li>
+<li>
+<span>
+Параметр шаблона может быть не-типовым (<code>int</code>, <code>char</code>, <code>short</code>, &#8230;)
 </span>
 <ul class="">
 <li>
 <span>
-текстовые утилиты: sort, tr, tail, cat, wc, uniq, &#8230;
+<code>template&lt;size_t N&gt; int get()</code>
 </span>
 </li>
 <li>
 <span>
-файловые утилиты: ls, cp, dd, chmod, ln, mv, rm, &#8230;
-</span>
-</li>
-<li>
-<span>
-скриптовые утилиты: basename, echo, pwd, tee, &#8230;
+Исключения: это не указатель и не тип <code>double</code> или <code>float</code>
 </span>
 </li>
 </ul>
 </li>
 <li>
 <span>
-GNU Binutils
-</span>
-<ul class="">
-<li>
-<span>
-as, ld, ar, objcopy, strip, gprof, &#8230;
-</span>
-</li>
-<li>
-<span>
-nm, objdump, readelf, strings, addr2line, c++filt, &#8230;
-</span>
-</li>
-</ul>
-</li>
-<li>
-<span>
-GNU Debugger
-</span>
-</li>
-<li>
-<span>
-Базовые утилиты: grep, sed  (1974 г.), awk (1977 г.), bash, perl, python
-</span>
-</li>
-</ul>
-</div></div>
-<div class="sect2 slide">
-<h1 id="_linux_в_использовании">2.5. Linux в использовании</h1>
-
-<div class="sectionbody">
-<ul class="">
-<li>
-<span>
-xorg-server, протокол X11
-</span>
-</li>
-<li>
-<span>
-window-manager: оконный, тайловый
-</span>
-</li>
-<li>
-<span>
-демоны (daemons)
-</span>
-</li>
-<li>
-<span>
-драйверы:
-</span>
-<ul class="">
-<li>
-<span>
-обычные файлы, которые умеют обрабатывать вызов <code>ioctl</code>
-</span>
-</li>
-<li>
-<span>
-находятся в папке <code>/dev/</code>
-</span>
-</li>
-<li>
-<span>
-и в <code>/sys/class/</code>
-</span>
-</li>
-<li>
-<span>
-работают в режиме ядра
-</span>
-</li>
-</ul>
-</li>
-<li>
-<span>
-драйверы в режиме пользователя: fuse, cuse, uio
+Специализация функции&#8201;&#8212;&#8201;<code>template&lt;&gt; int func&lt;float&gt;()</code>
 </span>
 </li>
 </ul>
 </div></div>
 <div class="sect1 slide">
-<h1 id="_редакторы">3. Редакторы</h1>
+<h1 id="_обзор_стандарта_c_03">2. Обзор стандарта C++03</h1>
 
 <div class="sectionbody">
 </div></div>
 <div class="sect2 slide">
-<h1 id="_популярные_редакторы">3.1. Популярные редакторы</h1>
+<h1 id="_нововведения">2.1. Нововведения</h1>
 
 <div class="sectionbody">
 <ul class="">
 <li>
 <span>
-ed (1971 г.)
+Развивается библиотека Boost
 </span>
 </li>
 <li>
 <span>
-sed, vi, vim, neovim
+Technical Report
 </span>
 </li>
 <li>
 <span>
-emacs
-</span>
-</li>
-<li>
-<span>
-sublime
-</span>
-</li>
-<li>
-<span>
-notepad++
-</span>
-</li>
-<li>
-<span>
-gedit
-</span>
-</li>
-<li>
-<span>
-IDE &#x2260; Editor
-</span>
-</li>
-</ul>
-</div></div>
-<div class="sect2 slide">
-<h1 id="_процесс_редактирования">3.2. Процесс редактирования</h1>
-
-<div class="sectionbody">
-<ol class="arabic">
-<li>
-<span>
-Перемещение по тексту, поиск, скроллинг (view-mode)
-</span>
-</li>
-<li>
-<span>
-Разделение области просмотра/редактирования
-</span>
-</li>
-<li>
-<span>
-Подсветка синтаксиса
-</span>
-</li>
-<li>
-<span>
-Редактирование, замена, удаление, вставка
-</span>
-</li>
-<li>
-<span>
-Поиск-замена
-</span>
-</li>
-<li>
-<span>
-Поддержка пользовательских плагинов
-</span>
-</li>
-<li>
-<span>
-<strong>Использование уже готового функционала сторонних программ</strong>
-</span>
-</li>
-</ol>
-</div></div>
-<div class="sect2 slide">
-<h1 id="_пример_vim">3.3. Пример: Vim</h1>
-
-<div class="sectionbody">
-<ul class="">
-<li>
-<span>
-3 режима: normal, insert (replace), visual
-</span>
-</li>
-<li>
-<span>
-Программируемая панель
-</span>
-</li>
-<li>
-<span>
-Буферы, табы, окна
-</span>
-</li>
-<li>
-<span>
-Большое многообразие плагинов (VimL)
-</span>
-</li>
-<li>
-<span>
-Подсветка синтаксиса, цветовая схема&#8201;&#8212;&#8201;тоже плагин
-</span>
-</li>
-<li>
-<span>
-Орфография
-</span>
-</li>
-<li>
-<span>
-Использование ctag для перехода по функциям (любого языка, даже LaTeX)
-</span>
-<ul class="">
-<li>
-<span>
-Отображение дерева функций
-</span>
-</li>
-</ul>
-</li>
-<li>
-<span>
-Автодополнение (несколько видов)
-</span>
-</li>
-<li>
-<span>
-Запуск интерактивной оболочки вместо буфера
-</span>
-</li>
-<li>
-<span>
-Встраиваемое GUI
-</span>
-</li>
-<li>
-<span>
-Возможность использования без GUI
-</span>
-</li>
-<li>
-<span>
-<em><span class="red">Холивары: neovim</span></em>
+Больше особо нечем гордиться
 </span>
 </li>
 </ul>
 </div></div>
 <div class="sect1 slide">
-<h1 id="_системы_сборки">4. Системы сборки</h1>
+<h1 id="_обзор_стандарта_c_11">3. Обзор стандарта C++11</h1>
 
 <div class="sectionbody">
 </div></div>
 <div class="sect2 slide">
-<h1 id="_известные_системы_сборки">4.1. Известные системы сборки</h1>
+<h1 id="_новые_возможности_языка">3.1. Новые возможности языка</h1>
 
 <div class="sectionbody">
 <ul class="">
 <li>
 <span>
-make (1977 г., Bell Labs)
+Ключевое слово <code>auto</code>
+</span>
+<ul class="">
+<li>
+<span>
+<code>int k;</code> == <code>decltype(k) v;</code>
+</span>
+</li>
+</ul>
+</li>
+<li>
+<span>
+Возвращаемое значение может быть написано после имени функции <code>auto func(char x) -&gt; int;</code>
 </span>
 </li>
 <li>
 <span>
-ninja
+Появление неименнованных функций (лямбда-выражения)
+</span>
+<ul class="">
+<li>
+<span>
+<code>auto f = [](int x) -&gt; double { return std::pow(x, 1.35); };</code>
 </span>
 </li>
 <li>
 <span>
-scons
+<code>[a, &amp;b, =, &amp;]</code>&#8201;&#8212;&#8201;замыкание области видимости: по значению, по ссылке, замыкания всей области видимости
+</span>
+</li>
+</ul>
+</li>
+<li>
+<span>
+<code>constexpr</code>&#8201;&#8212;&#8201;функция выполнения на уровне компиляции <code>int n[func(79)]</code>
 </span>
 </li>
 <li>
 <span>
-meson
+Универсальная инициализация через <code>{}</code>
+</span>
+<ul class="">
+<li>
+<span>
+<code>myclass s(7, 9, 8)</code> и <code>myclass s{7, 9, 8}</code>&#8201;&#8212;&#8201;одно и то же
 </span>
 </li>
 <li>
 <span>
-cmake
+теперь структуры без конструктора и с конструктором могут быть проинициализированы одинаково
+</span>
+</li>
+</ul>
+</li>
+<li>
+<span>
+xvalue, rvalue, prvalue&#8201;&#8212;&#8201;move-нотации
 </span>
 </li>
 <li>
 <span>
-<span class="line-through">свой велосипед</span> НЕТ!
+Цикл по коллекции <code>for (const auto&amp; x : array) { ... }</code>
 </span>
 </li>
 </ul>
 </div></div>
 <div class="sect2 slide">
-<h1 id="_makefile">4.2. Makefile</h1>
+<h1 id="_новые_возможности_языка_продолжение">3.2. Новые возможности языка (продолжение)</h1>
+
+<div class="sectionbody">
+<ul class="">
+<li>
+<span>
+<code>override</code>, <code>final</code>&#8201;&#8212;&#8201;помогает отлавливать неправильные переопределения в полиморфизме
+</span>
+</li>
+<li>
+<span>
+<code>noexcept</code>&#8201;&#8212;&#8201;постепенный отказ от перечисления исключений в сигнатуре
+</span>
+</li>
+<li>
+<span>
+<code>nullptr</code> вместо <code>NULL</code> и введение <code>nullptr_t</code>
+</span>
+</li>
+<li>
+<span>
+<code>enum class</code> (всё ещё нет автоматического преобразования в строку)
+</span>
+</li>
+<li>
+<span>
+<code>static_assert</code>&#8201;&#8212;&#8201;ассерт на уровне компиляции
+</span>
+</li>
+<li>
+<span>
+<code>alignas(T)</code>&#8201;&#8212;&#8201;выравнивание данных как у <code>T</code>
+</span>
+</li>
+<li>
+<span>
+<strong>Вариативные шаблоны</strong>
+</span>
+</li>
+</ul>
+</div></div>
+<div class="sect2 slide">
+<h1 id="_расширение_stl">3.3. Расширение STL</h1>
+
+<div class="sectionbody">
+<ul class="">
+<li>
+<span>
+<code>std::tuple</code>, <code>std::array</code>, <code>std::unordered_map/set</code>, <code>std::chrono</code>
+</span>
+</li>
+<li>
+<span>
+<code>std::thread</code>, <code>std::mutex</code>, <code>std::conditional_variable</code>, <code>std::atomic</code> и <code>thread_local</code>
+</span>
+</li>
+<li>
+<span>
+Методы <code>emplace</code>
+</span>
+</li>
+<li>
+<span>
+<code>std::shared_ptr</code>, <code>std::weak_ptr</code>, <code>std::unique_ptr</code>
+</span>
+</li>
+<li>
+<span>
+<code>std::function</code>
+</span>
+</li>
+<li>
+<span>
+<code>std::future</code>, <code>std::promise</code>
+</span>
+</li>
+<li>
+<span>
+<code>std::hash</code>
+</span>
+</li>
+<li>
+<span>
+<code>std::type_index</code>
+</span>
+</li>
+<li>
+<span>
+&#8230;
+</span>
+</li>
+</ul>
+</div></div>
+<div class="sect1 slide">
+<h1 id="_обзор_стандарта_c_14">4. Обзор стандарта C++14</h1>
+
+<div class="sectionbody">
+</div></div>
+<div class="sect2 slide">
+<h1 id="_новые_возможности_языка_2">4.1. Новые возможности языка</h1>
+
+<div class="sectionbody">
+<ul class="">
+<li>
+<span>
+Автоматический вывод возвращаемого значения <code>auto func();</code>
+</span>
+</li>
+<li>
+<span>
+<code>decltype(auto)</code>&#8201;&#8212;&#8201;там, где <code>auto</code> отбрасывает слишком много
+</span>
+</li>
+<li>
+<span>
+Шаблонные переменные <code>template&lt;class T&gt; T xxx = T(2.78962161L);</code>
+</span>
+</li>
+<li>
+<span>
+Агрегатная инициализация
+</span>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="font-weight: bold"><span style="color: #0000FF">struct</span></span> <span style="color: #008080">abc</span>
+<span style="color: #FF0000">{</span>
+    <span style="color: #009900">int</span> x <span style="color: #990000">=</span> <span style="color: #993399">47</span><span style="color: #990000">;</span>
+    <span style="color: #009900">bool</span> f <span style="color: #990000">=</span> <span style="font-weight: bold"><span style="color: #0000FF">true</span></span><span style="color: #990000">;</span>
+    std<span style="color: #990000">::</span><span style="color: #008080">string</span> s <span style="color: #990000">=</span> <span style="color: #FF0000">"abc"</span><span style="color: #990000">;</span>
+<span style="color: #FF0000">}</span><span style="color: #990000">;</span></tt></pre></div></div>
+</li>
+<li>
+<span>
+Литералы двоичных чисел и разделители разрядов <code>0b10110</code>, <code>100'500</code>
+</span>
+</li>
+<li>
+<span>
+Обобщённые лямбда-выражения <code>[](auto x) { return x*x + 1; }</code>
+</span>
+</li>
+<li>
+<span>
+Атрибут <code>[[deprecated]]</code>
+</span>
+</li>
+</ul>
+</div></div>
+<div class="sect2 slide">
+<h1 id="_нововведения_в_stl">4.2. Нововведения в STL</h1>
+
+<div class="sectionbody">
+<ul class="">
+<li>
+<span>
+Пользовательские литералы <code>auto dur = 60s;</code>
+</span>
+</li>
+<li>
+<span>
+<code>std::cbegin/std::cend</code>
+</span>
+</li>
+<li>
+<span>
+<code>std::make_index_sequence</code> для <code>std::integral_constant</code> полезен при разворачивании кортежа в аргументы
+</span>
+</li>
+</ul>
+</div></div>
+<div class="sect1 slide">
+<h1 id="_обзор_стандарта_c_17">5. Обзор стандарта C++17</h1>
+
+<div class="sectionbody">
+</div></div>
+<div class="sect2 slide">
+<h1 id="_новые_возможности_языка_3">5.1. Новые возможности языка</h1>
+
+<div class="sectionbody">
+<ul class="">
+<li>
+<span>
+Упакованные выражения <code>template&lt;class... Ts&gt; bool foo(Ts... args) { return (args &amp;&amp; ...); }</code>
+</span>
+</li>
+<li>
+<span>
+Инициализация переменной в <code>if</code> и <code>switch</code>: <code>if (auto a = getA(); a.isValid()) ...</code>
+</span>
+</li>
+<li>
+<span>
+Автоматический вывод аргументов шаблона класса <code>std::vector v{{7, 8, 9}}</code>
+</span>
+</li>
+<li>
+<span>
+Structured binding declarations <code>const auto&amp; [x, y] = mystruct_object;</code>
+</span>
+</li>
+<li>
+<span>
+<code>[[fallthrough]]</code>, <code>[[nodiscard]]</code>, <code>[[maybe_unused]]</code>
+</span>
+</li>
+<li>
+<span>
+Вложенные пространства имён <code>namespace A::B {}</code> == <code>namespace A { namespace B {} }</code>
+</span>
+</li>
+<li>
+<span>
+<code>if constexpr</code> взамен <code>std::enable_if</code> и SFINAE
+</span>
+</li>
+</ul>
+</div></div>
+<div class="sect2 slide">
+<h1 id="_нововведения_в_stl_2">5.2. Нововведения в STL</h1>
+
+<div class="sectionbody">
+<ul class="">
+<li>
+<span>
+<code>std::optional</code>, <code>std::variant</code>, <code>std::any</code>
+</span>
+</li>
+<li>
+<span>
+Поддержка параллельных алгоритмов
+</span>
+</li>
+<li>
+<span>
+Символьные литералы для UTF-8 <code>u8</code>, <code>u</code>, <code>U</code>
+</span>
+</li>
+<li>
+<span>
+<code>std::filesystem</code>
+</span>
+</li>
+<li>
+<span>
+<code>std::string_view</code>
+</span>
+</li>
+<li>
+<span>
+<code>hardware_constructive_interference_size</code> и <code>hardware_destructive_interference_size</code>&#8201;&#8212;&#8201;влияние аппаратного кеша
+</span>
+</li>
+<li>
+<span>
+<code>std::byte</code>
+</span>
+</li>
+</ul>
+</div></div>
+<div class="sect1 slide">
+<h1 id="_обзор_современных_особенностей_языка_c">6. Обзор современных особенностей языка C++</h1>
+
+<div class="sectionbody">
+</div></div>
+<div class="sect2 slide">
+<h1 id="_о_using_директиве">6.1. О using директиве</h1>
+
+<div class="sectionbody">
+<ul class="">
+<li>
+<span>
+Алиас типа: <code>using type_int = int;</code>
+</span>
+</li>
+<li>
+<span>
+Шаблонные алиас типа: <code>template&lt;class T&gt; using my_vector = std::vector&lt;T&gt;;</code>
+</span>
+</li>
+<li>
+<span>
+Расширение области видимости:
+</span>
+<ul class="">
+<li>
+<span>
+пространства имён <code>using namespace std;</code>
+</span>
+</li>
+<li>
+<span>
+методов базового класса <code>using Base::method1;</code>
+</span>
+<ul class="">
+<li>
+<span>
+попадают все сигнатуры <code>method1</code>
+</span>
+</li>
+</ul>
+</li>
+<li>
+<span>
+конструкторов <code>using Base::Base</code>
+</span>
+</li>
+<li>
+<span>
+если класс шаблонный, необходимо указать имя самого класса <code>using Derived::Base::Base;</code>
+</span>
+</li>
+<li>
+<span>
+наследуются все конструкторы из <code>Base</code>, кроме автогенерируемых конструкторов <code>Base</code>
+</span>
+</li>
+</ul>
+</li>
+<li>
+<span>
+Проблема пересечения имён
+</span>
+</li>
+</ul>
+</div></div>
+<div class="sect2 slide">
+<h1 id="_о_rvalue">6.2. О rvalue</h1>
+
+<div class="sectionbody">
+<ul class="">
+<li>
+<span>
+Copy elision
+</span>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="color: #008080">T</span> <span style="font-weight: bold"><span style="color: #000000">f</span></span><span style="color: #990000">()</span> <span style="color: #FF0000">{</span> <span style="font-weight: bold"><span style="color: #0000FF">return</span></span> <span style="font-weight: bold"><span style="color: #000000">T</span></span><span style="color: #990000">();</span> <span style="color: #FF0000">}</span>
+<span style="color: #008080">T</span> x <span style="color: #990000">=</span> <span style="font-weight: bold"><span style="color: #000000">f</span></span><span style="color: #990000">();</span> <span style="font-style: italic"><span style="color: #9A1900">// конструктор копирования не будет вызван</span></span></tt></pre></div></div>
+</li>
+<li>
+<span>
+Типы ссылок
+</span>
+<div class="tableblock">
+<table rules="none"
+width="100%"
+frame="void"
+cellspacing="0" cellpadding="4">
+<col width="66%" />
+<col width="33%" />
+<tbody>
+<tr>
+<td align="left" valign="top"><div><ul class="">
+<li>
+<span>
+lvalue&#8201;&#8212;&#8201;обычная ссылка <code>&amp;</code> или то, что <strong>имеет имя</strong>
+</span>
+</li>
+<li>
+<span>
+rvalue&#8201;&#8212;&#8201;<code>&amp;&amp;</code>, используется чтобы "переместить" содержимое объекта
+</span>
+</li>
+<li>
+<span>
+prvalue&#8201;&#8212;&#8201;результат выражения или то, что <strong>не имеет имени</strong> (42, например)
+</span>
+</li>
+<li>
+<span>
+xvalue&#8201;&#8212;&#8201;временный объект, который имеет имя, но является rvalue
+</span>
+</li>
+<li>
+<span>
+glvalue&#8201;&#8212;&#8201;обобщение xvalue и lvalue
+</span>
+</li>
+</ul></div></td>
+<td align="left" valign="top"><div><div class="imageblock">
+<div class="content"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 5.0.0 (0)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="405pt" height="207pt"
+ viewBox="0.00 0.00 404.62 207.28" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 203.28)">
+<title>G</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-203.28 400.62,-203.28 400.62,4 -4,4"/>
+<!-- expression -->
+<g id="node1" class="node">
+<title>expression</title>
+<ellipse fill="none" stroke="black" cx="191.15" cy="-178.07" rx="89.61" ry="21.43"/>
+<text text-anchor="middle" x="191.15" y="-173.07" font-family="Times,serif" font-size="20.00">expression</text>
+</g>
+<!-- glvalue -->
+<g id="node2" class="node">
+<title>glvalue</title>
+<ellipse fill="none" stroke="black" cx="121.15" cy="-99.64" rx="64.19" ry="21.43"/>
+<text text-anchor="middle" x="121.15" y="-94.64" font-family="Times,serif" font-size="20.00">glvalue</text>
+</g>
+<!-- expression&#45;&gt;glvalue -->
+<g id="edge1" class="edge">
+<title>expression&#45;&gt;glvalue</title>
+<path fill="none" stroke="black" d="M172.76,-156.99C164.52,-147.98 154.67,-137.23 145.8,-127.54"/>
+<polygon fill="black" stroke="black" points="148.28,-125.07 138.94,-120.06 143.11,-129.8 148.28,-125.07"/>
+</g>
+<!-- rvalue -->
+<g id="node3" class="node">
+<title>rvalue</title>
+<ellipse fill="Aquamarine" stroke="black" cx="261.15" cy="-99.64" rx="57.05" ry="21.43"/>
+<text text-anchor="middle" x="261.15" y="-94.64" font-family="Times,serif" font-size="20.00">rvalue</text>
+</g>
+<!-- expression&#45;&gt;rvalue -->
+<g id="edge2" class="edge">
+<title>expression&#45;&gt;rvalue</title>
+<path fill="none" stroke="black" d="M209.55,-156.99C217.79,-147.98 227.64,-137.23 236.51,-127.54"/>
+<polygon fill="black" stroke="black" points="239.2,-129.8 243.37,-120.06 234.03,-125.07 239.2,-129.8"/>
+</g>
+<!-- lvalue -->
+<g id="node4" class="node">
+<title>lvalue</title>
+<ellipse fill="Aquamarine" stroke="black" cx="55.15" cy="-21.21" rx="55.31" ry="21.43"/>
+<text text-anchor="middle" x="55.15" y="-16.21" font-family="Times,serif" font-size="20.00">lvalue</text>
+</g>
+<!-- glvalue&#45;&gt;lvalue -->
+<g id="edge3" class="edge">
+<title>glvalue&#45;&gt;lvalue</title>
+<path fill="none" stroke="black" d="M104.16,-78.96C96.32,-69.88 86.9,-58.97 78.42,-49.15"/>
+<polygon fill="black" stroke="black" points="81.05,-46.84 71.86,-41.56 75.75,-51.42 81.05,-46.84"/>
+</g>
+<!-- xvalue -->
+<g id="node5" class="node">
+<title>xvalue</title>
+<ellipse fill="none" stroke="black" cx="187.15" cy="-21.21" rx="58.88" ry="21.43"/>
+<text text-anchor="middle" x="187.15" y="-16.21" font-family="Times,serif" font-size="20.00">xvalue</text>
+</g>
+<!-- glvalue&#45;&gt;xvalue -->
+<g id="edge4" class="edge">
+<title>glvalue&#45;&gt;xvalue</title>
+<path fill="none" stroke="black" d="M138.15,-78.96C145.99,-69.88 155.41,-58.97 163.89,-49.15"/>
+<polygon fill="black" stroke="black" points="166.56,-51.42 170.44,-41.56 161.26,-46.84 166.56,-51.42"/>
+</g>
+<!-- rvalue&#45;&gt;xvalue -->
+<g id="edge5" class="edge">
+<title>rvalue&#45;&gt;xvalue</title>
+<path fill="none" stroke="black" d="M242.48,-79.35C233.54,-70.12 222.69,-58.92 212.98,-48.88"/>
+<polygon fill="black" stroke="black" points="215.29,-46.24 205.82,-41.49 210.26,-51.11 215.29,-46.24"/>
+</g>
+<!-- prvalue -->
+<g id="node6" class="node">
+<title>prvalue</title>
+<ellipse fill="none" stroke="black" cx="330.15" cy="-21.21" rx="66.44" ry="21.43"/>
+<text text-anchor="middle" x="330.15" y="-16.21" font-family="Times,serif" font-size="20.00">prvalue</text>
+</g>
+<!-- rvalue&#45;&gt;prvalue -->
+<g id="edge6" class="edge">
+<title>rvalue&#45;&gt;prvalue</title>
+<path fill="none" stroke="black" d="M278.57,-79.35C286.76,-70.28 296.67,-59.31 305.6,-49.41"/>
+<polygon fill="black" stroke="black" points="308.4,-51.53 312.51,-41.76 303.21,-46.84 308.4,-51.53"/>
+</g>
+</g>
+</svg></div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li>
+<span>
+Perfect forwarding и <a href="https://habr.com/post/242639">универсальная ссылка</a>
+</span>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="font-weight: bold"><span style="color: #0000FF">template</span></span><span style="color: #990000">&lt;</span><span style="font-weight: bold"><span style="color: #0000FF">class</span></span><span style="color: #990000">...</span> Args<span style="color: #990000">&gt;</span> <span style="color: #009900">void</span> <span style="font-weight: bold"><span style="color: #000000">func</span></span><span style="color: #990000">(</span>Args<span style="color: #990000">&amp;&amp;...</span> args<span style="color: #990000">)</span> <span style="color: #FF0000">{</span>
+    <span style="font-weight: bold"><span style="color: #000000">some_func</span></span><span style="color: #990000">(</span>std<span style="color: #990000">::</span>forward<span style="color: #990000">&lt;</span>Args<span style="color: #990000">&gt;(</span>args<span style="color: #990000">)...);</span>
+<span style="color: #FF0000">}</span>
+
+std<span style="color: #990000">::</span><span style="color: #008080">vector</span> v <span style="color: #990000">=</span> <span style="color: #FF0000">{</span><span style="color: #993399">7</span><span style="color: #990000">,</span> <span style="color: #993399">8</span><span style="color: #990000">,</span> <span style="color: #993399">56</span><span style="color: #990000">,</span> <span style="color: #993399">98</span><span style="color: #990000">,</span> <span style="color: #993399">5</span><span style="color: #990000">,</span> <span style="color: #993399">0</span><span style="color: #990000">,</span> <span style="color: #990000">-</span><span style="color: #993399">1</span><span style="color: #990000">,</span> <span style="color: #993399">8</span><span style="color: #FF0000">}</span><span style="color: #990000">;</span>
+<span style="font-weight: bold"><span style="color: #000000">func</span></span><span style="color: #990000">(</span>v<span style="color: #990000">);</span> <span style="font-style: italic"><span style="color: #9A1900">// [Args = {std::vector&lt;int&gt;&amp;}], &amp; &amp;&amp; == &amp;</span></span>
+<span style="font-weight: bold"><span style="color: #000000">func</span></span><span style="color: #990000">(</span>std<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">move</span></span><span style="color: #990000">(</span>v<span style="color: #990000">));</span> <span style="font-style: italic"><span style="color: #9A1900">// [Args = {std::vector&lt;int&gt;&amp;&amp;}], &amp;&amp; &amp;&amp; == &amp;&amp;</span></span>
+<span style="font-weight: bold"><span style="color: #000000">func</span></span><span style="color: #990000">(</span>std<span style="color: #990000">::</span>vector<span style="color: #FF0000">{</span><span style="color: #993399">7.0</span><span style="color: #990000">,</span> <span style="color: #993399">8.3</span><span style="color: #990000">,</span> <span style="color: #990000">-</span><span style="color: #993399">96.87</span><span style="color: #990000">,</span> <span style="color: #993399">7.1</span><span style="color: #FF0000">}</span><span style="color: #990000">);</span> <span style="font-style: italic"><span style="color: #9A1900">// [Args = {std::vector&lt;double&gt;}], () == &amp;&amp;</span></span></tt></pre></div></div>
+</li>
+</ul>
+</div></div>
+<div class="sect2 slide">
+<h1 id="_о_конструкторах">6.3. О конструкторах</h1>
 
 <div class="sectionbody">
 <div class="listingblock">
@@ -4361,404 +4757,337 @@ cmake
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><tt><span style="color: #990000">SRC :=</span> <span style="color: #009900">$(</span>wildcard src<span style="color: #990000">/*</span>.cpp<span style="color: #990000">)</span>
-<span style="color: #990000">HDR :=</span> <span style="color: #009900">$(</span>wildcard include<span style="color: #990000">/*</span>.h<span style="color: #990000">)</span>
-<span style="color: #990000">OBJ :=</span> <span style="color: #009900">$(</span>patsubst src<span style="color: #990000">/%</span>.cpp<span style="color: #990000">,</span>build<span style="color: #990000">/%</span>.o<span style="color: #990000">,</span><span style="color: #009900">$(SRC))</span>
-
-<span style="color: #990000">%</span>.o<span style="color: #990000">:</span> <span style="color: #990000">%</span>.cpp
-»»»»<span style="font-weight: bold"><span style="color: #000080">@g++ -c $&lt; -o $@</span></span>
-
-<span style="color: #990000">lib.a:</span> <span style="color: #009900">$(OBJ)</span>
-»»»»<span style="font-weight: bold"><span style="color: #000080">@ar -c $@</span></span> <span style="color: #009900">$^</span>
-
-<span style="color: #990000">app:</span> main.cpp lib.a
-»»»»g<span style="color: #990000">++</span> <span style="color: #009900">$^</span> -o <span style="color: #009900">$@</span>
-
-<span style="color: #990000">all:</span> app
-
-<span style="color: #990000">clean:</span>
-»»»»@rm -f <span style="color: #009900">$(OBJ)</span> app <span style="color: #990000">*</span>.a</tt></pre></div></div>
+<pre><tt><span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">A</span> <span style="color: #FF0000">{</span>
+<span style="font-weight: bold"><span style="color: #0000FF">public</span></span><span style="color: #990000">:</span>
+    <span style="font-weight: bold"><span style="color: #000000">A</span></span><span style="color: #990000">();</span> <span style="font-style: italic"><span style="color: #9A1900">// default constructor</span></span>
+    <span style="font-weight: bold"><span style="color: #000000">A</span></span><span style="color: #990000">(</span><span style="font-weight: bold"><span style="color: #0000FF">const</span></span> A<span style="color: #990000">&amp;);</span> <span style="font-style: italic"><span style="color: #9A1900">// copy constructor</span></span>
+    <span style="font-weight: bold"><span style="color: #000000">A</span></span><span style="color: #990000">(</span>A<span style="color: #990000">&amp;&amp;);</span> <span style="font-style: italic"><span style="color: #9A1900">// move constructor</span></span>
+    A<span style="color: #990000">&amp;</span> <span style="font-weight: bold"><span style="color: #0000FF">operator</span></span><span style="color: #990000">=(</span><span style="font-weight: bold"><span style="color: #0000FF">const</span></span> A<span style="color: #990000">&amp;);</span> <span style="font-style: italic"><span style="color: #9A1900">// copy assignment</span></span>
+    A<span style="color: #990000">&amp;</span> <span style="font-weight: bold"><span style="color: #0000FF">operator</span></span><span style="color: #990000">=(</span>A<span style="color: #990000">&amp;&amp;);</span> <span style="font-style: italic"><span style="color: #9A1900">// move assignment</span></span>
+    <span style="color: #990000">~</span><span style="font-weight: bold"><span style="color: #000000">A</span></span><span style="color: #990000">();</span> <span style="font-style: italic"><span style="color: #9A1900">// destructor</span></span>
+<span style="color: #FF0000">}</span></tt></pre></div></div>
+<ul class="">
+<li>
+<span>
+Порождающие операторы: конструкторы, присваивания, деструктор
+</span>
+</li>
+<li>
+<span>
+Деструктор почти всегда генерируется сам, его перегрузка ни на что не влияет
+</span>
+</li>
+<li>
+<span>
+Перегрузка move-конструктора или move-присваивания затрагивает все операции
+</span>
+</li>
+<li>
+<span>
+Перегрузка конструктора копирования или присваивания не затрагивает move-операции
+</span>
+</li>
+<li>
+<span>
+<code>= delete</code>&#8201;&#8212;&#8201;явное удаление порождающего оператора
+</span>
+</li>
+<li>
+<span>
+<code>= default</code>&#8201;&#8212;&#8201;попросить компилятор сгенерировать порождающий оператор
+</span>
+</li>
+<li>
+<span>
+Явное правило вывода конструктора: <code>template&lt;class T&gt; myclass(T&amp;&amp;, int) -&gt; myclass&lt;T&gt;;</code>
+</span>
+</li>
+</ul>
 </div></div>
 <div class="sect2 slide">
-<h1 id="_cmake">4.3. CMake</h1>
+<h1 id="_о_шаблонах">6.4. О шаблонах</h1>
 
 <div class="sectionbody">
 <ul class="">
 <li>
 <span>
-Шаг конфигурации (аналогичен старому подходу <code>./configure</code>)
+<code>template&lt;class... Ts&gt; class myclass;</code>&#8201;&#8212;&#8201;пакет шаблонных параметров
 </span>
 </li>
 <li>
 <span>
-Сборка привычными инструментами (<code>make</code>, <code>ninja</code>, <code>MSBuild</code>, &#8230;)
+<code>template&lt;class T&gt; constexpr T pi = T(3.1415926535897932385L);</code>&#8201;&#8212;&#8201;шаблонная переменная
 </span>
 </li>
 <li>
 <span>
-Запуск тестов через <code>ctest</code>
+<code>size_t N = sizeof...(Ts);</code>
 </span>
 </li>
 <li>
 <span>
-Пакетирование через <code>cpack</code> (tar.gz, deb, rpm, zip, &#8230;)
+Хранение аргументов в кортеже
+</span>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="font-weight: bold"><span style="color: #0000FF">template</span></span><span style="color: #990000">&lt;</span><span style="font-weight: bold"><span style="color: #0000FF">class</span></span><span style="color: #990000">...</span> Ts<span style="color: #990000">&gt;</span>
+<span style="font-weight: bold"><span style="color: #0000FF">struct</span></span> <span style="color: #008080">abc</span> <span style="color: #FF0000">{</span>
+    <span style="font-weight: bold"><span style="color: #000000">abc</span></span><span style="color: #990000">(</span>Ts<span style="color: #990000">...</span> ts<span style="color: #990000">):</span> <span style="font-weight: bold"><span style="color: #000000">x</span></span><span style="color: #990000">(</span>ts<span style="color: #990000">...)</span> <span style="color: #FF0000">{}</span>
+
+    std<span style="color: #990000">::</span><span style="color: #008080">tuple&lt;Ts...&gt;</span> x<span style="color: #990000">;</span>
+<span style="color: #FF0000">}</span></tt></pre></div></div>
+</li>
+</ul>
+</div></div>
+<div class="sect2 slide">
+<h1 id="_распаковка_кортежа_в_аргументы">6.5. Распаковка кортежа в аргументы</h1>
+
+<div class="sectionbody">
+<ul class="">
+<li>
+<span>
+Использование <code>std::integer_sequence</code>
+</span>
+</li>
+</ul>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;iostream&gt;</span>
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;tuple&gt;</span>
+<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;utility&gt;</span>
+
+<span style="font-weight: bold"><span style="color: #0000FF">template</span></span><span style="color: #990000">&lt;</span><span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">Stream</span><span style="color: #990000">,</span> <span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">Tuple</span><span style="color: #990000">,</span> size_t<span style="color: #990000">...</span> Is<span style="color: #990000">&gt;</span>
+Stream<span style="color: #990000">&amp;</span> <span style="font-weight: bold"><span style="color: #000000">func_impl</span></span><span style="color: #990000">(</span>Stream<span style="color: #990000">&amp;</span> os<span style="color: #990000">,</span> <span style="font-weight: bold"><span style="color: #0000FF">const</span></span> Tuple<span style="color: #990000">&amp;</span> t<span style="color: #990000">,</span> std<span style="color: #990000">::</span>index_sequence<span style="color: #990000">&lt;</span>Is<span style="color: #990000">...&gt;)</span>
+<span style="color: #FF0000">{</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">return</span></span> <span style="color: #990000">(</span>os <span style="color: #990000">&lt;&lt;</span> <span style="color: #990000">...</span> <span style="color: #990000">&lt;&lt;</span> std<span style="color: #990000">::</span>get<span style="color: #990000">&lt;</span>Is<span style="color: #990000">&gt;(</span>t<span style="color: #990000">));</span>
+<span style="color: #FF0000">}</span>
+
+<span style="font-style: italic"><span style="color: #9A1900">/*template&lt;class Stream, class... Ts&gt;</span></span>
+<span style="font-style: italic"><span style="color: #9A1900">Stream&amp; func1(Stream&amp; os, const std::tuple&lt;Ts...&gt;&amp; t)</span></span>
+<span style="font-style: italic"><span style="color: #9A1900">{</span></span>
+<span style="font-style: italic"><span style="color: #9A1900">    func_impl(os, t, std::index_sequence_for&lt;Ts...&gt;{});</span></span>
+<span style="font-style: italic"><span style="color: #9A1900">}*/</span></span>
+
+<span style="font-weight: bold"><span style="color: #0000FF">template</span></span><span style="color: #990000">&lt;</span><span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">Stream</span><span style="color: #990000">,</span> <span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">Tuple</span><span style="color: #990000">&gt;</span>
+Stream<span style="color: #990000">&amp;</span> <span style="font-weight: bold"><span style="color: #000000">func2</span></span><span style="color: #990000">(</span>Stream<span style="color: #990000">&amp;</span> os<span style="color: #990000">,</span> <span style="font-weight: bold"><span style="color: #0000FF">const</span></span> Tuple<span style="color: #990000">&amp;</span> t<span style="color: #990000">)</span>
+<span style="color: #FF0000">{</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">return</span></span> <span style="font-weight: bold"><span style="color: #000000">func_impl</span></span><span style="color: #990000">(</span>os<span style="color: #990000">,</span> t<span style="color: #990000">,</span> std<span style="color: #990000">::</span>make_index_sequence<span style="color: #990000">&lt;</span>std<span style="color: #990000">::</span>tuple_size_v<span style="color: #990000">&lt;</span>Tuple<span style="color: #990000">&gt;&gt;</span><span style="color: #FF0000">{}</span><span style="color: #990000">);</span>
+<span style="color: #FF0000">}</span>
+
+<span style="font-weight: bold"><span style="color: #0000FF">template</span></span><span style="color: #990000">&lt;</span><span style="font-weight: bold"><span style="color: #0000FF">class</span></span><span style="color: #990000">...</span> Ts<span style="color: #990000">&gt;</span>
+std<span style="color: #990000">::</span>ostream<span style="color: #990000">&amp;</span> <span style="font-weight: bold"><span style="color: #0000FF">operator</span></span><span style="color: #990000">&lt;&lt;(</span>std<span style="color: #990000">::</span>ostream<span style="color: #990000">&amp;</span> os<span style="color: #990000">,</span> <span style="font-weight: bold"><span style="color: #0000FF">const</span></span> std<span style="color: #990000">::</span>tuple<span style="color: #990000">&lt;</span>Ts<span style="color: #990000">...&gt;&amp;</span> t<span style="color: #990000">)</span>
+<span style="color: #FF0000">{</span>
+    <span style="font-style: italic"><span style="color: #9A1900">// return std::apply([&amp;os](const auto&amp;... xs) -&gt; decltype(auto) { return (os &lt;&lt; ... &lt;&lt; xs); }, t);</span></span>
+    <span style="font-weight: bold"><span style="color: #0000FF">return</span></span> <span style="font-weight: bold"><span style="color: #000000">func2</span></span><span style="color: #990000">(</span>os<span style="color: #990000">,</span> t<span style="color: #990000">);</span>
+<span style="color: #FF0000">}</span>
+
+<span style="color: #009900">int</span> <span style="font-weight: bold"><span style="color: #000000">main</span></span><span style="color: #990000">()</span>
+<span style="color: #FF0000">{</span>
+    std<span style="color: #990000">::</span>cout <span style="color: #990000">&lt;&lt;</span> std<span style="color: #990000">::</span>tuple<span style="color: #FF0000">{</span><span style="color: #993399">1</span><span style="color: #990000">,</span> <span style="color: #FF0000">' '</span><span style="color: #990000">,</span> <span style="color: #993399">2.3</span><span style="color: #990000">,</span> <span style="color: #FF0000">' '</span><span style="color: #990000">,</span> <span style="color: #FF0000">"lala"</span><span style="color: #FF0000">}</span> <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"</span><span style="color: #CC33CC">\n</span><span style="color: #FF0000">"</span><span style="color: #990000">;</span>
+<span style="color: #FF0000">}</span></tt></pre></div></div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre><code>1 2.3 lala</code></pre>
+</div></div>
+</div></div>
+<div class="sect2 slide">
+<h1 id="_операции_над_шаблонными_пакетами">6.6. Операции над шаблонными пакетами</h1>
+
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="font-weight: bold"><span style="color: #0000FF">template</span></span> <span style="color: #990000">&lt;</span><span style="font-weight: bold"><span style="color: #0000FF">typename</span></span><span style="color: #990000">...</span> bases<span style="color: #990000">&gt;</span>
+<span style="font-weight: bold"><span style="color: #0000FF">struct</span></span> <span style="color: #008080">X</span> <span style="color: #990000">:</span> bases<span style="color: #990000">...</span> <span style="color: #FF0000">{</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">using</span></span> X<span style="color: #990000">::</span>bases<span style="color: #990000">::</span>g<span style="color: #990000">...;</span>
+<span style="color: #FF0000">}</span><span style="color: #990000">;</span>
+<span style="color: #008080">X&lt;B, D&gt;</span> x<span style="color: #990000">;</span></tt></pre></div></div>
+<div class="paragraph"><p>Свёртки (наличие скобок важно)</p></div>
+<ul class="">
+<li>
+<span>
+<code>( pack op ... )</code>&#8201;&#8212;&#8201;свёртка слева
 </span>
 </li>
 <li>
 <span>
-Тьюринг-полный скриптовый язык
+<code>( pack op ... op init )</code>&#8201;&#8212;&#8201;свёртка слева с начальным значением
 </span>
 </li>
 <li>
 <span>
-Абстрагирование от операционной системы
+<code>( ... op pack )</code>&#8201;&#8212;&#8201;свёртка справа
+</span>
+</li>
+<li>
+<span>
+<code>( init op ... op pack )</code>&#8201;&#8212;&#8201;свёртка справа с начальным значением
+</span>
+</li>
+</ul>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="font-weight: bold"><span style="color: #0000FF">template</span></span><span style="color: #990000">&lt;</span><span style="font-weight: bold"><span style="color: #0000FF">typename</span></span> <span style="color: #008080">T</span><span style="color: #990000">,</span> <span style="font-weight: bold"><span style="color: #0000FF">typename</span></span><span style="color: #990000">...</span> Args<span style="color: #990000">&gt;</span>
+<span style="color: #009900">void</span> <span style="font-weight: bold"><span style="color: #000000">push_back_vec</span></span><span style="color: #990000">(</span>std<span style="color: #990000">::</span>vector<span style="color: #990000">&lt;</span>T<span style="color: #990000">&gt;&amp;</span> v<span style="color: #990000">,</span> Args<span style="color: #990000">&amp;&amp;...</span> args<span style="color: #990000">)</span>
+<span style="color: #FF0000">{</span>
+    <span style="color: #990000">(</span>v<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">push_back</span></span><span style="color: #990000">(</span>std<span style="color: #990000">::</span>forward<span style="color: #990000">&lt;</span>Args<span style="color: #990000">&gt;(</span>args<span style="color: #990000">)),</span> <span style="color: #990000">...);</span>
+<span style="color: #FF0000">}</span></tt></pre></div></div>
+</div></div>
+<div class="sect2 slide">
+<h1 id="_о_лямбда_выражениях">6.7. О лямбда-выражениях</h1>
+
+<div class="sectionbody">
+<div class="paragraph"><p><code>auto f = [a = 77, &amp;b](auto x) mutable -&gt; int { b = x - 78; return a++; }</code></p></div>
+<ul class="">
+<li>
+<span>
+Лямбда-выражения == функторы
+</span>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="font-weight: bold"><span style="color: #0000FF">struct</span></span> <span style="color: #008080">functor</span>
+<span style="color: #FF0000">{</span>
+    <span style="font-weight: bold"><span style="color: #000000">functor</span></span><span style="color: #990000">(</span><span style="color: #009900">int</span><span style="color: #990000">&amp;</span> b<span style="color: #990000">):</span> <span style="font-weight: bold"><span style="color: #000000">a_</span></span><span style="color: #990000">(</span><span style="color: #993399">77</span><span style="color: #990000">),</span> <span style="font-weight: bold"><span style="color: #000000">b_</span></span><span style="color: #990000">(</span>b<span style="color: #990000">)</span> <span style="color: #FF0000">{}</span>
+    <span style="color: #009900">int</span> <span style="font-weight: bold"><span style="color: #0000FF">operator</span></span><span style="color: #990000">()(</span><span style="color: #009900">int</span> x<span style="color: #990000">)</span> <span style="font-weight: bold"><span style="color: #0000FF">const</span></span>
+    <span style="color: #FF0000">{</span>
+        b_ <span style="color: #990000">=</span> x <span style="color: #990000">-</span> <span style="color: #993399">78</span><span style="color: #990000">;</span>
+        <span style="font-weight: bold"><span style="color: #0000FF">return</span></span> a_<span style="color: #990000">++;</span>
+    <span style="color: #FF0000">}</span>
+
+<span style="font-weight: bold"><span style="color: #0000FF">private</span></span><span style="color: #990000">:</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">mutable</span></span> <span style="color: #009900">int</span> a_<span style="color: #990000">;</span>
+    <span style="color: #009900">int</span><span style="color: #990000">&amp;</span> <span style="font-weight: bold"><span style="color: #0000FF">const</span></span> b_<span style="color: #990000">;</span>
+<span style="color: #FF0000">}</span> f<span style="color: #990000">;</span></tt></pre></div></div>
+</li>
+<li>
+<span>
+Невозможно узнать тип лямбда-выражений, т.е. <code>decltype(lambda) s = ...</code> не работает
+</span>
+</li>
+<li>
+<span>
+Чтобы лямбды были полностью объектами, надо заворачивать их в объект <code>std::function</code>
+</span>
+</li>
+<li>
+<span>
+Результат лямбды можно не писать, он будет выведен сам (кроме ссылок)
 </span>
 </li>
 </ul>
 </div></div>
 <div class="sect1 slide">
-<h1 id="_отладка_и_тестирование">5. Отладка и тестирование</h1>
+<h1 id="_следующие_стандарты">7. Следующие стандарты</h1>
 
 <div class="sectionbody">
 </div></div>
 <div class="sect2 slide">
-<h1 id="_отладка_программ">5.1. Отладка программ</h1>
+<h1 id="_концепты_и_ограничители">7.1. Концепты и ограничители</h1>
 
 <div class="sectionbody">
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="font-style: italic"><span style="color: #9A1900">// концепт: как описывать</span></span>
+<span style="font-weight: bold"><span style="color: #0000FF">template</span></span><span style="color: #990000">&lt;</span><span style="font-weight: bold"><span style="color: #0000FF">typename</span></span> <span style="color: #008080">T</span><span style="color: #990000">&gt;</span>
+<span style="color: #008080">concept</span> EqualityComparable <span style="color: #990000">=</span> <span style="font-weight: bold"><span style="color: #000000">requires</span></span><span style="color: #990000">(</span><span style="color: #008080">T</span> a<span style="color: #990000">,</span> <span style="color: #008080">T</span> b<span style="color: #990000">)</span>
+<span style="color: #FF0000">{</span>
+    <span style="color: #FF0000">{</span> a <span style="color: #990000">==</span> b <span style="color: #FF0000">}</span> <span style="color: #990000">-&gt;</span> <span style="color: #009900">bool</span><span style="color: #990000">;</span>
+<span style="color: #FF0000">}</span><span style="color: #990000">;</span>
+
+<span style="font-style: italic"><span style="color: #9A1900">// ограничитель: как применять</span></span>
+<span style="font-weight: bold"><span style="color: #0000FF">template</span></span><span style="color: #990000">&lt;</span><span style="color: #008080">EqualityComparable</span> T<span style="color: #990000">&gt;</span> <span style="color: #009900">void</span> <span style="font-weight: bold"><span style="color: #000000">f</span></span><span style="color: #990000">(</span>T<span style="color: #990000">&amp;&amp;);</span>
+
+<span style="font-style: italic"><span style="color: #9A1900">// или так применять</span></span>
+<span style="font-weight: bold"><span style="color: #0000FF">template</span></span><span style="color: #990000">&lt;</span><span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">T</span><span style="color: #990000">&gt;</span> <span style="color: #008080">requires</span> EqualityComparable<span style="color: #990000">&lt;</span>T<span style="color: #990000">&gt;</span> <span style="color: #009900">void</span> <span style="font-weight: bold"><span style="color: #000000">f</span></span><span style="color: #990000">(</span>T<span style="color: #990000">&amp;&amp;);</span></tt></pre></div></div>
 <ul class="">
 <li>
 <span>
-gdb
+Компактнее вывод об ошибке (с концептами&#8201;&#8212;&#8201;2 строки, без них&#8201;&#8212;&#8201;50+)
 </span>
 </li>
 <li>
 <span>
-nm, readelf, objdump
+По сигнатуре можно понять, какой тип данных ожидает функция
 </span>
 </li>
 <li>
 <span>
-valgrind
-</span>
-</li>
-<li>
-<span>
-gprof, gcov
-</span>
-</li>
-<li>
-<span>
-логирование
+Ещё один способ ужесточения типизации
 </span>
 </li>
 </ul>
 </div></div>
 <div class="sect2 slide">
-<h1 id="_тестирование">5.2. Тестирование</h1>
+<h1 id="_новое_в_stl">7.2. Новое в STL</h1>
 
 <div class="sectionbody">
 <ul class="">
 <li>
 <span>
-TDD, BDD&#8201;&#8212;&#8201;способы написания программы
+<code>std::bit_cast</code>&#8201;&#8212;&#8201;замена <code>reinterpret_cast</code>
 </span>
 </li>
 <li>
 <span>
-Юнит-тестирование &#8594; интеграционное тестирование &#8594; продакшен-тестирование
+Стандартные концепты (Integral, Assignable, Constructible, &#8230;)
 </span>
 </li>
 <li>
 <span>
-Статистика, бенчмарки
+Шаблонный тип может быть классом <code>template&lt;X x&gt; void func()</code> (есть ограничения, например, <code>operator&lt;=&gt;</code>)
 </span>
 </li>
 <li>
 <span>
-Fixture, test suite, mock, stub, &#8230;
+<code>operator&lt;=&gt;</code>&#8201;&#8212;&#8201;один оператор покрывает все отношения порядка и равенства (spaceship)
 </span>
 </li>
 <li>
 <span>
-Тестовые данные: генерация на месте, хранение в репозитории или брать удалённо с сервера?
+Все новые особенности языка можно проверить с помощью препроцессорных констант
 </span>
-</li>
-<li>
-<span>
-Границы между разными формами тестирования
-</span>
-</li>
-</ul>
-</div></div>
-<div class="sect1 slide">
-<h1 id="_системы_контроля_версий">6. Системы контроля версий</h1>
-
-<div class="sectionbody">
-</div></div>
-<div class="sect2 slide">
-<h1 id="_разновидности">6.1. Разновидности</h1>
-
-<div class="sectionbody">
 <ul class="">
 <li>
 <span>
-Version Control System (VCS)
-</span>
-</li>
-<li>
-<span>
-cvs
-</span>
-</li>
-<li>
-<span>
-subversion (svn)
-</span>
-</li>
-<li>
-<span>
-git
-</span>
-</li>
-<li>
-<span>
-mercurial (hg)
-</span>
-</li>
-<li>
-<span>
-<span class="line-through">лучше я в архивах, по старинке</span> НЕТ!
-</span>
-</li>
-<li>
-<span>
-необходимо учитывать версионность продукта
+например, <code>__cpp_lib_byte</code> говорит о наличии <code>std::byte</code>
 </span>
 </li>
 </ul>
-</div></div>
-<div class="sect2 slide">
-<h1 id="_основные_понятия_vcs">6.2. Основные понятия VCS</h1>
-
-<div class="sectionbody">
-<div class="tableblock">
-<table rules="none"
-width="100%"
-frame="void"
-cellspacing="0" cellpadding="4">
-<col width="50%" />
-<col width="50%" />
-<tbody>
-<tr>
-<td align="left" valign="top"><div><ul class="">
+</li>
 <li>
 <span>
-Концепция diff-patch
+<code>std::span</code>&#8201;&#8212;&#8201;декоратор над непрерывной областью памяти
 </span>
 </li>
 <li>
 <span>
-Изменения
+Ranges&#8201;&#8212;&#8201;поддержка концепции диапазонов из <code>boost::range</code>
 </span>
 </li>
 <li>
 <span>
-Коммит: изменения + сообщение + автор
-</span>
-</li>
-<li>
-<span>
-Ветка разработки
-</span>
-</li>
-<li>
-<span>
-Слияние (merge)
-</span>
-</li>
-<li>
-<span>
-Конфликты слияния
-</span>
-</li>
-<li>
-<span>
-pull, checkout, fetch, push
-</span>
-</li>
-</ul></div></td>
-<td align="left" valign="top"><p class="table"><span class="image">
-<img src="http://nvie.com/img/centr-decentr@2x.png" alt="http://nvie.com/img/centr-decentr@2x.png" />
-</span></p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div></div>
-<div class="sect1 slide">
-<h1 id="_программирование">7. Программирование</h1>
-
-<div class="sectionbody">
-</div></div>
-<div class="sect2 slide">
-<h1 id="_программирование_на_c">7.1. Программирование на C++</h1>
-
-<div class="sectionbody">
-<ul class="">
-<li>
-<span>
-Новый стандарт лучше старого?
-</span>
-</li>
-<li>
-<span>
-<span class="line-through">Лучше на C писать: понятнее и проще</span>
-</span>
-</li>
-<li>
-<span>
-Соблюдение стиля кода
-</span>
-</li>
-<li>
-<span>
-<span class="line-through">Исключения&#8201;&#8212;&#8201;это зло!</span> Но надо быть аккуратнее
-</span>
-</li>
-<li>
-<span>
-Концепции стабильного кода vs. понятный код
-</span>
-</li>
-<li>
-<span>
-Разработка по спирали
+<code>std::is_detected</code>&#8201;&#8212;&#8201;детектирование наличия метода/оператора класса
 </span>
 </li>
 </ul>
-</div></div>
-<div class="sect2 slide">
-<h1 id="_документация">7.2. Документация</h1>
-
-<div class="sectionbody">
-<ul class="">
-<li>
-<span>
-Зачем нужна документация, если её никто не читает?
-</span>
-</li>
-<li>
-<span>
-Пример документации&#8201;&#8212;&#8201;<a href="http://libfuse.github.io/doxygen">http://libfuse.github.io/doxygen</a>
-</span>
-</li>
-<li>
-<span>
-<code>doxygen</code>
-</span>
-</li>
-<li>
-<span>
-Написание презентаций, статей и книг
-</span>
-</li>
-<li>
-<span>
-L<sup>A</sup>T<sub>E</sub>X, groff, docx, reStructuredText, HTML, AsciiDoc, DocBook, markdown&#8201;&#8212;&#8201;в чём писать документацию?
-</span>
-</li>
-<li>
-<span>
-Генерация linux-документации <code>man</code>
-</span>
-</li>
-<li>
-<span>
-Свой велосипед?
-</span>
-</li>
-</ul>
-</div></div>
-<div class="sect2 slide">
-<h1 id="_разработка_в_команде">7.3. Разработка в команде</h1>
-
-<div class="sectionbody">
-<ul class="">
-<li>
-<span>
-Что такое команда и зачем она нужна?
-</span>
-</li>
-<li>
-<span>
-Распределение ролей в команде?
-</span>
-</li>
-<li>
-<span>
-Зачем нужен тот чувак, который ничего не делает?
-</span>
-</li>
-<li>
-<span>
-Стендапы, планнинги, грумминги, ретроспективы&#8201;&#8212;&#8201;зачем они нужны?
-</span>
-</li>
-<li>
-<span>
-Deadline, sprint, milestone, release, post-mortem&#8201;&#8212;&#8201;а это зачем?
-</span>
-</li>
-<li>
-<span>
-CTO, CEO, <span class="line-through">IPO</span>, PM, PO&#8201;&#8212;&#8201;кто это такие?
-</span>
-</li>
-<li>
-<span>
-<strong>Agile</strong>&#8201;&#8212;&#8201;выход из всех проблем
-</span>
-</li>
-<li>
-<span>
-Психология разработки
-</span>
-</li>
-</ul>
-</div></div>
-<div class="sect1 slide">
-<h1 id="_заключение">8. Заключение</h1>
-
-<div class="sectionbody">
-</div></div>
-<div class="sect2 slide">
-<h1 id="_бесплатные_ссылки">8.1. Бесплатные ссылки</h1>
-
-<div class="sectionbody">
-<div class="paragraph"><p>Бесплатные книжки про программирование в целом:</p></div>
-<div class="paragraph"><p><a href="https://github.com/EbookFoundation/free-programming-books">https://github.com/EbookFoundation/free-programming-books</a></p></div>
-</div></div>
-<div class="sect2 slide">
-<h1 id="_лабораторная_работа">8.2. Лабораторная работа</h1>
-
-<div class="sectionbody">
-<ol class="arabic">
-<li>
-<span>
-Заводим аккаунт на <a href="https://github.com">github</a>
-</span>
-</li>
-<li>
-<span>
-Возвращаемся на главную страницу проекта и переходим по ссылке с заданиями
-</span>
-</li>
-<li>
-<span>
-Задания можно делать в любом порядке
-</span>
-</li>
-</ol>
 </div></div>
 </body>
 </html>

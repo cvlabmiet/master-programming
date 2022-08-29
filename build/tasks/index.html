@@ -5,7 +5,7 @@
 <title>Master programming <br> Лабораторные работы</title>
 <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
 <meta name="copyright" content="Copyright &#169; Игорь Шаронов" />
-<meta name="generator" content="AsciiDoc 9.1.0" />
+<meta name="generator" content="AsciiDoc 10.2.0" />
 <style type="text/css">
 /* Shared CSS for AsciiDoc xhtml11 and html5 backends */
 
@@ -4021,6 +4021,23 @@ git push --force</code></pre>
 </li>
 </ul>
 </div></div>
+<div class="sect2 slide">
+<h1 id="_как_связаться_с_преподавателем">1.4. Как связаться с преподавателем</h1>
+
+<div class="sectionbody">
+<ul class="">
+<li>
+<span>
+При возникновении сложностей создаём задачу с вопросом в <strong>своём репозитории</strong> и вешаем на <code>igsha</code>
+</span>
+</li>
+<li>
+<span>
+По другим вопросам связаться с преподавателем можно по почте (доступна в Orioks)
+</span>
+</li>
+</ul>
+</div></div>
 <div class="sect1 slide">
 <h1 id="_инициализация_репозитория">2. Инициализация репозитория</h1>
 
@@ -4033,7 +4050,7 @@ git push --force</code></pre>
 <ul class="">
 <li>
 <span>
-По надёжным каналам связи высылается специальная ссылка-приглашение
+В новостной рассылке высылается специальная ссылка-приглашение
 </span>
 </li>
 <li>
@@ -4070,7 +4087,7 @@ git push --force</code></pre>
 </li>
 <li>
 <span>
-<strong>Не допускаются коммиты напрямую в мастер</strong>
+<strong>Не допускаются коммиты напрямую в ветку <code>main</code></strong>
 </span>
 </li>
 </ul>
@@ -9116,11 +9133,11 @@ SUVORK5CYII=" />
 </li>
 <li>
 <span>
-Перед началом работы над лабораторной сделайте отдельную ветку <strong>из <em>master</em> или <em>main</em></strong>:
+Перед началом работы над лабораторной сделайте отдельную ветку <strong>из <em>main</em></strong>:
 </span>
 <div class="listingblock">
 <div class="content">
-<pre><code>$ git checkout master
+<pre><code>$ git checkout main
 $ git checkout -b laba3</code></pre>
 </div></div>
 </li>
@@ -11243,75 +11260,6 @@ CMakeLists.txt &#8594; Change Cmake Settings:
 <li>
 <span>
 Если знаний маловато по работе с Visual Studio, ищем ответы на youtube
-</span>
-</li>
-</ul>
-</div></div>
-<div class="sect2 slide">
-<h1 id="_платформа_eclipse_che_браузер">5.6. Платформа Eclipse-Che (браузер)</h1>
-
-<div class="sectionbody">
-<ul class="">
-<li>
-<span>
-<a href="https://che.openshift.io">https://che.openshift.io</a>
-</span>
-</li>
-<li>
-<span>
-Достаточно только браузера
-</span>
-</li>
-<li>
-<span>
-Логиниться на ресурс через github-аккаунт
-</span>
-</li>
-<li>
-<span>
-Создаём workspace из файла <code>eclipse-che.yml</code> внутри репозитория с заданиями
-</span>
-</li>
-<li>
-<span>
-Внутри workspace:
-</span>
-<ul class="">
-<li>
-<span>
-Ничего не сохраняется, поэтому надо свои изменения пушить на сервер
-</span>
-</li>
-<li>
-<span>
-Перейти в настройки и установить почту для git (<code>&lt;username&gt;@users.noreply.github.com</code>)&#8201;&#8212;&#8201;это влияет на ошибку пуша своей ветки на github
-</span>
-</li>
-</ul>
-</li>
-<li>
-<span>
-Поддерживает intellisense (но не всё доступно, так как компиляция и GUI находятся в разных докерах)
-</span>
-</li>
-<li>
-<span>
-Поддерживает отладку (но не все объекты можно посмотреть)
-</span>
-</li>
-<li>
-<span>
-Поддерживает git: создание веток, коммит, пуш изменений на сервер
-</span>
-</li>
-<li>
-<span>
-Есть окно терминала для «тонкой» отладки
-</span>
-</li>
-<li>
-<span>
-См. видео лекцию по подготовке лабораторных работ
 </span>
 </li>
 </ul>

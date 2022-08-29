@@ -2,10 +2,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ru" xml:lang="ru">
 <head>
-<title>Master programming <br> Лекция №7 (Современный C++)</title>
+<title>Master programming. <br> Лекция №3 (CMake)</title>
 <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
 <meta name="copyright" content="Copyright &#169; Игорь Шаронов" />
-<meta name="generator" content="AsciiDoc 9.1.0" />
+<meta name="generator" content="AsciiDoc 10.2.0" />
 <style type="text/css">
 /* Shared CSS for AsciiDoc xhtml11 and html5 backends */
 
@@ -3837,1167 +3837,704 @@ setTimeout(w3c_slidy.hide_slides, 50);
 </head>
 <body class="article">
 <div id="header" class="slide">
-<h1>Master programming <br> Лекция №7 (Современный C++)</h1>
+<h1>Master programming. <br> Лекция №3 (CMake)</h1>
 <span id="author">Игорь Шаронов</span><br />
-<span id="revdate">2021-10-10</span>
+<span id="revdate">2021-11-06</span>
 </div>
 </div></div>
 <div class="sect1 slide">
-<h1 id="_обзор_стандартов">1. Обзор стандартов</h1>
+<h1 id="_основные_понятия">1. Основные понятия</h1>
 
 <div class="sectionbody">
 </div></div>
 <div class="sect2 slide">
-<h1 id="_возможности_языка_на_примере_стандарта_c_98">1.1. Возможности языка на примере стандарта C++98</h1>
+<h1 id="_артефакты_сборки">1.1. Артефакты сборки</h1>
 
 <div class="sectionbody">
 <ul class="">
 <li>
 <span>
-<a href="https://isocpp.org">https://isocpp.org</a>, <a href="https://cppreference.com">https://cppreference.com</a>
+<code>XXX.o</code>&#8201;&#8212;&#8201;объектный файл, <strong>единица компиляции</strong>
 </span>
 </li>
 <li>
 <span>
-STL (1994 г.)&#8201;&#8212;&#8201;не является частью языка, но входит в стандарт
+<code>libXXX.a</code>&#8201;&#8212;&#8201;архив объектных файлов, <strong>статическая библиотека</strong>
 </span>
 </li>
 <li>
 <span>
-Конструкторы и деструкторы
+<code>libXXX.so</code>&#8201;&#8212;&#8201;<strong>динамическая библиотека</strong>, имеет тот же уровень, что и исполнимый файл
 </span>
 </li>
 <li>
 <span>
-Наследование и полиморфизм
+<code>libXXX.so.2</code>&#8201;&#8212;&#8201;динамическая библиотека с версией.
+Версию обрабатывает загрузчик
 </span>
 </li>
 <li>
 <span>
-Шаблонные классы
-</span>
-</li>
-<li>
-<span>
-Шаблонные функции
-</span>
-</li>
-<li>
-<span>
-Специализации шаблонов и перегрузка функций
-</span>
-</li>
-<li>
-<span>
-Константность объектов, методов, выражений (<code>constexpr</code>)
-</span>
-</li>
-<li>
-<span>
-Пространства имён
-</span>
-</li>
-<li>
-<span>
-Исключения
-</span>
-</li>
-<li>
-<span>
-Строже типизирован, чем язык C
+ELF&#8201;&#8212;&#8201;формат представления исполняемых файлов и динамических библиотек
 </span>
 </li>
 </ul>
 </div></div>
 <div class="sect2 slide">
-<h1 id="_инкапсуляция_наследование_полиморфизм">1.2. Инкапсуляция, наследование, полиморфизм</h1>
+<h1 id="_зависимости_реального_времени">1.2. Зависимости реального времени</h1>
 
 <div class="sectionbody">
-<ul class="">
-<li>
-<span>
-Инкапсуляция позволяет прятать сущности:
-</span>
-<ul class="">
-<li>
-<span>
-Агрегированные объекты
-</span>
-</li>
-<li>
-<span>
-Наследование&#8201;&#8212;&#8201;способ реализации интерфейсов
-</span>
-</li>
-</ul>
-</li>
-<li>
-<span>
-Наследование&#8201;&#8212;&#8201;компилятор по типу класса определяет таблицу функций
-</span>
-</li>
-<li>
-<span>
-Наследование в полиморфизме:
-</span>
-<ul class="">
-<li>
-<span>
-Справедливо только для указателей или ссылок на базовый класс
-</span>
-</li>
-<li>
-<span>
-Работает в рантайме
-</span>
-</li>
-<li>
-<span>
-Компилятор не может по типу указателя базового класса определить тип объекта
-</span>
-</li>
-<li>
-<span>
-Каждый объект содержит указатель на таблицу функций (методов)
-</span>
-<ul class="">
-<li>
-<span>
-Таблицы функций используются одни и те же для одинаковых типов
-</span>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</div></div>
-<div class="sect2 slide">
-<h1 id="_перегрузка">1.3. Перегрузка</h1>
-
-<div class="sectionbody">
-<ul class="">
-<li>
-<span>
-Перегрузка функций возможна только в сигнатуре
-</span>
-<ul class="">
-<li>
-<span>
-Возвращаемое значение не входим в сигнатуру (в C++)
-</span>
-</li>
-</ul>
-</li>
-<li>
-<span>
-Специализация класса&#8201;&#8212;&#8201;это тоже вид перегрузки
-</span>
-</li>
-<li>
-<span>
-Частичная специализация класса
-</span>
-<ul class="">
-<li>
-<span>
-Частичной специализации функций не бывает (не отличимо от обычной перегрузки)
-</span>
-</li>
-</ul>
-</li>
-<li>
-<span>
-Можно делать только специализации
-</span>
-<ul class="">
-<li>
-<span>
-Более общий шаблонный класс останется пустым
-</span>
-</li>
-<li>
-<span>
-Сигнализация об ошибке будет только в том случае, если не подойдёт ни одна специализация
-</span>
-</li>
-</ul>
-</li>
-</ul>
-</div></div>
-<div class="sect2 slide">
-<h1 id="_sfinae">1.4. SFINAE</h1>
-
-<div class="sectionbody">
-<ul class="">
-<li>
-<span>
-<a href="http://en.cppreference.com/w/cpp/language/sfinae">Substitution Failure Is Not A Error</a>
-</span>
-</li>
-<li>
-<span>
-Если вывод специализации приводит к ошибке, то
-</span>
-<ul class="">
-<li>
-<span>
-данная специализация отбрасывается
-</span>
-</li>
-<li>
-<span>
-переходим к следующей специализации
-</span>
-</li>
-</ul>
-</li>
-</ul>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt><span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;iostream&gt;</span>
-<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;list&gt;</span>
-<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;tuple&gt;</span>
-<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;vector&gt;</span>
-
-<span style="font-weight: bold"><span style="color: #0000FF">struct</span></span> <span style="color: #008080">sfinae</span>
-<span style="color: #FF0000">{</span>
-<span style="font-weight: bold"><span style="color: #0000FF">private</span></span><span style="color: #990000">:</span>
-    <span style="font-weight: bold"><span style="color: #0000FF">template</span></span><span style="color: #990000">&lt;</span><span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">U</span><span style="color: #990000">&gt;</span>
-    <span style="font-weight: bold"><span style="color: #0000FF">constexpr</span></span> <span style="font-weight: bold"><span style="color: #0000FF">static</span></span> <span style="color: #009900">bool</span> <span style="font-weight: bold"><span style="color: #000000">f</span></span><span style="color: #990000">(</span><span style="font-weight: bold"><span style="color: #0000FF">typename</span></span> <span style="color: #008080">U</span><span style="color: #990000">::</span>value_type<span style="color: #990000">*)</span>
-    <span style="color: #FF0000">{</span>
-        <span style="font-weight: bold"><span style="color: #0000FF">return</span></span> <span style="font-weight: bold"><span style="color: #0000FF">true</span></span><span style="color: #990000">;</span>
-    <span style="color: #FF0000">}</span>
-
-    <span style="font-weight: bold"><span style="color: #0000FF">template</span></span><span style="color: #990000">&lt;</span><span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">U</span><span style="color: #990000">&gt;</span>
-    <span style="font-weight: bold"><span style="color: #0000FF">constexpr</span></span> <span style="font-weight: bold"><span style="color: #0000FF">static</span></span> <span style="color: #009900">bool</span> <span style="font-weight: bold"><span style="color: #000000">f</span></span><span style="color: #990000">(...)</span>
-    <span style="color: #FF0000">{</span>
-        <span style="font-weight: bold"><span style="color: #0000FF">return</span></span> <span style="font-weight: bold"><span style="color: #0000FF">false</span></span><span style="color: #990000">;</span>
-    <span style="color: #FF0000">}</span>
-
-<span style="font-weight: bold"><span style="color: #0000FF">public</span></span><span style="color: #990000">:</span>
-    <span style="font-weight: bold"><span style="color: #0000FF">template</span></span><span style="color: #990000">&lt;</span><span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">T</span><span style="color: #990000">&gt;</span>
-    <span style="font-weight: bold"><span style="color: #0000FF">constexpr</span></span> <span style="font-weight: bold"><span style="color: #0000FF">static</span></span> <span style="color: #009900">bool</span> is_container <span style="color: #990000">=</span> f<span style="color: #990000">&lt;</span>T<span style="color: #990000">&gt;(</span>nullptr<span style="color: #990000">);</span>
-<span style="color: #FF0000">}</span><span style="color: #990000">;</span>
-
-<span style="color: #009900">int</span> <span style="font-weight: bold"><span style="color: #000000">main</span></span><span style="color: #990000">()</span>
-<span style="color: #FF0000">{</span>
-    std<span style="color: #990000">::</span>cout <span style="color: #990000">&lt;&lt;</span> std<span style="color: #990000">::</span>boolalpha<span style="color: #990000">;</span>
-
-    <span style="font-weight: bold"><span style="color: #0000FF">auto</span></span> types <span style="color: #990000">=</span> std<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">make_tuple</span></span><span style="color: #990000">(</span>std<span style="color: #990000">::</span>vector<span style="color: #990000">&lt;</span><span style="color: #009900">int</span><span style="color: #990000">&gt;</span><span style="color: #FF0000">{}</span><span style="color: #990000">,</span> std<span style="color: #990000">::</span>list<span style="color: #990000">&lt;</span><span style="color: #009900">double</span><span style="color: #990000">&gt;</span><span style="color: #FF0000">{}</span><span style="color: #990000">,</span> <span style="color: #009900">int</span><span style="color: #FF0000">{}</span><span style="color: #990000">,</span> <span style="font-weight: bold"><span style="color: #0000FF">static_cast</span></span><span style="color: #990000">&lt;</span><span style="font-weight: bold"><span style="color: #0000FF">const</span></span> <span style="color: #009900">char</span><span style="color: #990000">*&gt;(</span>nullptr<span style="color: #990000">));</span>
-    std<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">apply</span></span><span style="color: #990000">([](</span><span style="font-weight: bold"><span style="color: #0000FF">auto</span></span><span style="color: #990000">...</span> xs<span style="color: #990000">)</span> <span style="color: #FF0000">{</span>
-        <span style="color: #990000">((</span>std<span style="color: #990000">::</span>cout <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"Is a container? "</span> <span style="color: #990000">&lt;&lt;</span> sfinae<span style="color: #990000">::</span>is_container<span style="color: #990000">&lt;</span><span style="font-weight: bold"><span style="color: #0000FF">decltype</span></span><span style="color: #990000">(</span>xs<span style="color: #990000">)&gt;</span> <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"</span><span style="color: #CC33CC">\n</span><span style="color: #FF0000">"</span><span style="color: #990000">),</span> <span style="color: #990000">...);</span>
-    <span style="color: #FF0000">}</span><span style="color: #990000">,</span> types<span style="color: #990000">);</span>
-<span style="color: #FF0000">}</span></tt></pre></div></div>
-<div class="listingblock">
-<div class="title">Output</div>
 <div class="content">
-<pre><code>Is a container? true
-Is a container? true
-Is a container? false
-Is a container? false</code></pre>
+<pre><code>[nix-shell] % ldd /nix/store/9f89z51na7w931aja8lqlmhqny9h16cj-gnugrep-3.1/bin/grep
+    linux-vdso.so.1 (0x00007ffc5cde0000)
+    libpcre.so.1 =&gt; /nix/store/pcre-8.42/lib/libpcre.so.1 (0x00007f48f3e86000)
+    libc.so.6 =&gt; /nix/store/glibc-2.27/lib/libc.so.6 (0x00007f48f3ad2000)
+    libpthread.so.0 =&gt; /nix/store/glibc-2.27/lib/libpthread.so.0 (0x00007f48f38b3000)
+    /nix/store/glibc-2.27/lib/ld-linux-x86-64.so.2 =&gt; /nix/store/glibc-2.27/lib64/ld-linux-x86-64.so.2 (0x00007f48f40f8000)</code></pre>
 </div></div>
-</div></div>
-<div class="sect2 slide">
-<h1 id="_шаблоны">1.5. Шаблоны</h1>
-
-<div class="sectionbody">
 <ul class="">
 <li>
 <span>
-Уровень компиляции
+<code>ld-linux</code>&#8201;&#8212;&#8201;загрузчик динамических библиотек
 </span>
 </li>
 <li>
 <span>
-<code>template&lt;class T&gt; int func()</code>, где <code>T</code>&#8201;&#8212;&#8201;шаблонный параметр
+<code>LD_LIBRARY_PATH</code>&#8201;&#8212;&#8201;добавочные пути поиска динамических библиотек
 </span>
 </li>
 <li>
 <span>
-<code>func&lt;int&gt;()</code>, где <code>int</code>&#8201;&#8212;&#8201;аргумент шаблона
+<code>rpath</code>&#8201;&#8212;&#8201;добавочные пути поиска внутри ELF-файла
 </span>
 </li>
 <li>
 <span>
-Параметр шаблона может быть не-типовым (<code>int</code>, <code>char</code>, <code>short</code>, &#8230;)
-</span>
-<ul class="">
-<li>
-<span>
-<code>template&lt;size_t N&gt; int get()</code>
-</span>
-</li>
-<li>
-<span>
-Исключения: это не указатель и не тип <code>double</code> или <code>float</code>
-</span>
-</li>
-</ul>
-</li>
-<li>
-<span>
-Специализация функции&#8201;&#8212;&#8201;<code>template&lt;&gt; int func&lt;float&gt;()</code>
-</span>
-</li>
-</ul>
-</div></div>
-<div class="sect1 slide">
-<h1 id="_обзор_стандарта_c_03">2. Обзор стандарта C++03</h1>
-
-<div class="sectionbody">
-</div></div>
-<div class="sect2 slide">
-<h1 id="_нововведения">2.1. Нововведения</h1>
-
-<div class="sectionbody">
-<ul class="">
-<li>
-<span>
-Развивается библиотека Boost
-</span>
-</li>
-<li>
-<span>
-Technical Report
-</span>
-</li>
-<li>
-<span>
-Больше особо нечем гордиться
-</span>
-</li>
-</ul>
-</div></div>
-<div class="sect1 slide">
-<h1 id="_обзор_стандарта_c_11">3. Обзор стандарта C++11</h1>
-
-<div class="sectionbody">
-</div></div>
-<div class="sect2 slide">
-<h1 id="_новые_возможности_языка">3.1. Новые возможности языка</h1>
-
-<div class="sectionbody">
-<ul class="">
-<li>
-<span>
-Ключевое слово <code>auto</code>
-</span>
-<ul class="">
-<li>
-<span>
-<code>int k;</code> == <code>decltype(k) v;</code>
-</span>
-</li>
-</ul>
-</li>
-<li>
-<span>
-Возвращаемое значение может быть написано после имени функции <code>auto func(char x) -&gt; int;</code>
-</span>
-</li>
-<li>
-<span>
-Появление неименнованных функций (лямбда-выражения)
-</span>
-<ul class="">
-<li>
-<span>
-<code>auto f = [](int x) -&gt; double { return std::pow(x, 1.35); };</code>
-</span>
-</li>
-<li>
-<span>
-<code>[a, &amp;b, =, &amp;]</code>&#8201;&#8212;&#8201;замыкание области видимости: по значению, по ссылке, замыкания всей области видимости
-</span>
-</li>
-</ul>
-</li>
-<li>
-<span>
-<code>constexpr</code>&#8201;&#8212;&#8201;функция выполнения на уровне компиляции <code>int n[func(79)]</code>
-</span>
-</li>
-<li>
-<span>
-Универсальная инициализация через <code>{}</code>
-</span>
-<ul class="">
-<li>
-<span>
-<code>myclass s(7, 9, 8)</code> и <code>myclass s{7, 9, 8}</code>&#8201;&#8212;&#8201;одно и то же
-</span>
-</li>
-<li>
-<span>
-теперь структуры без конструктора и с конструктором могут быть проинициализированы одинаково
-</span>
-</li>
-</ul>
-</li>
-<li>
-<span>
-xvalue, rvalue, prvalue&#8201;&#8212;&#8201;move-нотации
-</span>
-</li>
-<li>
-<span>
-Цикл по коллекции <code>for (const auto&amp; x : array) { ... }</code>
+<code>LD_PRELOAD</code>&#8201;&#8212;&#8201;способ перегрузки функции динамической библиотеке
 </span>
 </li>
 </ul>
 </div></div>
 <div class="sect2 slide">
-<h1 id="_новые_возможности_языка_продолжение">3.2. Новые возможности языка (продолжение)</h1>
+<h1 id="_этапы_сборки_программ_и_библиотек">1.3. Этапы сборки программ и библиотек</h1>
 
 <div class="sectionbody">
-<ul class="">
+<ol class="arabic">
 <li>
 <span>
-<code>override</code>, <code>final</code>&#8201;&#8212;&#8201;помогает отлавливать неправильные переопределения в полиморфизме
+Препроцессинг&#8201;&#8212;&#8201;замена <code>#define</code>, <code>#include</code> и макросов
 </span>
 </li>
 <li>
 <span>
-<code>noexcept</code>&#8201;&#8212;&#8201;постепенный отказ от перечисления исключений в сигнатуре
+Компиляция&#8201;&#8212;&#8201;получение объектного кода
 </span>
 </li>
 <li>
 <span>
-<code>nullptr</code> вместо <code>NULL</code> и введение <code>nullptr_t</code>
+Архивирование (необязательно)&#8201;&#8212;&#8201;получение статической библиотеки
 </span>
 </li>
 <li>
 <span>
-<code>enum class</code> (всё ещё нет автоматического преобразования в строку)
+Линковка&#8201;&#8212;&#8201;сборка всего в исполняемый файл или динамическую библиотек
 </span>
 </li>
-<li>
-<span>
-<code>static_assert</code>&#8201;&#8212;&#8201;ассерт на уровне компиляции
-</span>
-</li>
-<li>
-<span>
-<code>alignas(T)</code>&#8201;&#8212;&#8201;выравнивание данных как у <code>T</code>
-</span>
-</li>
-<li>
-<span>
-<strong>Вариативные шаблоны</strong>
-</span>
-</li>
-</ul>
+</ol>
 </div></div>
 <div class="sect2 slide">
-<h1 id="_расширение_stl">3.3. Расширение STL</h1>
+<h1 id="_пример_этапов_сборки">1.4. Пример этапов сборки</h1>
 
 <div class="sectionbody">
-<ul class="">
-<li>
-<span>
-<code>std::tuple</code>, <code>std::array</code>, <code>std::unordered_map/set</code>, <code>std::chrono</code>
-</span>
-</li>
-<li>
-<span>
-<code>std::thread</code>, <code>std::mutex</code>, <code>std::conditional_variable</code>, <code>std::atomic</code> и <code>thread_local</code>
-</span>
-</li>
-<li>
-<span>
-Методы <code>emplace</code>
-</span>
-</li>
-<li>
-<span>
-<code>std::shared_ptr</code>, <code>std::weak_ptr</code>, <code>std::unique_ptr</code>
-</span>
-</li>
-<li>
-<span>
-<code>std::function</code>
-</span>
-</li>
-<li>
-<span>
-<code>std::future</code>, <code>std::promise</code>
-</span>
-</li>
-<li>
-<span>
-<code>std::hash</code>
-</span>
-</li>
-<li>
-<span>
-<code>std::type_index</code>
-</span>
-</li>
-<li>
-<span>
-&#8230;
-</span>
-</li>
-</ul>
-</div></div>
-<div class="sect1 slide">
-<h1 id="_обзор_стандарта_c_14">4. Обзор стандарта C++14</h1>
-
-<div class="sectionbody">
-</div></div>
-<div class="sect2 slide">
-<h1 id="_новые_возможности_языка_2">4.1. Новые возможности языка</h1>
-
-<div class="sectionbody">
-<ul class="">
-<li>
-<span>
-Автоматический вывод возвращаемого значения <code>auto func();</code>
-</span>
-</li>
-<li>
-<span>
-<code>decltype(auto)</code>&#8201;&#8212;&#8201;там, где <code>auto</code> отбрасывает слишком много
-</span>
-</li>
-<li>
-<span>
-Шаблонные переменные <code>template&lt;class T&gt; T xxx = T(2.78962161L);</code>
-</span>
-</li>
-<li>
-<span>
-Агрегатная инициализация
-</span>
-<div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt><span style="font-weight: bold"><span style="color: #0000FF">struct</span></span> <span style="color: #008080">abc</span>
-<span style="color: #FF0000">{</span>
-    <span style="color: #009900">int</span> x <span style="color: #990000">=</span> <span style="color: #993399">47</span><span style="color: #990000">;</span>
-    <span style="color: #009900">bool</span> f <span style="color: #990000">=</span> <span style="font-weight: bold"><span style="color: #0000FF">true</span></span><span style="color: #990000">;</span>
-    std<span style="color: #990000">::</span><span style="color: #008080">string</span> s <span style="color: #990000">=</span> <span style="color: #FF0000">"abc"</span><span style="color: #990000">;</span>
-<span style="color: #FF0000">}</span><span style="color: #990000">;</span></tt></pre></div></div>
-</li>
-<li>
-<span>
-Литералы двоичных чисел и разделители разрядов <code>0b10110</code>, <code>100'500</code>
-</span>
-</li>
-<li>
-<span>
-Обобщённые лямбда-выражения <code>[](auto x) { return x*x + 1; }</code>
-</span>
-</li>
-<li>
-<span>
-Атрибут <code>[[deprecated]]</code>
-</span>
-</li>
-</ul>
-</div></div>
-<div class="sect2 slide">
-<h1 id="_нововведения_в_stl">4.2. Нововведения в STL</h1>
-
-<div class="sectionbody">
-<ul class="">
-<li>
-<span>
-Пользовательские литералы <code>auto dur = 60s;</code>
-</span>
-</li>
-<li>
-<span>
-<code>std::cbegin/std::cend</code>
-</span>
-</li>
-<li>
-<span>
-<code>std::make_index_sequence</code> для <code>std::integral_constant</code> полезен при разворачивании кортежа в аргументы
-</span>
-</li>
-</ul>
-</div></div>
-<div class="sect1 slide">
-<h1 id="_обзор_стандарта_c_17">5. Обзор стандарта C++17</h1>
-
-<div class="sectionbody">
-</div></div>
-<div class="sect2 slide">
-<h1 id="_новые_возможности_языка_3">5.1. Новые возможности языка</h1>
-
-<div class="sectionbody">
-<ul class="">
-<li>
-<span>
-Упакованные выражения <code>template&lt;class... Ts&gt; bool foo(Ts... args) { return (args &amp;&amp; ...); }</code>
-</span>
-</li>
-<li>
-<span>
-Инициализация переменной в <code>if</code> и <code>switch</code>: <code>if (auto a = getA(); a.isValid()) ...</code>
-</span>
-</li>
-<li>
-<span>
-Автоматический вывод аргументов шаблона класса <code>std::vector v{{7, 8, 9}}</code>
-</span>
-</li>
-<li>
-<span>
-Structured binding declarations <code>const auto&amp; [x, y] = mystruct_object;</code>
-</span>
-</li>
-<li>
-<span>
-<code>[[fallthrough]]</code>, <code>[[nodiscard]]</code>, <code>[[maybe_unused]]</code>
-</span>
-</li>
-<li>
-<span>
-Вложенные пространства имён <code>namespace A::B {}</code> == <code>namespace A { namespace B {} }</code>
-</span>
-</li>
-<li>
-<span>
-<code>if constexpr</code> взамен <code>std::enable_if</code> и SFINAE
-</span>
-</li>
-</ul>
-</div></div>
-<div class="sect2 slide">
-<h1 id="_нововведения_в_stl_2">5.2. Нововведения в STL</h1>
-
-<div class="sectionbody">
-<ul class="">
-<li>
-<span>
-<code>std::optional</code>, <code>std::variant</code>, <code>std::any</code>
-</span>
-</li>
-<li>
-<span>
-Поддержка параллельных алгоритмов
-</span>
-</li>
-<li>
-<span>
-Символьные литералы для UTF-8 <code>u8</code>, <code>u</code>, <code>U</code>
-</span>
-</li>
-<li>
-<span>
-<code>std::filesystem</code>
-</span>
-</li>
-<li>
-<span>
-<code>std::string_view</code>
-</span>
-</li>
-<li>
-<span>
-<code>hardware_constructive_interference_size</code> и <code>hardware_destructive_interference_size</code>&#8201;&#8212;&#8201;влияние аппаратного кеша
-</span>
-</li>
-<li>
-<span>
-<code>std::byte</code>
-</span>
-</li>
-</ul>
-</div></div>
-<div class="sect1 slide">
-<h1 id="_обзор_современных_особенностей_языка_c">6. Обзор современных особенностей языка C++</h1>
-
-<div class="sectionbody">
-</div></div>
-<div class="sect2 slide">
-<h1 id="_о_using_директиве">6.1. О using директиве</h1>
-
-<div class="sectionbody">
-<ul class="">
-<li>
-<span>
-Алиас типа: <code>using type_int = int;</code>
-</span>
-</li>
-<li>
-<span>
-Шаблонные алиас типа: <code>template&lt;class T&gt; using my_vector = std::vector&lt;T&gt;;</code>
-</span>
-</li>
-<li>
-<span>
-Расширение области видимости:
-</span>
-<ul class="">
-<li>
-<span>
-пространства имён <code>using namespace std;</code>
-</span>
-</li>
-<li>
-<span>
-методов базового класса <code>using Base::method1;</code>
-</span>
-<ul class="">
-<li>
-<span>
-попадают все сигнатуры <code>method1</code>
-</span>
-</li>
-</ul>
-</li>
-<li>
-<span>
-конструкторов <code>using Base::Base</code>
-</span>
-</li>
-<li>
-<span>
-если класс шаблонный, необходимо указать имя самого класса <code>using Derived::Base::Base;</code>
-</span>
-</li>
-<li>
-<span>
-наследуются все конструкторы из <code>Base</code>, кроме автогенерируемых конструкторов <code>Base</code>
-</span>
-</li>
-</ul>
-</li>
-<li>
-<span>
-Проблема пересечения имён
-</span>
-</li>
-</ul>
-</div></div>
-<div class="sect2 slide">
-<h1 id="_о_rvalue">6.2. О rvalue</h1>
-
-<div class="sectionbody">
-<ul class="">
-<li>
-<span>
-Copy elision
-</span>
-<div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt><span style="color: #008080">T</span> <span style="font-weight: bold"><span style="color: #000000">f</span></span><span style="color: #990000">()</span> <span style="color: #FF0000">{</span> <span style="font-weight: bold"><span style="color: #0000FF">return</span></span> <span style="font-weight: bold"><span style="color: #000000">T</span></span><span style="color: #990000">();</span> <span style="color: #FF0000">}</span>
-<span style="color: #008080">T</span> x <span style="color: #990000">=</span> <span style="font-weight: bold"><span style="color: #000000">f</span></span><span style="color: #990000">();</span> <span style="font-style: italic"><span style="color: #9A1900">// конструктор копирования не будет вызван</span></span></tt></pre></div></div>
-</li>
-<li>
-<span>
-Типы ссылок
-</span>
-<div class="tableblock">
-<table rules="none"
-width="100%"
-frame="void"
-cellspacing="0" cellpadding="4">
-<col width="66%" />
-<col width="33%" />
-<tbody>
-<tr>
-<td align="left" valign="top"><div><ul class="">
-<li>
-<span>
-lvalue&#8201;&#8212;&#8201;обычная ссылка <code>&amp;</code> или то, что <strong>имеет имя</strong>
-</span>
-</li>
-<li>
-<span>
-rvalue&#8201;&#8212;&#8201;<code>&amp;&amp;</code>, используется чтобы "переместить" содержимое объекта
-</span>
-</li>
-<li>
-<span>
-prvalue&#8201;&#8212;&#8201;результат выражения или то, что <strong>не имеет имени</strong> (42, например)
-</span>
-</li>
-<li>
-<span>
-xvalue&#8201;&#8212;&#8201;временный объект, который имеет имя, но является rvalue
-</span>
-</li>
-<li>
-<span>
-glvalue&#8201;&#8212;&#8201;обобщение xvalue и lvalue
-</span>
-</li>
-</ul></div></td>
-<td align="left" valign="top"><div><div class="imageblock">
+<div class="imageblock">
 <div class="content"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<!-- Generated by graphviz version 2.47.3 (0)
+<!-- Generated by graphviz version 5.0.0 (0)
  -->
-<!-- Title: G Pages: 1 -->
-<svg width="405pt" height="207pt"
- viewBox="0.00 0.00 404.62 207.28" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 203.28)">
-<title>G</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-203.28 400.62,-203.28 400.62,4 -4,4"/>
-<!-- expression -->
+<!-- Pages: 1 -->
+<svg width="1404pt" height="444pt"
+ viewBox="0.00 0.00 1403.90 444.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 440)">
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-440 1399.9,-440 1399.9,4 -4,4"/>
+<g id="clust1" class="cluster">
+<title>cluster0</title>
+<polygon fill="#ebebeb" stroke="black" stroke-dasharray="1,5" points="8,-256 8,-385 337,-385 337,-256 8,-256"/>
+<text text-anchor="middle" x="172.5" y="-369.8" font-family="Times,serif" font-size="14.00">Уровень исполнения</text>
+</g>
+<g id="clust3" class="cluster">
+<title>cluster1</title>
+<polygon fill="none" stroke="black" stroke-dasharray="1,5" points="396,-107 396,-428 772.9,-428 772.9,-107 396,-107"/>
+<text text-anchor="middle" x="584.45" y="-412.8" font-family="Times,serif" font-size="14.00">Уровень компиляции</text>
+</g>
+<g id="clust6" class="cluster">
+<title>cluster2</title>
+<polygon fill="none" stroke="black" stroke-dasharray="1,5" points="873.9,-8 873.9,-407 1387.9,-407 1387.9,-8 873.9,-8"/>
+<text text-anchor="middle" x="1130.9" y="-391.8" font-family="Times,serif" font-size="14.00">Уровень кода</text>
+</g>
+<g id="clust7" class="cluster">
+<title>cluster3</title>
+<polygon fill="none" stroke="black" stroke-dasharray="1,5" points="1145.9,-16 1145.9,-193 1379.9,-193 1379.9,-16 1145.9,-16"/>
+<text text-anchor="middle" x="1262.9" y="-177.8" font-family="Times,serif" font-size="14.00">Уровень препроцессинга</text>
+</g>
+<!-- app0 -->
 <g id="node1" class="node">
-<title>expression</title>
-<ellipse fill="none" stroke="black" cx="191.15" cy="-178.07" rx="89.61" ry="21.43"/>
-<text text-anchor="middle" x="191.15" y="-173.07" font-family="Times,serif" font-size="20.00">expression</text>
+<title>app0</title>
+<polygon fill="none" stroke="black" points="83,-354 16,-354 16,-318 83,-318 83,-354"/>
+<text text-anchor="middle" x="49.5" y="-331" font-family="Times,serif" font-size="20.00">app0</text>
 </g>
-<!-- glvalue -->
-<g id="node2" class="node">
-<title>glvalue</title>
-<ellipse fill="none" stroke="black" cx="121.15" cy="-99.64" rx="64.19" ry="21.43"/>
-<text text-anchor="middle" x="121.15" y="-94.64" font-family="Times,serif" font-size="20.00">glvalue</text>
-</g>
-<!-- expression&#45;&gt;glvalue -->
-<g id="edge1" class="edge">
-<title>expression&#45;&gt;glvalue</title>
-<path fill="none" stroke="black" d="M172.76,-156.99C164.52,-147.98 154.67,-137.23 145.8,-127.54"/>
-<polygon fill="black" stroke="black" points="148.28,-125.07 138.94,-120.06 143.11,-129.8 148.28,-125.07"/>
-</g>
-<!-- rvalue -->
+<!-- liba -->
 <g id="node3" class="node">
-<title>rvalue</title>
-<ellipse fill="Aquamarine" stroke="black" cx="261.15" cy="-99.64" rx="57.05" ry="21.43"/>
-<text text-anchor="middle" x="261.15" y="-94.64" font-family="Times,serif" font-size="20.00">rvalue</text>
+<title>liba</title>
+<polygon fill="none" stroke="black" points="329,-344 246,-344 246,-308 329,-308 329,-344"/>
+<text text-anchor="middle" x="287.5" y="-321" font-family="Times,serif" font-size="20.00">liba.so</text>
 </g>
-<!-- expression&#45;&gt;rvalue -->
-<g id="edge2" class="edge">
-<title>expression&#45;&gt;rvalue</title>
-<path fill="none" stroke="black" d="M209.55,-156.99C217.79,-147.98 227.64,-137.23 236.51,-127.54"/>
-<polygon fill="black" stroke="black" points="239.2,-129.8 243.37,-120.06 234.03,-125.07 239.2,-129.8"/>
+<!-- app0&#45;&gt;liba -->
+<g id="edge1" class="edge">
+<title>app0&#45;&gt;liba</title>
+<path fill="none" stroke="mediumaquamarine" d="M83.31,-334.61C122.76,-332.94 189.4,-330.11 235.55,-328.16"/>
+<polygon fill="mediumaquamarine" stroke="mediumaquamarine" points="235.81,-331.65 245.65,-327.73 235.51,-324.66 235.81,-331.65"/>
+<text text-anchor="middle" x="164.5" y="-339" font-family="Times,serif" font-size="20.00">ld&#45;linux, link</text>
 </g>
-<!-- lvalue -->
+<!-- libc -->
 <g id="node4" class="node">
-<title>lvalue</title>
-<ellipse fill="Aquamarine" stroke="black" cx="55.15" cy="-21.21" rx="55.31" ry="21.43"/>
-<text text-anchor="middle" x="55.15" y="-16.21" font-family="Times,serif" font-size="20.00">lvalue</text>
+<title>libc</title>
+<ellipse fill="none" stroke="black" cx="473.3" cy="-256" rx="50.82" ry="21.43"/>
+<text text-anchor="middle" x="473.3" y="-251" font-family="Times,serif" font-size="20.00">libc.a</text>
 </g>
-<!-- glvalue&#45;&gt;lvalue -->
-<g id="edge3" class="edge">
-<title>glvalue&#45;&gt;lvalue</title>
-<path fill="none" stroke="black" d="M104.16,-78.96C96.32,-69.88 86.9,-58.97 78.42,-49.15"/>
-<polygon fill="black" stroke="black" points="81.05,-46.84 71.86,-41.56 75.75,-51.42 81.05,-46.84"/>
+<!-- app0&#45;&gt;libc -->
+<g id="edge18" class="edge">
+<title>app0&#45;&gt;libc</title>
+<path fill="none" stroke="blue" d="M74.07,-317.98C77.23,-315.13 80.3,-312.1 83,-309 92.96,-297.56 87.99,-287.8 101,-280 199.76,-220.81 341,-232.41 417.68,-244.92"/>
+<polygon fill="blue" stroke="blue" points="417.16,-248.38 427.61,-246.6 418.33,-241.48 417.16,-248.38"/>
+<text text-anchor="middle" x="287.5" y="-242" font-family="Times,serif" font-size="20.00">link</text>
 </g>
-<!-- xvalue -->
+<!-- obj5 -->
+<g id="node11" class="node">
+<title>obj5</title>
+<ellipse fill="none" stroke="black" cx="473.3" cy="-196" rx="69.09" ry="21.43"/>
+<text text-anchor="middle" x="473.3" y="-191" font-family="Times,serif" font-size="20.00">main0.o</text>
+</g>
+<!-- app0&#45;&gt;obj5 -->
+<g id="edge19" class="edge">
+<title>app0&#45;&gt;obj5</title>
+<path fill="none" stroke="blue" d="M75.99,-317.73C78.63,-315.04 81.06,-312.11 83,-309 100.92,-280.29 76.42,-258.27 101,-235 182.77,-157.57 324.59,-167.28 407.27,-181.51"/>
+<polygon fill="blue" stroke="blue" points="406.84,-184.99 417.3,-183.31 408.07,-178.1 406.84,-184.99"/>
+<text text-anchor="middle" x="287.5" y="-180" font-family="Times,serif" font-size="20.00">link</text>
+</g>
+<!-- app1 -->
+<g id="node2" class="node">
+<title>app1</title>
+<polygon fill="none" stroke="black" points="83,-300 16,-300 16,-264 83,-264 83,-300"/>
+<text text-anchor="middle" x="49.5" y="-277" font-family="Times,serif" font-size="20.00">app1</text>
+</g>
+<!-- app1&#45;&gt;liba -->
+<g id="edge2" class="edge">
+<title>app1&#45;&gt;liba</title>
+<path fill="none" stroke="mediumaquamarine" d="M83.05,-282.97C119.02,-284.66 178.43,-289.3 228,-302 230.99,-302.77 234.02,-303.65 237.06,-304.62"/>
+<polygon fill="mediumaquamarine" stroke="mediumaquamarine" points="236.12,-308 246.72,-307.97 238.42,-301.39 236.12,-308"/>
+<text text-anchor="middle" x="164.5" y="-308" font-family="Times,serif" font-size="20.00">ld&#45;linux, link</text>
+</g>
+<!-- obj6 -->
+<g id="node12" class="node">
+<title>obj6</title>
+<ellipse fill="none" stroke="black" cx="473.3" cy="-136" rx="69.09" ry="21.43"/>
+<text text-anchor="middle" x="473.3" y="-131" font-family="Times,serif" font-size="20.00">main1.o</text>
+</g>
+<!-- app1&#45;&gt;obj6 -->
+<g id="edge20" class="edge">
+<title>app1&#45;&gt;obj6</title>
+<path fill="none" stroke="blue" d="M53.73,-263.95C59.07,-239.59 72.18,-196.62 101,-174 187.89,-105.81 323.69,-111.58 404.74,-123.05"/>
+<polygon fill="blue" stroke="blue" points="404.42,-126.54 414.83,-124.55 405.45,-119.62 404.42,-126.54"/>
+<text text-anchor="middle" x="287.5" y="-125" font-family="Times,serif" font-size="20.00">link</text>
+</g>
+<!-- libd -->
 <g id="node5" class="node">
-<title>xvalue</title>
-<ellipse fill="none" stroke="black" cx="187.15" cy="-21.21" rx="58.88" ry="21.43"/>
-<text text-anchor="middle" x="187.15" y="-16.21" font-family="Times,serif" font-size="20.00">xvalue</text>
+<title>libd</title>
+<ellipse fill="none" stroke="black" cx="473.3" cy="-326" rx="52.15" ry="21.43"/>
+<text text-anchor="middle" x="473.3" y="-321" font-family="Times,serif" font-size="20.00">libd.a</text>
 </g>
-<!-- glvalue&#45;&gt;xvalue -->
-<g id="edge4" class="edge">
-<title>glvalue&#45;&gt;xvalue</title>
-<path fill="none" stroke="black" d="M138.15,-78.96C145.99,-69.88 155.41,-58.97 163.89,-49.15"/>
-<polygon fill="black" stroke="black" points="166.56,-51.42 170.44,-41.56 161.26,-46.84 166.56,-51.42"/>
+<!-- liba&#45;&gt;libd -->
+<g id="edge21" class="edge">
+<title>liba&#45;&gt;libd</title>
+<path fill="none" stroke="blue" d="M329.29,-326C353.2,-326 383.89,-326 410.7,-326"/>
+<polygon fill="blue" stroke="blue" points="410.76,-329.5 420.76,-326 410.76,-322.5 410.76,-329.5"/>
+<text text-anchor="middle" x="366.5" y="-332" font-family="Times,serif" font-size="20.00">link</text>
 </g>
-<!-- rvalue&#45;&gt;xvalue -->
-<g id="edge5" class="edge">
-<title>rvalue&#45;&gt;xvalue</title>
-<path fill="none" stroke="black" d="M242.48,-79.35C233.54,-70.12 222.69,-58.92 212.98,-48.88"/>
-<polygon fill="black" stroke="black" points="215.29,-46.24 205.82,-41.49 210.26,-51.11 215.29,-46.24"/>
-</g>
-<!-- prvalue -->
+<!-- obj0 -->
 <g id="node6" class="node">
-<title>prvalue</title>
-<ellipse fill="none" stroke="black" cx="330.15" cy="-21.21" rx="66.44" ry="21.43"/>
-<text text-anchor="middle" x="330.15" y="-16.21" font-family="Times,serif" font-size="20.00">prvalue</text>
+<title>obj0</title>
+<ellipse fill="none" stroke="black" cx="709.75" cy="-196" rx="55.31" ry="21.43"/>
+<text text-anchor="middle" x="709.75" y="-191" font-family="Times,serif" font-size="20.00">obj0.o</text>
 </g>
-<!-- rvalue&#45;&gt;prvalue -->
+<!-- libc&#45;&gt;obj0 -->
+<g id="edge3" class="edge">
+<title>libc&#45;&gt;obj0</title>
+<path fill="none" stroke="darkgreen" d="M514.53,-243.27C528.99,-238.85 545.47,-234.01 560.59,-230 590.35,-222.11 623.76,-214.35 651.31,-208.24"/>
+<polygon fill="darkgreen" stroke="darkgreen" points="652.16,-211.64 661.18,-206.07 650.66,-204.8 652.16,-211.64"/>
+<text text-anchor="middle" x="598.59" y="-236" font-family="Times,serif" font-size="20.00">archive</text>
+</g>
+<!-- obj1 -->
+<g id="node7" class="node">
+<title>obj1</title>
+<ellipse fill="none" stroke="black" cx="709.75" cy="-136" rx="55.31" ry="21.43"/>
+<text text-anchor="middle" x="709.75" y="-131" font-family="Times,serif" font-size="20.00">obj1.o</text>
+</g>
+<!-- libc&#45;&gt;obj1 -->
+<g id="edge4" class="edge">
+<title>libc&#45;&gt;obj1</title>
+<path fill="none" stroke="darkgreen" d="M515.25,-243.78C525.1,-239.38 534.96,-233.57 542.59,-226 556.44,-212.28 546.15,-199.1 560.59,-186 584.42,-164.38 617.95,-152.06 647.08,-145.07"/>
+<polygon fill="darkgreen" stroke="darkgreen" points="648.18,-148.41 657.18,-142.81 646.65,-141.58 648.18,-148.41"/>
+<text text-anchor="middle" x="598.59" y="-192" font-family="Times,serif" font-size="20.00">archive</text>
+</g>
+<!-- obj2 -->
+<g id="node8" class="node">
+<title>obj2</title>
+<ellipse fill="none" stroke="black" cx="709.75" cy="-256" rx="55.31" ry="21.43"/>
+<text text-anchor="middle" x="709.75" y="-251" font-family="Times,serif" font-size="20.00">obj2.o</text>
+</g>
+<!-- libc&#45;&gt;obj2 -->
+<g id="edge5" class="edge">
+<title>libc&#45;&gt;obj2</title>
+<path fill="none" stroke="darkgreen" d="M524.3,-256C559.22,-256 606.14,-256 643.92,-256"/>
+<polygon fill="darkgreen" stroke="darkgreen" points="644.32,-259.5 654.32,-256 644.32,-252.5 644.32,-259.5"/>
+<text text-anchor="middle" x="598.59" y="-262" font-family="Times,serif" font-size="20.00">archive</text>
+</g>
+<!-- obj3 -->
+<g id="node9" class="node">
+<title>obj3</title>
+<ellipse fill="none" stroke="black" cx="709.75" cy="-316" rx="55.31" ry="21.43"/>
+<text text-anchor="middle" x="709.75" y="-311" font-family="Times,serif" font-size="20.00">obj3.o</text>
+</g>
+<!-- libd&#45;&gt;obj3 -->
 <g id="edge6" class="edge">
-<title>rvalue&#45;&gt;prvalue</title>
-<path fill="none" stroke="black" d="M278.57,-79.35C286.76,-70.28 296.67,-59.31 305.6,-49.41"/>
-<polygon fill="black" stroke="black" points="308.4,-51.53 312.51,-41.76 303.21,-46.84 308.4,-51.53"/>
+<title>libd&#45;&gt;obj3</title>
+<path fill="none" stroke="darkgreen" d="M525.46,-323.82C560.43,-322.33 607.06,-320.34 644.53,-318.74"/>
+<polygon fill="darkgreen" stroke="darkgreen" points="645,-322.22 654.84,-318.3 644.7,-315.23 645,-322.22"/>
+<text text-anchor="middle" x="598.59" y="-328" font-family="Times,serif" font-size="20.00">archive</text>
+</g>
+<!-- obj4 -->
+<g id="node10" class="node">
+<title>obj4</title>
+<ellipse fill="none" stroke="black" cx="709.75" cy="-376" rx="55.31" ry="21.43"/>
+<text text-anchor="middle" x="709.75" y="-371" font-family="Times,serif" font-size="20.00">obj4.o</text>
+</g>
+<!-- libd&#45;&gt;obj4 -->
+<g id="edge7" class="edge">
+<title>libd&#45;&gt;obj4</title>
+<path fill="none" stroke="darkgreen" d="M517.63,-337.61C531.33,-341.13 546.55,-344.89 560.59,-348 589.6,-354.43 622.01,-360.66 649.1,-365.61"/>
+<polygon fill="darkgreen" stroke="darkgreen" points="648.74,-369.1 659.2,-367.44 649.99,-362.21 648.74,-369.1"/>
+<text text-anchor="middle" x="598.59" y="-368" font-family="Times,serif" font-size="20.00">archive</text>
+</g>
+<!-- src0 -->
+<g id="node13" class="node">
+<title>src0</title>
+<path fill="none" stroke="black" d="M969.9,-214C969.9,-214 915.9,-214 915.9,-214 909.9,-214 903.9,-208 903.9,-202 903.9,-202 903.9,-190 903.9,-190 903.9,-184 909.9,-178 915.9,-178 915.9,-178 969.9,-178 969.9,-178 975.9,-178 981.9,-184 981.9,-190 981.9,-190 981.9,-202 981.9,-202 981.9,-208 975.9,-214 969.9,-214"/>
+<text text-anchor="middle" x="942.9" y="-191" font-family="Times,serif" font-size="20.00">src0.c</text>
+</g>
+<!-- obj0&#45;&gt;src0 -->
+<g id="edge8" class="edge">
+<title>obj0&#45;&gt;src0</title>
+<path fill="none" stroke="red" d="M764.94,-196C803.85,-196 855.84,-196 893.39,-196"/>
+<polygon fill="red" stroke="red" points="893.57,-199.5 903.57,-196 893.57,-192.5 893.57,-199.5"/>
+<text text-anchor="middle" x="823.4" y="-202" font-family="Times,serif" font-size="20.00">compile</text>
+</g>
+<!-- src1 -->
+<g id="node14" class="node">
+<title>src1</title>
+<path fill="none" stroke="black" d="M969.9,-160C969.9,-160 915.9,-160 915.9,-160 909.9,-160 903.9,-154 903.9,-148 903.9,-148 903.9,-136 903.9,-136 903.9,-130 909.9,-124 915.9,-124 915.9,-124 969.9,-124 969.9,-124 975.9,-124 981.9,-130 981.9,-136 981.9,-136 981.9,-148 981.9,-148 981.9,-154 975.9,-160 969.9,-160"/>
+<text text-anchor="middle" x="942.9" y="-137" font-family="Times,serif" font-size="20.00">src1.c</text>
+</g>
+<!-- obj1&#45;&gt;src1 -->
+<g id="edge9" class="edge">
+<title>obj1&#45;&gt;src1</title>
+<path fill="none" stroke="red" d="M764.94,-137.41C803.85,-138.42 855.84,-139.77 893.39,-140.74"/>
+<polygon fill="red" stroke="red" points="893.48,-144.24 903.57,-141.01 893.66,-137.25 893.48,-144.24"/>
+<text text-anchor="middle" x="823.4" y="-145" font-family="Times,serif" font-size="20.00">compile</text>
+</g>
+<!-- src2 -->
+<g id="node15" class="node">
+<title>src2</title>
+<path fill="none" stroke="black" d="M969.9,-268C969.9,-268 915.9,-268 915.9,-268 909.9,-268 903.9,-262 903.9,-256 903.9,-256 903.9,-244 903.9,-244 903.9,-238 909.9,-232 915.9,-232 915.9,-232 969.9,-232 969.9,-232 975.9,-232 981.9,-238 981.9,-244 981.9,-244 981.9,-256 981.9,-256 981.9,-262 975.9,-268 969.9,-268"/>
+<text text-anchor="middle" x="942.9" y="-245" font-family="Times,serif" font-size="20.00">src2.c</text>
+</g>
+<!-- obj2&#45;&gt;src2 -->
+<g id="edge10" class="edge">
+<title>obj2&#45;&gt;src2</title>
+<path fill="none" stroke="red" d="M764.94,-254.59C803.85,-253.58 855.84,-252.23 893.39,-251.26"/>
+<polygon fill="red" stroke="red" points="893.66,-254.75 903.57,-250.99 893.48,-247.76 893.66,-254.75"/>
+<text text-anchor="middle" x="823.4" y="-260" font-family="Times,serif" font-size="20.00">compile</text>
+</g>
+<!-- src3 -->
+<g id="node16" class="node">
+<title>src3</title>
+<path fill="none" stroke="black" d="M982.9,-322C982.9,-322 902.9,-322 902.9,-322 896.9,-322 890.9,-316 890.9,-310 890.9,-310 890.9,-298 890.9,-298 890.9,-292 896.9,-286 902.9,-286 902.9,-286 982.9,-286 982.9,-286 988.9,-286 994.9,-292 994.9,-298 994.9,-298 994.9,-310 994.9,-310 994.9,-316 988.9,-322 982.9,-322"/>
+<text text-anchor="middle" x="942.9" y="-299" font-family="Times,serif" font-size="20.00">src3.cpp</text>
+</g>
+<!-- obj3&#45;&gt;src3 -->
+<g id="edge11" class="edge">
+<title>obj3&#45;&gt;src3</title>
+<path fill="none" stroke="red" d="M764.65,-313.2C799.26,-311.41 844.29,-309.07 880.31,-307.2"/>
+<polygon fill="red" stroke="red" points="880.89,-310.67 890.69,-306.66 880.52,-303.68 880.89,-310.67"/>
+<text text-anchor="middle" x="823.4" y="-318" font-family="Times,serif" font-size="20.00">compile</text>
+</g>
+<!-- src4 -->
+<g id="node17" class="node">
+<title>src4</title>
+<path fill="none" stroke="black" d="M982.9,-376C982.9,-376 902.9,-376 902.9,-376 896.9,-376 890.9,-370 890.9,-364 890.9,-364 890.9,-352 890.9,-352 890.9,-346 896.9,-340 902.9,-340 902.9,-340 982.9,-340 982.9,-340 988.9,-340 994.9,-346 994.9,-352 994.9,-352 994.9,-364 994.9,-364 994.9,-370 988.9,-376 982.9,-376"/>
+<text text-anchor="middle" x="942.9" y="-353" font-family="Times,serif" font-size="20.00">src4.cpp</text>
+</g>
+<!-- obj4&#45;&gt;src4 -->
+<g id="edge12" class="edge">
+<title>obj4&#45;&gt;src4</title>
+<path fill="none" stroke="red" d="M764.07,-371.85C798.92,-369.13 844.55,-365.58 880.86,-362.75"/>
+<polygon fill="red" stroke="red" points="881.13,-366.24 890.83,-361.98 880.59,-359.26 881.13,-366.24"/>
+<text text-anchor="middle" x="823.4" y="-376" font-family="Times,serif" font-size="20.00">compile</text>
+</g>
+<!-- main0 -->
+<g id="node18" class="node">
+<title>main0</title>
+<path fill="none" stroke="black" d="M979.4,-106C979.4,-106 906.4,-106 906.4,-106 900.4,-106 894.4,-100 894.4,-94 894.4,-94 894.4,-82 894.4,-82 894.4,-76 900.4,-70 906.4,-70 906.4,-70 979.4,-70 979.4,-70 985.4,-70 991.4,-76 991.4,-82 991.4,-82 991.4,-94 991.4,-94 991.4,-100 985.4,-106 979.4,-106"/>
+<text text-anchor="middle" x="942.9" y="-83" font-family="Times,serif" font-size="20.00">main0.c</text>
+</g>
+<!-- obj5&#45;&gt;main0 -->
+<g id="edge13" class="edge">
+<title>obj5&#45;&gt;main0</title>
+<path fill="none" stroke="red" d="M518.99,-180.01C527.23,-176.07 535.48,-171.4 542.59,-166 552.65,-158.36 551.15,-152.39 560.59,-144 597.64,-111.07 607.02,-97.89 654.59,-84 731.5,-61.55 824.99,-68.84 883.99,-77.39"/>
+<polygon fill="red" stroke="red" points="883.82,-80.91 894.23,-78.94 884.87,-73.99 883.82,-80.91"/>
+<text text-anchor="middle" x="709.75" y="-90" font-family="Times,serif" font-size="20.00">compile</text>
+</g>
+<!-- main1 -->
+<g id="node19" class="node">
+<title>main1</title>
+<path fill="none" stroke="black" d="M991.9,-52C991.9,-52 893.9,-52 893.9,-52 887.9,-52 881.9,-46 881.9,-40 881.9,-40 881.9,-28 881.9,-28 881.9,-22 887.9,-16 893.9,-16 893.9,-16 991.9,-16 991.9,-16 997.9,-16 1003.9,-22 1003.9,-28 1003.9,-28 1003.9,-40 1003.9,-40 1003.9,-46 997.9,-52 991.9,-52"/>
+<text text-anchor="middle" x="942.9" y="-29" font-family="Times,serif" font-size="20.00">main1.cpp</text>
+</g>
+<!-- obj6&#45;&gt;main1 -->
+<g id="edge14" class="edge">
+<title>obj6&#45;&gt;main1</title>
+<path fill="none" stroke="red" d="M493.08,-115.58C509.47,-98.83 534.64,-75.59 560.59,-61 657.54,-6.49 790.96,-11.78 871.56,-21.93"/>
+<polygon fill="red" stroke="red" points="871.23,-25.42 881.6,-23.26 872.15,-18.48 871.23,-25.42"/>
+<text text-anchor="middle" x="709.75" y="-32" font-family="Times,serif" font-size="20.00">compile</text>
+</g>
+<!-- hdr0 -->
+<g id="node20" class="node">
+<title>hdr0</title>
+<path fill="none" stroke="black" d="M1251.62,-157.92C1251.62,-157.92 1191.19,-136.08 1191.19,-136.08 1185.54,-134.04 1185.54,-129.96 1191.19,-127.92 1191.19,-127.92 1251.62,-106.08 1251.62,-106.08 1257.26,-104.04 1268.54,-104.04 1274.19,-106.08 1274.19,-106.08 1334.62,-127.92 1334.62,-127.92 1340.26,-129.96 1340.26,-134.04 1334.62,-136.08 1334.62,-136.08 1274.19,-157.92 1274.19,-157.92 1268.54,-159.96 1257.26,-159.96 1251.62,-157.92"/>
+<text text-anchor="middle" x="1262.9" y="-127" font-family="Times,serif" font-size="20.00">hdr0.h</text>
+</g>
+<!-- src0&#45;&gt;hdr0 -->
+<g id="edge15" class="edge">
+<title>src0&#45;&gt;hdr0</title>
+<path fill="none" stroke="salmon" d="M981.94,-188.34C1035.62,-177.54 1134.24,-157.69 1198.93,-144.67"/>
+<polygon fill="salmon" stroke="salmon" points="1199.9,-148.05 1209.01,-142.64 1198.52,-141.19 1199.9,-148.05"/>
+<text text-anchor="middle" x="1078.9" y="-184" font-family="Times,serif" font-size="20.00">preprocess</text>
+</g>
+<!-- main0&#45;&gt;hdr0 -->
+<g id="edge16" class="edge">
+<title>main0&#45;&gt;hdr0</title>
+<path fill="none" stroke="salmon" d="M991.51,-94.59C1044.85,-101.97 1131.81,-114 1192.66,-122.42"/>
+<polygon fill="salmon" stroke="salmon" points="1192.19,-125.89 1202.58,-123.79 1193.15,-118.95 1192.19,-125.89"/>
+<text text-anchor="middle" x="1078.9" y="-119" font-family="Times,serif" font-size="20.00">preprocess</text>
+</g>
+<!-- hdr1 -->
+<g id="node21" class="node">
+<title>hdr1</title>
+<path fill="none" stroke="black" d="M1251.33,-80.82C1251.33,-80.82 1165.47,-57.18 1165.47,-57.18 1159.69,-55.59 1159.69,-52.41 1165.47,-50.82 1165.47,-50.82 1251.33,-27.18 1251.33,-27.18 1257.12,-25.59 1268.69,-25.59 1274.47,-27.18 1274.47,-27.18 1360.33,-50.82 1360.33,-50.82 1366.12,-52.41 1366.12,-55.59 1360.33,-57.18 1360.33,-57.18 1274.47,-80.82 1274.47,-80.82 1268.69,-82.41 1257.12,-82.41 1251.33,-80.82"/>
+<text text-anchor="middle" x="1262.9" y="-49" font-family="Times,serif" font-size="20.00">hdr1.hpp</text>
+</g>
+<!-- main1&#45;&gt;hdr1 -->
+<g id="edge17" class="edge">
+<title>main1&#45;&gt;hdr1</title>
+<path fill="none" stroke="salmon" d="M1004.09,-37.79C1048.99,-40.61 1111.31,-44.53 1163.44,-47.81"/>
+<polygon fill="salmon" stroke="salmon" points="1163.52,-51.32 1173.72,-48.45 1163.95,-44.33 1163.52,-51.32"/>
+<text text-anchor="middle" x="1078.9" y="-51" font-family="Times,serif" font-size="20.00">preprocess</text>
 </g>
 </g>
 </svg></div>
-</div></div></td>
-</tr>
-</tbody>
-</table>
 </div>
-</li>
-<li>
-<span>
-Perfect forwarding и <a href="https://habr.com/post/242639">универсальная ссылка</a>
-</span>
-<div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt><span style="font-weight: bold"><span style="color: #0000FF">template</span></span><span style="color: #990000">&lt;</span><span style="font-weight: bold"><span style="color: #0000FF">class</span></span><span style="color: #990000">...</span> Args<span style="color: #990000">&gt;</span> <span style="color: #009900">void</span> <span style="font-weight: bold"><span style="color: #000000">func</span></span><span style="color: #990000">(</span>Args<span style="color: #990000">&amp;&amp;...</span> args<span style="color: #990000">)</span> <span style="color: #FF0000">{</span>
-    <span style="font-weight: bold"><span style="color: #000000">some_func</span></span><span style="color: #990000">(</span>std<span style="color: #990000">::</span>forward<span style="color: #990000">&lt;</span>Args<span style="color: #990000">&gt;(</span>args<span style="color: #990000">)...);</span>
-<span style="color: #FF0000">}</span>
-
-std<span style="color: #990000">::</span><span style="color: #008080">vector</span> v <span style="color: #990000">=</span> <span style="color: #FF0000">{</span><span style="color: #993399">7</span><span style="color: #990000">,</span> <span style="color: #993399">8</span><span style="color: #990000">,</span> <span style="color: #993399">56</span><span style="color: #990000">,</span> <span style="color: #993399">98</span><span style="color: #990000">,</span> <span style="color: #993399">5</span><span style="color: #990000">,</span> <span style="color: #993399">0</span><span style="color: #990000">,</span> <span style="color: #990000">-</span><span style="color: #993399">1</span><span style="color: #990000">,</span> <span style="color: #993399">8</span><span style="color: #FF0000">}</span><span style="color: #990000">;</span>
-<span style="font-weight: bold"><span style="color: #000000">func</span></span><span style="color: #990000">(</span>v<span style="color: #990000">);</span> <span style="font-style: italic"><span style="color: #9A1900">// [Args = {std::vector&lt;int&gt;&amp;}], &amp; &amp;&amp; == &amp;</span></span>
-<span style="font-weight: bold"><span style="color: #000000">func</span></span><span style="color: #990000">(</span>std<span style="color: #990000">::</span><span style="font-weight: bold"><span style="color: #000000">move</span></span><span style="color: #990000">(</span>v<span style="color: #990000">));</span> <span style="font-style: italic"><span style="color: #9A1900">// [Args = {std::vector&lt;int&gt;&amp;&amp;}], &amp;&amp; &amp;&amp; == &amp;&amp;</span></span>
-<span style="font-weight: bold"><span style="color: #000000">func</span></span><span style="color: #990000">(</span>std<span style="color: #990000">::</span>vector<span style="color: #FF0000">{</span><span style="color: #993399">7.0</span><span style="color: #990000">,</span> <span style="color: #993399">8.3</span><span style="color: #990000">,</span> <span style="color: #990000">-</span><span style="color: #993399">96.87</span><span style="color: #990000">,</span> <span style="color: #993399">7.1</span><span style="color: #FF0000">}</span><span style="color: #990000">);</span> <span style="font-style: italic"><span style="color: #9A1900">// [Args = {std::vector&lt;double&gt;}], () == &amp;&amp;</span></span></tt></pre></div></div>
-</li>
-</ul>
 </div></div>
-<div class="sect2 slide">
-<h1 id="_о_конструкторах">6.3. О конструкторах</h1>
+<div class="sect1 slide">
+<h1 id="_введение_в_cmake">2. Введение в CMake</h1>
 
 <div class="sectionbody">
-<div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt><span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">A</span> <span style="color: #FF0000">{</span>
-<span style="font-weight: bold"><span style="color: #0000FF">public</span></span><span style="color: #990000">:</span>
-    <span style="font-weight: bold"><span style="color: #000000">A</span></span><span style="color: #990000">();</span> <span style="font-style: italic"><span style="color: #9A1900">// default constructor</span></span>
-    <span style="font-weight: bold"><span style="color: #000000">A</span></span><span style="color: #990000">(</span><span style="font-weight: bold"><span style="color: #0000FF">const</span></span> A<span style="color: #990000">&amp;);</span> <span style="font-style: italic"><span style="color: #9A1900">// copy constructor</span></span>
-    <span style="font-weight: bold"><span style="color: #000000">A</span></span><span style="color: #990000">(</span>A<span style="color: #990000">&amp;&amp;);</span> <span style="font-style: italic"><span style="color: #9A1900">// move constructor</span></span>
-    A<span style="color: #990000">&amp;</span> <span style="font-weight: bold"><span style="color: #0000FF">operator</span></span><span style="color: #990000">=(</span><span style="font-weight: bold"><span style="color: #0000FF">const</span></span> A<span style="color: #990000">&amp;);</span> <span style="font-style: italic"><span style="color: #9A1900">// copy assignment</span></span>
-    A<span style="color: #990000">&amp;</span> <span style="font-weight: bold"><span style="color: #0000FF">operator</span></span><span style="color: #990000">=(</span>A<span style="color: #990000">&amp;&amp;);</span> <span style="font-style: italic"><span style="color: #9A1900">// move assignment</span></span>
-    <span style="color: #990000">~</span><span style="font-weight: bold"><span style="color: #000000">A</span></span><span style="color: #990000">();</span> <span style="font-style: italic"><span style="color: #9A1900">// destructor</span></span>
-<span style="color: #FF0000">}</span></tt></pre></div></div>
-<ul class="">
-<li>
-<span>
-Порождающие операторы: конструкторы, присваивания, деструктор
-</span>
-</li>
-<li>
-<span>
-Деструктор почти всегда генерируется сам, его перегрузка ни на что не влияет
-</span>
-</li>
-<li>
-<span>
-Перегрузка move-конструктора или move-присваивания затрагивает все операции
-</span>
-</li>
-<li>
-<span>
-Перегрузка конструктора копирования или присваивания не затрагивает move-операции
-</span>
-</li>
-<li>
-<span>
-<code>= delete</code>&#8201;&#8212;&#8201;явное удаление порождающего оператора
-</span>
-</li>
-<li>
-<span>
-<code>= default</code>&#8201;&#8212;&#8201;попросить компилятор сгенерировать порождающий оператор
-</span>
-</li>
-<li>
-<span>
-Явное правило вывода конструктора: <code>template&lt;class T&gt; myclass(T&amp;&amp;, int) -&gt; myclass&lt;T&gt;;</code>
-</span>
-</li>
-</ul>
 </div></div>
 <div class="sect2 slide">
-<h1 id="_о_шаблонах">6.4. О шаблонах</h1>
+<h1 id="_ссылки">2.1. Ссылки</h1>
 
 <div class="sectionbody">
 <ul class="">
 <li>
 <span>
-<code>template&lt;class... Ts&gt; class myclass;</code>&#8201;&#8212;&#8201;пакет шаблонных параметров
+<a href="https://cmake.org/cmake-tutorial">https://cmake.org/cmake-tutorial</a>&#8201;&#8212;&#8201;тьюториал
 </span>
 </li>
 <li>
 <span>
-<code>template&lt;class T&gt; constexpr T pi = T(3.1415926535897932385L);</code>&#8201;&#8212;&#8201;шаблонная переменная
+<a href="https://cmake.org/cmake/help/latest/index.html">https://cmake.org/cmake/help/latest/index.html</a>&#8201;&#8212;&#8201;документация
 </span>
 </li>
 <li>
 <span>
-<code>size_t N = sizeof...(Ts);</code>
+<a href="http://ttroy50.github.io/cmake-examples">http://ttroy50.github.io/cmake-examples</a>&#8201;&#8212;&#8201;примеры по CMake
 </span>
-</li>
-<li>
-<span>
-Хранение аргументов в кортеже
-</span>
-<div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt><span style="font-weight: bold"><span style="color: #0000FF">template</span></span><span style="color: #990000">&lt;</span><span style="font-weight: bold"><span style="color: #0000FF">class</span></span><span style="color: #990000">...</span> Ts<span style="color: #990000">&gt;</span>
-<span style="font-weight: bold"><span style="color: #0000FF">struct</span></span> <span style="color: #008080">abc</span> <span style="color: #FF0000">{</span>
-    <span style="font-weight: bold"><span style="color: #000000">abc</span></span><span style="color: #990000">(</span>Ts<span style="color: #990000">...</span> ts<span style="color: #990000">):</span> <span style="font-weight: bold"><span style="color: #000000">x</span></span><span style="color: #990000">(</span>ts<span style="color: #990000">...)</span> <span style="color: #FF0000">{}</span>
-
-    std<span style="color: #990000">::</span><span style="color: #008080">tuple&lt;Ts...&gt;</span> x<span style="color: #990000">;</span>
-<span style="color: #FF0000">}</span></tt></pre></div></div>
 </li>
 </ul>
 </div></div>
 <div class="sect2 slide">
-<h1 id="_распаковка_кортежа_в_аргументы">6.5. Распаковка кортежа в аргументы</h1>
+<h1 id="_структура_проекта_для_cmake">2.2. Структура проекта для CMake</h1>
 
 <div class="sectionbody">
 <ul class="">
 <li>
 <span>
-Использование <code>std::integer_sequence</code>
+Нечто большее, чем система сборки&#8201;&#8212;&#8201;конфигуратор систем сборки
+</span>
+</li>
+<li>
+<span>
+<code>CMakeLists.txt</code>&#8201;&#8212;&#8201;конфигурационные файлы CMake
+</span>
+</li>
+<li>
+<span>
+Каждая директория может содержать <code>CMakeLists.txt</code>
+</span>
+</li>
+<li>
+<span>
+Связывание с помощью <code>add_subdirectory</code>
+</span>
+</li>
+<li>
+<span>
+<code>add_library</code>, <code>add_executable</code>&#8201;&#8212;&#8201;добавление основных целей (targets)
+</span>
+</li>
+<li>
+<span>
+<code>target_*</code>&#8201;&#8212;&#8201;изменение свойств целей
+</span>
+</li>
+<li>
+<span>
+<code>add_test</code>&#8201;&#8212;&#8201;добавление теста
+</span>
+</li>
+<li>
+<span>
+<code>export(package)</code>&#8201;&#8212;&#8201;регистрирование проекта
+</span>
+</li>
+<li>
+<span>
+<code>include(CPack)</code>&#8201;&#8212;&#8201;генерирование установочного пакета
 </span>
 </li>
 </ul>
-<div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt><span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;iostream&gt;</span>
-<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;tuple&gt;</span>
-<span style="font-weight: bold"><span style="color: #000080">#include</span></span> <span style="color: #FF0000">&lt;utility&gt;</span>
-
-<span style="font-weight: bold"><span style="color: #0000FF">template</span></span><span style="color: #990000">&lt;</span><span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">Stream</span><span style="color: #990000">,</span> <span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">Tuple</span><span style="color: #990000">,</span> size_t<span style="color: #990000">...</span> Is<span style="color: #990000">&gt;</span>
-Stream<span style="color: #990000">&amp;</span> <span style="font-weight: bold"><span style="color: #000000">func_impl</span></span><span style="color: #990000">(</span>Stream<span style="color: #990000">&amp;</span> os<span style="color: #990000">,</span> <span style="font-weight: bold"><span style="color: #0000FF">const</span></span> Tuple<span style="color: #990000">&amp;</span> t<span style="color: #990000">,</span> std<span style="color: #990000">::</span>index_sequence<span style="color: #990000">&lt;</span>Is<span style="color: #990000">...&gt;)</span>
-<span style="color: #FF0000">{</span>
-    <span style="font-weight: bold"><span style="color: #0000FF">return</span></span> <span style="color: #990000">(</span>os <span style="color: #990000">&lt;&lt;</span> <span style="color: #990000">...</span> <span style="color: #990000">&lt;&lt;</span> std<span style="color: #990000">::</span>get<span style="color: #990000">&lt;</span>Is<span style="color: #990000">&gt;(</span>t<span style="color: #990000">));</span>
-<span style="color: #FF0000">}</span>
-
-<span style="font-style: italic"><span style="color: #9A1900">/*template&lt;class Stream, class... Ts&gt;</span></span>
-<span style="font-style: italic"><span style="color: #9A1900">Stream&amp; func1(Stream&amp; os, const std::tuple&lt;Ts...&gt;&amp; t)</span></span>
-<span style="font-style: italic"><span style="color: #9A1900">{</span></span>
-<span style="font-style: italic"><span style="color: #9A1900">    func_impl(os, t, std::index_sequence_for&lt;Ts...&gt;{});</span></span>
-<span style="font-style: italic"><span style="color: #9A1900">}*/</span></span>
-
-<span style="font-weight: bold"><span style="color: #0000FF">template</span></span><span style="color: #990000">&lt;</span><span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">Stream</span><span style="color: #990000">,</span> <span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">Tuple</span><span style="color: #990000">&gt;</span>
-Stream<span style="color: #990000">&amp;</span> <span style="font-weight: bold"><span style="color: #000000">func2</span></span><span style="color: #990000">(</span>Stream<span style="color: #990000">&amp;</span> os<span style="color: #990000">,</span> <span style="font-weight: bold"><span style="color: #0000FF">const</span></span> Tuple<span style="color: #990000">&amp;</span> t<span style="color: #990000">)</span>
-<span style="color: #FF0000">{</span>
-    <span style="font-weight: bold"><span style="color: #0000FF">return</span></span> <span style="font-weight: bold"><span style="color: #000000">func_impl</span></span><span style="color: #990000">(</span>os<span style="color: #990000">,</span> t<span style="color: #990000">,</span> std<span style="color: #990000">::</span>make_index_sequence<span style="color: #990000">&lt;</span>std<span style="color: #990000">::</span>tuple_size_v<span style="color: #990000">&lt;</span>Tuple<span style="color: #990000">&gt;&gt;</span><span style="color: #FF0000">{}</span><span style="color: #990000">);</span>
-<span style="color: #FF0000">}</span>
-
-<span style="font-weight: bold"><span style="color: #0000FF">template</span></span><span style="color: #990000">&lt;</span><span style="font-weight: bold"><span style="color: #0000FF">class</span></span><span style="color: #990000">...</span> Ts<span style="color: #990000">&gt;</span>
-std<span style="color: #990000">::</span>ostream<span style="color: #990000">&amp;</span> <span style="font-weight: bold"><span style="color: #0000FF">operator</span></span><span style="color: #990000">&lt;&lt;(</span>std<span style="color: #990000">::</span>ostream<span style="color: #990000">&amp;</span> os<span style="color: #990000">,</span> <span style="font-weight: bold"><span style="color: #0000FF">const</span></span> std<span style="color: #990000">::</span>tuple<span style="color: #990000">&lt;</span>Ts<span style="color: #990000">...&gt;&amp;</span> t<span style="color: #990000">)</span>
-<span style="color: #FF0000">{</span>
-    <span style="font-style: italic"><span style="color: #9A1900">// return std::apply([&amp;os](const auto&amp;... xs) -&gt; decltype(auto) { return (os &lt;&lt; ... &lt;&lt; xs); }, t);</span></span>
-    <span style="font-weight: bold"><span style="color: #0000FF">return</span></span> <span style="font-weight: bold"><span style="color: #000000">func2</span></span><span style="color: #990000">(</span>os<span style="color: #990000">,</span> t<span style="color: #990000">);</span>
-<span style="color: #FF0000">}</span>
-
-<span style="color: #009900">int</span> <span style="font-weight: bold"><span style="color: #000000">main</span></span><span style="color: #990000">()</span>
-<span style="color: #FF0000">{</span>
-    std<span style="color: #990000">::</span>cout <span style="color: #990000">&lt;&lt;</span> std<span style="color: #990000">::</span>tuple<span style="color: #FF0000">{</span><span style="color: #993399">1</span><span style="color: #990000">,</span> <span style="color: #FF0000">' '</span><span style="color: #990000">,</span> <span style="color: #993399">2.3</span><span style="color: #990000">,</span> <span style="color: #FF0000">' '</span><span style="color: #990000">,</span> <span style="color: #FF0000">"lala"</span><span style="color: #FF0000">}</span> <span style="color: #990000">&lt;&lt;</span> <span style="color: #FF0000">"</span><span style="color: #CC33CC">\n</span><span style="color: #FF0000">"</span><span style="color: #990000">;</span>
-<span style="color: #FF0000">}</span></tt></pre></div></div>
-<div class="listingblock">
-<div class="title">Output</div>
-<div class="content">
-<pre><code>1 2.3 lala</code></pre>
-</div></div>
 </div></div>
 <div class="sect2 slide">
-<h1 id="_операции_над_шаблонными_пакетами">6.6. Операции над шаблонными пакетами</h1>
+<h1 id="_цели_по_умолчанию">2.3. Цели по умолчанию</h1>
 
 <div class="sectionbody">
-<div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt><span style="font-weight: bold"><span style="color: #0000FF">template</span></span> <span style="color: #990000">&lt;</span><span style="font-weight: bold"><span style="color: #0000FF">typename</span></span><span style="color: #990000">...</span> bases<span style="color: #990000">&gt;</span>
-<span style="font-weight: bold"><span style="color: #0000FF">struct</span></span> <span style="color: #008080">X</span> <span style="color: #990000">:</span> bases<span style="color: #990000">...</span> <span style="color: #FF0000">{</span>
-    <span style="font-weight: bold"><span style="color: #0000FF">using</span></span> X<span style="color: #990000">::</span>bases<span style="color: #990000">::</span>g<span style="color: #990000">...;</span>
-<span style="color: #FF0000">}</span><span style="color: #990000">;</span>
-<span style="color: #008080">X&lt;B, D&gt;</span> x<span style="color: #990000">;</span></tt></pre></div></div>
-<div class="paragraph"><p>Свёртки (наличие скобок важно)</p></div>
 <ul class="">
 <li>
 <span>
-<code>( pack op ... )</code>&#8201;&#8212;&#8201;свёртка слева
+all или просто <code>make</code> без целей
 </span>
 </li>
 <li>
 <span>
-<code>( pack op ... op init )</code>&#8201;&#8212;&#8201;свёртка слева с начальным значением
+rebuild_cache&#8201;&#8212;&#8201;перестройка кеша (переконфигурирование)
 </span>
 </li>
 <li>
 <span>
-<code>( ... op pack )</code>&#8201;&#8212;&#8201;свёртка справа
+clean&#8201;&#8212;&#8201;очистить дерево сборки от артефактов
 </span>
 </li>
 <li>
 <span>
-<code>( init op ... op pack )</code>&#8201;&#8212;&#8201;свёртка справа с начальным значением
+test&#8201;&#8212;&#8201;запуск тестов
+</span>
+<ul class="">
+<li>
+<span>
+аналогично запуску <code>ctest</code>
 </span>
 </li>
 </ul>
-<div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt><span style="font-weight: bold"><span style="color: #0000FF">template</span></span><span style="color: #990000">&lt;</span><span style="font-weight: bold"><span style="color: #0000FF">typename</span></span> <span style="color: #008080">T</span><span style="color: #990000">,</span> <span style="font-weight: bold"><span style="color: #0000FF">typename</span></span><span style="color: #990000">...</span> Args<span style="color: #990000">&gt;</span>
-<span style="color: #009900">void</span> <span style="font-weight: bold"><span style="color: #000000">push_back_vec</span></span><span style="color: #990000">(</span>std<span style="color: #990000">::</span>vector<span style="color: #990000">&lt;</span>T<span style="color: #990000">&gt;&amp;</span> v<span style="color: #990000">,</span> Args<span style="color: #990000">&amp;&amp;...</span> args<span style="color: #990000">)</span>
-<span style="color: #FF0000">{</span>
-    <span style="color: #990000">(</span>v<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">push_back</span></span><span style="color: #990000">(</span>std<span style="color: #990000">::</span>forward<span style="color: #990000">&lt;</span>Args<span style="color: #990000">&gt;(</span>args<span style="color: #990000">)),</span> <span style="color: #990000">...);</span>
-<span style="color: #FF0000">}</span></tt></pre></div></div>
-</div></div>
-<div class="sect2 slide">
-<h1 id="_о_лямбда_выражениях">6.7. О лямбда-выражениях</h1>
-
-<div class="sectionbody">
-<div class="paragraph"><p><code>auto f = [a = 77, &amp;b](auto x) mutable -&gt; int { b = x - 78; return a++; }</code></p></div>
+</li>
+<li>
+<span>
+install&#8201;&#8212;&#8201;установка собранных артефактов (используется в цели package)
+</span>
+</li>
+<li>
+<span>
+package&#8201;&#8212;&#8201;создание пакета
+</span>
 <ul class="">
 <li>
 <span>
-Лямбда-выражения == функторы
+аналогично запуску <code>cpack</code>
 </span>
-<div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt><span style="font-weight: bold"><span style="color: #0000FF">struct</span></span> <span style="color: #008080">functor</span>
-<span style="color: #FF0000">{</span>
-    <span style="font-weight: bold"><span style="color: #000000">functor</span></span><span style="color: #990000">(</span><span style="color: #009900">int</span><span style="color: #990000">&amp;</span> b<span style="color: #990000">):</span> <span style="font-weight: bold"><span style="color: #000000">a_</span></span><span style="color: #990000">(</span><span style="color: #993399">77</span><span style="color: #990000">),</span> <span style="font-weight: bold"><span style="color: #000000">b_</span></span><span style="color: #990000">(</span>b<span style="color: #990000">)</span> <span style="color: #FF0000">{}</span>
-    <span style="color: #009900">int</span> <span style="font-weight: bold"><span style="color: #0000FF">operator</span></span><span style="color: #990000">()(</span><span style="color: #009900">int</span> x<span style="color: #990000">)</span> <span style="font-weight: bold"><span style="color: #0000FF">const</span></span>
-    <span style="color: #FF0000">{</span>
-        b_ <span style="color: #990000">=</span> x <span style="color: #990000">-</span> <span style="color: #993399">78</span><span style="color: #990000">;</span>
-        <span style="font-weight: bold"><span style="color: #0000FF">return</span></span> a_<span style="color: #990000">++;</span>
-    <span style="color: #FF0000">}</span>
-
-<span style="font-weight: bold"><span style="color: #0000FF">private</span></span><span style="color: #990000">:</span>
-    <span style="font-weight: bold"><span style="color: #0000FF">mutable</span></span> <span style="color: #009900">int</span> a_<span style="color: #990000">;</span>
-    <span style="color: #009900">int</span><span style="color: #990000">&amp;</span> <span style="font-weight: bold"><span style="color: #0000FF">const</span></span> b_<span style="color: #990000">;</span>
-<span style="color: #FF0000">}</span> f<span style="color: #990000">;</span></tt></pre></div></div>
+</li>
+</ul>
 </li>
 <li>
 <span>
-Невозможно узнать тип лямбда-выражений, т.е. <code>decltype(lambda) s = ...</code> не работает
+<code>&lt;name&gt;</code>&#8201;&#8212;&#8201;собирает отдельную цель <code>name</code>, созданную в <code>CMakeLists.txt</code>
 </span>
 </li>
 <li>
 <span>
-Чтобы лямбды были полностью объектами, надо заворачивать их в объект <code>std::function</code>
-</span>
-</li>
-<li>
-<span>
-Результат лямбды можно не писать, он будет выведен сам (кроме ссылок)
+help&#8201;&#8212;&#8201;выводит доступные цели
 </span>
 </li>
 </ul>
 </div></div>
 <div class="sect1 slide">
-<h1 id="_следующие_стандарты">7. Следующие стандарты</h1>
+<h1 id="_синтаксис_языка_cmake">3. Синтаксис языка CMake</h1>
 
 <div class="sectionbody">
 </div></div>
 <div class="sect2 slide">
-<h1 id="_концепты_и_ограничители">7.1. Концепты и ограничители</h1>
+<h1 id="_синтаксис_cmake">3.1. Синтаксис CMake</h1>
+
+<div class="sectionbody">
+<ul class="">
+<li>
+<span>
+Идентификаторы переменных такие же, как в C++
+</span>
+</li>
+<li>
+<span>
+Имена функций и макросов регистронезависимы
+</span>
+</li>
+<li>
+<span>
+Основные структуры языка:
+</span>
+<ul class="">
+<li>
+<span>
+условные операторы и циклы (<code>if</code>, <code>foreach</code>)
+</span>
+</li>
+<li>
+<span>
+функции и макросы (<code>function</code>, <code>macro</code>)
+</span>
+</li>
+<li>
+<span>
+модули (<code>include</code>)
+</span>
+</li>
+</ul>
+</li>
+<li>
+<span>
+Точка входа&#8201;&#8212;&#8201;файл <code>CMakeLists.txt</code>
+</span>
+</li>
+<li>
+<span>
+Режимы запуска
+</span>
+<ul class="">
+<li>
+<span>
+<code>cmake &lt;dir&gt;</code>&#8201;&#8212;&#8201;запускает <code>&lt;dir&gt;/CMakeLists.txt</code>
+</span>
+</li>
+<li>
+<span>
+<code>cmake -P &lt;script&gt;</code>&#8201;&#8212;&#8201;режим скрипта
+</span>
+</li>
+<li>
+<span>
+<code>cmake -E &lt;cmd&gt;</code>&#8201;&#8212;&#8201;командный режим
+</span>
+</li>
+<li>
+<span>
+другие режимы
+</span>
+</li>
+</ul>
+</li>
+</ul>
+</div></div>
+<div class="sect2 slide">
+<h1 id="_переменные">3.2. Переменные</h1>
+
+<div class="sectionbody">
+<ul class="">
+<li>
+<span>
+<code>VAL</code>&#8201;&#8212;&#8201;имя переменной
+</span>
+</li>
+<li>
+<span>
+<code>${VAL}</code>&#8201;&#8212;&#8201;разыменование переменной, её значение
+</span>
+</li>
+<li>
+<span>
+<code>set(VAL "123 value")</code>&#8201;&#8212;&#8201;установка значения переменной
+</span>
+</li>
+<li>
+<span>
+<code>set(VAL 1 2 3) === set(VAL "1;2;3")</code>&#8201;&#8212;&#8201;списки
+</span>
+</li>
+<li>
+<span>
+Значение переменных можно передавать в строке ввода:
+</span>
+<div class="listingblock">
+<div class="content">
+<pre><code>$ cmake -DMYVAL="value" -DMYVAL2=123 -DMYVAL3=ON</code></pre>
+</div></div>
+</li>
+<li>
+<span>
+<code>option(MYVAL "Опциональная переменная" ON)</code>&#8201;&#8212;&#8201;может быть <code>ON</code>, <code>OFF</code>
+</span>
+</li>
+<li>
+<span>
+<code>$ENV{HOME}</code>&#8201;&#8212;&#8201;доступ к переменным окружения
+</span>
+</li>
+<li>
+<span>
+Важные переменные: <code>CMAKE_PREFIX_PATH</code>, <code>CMAKE_PROGRAM_PATH</code>, <code>CMAKE_TOOLCHAIN_FILE</code>
+</span>
+</li>
+<li>
+<span>
+Стандартные переменные: <code>CMAKE_SOURCE_DIR</code>, <code>CMAKE_CURRENT_SOURCE_DIR</code>, <code>CMAKE_BINARY_DIR</code>,
+<code>CMAKE_CURRENT_BINARY_DIR</code>, <code>CMAKE_CURRENT_LIST_DIR</code>
+</span>
+</li>
+</ul>
+</div></div>
+<div class="sect1 slide">
+<h1 id="_примеры">4. Примеры</h1>
+
+<div class="sectionbody">
+</div></div>
+<div class="sect2 slide">
+<h1 id="_mwe_minimal_workable_example">4.1. MWE (Minimal Workable Example)</h1>
 
 <div class="sectionbody">
 <div class="listingblock">
@@ -5005,86 +4542,274 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><tt><span style="font-style: italic"><span style="color: #9A1900">// концепт: как описывать</span></span>
-<span style="font-weight: bold"><span style="color: #0000FF">template</span></span><span style="color: #990000">&lt;</span><span style="font-weight: bold"><span style="color: #0000FF">typename</span></span> <span style="color: #008080">T</span><span style="color: #990000">&gt;</span>
-<span style="color: #008080">concept</span> EqualityComparable <span style="color: #990000">=</span> <span style="font-weight: bold"><span style="color: #000000">requires</span></span><span style="color: #990000">(</span><span style="color: #008080">T</span> a<span style="color: #990000">,</span> <span style="color: #008080">T</span> b<span style="color: #990000">)</span>
-<span style="color: #FF0000">{</span>
-    <span style="color: #FF0000">{</span> a <span style="color: #990000">==</span> b <span style="color: #FF0000">}</span> <span style="color: #990000">-&gt;</span> <span style="color: #009900">bool</span><span style="color: #990000">;</span>
-<span style="color: #FF0000">}</span><span style="color: #990000">;</span>
+<pre><tt>cmake_minimum_required(VERSION 3.9)
+project(example VERSION 0.1.0 LANGUAGES CXX DESCRIPTION "la-la-la")
 
-<span style="font-style: italic"><span style="color: #9A1900">// ограничитель: как применять</span></span>
-<span style="font-weight: bold"><span style="color: #0000FF">template</span></span><span style="color: #990000">&lt;</span><span style="color: #008080">EqualityComparable</span> T<span style="color: #990000">&gt;</span> <span style="color: #009900">void</span> <span style="font-weight: bold"><span style="color: #000000">f</span></span><span style="color: #990000">(</span>T<span style="color: #990000">&amp;&amp;);</span>
+set(CMAKE_CXX_STANDARD 17)
 
-<span style="font-style: italic"><span style="color: #9A1900">// или так применять</span></span>
-<span style="font-weight: bold"><span style="color: #0000FF">template</span></span><span style="color: #990000">&lt;</span><span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">T</span><span style="color: #990000">&gt;</span> <span style="color: #008080">requires</span> EqualityComparable<span style="color: #990000">&lt;</span>T<span style="color: #990000">&gt;</span> <span style="color: #009900">void</span> <span style="font-weight: bold"><span style="color: #000000">f</span></span><span style="color: #990000">(</span>T<span style="color: #990000">&amp;&amp;);</span></tt></pre></div></div>
-<ul class="">
-<li>
-<span>
-Компактнее вывод об ошибке (с концептами&#8201;&#8212;&#8201;2 строки, без них&#8201;&#8212;&#8201;50+)
-</span>
-</li>
-<li>
-<span>
-По сигнатуре можно понять, какой тип данных ожидает функция
-</span>
-</li>
-<li>
-<span>
-Ещё один способ ужесточения типизации
-</span>
-</li>
-</ul>
+include(CTest)
+
+file(GLOB SOURCES src/*.cpp)
+add_library(unit STATIC ${SOURCES}) # libunit.a
+target_include_directories(unit PUBLIC include)
+
+add_executable(example app/main.cpp)
+target_link_libraries(example PUBLIC unit m dl)
+
+add_test(NAME simple_test COMMAND example --filter sim --dir /tmp)
+set_tests_properties(simple_test PROPERTIES PASS_REGULAR_EXPRESSION "hello world")</tt></pre></div></div>
 </div></div>
 <div class="sect2 slide">
-<h1 id="_новое_в_stl">7.2. Новое в STL</h1>
+<h1 id="_пример_создания_пакета">4.2. Пример создания пакета</h1>
+
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>include(GNUInstallDirs)
+
+install(DIRECTORY include/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+install(TARGETS example unit
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+)
+
+list(APPEND CPACK_GENERATOR TGZ)
+set(CPACK_PACKAGE_VERSION_MAJOR ${PROJECT_VERSION_MAJOR})
+set(CPACK_PACKAGE_VERSION_MINOR ${PROJECT_VERSION_MINOR})
+set(CPACK_PACKAGE_VERSION_PATCH ${PROJECT_VERSION_PATCH})
+set(CPACK_SYSTEM_NAME ${CMAKE_SYSTEM_NAME}-${CMAKE_SYSTEM_PROCESSOR})
+set(CPACK_PACKAGE_CONTACT "MIET")
+set(CPACK_DEBIAN_PACKAGE_DEPENDS "libfuse3 (&gt;= 3.2.0)")
+include(CPack)</tt></pre></div></div>
+</div></div>
+<div class="sect1 slide">
+<h1 id="_связывание_проектов">5. Связывание проектов</h1>
+
+<div class="sectionbody">
+</div></div>
+<div class="sect2 slide">
+<h1 id="_экспорты">5.1. Экспорты</h1>
 
 <div class="sectionbody">
 <ul class="">
 <li>
 <span>
-<code>std::bit_cast</code>&#8201;&#8212;&#8201;замена <code>reinterpret_cast</code>
+Связывание проектов можно осуществить с помощью экспорта целей
 </span>
 </li>
 <li>
 <span>
-Стандартные концепты (Integral, Assignable, Constructible, &#8230;)
+<code>find_package</code> позволяет осуществить подключение сторонних целей
 </span>
 </li>
 <li>
 <span>
-Шаблонный тип может быть классом <code>template&lt;X x&gt; void func()</code> (есть ограничения, например, <code>operator&lt;=&gt;</code>)
+В CMake есть локальный реестр пакетов (<code>~/.cmake/packages</code>)
 </span>
 </li>
 <li>
 <span>
-<code>operator&lt;=&gt;</code>&#8201;&#8212;&#8201;один оператор покрывает все отношения порядка и равенства (spaceship)
+С помощью <code>find_package</code> и <code>CMAKE_MODULE_PATH</code> можно экспортировать существующие библиотеки
 </span>
 </li>
+</ul>
+</div></div>
+<div class="sect2 slide">
+<h1 id="_install_дерево_и_export">5.2. Install-дерево и export</h1>
+
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>target_include_directories(unit PUBLIC $&lt;INSTALL_INTERFACE:include&gt; $&lt;BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include&gt;)
+
+install(TARGETS example unit EXPORT ${PROJECT_NAME}-config
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+)
+install(EXPORT ${PROJECT_NAME}-config NAMESPACE my:: DESTINATION ${CMAKE_INSTALL_DATADIR}/cmake/${PROJECT_NAME})
+
+export(TARGETS example unit NAMESPACE my:: FILE ${PROJECT_NAME}-config.cmake)
+export(PACKAGE ${PROJECT_NAME})</tt></pre></div></div>
+<ul class="">
 <li>
 <span>
-Все новые особенности языка можно проверить с помощью препроцессорных констант
+Локальное дерево сборки:
 </span>
 <ul class="">
 <li>
 <span>
-например, <code>__cpp_lib_byte</code> говорит о наличии <code>std::byte</code>
+<code>export(TARGETS ...)</code>&#8201;&#8212;&#8201;создание экспорт-файла в дереве сборки
+</span>
+</li>
+<li>
+<span>
+<code>export(PACKAGE ...)</code>&#8201;&#8212;&#8201;создание ссылки в локальном реестре на каталог сборки
 </span>
 </li>
 </ul>
 </li>
 <li>
 <span>
-<code>std::span</code>&#8201;&#8212;&#8201;декоратор над непрерывной областью памяти
+Install-дерево:
+</span>
+<ul class="">
+<li>
+<span>
+<code>install(TARGETS ... EXPORT ...)</code>&#8201;&#8212;&#8201;прописывание целей в экспорте
 </span>
 </li>
 <li>
 <span>
-Ranges&#8201;&#8212;&#8201;поддержка концепции диапазонов из <code>boost::range</code>
+<code>install(EXPORT ...)</code>&#8201;&#8212;&#8201;установка экспорт-файла
+</span>
+</li>
+</ul>
+</li>
+</ul>
+</div></div>
+<div class="sect2 slide">
+<h1 id="_использование_в_стороннем_проекте">5.3. Использование в стороннем проекте</h1>
+
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>find_package(example REQUIRED)
+
+add_executable(myprog ${SRCS})
+target_link_libraries(myprog my::unit)</tt></pre></div></div>
+<div class="paragraph"><p>Если проект <code>example</code> установлен по нестандартному пути <code>/path/to/example</code>, его можно указать в переменной
+окружения <code>CMAKE_PREFIX_PATH</code>:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>$ export CMAKE_PREFIX_PATH+=:/path/to/example</code></pre>
+</div></div>
+</div></div>
+<div class="sect2 slide">
+<h1 id="_экспорты_для_сторонних_библиотек">5.4. Экспорты для сторонних библиотек</h1>
+
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt># Файл cmake/FindFuse.cmake
+find_path(FUSE_INC fuse3/fuse.h)
+find_library(FUSE_LIBS fuse3)
+
+add_library(Fuse::fuse3 INTERFACE IMPORTED)
+set_target_properties(Fuse::fuse3 PROPERTIES
+    INTERFACE_LINK_LIBRARIES ${FUSE_LIBS}
+    INTERFACE_INCLUDE_DIRECTORIES ${FUSE_INC}
+)</tt></pre></div></div>
+<div class="listingblock">
+<div class="title">Использование</div>
+<div class="content"><!-- Generator: GNU source-highlight
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>list(APPNED CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
+#list(APPEND CMAKE_MODULE_PATH $ENV{CMAKE_MODULE_PATH})
+
+find_package(Fuse REQUIRED)
+target_link_libraries(myprog PUBLIC Fuse::fuse3)</tt></pre></div></div>
+</div></div>
+<div class="sect1 slide">
+<h1 id="_дополнительная_функциональность">6. Дополнительная функциональность</h1>
+
+<div class="sectionbody">
+</div></div>
+<div class="sect2 slide">
+<h1 id="_подкаталоги">6.1. Подкаталоги</h1>
+
+<div class="sectionbody">
+<ul class="">
+<li>
+<span>
+<code>add_subdirectory</code>&#8201;&#8212;&#8201;добавление каталога, в котором есть <code>CMakeLists.txt</code>
 </span>
 </li>
 <li>
 <span>
-<code>std::is_detected</code>&#8201;&#8212;&#8201;детектирование наличия метода/оператора класса
+Таргеты из других каталогов всегда read-only
+</span>
+</li>
+<li>
+<span>
+<code>install</code> можно сделать только в той же директории, где находится таргет
+</span>
+</li>
+</ul>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>cmake_minimum_required(VERSION 3.9)
+project(example CXX)
+
+file(GLOB SRCS src/*cpp)
+add_library(unit ${SRCS})
+add_subdirectory(tests)</tt></pre></div></div>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt># tests/CMakeLists.txt
+add_executable(testengine main.cpp)
+target_link_libraries(testengine unit)
+
+add_test(first testengine -i one)
+add_test(second testengine -i two)
+add_test(third testengine -i three)</tt></pre></div></div>
+</div></div>
+<div class="sect2 slide">
+<h1 id="_тесты">6.2. Тесты</h1>
+
+<div class="sectionbody">
+<ul class="">
+<li>
+<span>
+Добавление теста: <code>add_test(NAME name COMMAND cmd args)</code>
+</span>
+</li>
+<li>
+<span>
+Добавление параметров тестирования <code>set_tests_properties</code>
+</span>
+<ul class="">
+<li>
+<span>
+возможности test suite (<code>FIXTURES_SETUP/REQUIRED/CLEANUP</code>)
+</span>
+</li>
+<li>
+<span>
+установка переменных окружения (<code>ENVIRONMENT</code>)
+</span>
+</li>
+</ul>
+</li>
+<li>
+<span>
+Успешность теста&#8201;&#8212;&#8201;возвращаемое значение команды
+</span>
+</li>
+<li>
+<span>
+Аналог команды <code>expect</code> из linux
 </span>
 </li>
 </ul>
