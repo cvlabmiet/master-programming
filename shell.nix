@@ -6,6 +6,7 @@ mkShell rec {
     bash
     cmake
     ninja
+    parallel
     graphviz plantuml xdot
     asciidoc-full-with-plugins
     gdb
@@ -13,7 +14,6 @@ mkShell rec {
   LANG = "C.UTF-8";
   hardeningDisable = [ "all" ];
   shellHook = ''
-    alias make="cmake --build . --"
     echo Welcome to ${name} environment!
   '';
 }
