@@ -53,6 +53,7 @@ new lines from the patch
 * Виды объектов: blob, tree, commit, tag
 * Виды ссылок: branch, tag, remotes
 * Коммит: tree-объект, автор, коммитер, сообщение, parent
+* https://git-scm.com/book/en/v2/Git-Internals-Git-Objects
 
 === Хеш-суммы
 
@@ -70,6 +71,195 @@ $ echo -n 'master programming' | md5sum -
 e774d0115e01e1b735a7a1a9a3a85f09  -
 ----
 * Коллизии хешей
+
+== Пример проекта
+
+=== Указатели веток
+
+[source,bash]
+----
+$ tree .git/refs
+.git/refs/
+├── heads
+│   ├── gh-pages
+│   └── main
+├── remotes
+│   └── origin
+│       ├── gh-pages
+│       ├── HEAD
+│       └── main
+└── tags
+
+4 directories, 5 files
+
+$ git br -a
+  gh-pages
+* main
+  remotes/origin/gh-pages
+  remotes/origin/main
+----
+
+[source,bash]
+----
+$ cat .git/refs/remotes/origin/main
+48e048a75ebf91df8222bb790d59ee8664a89b8d
+$ cat .git/refs/heads/main
+48e048a75ebf91df8222bb790d59ee8664a89b8d
+----
+
+=== Пулл объектов
+
+[source,bash]
+----
+$ find .git/objects -type f
+.git/objects/97/6b87f0206c7c41ad6410af48f88be09fa3e1ee # tree
+.git/objects/pack/pack-3e57aff0a3cfc2e13a7554d91fa1673cfb58c2b2.pack
+.git/objects/pack/pack-3e57aff0a3cfc2e13a7554d91fa1673cfb58c2b2.idx
+.git/objects/info/commit-graph
+.git/objects/info/packs
+.git/objects/79/73747685eebfb4760492d2790e8c35b0d8ec89 # blob
+.git/objects/ad/f9b23d717ac1c53c537d62bd9b8785700a4395 # commit
+.git/objects/e4/e2d63e401740ccae3ff47cd63bbdb6fdcfb1b7 # tree
+----
+
+=== Коммит
+
+[source,bash]
+----
+$ git log -1
+commit adf9b23d717ac1c53c537d62bd9b8785700a4395 (HEAD -> feature-9, origin/feature-9)
+Author: Igor Sharonov <igsha@users.noreply.github.com>
+Date:   Mon Sep 5 16:04:35 2022 +0300
+
+    Add detailed analysis of git
+
+$ git cat-file -p HEAD
+tree e4e2d63e401740ccae3ff47cd63bbdb6fdcfb1b7
+parent 48e048a75ebf91df8222bb790d59ee8664a89b8d
+author Igor Sharonov <igsha@users.noreply.github.com> 1662383075 +0300
+committer Igor Sharonov <igsha@users.noreply.github.com> 1662383075 +0300
+
+Add detailed analysis of git
+----
+
+[source,bash]
+----
+$ git cat-file -p e4e2d63e401740ccae3ff47cd63bbdb6fdcfb1b7
+040000 tree 0cb41fa162ed6bf8d4ea194de28b90ff55cb5651    .github
+100644 blob 567609b1234a9b8806c5a05da6c866e480aa148d    .gitignore
+100644 blob ba0c2da8aaa88c4a9f038d85d51bbd114c5769e3    CMakeLists.txt
+100644 blob d8206d7bf71fe78c1bfb4812564a4d3142a218a1    LICENSE
+100644 blob ae9599e4ec9636e9ecfc33bd193beed1d06521da    README.adoc
+040000 tree c6928237bde5c4f61cf35f8c348b3f6fed59cdd1    cmake
+040000 tree aa5301bfa9e4deeabe1a96c1eccc4802e5903989    lecture-1
+040000 tree cae1466d6098f835d072c93b10b656c5e08aa6c6    lecture-10
+040000 tree 2a9bb5d5ffb2cdaf480ee6ac4835e302f380a037    lecture-11
+040000 tree 1979b8381d0140b114a78e4ac926d5e100a55ee5    lecture-12
+040000 tree 144053103c941cb1ee333db017235a48b5ef9b12    lecture-13
+040000 tree 976b87f0206c7c41ad6410af48f88be09fa3e1ee    lecture-2
+040000 tree 4be41f5823a468885ec8b2439c680d1bff145160    lecture-3
+040000 tree 38e4213ef93e33d34954c0b56bd751607b0e037d    lecture-4
+040000 tree 7f835fdbd2067850785e4009bf274aeb5abdf813    lecture-5
+040000 tree 97432fe22c230bc615b5701107d5f57e18a9bd30    lecture-6
+040000 tree f630e8d81e8619e97b600479308c7b84a9553c90    lecture-7
+040000 tree f28667236ad3e05366faebf8f79070566232ac24    lecture-8
+040000 tree 5af39699e2c957eabb2a33a7fbdd25283f6550f5    lecture-9
+100644 blob 9f1879d3122feeeb910c77f65b98a082b4b34339    shell.nix
+040000 tree ea823891363bf46dc3cc3a9b3921b86d0794cb02    tasks
+----
+
+=== Разница коммитов
+
+[source,bash]
+----
+$ git cat-file -p 48e048a75ebf91df8222bb790d59ee8664a89b8d
+tree cdfd7cc89cc2ddad6818438624971b850dba6e5a
+parent daec0d5a415011d44a124b8b7fe8ba2cd043bebd
+author Igor Sharonov <igsha@users.noreply.github.com> 1661757693 +0300
+committer Igor Sharonov <igsha@users.noreply.github.com> 1661775023 +0300
+
+Rename default branch
+----
+
+[source,bash]
+----
+$ diff <(git cat-file -p e4e2d63e401740ccae3ff47cd63bbdb6fdcfb1b7) <(git cat-file -p cdfd7cc89cc2ddad6818438624971b850dba6e5a)
+12c12
+< 040000 tree 976b87f0206c7c41ad6410af48f88be09fa3e1ee  lecture-2
+---
+> 040000 tree 43735af6d7e15b1d83d3099c3d801170b2759911  lecture-2
+
+$ git cat-file -p 976b87f0206c7c41ad6410af48f88be09fa3e1ee
+100644 blob 0584ddea94356028b070da761e4baa690dd55259    CMakeLists.txt
+100644 blob 7973747685eebfb4760492d2790e8c35b0d8ec89    index.adoc
+$ git cat-file -p 43735af6d7e15b1d83d3099c3d801170b2759911
+100644 blob 0584ddea94356028b070da761e4baa690dd55259    CMakeLists.txt
+100644 blob e76159c1cca14ee93d9962d33fc6db071803a7b9    index.adoc
+----
+
+Вывод разницы `diff -u <(git cat-file -p 7973747685eebfb4760492d2790e8c35b0d8ec89) <(git cat-file -p e76159c1cca14ee93d9962d33fc6db071803a7b9)`:
+[source,diff]
+----
+--- /dev/fd/63  2022-09-06 09:16:56.864041708 +0300
++++ /dev/fd/62  2022-09-06 09:16:56.864041708 +0300
+@@ -71,55 +71,6 @@
+ ----
+ * Коллизии хешей
+
+-== Пример проекта
+-
+-=== Указатели веток
+-
+- [source,bash]
+- ----
+-$ tree .git/refs
+-.git/refs/
+-├── heads
+-│   ├── gh-pages
+-│   └── main
+-├── remotes
+-│   └── origin
+-│       ├── gh-pages
+-│       ├── HEAD
+-│       └── main
+-└── tags
+-
+-4 directories, 5 files
+-
+-$ git br -a
+-  gh-pages
+-* main
+-  remotes/origin/gh-pages
+-  remotes/origin/main
+- ----
+-
+- [source,bash]
+- ----
+-$ cat .git/refs/remotes/origin/main
+-48e048a75ebf91df8222bb790d59ee8664a89b8d
+-$ cat .git/refs/heads/main
+-48e048a75ebf91df8222bb790d59ee8664a89b8d
+- ----
+-
+-=== Пулл объектов
+-
+- [source,bash]
+- ----
+-$ ls .git/objects/
+-00  0e  1c  34  43  50  5e  74  80  90  9e  a8  b5  c5  ce  d9  ed  fd
+-01  0f  20  38  45  52  62  75  82  92  a0  ab  b6  c8  cf  dd  f0  fe
+-05  10  23  3a  48  54  63  76  84  93  a1  ac  b9  c9  d3  de  f1  ff
+-07  12  26  3b  4b  58  67  79  85  94  a2  ae  bc  ca  d4  df  f5  info
+-0a  15  2a  3e  4c  5b  68  7b  86  95  a3  b2  bd  cb  d5  e0  f7  pack
+-0b  16  2b  3f  4d  5c  6a  7e  8c  9a  a4  b3  bf  cc  d6  e4  f8
+-0d  18  2e  40  4f  5d  6c  7f  8f  9d  a7  b4  c0  cd  d7  e9  fb
+- ----
+-
+
+ == Повседневное использование
+
+ === Основные команды
+----
 
 == Повседневное использование
 
