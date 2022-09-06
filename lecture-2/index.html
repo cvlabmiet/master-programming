@@ -3971,6 +3971,11 @@ git&#8201;&#8212;&#8201;файловая система ассоциативно
 Коммит: tree-объект, автор, коммитер, сообщение, parent
 </span>
 </li>
+<li>
+<span>
+<a href="https://git-scm.com/book/en/v2/Git-Internals-Git-Objects">https://git-scm.com/book/en/v2/Git-Internals-Git-Objects</a>
+</span>
+</li>
 </ul>
 </div></div>
 <div class="sect2 slide">
@@ -4020,12 +4025,224 @@ e774d0115e01e1b735a7a1a9a3a85f09  -</tt></pre></div></div>
 </ul>
 </div></div>
 <div class="sect1 slide">
-<h1 id="_повседневное_использование">3. Повседневное использование</h1>
+<h1 id="_пример_проекта">3. Пример проекта</h1>
 
 <div class="sectionbody">
 </div></div>
 <div class="sect2 slide">
-<h1 id="_основные_команды">3.1. Основные команды</h1>
+<h1 id="_указатели_веток">3.1. Указатели веток</h1>
+
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>$ tree <span style="color: #990000">.</span>git/refs
+<span style="color: #990000">.</span>git/refs<span style="color: #990000">/</span>
+├── heads
+│   ├── gh-pages
+│   └── main
+├── remotes
+│   └── origin
+│       ├── gh-pages
+│       ├── HEAD
+│       └── main
+└── tags
+
+<span style="color: #993399">4</span> directories<span style="color: #990000">,</span> <span style="color: #993399">5</span> files
+
+$ git br -a
+  gh-pages
+<span style="color: #990000">*</span> main
+  remotes/origin/gh-pages
+  remotes/origin/main</tt></pre></div></div>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>$ cat <span style="color: #990000">.</span>git/refs/remotes/origin/main
+48e048a75ebf91df8222bb790d59ee8664a89b8d
+$ cat <span style="color: #990000">.</span>git/refs/heads/main
+48e048a75ebf91df8222bb790d59ee8664a89b8d</tt></pre></div></div>
+</div></div>
+<div class="sect2 slide">
+<h1 id="_пулл_объектов">3.2. Пулл объектов</h1>
+
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>$ find <span style="color: #990000">.</span>git/objects -type f
+<span style="color: #990000">.</span>git/objects<span style="color: #990000">/</span><span style="color: #993399">97</span><span style="color: #990000">/</span>6b87f0206c7c41ad6410af48f88be09fa3e1ee <span style="font-style: italic"><span style="color: #9A1900"># tree</span></span>
+<span style="color: #990000">.</span>git/objects/pack/pack-3e57aff0a3cfc2e13a7554d91fa1673cfb58c2b2<span style="color: #990000">.</span>pack
+<span style="color: #990000">.</span>git/objects/pack/pack-3e57aff0a3cfc2e13a7554d91fa1673cfb58c2b2<span style="color: #990000">.</span>idx
+<span style="color: #990000">.</span>git/objects/info/commit-graph
+<span style="color: #990000">.</span>git/objects/info/packs
+<span style="color: #990000">.</span>git/objects<span style="color: #990000">/</span><span style="color: #993399">79</span><span style="color: #990000">/</span>73747685eebfb4760492d2790e8c35b0d8ec89 <span style="font-style: italic"><span style="color: #9A1900"># blob</span></span>
+<span style="color: #990000">.</span>git/objects/ad/f9b23d717ac1c53c537d62bd9b8785700a4395 <span style="font-style: italic"><span style="color: #9A1900"># commit</span></span>
+<span style="color: #990000">.</span>git/objects/e<span style="color: #993399">4</span>/e2d63e401740ccae3ff47cd63bbdb6fdcfb1b7 <span style="font-style: italic"><span style="color: #9A1900"># tree</span></span></tt></pre></div></div>
+</div></div>
+<div class="sect2 slide">
+<h1 id="_коммит">3.3. Коммит</h1>
+
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>$ git log -<span style="color: #993399">1</span>
+commit adf9b23d717ac1c53c537d62bd9b8785700a4395 <span style="color: #990000">(</span>HEAD -<span style="color: #990000">&gt;</span> feature-<span style="color: #993399">9</span><span style="color: #990000">,</span> origin/feature-<span style="color: #993399">9</span><span style="color: #990000">)</span>
+Author<span style="color: #990000">:</span> Igor Sharonov <span style="color: #990000">&lt;</span>igsha@users<span style="color: #990000">.</span>noreply<span style="color: #990000">.</span>github<span style="color: #990000">.</span>com<span style="color: #990000">&gt;</span>
+Date<span style="color: #990000">:</span>   Mon Sep <span style="color: #993399">5</span> <span style="color: #993399">16</span><span style="color: #990000">:</span><span style="color: #993399">04</span><span style="color: #990000">:</span><span style="color: #993399">35</span> <span style="color: #993399">2022</span> <span style="color: #990000">+</span><span style="color: #993399">0300</span>
+
+    Add detailed analysis of git
+
+$ git cat-file -p HEAD
+tree e4e2d63e401740ccae3ff47cd63bbdb6fdcfb1b7
+parent 48e048a75ebf91df8222bb790d59ee8664a89b8d
+author Igor Sharonov <span style="color: #990000">&lt;</span>igsha@users<span style="color: #990000">.</span>noreply<span style="color: #990000">.</span>github<span style="color: #990000">.</span>com<span style="color: #990000">&gt;</span> <span style="color: #993399">1662383075</span> <span style="color: #990000">+</span><span style="color: #993399">0300</span>
+committer Igor Sharonov <span style="color: #990000">&lt;</span>igsha@users<span style="color: #990000">.</span>noreply<span style="color: #990000">.</span>github<span style="color: #990000">.</span>com<span style="color: #990000">&gt;</span> <span style="color: #993399">1662383075</span> <span style="color: #990000">+</span><span style="color: #993399">0300</span>
+
+Add detailed analysis of git</tt></pre></div></div>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>$ git cat-file -p e4e2d63e401740ccae3ff47cd63bbdb6fdcfb1b7
+<span style="color: #993399">040000</span> tree 0cb41fa162ed6bf8d4ea194de28b90ff55cb5651    <span style="color: #990000">.</span>github
+<span style="color: #993399">100644</span> blob 567609b1234a9b8806c5a05da6c866e480aa148d    <span style="color: #990000">.</span>gitignore
+<span style="color: #993399">100644</span> blob ba0c2da8aaa88c4a9f038d85d51bbd114c5769e3    CMakeLists<span style="color: #990000">.</span>txt
+<span style="color: #993399">100644</span> blob d8206d7bf71fe78c1bfb4812564a4d3142a218a1    LICENSE
+<span style="color: #993399">100644</span> blob ae9599e4ec9636e9ecfc33bd193beed1d06521da    README<span style="color: #990000">.</span>adoc
+<span style="color: #993399">040000</span> tree c6928237bde5c4f61cf35f8c348b3f6fed59cdd1    cmake
+<span style="color: #993399">040000</span> tree aa5301bfa9e4deeabe1a96c1eccc4802e5903989    lecture-<span style="color: #993399">1</span>
+<span style="color: #993399">040000</span> tree cae1466d6098f835d072c93b10b656c5e08aa6c6    lecture-<span style="color: #993399">10</span>
+<span style="color: #993399">040000</span> tree 2a9bb5d5ffb2cdaf480ee6ac4835e302f380a037    lecture-<span style="color: #993399">11</span>
+<span style="color: #993399">040000</span> tree 1979b8381d0140b114a78e4ac926d5e100a55ee5    lecture-<span style="color: #993399">12</span>
+<span style="color: #993399">040000</span> tree 144053103c941cb1ee333db017235a48b5ef9b12    lecture-<span style="color: #993399">13</span>
+<span style="color: #993399">040000</span> tree 976b87f0206c7c41ad6410af48f88be09fa3e1ee    lecture-<span style="color: #993399">2</span>
+<span style="color: #993399">040000</span> tree 4be41f5823a468885ec8b2439c680d1bff145160    lecture-<span style="color: #993399">3</span>
+<span style="color: #993399">040000</span> tree 38e4213ef93e33d34954c0b56bd751607b0e037d    lecture-<span style="color: #993399">4</span>
+<span style="color: #993399">040000</span> tree 7f835fdbd2067850785e4009bf274aeb5abdf813    lecture-<span style="color: #993399">5</span>
+<span style="color: #993399">040000</span> tree 97432fe22c230bc615b5701107d5f57e18a9bd30    lecture-<span style="color: #993399">6</span>
+<span style="color: #993399">040000</span> tree f630e8d81e8619e97b600479308c7b84a9553c90    lecture-<span style="color: #993399">7</span>
+<span style="color: #993399">040000</span> tree f28667236ad3e05366faebf8f79070566232ac24    lecture-<span style="color: #993399">8</span>
+<span style="color: #993399">040000</span> tree 5af39699e2c957eabb2a33a7fbdd25283f6550f5    lecture-<span style="color: #993399">9</span>
+<span style="color: #993399">100644</span> blob 9f1879d3122feeeb910c77f65b98a082b4b34339    shell<span style="color: #990000">.</span>nix
+<span style="color: #993399">040000</span> tree ea823891363bf46dc3cc3a9b3921b86d0794cb02    tasks</tt></pre></div></div>
+</div></div>
+<div class="sect2 slide">
+<h1 id="_разница_коммитов">3.4. Разница коммитов</h1>
+
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>$ git cat-file -p 48e048a75ebf91df8222bb790d59ee8664a89b8d
+tree cdfd7cc89cc2ddad6818438624971b850dba6e5a
+parent daec0d5a415011d44a124b8b7fe8ba2cd043bebd
+author Igor Sharonov <span style="color: #990000">&lt;</span>igsha@users<span style="color: #990000">.</span>noreply<span style="color: #990000">.</span>github<span style="color: #990000">.</span>com<span style="color: #990000">&gt;</span> <span style="color: #993399">1661757693</span> <span style="color: #990000">+</span><span style="color: #993399">0300</span>
+committer Igor Sharonov <span style="color: #990000">&lt;</span>igsha@users<span style="color: #990000">.</span>noreply<span style="color: #990000">.</span>github<span style="color: #990000">.</span>com<span style="color: #990000">&gt;</span> <span style="color: #993399">1661775023</span> <span style="color: #990000">+</span><span style="color: #993399">0300</span>
+
+Rename default branch</tt></pre></div></div>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>$ diff <span style="color: #990000">&lt;(</span>git cat-file -p e4e2d63e401740ccae3ff47cd63bbdb6fdcfb1b7<span style="color: #990000">)</span> <span style="color: #990000">&lt;(</span>git cat-file -p cdfd7cc89cc2ddad6818438624971b850dba6e5a<span style="color: #990000">)</span>
+12c12
+<span style="color: #990000">&lt;</span> <span style="color: #993399">040000</span> tree 976b87f0206c7c41ad6410af48f88be09fa3e1ee  lecture-<span style="color: #993399">2</span>
+---
+<span style="color: #990000">&gt;</span> <span style="color: #993399">040000</span> tree 43735af6d7e15b1d83d3099c3d801170b2759911  lecture-<span style="color: #993399">2</span>
+
+$ git cat-file -p 976b87f0206c7c41ad6410af48f88be09fa3e1ee
+<span style="color: #993399">100644</span> blob 0584ddea94356028b070da761e4baa690dd55259    CMakeLists<span style="color: #990000">.</span>txt
+<span style="color: #993399">100644</span> blob 7973747685eebfb4760492d2790e8c35b0d8ec89    index<span style="color: #990000">.</span>adoc
+$ git cat-file -p 43735af6d7e15b1d83d3099c3d801170b2759911
+<span style="color: #993399">100644</span> blob 0584ddea94356028b070da761e4baa690dd55259    CMakeLists<span style="color: #990000">.</span>txt
+<span style="color: #993399">100644</span> blob e76159c1cca14ee93d9962d33fc6db071803a7b9    index<span style="color: #990000">.</span>adoc</tt></pre></div></div>
+<div class="paragraph"><p>Вывод разницы <code>diff -u &lt;(git cat-file -p 7973747685eebfb4760492d2790e8c35b0d8ec89) &lt;(git cat-file -p e76159c1cca14ee93d9962d33fc6db071803a7b9)</code>:</p></div>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="color: #FF6600">--- /dev/fd/63  2022-09-06 09:16:56.864041708 +0300</span>
+<span style="color: #009900">+++ /dev/fd/62  2022-09-06 09:16:56.864041708 +0300</span>
+<span style="color: #0000FF">@@ -71,55 +71,6 @@</span>
+ ----
+ * Коллизии хешей
+
+<span style="color: #FF6600">-== Пример проекта</span>
+<span style="color: #FF6600">-</span>
+<span style="color: #FF6600">-=== Указатели веток</span>
+<span style="color: #FF6600">-</span>
+<span style="color: #FF6600">- [source,bash]</span>
+<span style="color: #FF6600">- ----</span>
+<span style="color: #FF6600">-$ tree .git/refs</span>
+<span style="color: #FF6600">-.git/refs/</span>
+<span style="color: #FF6600">-├── heads</span>
+<span style="color: #FF6600">-│   ├── gh-pages</span>
+<span style="color: #FF6600">-│   └── main</span>
+<span style="color: #FF6600">-├── remotes</span>
+<span style="color: #FF6600">-│   └── origin</span>
+<span style="color: #FF6600">-│       ├── gh-pages</span>
+<span style="color: #FF6600">-│       ├── HEAD</span>
+<span style="color: #FF6600">-│       └── main</span>
+<span style="color: #FF6600">-└── tags</span>
+<span style="color: #FF6600">-</span>
+<span style="color: #FF6600">-4 directories, 5 files</span>
+<span style="color: #FF6600">-</span>
+<span style="color: #FF6600">-$ git br -a</span>
+<span style="color: #FF6600">-  gh-pages</span>
+<span style="color: #FF6600">-* main</span>
+<span style="color: #FF6600">-  remotes/origin/gh-pages</span>
+<span style="color: #FF6600">-  remotes/origin/main</span>
+<span style="color: #FF6600">- ----</span>
+<span style="color: #FF6600">-</span>
+<span style="color: #FF6600">- [source,bash]</span>
+<span style="color: #FF6600">- ----</span>
+<span style="color: #FF6600">-$ cat .git/refs/remotes/origin/main</span>
+<span style="color: #FF6600">-48e048a75ebf91df8222bb790d59ee8664a89b8d</span>
+<span style="color: #FF6600">-$ cat .git/refs/heads/main</span>
+<span style="color: #FF6600">-48e048a75ebf91df8222bb790d59ee8664a89b8d</span>
+<span style="color: #FF6600">- ----</span>
+<span style="color: #FF6600">-</span>
+<span style="color: #FF6600">-=== Пулл объектов</span>
+<span style="color: #FF6600">-</span>
+<span style="color: #FF6600">- [source,bash]</span>
+<span style="color: #FF6600">- ----</span>
+<span style="color: #FF6600">-$ ls .git/objects/</span>
+<span style="color: #FF6600">-00  0e  1c  34  43  50  5e  74  80  90  9e  a8  b5  c5  ce  d9  ed  fd</span>
+<span style="color: #FF6600">-01  0f  20  38  45  52  62  75  82  92  a0  ab  b6  c8  cf  dd  f0  fe</span>
+<span style="color: #FF6600">-05  10  23  3a  48  54  63  76  84  93  a1  ac  b9  c9  d3  de  f1  ff</span>
+<span style="color: #FF6600">-07  12  26  3b  4b  58  67  79  85  94  a2  ae  bc  ca  d4  df  f5  info</span>
+<span style="color: #FF6600">-0a  15  2a  3e  4c  5b  68  7b  86  95  a3  b2  bd  cb  d5  e0  f7  pack</span>
+<span style="color: #FF6600">-0b  16  2b  3f  4d  5c  6a  7e  8c  9a  a4  b3  bf  cc  d6  e4  f8</span>
+<span style="color: #FF6600">-0d  18  2e  40  4f  5d  6c  7f  8f  9d  a7  b4  c0  cd  d7  e9  fb</span>
+<span style="color: #FF6600">- ----</span>
+<span style="color: #FF6600">-</span>
+
+ == Повседневное использование
+
+ === Основные команды</tt></pre></div></div>
+</div></div>
+<div class="sect1 slide">
+<h1 id="_повседневное_использование">4. Повседневное использование</h1>
+
+<div class="sectionbody">
+</div></div>
+<div class="sect2 slide">
+<h1 id="_основные_команды">4.1. Основные команды</h1>
 
 <div class="sectionbody">
 <ul class="">
@@ -4082,7 +4299,7 @@ e774d0115e01e1b735a7a1a9a3a85f09  -</tt></pre></div></div>
 </ul>
 </div></div>
 <div class="sect2 slide">
-<h1 id="_пример_1_добавление_нескольких_remote">3.2. Пример №1: добавление нескольких remote</h1>
+<h1 id="_пример_1_добавление_нескольких_remote">4.2. Пример №1: добавление нескольких remote</h1>
 
 <div class="sectionbody">
 <div class="listingblock">
@@ -4111,7 +4328,7 @@ Changes not staged <span style="font-weight: bold"><span style="color: #0000FF">
     modified<span style="color: #990000">:</span>   lecture-<span style="color: #993399">2</span><span style="color: #990000">.</span>adoc</tt></pre></div></div>
 </div></div>
 <div class="sect2 slide">
-<h1 id="_пример_2_создание_локального_репозитория">3.3. Пример №2: создание локального репозитория</h1>
+<h1 id="_пример_2_создание_локального_репозитория">4.3. Пример №2: создание локального репозитория</h1>
 
 <div class="sectionbody">
 <div class="tableblock">
@@ -4153,7 +4370,7 @@ repo <span style="color: #990000">(</span>master<span style="color: #990000">)</
 </div>
 </div></div>
 <div class="sect2 slide">
-<h1 id="_пример_3_сравнение_с_origin_master">3.4. Пример №3: сравнение с origin/master</h1>
+<h1 id="_пример_3_сравнение_с_origin_master">4.4. Пример №3: сравнение с origin/master</h1>
 
 <div class="sectionbody">
 <div class="listingblock">
@@ -4167,12 +4384,12 @@ $ git show origin/master<span style="color: #990000">:</span>lecture-<span style
 $ git co origin/master -b new-feature</tt></pre></div></div>
 </div></div>
 <div class="sect1 slide">
-<h1 id="_объединение_веток">4. Объединение веток</h1>
+<h1 id="_объединение_веток">5. Объединение веток</h1>
 
 <div class="sectionbody">
 </div></div>
 <div class="sect2 slide">
-<h1 id="_разрешение_конфликтов">4.1. Разрешение конфликтов</h1>
+<h1 id="_разрешение_конфликтов">5.1. Разрешение конфликтов</h1>
 
 <div class="sectionbody">
 <ul class="">
@@ -4217,7 +4434,7 @@ merge&#8201;&#8212;&#8201;это тоже коммит
 </div></div>
 </div></div>
 <div class="sect2 slide">
-<h1 id="_стратегии_объединения_веток">4.2. Стратегии объединения веток</h1>
+<h1 id="_стратегии_объединения_веток">5.2. Стратегии объединения веток</h1>
 
 <div class="sectionbody">
 <div class="tableblock">
