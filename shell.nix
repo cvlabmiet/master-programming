@@ -1,4 +1,5 @@
-with import <nixpkgs> {};
+{ pkgs ? import <nixpkgs> {} }:
+with pkgs;
 mkShell rec {
   name = "master-programming";
   buildInputs = [ (boost17x.override { useMpi = true; }) mpi icu ];
