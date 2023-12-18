@@ -2,7 +2,7 @@
 with pkgs;
 mkShell rec {
   name = "master-programming";
-  buildInputs = [ (boost17x.override { useMpi = true; }) mpi icu ];
+  buildInputs = [ (boost.override { useMpi = true; }) mpi icu ];
   nativeBuildInputs = [
     bash
     cmake
